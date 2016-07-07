@@ -9,7 +9,7 @@ export default class Counter extends React.Component {
 
   render () {
     const count = this.props.counter.toString();
-    const {plus, minus} = this.props;
+    const { plus, minus } = this.props;
 
     return (
       <div>
