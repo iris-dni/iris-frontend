@@ -8,7 +8,7 @@ export default (reactString, initialData, webserver) => {
         <link rel='shortcut icon' href='/favicon.ico'>
       </head>
       <body>
-        <div id='react-root'>${reactString}</div>
+        <div id='app'>${reactString}</div>
         <script>window.__INITIAL_STATE__='${initialData}'</script>
         <script src="${webserver}/dist/client.js" type="text/javascript"></script>
       </body>

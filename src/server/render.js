@@ -20,16 +20,16 @@ export default (request, reply) => {
     } else {
       const initialState = { counter: 1 };
 
-      const webserver = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080';
-      const dataToSeed = asciiJSON.stringify(initialState).replace(/<\//g, '<\\/');
-
       const reactString = ReactDOMServer.renderToString(
         <App initialState={initialState}>
           <RouterContext {...renderProps} />
         </App>
       );
 
-      reply(markup(reactString, dataToSeed, webserver));
+      const stateJSON = asciiJSON.stringify(initialState).replace(/<\//g, '<\\/');
+      const webserver = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080';
+
+      reply(markup(reactString, stateJSON, webserver));
     }
   });
 };
