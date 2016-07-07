@@ -1,7 +1,7 @@
 {
-  "name": "az-iris",
+  "name": "iris",
   "version": "0.0.1",
-  "description": "IRIS",
+  "description": "IRIS Framework",
   "main": "babel.server.js",
   "scripts": {
     "clean": "rm -rf static/dist",
