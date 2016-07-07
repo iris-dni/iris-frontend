@@ -1,12 +1,14 @@
 # IRIS
 
-Install the project:
+This project requires node `>=4.0.0` due to [hapi](https://github.com/hapijs/hapi/blob/master/package.json) dependency.
+
+### Install the project:
 
 ```sh
 $ npm install
 ```
 
-Available commands:
+### Available commands:
 
 ```sh
 # to begin development
