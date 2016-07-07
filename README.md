@@ -27,6 +27,6 @@ $ npm run build
 $ npm start
 ```
 
-### Pre-commit hooks are enabled:
+### Enabled pre-commit hooks:
 
 - `lint:staged` - lint staged JS files against [semistandard](https://github.com/Flet/semistandard)
