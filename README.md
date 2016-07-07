@@ -1,6 +1,8 @@
 # IRIS
 
-**Note:** This project requires node `>= 4.0.0` due to [hapi](https://github.com/hapijs/hapi/blob/master/package.json) dependency.
+### Node version
+
+This project requires node `>= 4.0.0` due to [hapi](https://github.com/hapijs/hapi/blob/master/package.json) dependency.
 
 ### Install the project:
 
