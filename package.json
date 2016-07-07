@@ -1,20 +1,20 @@
 {
   "name": "az-iris",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "IRIS",
   "main": "babel.server.js",
   "scripts": {
     "clean": "rm -rf static/dist",
     "start": "NODE_PATH=\"./src\" node ./babel.server",
-    "build": "node ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config webpack.config.prod.js",
+    "build": "node ./node_modules/webpack/bin/webpack.js --verbose --colors --progress --display-error-details --config webpack.config.prod.js",
     "postinstall": "webpack -p --config ./webpack.client.js",
     "watch:client": "node ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config webpack.client-watch.js && node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config webpack.client-watch.js",
     "dev": "npm run clean && node ./node_modules/concurrently/src/main.js --kill-others \"npm run watch:client\" \"npm run start\"",
     "lint": "semistandard --verbose | snazzy",
     "lint:staged": "git diff --name-only --staged --diff-filter=ACMTUXB --relative | grep -E '.jsx?$' | xargs semistandard --verbose | snazzy",
-    "test": "npm run test"
+    "test": "npm run lint"
   },
-  "author": "",
+  "author": "Edenspiekermann",
   "license": "ISC",
   "dependencies": {
     "ascii-json": "^0.2.0",
