@@ -30,7 +30,7 @@ config.module = {
       loaders: ['json-loader']
     },
     {
-      include: /\.(jsx?)$/,
+      include: /\.jsx?/,
       loaders: ['react-hot', 'babel'], exclude: /node_modules/
     }
   ]
