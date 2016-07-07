@@ -59,7 +59,7 @@
     "ecmaFeatures": {
         "classes": true,
         "jsx": true
-    },
+    }
   },
   "engines": {
     "node": ">=4.0.0"
