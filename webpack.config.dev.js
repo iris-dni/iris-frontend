@@ -27,7 +27,7 @@ config.module = {
   loaders: [
     {
       include: /\.json$/,
-      loaders: ['json-loader']
+      loader: 'json'
     },
     {
       include: /\.jsx?/,
