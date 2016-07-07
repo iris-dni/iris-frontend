@@ -1,14 +1,12 @@
 import React from 'react';
 import router from 'routes';
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import * as reducers from 'reducers/index';
+import reducer from 'reducers/index';
 
 export default class App extends React.Component {
   constructor (props) {
     super(props);
-
-    const reducer = combineReducers(reducers);
     this.store = createStore(reducer, this.props.initialState);
   }
 
