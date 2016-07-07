@@ -9,19 +9,19 @@ $ npm install
 Available commands:
 
 ```sh
-# run the dev server
+# to begin development
 $ npm run dev
 
-# run test suite
+# to run the test suite
 $ npm run test
 
-# run linting
+# to run linting
 $ npm run lint
 
-# build for production
+# to build for production
 $ npm run build
 
-# run the prod server
+# to run the production server
 $ npm start
 ```
 
