@@ -54,6 +54,7 @@
     "silent": true
   },
   "semistandard": {
+    "parser": "babel-eslint",
     "ignore": [
       "babel.server.js"
     ]
