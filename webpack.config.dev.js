@@ -31,7 +31,8 @@ config.module = {
     },
     {
       include: /\.jsx?/,
-      loaders: ['react-hot', 'babel'], exclude: /node_modules/
+      loaders: ['react-hot', 'babel'],
+      exclude: /node_modules/
     }
   ]
 };
