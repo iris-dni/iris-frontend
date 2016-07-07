@@ -34,7 +34,9 @@ server.register({
 server.route({
   method: '*',
   path: '/{params*}',
-  handler: (request, reply) => reply.file('static' + request.path)
+  handler: (request, reply) => {
+    reply.file('static' + request.path);
+  }
 });
 
 /**
