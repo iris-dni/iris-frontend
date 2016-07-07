@@ -1,4 +1,4 @@
-export default (reactString, seedData, webserver) => {
+export default (reactString, initialData, webserver) => {
   return (
     `<!doctype html>
     <html lang='en-us'>
@@ -9,7 +9,7 @@ export default (reactString, seedData, webserver) => {
       </head>
       <body>
         <div id='react-root'>${reactString}</div>
-        <script>window.__reactTransmitPacket='${seedData}'</script>
+        <script>window.__INITIAL_STATE__='${initialData}'</script>
         <script src="${webserver}/dist/client.js" type="text/javascript"></script>
       </body>
     </html>`
