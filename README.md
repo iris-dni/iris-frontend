@@ -1,6 +1,6 @@
 # IRIS
 
-This project requires node `>=4.0.0` due to [hapi](https://github.com/hapijs/hapi/blob/master/package.json) dependency.
+**Note:** This project requires node `>= 4.0.0` due to [hapi](https://github.com/hapijs/hapi/blob/master/package.json) dependency.
 
 ### Install the project:
 
@@ -27,6 +27,6 @@ $ npm run build
 $ npm start
 ```
 
-The following pre-commit hooks are enabled:
+### Pre-commit hooks are enabled:
 
 - `lint:staged` - lint staged JS files against [semistandard](https://github.com/Flet/semistandard)
