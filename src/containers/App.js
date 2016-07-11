@@ -7,6 +7,7 @@ import reducer from 'reducers/index';
 export default class App extends React.Component {
   constructor (props) {
     super(props);
+
     this.store = createStore(reducer, this.props.initialState);
   }
 

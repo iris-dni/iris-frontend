@@ -1,5 +1,4 @@
 import App from 'containers/App';
-import 'isomorphic-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
 

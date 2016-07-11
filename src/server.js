@@ -1,5 +1,4 @@
 import { Server } from 'hapi';
-import 'isomorphic-fetch';
 
 import render from 'server/render';
 
