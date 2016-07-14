@@ -1,5 +1,12 @@
 require('babel-register');
 
+var cssModulesHook = require('css-modules-require-hook');
+
+cssModulesHook({
+  generateScopedName: '[name]__[local]___[hash:base64:5]',
+  mode: 'local'
+});
+
 global.__CLIENT__ = false;
 global.__SERVER__ = true;
 

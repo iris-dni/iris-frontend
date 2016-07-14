@@ -6,6 +6,7 @@ export default (reactString, initialData, webserver) => {
         <meta charset='utf-8'>
         <title>Hapi Universal Redux</title>
         <link rel='shortcut icon' href='/favicon.ico'>
+        <link rel='stylesheet' href='${webserver}/dist/styles.css'>
       </head>
       <body>
         <div id='app'>${reactString}</div>
