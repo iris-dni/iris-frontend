@@ -1,5 +1,5 @@
 export default (reactString, initialData, webserver) => {
-  const css = process.env.NODE_ENV === 'production'
+  const stylesheet = process.env.NODE_ENV === 'production'
     ? `<link rel='stylesheet' href='${webserver}/dist/styles.css'>`
     : '';
 
@@ -10,7 +10,7 @@ export default (reactString, initialData, webserver) => {
         <meta charset='utf-8'>
         <title>Hapi Universal Redux</title>
         <link rel='shortcut icon' href='/favicon.ico'>
-        ${css}
+        ${stylesheet}
       </head>
       <body>
         <div id='app'>${reactString}</div>
