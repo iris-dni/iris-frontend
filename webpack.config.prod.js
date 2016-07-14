@@ -1,7 +1,8 @@
 var webpack = require('webpack');
 var path = require('path');
-var autoprefixer = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+var autoprefixer = require('autoprefixer');
 
 var cssloader = [
   'css?modules',
@@ -77,6 +78,6 @@ module.exports = {
     fs: 'empty'
   },
   postcss: postcss,
-  // stash here to access it easily in config.dev
+  // stash here to access easily in config.dev
   cssloader: cssloader
 };
