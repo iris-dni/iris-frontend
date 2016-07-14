@@ -8,6 +8,7 @@ import { match, RouterContext } from 'react-router';
 import routes from 'routes';
 
 import markup from 'server/markup';
+import config from 'server/config';
 
 export default (request, reply) => {
   match({ routes, location: { pathname: request.path } }, (error, redirectLocation, renderProps) => {
@@ -30,7 +31,7 @@ export default (request, reply) => {
 
       const webserver = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080';
 
-      reply(markup(reactString, stateJSON, webserver));
+      reply(markup(reactString, stateJSON, webserver, config));
     }
   });
 };

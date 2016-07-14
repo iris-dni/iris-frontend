@@ -1,14 +1,14 @@
-export default (reactString, initialData, webserver) => {
+export default (reactString, initialData, webserver, config) => {
   const stylesheet = process.env.NODE_ENV === 'production'
     ? `<link rel='stylesheet' href='${webserver}/dist/styles.css'>`
     : '';
 
   return (
     `<!doctype html>
-    <html lang='en-us'>
+    <html lang='${config.lang}'>
       <head>
-        <meta charset='utf-8'>
-        <title>iris-frontend</title>
+        <meta charset='${config.charset}'>
+        <title>${config.title}</title>
         ${stylesheet}
       </head>
       <body>
