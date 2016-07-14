@@ -6,17 +6,18 @@
   "repository": "https://github.com/iris-dni/iris-frontend",
   "scripts": {
     "clean": "rm -rf static/dist",
-    "start": "npm run server",
-    "build": "webpack --verbose --colors --progress --display-error-details --config webpack.config.prod.js",
-    "server": "NODE_PATH=\"./src\" node ./babel.server",
-    "server:dev": "webpack-dev-server --config webpack.config.dev.js",
     "nodecheckversion": "node ./scripts/nodecheckversion.js",
     "preinstall": "npm run nodecheckversion",
     "postinstall": "webpack -p --config ./webpack.config.prod.js",
+    "server": "NODE_PATH=\"./src\" node ./babel.server",
+    "server:dev": "webpack-dev-server --config webpack.config.dev.js",
+    "lint:js": "semistandard --verbose | snazzy",
+    "lint:css": "stylelint src/**/*.css",
+    "lint:staged": "lint-staged",
+    "start": "npm run server",
     "dev": "npm run clean && npm run build && concurrently --kill-others \"npm run server:dev\" \"npm run server\"",
-    "lint:all": "semistandard --verbose | snazzy",
-    "lint:staged": "git diff --name-only --staged --diff-filter=ACMTUXB --relative | grep -E '.jsx?$' | xargs semistandard --verbose | snazzy",
-    "test": "npm run lint:all"
+    "build": "webpack --verbose --colors --progress --display-error-details --config webpack.config.prod.js",
+    "test": "npm run lint:js && npm run lint:css"
   },
   "author": "Edenspiekermann",
   "license": "ISC",
@@ -50,6 +51,7 @@
     "concurrently": "^2.2.0",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "lint-staged": "^2.0.2",
     "normalize.css": "^4.2.0",
     "postcss-loader": "^0.9.1",
     "pre-commit": "^1.1.3",
@@ -57,7 +59,12 @@
     "semistandard": "^8.0.0",
     "snazzy": "^4.0.0",
     "style-loader": "^0.13.1",
+    "stylelint-config-standard": "^11.0.0",
     "webpack-dev-server": "^1.14.1"
+  },
+  "lint-staged": {
+    "*.@(js|jsx)": "lint:js",
+    "*.css": "lint:css"
   },
   "pre-commit": {
     "run": "lint:staged",

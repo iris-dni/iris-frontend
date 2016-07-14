@@ -18,7 +18,9 @@ html {
  *    component built on another box-model
  * 2. No padding, no margin, no border
  */
-*, ::after, ::before {
+*,
+::after,
+::before {
   box-sizing: inherit; /* 1 */
   margin: 0; /* 2 */
   padding: 0; /* 2 */
@@ -32,7 +34,19 @@ html {
  * and Firefox.
  * Correct `block` display not defined for `main` in IE 11.
  */
-article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
   display: block;
 }
 

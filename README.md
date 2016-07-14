@@ -9,6 +9,14 @@
 
 This project requires node `>= 4.0.0` due to [hapi](https://github.com/hapijs/hapi/blob/master/package.json) dependency.
 
+### Global packages
+
+[Stylelint](https://github.com/stylelint/stylelint) must be installed globally before making CSS changes in the codebase.
+
+```sh
+$ npm install -g stylelint
+```
+
 ### Install the project:
 
 ```sh
@@ -36,4 +44,5 @@ $ npm start
 
 ### Enabled pre-commit hooks:
 
-- `lint:staged` - lint staged JS files against [semistandard](https://github.com/Flet/semistandard)
+- `lint:js` - lint staged JS files against [semistandard](https://github.com/Flet/semistandard)
+- `lint:css` - lint staged CSS files against [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard)
