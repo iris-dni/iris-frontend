@@ -1,5 +1,10 @@
 # IRIS
 
+| Environment | Build status |
+|-------------|--------------|
+| Production  | [![Build Status](https://travis-ci.org/iris-dni/iris-frontend.svg?branch=master)](https://travis-ci.org/iris-dni/iris-frontend) |
+| Staging     | [![Build Status](https://travis-ci.org/iris-dni/iris-frontend.svg?branch=staging)](https://travis-ci.org/iris-dni/iris-frontend)
+
 ### Node version
 
 This project requires node `>= 4.0.0` due to [hapi](https://github.com/hapijs/hapi/blob/master/package.json) dependency.
