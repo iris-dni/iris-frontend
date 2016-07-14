@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.css';
+import styles from './Counter.css';
 
 export default class Counter extends React.Component {
   static propTypes = {
@@ -13,10 +13,10 @@ export default class Counter extends React.Component {
     const { plus, minus } = this.props;
 
     return (
-      <div className={styles.hello}>
+      <div className={styles.root}>
         <span>Redux counter {count}</span>
         <div>
-          <button onClick={plus} className={styles.world}>+</button>
+          <button onClick={plus} className={styles.button}>+</button>
           <button onClick={minus}>-</button>
         </div>
       </div>

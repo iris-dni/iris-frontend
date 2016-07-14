@@ -1,13 +1,18 @@
 var webpack = require('webpack');
 var path = require('path');
+var autoprefixer = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var cssLoader = [
+var cssloader = [
   'css?modules',
   'importLoaders=2',
   'sourceMap',
   'localIdentName=[name]__[local]___[hash:base64:5]'
 ].join('&');
+
+var postcss = [
+  autoprefixer({ browsers: ['last 2 versions'] })
+];
 
 var plugins = [
   new webpack.DefinePlugin({
@@ -42,7 +47,7 @@ var loaders = [
   },
   {
     test: /\.css$/,
-    loader: ExtractTextPlugin.extract('style', cssLoader)
+    loader: ExtractTextPlugin.extract('style', cssloader + '!postcss')
   }
 ];
 
@@ -71,6 +76,7 @@ module.exports = {
     __dirname: true,
     fs: 'empty'
   },
+  postcss: postcss,
   // stash here to access it easily in config.dev
-  cssLoader: cssLoader
+  cssloader: cssloader
 };

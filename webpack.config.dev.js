@@ -25,7 +25,7 @@ var loaders = [
   },
   {
     test: /\.css$/,
-    loaders: ['style', config.cssLoader]
+    loaders: ['style', config.cssloader, 'postcss']
   }
 ];
 
