@@ -3,8 +3,6 @@ export default (reactString, initialData, webserver) => {
     ? `<link rel='stylesheet' href='${webserver}/dist/styles.css'>`
     : '';
 
-  const javascript = `<script src="${webserver}/dist/client.js"></script>`;
-
   return (
     `<!doctype html>
     <html lang='en-us'>
@@ -17,7 +15,7 @@ export default (reactString, initialData, webserver) => {
       <body>
         <div id='app'>${reactString}</div>
         <script>window.__INITIAL_STATE__='${initialData}'</script>
-        ${javascript}
+        <script src="${webserver}/dist/client.js"></script>
       </body>
     </html>`
   );
