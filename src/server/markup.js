@@ -8,8 +8,7 @@ export default (reactString, initialData, webserver) => {
     <html lang='en-us'>
       <head>
         <meta charset='utf-8'>
-        <title>Hapi Universal Redux</title>
-        <link rel='shortcut icon' href='/favicon.ico'>
+        <title>iris-frontend</title>
         ${stylesheet}
       </head>
       <body>
