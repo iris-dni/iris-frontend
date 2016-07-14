@@ -7,6 +7,8 @@
     "clean": "rm -rf static/dist",
     "start": "NODE_PATH=\"./src\" node ./babel.server",
     "build": "node ./node_modules/webpack/bin/webpack.js --verbose --colors --progress --display-error-details --config webpack.config.prod.js",
+    "nodecheckversion": "node ./scripts/nodecheckversion.js",
+    "preinstall": "npm run nodecheckversion",
     "postinstall": "webpack -p --config ./webpack.config.prod.js",
     "watch:client": "node ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config webpack.config.dev.js && node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config webpack.config.dev.js",
     "dev": "npm run clean && node ./node_modules/concurrently/src/main.js --kill-others \"npm run watch:client\" \"npm run start\"",
