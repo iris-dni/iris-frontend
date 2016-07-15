@@ -27,7 +27,15 @@ const inert = {
   register: require('inert')
 };
 
-server.register([good, inert], err => {
+/**
+ * Promise wrapper for Hapi's server.inject.
+ * Used in tests
+ */
+const injectThen = {
+  register: require('inject-then')
+};
+
+server.register([good, inert, injectThen], err => {
   if (err) throw err; // something bad happened loading the plugins
 });
 
@@ -66,11 +74,4 @@ server.ext('onPreResponse', (request, reply) => {
   render(request, reply);
 });
 
-export default {
-  start: () => {
-    server.start(() => {
-      console.log(`==> ✅  ${process.env.NODE_ENV || 'development'} server is listening`);
-      console.log('==> 🌎  Go to ' + server.info.uri.toLowerCase());
-    });
-  }
-};
+export default server;
