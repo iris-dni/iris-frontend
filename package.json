@@ -24,6 +24,7 @@
     "good": "^7.0.1",
     "good-console": "^6.1.2",
     "hapi": "^13.5.0",
+    "inert": "^4.0.1",
     "json-loader": "^0.5.4",
     "piping": "^0.3.2",
     "react": "^15.2.0",

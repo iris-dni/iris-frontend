@@ -20,7 +20,8 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: 'production'
+        // needs to be stringified, else it will be evaluated as a var production
+        NODE_ENV: JSON.stringify('production')
       }
     }),
     new webpack.optimize.DedupePlugin(),
