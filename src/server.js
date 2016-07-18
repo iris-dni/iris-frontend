@@ -8,23 +8,27 @@ import render from 'server/render';
 const server = new Server();
 server.connection({ port: process.env.PORT || 8000 });
 
-const options = {
-  reporters: {
-    console: [{ module: 'good-console' }, 'stdout']
+/**
+ * Process monitoring
+ */
+const good = {
+  register: require('good'),
+  options: {
+    reporters: {
+      console: [{ module: 'good-console' }, 'stdout']
+    }
   }
 };
 
-server.register({
-  register: require('good'),
-  options: options
-}, err => {
-  if (err) {
-    throw err; // something bad happened loading the plugin
-  }
-  server.start(() => {
-    console.log('==> ✅  Server is listening');
-    console.log('==> 🌎  Go to ' + server.info.uri.toLowerCase());
-  });
+/**
+ * Serving static file
+ */
+const inert = {
+  register: require('inert')
+};
+
+server.register([good, inert], err => {
+  if (err) throw err; // something bad happened loading the plugins
 });
 
 /**
@@ -39,6 +43,19 @@ server.route({
 });
 
 /**
+ * Serve static bundled files, needed for production server
+ */
+server.route({
+  method: 'GET',
+  path: '/dist/{param*}',
+  handler: {
+    directory: {
+      path: 'static/dist/'
+    }
+  }
+});
+
+/**
  * Catch dynamic requests here to fire-up React Router.
  */
 server.ext('onPreResponse', (request, reply) => {
@@ -48,3 +65,12 @@ server.ext('onPreResponse', (request, reply) => {
 
   render(request, reply);
 });
+
+export default {
+  start: () => {
+    server.start(() => {
+      console.log(`==> ✅  ${process.env.NODE_ENV} server is listening`);
+      console.log('==> 🌎  Go to ' + server.info.uri.toLowerCase());
+    });
+  }
+};
