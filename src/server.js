@@ -69,7 +69,7 @@ server.ext('onPreResponse', (request, reply) => {
 export default {
   start: () => {
     server.start(() => {
-      console.log(`==> ✅  ${process.env.NODE_ENV} server is listening`);
+      console.log(`==> ✅  ${process.env.NODE_ENV || 'development'} server is listening`);
       console.log('==> 🌎  Go to ' + server.info.uri.toLowerCase());
     });
   }

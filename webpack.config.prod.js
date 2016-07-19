@@ -47,8 +47,8 @@ var loaders = [
     exclude: /node_modules/
   },
   {
-    test: /\.css$/,
-    loader: ExtractTextPlugin.extract('style', cssloader + '!postcss')
+    test: /\.(css|scss)$/,
+    loader: ExtractTextPlugin.extract('style', cssloader + '!postcss!sass')
   }
 ];
 
