@@ -1,2 +1,2 @@
 --colors
---webpack-config webpack.config.test.js tests/**/*.js
+--webpack-config webpack.config.test.js tests/**/*.spec.js
