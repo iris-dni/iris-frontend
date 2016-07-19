@@ -1,4 +1,14 @@
+@value breakpoint, fontstack from 'styles/variables.css';
+@value colorBlack from theme(colors);
+
 .root {
-  color: red;
+  color: colorBlack;
+  font-family: fontstack, Arial, sans-serif;
   font-size: 30px;
+}
+
+@media breakpoint {
+  .root {
+    color: #f00;
+  }
 }

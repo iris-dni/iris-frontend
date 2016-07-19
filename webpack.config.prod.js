@@ -3,6 +3,7 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var autoprefixer = require('autoprefixer');
+var theme = require('postcss-theme');
 
 var cssloader = [
   'css?modules',
@@ -12,6 +13,7 @@ var cssloader = [
 ].join('&');
 
 var postcss = [
+  theme({ themePath: 'styles/theme/default' }),
   autoprefixer({ browsers: ['last 2 versions'] })
 ];
 
@@ -48,7 +50,7 @@ var loaders = [
   },
   {
     test: /\.(css|scss)$/,
-    loader: ExtractTextPlugin.extract('style', cssloader + '!postcss!sass')
+    loader: ExtractTextPlugin.extract('style', cssloader + '!postcss')
   }
 ];
 
