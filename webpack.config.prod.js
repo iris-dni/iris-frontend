@@ -13,7 +13,7 @@ var cssloader = [
 ].join('&');
 
 var postcss = [
-  theme({ themePath: 'styles/theme/default' }),
+  theme({ themePath: 'styles/themes/default' }),
   autoprefixer({ browsers: ['last 2 versions'] })
 ];
 

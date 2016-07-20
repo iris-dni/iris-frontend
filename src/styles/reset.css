@@ -8,8 +8,8 @@
  */
 html {
   box-sizing: border-box; /* 1 */
-  text-size-adjust: 100%; /* 2 */
   overflow-x: hidden; /* 3 */
+  text-size-adjust: 100%; /* 2 */
 }
 
 /**
@@ -21,10 +21,10 @@ html {
 *,
 ::after,
 ::before {
+  border: 0; /* 2 */
   box-sizing: inherit; /* 1 */
   margin: 0; /* 2 */
   padding: 0; /* 2 */
-  border: 0; /* 2 */
 }
 
 /**
