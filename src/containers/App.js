@@ -1,3 +1,5 @@
+import 'styles/global.css';
+
 import React from 'react';
 import router from 'routes';
 import { createStore } from 'redux';
