@@ -1,36 +1,25 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as CounterActions from 'actions/CounterActions';
+import { plus, minus } from 'actions/CounterActions';
 import Counter from 'components/Counter';
 
-/**
- * Redux connecting to the Main React application entry-point for both the server and client.
- */
-@connect(
-  state => ({
-    counter: state.counter
-  }),
-  dispatch => ({
-    dispatch
-  })
-)
+const Basic = (props) => (
+  <div>
+    <h1>Basic Component {props.counter}</h1>
+    <Counter {...props} />
+  </div>
+);
 
-export default class Basic extends React.Component {
-  static propTypes = {
-    counter: React.PropTypes.number.isRequired
-  }
+const mapStateToProps = (state) => ({
+  counter: state.counter
+});
 
-  render () {
-    const { counter, dispatch } = this.props;
-    return (
-      <div>
-        <h1>Basic Component {counter}</h1>
-        <Counter
-          counter={counter}
-          {...bindActionCreators(CounterActions, dispatch)}
-        />
-      </div>
-    );
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  plus: () => dispatch(plus()),
+  minus: () => dispatch(minus())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Basic);

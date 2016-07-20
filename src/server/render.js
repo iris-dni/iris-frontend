@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
-import App from 'app';
+import App from 'App';
 import routes from 'routes';
 import config from 'config';
 

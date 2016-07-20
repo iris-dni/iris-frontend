@@ -3,15 +3,21 @@ import 'assets/styles/global.css';
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import router from './routes';
+import router from 'routes';
 import reducer from 'reducers/index';
 
-const App = ({ state, children }) => (
-  <Provider store={createStore(reducer, state)}>
-    {children || router}
-  </Provider>
-);
+export default class App extends React.Component {
+  constructor (props) {
+    super(props);
 
-App.propTypes = { state: React.PropTypes.object };
+    this.store = createStore(reducer, this.props.initialState);
+  }
 
-export default App;
+  render () {
+    return (
+      <Provider store={this.store}>
+        {this.props.children || router}
+      </Provider>
+    );
+  }
+}
