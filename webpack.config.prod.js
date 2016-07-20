@@ -7,14 +7,28 @@ var theme = require('postcss-theme');
 
 var cssloader = [
   'css?modules',
-  'importLoaders=2',
-  'sourceMap',
-  'localIdentName=[name]__[local]___[hash:base64:5]'
+  'localIdentName=[hash:base64:5]'
 ].join('&');
 
 var postcss = [
-  theme({ themePath: 'styles/themes/default' }),
+  theme({ themePath: 'styles/themes/petitio' }),
   autoprefixer({ browsers: ['last 2 versions'] })
+];
+
+var loaders = [
+  {
+    include: /\.json$/,
+    loader: 'json'
+  },
+  {
+    include: /\.jsx?/,
+    loader: 'babel',
+    exclude: /node_modules/
+  },
+  {
+    test: /\.css$/,
+    loader: ExtractTextPlugin.extract('style', cssloader + '!postcss')
+  }
 ];
 
 var plugins = [
@@ -38,22 +52,6 @@ var plugins = [
   new ExtractTextPlugin('styles.css')
 ];
 
-var loaders = [
-  {
-    include: /\.json$/,
-    loader: 'json'
-  },
-  {
-    include: /\.jsx?/,
-    loader: 'babel',
-    exclude: /node_modules/
-  },
-  {
-    test: /\.css$/,
-    loader: ExtractTextPlugin.extract('style', cssloader + '!postcss')
-  }
-];
-
 module.exports = {
   entry: ['./src/client'],
   cache: false,
@@ -65,8 +63,8 @@ module.exports = {
     chunkFilename: '[name]-[id].js',
     publicPath: 'dist/'
   },
-  plugins: plugins,
   module: { loaders: loaders },
+  plugins: plugins,
   resolve: {
     modulesDirectories: [
       'src',
@@ -79,7 +77,5 @@ module.exports = {
     __dirname: true,
     fs: 'empty'
   },
-  postcss: postcss,
-  // stash here to access easily in config.dev
-  cssloader: cssloader
+  postcss: postcss
 };
