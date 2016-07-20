@@ -3,7 +3,6 @@ require('babel-register');
 var cssModulesHook = require('css-modules-require-hook');
 
 cssModulesHook({
-  extensions: ['.scss', '.css'],
   generateScopedName: '[name]__[local]___[hash:base64:5]',
   mode: 'local'
 });
