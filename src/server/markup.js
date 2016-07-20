@@ -1,15 +1,13 @@
-export default (reactString, initialData, webserver, config) => {
-  const stylesheet = process.env.NODE_ENV === 'production'
-    ? `<link rel='stylesheet' href='${webserver}/dist/styles.css'>`
-    : '';
+import stylesheet from './stylesheet';
 
+export default (reactString, initialData, webserver, config) => {
   return (
     `<!doctype html>
     <html lang='${config.lang}'>
       <head>
         <meta charset='${config.charset}'>
         <title>${config.title}</title>
-        ${stylesheet}
+        ${stylesheet(webserver)}
       </head>
       <body>
         <div id='app'>${reactString}</div>
