@@ -12,7 +12,7 @@
     "server": "NODE_PATH=\"./src\" node ./babel.server",
     "server:dev": "webpack-dev-server --config webpack.config.dev.js",
     "lint:js": "semistandard --verbose | snazzy",
-    "lint:css": "stylelint src/**/*.css",
+    "lint:css": "stylelint ./src/**/**/**/**/*.css",
     "lint:staged": "lint-staged",
     "start": "npm run server",
     "dev": "npm run clean && npm run build && concurrently --kill-others \"npm run server:dev\" \"npm run server\"",
