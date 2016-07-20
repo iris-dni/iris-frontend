@@ -11,7 +11,7 @@ var cssloader = [
 ].join('&');
 
 var postcss = [
-  theme({ themePath: 'styles/themes/petitio' }),
+  theme({ themePath: 'styles/themes/default' }),
   autoprefixer({ browsers: ['last 2 versions'] })
 ];
 
