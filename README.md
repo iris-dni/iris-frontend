@@ -29,8 +29,11 @@ $ npm install
 # to begin development
 $ npm run dev
 
-# to run the test suite
+# to run linting and the test suite
 $ npm run test
+
+# to run the test suite automatically on code changes
+$ npm run watch:test
 
 # to run linting
 $ npm run lint

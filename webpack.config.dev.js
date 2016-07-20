@@ -51,4 +51,11 @@ config.output.hotUpdateChunkFilename = 'update/[hash]/[id].update.js';
 config.module = { loaders: loaders };
 config.plugins = plugins;
 
+// needed for enzyme
+config.externals = {
+  'react/addons': true,
+  'react/lib/ExecutionEnvironment': true,
+  'react/lib/ReactContext': true
+};
+
 module.exports = config;
