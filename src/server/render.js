@@ -28,7 +28,6 @@ export default (request, reply) => {
       );
 
       const stateJSON = asciiJSON.stringify(initialState).replace(/<\//g, '<\\/');
-
       const webserver = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080';
 
       reply(markup(reactString, stateJSON, webserver, config));
