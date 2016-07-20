@@ -1,7 +1,7 @@
 import chai from 'chai';
-import counter from '../../src/reducers/counter';
+import counter from 'reducers/counter';
 
-const assert = chai.assert;
+const { assert } = chai;
 
 describe('counter reducer', () => {
   it('provides the initial state', () => {

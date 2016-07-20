@@ -2,9 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import chai from 'chai';
 import sinon from 'sinon';
-import Counter from '../../src/components/Counter';
+import Counter from 'components/Counter';
 
-const assert = chai.assert;
+const { assert } = chai;
 
 function setup (counter = 0) {
   const actions = {
@@ -28,14 +28,14 @@ describe('<Counter />', () => {
     const { buttons, actions } = setup();
     buttons.at(0).simulate('click');
 
-    assert.equal(actions.plus.calledOnce, true);
+    assert.isTrue(actions.plus.calledOnce);
   });
 
   it('calls minus on clicking the second button', () => {
     const { buttons, actions } = setup();
     buttons.at(1).simulate('click');
 
-    assert.equal(actions.minus.calledOnce, true);
+    assert.isTrue(actions.minus.calledOnce);
   });
 
   it('displays a title', () => {
