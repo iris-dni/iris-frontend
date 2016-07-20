@@ -1,2 +1,1 @@
-@value breakpoint: (min-width: 900px);
-@value fontstack: 'Helvetica Neue', Arial, sans-serif;
+@value breakpoint-small: (min-width: 900px);
