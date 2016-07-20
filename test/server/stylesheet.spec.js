@@ -13,7 +13,7 @@ describe('stylesheet helper', () => {
   });
 
   it('returns link to stylesheet', () => {
-    const result = stylesheet('//localhost:3000');
+    const result = stylesheet('');
     const actual = result.indexOf('dist/styles.css') > -1;
     const expected = true;
 
