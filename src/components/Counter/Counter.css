@@ -1,8 +1,8 @@
 @value breakpoint, fontstack from 'styles/variables.css';
-@value colorBlack from theme(colors);
+@value black from theme(colors);
 
 .root {
-  color: colorBlack;
+  color: black;
   font-family: fontstack, Arial, sans-serif;
   font-size: 30px;
 }
