@@ -9,8 +9,11 @@ import reducer from 'reducers/index';
 export default class App extends React.Component {
   constructor (props) {
     super(props);
-
-    this.store = createStore(reducer, this.props.initialState);
+    /**
+     * <Provider store> cannot be updated on-the-fly with hot reloading
+     * and Redux 2.x, so use a constructor to create it here first.
+     */
+    this.store = createStore(reducer, this.props.state);
   }
 
   render () {
