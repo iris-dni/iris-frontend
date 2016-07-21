@@ -3,8 +3,8 @@ import 'assets/styles/global.css';
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import router from 'routes';
 import reducer from 'reducers/index';
+import router from 'routes';
 
 export default class App extends React.Component {
   constructor (props) {
