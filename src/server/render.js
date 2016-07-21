@@ -1,14 +1,10 @@
 import App from 'containers/App';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import asciiJSON from 'ascii-json';
 
 import { match, RouterContext } from 'react-router';
 
 import routes from 'routes';
-
-import markup from 'server/markup';
-import config from 'server/config';
 
 export default (request, reply) => {
   match({ routes, location: { pathname: request.path } }, (error, redirectLocation, renderProps) => {
@@ -27,10 +23,14 @@ export default (request, reply) => {
         </App>
       );
 
-      const stateJSON = asciiJSON.stringify(initialState).replace(/<\//g, '<\\/');
-      const webserver = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080';
+      const basePath = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080';
 
-      reply(markup(reactString, stateJSON, webserver, config));
+      reply.view('index', {
+        reactMarkup: reactString,
+        initialState: JSON.stringify(initialState),
+        javascripts: [`${basePath}/dist/client.js`],
+        stylesheets: process.env.NODE_ENV === 'production' ? ['/dist/styles.css'] : ''
+      });
     }
   });
 };

@@ -17,7 +17,7 @@
     "lint:staged": "lint-staged",
     "start": "npm run server",
     "dev": "npm run clean && npm run build && concurrently --kill-others \"npm run server:dev\" \"npm run server\"",
-    "build": "webpack --verbose --colors --progress --display-error-details --config webpack.config.prod.js",
+    "build": "webpack --verbose --colors --progress --display-error-details --config webpack.config.prod.js && cp ./src/*.html ./static/dist",
     "test": "mocha-webpack --webpack-config webpack.config.test.js",
     "test:watch": "mocha-webpack --webpack-config webpack.config.test.js --watch"
   },
@@ -38,12 +38,14 @@
     "hapi": "^13.5.0",
     "inert": "^4.0.1",
     "json-loader": "^0.5.4",
+    "nunjucks-hapi": "^2.1.0",
     "piping": "^0.3.2",
     "react": "^15.2.0",
     "react-dom": "^15.2.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.5.2",
     "redux": "^3.5.2",
+    "vision": "^4.1.0",
     "webpack": "^1.13.1"
   },
   "devDependencies": {

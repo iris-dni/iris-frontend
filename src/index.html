@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang=''>
+  <head>
+    <meta charset=''>
+    <title>sfaasfdas</title>
+    {% for stylesheet in stylesheets %}
+      <link rel="stylesheet" href="{{ stylesheet }}">
+    {% endfor %}
+  </head>
+  <body>
+    <div id="app">{{ reactMarkup | safe }}</div>
+  </body>
+  <script>window.__INITIAL_STATE__='{{ initialState | safe }}'</script>
+  {% for script in javascripts %}
+    <script src="{{ script }}"></script>
+  {% endfor %}
+</html>
