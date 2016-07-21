@@ -1,11 +1,10 @@
 import App from 'containers/App';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-
 import { match, RouterContext } from 'react-router';
-
-import config from './config';
 import routes from 'routes';
+import config from './config';
+import assetIncludes from './assetIncludes';
 
 export default (request, reply) => {
   match({ routes, location: { pathname: request.path } }, (error, redirectLocation, renderProps) => {
@@ -24,13 +23,10 @@ export default (request, reply) => {
         </App>
       );
 
-      const basePath = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080';
-
       reply.view('index', Object.assign({}, {
         reactMarkup: reactString,
         initialState: JSON.stringify(initialState),
-        javascripts: [`${basePath}/dist/client.js`],
-        stylesheets: process.env.NODE_ENV === 'production' ? ['/dist/styles.css'] : ''
+        assetIncludes: assetIncludes(config)
       }, config));
     }
   });

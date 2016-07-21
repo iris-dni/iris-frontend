@@ -3,7 +3,7 @@
   <head>
     <meta charset="{{ charset }}">
     <title>{{ title }}</title>
-    {% for stylesheet in stylesheets %}
+    {% for stylesheet in assetIncludes.stylesheets %}
       <link rel="stylesheet" href="{{ stylesheet }}">
     {% endfor %}
   </head>
@@ -11,7 +11,7 @@
     <div id="app">{{ reactMarkup | safe }}</div>
   </body>
   <script>window.__INITIAL_STATE__='{{ initialState | safe }}'</script>
-  {% for script in javascripts %}
+  {% for script in assetIncludes.javascripts %}
     <script src="{{ script }}"></script>
   {% endfor %}
 </html>
