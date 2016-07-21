@@ -10,5 +10,6 @@ export default (
     <Route path='/' component={Home} />
     <Route path='/basic' component={Basic} />
     <Route path='/styleguide' component={Styleguide} />
+    <Route path='/petitions/:id' component={Basic} />
   </Router>
 );

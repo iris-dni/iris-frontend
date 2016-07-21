@@ -4,6 +4,7 @@ import { match, RouterContext } from 'react-router';
 import App from 'app';
 import routes from 'routes';
 import config from 'config';
+import endpoint from 'services/api/endpoint';
 
 export default (request, reply) => {
   match({ routes, location: { pathname: request.path } }, (error, redirectLocation, renderProps) => {
@@ -14,7 +15,7 @@ export default (request, reply) => {
     } else if (renderProps == null) {
       reply('Not found').code(404);
     } else {
-      const initialState = reply.initialState || { counter: 1 };
+      const initialState = endpoint(request.path).request();
 
       const reactString = ReactDOMServer.renderToString(
         <App state={initialState}>
