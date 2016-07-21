@@ -4,6 +4,7 @@ import ReactDOMServer from 'react-dom/server';
 
 import { match, RouterContext } from 'react-router';
 
+import config from './config';
 import routes from 'routes';
 
 export default (request, reply) => {
@@ -25,12 +26,12 @@ export default (request, reply) => {
 
       const basePath = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080';
 
-      reply.view('index', {
+      reply.view('index', Object.assign({}, {
         reactMarkup: reactString,
         initialState: JSON.stringify(initialState),
         javascripts: [`${basePath}/dist/client.js`],
         stylesheets: process.env.NODE_ENV === 'production' ? ['/dist/styles.css'] : ''
-      });
+      }, config));
     }
   });
 };
