@@ -26,9 +26,7 @@ var loaders = [
 ];
 
 var plugins = [
-  new webpack.EnvironmentPlugin([
-    'THEME_DIR'
-  ]),
+  new webpack.EnvironmentPlugin(config.envVars),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin()
 ];

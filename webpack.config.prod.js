@@ -5,6 +5,10 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var theme = require('postcss-theme');
 
+var envVars = [
+  'THEME_PATH'
+];
+
 var cssloader = [
   'css?modules',
   'localIdentName=[hash:base64:5]'
@@ -32,9 +36,7 @@ var loaders = [
 ];
 
 var plugins = [
-  new webpack.EnvironmentPlugin([
-    'THEME_DIR'
-  ]),
+  new webpack.EnvironmentPlugin(envVars),
   new webpack.DefinePlugin({
     __CLIENT__: true,
     __SERVER__: false,
@@ -80,5 +82,6 @@ module.exports = {
     __dirname: true,
     fs: 'empty'
   },
-  postcss: postcss
+  postcss: postcss,
+  envVars: envVars
 };
