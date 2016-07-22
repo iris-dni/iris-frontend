@@ -1,7 +1,7 @@
+require('dotenv').config();
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 var autoprefixer = require('autoprefixer');
 var theme = require('postcss-theme');
 
@@ -32,6 +32,9 @@ var loaders = [
 ];
 
 var plugins = [
+  new webpack.EnvironmentPlugin([
+    'THEME_DIR'
+  ]),
   new webpack.DefinePlugin({
     __CLIENT__: true,
     __SERVER__: false,
@@ -39,7 +42,7 @@ var plugins = [
     __DEVTOOLS__: false,
 
     'process.env': {
-      NODE_ENV: JSON.stringify('production')
+      'NODE_ENV': JSON.stringify('production')
     }
   }),
   new webpack.optimize.UglifyJsPlugin({
