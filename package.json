@@ -6,7 +6,7 @@
   "repository": "https://github.com/iris-dni/iris-frontend",
   "scripts": {
     "clean": "rm -rf static/dist",
-    "nodecheckversion": "node ./scripts/nodecheckversion.js",
+    "nodecheckversion": "node ./scripts/node-checkversion.js",
     "preinstall": "npm run nodecheckversion",
     "postinstall": "webpack -p --config ./webpack.config.prod.js",
     "server": "NODE_PATH=\"./src\" node ./babel.server",
@@ -37,6 +37,8 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.9.0",
     "css-modules-require-hook": "^4.0.1",
+    "dotenv": "^2.0.0",
+    "fs-extra": "^0.30.0",
     "good": "^7.0.1",
     "good-console": "^6.1.2",
     "hapi": "^13.5.0",

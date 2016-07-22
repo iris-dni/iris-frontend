@@ -7,7 +7,7 @@ var CUSTOM_THEME_PATH = process.env.THEME_PATH;
 var TARGET_PATH = 'static/dist/theme';
 
 /*
- * Copy the custom theme (if given) and over-write
+ * Copy the custom theme to the build folder
  */
 if (CUSTOM_THEME_PATH) {
   fs.copy(CUSTOM_THEME_PATH, TARGET_PATH, function (err) {
