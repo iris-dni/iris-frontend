@@ -15,12 +15,15 @@
     "lint:js": "semistandard --verbose | snazzy",
     "lint:css": "stylelint ./src/**/**/**/**/*.css",
     "lint:staged": "lint-staged",
-    "html": "cp ./src/index.html ./static/dist",
+    "copy:html": "node ./scripts/copy-html.js",
+    "copy:assets": "node ./scripts/copy-assets.js",
+    "copy:theme": "node ./scripts/copy-theme.js",
+    "copy": "npm run copy:html && npm run copy:assets && npm run copy:theme",
     "start": "npm run server",
     "dev": "npm run clean && npm run build && concurrently --kill-others \"npm run server:dev\" \"npm run server\"",
-    "build": "webpack --verbose --colors --progress --display-error-details --config webpack.config.prod.js && npm run html",
-    "test": "npm run html && mocha-webpack --webpack-config webpack.config.test.js",
-    "test:watch": "npm run html && mocha-webpack --webpack-config webpack.config.test.js --watch"
+    "build": "npm run copy && webpack --verbose --colors --progress --display-error-details --config webpack.config.prod.js",
+    "test": "npm run copy && mocha-webpack --webpack-config webpack.config.test.js",
+    "test:watch": "npm run copy && mocha-webpack --webpack-config webpack.config.test.js --watch"
   },
   "author": "Edenspiekermann",
   "license": "ISC",
@@ -88,7 +91,8 @@
   "semistandard": {
     "parser": "babel-eslint",
     "ignore": [
-      "babel.server.js"
+      "babel.server.js",
+      "src/assets/**"
     ],
     "globals": [
       "describe",

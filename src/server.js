@@ -71,7 +71,7 @@ server.route({
  */
 server.route({
   method: 'GET',
-  path: '/dist/{param*}',
+  path: '/dist/{params*}',
   handler: {
     directory: {
       path: 'static/dist/'
