@@ -15,11 +15,12 @@
     "lint:js": "semistandard --verbose | snazzy",
     "lint:css": "stylelint ./src/**/**/**/**/*.css",
     "lint:staged": "lint-staged",
+    "html": "cp ./src/index.html ./static/dist",
     "start": "npm run server",
     "dev": "npm run clean && npm run build && concurrently --kill-others \"npm run server:dev\" \"npm run server\"",
-    "build": "webpack --verbose --colors --progress --display-error-details --config webpack.config.prod.js && cp ./src/*.html ./static/dist",
-    "test": "mocha-webpack --webpack-config webpack.config.test.js",
-    "test:watch": "mocha-webpack --webpack-config webpack.config.test.js --watch"
+    "build": "webpack --verbose --colors --progress --display-error-details --config webpack.config.prod.js && npm run html",
+    "test": "npm run html && mocha-webpack --webpack-config webpack.config.test.js",
+    "test:watch": "npm run html && mocha-webpack --webpack-config webpack.config.test.js --watch"
   },
   "author": "Edenspiekermann",
   "license": "ISC",
