@@ -12,8 +12,6 @@ export default class Counter extends React.Component {
     const count = this.props.counter.toString();
     const { plus, minus } = this.props;
 
-    console.log(process.env.THEME_DIR);
-
     return (
       <div className={styles.root}>
         <span>Redux counter {count}</span>
