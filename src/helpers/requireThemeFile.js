@@ -1,5 +1,3 @@
-import path from 'path';
-
 export default (filePath) => {
   const themePath = process.env.THEME_PATH;
 
@@ -7,7 +5,8 @@ export default (filePath) => {
     return {};
   }
 
-  const requirePath = path.resolve(`${themePath}/${filePath}`);
+  const requirePath = `../../${themePath}/${filePath}`;
+
   try {
     const loadedFile = require(requirePath);
     if (typeof loadedFile === 'object' && loadedFile.default) {
