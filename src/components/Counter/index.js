@@ -1,25 +1,20 @@
 import React from 'react';
 import styles from './counter.css';
 
-export default class Counter extends React.Component {
-  static propTypes = {
-    counter: React.PropTypes.number.isRequired,
-    plus: React.PropTypes.func.isRequired,
-    minus: React.PropTypes.func.isRequired
-  }
+const Counter = ({ counter, plus, minus }) => (
+  <div className={styles.root}>
+    <span>Redux counter {counter.toString()}</span>
+    <div>
+      <button onClick={plus}>+</button>
+      <button onClick={minus}>-</button>
+    </div>
+  </div>
+);
 
-  render () {
-    const count = this.props.counter.toString();
-    const { plus, minus } = this.props;
+Counter.propTypes = {
+  counter: React.PropTypes.number.isRequired,
+  plus: React.PropTypes.func.isRequired,
+  minus: React.PropTypes.func.isRequired
+};
 
-    return (
-      <div className={styles.root}>
-        <span>Redux counter {count}</span>
-        <div>
-          <button onClick={plus}>+</button>
-          <button onClick={minus}>-</button>
-        </div>
-      </div>
-    );
-  }
-}
+export default Counter;
