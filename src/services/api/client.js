@@ -9,14 +9,16 @@ const request = (path) => {
   // do the actuall api request to the given path here...
   // return some petition mock data for now:
   return {
-    'id': 1,
-    'state': ['signable', 'active'],
-    'tags': ['big'],
-    'title': 'Petition title',
-    'city': 1,
-    'type': '',
-    'description': 'Petition description',
-    'suggested_solution': 'Solve it!'
+    'petition': {
+      'id': 1,
+      'state': ['signable', 'active'],
+      'tags': ['big'],
+      'title': 'Petition title',
+      'city': 1,
+      'type': '',
+      'description': 'Petition description',
+      'suggested_solution': 'Solve it!'
+    }
   };
 };
 
