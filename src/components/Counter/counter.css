@@ -1,6 +1,6 @@
 @value breakpoint-small from 'assets/styles/breakpoints.css';
-@value color-black, color-red from theme(colors);
-@value font-primary from theme(fonts);
+@value color-black, color-red from theme(colors.css);
+@value font-primary from theme(fonts.css);
 
 .root {
   color: color-black;

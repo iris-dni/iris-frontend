@@ -15,7 +15,11 @@ var cssloader = [
 ].join('&');
 
 var postcss = [
-  theme({ themePath: 'theme/styles' }),
+  theme({
+    themePath: process.env.THEME_PATH
+      ? 'styles'
+      : 'theme/styles'
+  }),
   autoprefixer({ browsers: ['last 2 versions'] })
 ];
 
@@ -68,6 +72,7 @@ module.exports = {
   resolve: {
     modulesDirectories: [
       'src',
+      process.env.THEME_PATH,
       'node_modules',
       'web_modules'
     ],
