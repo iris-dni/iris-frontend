@@ -3,7 +3,7 @@ import merge from 'config/merge';
 
 const { assert } = chai;
 
-describe('merge config', () => {
+describe('config merge', () => {
   it('provides empty object with no input', () => {
     const actual = merge('', undefined);
     const expected = {};

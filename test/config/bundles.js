@@ -3,8 +3,8 @@ import bundles from 'config/bundles';
 
 const { assert } = chai;
 
-describe('bundles config', () => {
-  it('provides javascripts', () => {
+describe('config bundles', () => {
+  it('returns javascripts key', () => {
     const result = bundles();
     const actual = result.hasOwnProperty('javascripts');
     const expected = true;
@@ -12,7 +12,7 @@ describe('bundles config', () => {
     assert.equal(actual, expected);
   });
 
-  it('provides client.js path in javascripts', () => {
+  it('returns client.js path in javascripts', () => {
     const result = bundles();
     const actual = result.javascripts.indexOf('/dist/client.js') > -1;
     const expected = true;
@@ -20,7 +20,7 @@ describe('bundles config', () => {
     assert.equal(actual, expected);
   });
 
-  it('provides stylesheets', () => {
+  it('returns stylesheets key', () => {
     const result = bundles();
     const actual = result.hasOwnProperty('stylesheets');
     const expected = true;
@@ -28,7 +28,7 @@ describe('bundles config', () => {
     assert.equal(actual, expected);
   });
 
-  it('provides styles.css path in stylesheets', () => {
+  it('returns styles.css path in stylesheets', () => {
     const result = bundles();
     const actual = result.stylesheets.indexOf('/dist/styles.css') > -1;
     const expected = true;
