@@ -13,7 +13,7 @@ describe('config', () => {
 
   it('returns default lang', () => {
     const actual = config.lang;
-    const expected = 'en-us';
+    const expected = 'en';
 
     assert.equal(actual, expected);
   });
