@@ -9,5 +9,5 @@ const bundles = getBundles();
 
 export default Object.assign({},
   mergedConfig,
-  { bundles: bundles }
+  { bundles }
 );

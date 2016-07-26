@@ -1,4 +1,5 @@
 require('babel-register');
+require('dotenv').config();
 
 var cssModulesHook = require('css-modules-require-hook');
 

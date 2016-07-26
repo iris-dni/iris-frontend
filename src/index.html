@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="{{ lang }}">
+<html lang="{{ lang | default: 'en' }}">
   <head>
-    <meta charset="{{ charset }}">
-    <title>{{ title }}</title>
+    <meta charset="{{ charset | default: 'utf-8' }}">
+    <title>{{ title | default: 'iris-frontend' }}</title>
     {% include 'theme/includes/webfonts.html' %}
     {% for stylesheet in bundles.stylesheets %}
       <link rel="stylesheet" href="{{ stylesheet }}">

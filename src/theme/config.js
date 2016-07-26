@@ -1,5 +1,5 @@
 export default {
-  lang: 'en-us',
+  lang: 'en',
   charset: 'utf-8',
   title: 'iris-frontend'
 };
