@@ -1,7 +1,7 @@
-export default (file) => {
+export default (filePath) => {
   const basePath = process.env.NODE_ENV === 'production'
     ? ''
     : '//localhost:8080';
 
-  return `${basePath}/dist/${file}`;
+  return `${basePath}/dist/${filePath}`;
 };
