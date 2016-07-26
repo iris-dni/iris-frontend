@@ -1,4 +1,4 @@
-@value breakpoint-small from 'styles/variables.css';
+@value breakpoint-small from 'assets/styles/breakpoints.css';
 @value color-black, color-red from theme(colors);
 @value font-primary from theme(fonts);
 

@@ -3,8 +3,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from 'routes';
-import config from './config';
-import assetIncludes from './assetIncludes';
+import config from 'config';
 
 export default (request, reply) => {
   match({ routes, location: { pathname: request.path } }, (error, redirectLocation, renderProps) => {
@@ -25,8 +24,7 @@ export default (request, reply) => {
 
       reply.view('index', Object.assign({}, {
         reactMarkup: reactString,
-        initialState: JSON.stringify(initialState),
-        assetIncludes: assetIncludes(config)
+        initialState: JSON.stringify(initialState)
       }, config));
     }
   });

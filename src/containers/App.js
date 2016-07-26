@@ -1,4 +1,4 @@
-import 'styles/global.css';
+import 'assets/styles/global.css';
 
 import React from 'react';
 import router from 'routes';

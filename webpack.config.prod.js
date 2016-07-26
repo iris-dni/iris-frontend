@@ -15,7 +15,7 @@ var cssloader = [
 ].join('&');
 
 var postcss = [
-  theme({ themePath: 'styles/themes/default' }),
+  theme({ themePath: 'theme/styles' }),
   autoprefixer({ browsers: ['last 2 versions'] })
 ];
 
@@ -38,11 +38,6 @@ var loaders = [
 var plugins = [
   new webpack.EnvironmentPlugin(envVars),
   new webpack.DefinePlugin({
-    __CLIENT__: true,
-    __SERVER__: false,
-    __DEVELOPMENT__: false,
-    __DEVTOOLS__: false,
-
     'process.env': {
       'NODE_ENV': JSON.stringify('production')
     }
