@@ -1,9 +1,13 @@
+require('dotenv').config();
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 var autoprefixer = require('autoprefixer');
 var theme = require('postcss-theme');
+
+var envVars = [
+  'THEME_PATH'
+];
 
 var cssloader = [
   'css?modules',
@@ -11,7 +15,7 @@ var cssloader = [
 ].join('&');
 
 var postcss = [
-  theme({ themePath: 'styles/themes/default' }),
+  theme({ themePath: 'theme/styles' }),
   autoprefixer({ browsers: ['last 2 versions'] })
 ];
 
@@ -32,14 +36,10 @@ var loaders = [
 ];
 
 var plugins = [
+  new webpack.EnvironmentPlugin(envVars),
   new webpack.DefinePlugin({
-    __CLIENT__: true,
-    __SERVER__: false,
-    __DEVELOPMENT__: false,
-    __DEVTOOLS__: false,
-
     'process.env': {
-      NODE_ENV: JSON.stringify('production')
+      'NODE_ENV': JSON.stringify('production')
     }
   }),
   new webpack.optimize.UglifyJsPlugin({
@@ -77,5 +77,6 @@ module.exports = {
     __dirname: true,
     fs: 'empty'
   },
-  postcss: postcss
+  postcss: postcss,
+  envVars: envVars
 };

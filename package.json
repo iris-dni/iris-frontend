@@ -6,7 +6,7 @@
   "repository": "https://github.com/iris-dni/iris-frontend",
   "scripts": {
     "clean": "rm -rf static/dist",
-    "nodecheckversion": "node ./scripts/nodecheckversion.js",
+    "nodecheckversion": "node ./scripts/node-checkversion.js",
     "preinstall": "npm run nodecheckversion",
     "postinstall": "webpack -p --config ./webpack.config.prod.js",
     "server": "NODE_PATH=\"./src\" node ./babel.server",
@@ -15,11 +15,15 @@
     "lint:js": "semistandard --verbose | snazzy",
     "lint:css": "stylelint ./src/**/**/**/**/*.css",
     "lint:staged": "lint-staged",
+    "copy:html": "node ./scripts/copy-html.js",
+    "copy:assets": "node ./scripts/copy-assets.js",
+    "copy:theme": "node ./scripts/copy-theme.js",
+    "copy": "npm run copy:html && npm run copy:assets && npm run copy:theme",
     "start": "npm run server",
     "dev": "npm run clean && npm run build && concurrently --kill-others \"npm run server:dev\" \"npm run server\"",
-    "build": "webpack --verbose --colors --progress --display-error-details --config webpack.config.prod.js",
-    "test": "mocha-webpack --webpack-config webpack.config.test.js",
-    "test:watch": "mocha-webpack --webpack-config webpack.config.test.js --watch"
+    "build": "npm run copy && webpack --verbose --colors --progress --display-error-details --config webpack.config.prod.js",
+    "test": "npm run copy && mocha-webpack --webpack-config webpack.config.test.js",
+    "test:watch": "npm run copy && mocha-webpack --webpack-config webpack.config.test.js --watch"
   },
   "author": "Edenspiekermann",
   "license": "ISC",
@@ -33,17 +37,21 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.9.0",
     "css-modules-require-hook": "^4.0.1",
+    "dotenv": "^2.0.0",
+    "fs-extra": "^0.30.0",
     "good": "^7.0.1",
     "good-console": "^6.1.2",
     "hapi": "^13.5.0",
     "inert": "^4.0.1",
     "json-loader": "^0.5.4",
+    "nunjucks-hapi": "^2.1.0",
     "piping": "^0.3.2",
     "react": "^15.2.0",
     "react-dom": "^15.2.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.5.2",
     "redux": "^3.5.2",
+    "vision": "^4.1.0",
     "webpack": "^1.13.1"
   },
   "devDependencies": {
@@ -85,7 +93,8 @@
   "semistandard": {
     "parser": "babel-eslint",
     "ignore": [
-      "babel.server.js"
+      "babel.server.js",
+      "src/assets/**"
     ],
     "globals": [
       "describe",

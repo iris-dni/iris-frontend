@@ -5,3 +5,5 @@ dist/
 *.log
 *.map
 .DS_Store
+.env
+/themes

@@ -1,3 +1,4 @@
+require('dotenv').config();
 var webpack = require('webpack');
 var config = require('./webpack.config.prod.js');
 var devServer = require('./dev-server');
@@ -25,13 +26,8 @@ var loaders = [
 ];
 
 var plugins = [
+  new webpack.EnvironmentPlugin(config.envVars),
   new webpack.HotModuleReplacementPlugin(),
-  new webpack.DefinePlugin({
-    __CLIENT__: true,
-    __SERVER__: false,
-    __DEVELOPMENT__: true,
-    __DEVTOOLS__: true
-  }),
   new webpack.NoErrorsPlugin()
 ];
 
