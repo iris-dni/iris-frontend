@@ -2,9 +2,9 @@
 var fs = require('fs-extra');
 require('dotenv').config();
 
-var DEFAULT_THEME_PATH = 'src/theme';
+var DEFAULT_THEME_PATH = './src/theme';
 var CUSTOM_THEME_PATH = process.env.THEME_PATH;
-var TARGET_PATH = 'static/dist/theme';
+var TARGET_PATH = './static/dist/theme';
 
 /*
  * Copy the custom theme to the build folder
