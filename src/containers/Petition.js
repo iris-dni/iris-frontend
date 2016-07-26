@@ -1,8 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
 
 const Petition = (props) => (
   <div>
+    <Helmet
+      title={props.title}
+    />
+
     <h1>{props.title}</h1>
     <p>{props.description}</p>
     <p>{props.suggestedSolution}</p>
