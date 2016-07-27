@@ -11,9 +11,9 @@
     "postinstall": "webpack -p --config ./webpack.config.prod.js",
     "server": "NODE_PATH=\"./src\" node ./babel.server",
     "server:dev": "webpack-dev-server --config webpack.config.dev.js",
-    "lint": "npm run lint:js && npm run lint:sass",
+    "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "semistandard --verbose | snazzy",
-    "lint:sass": "scss-lint",
+    "lint:scss": "scss-lint",
     "lint:staged": "lint-staged",
     "copy:html": "node ./scripts/copy-html.js",
     "copy:assets": "node ./scripts/copy-assets.js",
@@ -80,7 +80,7 @@
   },
   "lint-staged": {
     "*.@(js|jsx)": "lint:js",
-    "*.scss": "lint:sass"
+    "*.@(scss|css)": "lint:scss"
   },
   "pre-commit": {
     "run": "lint:staged",
