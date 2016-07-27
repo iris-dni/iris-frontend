@@ -1,0 +1,8 @@
+@import 'globals';
+
+.root {
+  max-width: $container-max-width;
+  padding: 5% $spacing-gutter;
+  margin-left: auto;
+  margin-right: auto;
+}

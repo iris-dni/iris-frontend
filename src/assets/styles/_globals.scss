@@ -3,7 +3,9 @@
 // and only import variables, mixins, functions etc.
 // as this file is included in _every_ component
 //
+@import 'mixins';
 @import 'breakpoints';
+@import 'layout';
 @import 'colors';
-@import 'fonts';
+@import 'typography';
 @import 'overrides';
