@@ -3,7 +3,6 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
-var theme = require('postcss-theme');
 
 var envVars = [
   'THEME_PATH'
@@ -14,8 +13,20 @@ var cssloader = [
   'localIdentName=[hash:base64:5]'
 ].join('&');
 
+var sassLoader = {
+  includePaths: [
+    path.resolve(__dirname, './src/theme/styles'),
+    path.resolve(__dirname, './src/assets/styles')
+  ]
+};
+
+if (process.env.THEME_PATH) {
+  sassLoader.includePaths.unshift(
+    path.resolve(__dirname, process.env.THEME_PATH, 'styles')
+  );
+}
+
 var postcss = [
-  theme({ themePath: 'theme/styles' }),
   autoprefixer({ browsers: ['last 2 versions'] })
 ];
 
@@ -30,8 +41,8 @@ var loaders = [
     exclude: /node_modules/
   },
   {
-    test: /\.css$/,
-    loader: ExtractTextPlugin.extract('style', cssloader + '!postcss')
+    test: /\.s?css$/,
+    loader: ExtractTextPlugin.extract('style', cssloader + '!postcss!sass')
   }
 ];
 
@@ -78,5 +89,6 @@ module.exports = {
     fs: 'empty'
   },
   postcss: postcss,
-  envVars: envVars
+  envVars: envVars,
+  sassLoader: sassLoader
 };

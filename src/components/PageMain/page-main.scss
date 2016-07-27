@@ -1,0 +1,19 @@
+@import 'globals';
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: #{$breakpoint-sidebar}) {
+  .root {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (min-width: #{$breakpoint-sidebar}) {
+  .root {
+    flex-direction: row;
+  }
+}
+

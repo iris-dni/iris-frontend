@@ -11,10 +11,10 @@ This project requires node `>= 4.0.0` due to [hapi](https://github.com/hapijs/ha
 
 ### Global packages
 
-[Stylelint](https://github.com/stylelint/stylelint) must be installed globally before making CSS changes in the codebase.
+[scss-lint](https://github.com/brigade/scss-lint) must be installed globally before making Sass / CSS changes in the codebase.
 
 ```sh
-$ npm install -g stylelint
+$ npm install -g scss-lint
 ```
 
 ### Install the project:
@@ -48,4 +48,4 @@ $ npm start
 ### Enabled pre-commit hooks:
 
 - `lint:js` - lint staged JS files against [semistandard](https://github.com/Flet/semistandard)
-- `lint:css` - lint staged CSS files against [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard)
+- `lint:scss` - lint staged Scss / CSS files against [scss-lint](https://github.com/brigade/scss-lint)

@@ -6,5 +6,4 @@ export default (props) => (
     <h1>Home Component</h1>
     <p><Link to='/basic'>Go to basic route</Link></p>
   </div>
-
 );

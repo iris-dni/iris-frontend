@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './counter.css';
+import styles from './counter.scss';
 
 const Counter = ({ counter, plus, minus }) => (
   <div className={styles.root}>
