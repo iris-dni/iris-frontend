@@ -13,7 +13,7 @@
     "server:dev": "webpack-dev-server --config webpack.config.dev.js",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "semistandard --verbose | snazzy",
-    "lint:css": "stylelint ./src/**/**/**/**/*.css",
+    "lint:css": "scss-lint",
     "lint:staged": "lint-staged",
     "copy:html": "node ./scripts/copy-html.js",
     "copy:assets": "node ./scripts/copy-assets.js",
@@ -75,7 +75,6 @@
     "sinon": "^1.17.4",
     "snazzy": "^4.0.0",
     "style-loader": "^0.13.1",
-    "stylelint-config-standard": "^11.0.0",
     "webpack-dev-server": "^1.14.1",
     "webpack-node-externals": "^1.2.0"
   },

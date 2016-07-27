@@ -11,7 +11,7 @@ This project requires node `>= 4.0.0` due to [hapi](https://github.com/hapijs/ha
 
 ### Global packages
 
-[Stylelint](https://github.com/stylelint/stylelint) must be installed globally before making CSS changes in the codebase.
+[scss-lint](https://github.com/brigade/scss-lint) must be installed globally before making Sass / CSS changes in the codebase.
 
 ```sh
 $ npm install -g stylelint
