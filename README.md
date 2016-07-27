@@ -48,4 +48,4 @@ $ npm start
 ### Enabled pre-commit hooks:
 
 - `lint:js` - lint staged JS files against [semistandard](https://github.com/Flet/semistandard)
-- `lint:css` - lint staged CSS files against [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard)
+- `lint:scss` - lint staged Scss / CSS files against [scss-lint](https://github.com/brigade/scss-lint)
