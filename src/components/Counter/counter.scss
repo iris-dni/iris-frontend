@@ -3,10 +3,10 @@
 .root {
   color: $color-black;
   font-family: $font-primary;
-  font-size: 2em;
+  font-size: 3em;
 }
 
-@media (min-width: 900px) {
+@media (min-width: #{$breakpoint-small}) {
   .root {
     color: $color-red;
   }
