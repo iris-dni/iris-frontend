@@ -5,10 +5,8 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from 'reducers';
 
-// import App from 'app';
 import routes from 'routes';
 import config from 'config';
-// import endpoint from 'services/api/endpoint';
 
 export default (request, reply) => {
   match({ routes: routes(), location: { pathname: request.path } }, (error, redirectLocation, renderProps) => {
@@ -21,9 +19,6 @@ export default (request, reply) => {
     } else {
       const initialState = { counter: 1 };
       const store = createStore(reducers, initialState);
-      // const { location, params, history } = renderProps;
-
-      // const initialState = endpoint(request.path).request();
 
       const reactString = ReactDOMServer.renderToString(
         <Provider store={store}>
