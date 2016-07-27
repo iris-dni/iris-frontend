@@ -1,0 +1,13 @@
+@import 'globals';
+
+.root {
+  color: $color-black;
+  font-family: $font-primary;
+  font-size: 2em;
+}
+
+@media (min-width: 900px) {
+  .root {
+    color: $color-red;
+  }
+}

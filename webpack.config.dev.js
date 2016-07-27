@@ -20,8 +20,8 @@ var loaders = [
     exclude: /node_modules/
   },
   {
-    test: /\.css$/,
-    loaders: ['style', cssloader, 'postcss']
+    test: /\.css|scss$/,
+    loaders: ['style', cssloader, 'postcss', 'sass']
   }
 ];
 

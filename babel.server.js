@@ -4,6 +4,7 @@ require('dotenv').config();
 var cssModulesHook = require('css-modules-require-hook');
 
 cssModulesHook({
+  extensions: ['.scss', '.css'],
   generateScopedName: process.env.NODE_ENV === 'production'
     ? '[hash:base64:5]'
     : '[name]__[local]___[hash:base64:5]',

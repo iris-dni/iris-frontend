@@ -1,4 +1,4 @@
-import 'assets/styles/global.css';
+import 'assets/styles/reset.css';
 
 import React from 'react';
 import { createStore } from 'redux';
