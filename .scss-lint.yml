@@ -113,7 +113,7 @@ linters:
     convention: hyphenated_BEM
     class_convention: '^[a-z][a-z0-9-]*(?:__[a-z][a-z0-9-]*)?(?:--[a-z][a-z0-9-]*)?$'
     id_convention: 'a^' # Regular expression aiming at failing all the time, so that ID are actually forbidden
-    ignored_names: ['veeseoLogo', 'veeseoRA2VW2', 'imageContainer']
+    ignored_names: []
 
   Shorthand:
     enabled: true
