@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
 import reducers from 'reducers';
 
 import routes from 'routes';
 import config from 'config';
 
-export default (request, reply) => {
+export default (request, reply, next) => {
   match({ routes: routes(), location: { pathname: request.path } }, (error, redirectLocation, renderProps) => {
     if (redirectLocation) {
       reply.redirect(redirectLocation.pathname + redirectLocation.search).code(301);
@@ -17,21 +18,34 @@ export default (request, reply) => {
     } else if (renderProps == null) {
       reply('Not found').code(404);
     } else {
-      const initialState = { counter: 1 };
-      const store = createStore(reducers, initialState);
+      const initialState = {};
+      const store = createStore(reducers, initialState, applyMiddleware(thunkMiddleware));
 
-      const reactString = ReactDOMServer.renderToString(
-        <Provider store={store}>
-          <RouterContext {...renderProps} />
-        </Provider>
-      );
+      // Get the component tree
+      const components = renderProps.components;
+      // Extract our page component
+      const Comp = components[components.length - 1].WrappedComponent;
+      // Extract `fetchData` if exists
+      const fetchData = (Comp && Comp.fetchData) || (() => Promise.resolve());
+      // Get from renderProps
+      const { location, params, history } = renderProps;
 
-      const state = store.getState();
+      fetchData({ store, location, params, history })
+        .then(() => {
+          const reactString = ReactDOMServer.renderToString(
+            <Provider store={store}>
+              <RouterContext {...renderProps} />
+            </Provider>
+          );
 
-      reply.view('index', Object.assign({}, {
-        reactMarkup: reactString,
-        initialState: JSON.stringify(state)
-      }, config));
+          const state = store.getState();
+
+          reply.view('index', Object.assign({}, {
+            reactMarkup: reactString,
+            initialState: JSON.stringify(state)
+          }, config));
+        })
+        .catch((err) => next(err));
     }
   });
 };

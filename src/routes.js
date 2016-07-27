@@ -19,6 +19,7 @@ export default function (props = {}) {
       <Route path='/' component={Home} />
       <Route path='/basic' component={Basic} />
       <Route path='/styleguide' component={Styleguide} />
+      <Route path='/home' component={Home} />
       <Route path='/petitions/:id' component={Petition} />
     </Router>
   );
