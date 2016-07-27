@@ -80,7 +80,7 @@
   },
   "lint-staged": {
     "*.@(js|jsx)": "lint:js",
-    "*.scss)": "lint:sass"
+    "*.scss": "lint:sass"
   },
   "pre-commit": {
     "run": "lint:staged",
