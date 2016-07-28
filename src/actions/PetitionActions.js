@@ -17,8 +17,6 @@ export function receivePetition (petition) {
 }
 
 export function fetchPetition () {
-  // NOTE: instead of returning an object, we return a function that can
-  // dispatch actions and return a Promise for when it's all complete!
   return (dispatch, getState) => {
     dispatch(requestPetition());
     return axios.get('http://api-iris-dev.lovelysystems.com/v1/petitions/2')
