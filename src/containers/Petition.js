@@ -11,7 +11,8 @@ const Petition = React.createClass({
     fetchPetition: React.PropTypes.func
   },
 
-  // When the component gets added to the DOM, fetch any data we need
+  // When the component gets added to the DOM,
+  // fetch Petition if `id` is not defined.
   componentDidMount () {
     if (!this.props.id) {
       this.props.fetchPetition(this.props.params.id);
@@ -40,7 +41,8 @@ const mapStateToProps = ({ petition }) => ({
   suggestedSolution: petition.suggested_solution
 });
 
-// Add dispatchers to the component props for fetching the data _client side_
+// Add dispatchers to the component props,
+// for fetching the data _client side_
 const mapDispatchToProps = (dispatch) => {
   return { fetchPetition: (id) => dispatch(fetchPetition(id)) };
 };

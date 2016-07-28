@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {
-  REQUEST_PETITION, RECEIVE_PETITION
+  REQUEST_PETITION,
+  RECEIVE_PETITION
 } from './actionTypes';
 
 export function requestPetition () {
@@ -18,10 +19,12 @@ export function receivePetition (petition) {
 
 export function fetchPetition (id) {
   return (dispatch, getState) => {
-    dispatch(requestPetition());
+    dispatch(
+      requestPetition()
+    );
     return axios.get(`http://api-iris-dev.lovelysystems.com/v1/petitions/${id}`)
-      .then((res) => {
-        return dispatch(receivePetition(res.data.data));
-      });
+      .then(res => dispatch(
+        receivePetition(res.data.data)
+      ));
   };
 }

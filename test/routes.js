@@ -31,7 +31,7 @@ describe('GET /basic', () => {
 
 describe('GET /petitions/:id', () => {
   it('responds with 200', done => {
-    server.injectThen('/petitions/1')
+    server.injectThen('/petitions/10')
       .then(response => {
         const actual = response.statusCode;
         const expected = 200;
