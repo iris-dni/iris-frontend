@@ -16,10 +16,10 @@ export function receivePetition (petition) {
   };
 }
 
-export function fetchPetition () {
+export function fetchPetition (id) {
   return (dispatch, getState) => {
     dispatch(requestPetition());
-    return axios.get('http://api-iris-dev.lovelysystems.com/v1/petitions/2')
+    return axios.get(`http://api-iris-dev.lovelysystems.com/v1/petitions/${id}`)
       .then((res) => {
         return dispatch(receivePetition(res.data.data));
       });

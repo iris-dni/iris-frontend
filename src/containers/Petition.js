@@ -4,19 +4,22 @@ import { fetchPetition } from 'actions/PetitionActions';
 
 const Petition = React.createClass({
   propTypes: {
-    petition: React.PropTypes.object,
+    id: React.PropTypes.number,
+    title: React.PropTypes.string,
+    description: React.PropTypes.string,
+    suggestedSolution: React.PropTypes.string,
     fetchPetition: React.PropTypes.func
   },
 
   // When the component gets added to the DOM, fetch any data we need
   componentDidMount () {
-    if (!this.props.petition) this.props.fetchPetition();
+    const { id, params, fetchPetition } = this.props;
+    if (!id) fetchPetition(params.id);
   },
 
   render () {
     return (
       <div>
-        <em>Return a petition</em>
         <h1>{this.props.title}</h1>
         <p>{this.props.description}</p>
         <p>{this.props.suggestedSolution}</p>
@@ -25,8 +28,8 @@ const Petition = React.createClass({
   }
 });
 
-Petition.fetchData = ({ store }) => {
-  return store.dispatch(fetchPetition());
+Petition.fetchData = ({ store, params }) => {
+  return store.dispatch(fetchPetition(params.id));
 };
 
 const mapStateToProps = ({ petition }) => ({
@@ -38,7 +41,7 @@ const mapStateToProps = ({ petition }) => ({
 
 // Add dispatchers to the component props for fetching the data _client side_
 const mapDispatchToProps = (dispatch) => {
-  return { fetchPetition: () => dispatch(fetchPetition()) };
+  return { fetchPetition: (id) => dispatch(fetchPetition(id)) };
 };
 
 export default connect(
