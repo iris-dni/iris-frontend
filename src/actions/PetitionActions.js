@@ -3,6 +3,7 @@ import {
   REQUEST_PETITION,
   RECEIVE_PETITION
 } from './actionTypes';
+import repository from 'services/api/repositories/petition'
 
 export function requestPetition () {
   return {
@@ -19,12 +20,10 @@ export function receivePetition (petition) {
 
 export function fetchPetition (id) {
   return (dispatch, getState) => {
-    dispatch(
-      requestPetition()
-    );
-    return axios.get(`http://api-iris-dev.lovelysystems.com/v1/petitions/${id}`)
-      .then(res => dispatch(
-        receivePetition(res.data.data)
-      ));
+    dispatch(requestPetition());
+    return repository.find(id)
+      .then((res) => {
+        return dispatch(receivePetition(res.data.data));
+      });
   };
 }
