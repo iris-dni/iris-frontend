@@ -1,12 +1,8 @@
 import chai from 'chai';
 import petition from 'reducers/petition';
+import mockPetition from '../mocks/petition';
 
 const { assert } = chai;
-
-const mockPetition = {
-  id: 2,
-  title: 'Hello world'
-};
 
 describe('petition reducer', () => {
   it('handles the RECEIVE_PETITION action', () => {
