@@ -13,8 +13,9 @@ const Petition = React.createClass({
 
   // When the component gets added to the DOM, fetch any data we need
   componentDidMount () {
-    const { id, params, fetchPetition } = this.props;
-    if (!id) fetchPetition(params.id);
+    if (!this.props.id) {
+      this.props.fetchPetition(this.props.params.id);
+    }
   },
 
   render () {
