@@ -2,16 +2,9 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchPetition } from 'actions/PetitionActions';
+import Petition from 'components/Petition';
 
-const Petition = React.createClass({
-  propTypes: {
-    id: React.PropTypes.number,
-    title: React.PropTypes.string,
-    description: React.PropTypes.string,
-    suggestedSolution: React.PropTypes.string,
-    fetchPetition: React.PropTypes.func
-  },
-
+const PetitionContainer = React.createClass({
   // When the component gets added to the DOM,
   // fetch Petition if `id` is not defined.
   componentDidMount () {
@@ -24,16 +17,22 @@ const Petition = React.createClass({
     return (
       <div>
         <Helmet title={this.props.title} />
-        <h1>{this.props.title}</h1>
-        <p>{this.props.description}</p>
-        <p>{this.props.suggestedSolution}</p>
+        <Petition {...this.props} />
       </div>
     );
   }
 });
 
-Petition.fetchData = ({ store, params }) => {
+PetitionContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetition(params.id));
+};
+
+PetitionContainer.propTypes = {
+  id: React.PropTypes.number,
+  title: React.PropTypes.string,
+  description: React.PropTypes.string,
+  suggestedSolution: React.PropTypes.string,
+  fetchPetition: React.PropTypes.func
 };
 
 const mapStateToProps = ({ petition }) => ({
@@ -52,4 +51,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Petition);
+)(PetitionContainer);
