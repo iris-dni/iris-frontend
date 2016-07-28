@@ -1,13 +1,9 @@
-import App from 'containers/App';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import asciiJSON from 'ascii-json';
-
 import { match, RouterContext } from 'react-router';
-
+import App from 'app';
 import routes from 'routes';
-
-import markup from 'server/markup';
+import config from 'config';
 
 export default (request, reply) => {
   match({ routes, location: { pathname: request.path } }, (error, redirectLocation, renderProps) => {
@@ -18,18 +14,18 @@ export default (request, reply) => {
     } else if (renderProps == null) {
       reply('Not found').code(404);
     } else {
-      const initialState = { counter: 1 };
+      const initialState = reply.initialState || { counter: 1 };
 
       const reactString = ReactDOMServer.renderToString(
-        <App initialState={initialState}>
+        <App state={initialState}>
           <RouterContext {...renderProps} />
         </App>
       );
 
-      const stateJSON = asciiJSON.stringify(initialState).replace(/<\//g, '<\\/');
-      const webserver = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080';
-
-      reply(markup(reactString, stateJSON, webserver));
+      reply.view('index', Object.assign({}, {
+        reactMarkup: reactString,
+        initialState: JSON.stringify(initialState)
+      }, config));
     }
   });
 };

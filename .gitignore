@@ -1,6 +1,9 @@
 .idea/
-node_modules/
+.tmp/
+node_modules
 dist/
 *.log
 *.map
 .DS_Store
+.env
+/themes

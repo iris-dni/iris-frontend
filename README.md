@@ -9,6 +9,14 @@
 
 This project requires node `>= 4.0.0` due to [hapi](https://github.com/hapijs/hapi/blob/master/package.json) dependency.
 
+### Global packages
+
+[scss-lint](https://github.com/brigade/scss-lint) must be installed globally before making Sass / CSS changes in the codebase.
+
+```sh
+$ npm install -g scss-lint
+```
+
 ### Install the project:
 
 ```sh
@@ -21,8 +29,11 @@ $ npm install
 # to begin development
 $ npm run dev
 
-# to run the test suite
+# to run linting and the test suite
 $ npm run test
+
+# to run the test suite automatically on code changes
+$ npm run watch:test
 
 # to run linting
 $ npm run lint
@@ -36,4 +47,5 @@ $ npm start
 
 ### Enabled pre-commit hooks:
 
-- `lint:staged` - lint staged JS files against [semistandard](https://github.com/Flet/semistandard)
+- `lint:js` - lint staged JS files against [semistandard](https://github.com/Flet/semistandard)
+- `lint:scss` - lint staged Scss / CSS files against [scss-lint](https://github.com/brigade/scss-lint)

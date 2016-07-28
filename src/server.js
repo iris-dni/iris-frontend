@@ -1,4 +1,5 @@
 import { Server } from 'hapi';
+import NunjucksHapi from 'nunjucks-hapi';
 
 import render from 'server/render';
 
@@ -27,19 +28,42 @@ const inert = {
   register: require('inert')
 };
 
-server.register([good, inert], err => {
+/**
+ * Promise wrapper for Hapi's server.inject.
+ * Used in tests
+ */
+const injectThen = {
+  register: require('inject-then')
+};
+
+/**
+ * Vision
+ */
+const vision = {
+  register: require('vision')
+};
+
+server.register([vision, good, inert, injectThen], err => {
   if (err) throw err; // something bad happened loading the plugins
 });
 
 /**
- * Attempt to serve static requests from the public folder.
+ * Configure Nunjucks templating engine
+ */
+server.views({
+  engines: {
+    html: NunjucksHapi
+  },
+  path: 'static/dist/'
+});
+
+/**
+ * Serve all routes via react-router render method
  */
 server.route({
   method: '*',
   path: '/{params*}',
-  handler: (request, reply) => {
-    reply.file('static' + request.path);
-  }
+  handler: render
 });
 
 /**
@@ -47,7 +71,7 @@ server.route({
  */
 server.route({
   method: 'GET',
-  path: '/dist/{param*}',
+  path: '/dist/{params*}',
   handler: {
     directory: {
       path: 'static/dist/'
@@ -55,22 +79,4 @@ server.route({
   }
 });
 
-/**
- * Catch dynamic requests here to fire-up React Router.
- */
-server.ext('onPreResponse', (request, reply) => {
-  if (typeof request.response.statusCode !== 'undefined') {
-    return reply.continue();
-  }
-
-  render(request, reply);
-});
-
-export default {
-  start: () => {
-    server.start(() => {
-      console.log(`==> ✅  ${process.env.NODE_ENV} server is listening`);
-      console.log('==> 🌎  Go to ' + server.info.uri.toLowerCase());
-    });
-  }
-};
+export default server;

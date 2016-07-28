@@ -1,0 +1,8 @@
+web:
+  build: .
+  command: npm run dev
+  ports:
+    - 80:8000
+    - 8080:8080
+  volumes:
+    - .:/app
