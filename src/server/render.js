@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
 import reducers from 'reducers';
@@ -19,7 +19,15 @@ export default (request, reply, next) => {
       reply('Not found').code(404);
     } else {
       const initialState = {};
-      const store = createStore(reducers, initialState, applyMiddleware(thunkMiddleware));
+
+      // Create our store
+      const store = createStore(
+        reducers,
+        initialState,
+        compose(
+          applyMiddleware(thunkMiddleware)
+        )
+      );
 
       // Get the component tree
       const components = renderProps.components;

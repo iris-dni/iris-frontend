@@ -3,13 +3,24 @@ import {
   REQUEST_PETITION, RECEIVE_PETITION
 } from './actionTypes';
 
+// const mock = {
+//   'id': 1,
+//   'state': ['signable', 'active'],
+//   'tags': ['big'],
+//   'title': 'Petition title',
+//   'city': 1,
+//   'type': '',
+//   'description': 'Petition description',
+//   'suggested_solution': 'Solve it!'
+// };
+
 export function requestPetition () {
   return {
     type: REQUEST_PETITION
   };
 }
 
-export function receivePetition ({ petition }) {
+export function receivePetition (petition) {
   return {
     type: RECEIVE_PETITION,
     petition
@@ -23,9 +34,7 @@ export function fetchPetition () {
     dispatch(requestPetition());
     return axios.get('http://api-iris-dev.lovelysystems.com/v1/petitions/2')
       .then((res) => {
-        return dispatch(receivePetition({
-          petition: res.data.data
-        }));
+        return dispatch(receivePetition(res.data.data));
       });
   };
 }
