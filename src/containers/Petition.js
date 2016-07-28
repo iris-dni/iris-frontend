@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchPetition } from 'actions/PetitionActions';
 
@@ -22,6 +23,7 @@ const Petition = React.createClass({
   render () {
     return (
       <div>
+        <Helmet title={this.props.title} />
         <h1>{this.props.title}</h1>
         <p>{this.props.description}</p>
         <p>{this.props.suggestedSolution}</p>

@@ -8,6 +8,7 @@ import reducers from 'reducers';
 
 import routes from 'routes';
 import config from 'config';
+import getBrowserTitle from 'server/getBrowserTitle';
 
 export default (request, reply, next) => {
   match({ routes: routes(), location: { pathname: request.path } }, (error, redirectLocation, renderProps) => {
@@ -52,7 +53,9 @@ export default (request, reply, next) => {
           return reply.view('index', Object.assign({}, {
             reactMarkup: reactString,
             initialState: JSON.stringify(state)
-          }, config));
+          }, config, {
+            title: getBrowserTitle(location, state)
+          }));
         })
         .catch((err) => next(err));
     }

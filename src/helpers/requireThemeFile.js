@@ -7,10 +7,10 @@ export default (filePath) => {
     return {};
   }
 
-  const requirePath = path.join('..', '..', themePath, filePath);
+  const requirePath = path.join('/', themePath, filePath);
 
   try {
-    const loadedFile = require(requirePath);
+    const loadedFile = require('../..' + requirePath);
     return loadedFile.default || loadedFile;
   } catch (e) {
     return {};
