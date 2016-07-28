@@ -3,17 +3,6 @@ import {
   REQUEST_PETITION, RECEIVE_PETITION
 } from './actionTypes';
 
-// const mock = {
-//   'id': 1,
-//   'state': ['signable', 'active'],
-//   'tags': ['big'],
-//   'title': 'Petition title',
-//   'city': 1,
-//   'type': '',
-//   'description': 'Petition description',
-//   'suggested_solution': 'Solve it!'
-// };
-
 export function requestPetition () {
   return {
     type: REQUEST_PETITION

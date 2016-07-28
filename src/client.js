@@ -10,6 +10,7 @@ import reducers from 'reducers';
 import Routes from './routes';
 
 const initialState = JSON.parse(window.__INITIAL_STATE__) || {};
+
 const store = createStore(
   reducers,
   initialState,

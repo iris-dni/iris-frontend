@@ -38,6 +38,7 @@ export default (request, reply, next) => {
       // Get from renderProps
       const { location, params, history } = renderProps;
 
+      // Fetch async data, then render
       fetchData({ store, location, params, history })
         .then(() => {
           const reactString = ReactDOMServer.renderToString(

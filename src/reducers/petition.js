@@ -1,5 +1,11 @@
 const initialState = {};
 
 export default function petition (state = initialState, action) {
-  return state;
+  switch (action.type) {
+    case 'RECEIVE_PETITION':
+      state.petition = action.petition;
+      return state.petition;
+    default:
+      return state;
+  }
 }
