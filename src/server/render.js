@@ -40,7 +40,7 @@ export default (request, reply, next) => {
 
           const state = store.getState();
 
-          reply.view('index', Object.assign({}, {
+          return reply.view('index', Object.assign({}, {
             reactMarkup: reactString,
             initialState: JSON.stringify(state)
           }, config));
