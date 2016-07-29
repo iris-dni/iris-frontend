@@ -1,9 +1,8 @@
-import axios from 'axios';
+import petitionRepository from 'services/api/repositories/petition';
 import {
   REQUEST_PETITION,
   RECEIVE_PETITION
 } from './actionTypes';
-import repository from 'services/api/repositories/petition'
 
 export function requestPetition () {
   return {
@@ -21,9 +20,11 @@ export function receivePetition (petition) {
 export function fetchPetition (id) {
   return (dispatch, getState) => {
     dispatch(requestPetition());
-    return repository.find(id)
-      .then((res) => {
-        return dispatch(receivePetition(res.data.data));
+    return petitionRepository.find(id)
+      .then(response => dispatch(
+        receivePetition(response.data.data)
+      )).catch(error => {
+        console.log(error);
       });
   };
 }

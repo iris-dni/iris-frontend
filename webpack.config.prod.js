@@ -6,7 +6,7 @@ var autoprefixer = require('autoprefixer');
 
 var envVars = [
   'THEME_PATH',
-  'API_URL',
+  'API_URL'
 ];
 
 var cssloader = [
