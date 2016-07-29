@@ -6,6 +6,8 @@ import { TITLE_TEMPLATE } from 'server/getBrowserTitle';
 export default ({ children }) => (
   <div>
     <Helmet titleTemplate={TITLE_TEMPLATE} />
-    {children}
+    <main role='main'>
+      {children}
+    </main>
   </div>
 );

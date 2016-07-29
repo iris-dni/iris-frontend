@@ -1,11 +1,33 @@
 import React from 'react';
+import LayoutWrap from 'components/LayoutWrap';
+import LayoutContent from 'components/LayoutContent';
+import Container from 'components/Container';
+import Heading2 from 'components/Heading2';
+import Paragraph from 'components/Paragraph';
+import PetitionHeader from 'components/PetitionHeader';
 
 const Petition = ({ title, description, suggestedSolution }) => (
-  <div>
-    <h1>{title}</h1>
-    <p>{description}</p>
-    <p>{suggestedSolution}</p>
-  </div>
+  <Container>
+    <article>
+      <PetitionHeader title={title} />
+      <LayoutWrap>
+        <LayoutContent>
+          <Heading2
+            text={'Begründung'}
+          />
+          <Paragraph
+            text={description}
+          />
+          <Heading2
+            text={'Lösung'}
+          />
+          <Paragraph
+            text={suggestedSolution}
+          />
+        </LayoutContent>
+      </LayoutWrap>
+    </article>
+  </Container>
 );
 
 export default Petition;
