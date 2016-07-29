@@ -23,8 +23,6 @@ export function fetchPetition (id) {
     return petitionRepository.find(id)
       .then(response => dispatch(
         receivePetition(response.data.data)
-      )).catch(error => {
-        console.log(error);
-      });
+      ));
   };
 }
