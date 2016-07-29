@@ -1,6 +1,7 @@
 import { Server } from 'hapi';
 import NunjucksHapi from 'nunjucks-hapi';
 import render from 'server/render';
+import api from 'server/api';
 
 /**
  * Start Hapi server on port 8000.
@@ -81,6 +82,20 @@ server.route({
   handler: {
     directory: {
       path: 'static/dist/'
+    }
+  }
+});
+
+/**
+ * Proxy API requests to real API_URL
+ */
+server.route({
+  method: '*',
+  path: '/api/{path*}',
+  handler: api,
+  config: {
+    payload: {
+      parse: false
     }
   }
 });
