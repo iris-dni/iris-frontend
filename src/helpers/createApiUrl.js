@@ -1,4 +1,4 @@
-export default (API_URL = '', requestPath) => {
+export default (API_URL = '', requestPath = '') => {
   // Remove trailing slash if given
   const sanitizedApiUrl = API_URL.replace(/\/$/, '');
   // Make sure request path has starting slash
