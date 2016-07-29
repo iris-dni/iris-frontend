@@ -1,4 +1,3 @@
-import 'assets/styles/reset.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
