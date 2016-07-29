@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -13,9 +13,7 @@ const initialState = window.__INITIAL_STATE__ || {};
 const store = createStore(
   reducers,
   initialState,
-  compose(
-    applyMiddleware(thunkMiddleware)
-  )
+  applyMiddleware(thunkMiddleware)
 );
 
 syncHistoryWithStore(browserHistory, store);

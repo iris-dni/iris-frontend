@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
 import reducers from 'reducers';
@@ -25,9 +25,7 @@ export default (request, reply, next) => {
       const store = createStore(
         reducers,
         initialState,
-        compose(
-          applyMiddleware(thunkMiddleware)
-        )
+        applyMiddleware(thunkMiddleware)
       );
 
       // Get the component tree
