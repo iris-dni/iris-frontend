@@ -5,8 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 
 var envVars = [
-  'THEME_PATH',
-  'API_URL'
+  'THEME_PATH'
 ];
 
 var cssloader = [
