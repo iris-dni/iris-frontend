@@ -5,6 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 
 var envVars = [
+  'PORT',
   'THEME_PATH'
 ];
 
@@ -49,6 +50,8 @@ var loaders = [
 var plugins = [
   new webpack.EnvironmentPlugin(envVars),
   new webpack.DefinePlugin({
+    __CLIENT__: true,
+    __SERVER__: false,
     'process.env': {
       'NODE_ENV': JSON.stringify('production')
     }

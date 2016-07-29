@@ -27,6 +27,10 @@ var loaders = [
 
 var plugins = [
   new webpack.EnvironmentPlugin(config.envVars),
+  new webpack.DefinePlugin({
+    __CLIENT__: true,
+    __SERVER__: false
+  }),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin()
 ];

@@ -1,3 +1,4 @@
+import moxios from 'moxios';
 import chai from 'chai';
 import server from 'server';
 
@@ -30,7 +31,20 @@ describe('GET /basic', () => {
 });
 
 describe('GET /petitions/:id', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
   it('responds with 200', done => {
+    moxios.stubRequest(/.*/, {
+      status: 200,
+      response: { data: {} }
+    });
+
     server.injectThen('/petitions/10')
       .then(response => {
         const actual = response.statusCode;
