@@ -29,6 +29,19 @@ describe('GET /basic', () => {
   });
 });
 
+describe('GET /petitions/:id', () => {
+  it('responds with 200', done => {
+    server.injectThen('/petitions/10')
+      .then(response => {
+        const actual = response.statusCode;
+        const expected = 200;
+
+        assert.equal(actual, expected);
+        done();
+      });
+  });
+});
+
 describe('GET a not defined route', () => {
   it('responds with 404', done => {
     server.injectThen('/not-defined')

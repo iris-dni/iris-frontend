@@ -1,6 +1,5 @@
 import { Server } from 'hapi';
 import NunjucksHapi from 'nunjucks-hapi';
-
 import render from 'server/render';
 
 /**

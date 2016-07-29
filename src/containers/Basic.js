@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { plus, minus } from 'actions/CounterActions';
 import Counter from 'components/Counter';
 
-const Basic = (props) => (
+const BasicContainer = (props) => (
   <div>
     <h1>Basic Component {props.counter}</h1>
     <Counter {...props} />
@@ -22,4 +22,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Basic);
+)(BasicContainer);

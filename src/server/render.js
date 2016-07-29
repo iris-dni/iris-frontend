@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
-import App from 'app';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { Provider } from 'react-redux';
+import reducers from 'reducers';
+
 import routes from 'routes';
 import config from 'config';
+import getBrowserTitle from 'server/getBrowserTitle';
 
-export default (request, reply) => {
-  match({ routes, location: { pathname: request.path } }, (error, redirectLocation, renderProps) => {
+export default (request, reply, next) => {
+  match({ routes: routes(), location: { pathname: request.path } }, (error, redirectLocation, renderProps) => {
     if (redirectLocation) {
       reply.redirect(redirectLocation.pathname + redirectLocation.search).code(301);
     } else if (error) {
@@ -14,18 +19,47 @@ export default (request, reply) => {
     } else if (renderProps == null) {
       reply('Not found').code(404);
     } else {
-      const initialState = reply.initialState || { counter: 1 };
+      const initialState = {};
 
-      const reactString = ReactDOMServer.renderToString(
-        <App state={initialState}>
-          <RouterContext {...renderProps} />
-        </App>
+      // Create our store
+      const store = createStore(
+        reducers,
+        initialState,
+        applyMiddleware(thunkMiddleware)
       );
 
-      reply.view('index', Object.assign({}, {
-        reactMarkup: reactString,
-        initialState: JSON.stringify(initialState)
-      }, config));
+      // Get the component tree
+      const components = renderProps.components;
+      // Extract our page component
+      const Comp = components[components.length - 1].WrappedComponent;
+      // Extract `fetchData` if exists
+      const fetchData = (Comp && Comp.fetchData) || (() => Promise.resolve());
+      // Get from renderProps
+      const { location, params, history } = renderProps;
+
+      // Fetch async data, then render
+      fetchData({ store, location, params, history })
+        .then(() => {
+          const reactString = ReactDOMServer.renderToString(
+            <Provider store={store}>
+              <RouterContext {...renderProps} />
+            </Provider>
+          );
+
+          const state = store.getState();
+
+          return reply.view('index', Object.assign({}, {
+            reactMarkup: reactString,
+            initialState: JSON.stringify(state)
+          }, config, {
+            title: getBrowserTitle(location, state)
+          }));
+        })
+        .catch((err) => {
+          return err.response && err.response.status
+            ? reply('Not found').code(404)
+            : reply(err.message).code(500);
+        });
     }
   });
 };

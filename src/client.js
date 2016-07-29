@@ -1,10 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from 'app';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+import thunkMiddleware from 'redux-thunk';
+import reducers from 'reducers';
+import Routes from './routes';
 
-const initialState = JSON.parse(window.__INITIAL_STATE__) || {};
+const initialState = window.__INITIAL_STATE__ || {};
 
-ReactDOM.render(
-  <App state={initialState} />,
-  document.getElementById('app')
+const store = createStore(
+  reducers,
+  initialState,
+  applyMiddleware(thunkMiddleware)
 );
+
+syncHistoryWithStore(browserHistory, store);
+
+ReactDOM.render((
+  <Provider store={store}>
+    <Routes store={store} />
+  </Provider>
+), document.getElementById('app'));
