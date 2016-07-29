@@ -1,6 +1,6 @@
-export default (API_URL = '', requestPath = '') => {
+export default (prefix = '', requestPath = '') => {
   // Remove trailing slash from api url
-  const sanitizedApiUrl = API_URL.replace(/\/$/, '');
+  const sanitizedApiUrl = prefix.replace(/\/$/, '');
   // Remove starting slash from request path
   const sanitizedRequestPath = requestPath.replace(/^\//, '');
   // Create URL, joined with a slash
