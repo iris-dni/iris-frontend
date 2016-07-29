@@ -57,7 +57,11 @@ export default (request, reply, next) => {
             title: getBrowserTitle(location, state)
           }));
         })
-        .catch((err) => next(err));
+        .catch((err) => {
+          return err.response && err.response.status ?
+            reply('Not found').code(404) :
+            reply(err.message).code(500);
+        });
     }
   });
 };
