@@ -28,6 +28,7 @@
   "author": "Edenspiekermann",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^6.3.7",
     "ascii-json": "^0.2.0",
     "axios": "^0.13.1",
     "babel-core": "^6.10.4",
@@ -44,6 +45,7 @@
     "good-console": "^6.1.2",
     "hapi": "^13.5.0",
     "inert": "^4.0.1",
+    "inject-then": "^2.0.5",
     "json-loader": "^0.5.4",
     "nunjucks-hapi": "^2.1.0",
     "piping": "^0.3.2",
@@ -60,7 +62,6 @@
     "webpack": "^1.13.1"
   },
   "devDependencies": {
-    "autoprefixer": "^6.3.7",
     "babel-eslint": "^6.1.0",
     "babel-plugin-typecheck": "^3.9.0",
     "chai": "^3.5.0",
@@ -68,7 +69,6 @@
     "css-loader": "^0.23.1",
     "enzyme": "^2.4.1",
     "extract-text-webpack-plugin": "^1.0.1",
-    "inject-then": "^2.0.5",
     "lint-staged": "^2.0.2",
     "mocha": "^2.5.3",
     "mocha-webpack": "^0.4.0",
