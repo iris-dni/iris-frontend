@@ -1,22 +1,25 @@
-import App from 'containers/App';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+import thunkMiddleware from 'redux-thunk';
+import reducers from 'reducers';
+import Routes from './routes';
 
-const initialState = JSON.parse(window.__INITIAL_STATE__) || {};
+const initialState = window.__INITIAL_STATE__ || {};
 
-ReactDOM.render(
-  <App initialState={initialState} />,
-  document.getElementById('app')
+const store = createStore(
+  reducers,
+  initialState,
+  applyMiddleware(thunkMiddleware)
 );
 
-/**
- * Detect whether the server-side render has been discarded due to an invalid checksum.
- */
-if (process.env.NODE_ENV !== 'production') {
-  const reactRoot = window.document.getElementById('app');
+syncHistoryWithStore(browserHistory, store);
 
-  if (!reactRoot || !reactRoot.firstChild || !reactRoot.firstChild.attributes ||
-      !reactRoot.firstChild.attributes['data-react-checksum']) {
-    console.error('Server-side React render was discarded. Make sure that your initial render does not contain any client-side code.');
-  }
-}
+ReactDOM.render((
+  <Provider store={store}>
+    <Routes store={store} />
+  </Provider>
+), document.getElementById('app'));

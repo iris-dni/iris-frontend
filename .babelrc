@@ -1,15 +1,13 @@
 {
-  "presets": ["es2015", "react", "stage-0"],
-  "plugins": [
-    ["transform-decorators-legacy", {
-      "disable": {
-        "production": true
-      }
-    }],
-    ["typecheck", {
-      "disable": {
-        "production": true
-      }
-    }]
-  ]
+  "env": {
+    "production": {
+      "presets": ["react", "es2015", "stage-0"],
+    },
+    "development": {
+      "plugins": [
+        "typecheck"
+      ],
+      "presets": ["react", "es2015", "stage-0"],
+    }
+  }
 }

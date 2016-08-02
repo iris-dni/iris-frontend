@@ -1,5 +1,6 @@
 import {
-  COUNTER_PLUS, COUNTER_MINUS
+  COUNTER_PLUS,
+  COUNTER_MINUS
 } from './actionTypes';
 
 export function plus () {
