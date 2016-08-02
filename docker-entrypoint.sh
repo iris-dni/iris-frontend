@@ -9,6 +9,9 @@ if [ ! -h 'node_modules' ]; then
   ln -s /tmp/node_modules /app/node_modules
 fi
 
+# Install missing modules
+npm install
+
 # Add pre-commit git hook
 echo "Add pre-commit git hook"
 echo "#!/bin/sh\n\ndocker exec `hostname` `pwd`/node_modules/pre-commit/hook" > .git/hooks/pre-commit

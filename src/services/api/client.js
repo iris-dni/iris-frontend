@@ -1,17 +1,25 @@
 import axios from 'axios';
 import createApiUrl from 'helpers/createApiUrl';
 
-const API_URL = process.env.API_URL;
+const API_PATH_PREFIX = '/api';
+
+const apiUrl = (requestPath) => {
+  const prefix = __SERVER__
+    ? process.env.API_URL
+    : API_PATH_PREFIX;
+
+  if (!prefix) {
+    throw new Error('Please define an API_URL in .env');
+  }
+
+  return createApiUrl(prefix, requestPath);
+};
 
 export default {
   request: (requestPath = '', method = 'GET', data) => {
-    if (!API_URL) {
-      throw new Error('Please define an API_URL in .env');
-    }
-
     return axios({
       method: method,
-      url: createApiUrl(API_URL, requestPath),
+      url: apiUrl(requestPath),
       data: data
     });
   }

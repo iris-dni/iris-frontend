@@ -25,7 +25,7 @@ describe('getBrowserTitle', () => {
     }, {
       petition: mockPetition
     });
-    const expected = 'Hello world | iris-frontend';
+    const expected = 'Quo iste quidem itaque eius. | iris-frontend';
 
     assert.equal(actual, expected);
   });
