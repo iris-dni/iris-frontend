@@ -1,5 +1,11 @@
-@import './reset';
+@import 'reset';
+@import 'globals';
 
 html {
   -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: $fonts-primary;
+  line-height: $line-height;
 }

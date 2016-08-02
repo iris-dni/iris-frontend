@@ -1,0 +1,4 @@
+@function color($key) {
+  $colors: map-merge($colors-defaults, $colors-custom);
+  @return map-get($colors, $key);
+}

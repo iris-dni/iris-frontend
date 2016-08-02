@@ -1,9 +1,5 @@
 @import 'globals';
 
 .root {
-  font-family: $font-primary;
-  font-size: $heading-2-size;
-  line-height: $heading-2-line-height;
-  letter-spacing: $heading-2-letter-spacing;
-  margin-bottom: $type-vertical-spacing-small;
+  @include map-declarations($heading-2-defaults, $heading-2-custom);
 }

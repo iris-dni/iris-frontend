@@ -2,18 +2,12 @@
 
 .root {
   display: flex;
-  flex-direction: column;
-}
 
-@media (max-width: #{$breakpoint-sidebar}) {
-  .root {
+  @include media('<=sidebar') {
     flex-direction: column-reverse;
   }
-}
 
-@media (min-width: #{$breakpoint-sidebar}) {
-  .root {
+  @include media('>sidebar') {
     flex-direction: row;
   }
 }
-

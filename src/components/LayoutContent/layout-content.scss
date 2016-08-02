@@ -2,10 +2,8 @@
 
 .root {
   max-width: 40em;
-}
 
-@media (min-width: #{$breakpoint-sidebar}) {
-  .root {
+  @include media('>sidebar') {
     flex: 1;
   }
 }

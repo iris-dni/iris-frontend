@@ -1,15 +1,5 @@
 @import 'globals';
 
 .root {
-  @include responsive-font(
-    $heading-1-size,
-    $heading-1-size-min,
-    $heading-1-size-max,
-    $heading-1-size-max
-  );
-  font-family: $font-primary;
-  font-weight: $heading-1-weight;
-  line-height: $heading-1-line-height;
-  letter-spacing: $heading-1-letter-spacing;
-  margin-bottom: $type-vertical-spacing;
+  @include map-declarations($heading-1-defaults, $heading-1-custom);
 }

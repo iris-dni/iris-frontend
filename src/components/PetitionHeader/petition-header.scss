@@ -1,0 +1,10 @@
+@import 'globals';
+
+.root {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.heading-wrap {
+  @include responsive-font(5vw, 30px, 55px);
+}
