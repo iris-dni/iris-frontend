@@ -1,6 +1,7 @@
 import moxios from 'moxios';
 import chai from 'chai';
 import server from 'server';
+import mockPetition from './mocks/petition';
 
 const { assert } = chai;
 
@@ -42,7 +43,7 @@ describe('GET /petitions/:id', () => {
   it('responds with 200', done => {
     moxios.stubRequest(/.*/, {
       status: 200,
-      response: { data: {} }
+      response: { data: mockPetition }
     });
 
     server.injectThen('/petitions/10')

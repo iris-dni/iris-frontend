@@ -48,7 +48,7 @@ const vision = {
  */
 const h2o2 = {
   register: require('h2o2')
-}
+};
 
 server.register([vision, good, inert, injectThen, h2o2], err => {
   if (err) throw err; // something bad happened loading the plugins

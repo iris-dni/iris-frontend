@@ -105,7 +105,11 @@
     "globals": [
       "describe",
       "context",
-      "it"
+      "it",
+      "beforeEach",
+      "afterEach",
+      "__CLIENT__",
+      "__SERVER__"
     ]
   },
   "engines": {
