@@ -1,5 +1,5 @@
 import chai from 'chai';
-import bundles from 'config/bundles';
+import bundles from 'settings/bundles';
 
 const { assert } = chai;
 

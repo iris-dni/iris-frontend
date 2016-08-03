@@ -1,9 +1,9 @@
 import chai from 'chai';
-import merge from 'config/merge';
+import merge from 'settings/merge';
 
 const { assert } = chai;
 
-describe('config merge', () => {
+describe('settings merge', () => {
   it('provides empty object with no input', () => {
     const actual = merge('', undefined);
     const expected = {};

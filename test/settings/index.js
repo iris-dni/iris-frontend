@@ -1,32 +1,32 @@
 import chai from 'chai';
-import config from 'config';
+import settings from 'settings';
 
 const { assert } = chai;
 
-describe('config', () => {
+describe('settings', () => {
   it('returns bundles object', () => {
-    const actual = typeof config.bundles;
+    const actual = typeof settings.bundles;
     const expected = 'object';
 
     assert.equal(actual, expected);
   });
 
   it('returns default lang', () => {
-    const actual = config.lang;
+    const actual = settings.lang;
     const expected = 'en';
 
     assert.equal(actual, expected);
   });
 
   it('returns default charset', () => {
-    const actual = config.charset;
+    const actual = settings.charset;
     const expected = 'utf-8';
 
     assert.equal(actual, expected);
   });
 
   it('returns default title', () => {
-    const actual = config.title;
+    const actual = settings.title;
     const expected = 'iris-frontend';
 
     assert.equal(actual, expected);
