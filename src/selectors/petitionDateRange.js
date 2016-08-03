@@ -2,11 +2,15 @@ import moment from 'moment';
 import settings from 'settings';
 
 export default (dc) => {
-  const { effective, expires } = dc;
-  const startDate = moment(effective).format('D.M.YYYY');
-  const endDate = moment(expires).format('D.M.YYYY');
+  const { created, effective, expires } = dc;
+
+  const startDate = moment(effective || created);
+
+  const endDate = expires
+    ? moment(expires)
+    : moment(created).add(30, 'days');
 
   return settings.dateRange
-    .replace('%s', startDate)
-    .replace('%e', endDate);
+    .replace('%s', startDate.format('D.M.YYYY'))
+    .replace('%e', endDate.format('D.M.YYYY'));
 };
