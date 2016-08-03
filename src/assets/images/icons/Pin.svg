@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>Pin</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Pin" fill="#999999">
+            <path d="M8,16 C8.66485087,16 14.5,11.5346224 14.5,6.4 C14.5,2.8653776 11.5898509,0 8,0 C4.41014913,0 1.5,2.8653776 1.5,6.4 C1.5,11.5346224 7.33514913,16 8,16 Z M8,9.06666667 C9.4957712,9.06666667 10.7083333,7.87275933 10.7083333,6.4 C10.7083333,4.92724067 9.4957712,3.73333333 8,3.73333333 C6.5042288,3.73333333 5.29166667,4.92724067 5.29166667,6.4 C5.29166667,7.87275933 6.5042288,9.06666667 8,9.06666667 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>

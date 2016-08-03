@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import reducers from 'reducers';
 
 import routes from 'routes';
-import config from 'config';
+import settings from 'settings';
 import getBrowserTitle from 'server/getBrowserTitle';
 
 export default (request, reply, next) => {
@@ -51,7 +51,7 @@ export default (request, reply, next) => {
           return reply.view('index', Object.assign({}, {
             reactMarkup: reactString,
             initialState: JSON.stringify(state)
-          }, config, {
+          }, settings, {
             title: getBrowserTitle(location, state)
           }));
         })

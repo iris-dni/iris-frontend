@@ -1,6 +1,6 @@
-import config from 'config';
+import settings from 'settings';
 
-export const TITLE_TEMPLATE = `%s | ${config.title}`;
+export const TITLE_TEMPLATE = `%s | ${settings.title}`;
 
 export default (location = {}, state = {}) => {
   let titlePrefix;
@@ -15,5 +15,5 @@ export default (location = {}, state = {}) => {
 
   return titlePrefix
     ? TITLE_TEMPLATE.replace('%s', titlePrefix)
-    : config.title;
+    : settings.title;
 };

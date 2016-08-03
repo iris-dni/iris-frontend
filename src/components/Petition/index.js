@@ -6,10 +6,14 @@ import Heading2 from 'components/Heading2';
 import Paragraph from 'components/Paragraph';
 import PetitionHeader from 'components/PetitionHeader';
 
-const Petition = ({ title, description, suggestedSolution }) => (
+const Petition = ({ title, city, dateRange, description, suggestedSolution }) => (
   <Container>
     <article>
-      <PetitionHeader title={title} />
+      <PetitionHeader
+        title={title}
+        city={city}
+        dateRange={dateRange}
+      />
       <LayoutWrap>
         <LayoutContent>
           <Heading2
