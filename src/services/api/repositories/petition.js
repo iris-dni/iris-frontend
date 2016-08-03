@@ -8,5 +8,13 @@ export default {
   find: (id) => {
     const requestPath = path.join('/petitions', id);
     return ApiClient.request(requestPath);
+  },
+
+  /**
+   * Get all petitions
+   */
+  all: () => {
+    const requestPath = '/petitions';
+    return ApiClient.request(requestPath);
   }
 };

@@ -8,7 +8,7 @@ const { assert } = chai;
 describe('getPageSchema', () => {
   it('returns correctly for PetitionContainer', () => {
     const actual = getPageSchema('PetitionContainer', {
-      petition: mockPetition
+      petition: mockPetition.data
     });
     const expected = mockPetitionSchema;
 
