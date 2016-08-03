@@ -17,7 +17,7 @@ const PetitionContainer = React.createClass({
   render () {
     return (
       <div>
-        <Helmet title={this.props.title} />
+        <Helmet title={this.props.header.title} />
         <Petition {...this.props} />
       </div>
     );

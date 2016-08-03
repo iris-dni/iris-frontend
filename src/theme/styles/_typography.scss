@@ -7,14 +7,12 @@ $letter-spacing: 0.3px !default;
 $heading-1-defaults: (
   'font-size': 1em,
   'font-weight': normal,
-  'text-transform': 'uppercase',
   'line-height': 1.125,
   'letter-spacing': 0.9px
 ) !default;
 
 $heading-2-defaults: (
   'font-size': 22px,
-  'text-transform': 'uppercase',
   'letter-spacing': $letter-spacing,
   'line-height': $line-height,
   'margin-bottom': 10px

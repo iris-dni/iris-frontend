@@ -11,5 +11,6 @@ $spacing: (
 /// @prop {String} key - Type of the width
 /// @prop {Map} value - Width value
 $widths: (
-  'container-max': 1200px
+  'container-max': 1200px,
+  'header-max': 800px
 ) !default;

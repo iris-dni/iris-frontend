@@ -1,0 +1,25 @@
+@import 'globals';
+
+$bar-height: 18px;
+
+.root {
+  height: $bar-height;
+  display: block;
+  background-color: color('grey');
+}
+
+.progress {
+  height: $bar-height;
+  display: block;
+}
+
+.loading {
+  composes: progress;
+  width: 0 !important;
+}
+
+.finished {
+  composes: progress;
+  background-color: color('primary');
+  transition: width 1.25s ease-out;
+}

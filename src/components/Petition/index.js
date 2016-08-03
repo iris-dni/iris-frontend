@@ -2,32 +2,16 @@ import React from 'react';
 import LayoutWrap from 'components/LayoutWrap';
 import LayoutContent from 'components/LayoutContent';
 import Container from 'components/Container';
-import Heading2 from 'components/Heading2';
-import Paragraph from 'components/Paragraph';
+import PetitionBody from 'components/PetitionBody';
 import PetitionHeader from 'components/PetitionHeader';
 
-const Petition = ({ title, city, dateRange, description, suggestedSolution }) => (
+const Petition = ({ header, body }) => (
   <Container>
     <article>
-      <PetitionHeader
-        title={title}
-        city={city}
-        dateRange={dateRange}
-      />
+      <PetitionHeader {...header} />
       <LayoutWrap>
         <LayoutContent>
-          <Heading2
-            text={'Begründung'}
-          />
-          <Paragraph
-            text={description}
-          />
-          <Heading2
-            text={'Lösung'}
-          />
-          <Paragraph
-            text={suggestedSolution}
-          />
+          <PetitionBody {...body} />
         </LayoutContent>
       </LayoutWrap>
     </article>

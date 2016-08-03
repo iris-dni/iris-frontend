@@ -1,0 +1,17 @@
+@import 'globals';
+
+.root {
+  list-style: none;
+  font-size: 1em;
+  letter-spacing: $letter-spacing;
+  margin-bottom: 1.25em;
+}
+
+.item {
+  margin-bottom: 0.375em;
+
+  @include media('>30em') {
+    display: inline-block;
+    margin-right: 5em;
+  }
+}
