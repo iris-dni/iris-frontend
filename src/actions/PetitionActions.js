@@ -42,14 +42,14 @@ export function receivePetitions (petitions) {
   };
 }
 
-export function fetchPetitions () {
+export function fetchPetitions (options) {
   return (dispatch, getState) => {
     dispatch(requestPetitions());
-    return petitionRepository.all()
-    .then(response => {
-      return dispatch(
-        receivePetitions(response.data)
-      );
-    });
+    return petitionRepository.all(options)
+      .then(response => {
+        return dispatch(
+          receivePetitions(response.data)
+        );
+      });
   };
 }

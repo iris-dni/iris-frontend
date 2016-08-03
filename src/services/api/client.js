@@ -18,7 +18,7 @@ const apiUrl = (requestPath) => {
 
 export default {
   request: (requestPath = '', data = {}, method = 'GET') => {
-    if (method == 'GET') {
+    if (method === 'GET') {
       const requestParams = queryParams.encode(data);
 
       if (requestParams.length > 0) {

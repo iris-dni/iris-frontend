@@ -6,7 +6,7 @@ import Petitions from 'components/Petitions';
 
 const PetitionsContainer = React.createClass({
   componentDidMount () {
-    this.props.fetchPetitions();
+    this.props.fetchPetitions(this.props.location.query);
   },
 
   render () {
@@ -19,8 +19,8 @@ const PetitionsContainer = React.createClass({
   }
 });
 
-PetitionsContainer.fetchData = ({ store, params }) => {
-  return store.dispatch(fetchPetitions());
+PetitionsContainer.fetchData = ({ store, location, params, history }) => {
+  return store.dispatch(fetchPetitions(location.query));
 };
 
 PetitionsContainer.propTypes = {
@@ -37,7 +37,7 @@ const mapStateToProps = ({ petitions }) => ({
 // Add dispatchers to the component props,
 // for fetching the data _client side_
 const mapDispatchToProps = (dispatch) => {
-  return { fetchPetitions: () => dispatch(fetchPetitions()) };
+  return { fetchPetitions: (options) => dispatch(fetchPetitions(options)) };
 };
 
 export default connect(
