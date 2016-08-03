@@ -13,8 +13,9 @@ export default {
   /**
    * Get all petitions
    */
-  all: () => {
+  all: (options = {}) => {
     const requestPath = '/petitions';
-    return ApiClient.request(requestPath);
+    const requestParams = options;
+    return ApiClient.request(requestPath, requestParams);
   }
 };

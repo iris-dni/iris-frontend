@@ -1,5 +1,6 @@
 import axios from 'axios';
 import createApiUrl from 'helpers/createApiUrl';
+import queryParams from 'query-params';
 
 const API_PATH_PREFIX = '/api';
 
@@ -16,7 +17,16 @@ const apiUrl = (requestPath) => {
 };
 
 export default {
-  request: (requestPath = '', method = 'GET', data) => {
+  request: (requestPath = '', data = {}, method = 'GET') => {
+    if (method == 'GET') {
+      const requestParams = queryParams.encode(data);
+
+      if (requestParams.length > 0) {
+        requestPath += `?${requestParams}`;
+        data = {};
+      }
+    }
+
     return axios({
       method: method,
       url: apiUrl(requestPath),
