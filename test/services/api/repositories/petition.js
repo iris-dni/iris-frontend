@@ -1,30 +1,49 @@
+import moxios from 'moxios';
 import chai from 'chai';
 import petitionRepository from 'services/api/repositories/petition';
+import mockPetitions from './../../../mocks/petitions';
 
 const { assert } = chai;
 
-describe('all', () => {
-  it('calls the API without params', (done) => {
-    const expectedPath = /\/petitions$/;
-
-    petitionRepository.all()
-      .then((response) => {
-        const actualPath = response.request.path;
-
-        assert.match(actualPath, expectedPath);
-        done();
-      });
+describe('petition repository', () => {
+  beforeEach(() => {
+    moxios.install();
   });
 
-  it('calls the API with params', (done) => {
-    const expectedPath = /\/petitions\?offset=2&limit=5$/;
+  afterEach(() => {
+    moxios.uninstall();
+  });
 
-    petitionRepository.all({ offset: 2, limit: 5 })
-      .then((response) => {
-        const actualPath = response.request.path;
-
-        assert.match(actualPath, expectedPath);
-        done();
+  describe('all', () => {
+    beforeEach(() => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetitions
       });
+    });
+
+    it('calls the API without params', (done) => {
+      const expectedPath = /\/petitions\?offset=0&limit=5$/;
+
+      petitionRepository.all()
+        .then((response) => {
+          const actualPath = response.request.url;
+
+          assert.match(actualPath, expectedPath);
+          done();
+        });
+    });
+
+    it('calls the API with pagination params', (done) => {
+      const expectedPath = /\/petitions\?offset=10&limit=10$/;
+
+      petitionRepository.all({ page: 2, per: 10 })
+        .then((response) => {
+          const actualPath = response.request.url;
+
+          assert.match(actualPath, expectedPath);
+          done();
+        });
+    });
   });
 });

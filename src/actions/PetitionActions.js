@@ -42,11 +42,14 @@ export function receivePetitions (petitions) {
   };
 }
 
-export function fetchPetitions (options) {
+export function fetchPetitions (options = {}) {
   return (dispatch, getState) => {
     dispatch(requestPetitions());
     return petitionRepository.all(options)
       .then(response => {
+        response.data.page = parseInt(options.page || 1);
+        response.data.per = parseInt(options.per || 5);
+
         return dispatch(
           receivePetitions(response.data)
         );

@@ -1,7 +1,7 @@
 import React from 'react';
 import PetitionListItem from 'components/PetitionListItem';
 
-const Petitions = ({ total, petitions }) => (
+const Petitions = ({ total, petitions, page, per }) => (
   <ul>
     {petitions.map((petition, index) => {
       return (

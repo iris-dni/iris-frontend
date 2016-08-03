@@ -26,12 +26,16 @@ PetitionsContainer.fetchData = ({ store, location, params, history }) => {
 PetitionsContainer.propTypes = {
   petitions: React.PropTypes.array,
   total: React.PropTypes.number,
+  page: React.PropTypes.number,
+  per: React.PropTypes.number,
   fetchPetitions: React.PropTypes.func
 };
 
 const mapStateToProps = ({ petitions }) => ({
   petitions: petitions.data || [],
-  total: petitions.total
+  total: petitions.total,
+  page: petitions.page,
+  per: petitions.per
 });
 
 // Add dispatchers to the component props,
