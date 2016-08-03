@@ -1,5 +1,6 @@
 import getPetitionDateRange from './petitionDateRange';
 import calculatePercentage from 'helpers/calculatePercentage';
+import getPetitionDaysRemaining from './petitionDaysRemaining';
 
 export default (petition) => ({
   id: petition.id,
@@ -18,5 +19,8 @@ export default (petition) => ({
   body: {
     description: petition.description,
     suggestedSolution: petition.suggested_solution
+  },
+  sidebar: {
+    daysRemaining: getPetitionDaysRemaining(petition.dc)
   }
 });
