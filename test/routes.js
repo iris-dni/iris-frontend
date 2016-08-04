@@ -18,19 +18,6 @@ describe('GET /', () => {
   });
 });
 
-describe('GET /basic', () => {
-  it('responds with 200', done => {
-    server.injectThen('/basic')
-      .then(response => {
-        const actual = response.statusCode;
-        const expected = 200;
-
-        assert.equal(actual, expected);
-        done();
-      });
-  });
-});
-
 describe('GET /petitions/:id', () => {
   beforeEach(() => {
     moxios.install();

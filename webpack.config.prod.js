@@ -9,6 +9,12 @@ var envVars = [
   'THEME_PATH'
 ];
 
+var modulesDirs = [
+  'src',
+  'node_modules',
+  'web_modules'
+];
+
 var cssloader = [
   'css?modules',
   'localIdentName=[hash:base64:5]'
@@ -80,11 +86,7 @@ module.exports = {
   module: { loaders: loaders },
   plugins: plugins,
   resolve: {
-    modulesDirectories: [
-      'src',
-      'node_modules',
-      'web_modules'
-    ],
+    modulesDirectories: modulesDirs,
     extensions: ['', '.json', '.js', '.jsx']
   },
   node: {

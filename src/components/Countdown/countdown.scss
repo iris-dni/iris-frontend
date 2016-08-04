@@ -1,0 +1,28 @@
+@import 'globals';
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  margin-left: auto;
+  margin-right: auto;
+  width: 11em;
+  height: 11em;
+  padding: 20px;
+
+  border: 0.65em solid color('grey');
+  border-radius: 50%;
+}
+
+.counter {
+  font-size: 1.125em;
+  line-height: 1.15;
+}
+
+.total {
+  display: block;
+  font-weight: normal;
+  font-size: 3em;
+}

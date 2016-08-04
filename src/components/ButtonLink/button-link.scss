@@ -7,15 +7,14 @@
   border-radius: 4px;
   text-decoration: none;
   text-transform: uppercase;
-  font-family: $font-primary;
-  color: $color-button-primary-text;
-  background-color: $color-button-primary-bg;
-  letter-spacing: $heading-2-letter-spacing;
+  font-family: $fonts-primary;
+  color: color('primary');
+  background-color: color('secondary');
 }
 
 .root:hover,
 .root:active,
 .root:focus {
-  background-color: $color-button-primary-bg-hover;
-  color: $color-button-primary-text-hover;
+  background-color: color('tertiary');
+  color: color('white');
 }

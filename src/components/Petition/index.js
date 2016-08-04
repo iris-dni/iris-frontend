@@ -1,11 +1,26 @@
 import React from 'react';
+import LayoutWrap from 'components/LayoutWrap';
+import LayoutContent from 'components/LayoutContent';
+import LayoutSidebar from 'components/LayoutSidebar';
+import Container from 'components/Container';
+import PetitionHeader from 'components/PetitionHeader';
+import PetitionBody from 'components/PetitionBody';
+import PetitionSidebar from 'components/PetitionSidebar';
 
-const Petition = ({ title, description, suggestedSolution }) => (
-  <div>
-    <h1>{title}</h1>
-    <p>{description}</p>
-    <p>{suggestedSolution}</p>
-  </div>
+const Petition = ({ header, body, sidebar }) => (
+  <Container>
+    <article>
+      <PetitionHeader {...header} />
+      <LayoutWrap>
+        <LayoutContent>
+          <PetitionBody {...body} />
+        </LayoutContent>
+        <LayoutSidebar>
+          <PetitionSidebar {...sidebar} />
+        </LayoutSidebar>
+      </LayoutWrap>
+    </article>
+  </Container>
 );
 
 export default Petition;

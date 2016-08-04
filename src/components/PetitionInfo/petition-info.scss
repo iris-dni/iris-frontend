@@ -1,0 +1,18 @@
+@import 'globals';
+
+.root {
+  list-style: none;
+  font-size: 1em;
+  letter-spacing: $letter-spacing;
+  margin-bottom: map-get($spacing, 'm-bottom');
+  color: color('dimmed');
+}
+
+.item {
+  margin-bottom: 6px;
+
+  @include media('>petition-header') {
+    display: inline-block;
+    margin-right: 80px;
+  }
+}
