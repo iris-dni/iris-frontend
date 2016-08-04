@@ -7,7 +7,7 @@ const { assert } = chai;
 
 describe('getPetitionSchema', () => {
   it('returns correct schema', () => {
-    const actual = getPetitionSchema(mockPetition.data);
+    const actual = getPetitionSchema(mockPetition);
     const expected = mockPetitionSchema;
 
     assert.deepEqual(actual, expected);

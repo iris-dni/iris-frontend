@@ -50,8 +50,6 @@ export default (request, reply, next) => {
 
           const state = store.getState();
 
-          console.log(state);
-
           return reply.view('index', Object.assign({}, {
             reactMarkup: reactString,
             initialState: JSON.stringify(state)
