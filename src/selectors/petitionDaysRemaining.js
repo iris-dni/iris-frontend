@@ -1,9 +1,8 @@
 import moment from 'moment';
 import getPetitionEndDate from './petitionEndDate';
 
-export default (dc) => {
-  const { created, effective } = dc;
+export default ({ created, effective, expires }) => {
   const startDate = moment(effective || created);
-  const endDate = getPetitionEndDate(dc);
+  const endDate = getPetitionEndDate({ created, expires });
   return moment.duration(endDate.diff(startDate)).asDays();
 };

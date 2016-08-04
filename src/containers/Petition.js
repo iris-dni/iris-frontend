@@ -21,7 +21,7 @@ const PetitionContainer = React.createClass({
           title={this.props.header.title}
           script={[{
             'type': 'application/ld+json',
-            'innerHTML': this.props.schema
+            'innerHTML': JSON.stringify(this.props.schema)
           }]}
         />
         <Petition {...this.props} />

@@ -29,11 +29,13 @@ export default (request, reply, next) => {
       );
 
       // Get the component tree
-      const components = renderProps.components;
+      const components = renderProps.components || [];
       // Extract our page component
-      const Comp = components[components.length - 1].WrappedComponent;
+      const Component = components[components.length - 1].WrappedComponent || {};
+      // Get name of component rendered
+      const ComponentName = Component && Component.displayName || '';
       // Extract `fetchData` if exists
-      const fetchData = (Comp && Comp.fetchData) || (() => Promise.resolve());
+      const fetchData = (Component && Component.fetchData) || (() => Promise.resolve());
       // Get from renderProps
       const { location, params, history } = renderProps;
 
@@ -52,7 +54,7 @@ export default (request, reply, next) => {
             reactMarkup: reactString,
             initialState: JSON.stringify(state)
           }, settings,
-            getMetaData(Comp && Comp.displayName, state)
+            getMetaData(ComponentName, state)
           ));
         })
         .catch((err) => {
