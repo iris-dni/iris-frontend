@@ -19,10 +19,8 @@ describe('getBrowserTitle', () => {
     assert.equal(actual, expected);
   });
 
-  it('returns correctly for /petitions route', () => {
-    const actual = getBrowserTitle({
-      pathname: '/petitions/5'
-    }, {
+  it('returns correctly for PetitionContainer', () => {
+    const actual = getBrowserTitle('PetitionContainer', {
       petition: mockPetition
     });
     const expected = 'Quo iste quidem itaque eius. | iris-frontend';

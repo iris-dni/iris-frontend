@@ -8,7 +8,7 @@ import reducers from 'reducers';
 
 import routes from 'routes';
 import settings from 'settings';
-import getBrowserTitle from 'server/getBrowserTitle';
+import getMetaData from 'server/getMetaData';
 
 export default (request, reply, next) => {
   match({ routes: routes(), location: { pathname: request.path } }, (error, redirectLocation, renderProps) => {
@@ -51,9 +51,9 @@ export default (request, reply, next) => {
           return reply.view('index', Object.assign({}, {
             reactMarkup: reactString,
             initialState: JSON.stringify(state)
-          }, settings, {
-            title: getBrowserTitle(location, state)
-          }));
+          }, settings,
+            getMetaData(Comp && Comp.displayName, state)
+          ));
         })
         .catch((err) => {
           return err.response && err.response.status

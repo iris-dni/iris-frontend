@@ -17,7 +17,13 @@ const PetitionContainer = React.createClass({
   render () {
     return (
       <div>
-        <Helmet title={this.props.header.title} />
+        <Helmet
+          title={this.props.header.title}
+          script={[{
+            'type': 'application/ld+json',
+            'innerHTML': this.props.schema
+          }]}
+        />
         <Petition {...this.props} />
       </div>
     );

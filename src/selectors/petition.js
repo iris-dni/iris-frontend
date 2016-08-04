@@ -1,9 +1,11 @@
 import getPetitionDateRange from './petitionDateRange';
 import calculatePercentage from 'helpers/calculatePercentage';
 import getPetitionDaysRemaining from './petitionDaysRemaining';
+import getPetitionSchema from './petitionSchema';
 
 export default (petition) => ({
   id: petition.id,
+  schema: getPetitionSchema(petition),
   header: {
     title: petition.title,
     percentComplete: calculatePercentage(

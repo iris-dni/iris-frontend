@@ -6,6 +6,6 @@
 
 .counter {
   @include media('>petition-header') {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
