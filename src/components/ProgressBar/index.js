@@ -20,7 +20,7 @@ const ProgressBar = React.createClass({
       : styles.finished;
 
     return (
-      <span className={styles.root}>
+      <span aria-hidden className={styles.root}>
         <span
           className={appliedClass}
           style={{ width: `${this.props.percentage}%` }}

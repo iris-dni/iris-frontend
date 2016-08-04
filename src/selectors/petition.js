@@ -6,7 +6,10 @@ export default (petition) => ({
   id: petition.id,
   header: {
     title: petition.title,
-    percentComplete: calculatePercentage(petition.supporters),
+    percentComplete: calculatePercentage(
+      petition.supporters.amount,
+      petition.supporters.required
+    ),
     info: {
       city: petition.city,
       dateRange: getPetitionDateRange(petition.dc)

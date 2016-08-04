@@ -1,0 +1,39 @@
+@import 'globals';
+
+.root {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-style: solid;
+  border-color: color('grey');
+  border-radius: 50%;
+
+  @include media('<=500px') {
+    width: 150px;
+    height: 150px;
+    border-width: 8px;
+  }
+
+  @include media('>500px') {
+    width: 200px;
+    height: 200px;
+    border-width: 10px;
+  }
+}
+
+.counter {
+  line-height: 1.2;
+
+  @include media('>500px') {
+    font-size: 20px;
+  }
+}
+
+.total {
+  display: block;
+  font-weight: normal;
+  font-size: 3em;
+}
