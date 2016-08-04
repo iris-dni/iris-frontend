@@ -4,7 +4,7 @@
   list-style: none;
   font-size: 1em;
   letter-spacing: $letter-spacing;
-  margin-bottom: 20px;
+  margin-bottom: map-get($spacing, 'm-bottom');
   color: color('dimmed');
 }
 
