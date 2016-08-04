@@ -4,5 +4,6 @@ import getPetitionEndDate from './petitionEndDate';
 export default ({ created, effective, expires }) => {
   const startDate = moment(effective || created);
   const endDate = getPetitionEndDate({ created, expires });
-  return moment.duration(endDate.diff(startDate)).asDays();
+  const daysRemaining = moment.duration(endDate.diff(startDate)).asDays();
+  return Math.round(daysRemaining);
 };
