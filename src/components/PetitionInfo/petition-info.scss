@@ -4,14 +4,14 @@
   list-style: none;
   font-size: 1em;
   letter-spacing: $letter-spacing;
-  margin-bottom: 1.25em;
+  margin-bottom: 20px;
 }
 
 .item {
-  margin-bottom: 0.375em;
+  margin-bottom: 6px;
 
   @include media('>petition-header') {
     display: inline-block;
-    margin-right: 5em;
+    margin-right: 80px;
   }
 }
