@@ -3,3 +3,9 @@
 .root {
   margin-bottom: 25px;
 }
+
+.counter {
+  @include media('>petition-header') {
+    font-size: 1.2em;
+  }
+}

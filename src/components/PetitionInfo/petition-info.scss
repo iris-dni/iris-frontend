@@ -10,7 +10,7 @@
 .item {
   margin-bottom: 0.375em;
 
-  @include media('>30em') {
+  @include media('>petition-header') {
     display: inline-block;
     margin-right: 5em;
   }

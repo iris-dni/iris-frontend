@@ -4,7 +4,9 @@ import Countdown from 'components/Countdown';
 
 const PetitionSidebar = ({ daysRemaining }) => (
   <aside role='complementary' className={styles.root}>
-    <Countdown remaining={daysRemaining} />
+    <div className={styles.counter}>
+      <Countdown remaining={daysRemaining} />
+    </div>
   </aside>
 );
 

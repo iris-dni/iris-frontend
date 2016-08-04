@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './petition-stats.scss';
+import settings from 'settings';
 
 const PetitionStats = ({ total, required }) => (
   <ul className={styles.root}>
     <li className={styles.item}>
-      Unterstützer: <b className={styles.total}>{total}</b>
+      {settings.supportersText} <b className={styles.total}>{total}</b>
     </li>
     <li className={styles.item}>
-      Meilenstein: {required}
+      {settings.milestoneText} {required}
     </li>
   </ul>
 );

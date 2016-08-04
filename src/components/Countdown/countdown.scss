@@ -1,35 +1,24 @@
 @import 'globals';
 
 .root {
-  margin-left: auto;
-  margin-right: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  border-style: solid;
-  border-color: color('grey');
+
+  margin-left: auto;
+  margin-right: auto;
+  width: 11em;
+  height: 11em;
+  padding: 20px;
+
+  border: 0.65em solid color('grey');
   border-radius: 50%;
-
-  @include media('<=500px') {
-    width: 150px;
-    height: 150px;
-    border-width: 8px;
-  }
-
-  @include media('>500px') {
-    width: 200px;
-    height: 200px;
-    border-width: 10px;
-  }
 }
 
 .counter {
-  line-height: 1.2;
-
-  @include media('>500px') {
-    font-size: 20px;
-  }
+  font-size: 1.125em;
+  line-height: 1.15;
 }
 
 .total {
