@@ -6,7 +6,9 @@ import Petitions from 'components/Petitions';
 
 const PetitionsContainer = React.createClass({
   componentDidMount () {
-    this.props.fetchPetitions(this.props.location.query);
+    if (this.props.currentPage !== this.props.location.query.page) {
+      this.props.fetchPetitions(this.props);
+    }
   },
 
   render () {
@@ -20,22 +22,22 @@ const PetitionsContainer = React.createClass({
 });
 
 PetitionsContainer.fetchData = ({ store, location, params, history }) => {
-  return store.dispatch(fetchPetitions(location.query));
+  return store.dispatch(fetchPetitions({ location, params, history }));
 };
 
 PetitionsContainer.propTypes = {
   petitions: React.PropTypes.array,
   total: React.PropTypes.number,
-  page: React.PropTypes.number,
-  per: React.PropTypes.number,
+  currentPage: React.PropTypes.number,
+  perPage: React.PropTypes.number,
   fetchPetitions: React.PropTypes.func
 };
 
 const mapStateToProps = ({ petitions }) => ({
   petitions: petitions.data || [],
   total: petitions.total,
-  page: petitions.page,
-  per: petitions.per
+  currentPage: petitions.currentPage,
+  perPage: petitions.perPage
 });
 
 // Add dispatchers to the component props,

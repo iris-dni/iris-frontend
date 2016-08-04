@@ -42,13 +42,20 @@ export function receivePetitions (petitions) {
   };
 }
 
-export function fetchPetitions (options = {}) {
+export function fetchPetitions ({ location, params, history }) {
+  const options = {
+    page: parseInt(location.query.page || 1),
+    per: parseInt(location.query.per || 5)
+  };
+
+  console.log(options);
+
   return (dispatch, getState) => {
     dispatch(requestPetitions());
     return petitionRepository.all(options)
       .then(response => {
-        response.data.page = parseInt(options.page || 1);
-        response.data.per = parseInt(options.per || 5);
+        response.data.currentPage = options.page;
+        response.data.perPage = options.per;
 
         return dispatch(
           receivePetitions(response.data)
