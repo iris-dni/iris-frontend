@@ -11,7 +11,7 @@ import settings from 'settings';
 import getMetaData from 'server/getMetaData';
 
 export default (request, reply, next) => {
-  match({ routes: routes(), location: { pathname: request.path } }, (error, redirectLocation, renderProps) => {
+  match({ routes: routes(), location: { pathname: request.path, query: request.query } }, (error, redirectLocation, renderProps) => {
     if (redirectLocation) {
       reply.redirect(redirectLocation.pathname + redirectLocation.search).code(301);
     } else if (error) {

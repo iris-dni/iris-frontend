@@ -21,7 +21,7 @@ describe('getBrowserTitle', () => {
 
   it('returns correctly for PetitionContainer', () => {
     const actual = getBrowserTitle('PetitionContainer', {
-      petition: mockPetition
+      petition: mockPetition.data
     });
     const expected = 'Quo iste quidem itaque eius. | iris-frontend';
 

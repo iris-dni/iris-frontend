@@ -5,6 +5,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import Layout from 'views/Layout';
 import Home from 'views/Home';
 import Petition from 'containers/Petition';
+import Petitions from 'containers/Petitions';
 
 export default function (props = {}) {
   let history = browserHistory;
@@ -18,6 +19,7 @@ export default function (props = {}) {
       <Route path='/' component={Layout}>
         <IndexRoute component={Home} />
         <Route path='home' component={Home} />
+        <Route path='petitions' component={Petitions} />
         <Route path='petitions/:id' component={Petition} />
       </Route>
     </Router>
