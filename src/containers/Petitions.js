@@ -6,9 +6,7 @@ import Petitions from 'components/Petitions';
 
 const PetitionsContainer = React.createClass({
   componentDidMount () {
-    if (this.props.currentPage !== this.props.location.query.page) {
-      this.props.fetchPetitions(this.props);
-    }
+    this.props.fetchPetitions(this.props);
   },
 
   render () {
@@ -19,6 +17,7 @@ const PetitionsContainer = React.createClass({
       </div>
     );
   }
+
 });
 
 PetitionsContainer.fetchData = ({ store, location, params, history }) => {

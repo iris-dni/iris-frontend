@@ -2,7 +2,6 @@ import ApiClient from 'services/api/client';
 import path from 'path';
 
 const getRequestParams = (options) => {
-  console.log(options);
   const limit = options.per || 5;
   const offset = (options.page - 1) * limit || 0;
 

@@ -42,24 +42,28 @@ export function receivePetitions (petitions) {
   };
 }
 
-export function fetchPetitions ({ location, params, history }) {
-  const options = {
-    page: parseInt(location.query.page || 1),
-    per: parseInt(location.query.per || 5)
-  };
-
-  console.log(options);
+export function fetchPetitions ({ petitions, location, params, history, perPage, currentPage }) {
+  const page = parseInt(location.query.page || 1);
+  const per = parseInt(location.query.per || 12);
 
   return (dispatch, getState) => {
     dispatch(requestPetitions());
-    return petitionRepository.all(options)
-      .then(response => {
-        response.data.currentPage = options.page;
-        response.data.perPage = options.per;
 
-        return dispatch(
-          receivePetitions(response.data)
-        );
-      });
+    if (!petitions || page !== currentPage) {
+      const options = {
+        page: page || currentPage,
+        per: per || perPage
+      };
+
+      return petitionRepository.all(options)
+        .then(response => {
+          response.data.currentPage = options.page;
+          response.data.perPage = options.per;
+
+          return dispatch(
+            receivePetitions(response.data)
+          );
+        });
+    }
   };
 }
