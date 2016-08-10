@@ -17,6 +17,7 @@ var modulesDirs = [
 
 var cssloader = [
   'css?modules',
+  'sourceMap',
   'localIdentName=[hash:base64:5]'
 ].join('&');
 
@@ -44,7 +45,7 @@ var loaders = [
   },
   {
     include: /\.jsx?/,
-    loader: 'babel?cacheDirectory',
+    loader: 'babel',
     exclude: /node_modules/
   },
   {

@@ -5,6 +5,7 @@ var devServer = require('./dev-server');
 
 var cssloader = [
   'css?modules',
+  'sourceMap',
   'localIdentName=[name]__[local]___[hash:base64:5]'
 ].join('&');
 
@@ -15,7 +16,7 @@ var loaders = [
   },
   {
     include: /\.jsx?/,
-    loaders: ['react-hot', 'babel'],
+    loaders: ['react-hot', 'babel?cacheDirectory'],
     exclude: /node_modules/
   },
   {
