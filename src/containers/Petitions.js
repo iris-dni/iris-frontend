@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchPetitions } from 'actions/PetitionActions';
 import Petitions from 'components/Petitions';
+import settings from 'settings';
 
 const PetitionsContainer = React.createClass({
   componentDidMount () {
@@ -12,7 +13,7 @@ const PetitionsContainer = React.createClass({
   render () {
     return (
       <div>
-        <Helmet title='Petitions' />
+        <Helmet title={settings.petitionsText} />
         <Petitions {...this.props} />
       </div>
     );
