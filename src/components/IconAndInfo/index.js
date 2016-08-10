@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from 'components/icon';
+import Icon from 'components/Icon';
 import styles from './icon-and-info.scss';
 
 const IconAndInfo = ({ children, icon, info, size }) => (
