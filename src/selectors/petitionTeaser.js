@@ -1,3 +1,4 @@
+import settings from 'settings';
 import calculatePercentage from 'helpers/calculatePercentage';
 import getPetitionDaysRemaining from './petitionDaysRemaining';
 import getPetitionAuthor from './petitionAuthor';
@@ -20,7 +21,7 @@ export default (petition) => {
       },
       dialTime: {
         figure: daysRemaining,
-        percentage: calculatePercentage(daysRemaining, 30)
+        percentage: calculatePercentage(daysRemaining, settings.daysToVote)
       },
       dialSupporters: {
         figure: petition.supporters.amount,
