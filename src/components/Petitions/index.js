@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './petitions.scss';
 import settings from 'settings';
 import Container from 'components/Container';
 import Grid from 'components/Grid';
@@ -8,8 +9,10 @@ import Heading1 from 'components/Heading1';
 
 const Petitions = ({ total, petitions, currentPage, perPage }) => (
   <Container>
-    <Heading1 text={settings.petitionsText} />
     <section>
+      <header className={styles.heading}>
+        <Heading1 text={settings.petitionsText} />
+      </header>
       <Grid>
         {petitions.map((petition) => {
           return (
