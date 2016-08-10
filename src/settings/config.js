@@ -5,5 +5,6 @@ export default {
   dateRange: '%s to %e',
   supportersText: 'Supporters:',
   milestoneText: 'Target:',
-  daysRemaining: 'days remaining'
+  daysRemaining: 'days remaining',
+  petitionsText: 'Petitions'
 };
