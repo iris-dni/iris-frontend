@@ -16,7 +16,7 @@ var loaders = [
   },
   {
     include: /\.jsx?/,
-    loaders: ['react-hot', 'babel'],
+    loaders: ['react-hot', 'babel?cacheDirectory'],
     exclude: /node_modules/
   },
   {
@@ -36,8 +36,8 @@ var plugins = [
 ];
 
 config.cache = true;
-config.debug = true;
-config.devtool = 'eval';
+// config.debug = true;
+config.devtool = 'inline-eval-cheap-source-map';
 config.devServer = devServer;
 config.entry.unshift(
   'webpack-dev-server/client?http://localhost:8080',

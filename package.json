@@ -19,9 +19,10 @@
     "copy:assets": "node ./scripts/copy-assets.js",
     "copy:theme": "node ./scripts/copy-theme.js",
     "copy": "npm run copy:html && npm run copy:assets && npm run copy:theme",
+    "svgs": "svgo -f src/assets/images/icons && spritesh -i src/assets/images/icons -v '0 0 16 16' -o static/dist/assets/images/icons.svg",
     "start": "npm run server",
     "dev": "npm run clean && npm run build && concurrently --kill-others \"npm run server:dev\" \"npm run server\"",
-    "build": "npm run copy && webpack --verbose --colors --progress --display-error-details --config webpack.config.prod.js",
+    "build": "npm run copy && npm run svgs && webpack --verbose --colors --progress --display-error-details --config webpack.config.prod.js",
     "test": "npm run copy && mocha-webpack --webpack-config webpack.config.test.js",
     "test:watch": "npm run copy && mocha-webpack --webpack-config webpack.config.test.js --watch"
   },
@@ -64,7 +65,9 @@
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "sass-loader": "^4.0.0",
+    "spritesh": "^1.2.0",
     "style-loader": "^0.13.1",
+    "svgo": "^0.6.6",
     "url-pattern": "^1.0.1",
     "vision": "^4.1.0",
     "webpack": "^1.13.1"

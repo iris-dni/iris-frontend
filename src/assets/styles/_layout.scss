@@ -8,7 +8,9 @@
 ///
 $spacing: (
   'gutter': 20px,
-  'm-bottom': 20px
+  'm-bottom': 20px,
+  'grid': 20px,
+  'teaser-padding': 10px
 ) !default;
 
 ///
@@ -21,5 +23,8 @@ $spacing: (
 ///
 $widths: (
   'container-max': 1200px,
-  'header-max': 800px
+  'container-min': 330px,
+  'header-max': 800px,
+  'teaser-max': 320px
 ) !default;
+

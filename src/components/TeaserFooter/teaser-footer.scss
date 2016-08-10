@@ -1,0 +1,15 @@
+@import 'globals';
+
+.root {
+  font-size: 14px;
+}
+
+.dial {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.first-dial {
+  composes: dial;
+  margin-right: 10px;
+}

@@ -7,6 +7,6 @@ export default ({ created, effective, expires }) => {
   const endDate = getPetitionEndDate({ created, expires });
 
   return settings.dateRange
-    .replace('%s', startDate.format('D.M.YYYY'))
-    .replace('%e', endDate.format('D.M.YYYY'));
+    .replace('%s', startDate.format(settings.dateFormat))
+    .replace('%e', endDate.format(settings.dateFormat));
 };
