@@ -14,14 +14,14 @@ const TeaserFooter = ({ info, dialTime, dialSupporters }) => (
         <Dial
           {...dialTime}
           icon={'clock'}
-          caption={settings.daysRemaining}
+          caption={settings.teaserDaysRemaining}
         />
       </div>
       <div className={styles.dial}>
         <Dial
           {...dialSupporters}
           icon={'signature'}
-          caption={settings.supportersText}
+          caption={settings.teaserSupportersText}
         />
       </div>
     </div>

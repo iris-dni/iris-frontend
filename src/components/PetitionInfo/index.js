@@ -6,13 +6,13 @@ const PetitionInfo = ({ city, dateRange }) => (
   <ul className={styles.root}>
     <li className={styles.item}>
       <IconAndInfo
-        icon='map'
+        icon='Pin'
         info={city}
       />
     </li>
     <li className={styles.item}>
       <IconAndInfo
-        icon='time'
+        icon='Clock'
         info={dateRange}
       />
     </li>
