@@ -19,7 +19,7 @@ export default (petition) => {
         petition.supporters.required
       ),
       info: {
-        city: petition.city,
+        city: petition.city || 'Aargau',
         dateRange: getPetitionDateRange(petition.dc || {})
       },
       supporters: {

@@ -5,7 +5,6 @@ var devServer = require('./dev-server');
 
 var cssloader = [
   'css?modules',
-  'sourceMap',
   'localIdentName=[name]__[local]___[hash:base64:5]'
 ].join('&');
 
@@ -36,8 +35,8 @@ var plugins = [
 ];
 
 config.cache = true;
-config.debug = true;
-config.devtool = 'eval';
+// config.debug = true;
+config.devtool = 'inline-eval-cheap-source-map';
 config.devServer = devServer;
 config.entry.unshift(
   'webpack-dev-server/client?http://localhost:8080',

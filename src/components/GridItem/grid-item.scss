@@ -1,0 +1,21 @@
+@import 'globals';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  float: left;
+  margin-bottom: map-get($spacing, 'grid');
+  padding-left: map-get($spacing, 'grid');
+
+  @include media('<=grid-2-cols') {
+    width: 100%;
+  }
+
+  @include media('>grid-2-cols', '<=grid-3-cols') {
+    width: (100%/2);
+  }
+
+  @include media('>grid-3-cols') {
+    width: (100%/3);
+  }
+}

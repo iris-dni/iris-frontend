@@ -44,7 +44,7 @@ var loaders = [
   },
   {
     include: /\.jsx?/,
-    loader: 'babel',
+    loader: 'babel?cacheDirectory',
     exclude: /node_modules/
   },
   {

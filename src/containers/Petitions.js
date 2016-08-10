@@ -2,8 +2,9 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchPetitions } from 'actions/PetitionActions';
-import Petitions from 'components/Petitions';
 import settings from 'settings';
+import Petitions from 'components/Petitions';
+import getPetitions from 'selectors/petitions';
 
 const PetitionsContainer = React.createClass({
   componentDidMount () {
@@ -34,7 +35,7 @@ PetitionsContainer.propTypes = {
 };
 
 const mapStateToProps = ({ petitions }) => ({
-  petitions: petitions.data || [],
+  petitions: getPetitions(petitions.data || []),
   total: petitions.total,
   currentPage: petitions.currentPage,
   perPage: petitions.perPage

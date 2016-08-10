@@ -3,8 +3,10 @@ export default {
   charset: 'utf-8',
   title: 'iris-frontend',
   dateRange: '%s to %e',
-  supportersText: 'Supporters:',
-  milestoneText: 'Target:',
+  dateFormat: 'DD-MM-YYYY',
+  authorLabel: 'by %a',
+  supportersText: 'Supporters',
+  milestoneText: 'Target',
   daysRemaining: 'days remaining',
   petitionsText: 'Petitions'
 };

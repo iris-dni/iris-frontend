@@ -7,7 +7,9 @@
 /// @prop {Map} value - Breakpoint value expressed in pixels
 ///
 $breakpoints: (
+  'petition-header': 31.25em,
   'text-max': 43.75em,
   'sidebar': 56.25em,
-  'petition-header': 500px
+  'grid-2-cols': 37.5em,
+  'grid-3-cols': 56.25em
 ) !default;

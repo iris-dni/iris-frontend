@@ -1,22 +1,24 @@
 import React from 'react';
-import styles from './petition-info.scss';
+import styles from './teaser-info.scss';
 import IconAndInfo from 'components/IconAndInfo';
 
-const PetitionInfo = ({ city, dateRange }) => (
+const TeaserInfo = ({ owner, city }) => (
   <ul className={styles.root}>
     <li className={styles.item}>
       <IconAndInfo
-        icon='map'
-        info={city}
+        icon='User'
+        size='small'
+        info={owner}
       />
     </li>
     <li className={styles.item}>
       <IconAndInfo
-        icon='time'
-        info={dateRange}
+        icon='Pin'
+        size='small'
+        info={city}
       />
     </li>
   </ul>
 );
 
-export default PetitionInfo;
+export default TeaserInfo;

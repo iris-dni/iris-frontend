@@ -1,0 +1,19 @@
+@import 'globals';
+
+.root {
+  display: inline-block;
+  vertical-align: middle;
+  fill: color('dimmed');
+}
+
+.default {
+  composes: root;
+  width: 20px;
+  height: 20px;
+}
+
+.small {
+  composes: root;
+  width: 14px;
+  height: 14px;
+}

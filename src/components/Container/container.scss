@@ -3,6 +3,7 @@
 .root {
   margin-left: auto;
   margin-right: auto;
+  min-width: map-get($widths, 'container-min');
   max-width: map-get($widths, 'container-max');
 
   @include media('<=text-max') {

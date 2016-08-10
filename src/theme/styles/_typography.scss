@@ -32,3 +32,9 @@ $supporting-copy-defaults: (
   'margin-bottom': 20px
 ) !default;
 
+$info-copy-defaults: (
+  'font-size': 1em,
+  'font-weight': normal,
+  'line-height': 1.125,
+  'letter-spacing': 0.9px
+) !default;
