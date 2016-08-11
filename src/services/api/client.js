@@ -2,12 +2,8 @@ import axios from 'axios';
 import createApiUrl from 'helpers/createApiUrl';
 import queryParams from 'query-params';
 
-const API_PATH_PREFIX = '/api';
-
 const apiUrl = (requestPath) => {
-  const prefix = __SERVER__
-    ? process.env.API_URL
-    : API_PATH_PREFIX;
+  const prefix = process.env.API_URL;
 
   if (!prefix) {
     throw new Error('Please define an API_URL in .env');
