@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import ssoProviders from 'settings/ssoProviders';
 import isSignedIn from './isSignedIn';
-import ApiClient from '../api/client';
+import authRepository from '../api/repositories/auth';
 
 const baseUrl = () => {
   return 'http://localhost:8000/auth/login';
@@ -16,7 +16,7 @@ const ssoLoginUrl = ({ loginUrl }) => {
 export default withRouter(React.createClass({
 
   componentWillMount () {
-    ApiClient.request('/auth/whoami').then(response => {
+    authRepository.whoAmI().then(response => {
       if (response.status === 'ok') {
         if (isSignedIn(response.data)) {
           this.props.router.replace('/');
