@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Router, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
+import LoginPage from 'services/auth/Login';
 import Layout from 'views/Layout';
 import Home from 'views/Home';
 import Petition from 'containers/Petition';
@@ -17,6 +18,7 @@ export default function (props = {}) {
 
   return (
     <Router history={history}>
+      <Route path='/auth/login' component={LoginPage} />
       <Route path='/' component={Layout}>
         <IndexRoute component={Home} />
         <Route path='home' component={Home} />
