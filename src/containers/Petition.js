@@ -8,7 +8,7 @@ import getPetition from 'selectors/petition';
 const PetitionContainer = React.createClass({
   // When the component gets added to the DOM,
   // fetch Petition if `id` is not defined.
-  componentDidMount () {
+  componentWillMount () {
     if (!this.props.id || !this.props.id !== this.props.params.id) {
       this.props.fetchPetition(this.props.params.id);
     }

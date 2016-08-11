@@ -22,8 +22,8 @@ const PetitionsContainer = React.createClass({
 
 });
 
-PetitionsContainer.fetchData = ({ store, location, params, history }) => {
-  return store.dispatch(fetchPetitions({ location, params, history }));
+PetitionsContainer.fetchData = ({ store, location, params }) => {
+  return store.dispatch(fetchPetitions({ location, params }));
 };
 
 PetitionsContainer.propTypes = {
