@@ -27,6 +27,8 @@ class CreatePetition extends Component {
             <input
               type='text'
               placeholder='Petition Title'
+              // domOnlyProps required with latest react and redux-form 5.x
+              // see: https://github.com/erikras/redux-form/issues/1441#issuecomment-236966387
               {...domOnlyProps(fields.title)}
             />
           </div>
@@ -35,6 +37,8 @@ class CreatePetition extends Component {
           <label>Description</label>
           <div>
             <textarea
+              // domOnlyProps required with latest react and redux-form 5.x
+              // see: https://github.com/erikras/redux-form/issues/1441#issuecomment-236966387
               {...domOnlyProps(fields.description)}
               // required for reset form to work (only on textarea's)
               // see: https://github.com/facebook/react/issues/2533
@@ -45,6 +49,8 @@ class CreatePetition extends Component {
           <label>Suggested solution</label>
           <div>
             <textarea
+              // domOnlyProps required with latest react and redux-form 5.x
+              // see: https://github.com/erikras/redux-form/issues/1441#issuecomment-236966387
               {...domOnlyProps(fields.suggested_solution)}
               // required for reset form to work (only on textarea's)
               // see: https://github.com/facebook/react/issues/2533
