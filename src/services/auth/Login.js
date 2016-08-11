@@ -4,22 +4,25 @@ import ssoProviders from 'settings/ssoProviders';
 import isSignedIn from './isSignedIn';
 import authRepository from '../api/repositories/auth';
 
-const baseUrl = () => {
-  return 'http://localhost:8000/auth/login';
+const returnUrlParam = () => {
+  const returnUrl = __SERVER__ ? '/' : window.location;
+  return encodeURIComponent(returnUrl);
 };
 
 const ssoLoginUrl = ({ loginUrl }) => {
   let delimiter = loginUrl.indexOf('?') < 0 ? '?' : '&';
-  return `${loginUrl}${delimiter}irisreturl=${baseUrl()}`;
+  return `${loginUrl}${delimiter}irisreturl=${returnUrlParam()}`;
 };
 
 export default withRouter(React.createClass({
 
   componentWillMount () {
+    const redirectAfterLogin = this.props.location.query.next || '/';
+
     authRepository.whoAmI().then(response => {
       if (response.status === 'ok') {
         if (isSignedIn(response.data)) {
-          this.props.router.replace('/');
+          this.props.router.replace(redirectAfterLogin);
         }
       }
     });
