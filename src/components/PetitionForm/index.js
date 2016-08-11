@@ -1,38 +1,47 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
+import domOnlyProps from 'fields/domOnlyProps';
 
-export const fields = [ 'firstName', 'lastName', 'notes' ];
+export const fields = [
+  'firstName',
+  'lastName',
+  'comment'
+];
 
 class CreatePetition extends Component {
   render () {
-    const {
-      fields: { firstName, lastName, notes },
-      handleSubmit,
-      submitting
-      } = this.props;
+    const { fields, handleSubmit, submitting } = this.props;
 
     return (
       <form onSubmit={handleSubmit(data => console.log(data))}>
         <div>
           <label>First Name</label>
           <div>
-            <input type='text' placeholder='First Name' {...firstName} />
+            <input
+              type='text'
+              placeholder='First Name'
+              {...domOnlyProps(fields.firstName)}
+            />
           </div>
         </div>
         <div>
           <label>Last Name</label>
           <div>
-            <input type='text' placeholder='Last Name' {...lastName} />
+            <input
+              type='text'
+              placeholder='Last Name'
+              {...domOnlyProps(fields.lastName)}
+            />
           </div>
         </div>
         <div>
           <label>Notes</label>
           <div>
             <textarea
-              {...notes}
+              {...domOnlyProps(fields.comment)}
               // required for reset form to work (only on textarea's)
               // see: https://github.com/facebook/react/issues/2533
-              value={notes.value || ''} />
+              value={fields.comment.value || ''} />
           </div>
         </div>
         <div>
