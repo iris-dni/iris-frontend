@@ -3,7 +3,7 @@ import sanitizeParamLimit from 'helpers/sanitizeParamLimit';
 
 const { assert } = chai;
 
-describe('calculateParamOffset', () => {
+describe('sanitizeParamLimit', () => {
   it('returns limit when passed', () => {
     const actual = sanitizeParamLimit(4);
     const expected = 4;
