@@ -8,7 +8,7 @@ export default (componentName, state = {}) => {
       const { petition } = state;
       return TITLE_TEMPLATE.replace('%s', petition && petition.title);
     case 'PetitionsContainer':
-      return TITLE_TEMPLATE.replace('%s', settings.petitionsText);
+      return TITLE_TEMPLATE.replace('%s', settings.petitionsPageTitle);
   }
 
   return settings.title;

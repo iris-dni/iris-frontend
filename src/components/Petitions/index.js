@@ -11,7 +11,7 @@ const Petitions = ({ total, petitions, currentPage, perPage }) => (
   <Container>
     <section>
       <header className={styles.heading}>
-        <Heading1 text={settings.petitionsText} />
+        <Heading1 text={settings.petitionsPageTitle} />
       </header>
       <Grid>
         {petitions.map((petition) => {

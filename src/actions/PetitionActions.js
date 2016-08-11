@@ -42,9 +42,9 @@ export function receivePetitions (petitions) {
   };
 }
 
-export function fetchPetitions ({ petitions, location, params, history, perPage, currentPage }) {
+export function fetchPetitions ({ petitions, location, params, perPage, currentPage }) {
   const page = parseInt(location.query.page || 1);
-  const per = parseInt(location.query.per || 12);
+  const limit = parseInt(location.query.limit || 12);
 
   return (dispatch, getState) => {
     dispatch(requestPetitions());
@@ -52,13 +52,13 @@ export function fetchPetitions ({ petitions, location, params, history, perPage,
     if (!petitions || page !== currentPage) {
       const options = {
         page: page || currentPage,
-        per: per || perPage
+        limit: limit || perPage
       };
 
       return petitionRepository.all(options)
         .then(response => {
           response.data.currentPage = options.page;
-          response.data.perPage = options.per;
+          response.data.perPage = options.limit;
 
           return dispatch(
             receivePetitions(response.data)

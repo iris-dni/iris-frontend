@@ -1,15 +1,6 @@
 import ApiClient from 'services/api/client';
+import getRequestParams from 'helpers/getPetitionsRequestParams';
 import path from 'path';
-
-const getRequestParams = (options) => {
-  const limit = options.per || 5;
-  const offset = (options.page - 1) * limit || 0;
-
-  return {
-    offset: offset,
-    limit: limit
-  };
-};
 
 export default {
   /**
@@ -26,6 +17,9 @@ export default {
   all: (options = {}) => {
     const requestPath = '/petitions';
     const requestParams = getRequestParams(options);
+
+    console.log(requestPath, requestParams);
+
     return ApiClient.request(requestPath, requestParams);
   }
 };

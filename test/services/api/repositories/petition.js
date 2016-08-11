@@ -23,7 +23,7 @@ describe('petition repository', () => {
     });
 
     it('calls the API without params', (done) => {
-      const expectedPath = /\/petitions\?offset=0&limit=5$/;
+      const expectedPath = /\/petitions\?offset=0&limit=12$/;
 
       petitionRepository.all()
         .then((response) => {
@@ -37,7 +37,7 @@ describe('petition repository', () => {
     it('calls the API with pagination params', (done) => {
       const expectedPath = /\/petitions\?offset=10&limit=10$/;
 
-      petitionRepository.all({ page: 2, per: 10 })
+      petitionRepository.all({ page: 2, limit: 10 })
         .then((response) => {
           const actualPath = response.request.url;
 

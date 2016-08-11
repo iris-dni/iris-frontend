@@ -11,5 +11,6 @@ export default {
   teaserSupportersText: 'Supporters',
   tesaserMilestoneText: 'Target',
   teaserDaysRemaining: 'days remaining',
-  petitionsText: 'Petitions'
+  petitionsPageTitle: 'Petitions',
+  daysToVote: 30
 };
