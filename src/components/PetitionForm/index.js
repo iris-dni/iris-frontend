@@ -1,47 +1,54 @@
 import React, { Component, PropTypes } from 'react';
+import axios from 'axios';
 import { reduxForm } from 'redux-form';
 import domOnlyProps from 'fields/domOnlyProps';
 
-export const fields = [
-  'firstName',
-  'lastName',
-  'comment'
-];
-
 class CreatePetition extends Component {
+  sendPetition (data) {
+    axios.post('http://api-iris-dev.lovelysystems.com/v1/petitions', {
+      data: data
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
   render () {
     const { fields, handleSubmit, submitting } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(data => console.log(data))}>
+      <form onSubmit={handleSubmit(data => this.sendPetition(data))}>
         <div>
           <label>First Name</label>
           <div>
             <input
               type='text'
-              placeholder='First Name'
-              {...domOnlyProps(fields.firstName)}
+              placeholder='Petition Title'
+              {...domOnlyProps(fields.title)}
             />
           </div>
         </div>
         <div>
-          <label>Last Name</label>
-          <div>
-            <input
-              type='text'
-              placeholder='Last Name'
-              {...domOnlyProps(fields.lastName)}
-            />
-          </div>
-        </div>
-        <div>
-          <label>Notes</label>
+          <label>Description</label>
           <div>
             <textarea
-              {...domOnlyProps(fields.comment)}
+              {...domOnlyProps(fields.description)}
               // required for reset form to work (only on textarea's)
               // see: https://github.com/facebook/react/issues/2533
-              value={fields.comment.value || ''} />
+              value={fields.description.value || ''} />
+          </div>
+        </div>
+        <div>
+          <label>Suggested solution</label>
+          <div>
+            <textarea
+              {...domOnlyProps(fields.suggested_solution)}
+              // required for reset form to work (only on textarea's)
+              // see: https://github.com/facebook/react/issues/2533
+              value={fields.suggested_solution.value || ''} />
           </div>
         </div>
         <div>
@@ -63,5 +70,9 @@ CreatePetition.propTypes = {
 
 export default reduxForm({
   form: 'simple',
-  fields
+  fields: [
+    'title',
+    'description',
+    'suggested_solution'
+  ]
 })(CreatePetition);
