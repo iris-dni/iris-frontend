@@ -26,7 +26,8 @@ export default {
     return axios({
       method: method,
       url: apiUrl(requestPath),
-      data: data
+      data: data,
+      withCredentials: true
     });
   }
 };
