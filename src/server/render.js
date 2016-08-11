@@ -31,9 +31,11 @@ export default (request, reply, next) => {
       // Get the component tree
       const components = renderProps.components || [];
       // Extract our page component
-      const Component = components[components.length - 1].WrappedComponent || {};
+      const Component = components[components.length - 1];
+      // Get component to pass
+      const ComponentObject = Component && Component.WrappedComponent || Component || {};
       // Get name of component rendered
-      const ComponentName = Component && Component.displayName || '';
+      const ComponentName = ComponentObject.displayName || '';
       // Extract `fetchData` if exists
       const fetchData = (Component && Component.fetchData) || (() => Promise.resolve());
       // Get from renderProps

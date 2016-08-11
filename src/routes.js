@@ -9,6 +9,7 @@ import Home from 'views/Home';
 import Petition from 'containers/Petition';
 import Petitions from 'containers/Petitions';
 import Restricted from 'containers/Restricted';
+import CreatePetition from 'containers/CreatePetition';
 
 export default function (props = {}) {
   let history = browserHistory;
@@ -25,6 +26,7 @@ export default function (props = {}) {
         <IndexRoute component={Home} />
         <Route path='home' component={Home} />
         <Route path='petitions' component={Petitions} />
+        <Route path='petitions/new' component={CreatePetition} />
         <Route path='petitions/:id' component={Petition} />
         <Route path='restricted' component={Restricted} />
       </Route>

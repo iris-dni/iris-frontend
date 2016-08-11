@@ -24,5 +24,6 @@ export default {
     dimmed: '#999',
     grey: '#ccc',
     greyLite: '#e5e5e5'
-  }
+  },
+  createPetitionPageTitle: 'Create a new Petition'
 };
