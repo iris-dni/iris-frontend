@@ -3,6 +3,7 @@ import settings from 'settings';
 import Container from 'components/Container';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
+import PetitionForm from 'components/PetitionForm';
 
 const CreatePetition = () => (
   <Container>
@@ -12,6 +13,7 @@ const CreatePetition = () => (
         centered
       />
     </Header>
+    <PetitionForm />
   </Container>
 );
 

@@ -3,7 +3,6 @@ import settings from 'settings';
 export const TITLE_TEMPLATE = `%s | ${settings.title}`;
 
 export default (componentName, state = {}) => {
-  console.log('asdas', componentName);
   switch (componentName) {
     case 'PetitionContainer':
       const { petition } = state;
