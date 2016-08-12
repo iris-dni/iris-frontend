@@ -4,14 +4,19 @@ import ssoProviders from 'settings/ssoProviders';
 import isSignedIn from './isSignedIn';
 import authRepository from '../api/repositories/auth';
 
-const returnUrlParam = () => {
-  const returnUrl = __SERVER__ ? '/' : window.location;
-  return encodeURIComponent(returnUrl);
+const returnUrlParam = ({ pathname, search }) => {
+  const baseUrl = process.env.BASE_URL;
+
+  if (!baseUrl) {
+    throw new Error('Please define a BASE_URL in .env');
+  }
+
+  return encodeURIComponent(`${baseUrl}${pathname}${decodeURIComponent(search)}`);
 };
 
-const ssoLoginUrl = ({ loginUrl }) => {
-  let delimiter = loginUrl.indexOf('?') < 0 ? '?' : '&';
-  return `${loginUrl}${delimiter}irisreturl=${returnUrlParam()}`;
+const ssoLoginUrl = ({ loginUrl }, location) => {
+  const delimiter = loginUrl.indexOf('?') < 0 ? '?' : '&';
+  return `${loginUrl}${delimiter}irisreturl=${returnUrlParam(location)}`;
 };
 
 export default withRouter(React.createClass({
@@ -28,14 +33,18 @@ export default withRouter(React.createClass({
     });
   },
 
-  render: () => (
-    <div>
-      <h1>Login first!</h1>
-      <ul>
-        {ssoProviders.map(provider => (
-          <li key={provider.loginUrl}><a href={ssoLoginUrl(provider)}>{provider.name}</a></li>
-        ))}
-      </ul>
-    </div>
-  )
+  render () {
+    return (
+      <div>
+        <h1>Login first!</h1>
+        <ul>
+          {ssoProviders.map(provider => (
+            <li key={provider.loginUrl}>
+              <a href={ssoLoginUrl(provider, this.props.location)}>{provider.name}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 }));
