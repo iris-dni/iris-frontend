@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { reduxForm } from 'redux-form';
 import domOnlyProps from 'fields/domOnlyProps';
 import { createPetition } from 'actions/PetitionActions';
 
-class CreatePetition extends Component {
+const PetitionForm = React.createClass({
   render () {
     const { fields, handleSubmit, submitting } = this.props;
 
@@ -53,13 +53,13 @@ class CreatePetition extends Component {
       </form>
     );
   }
-}
+});
 
-CreatePetition.propTypes = {
-  fields: PropTypes.object.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  resetForm: PropTypes.func.isRequired,
-  submitting: PropTypes.bool.isRequired
+PetitionForm.propTypes = {
+  fields: React.PropTypes.object.isRequired,
+  handleSubmit: React.PropTypes.func.isRequired,
+  resetForm: React.PropTypes.func.isRequired,
+  submitting: React.PropTypes.bool.isRequired
 };
 
 export default reduxForm({
@@ -69,4 +69,4 @@ export default reduxForm({
     'description',
     'suggested_solution'
   ]
-})(CreatePetition);
+})(PetitionForm);
