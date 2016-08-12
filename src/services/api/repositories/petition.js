@@ -7,7 +7,7 @@ export default {
    * Find a single petition
    */
   find: (id) => {
-    const requestPath = path.join('/petitions', id);
+    const requestPath = path.join('/petitions', id.toString());
     return ApiClient.request(requestPath);
   },
 
