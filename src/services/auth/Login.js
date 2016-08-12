@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import ssoProviders from 'settings/ssoProviders';
-import isSignedIn from './isSignedIn';
 import authRepository from '../api/repositories/auth';
 
 const returnUrlParam = ({ pathname, search }) => {
@@ -26,9 +25,7 @@ export default withRouter(React.createClass({
 
     authRepository.whoAmI().then(response => {
       if (response.status === 'ok') {
-        if (isSignedIn(response.data)) {
-          this.props.router.replace(redirectAfterLogin);
-        }
+        this.props.router.replace(redirectAfterLogin);
       }
     });
   },
