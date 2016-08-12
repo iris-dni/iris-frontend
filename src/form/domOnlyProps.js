@@ -22,6 +22,7 @@ const domOnlyProps = ({
   touched,
   visited,
   autofilled,
+  error,
   ...domProps }) => domProps;
 
 export default domOnlyProps;

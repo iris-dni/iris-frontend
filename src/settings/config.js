@@ -25,5 +25,25 @@ export default {
     grey: '#ccc',
     greyLite: '#e5e5e5'
   },
-  createPetitionPageTitle: 'Create a new Petition'
+  createPetitionPageTitle: 'Create a new Petition',
+  requiredText: 'required',
+  minLengthText: 'Must be %x characters or more',
+  maxLengthText: 'Cannot be more than %x characters',
+  petitionFields: {
+    title: {
+      label: 'Petition Title',
+      placeholder: 'Write your title',
+      hint: 'Be clear and concise'
+    },
+    description: {
+      label: 'Petition Description',
+      placeholder: 'Write your description',
+      hint: ''
+    },
+    suggested_solution: {
+      label: 'Suggested Solution',
+      placeholder: 'Write your idea here',
+      hint: ''
+    }
+  }
 };
