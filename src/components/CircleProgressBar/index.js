@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styles from './circleprogressbar.scss';
+import settings from 'settings';
 import ProgressBar from 'progressbar.js';
 
 const CircleProgressBar = React.createClass({
@@ -9,7 +10,9 @@ const CircleProgressBar = React.createClass({
     return {
       percentage: 0,
       animated: false,
-      size: 'small'
+      size: 'small',
+      color: settings.colors.primary,
+      trailColor: settings.colors.greyLite
     };
   },
 
@@ -25,8 +28,8 @@ const CircleProgressBar = React.createClass({
       strokeWidth: 10,
       easing: 'easeInOut',
       duration: 800,
-      color: '#2fcd0c',
-      trailColor: '#f1f1f1',
+      color: this.props.color,
+      trailColor: this.props.trailColor,
       trailWidth: 10,
       svgStyle: {
         width: '100%',
