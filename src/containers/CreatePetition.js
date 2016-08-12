@@ -1,5 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import { connect } from 'react-redux';
 import settings from 'settings';
 import CreatePetition from 'components/CreatePetition';
 
@@ -14,4 +15,14 @@ const CreatePetitionContainer = React.createClass({
   }
 });
 
-export default CreatePetitionContainer;
+CreatePetitionContainer.propTypes = {
+  createdPetition: React.PropTypes.number
+};
+
+const mapStateToProps = ({ petition }) => ({
+  createdPetition: petition && petition.createdPetition
+});
+
+export default connect(
+  mapStateToProps,
+)(CreatePetitionContainer);

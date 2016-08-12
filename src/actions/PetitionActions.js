@@ -76,16 +76,18 @@ export function submitPetition () {
   };
 }
 
-export function createdPetition () {
+export function createdPetition (id) {
   return {
-    type: CREATED_PETITION
+    type: CREATED_PETITION,
+    id
   };
 }
 
-export function createPetition (data) {
+export function createPetition (data, dispatch) {
+  dispatch(submitPetition());
   return petitionRepository.create(data)
     .then(function (response) {
-      console.log(response);
+      dispatch(createdPetition(response.data.data.id));
     })
     .catch(function (error) {
       console.log(error);

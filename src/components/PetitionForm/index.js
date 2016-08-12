@@ -51,7 +51,7 @@ const PetitionForm = React.createClass({
     const formIsValid = fields._meta.allValid;
 
     return (
-      <form onSubmit={handleSubmit(data => createPetition(data))}>
+      <form onSubmit={handleSubmit(createPetition)}>
         <Fieldset>
           {FIELDS.map(field => (
             <TextField
