@@ -25,15 +25,13 @@ const PetitionForm = React.createClass({
 
     return (
       <form onSubmit={handleSubmit(data => createPetition(data))}>
-        {FIELDS.map(field => {
-          return (
-            <TextField
-              key={field.name}
-              config={field}
-              helper={fields[field.name]}
-            />
-          );
-        })}
+        {FIELDS.map(field => (
+          <TextField
+            key={field.name}
+            config={field}
+            helper={fields[field.name]}
+          />
+        ))}
         <div>
           <button type='submit' disabled={submitting}>
             {submitting ? <i /> : <i />} Submit
