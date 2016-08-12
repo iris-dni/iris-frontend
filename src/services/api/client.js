@@ -14,19 +14,27 @@ const apiUrl = (requestPath) => {
 
 export default {
   request: (requestPath = '', data = {}, method = 'GET') => {
-    if (method === 'GET') {
-      const requestParams = queryParams.encode(data);
+    let payload = {};
 
-      if (requestParams.length > 0) {
-        requestPath += `?${requestParams}`;
-        data = {};
-      }
+    switch (method) {
+      case 'GET':
+        const requestParams = queryParams.encode(data);
+
+        if (requestParams.length > 0) {
+          requestPath += `?${requestParams}`;
+        }
+        break;
+      case 'POST':
+        if (data !== {}) {
+          payload = { data: data };
+        }
+        break;
     }
 
     return axios({
       method: method,
       url: apiUrl(requestPath),
-      data: data,
+      data: payload,
       withCredentials: true
     }).then(response => response.data);
   }

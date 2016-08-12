@@ -3,6 +3,8 @@ import chai from 'chai';
 import petitionRepository from 'services/api/repositories/petition';
 import mockPetitions from './../../../mocks/petitions';
 import mockPetition from './../../../mocks/petition';
+import mockNewPetition from './../../../mocks/newPetition';
+import mockExistingPetition from './../../../mocks/existingPetition';
 
 const { assert } = chai;
 
@@ -58,6 +60,40 @@ describe('petition repository', () => {
       });
 
       petitionRepository.find(777).then(actualResponse => {
+        assert.deepEqual(actualResponse, expectedResponse);
+        done();
+      });
+    });
+  });
+
+  describe('create', () => {
+    it('calls the API and returns the newly created petition', (done) => {
+      let expectedPath = /\/petitions$/;
+      let expectedResponse = mockPetition;
+
+      moxios.stubRequest(expectedPath, {
+        status: 200,
+        response: mockPetition
+      });
+
+      petitionRepository.create(mockNewPetition).then(actualResponse => {
+        assert.deepEqual(actualResponse, expectedResponse);
+        done();
+      });
+    });
+  });
+
+  describe('update', () => {
+    it('calls the API and returns the updated petition', (done) => {
+      let expectedPath = /\/petitions\/777$/;
+      let expectedResponse = mockPetition;
+
+      moxios.stubRequest(expectedPath, {
+        status: 200,
+        response: mockPetition
+      });
+
+      petitionRepository.update(mockExistingPetition).then(actualResponse => {
         assert.deepEqual(actualResponse, expectedResponse);
         done();
       });
