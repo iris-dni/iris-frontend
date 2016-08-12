@@ -55,6 +55,7 @@
     "nunjucks-hapi": "^2.1.0",
     "piping": "^0.3.2",
     "postcss-loader": "^0.9.1",
+    "progressbar.js": "^1.0.1",
     "query-params": "0.0.1",
     "react": "^15.2.0",
     "react-dom": "^15.2.0",
