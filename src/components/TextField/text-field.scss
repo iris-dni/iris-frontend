@@ -1,0 +1,31 @@
+@import 'globals';
+
+.label {
+  font-weight: bold;
+}
+
+.hint {
+  display: block;
+}
+
+.field {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid color('grey');
+}
+
+.input {
+  composes: field;
+}
+
+.textarea {
+  composes: field;
+  resize: vertical;
+}
+
+.error {
+  font-weight: normal;
+  display: block;
+  margin-top: 5px;
+}

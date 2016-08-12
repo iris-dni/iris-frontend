@@ -2,7 +2,7 @@ import React from 'react';
 import { reduxForm } from 'redux-form';
 import { createPetition } from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
-import TextField from 'form/TextField';
+import TextField from 'components/TextField';
 import settings from 'settings';
 
 export const FIELDS = [
@@ -37,10 +37,7 @@ export const FIELDS = [
     label: settings.petitionFields.suggested_solution.label,
     hint: settings.petitionFields.suggested_solution.hint,
     html: {
-      placeholder: settings.petitionFields.suggested_solution.placeholder,
-      required: true,
-      minLength: 10,
-      maxLength: 50
+      placeholder: settings.petitionFields.suggested_solution.placeholder
     }
   }
 ];
