@@ -6,16 +6,14 @@ import ProgressBar from 'progressbar.js';
 
 const CircleProgressBar = React.createClass({
 
-  getDefaultProps () {
-    return {
-      percentage: 0,
-      animated: false,
-      size: 'small',
-      color: settings.colors.primary,
-      trailColor: settings.colors.greyLite,
-      aria: {}
-    };
-  },
+  getDefaultProps: () => ({
+    percentage: 0,
+    animated: false,
+    size: 'small',
+    color: settings.colors.primary,
+    trailColor: settings.colors.greyLite,
+    aria: {}
+  }),
 
   componentDidMount () {
     this.initProgressBar();
