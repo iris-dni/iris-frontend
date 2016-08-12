@@ -3,19 +3,45 @@ import { reduxForm } from 'redux-form';
 import { createPetition } from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
 import TextField from 'form/TextField';
+import settings from 'settings';
 
 export const FIELDS = [
   {
     name: 'title',
-    type: 'input'
+    element: 'input',
+    label: settings.petitionFields.title.label,
+    hint: settings.petitionFields.title.hint,
+    html: {
+      type: 'text',
+      placeholder: settings.petitionFields.title.placeholder,
+      required: true,
+      minLength: 15,
+      maxLength: 80
+    }
   },
   {
     name: 'description',
-    type: 'textarea'
+    element: 'textarea',
+    label: settings.petitionFields.description.label,
+    hint: settings.petitionFields.description.hint,
+    html: {
+      placeholder: settings.petitionFields.description.placeholder,
+      required: true,
+      minLength: 5,
+      maxLength: 50
+    }
   },
   {
     name: 'suggested_solution',
-    type: 'textarea'
+    element: 'textarea',
+    label: settings.petitionFields.suggested_solution.label,
+    hint: settings.petitionFields.suggested_solution.hint,
+    html: {
+      placeholder: settings.petitionFields.suggested_solution.placeholder,
+      required: true,
+      minLength: 10,
+      maxLength: 50
+    }
   }
 ];
 
