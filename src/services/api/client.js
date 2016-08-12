@@ -28,6 +28,6 @@ export default {
       url: apiUrl(requestPath),
       data: data,
       withCredentials: true
-    });
+    }).then(response => response.data);
   }
 };

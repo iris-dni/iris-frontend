@@ -1,9 +1,7 @@
 import moxios from 'moxios';
-import chai from 'chai';
+import { assert } from 'chai';
 import authRepository from 'services/api/repositories/auth';
 import mockWhoAmI from './../../../mocks/whoAmI';
-
-const { assert } = chai;
 
 describe('auth repository', () => {
   beforeEach(() => {
@@ -15,15 +13,14 @@ describe('auth repository', () => {
   });
 
   describe('whoAmI', () => {
-    beforeEach(() => {
-      moxios.stubRequest(/\/auth\/whoami$/, {
+    it('calls the API and returns data', (done) => {
+      let expectedPath = /\/auth\/whoami$/;
+      let expectedResponse = mockWhoAmI;
+
+      moxios.stubRequest(expectedPath, {
         status: 200,
         response: mockWhoAmI
       });
-    });
-
-    it('calls the API and returns data', (done) => {
-      const expectedResponse = mockWhoAmI;
 
       authRepository.whoAmI().then((actualResponse) => {
         assert.deepEqual(actualResponse, expectedResponse);

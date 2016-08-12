@@ -18,8 +18,6 @@ export default {
     const requestPath = '/petitions';
     const requestParams = getRequestParams(options);
 
-    console.log(requestPath, requestParams);
-
     return ApiClient.request(requestPath, requestParams);
   }
 };
