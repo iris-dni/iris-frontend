@@ -29,6 +29,9 @@ export default {
   requiredText: 'required',
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',
+  petitionForm: {
+    saveButton: 'Save Petition'
+  },
   petitionFields: {
     title: {
       label: 'Petition Title',

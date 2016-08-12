@@ -2,7 +2,9 @@ import React from 'react';
 import { reduxForm } from 'redux-form';
 import { createPetition } from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
+import Fieldset from 'components/Fieldset';
 import TextField from 'components/TextField';
+import Button from 'components/Button';
 import settings from 'settings';
 
 export const FIELDS = [
@@ -46,20 +48,25 @@ const PetitionForm = React.createClass({
   render () {
     const { fields, handleSubmit, submitting } = this.props;
 
+    const formIsValid = fields._meta.allValid;
+
     return (
       <form onSubmit={handleSubmit(data => createPetition(data))}>
-        {FIELDS.map(field => (
-          <TextField
-            key={field.name}
-            config={field}
-            helper={fields[field.name]}
+        <Fieldset>
+          {FIELDS.map(field => (
+            <TextField
+              key={field.name}
+              config={field}
+              helper={fields[field.name]}
+            />
+          ))}
+        </Fieldset>
+        <Fieldset>
+          <Button
+            disabled={submitting || !formIsValid}
+            text={settings.petitionForm.saveButton}
           />
-        ))}
-        <div>
-          <button type='submit' disabled={submitting}>
-            {submitting ? <i /> : <i />} Submit
-          </button>
-        </div>
+        </Fieldset>
       </form>
     );
   }

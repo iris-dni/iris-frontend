@@ -4,7 +4,7 @@ import styles from './text-field.scss';
 
 export default ({ config, helper }) => {
   return (
-    <div>
+    <div className={styles.root}>
       <label htmlFor={config.name} className={styles.label}>{config.label}</label>
       {config.hint &&
         <em className={styles.hint}>{config.hint}</em>

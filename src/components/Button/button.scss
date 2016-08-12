@@ -1,5 +1,26 @@
 @import 'globals';
 
-.root {
+.shared {
   font-family: $fonts-primary;
+  color: color('white');
+  font-size: 1.125em;
+  padding: 0.75em 1.5em;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.active {
+  composes: shared;
+  background-color: color('primary');
+}
+
+.active:hover,
+.active:active,
+.active:focus {
+  background-color: color('secondary');
+}
+
+.disabled {
+  composes: shared;
+  background-color: color('grey-lite');
 }
