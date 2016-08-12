@@ -19,11 +19,11 @@ export default (petition) => {
         city: petition.city,
         owner: getPetitionAuthor(petition.owner || {})
       },
-      dialTime: {
+      timeMetric: {
         figure: daysRemaining,
-        percentage: calculatePercentage(daysRemaining, settings.daysToVote)
+        percentage: 100 - calculatePercentage(daysRemaining, settings.daysToVote)
       },
-      dialSupporters: {
+      supportersMetric: {
         figure: petition.supporters.amount,
         percentage: calculatePercentage(
           petition.supporters.amount,

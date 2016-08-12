@@ -1,26 +1,26 @@
 import React from 'react';
 import settings from 'settings';
 import styles from './teaser-footer.scss';
-import Dial from 'components/Dial';
+import PetitionMetric from 'components/PetitionMetric';
 import TeaserInfo from 'components/TeaserInfo';
 
-const TeaserFooter = ({ info, dialTime, dialSupporters }) => (
+const TeaserFooter = ({ info, timeMetric, supportersMetric }) => (
   <footer className={styles.root}>
     <div className={styles.info}>
       <TeaserInfo {...info} />
     </div>
-    <div className={styles.dials}>
-      <div className={styles['first-dial']}>
-        <Dial
-          {...dialTime}
-          icon={'clock'}
+    <div className={styles.metric}>
+      <div className={styles['first-metric']}>
+        <PetitionMetric
+          {...timeMetric}
+          icon={'Clock'}
           caption={settings.teaserDaysRemaining}
         />
       </div>
-      <div className={styles.dial}>
-        <Dial
-          {...dialSupporters}
-          icon={'signature'}
+      <div className={styles.metric}>
+        <PetitionMetric
+          {...supportersMetric}
+          icon={'Signature'}
           caption={settings.teaserSupportersText}
         />
       </div>
