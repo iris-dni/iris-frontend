@@ -1,28 +1,16 @@
 import React, { Component, PropTypes } from 'react';
-import axios from 'axios';
 import { reduxForm } from 'redux-form';
 import domOnlyProps from 'fields/domOnlyProps';
+import { createPetition } from 'actions/PetitionActions';
 
 class CreatePetition extends Component {
-  sendPetition (data) {
-    axios.post('http://api-iris-dev.lovelysystems.com/v1/petitions', {
-      data: data
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
-
   render () {
     const { fields, handleSubmit, submitting } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(data => this.sendPetition(data))}>
+      <form onSubmit={handleSubmit(data => createPetition(data))}>
         <div>
-          <label>First Name</label>
+          <label>Petition Title</label>
           <div>
             <input
               type='text'

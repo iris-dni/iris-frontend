@@ -3,7 +3,9 @@ import {
   REQUEST_PETITION,
   RECEIVE_PETITION,
   REQUEST_PETITIONS,
-  RECEIVE_PETITIONS
+  RECEIVE_PETITIONS,
+  SUBMIT_PETITION,
+  CREATED_PETITION
 } from './actionTypes';
 
 export function requestPetition () {
@@ -66,4 +68,26 @@ export function fetchPetitions ({ petitions, location, params, perPage, currentP
         });
     }
   };
+}
+
+export function submitPetition () {
+  return {
+    type: SUBMIT_PETITION
+  };
+}
+
+export function createdPetition () {
+  return {
+    type: CREATED_PETITION
+  };
+}
+
+export function createPetition (data) {
+  return petitionRepository.create(data)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 }
