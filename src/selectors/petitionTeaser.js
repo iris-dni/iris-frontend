@@ -19,16 +19,28 @@ export default (petition) => {
         city: petition.city,
         owner: getPetitionAuthor(petition.owner || {})
       },
-      timeMetric: {
-        figure: daysRemaining,
-        percentage: 100 - calculatePercentage(daysRemaining, settings.daysToVote)
-      },
-      supportersMetric: {
-        figure: petition.supporters.amount,
-        percentage: calculatePercentage(
-          petition.supporters.amount,
-          petition.supporters.required
-        )
+      metrics: {
+        timeMetric: {
+          figure: daysRemaining,
+          percentage: 100 - calculatePercentage(daysRemaining, settings.daysToVote),
+          aria: {
+            minimum: 0,
+            maximum: settings.daysToVote,
+            value: settings.daysToVote - daysRemaining
+          }
+        },
+        supportersMetric: {
+          figure: petition.supporters.amount,
+          percentage: calculatePercentage(
+            petition.supporters.amount,
+            petition.supporters.required
+          ),
+          aria: {
+            minimum: 0,
+            maximum: petition.supporters.required,
+            value: petition.supporters.amount
+          }
+        }
       }
     }
   };

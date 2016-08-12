@@ -12,7 +12,8 @@ const CircleProgressBar = React.createClass({
       animated: false,
       size: 'small',
       color: settings.colors.primary,
-      trailColor: settings.colors.greyLite
+      trailColor: settings.colors.greyLite,
+      aria: {}
     };
   },
 
@@ -22,7 +23,7 @@ const CircleProgressBar = React.createClass({
   },
 
   initProgressBar () {
-    let canvasElement = ReactDOM.findDOMNode(this.refs.canvas);
+    const canvasElement = ReactDOM.findDOMNode(this.refs.canvas);
 
     this.progressBar = new ProgressBar.Circle(canvasElement, {
       strokeWidth: 10,
@@ -40,7 +41,7 @@ const CircleProgressBar = React.createClass({
   },
 
   updateProgressBar (percentage) {
-    let progress = percentage / 100;
+    const progress = percentage / 100;
 
     if (this.props.animated) {
       this.progressBar.animate(progress);
@@ -52,7 +53,14 @@ const CircleProgressBar = React.createClass({
   render () {
     return (
       <div className={styles.root}>
-        <div className={styles[this.props.size]} ref='canvas'></div>
+        <div
+          className={styles[this.props.size]}
+          ref='canvas'
+          role='progressbar'
+          aria-valuenow={this.props.aria.value}
+          aria-valuemin={this.props.aria.minimum}
+          aria-valuemax={this.props.aria.maximum}
+        />
         <div className={styles.content}>
           {this.props.children}
         </div>

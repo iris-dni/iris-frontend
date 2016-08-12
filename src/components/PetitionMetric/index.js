@@ -3,29 +3,22 @@ import styles from './petitionmetric.scss';
 import CircleProgressBar from 'components/CircleProgressBar';
 import Icon from 'components/Icon';
 
-const PetitionMetric = React.createClass({
-
-  render () {
-    let { icon, figure, caption, percentage } = this.props;
-
-    return (
-      <div className={styles.root}>
-        <div className={styles.progress}>
-          <CircleProgressBar percentage={percentage} size='small'>
-            <Icon id={icon} size='small' />
-          </CircleProgressBar>
-        </div>
-        <dl className={styles.text}>
-          <dt className={styles.caption}>
-            {caption}
-          </dt>
-          <dd className={styles.figure}>
-            {figure}
-          </dd>
-        </dl>
+export default ({ icon, figure, caption, percentage, aria }) => {
+  return (
+    <div className={styles.root}>
+      <div className={styles.progress}>
+        <CircleProgressBar percentage={percentage} size='small' aria={aria}>
+          <Icon id={icon} size='small' />
+        </CircleProgressBar>
       </div>
-    );
-  }
-});
-
-export default PetitionMetric;
+      <dl className={styles.text}>
+        <dt className={styles.caption}>
+          {caption}
+        </dt>
+        <dd className={styles.figure}>
+          {figure}
+        </dd>
+      </dl>
+    </div>
+  );
+};

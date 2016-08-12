@@ -3,13 +3,3 @@
 .root {
   font-size: 14px;
 }
-
-.metric {
-  display: inline-block;
-  margin-top: 10px;
-}
-
-.first-metric {
-  composes: metric;
-  margin-right: 10px;
-}
