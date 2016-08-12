@@ -11,13 +11,15 @@ const TeaserInfo = ({ owner, city }) => (
         info={owner}
       />
     </li>
-    <li className={styles.item}>
-      <IconAndInfo
-        icon='Pin'
-        size='small'
-        info={city}
-      />
-    </li>
+    {city && city.name &&
+      <li className={styles.item}>
+        <IconAndInfo
+          icon='Pin'
+          size='small'
+          info={city.name}
+        />
+      </li>
+    }
   </ul>
 );
 

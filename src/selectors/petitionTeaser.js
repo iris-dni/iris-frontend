@@ -16,7 +16,7 @@ export default (petition) => {
     title: petition.title,
     footer: {
       info: {
-        city: petition.city || 'Aargau',
+        city: petition.city,
         owner: getPetitionAuthor(petition.owner || {})
       },
       dialTime: {
