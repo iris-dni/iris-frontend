@@ -2,10 +2,12 @@ import React from 'react';
 import { Route, Router, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
+import LoginPage from 'services/auth/Login';
 import Layout from 'views/Layout';
 import Home from 'views/Home';
 import Petition from 'containers/Petition';
 import Petitions from 'containers/Petitions';
+import Restricted from 'containers/Restricted';
 
 export default function (props = {}) {
   let history = browserHistory;
@@ -16,11 +18,13 @@ export default function (props = {}) {
 
   return (
     <Router history={history}>
+      <Route path='/auth/login' component={LoginPage} />
       <Route path='/' component={Layout}>
         <IndexRoute component={Home} />
         <Route path='home' component={Home} />
         <Route path='petitions' component={Petitions} />
         <Route path='petitions/:id' component={Petition} />
+        <Route path='restricted' component={Restricted} />
       </Route>
     </Router>
   );

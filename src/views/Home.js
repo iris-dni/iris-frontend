@@ -12,5 +12,6 @@ export default (props) => (
       <Link to='/petitions?page=2'>2</Link>,
       <Link to='/petitions?page=3'>3</Link>
     </p>
+    <p><Link to='/restricted'>Example restricted page</Link></p>
   </div>
 );

@@ -1,0 +1,23 @@
+export default {
+  'status': 'ok',
+  'data': {
+    'roles': [
+      'admin'
+    ],
+    'firstname': 'Jane',
+    'state': 'active',
+    'lastname': 'Doe',
+    'dc': {
+      'modified': '2016-08-11T09:52:13.236984+00:00',
+      'created': '2016-08-11T09:52:13.237010+00:00'
+    },
+    'id': 777,
+    'sso': [
+      {
+        'trusted': false,
+        'provider': 'nwch'
+      }
+    ],
+    'email': 'jane.doe@example.com'
+  }
+};
