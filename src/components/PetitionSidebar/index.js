@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './petition-sidebar.scss';
 import Countdown from 'components/Countdown';
 
-const PetitionSidebar = ({ daysRemaining }) => (
+const PetitionSidebar = ({ metrics }) => (
   <aside role='complementary' className={styles.root}>
     <div className={styles.counter}>
-      <Countdown remaining={daysRemaining} />
+      <Countdown timeMetric={metrics.timeMetric} />
     </div>
   </aside>
 );
