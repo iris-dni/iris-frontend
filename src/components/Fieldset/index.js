@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './fieldset.scss';
 
-const Fieldset = ({ children }) => (
-  <fieldset className={styles.root}>
+const Fieldset = ({ modifier, children }) => (
+  <fieldset className={styles[modifier || 'root']}>
     {children}
   </fieldset>
 );

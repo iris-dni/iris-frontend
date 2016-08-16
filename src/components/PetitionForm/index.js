@@ -61,9 +61,10 @@ const PetitionForm = React.createClass({
             />
           ))}
         </Fieldset>
-        <Fieldset>
+        <Fieldset modifier={'actions'}>
           <Button
             disabled={submitting || !formIsValid}
+            modifier={'accent'}
             text={settings.petitionForm.saveButton}
           />
         </Fieldset>

@@ -2,25 +2,51 @@
 
 .shared {
   font-family: $fonts-primary;
-  color: color('white');
-  font-size: 1.125em;
-  padding: 0.75em 1.5em;
-  border-radius: 3px;
-  transition: background-color 0.2s ease;
+  padding: 1em 1.25em;
+  line-height: normal;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  @include media('>500px') {
+    font-size: 18px;
+  }
 }
 
-.active {
+.border {
+  border-color: color('grey');
+  background-color: transparent;
+}
+
+.default {
   composes: shared;
-  background-color: color('primary');
+  composes: border;
 }
 
-.active:hover,
-.active:active,
-.active:focus {
-  background-color: color('secondary');
+.default:hover,
+.default:active,
+.default:focus {
+  color: color('white');
+  background-color: color('grey');
+}
+
+.accent {
+  composes: shared;
+  color: color('white');
+  background-color: color('primary');
 }
 
 .disabled {
   composes: shared;
-  background-color: color('grey-lite');
+  composes: border;
+  color: color('dimmed');
+}
+
+/*
+ * 1. calculated with http://razorjam.github.io/sasscolourfunctioncalculator/
+ */
+.accent:hover,
+.accent:active,
+.accent:focus {
+  background-color: darken(desaturate(adjust-hue(color('primary'), 10.8808), 16.5997), 5.6863); /* 1 */
 }

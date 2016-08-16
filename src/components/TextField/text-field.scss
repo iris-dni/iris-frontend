@@ -1,24 +1,24 @@
 @import 'globals';
 
+/*
+ * 1. Space for absolutely positioned error message
+ * (single line) - doneto avoid form jumping when errors appear
+ */
 .root {
   margin-bottom: 15px;
-}
-
-.label {
-  font-weight: bold;
-}
-
-.hint {
-  display: block;
-  line-height: 1.2;
-  margin-bottom: 5px;
+  padding-bottom: 26px; /* 1 */
+  position: relative;
 }
 
 .field {
   display: block;
   width: 100%;
-  padding: 10px;
-  border: 1px solid color('grey');
+  padding: 15px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 4px;
+  line-height: normal;
+  outline: 0;
 }
 
 .input {
@@ -28,10 +28,27 @@
 .textarea {
   composes: field;
   resize: vertical;
+  min-height: 150px;
+}
+
+.valid {
+  border-color: color('grey');
+}
+
+.valid:focus {
+  border-color: color('dimmed');
+}
+
+.invalid {
+  border-color: color('error');
 }
 
 .error {
   font-weight: normal;
   display: block;
-  margin-top: 5px;
+  font-size: 14px;
+  line-height: 20px;
+  color: color('error');
+  position: absolute;
+  bottom: 0;
 }

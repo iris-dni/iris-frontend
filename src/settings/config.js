@@ -26,7 +26,7 @@ export default {
     greyLite: '#e5e5e5'
   },
   createPetitionPageTitle: 'Create a new Petition',
-  requiredText: 'required',
+  requiredText: 'This field is required',
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',
   petitionForm: {

@@ -15,7 +15,7 @@ const CreatePetition = ({ createdPetition }) => (
     </Header>
     {createdPetition
       ? <div>
-        <h2>Your petiton has been saved</h2>
+        <h2>Your petition has been saved</h2>
         <a href={`/petitions/${createdPetition}`}>Click here to see a draft of it</a>
       </div>
       : <PetitionForm />

@@ -1,0 +1,17 @@
+@import 'globals';
+
+.root {
+  margin-bottom: 8px;
+}
+
+.label {
+  @include media('>500px') {
+    font-size: 20px;
+  }
+}
+
+.hint {
+  display: block;
+  font-style: normal;
+  color: color('dimmed');
+}
