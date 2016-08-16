@@ -1,14 +1,10 @@
-import settings from 'settings';
-import calculatePercentage from 'helpers/calculatePercentage';
-import getPetitionDaysRemaining from './petitionDaysRemaining';
 import getPetitionAuthor from './petitionAuthor';
+import getPetitionMetrics from './petitionMetrics';
 
 export default (petition) => {
   if (!petition || !petition.id) {
     return {};
   }
-
-  const daysRemaining = getPetitionDaysRemaining(petition.dc || {});
 
   return {
     id: petition.id,
@@ -16,20 +12,10 @@ export default (petition) => {
     title: petition.title,
     footer: {
       info: {
-        city: petition.city || 'Aargau',
+        city: petition.city,
         owner: getPetitionAuthor(petition.owner || {})
       },
-      dialTime: {
-        figure: daysRemaining,
-        percentage: calculatePercentage(daysRemaining, settings.daysToVote)
-      },
-      dialSupporters: {
-        figure: petition.supporters.amount,
-        percentage: calculatePercentage(
-          petition.supporters.amount,
-          petition.supporters.required
-        )
-      }
+      metrics: getPetitionMetrics(petition)
     }
   };
 };

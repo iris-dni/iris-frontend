@@ -1,7 +1,7 @@
 import getPetitionDateRange from './petitionDateRange';
 import calculatePercentage from 'helpers/calculatePercentage';
-import getPetitionDaysRemaining from './petitionDaysRemaining';
 import getPetitionSchema from './petitionSchema';
+import getPetitionMetrics from './petitionMetrics';
 
 export default (petition) => {
   if (!petition || !petition.id) {
@@ -19,7 +19,7 @@ export default (petition) => {
         petition.supporters.required
       ),
       info: {
-        city: petition.city || 'Aargau',
+        city: petition.city,
         dateRange: getPetitionDateRange(petition.dc || {})
       },
       supporters: {
@@ -32,7 +32,7 @@ export default (petition) => {
       suggestedSolution: petition.suggested_solution
     },
     sidebar: {
-      daysRemaining: getPetitionDaysRemaining(petition.dc || {})
+      metrics: getPetitionMetrics(petition)
     }
   };
 };

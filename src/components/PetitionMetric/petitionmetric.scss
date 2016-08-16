@@ -6,14 +6,9 @@
   align-items: center;
 }
 
-.counter {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  background-color: green;
-  border-radius: 50%;
-  text-align: center;
-  margin-right: 6px;
+.progress {
+  position: relative;
+  margin-right: 5px;
 }
 
 .text {
@@ -26,7 +21,6 @@
 }
 
 .figure {
-  font-weight: bold;
   color: color('primary');
   font-size: 1.125em;
 }
