@@ -44,7 +44,7 @@ var loaders = [
     loader: 'json'
   },
   {
-    include: /\.jsx?/,
+    include: /\.jsx?$/,
     loader: 'babel',
     exclude: /node_modules/
   },
