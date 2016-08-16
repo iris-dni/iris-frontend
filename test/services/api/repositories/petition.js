@@ -2,10 +2,11 @@ import { assert } from 'chai';
 import sinon from 'sinon';
 import ApiClient from 'services/api/client';
 import petitionRepository from 'services/api/repositories/petition';
-import mockNewPetition from './../../../mocks/newPetition';
-import mockExistingPetition from './../../../mocks/existingPetition';
 
 describe('petition repository', () => {
+  let exampleId = 777;
+  let exampleTitle = 'Example Petition';
+
   beforeEach(() => {
     sinon.stub(ApiClient, 'request');
   });
@@ -15,49 +16,79 @@ describe('petition repository', () => {
   });
 
   describe('all', () => {
-    let expectedPath = '/petitions';
+    let expectedPathArgument = '/petitions';
 
-    it('calls the API without params', () => {
-      let expectedParams = { offset: 0, limit: 12 };
+    context('without any argument', () => {
+      it('calls the API client with default offset and limit', () => {
+        let expectedDataArgument = { offset: 0, limit: 12 };
 
-      petitionRepository.all();
-      assert(ApiClient.request.calledWith(expectedPath, expectedParams));
+        petitionRepository.all();
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument
+        ));
+      });
     });
 
-    it('calls the API with pagination params', () => {
-      let expectedParams = { offset: 10, limit: 10 };
+    context('with custom pagination argument', () => {
+      it('calls the API client with proper offset and limit', () => {
+        let expectedDataArgument = { offset: 10, limit: 10 };
 
-      petitionRepository.all({ page: 2, limit: 10 });
-      assert(ApiClient.request.calledWith(expectedPath, expectedParams));
+        petitionRepository.all({ page: 2, limit: 10 });
+
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument
+        ));
+      });
     });
   });
 
   describe('find', () => {
-    let expectedPath = '/petitions/777';
+    let expectedPathArgument = `/petitions/${exampleId}`;
 
     it('calls the API and returns the requested petition', () => {
-      petitionRepository.find(777);
-      assert(ApiClient.request.calledWith(expectedPath));
+      petitionRepository.find(exampleId);
+
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument
+      ));
     });
   });
 
   describe('create', () => {
-    let expectedPath = '/petitions';
-    let expectedMethod = 'POST';
+    let examplePetition = { id: exampleId, title: exampleTitle };
+    let expectedPathArgument = '/petitions';
 
-    it('calls the API and returns the newly created petition', () => {
-      petitionRepository.create(mockNewPetition);
-      assert(ApiClient.request.calledWith(expectedPath, mockNewPetition, expectedMethod));
+    it('calls the API client with proper arguments', () => {
+      let expectedPetitionArgument = { id: exampleId, title: exampleTitle };
+      let expectedMethodArgument = 'POST';
+
+      petitionRepository.create(examplePetition);
+
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument,
+        expectedPetitionArgument,
+        expectedMethodArgument
+      ));
     });
   });
 
   describe('update', () => {
-    let expectedPath = '/petitions/777';
-    let expectedMethod = 'POST';
+    let examplePetition = { id: exampleId, title: exampleTitle };
+    let expectedPathArgument = `/petitions/${exampleId}`;
 
-    it('calls the API and returns the updated petition', () => {
-      petitionRepository.update(mockExistingPetition);
-      assert(ApiClient.request.calledWith(expectedPath, mockNewPetition, expectedMethod));
+    it('calls the API client with proper arguments', () => {
+      let expectedPetitionArgument = { title: exampleTitle };
+      let expectedMethodArgument = 'POST';
+
+      petitionRepository.update(examplePetition);
+
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument,
+        expectedPetitionArgument,
+        expectedMethodArgument
+      ));
     });
   });
 });

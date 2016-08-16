@@ -13,11 +13,13 @@ describe('auth repository', () => {
   });
 
   describe('whoAmI', () => {
-    let expectedPath = '/auth/whoami';
+    let expectedPathArgument = '/auth/whoami';
 
     it('calls the API and returns data', () => {
       authRepository.whoAmI();
-      assert(ApiClient.request.calledWith(expectedPath));
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument
+      ));
     });
   });
 });
