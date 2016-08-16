@@ -18,7 +18,7 @@ describe('getPetitionEndDate', () => {
     assert.equal(actual.toISOString(), expected.toISOString());
   });
 
-  it('returns the create date plus the days to votesPercentage when no effective given', () => {
+  it('returns the create date plus the days to votes when no effective given', () => {
     const dates = {
       expires: null,
       created: '2016-08-02T03:33:21'
