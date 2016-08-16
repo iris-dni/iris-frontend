@@ -1,102 +1,63 @@
-import moxios from 'moxios';
-import chai from 'chai';
+import { assert } from 'chai';
+import sinon from 'sinon';
+import ApiClient from 'services/api/client';
 import petitionRepository from 'services/api/repositories/petition';
-import mockPetitions from './../../../mocks/petitions';
-import mockPetition from './../../../mocks/petition';
 import mockNewPetition from './../../../mocks/newPetition';
 import mockExistingPetition from './../../../mocks/existingPetition';
 
-const { assert } = chai;
-
 describe('petition repository', () => {
   beforeEach(() => {
-    moxios.install();
+    sinon.stub(ApiClient, 'request');
   });
 
   afterEach(() => {
-    moxios.uninstall();
+    ApiClient.request.restore();
   });
 
   describe('all', () => {
-    it('calls the API without params', (done) => {
-      let expectedPath = /\/petitions\?offset=0&limit=12$/;
-      let expectedResponse = mockPetitions;
+    let expectedPath = '/petitions';
 
-      moxios.stubRequest(expectedPath, {
-        status: 200,
-        response: mockPetitions
-      });
+    it('calls the API without params', () => {
+      let expectedParams = { offset: 0, limit: 12 };
 
-      petitionRepository.all().then((actualResponse) => {
-        assert.deepEqual(actualResponse, expectedResponse);
-        done();
-      });
+      petitionRepository.all();
+      assert(ApiClient.request.calledWith(expectedPath, expectedParams));
     });
 
-    it('calls the API with pagination params', (done) => {
-      let expectedPath = /\/petitions\?offset=10&limit=10$/;
-      let expectedResponse = mockPetitions;
+    it('calls the API with pagination params', () => {
+      let expectedParams = { offset: 10, limit: 10 };
 
-      moxios.stubRequest(expectedPath, {
-        status: 200,
-        response: mockPetitions
-      });
-
-      petitionRepository.all({ page: 2, limit: 10 }).then((actualResponse) => {
-        assert.deepEqual(actualResponse, expectedResponse);
-        done();
-      });
+      petitionRepository.all({ page: 2, limit: 10 });
+      assert(ApiClient.request.calledWith(expectedPath, expectedParams));
     });
   });
 
   describe('find', () => {
-    it('calls the API and returns the requested petition', (done) => {
-      let expectedPath = /\/petitions\/777$/;
-      let expectedResponse = mockPetition;
+    let expectedPath = '/petitions/777';
 
-      moxios.stubRequest(expectedPath, {
-        status: 200,
-        response: mockPetition
-      });
-
-      petitionRepository.find(777).then(actualResponse => {
-        assert.deepEqual(actualResponse, expectedResponse);
-        done();
-      });
+    it('calls the API and returns the requested petition', () => {
+      petitionRepository.find(777);
+      assert(ApiClient.request.calledWith(expectedPath));
     });
   });
 
   describe('create', () => {
-    it('calls the API and returns the newly created petition', (done) => {
-      let expectedPath = /\/petitions$/;
-      let expectedResponse = mockPetition;
+    let expectedPath = '/petitions';
+    let expectedMethod = 'POST';
 
-      moxios.stubRequest(expectedPath, {
-        status: 200,
-        response: mockPetition
-      });
-
-      petitionRepository.create(mockNewPetition).then(actualResponse => {
-        assert.deepEqual(actualResponse, expectedResponse);
-        done();
-      });
+    it('calls the API and returns the newly created petition', () => {
+      petitionRepository.create(mockNewPetition);
+      assert(ApiClient.request.calledWith(expectedPath, mockNewPetition, expectedMethod));
     });
   });
 
   describe('update', () => {
-    it('calls the API and returns the updated petition', (done) => {
-      let expectedPath = /\/petitions\/777$/;
-      let expectedResponse = mockPetition;
+    let expectedPath = '/petitions/777';
+    let expectedMethod = 'POST';
 
-      moxios.stubRequest(expectedPath, {
-        status: 200,
-        response: mockPetition
-      });
-
-      petitionRepository.update(mockExistingPetition).then(actualResponse => {
-        assert.deepEqual(actualResponse, expectedResponse);
-        done();
-      });
+    it('calls the API and returns the updated petition', () => {
+      petitionRepository.update(mockExistingPetition);
+      assert(ApiClient.request.calledWith(expectedPath, mockNewPetition, expectedMethod));
     });
   });
 });
