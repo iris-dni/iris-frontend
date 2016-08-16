@@ -15,35 +15,34 @@ describe('petition repository', () => {
   });
 
   describe('all', () => {
-    beforeEach(() => {
-      moxios.stubRequest(/.*/, {
+    it('calls the API without params', (done) => {
+      let expectedPath = /\/petitions\?offset=0&limit=12$/;
+      let expectedResponse = mockPetitions;
+
+      moxios.stubRequest(expectedPath, {
         status: 200,
         response: mockPetitions
       });
-    });
 
-    it('calls the API without params', (done) => {
-      const expectedPath = /\/petitions\?offset=0&limit=12$/;
-
-      petitionRepository.all()
-        .then((response) => {
-          const actualPath = response.request.url;
-
-          assert.match(actualPath, expectedPath);
-          done();
-        });
+      petitionRepository.all().then((actualResponse) => {
+        assert.deepEqual(actualResponse, expectedResponse);
+        done();
+      });
     });
 
     it('calls the API with pagination params', (done) => {
-      const expectedPath = /\/petitions\?offset=10&limit=10$/;
+      let expectedPath = /\/petitions\?offset=10&limit=10$/;
+      let expectedResponse = mockPetitions;
 
-      petitionRepository.all({ page: 2, limit: 10 })
-        .then((response) => {
-          const actualPath = response.request.url;
+      moxios.stubRequest(expectedPath, {
+        status: 200,
+        response: mockPetitions
+      });
 
-          assert.match(actualPath, expectedPath);
-          done();
-        });
+      petitionRepository.all({ page: 2, limit: 10 }).then((actualResponse) => {
+        assert.deepEqual(actualResponse, expectedResponse);
+        done();
+      });
     });
   });
 });

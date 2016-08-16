@@ -24,7 +24,7 @@ export function fetchPetition (id) {
     dispatch(requestPetition());
     return petitionRepository.find(id)
       .then(response => dispatch(
-        receivePetition(response.data.data)
+        receivePetition(response.data)
       ));
   };
 }
@@ -57,11 +57,11 @@ export function fetchPetitions ({ petitions, location, params, perPage, currentP
 
       return petitionRepository.all(options)
         .then(response => {
-          response.data.currentPage = options.page;
-          response.data.perPage = options.limit;
+          response.currentPage = options.page;
+          response.perPage = options.limit;
 
           return dispatch(
-            receivePetitions(response.data)
+            receivePetitions(response)
           );
         });
     }
