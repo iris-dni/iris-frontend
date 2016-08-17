@@ -13,13 +13,16 @@ export default ({ timeMetric, supportersMetric }) => (
           caption={settings.teaserDaysRemaining}
         />
       </div>
-      <div className={styles.metric}>
-        <PetitionMetric
-          {...supportersMetric}
-          icon={'Signature'}
-          caption={settings.teaserSupportersText}
-        />
-      </div>
+
+      {supportersMetric && supportersMetric.votingActive &&
+        <div className={styles.metric}>
+          <PetitionMetric
+            {...supportersMetric}
+            icon={'Signature'}
+            caption={settings.teaserSupportersText}
+          />
+        </div>
+      }
     </div>
   </div>
 );

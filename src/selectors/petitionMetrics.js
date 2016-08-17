@@ -13,6 +13,7 @@ export default (petition) => {
   const amountVotes = petition.supporters.amount;
   const timePercentage = getTimePercentage(daysRemaining, daysToVote);
   const votesPercentage = calculatePercentage(amountVotes, requiredVotes);
+  const votingActive = requiredVotes > 0;
 
   return {
     timeMetric: {
@@ -33,7 +34,8 @@ export default (petition) => {
         minimum: 0,
         maximum: requiredVotes,
         value: amountVotes
-      }
+      },
+      votingActive: votingActive
     }
   };
 };
