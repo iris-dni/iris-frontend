@@ -1,14 +1,20 @@
 import React from 'react';
 import domOnlyProps from 'form/domOnlyProps';
 import FormLabel from 'components/FormLabel';
+import FormError from 'components/FormError';
+import IconBullet from 'components/IconBullet';
 import styles from './text-field.scss';
 
 const getClassname = (element, error) => {
-  return `${styles[element]} ${styles[error ? 'invalid' : 'valid']}`;
+  return [
+    styles[element || 'input'],
+    styles[error ? 'invalid' : 'valid']
+  ].join(' ');
 };
 
 export default ({ config, helper }) => {
   const hasError = helper.touched && helper.error;
+  const isValid = helper.touched && !helper.error;
 
   return (
     <div className={styles.root}>
@@ -17,7 +23,7 @@ export default ({ config, helper }) => {
         label={config.label}
         hint={config.hint}
       />
-      <div>
+      <div className={styles.wrapper}>
         <config.element
           className={getClassname(config.element, hasError)}
           id={config.name}
@@ -28,8 +34,22 @@ export default ({ config, helper }) => {
           {...domOnlyProps(helper)}
         />
         {hasError &&
-          <strong className={styles.error}>{helper.error}</strong>
+          <FormError text={helper.error} />
         }
+        <div className={styles.icon}>
+          {hasError &&
+            <IconBullet
+              id={'X'}
+              modifier={'error'}
+            />
+          }
+          {isValid &&
+            <IconBullet
+              id={'Checkmark'}
+              modifier={'success'}
+            />
+          }
+        </div>
       </div>
     </div>
   );

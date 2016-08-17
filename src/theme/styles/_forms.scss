@@ -1,0 +1,20 @@
+@import 'functions';
+
+$form-fields-defaults: (
+  'padding': 15px,
+  'border-width': 2px,
+  'border-style': solid,
+  'border-radius': 4px,
+  'line-height': normal,
+  'outline': 0
+);
+
+$form-hint-defaults: (
+  'font-style': normal,
+  'color': color('dimmed')
+);
+
+$form-regular-hover-defaults: (
+  'color': color('white'),
+  'background-color': color('grey')
+);

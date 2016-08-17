@@ -1,13 +1,19 @@
 import React from 'react';
 import styles from './icon.scss';
 
-const Icon = ({ id, size }) => {
-  const useEl = `<use xlink:href="/dist/assets/images/icons.svg#${id}" />`;
+const getClassname = (size, modifier, inline) => {
+  return [
+    styles[size || 'default'],
+    styles[modifier || 'default'],
+    styles[inline ? 'inline' : 'default']
+  ].join(' ');
+};
 
-  const sizeClass = size || 'default';
+const Icon = ({ id, size, modifier, inline }) => {
+  const useEl = `<use class="${styles.use}"" xlink:href="/dist/assets/images/icons.svg#${id}" />`;
 
   return (
-    <svg className={styles[sizeClass]} dangerouslySetInnerHTML={{ __html: useEl }} />
+    <svg className={getClassname(size, modifier, inline)} dangerouslySetInnerHTML={{ __html: useEl }} />
   );
 };
 
