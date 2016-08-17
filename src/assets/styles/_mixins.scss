@@ -83,7 +83,7 @@
         @include css($value);
       }
     } @else {
-      #{$property}: $value;
+      #{$property}: unquote($value);
     }
   }
 }
