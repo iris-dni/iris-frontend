@@ -86,10 +86,7 @@ export function createdPetition (id) {
 export function createPetition (data, dispatch) {
   dispatch(submitPetition());
   return petitionRepository.create(data)
-    .then(function (response) {
-      dispatch(createdPetition(response.data.data.id));
-    })
-    .catch(function (error) {
-      console.log(error);
+    .then((response) => {
+      return dispatch(createdPetition(response.data.data.id));
     });
 }

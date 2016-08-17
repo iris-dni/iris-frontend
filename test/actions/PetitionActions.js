@@ -6,7 +6,9 @@ import {
   requestPetition,
   receivePetition,
   requestPetitions,
-  receivePetitions
+  receivePetitions,
+  submitPetition,
+  createdPetition
 } from 'actions/PetitionActions';
 
 const { assert } = chai;
@@ -58,5 +60,29 @@ describe('PetitionActions', () => {
     const expected = mockPetitions;
 
     assert.deepEqual(actual, expected);
+  });
+
+  it('submitPetition returns SUBMIT_PETITION action', () => {
+    const result = submitPetition();
+    const actual = result.type;
+    const expected = 'SUBMIT_PETITION';
+
+    assert.equal(actual, expected);
+  });
+
+  it('createdPetition returns CREATED_PETITION action', () => {
+    const result = createdPetition();
+    const actual = result.type;
+    const expected = 'CREATED_PETITION';
+
+    assert.equal(actual, expected);
+  });
+
+  it('createdPetition passes petition ID', () => {
+    const result = createdPetition(23);
+    const actual = result.id;
+    const expected = 23;
+
+    assert.equal(actual, expected);
   });
 });

@@ -83,7 +83,11 @@
         @include css($value);
       }
     } @else {
-      #{$property}: unquote($value);
+      $parsed-value: $value !default;
+      @if type-of($value) == string {
+        $parsed-value: unquote($value);
+      }
+      #{$property}: $parsed-value;
     }
   }
 }
