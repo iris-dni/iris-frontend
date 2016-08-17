@@ -30,7 +30,7 @@ export const FIELDS = [
       placeholder: settings.petitionFields.description.placeholder,
       required: true,
       minLength: 5,
-      maxLength: 50
+      maxLength: 500
     }
   },
   {
@@ -39,7 +39,8 @@ export const FIELDS = [
     label: settings.petitionFields.suggested_solution.label,
     hint: settings.petitionFields.suggested_solution.hint,
     html: {
-      placeholder: settings.petitionFields.suggested_solution.placeholder
+      placeholder: settings.petitionFields.suggested_solution.placeholder,
+      maxLength: 500
     }
   }
 ];
