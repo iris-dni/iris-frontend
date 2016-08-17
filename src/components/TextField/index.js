@@ -14,7 +14,7 @@ const getClassname = (element, error) => {
 
 export default ({ config, helper }) => {
   const hasError = helper.touched && helper.error;
-  const isValid = helper.touched && !helper.error;
+  const isValid = helper.touched && !helper.error && helper.value;
 
   return (
     <div className={styles.root}>
