@@ -5,18 +5,23 @@ import PetitionInfo from 'components/PetitionInfo';
 import PetitionStats from 'components/PetitionStats';
 import ProgressBar from 'components/ProgressBar';
 
-const PetitionHeader = ({ title, info, supporters, percentComplete }) => (
+const PetitionHeader = ({ title, info, metrics }) => (
   <header className={styles.root}>
     <div className={styles.heading}>
       <Heading1 text={title} />
     </div>
     <div className={styles.info}>
       <PetitionInfo {...info} />
-      <ProgressBar
-        animate
-        percentage={percentComplete}
-      />
-      <PetitionStats {...supporters} />
+      {metrics.supportersMetric.votingActive &&
+        <div className={styles.progress}>
+          <ProgressBar
+            animated
+            percentage={metrics.supportersMetric.percentage}
+            aria={metrics.supportersMetric.aria}
+          />
+          <PetitionStats {...metrics.supportersMetric} />
+        </div>
+      }
     </div>
   </header>
 );
