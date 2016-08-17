@@ -12,15 +12,17 @@ const PetitionHeader = ({ title, info, metrics }) => (
     </div>
     <div className={styles.info}>
       <PetitionInfo {...info} />
-      {metrics.supportersMetric.votingActive &&
-        <div className={styles.progress}>
-          <ProgressBar
-            animated
-            percentage={metrics.supportersMetric.percentage}
-            aria={metrics.supportersMetric.aria}
-          />
-          <PetitionStats {...metrics.supportersMetric} />
-        </div>
+      {
+        metrics.supportersMetric &&
+        metrics.supportersMetric.votingActive &&
+          <div className={styles.progress}>
+            <ProgressBar
+              animated
+              percentage={metrics.supportersMetric.percentage}
+              aria={metrics.supportersMetric.aria}
+            />
+            <PetitionStats {...metrics.supportersMetric} />
+          </div>
       }
     </div>
   </header>
