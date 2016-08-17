@@ -3,7 +3,7 @@ import { FIELDS } from 'components/PetitionForm';
 
 const { assert } = chai;
 
-const getFieldByNameKey = (name) => {
+export const getFieldByNameKey = (name) => {
   const filteredField = FIELDS.filter(field => field && field.name === name);
   return filteredField[0];
 };
