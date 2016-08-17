@@ -47,5 +47,21 @@ describe('get petiton metrics', () => {
       const actual = metrics.supportersMetric.total;
       assert.isNumber(actual);
     });
+
+    it('voting is enabled if required supporters above 0', () => {
+      const actual = metrics.supportersMetric.votingActive;
+      assert.isTrue(actual);
+    });
+
+    it('voting is disabled if required supporters below 0', () => {
+      const testPetiton = Object.assign({}, petition);
+      let metrics;
+
+      testPetiton.supporters.required = -1;
+      metrics = getPetitionMetrics(testPetiton);
+
+      const actual = metrics.supportersMetric.votingActive;
+      assert.isFalse(actual);
+    });
   });
 });
