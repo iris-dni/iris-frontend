@@ -19,7 +19,7 @@ CreatePetitionContainer.propTypes = {
   createdPetition: React.PropTypes.number
 };
 
-const mapStateToProps = ({ petition }) => ({
+export const mapStateToProps = ({ petition }) => ({
   createdPetition: petition && petition.createdPetition
 });
 

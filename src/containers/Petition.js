@@ -34,13 +34,13 @@ PetitionContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetition(params.id));
 };
 
-const mapStateToProps = ({ petition }) => {
+export const mapStateToProps = ({ petition }) => {
   return getPetition(petition);
 };
 
 // Add dispatchers to the component props,
 // for fetching the data _client side_
-const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => {
   return { fetchPetition: (id) => dispatch(fetchPetition(id)) };
 };
 
