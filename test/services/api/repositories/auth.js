@@ -13,12 +13,28 @@ describe('auth repository', () => {
   });
 
   describe('whoAmI', () => {
-    let expectedPathArgument = '/auth/whoami';
+    it('calls the API client with proper arguments', () => {
+      let expectedPathArgument = '/auth/whoami';
 
-    it('calls the API and returns data', () => {
       authRepository.whoAmI();
+
       assert(ApiClient.request.calledWith(
         expectedPathArgument
+      ));
+    });
+  });
+
+  describe('logout', () => {
+    it('calls the API client with proper arguments', () => {
+      let expectedPathArgument = '/auth/logout';
+      let expectedMethodArgument = 'POST';
+
+      authRepository.logout();
+
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument,
+        null,
+        expectedMethodArgument
       ));
     });
   });
