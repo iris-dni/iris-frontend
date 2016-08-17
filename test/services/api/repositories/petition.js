@@ -1,48 +1,111 @@
-import moxios from 'moxios';
-import chai from 'chai';
+import { assert } from 'chai';
+import sinon from 'sinon';
+import ApiClient from 'services/api/client';
 import petitionRepository from 'services/api/repositories/petition';
-import mockPetitions from './../../../mocks/petitions';
-
-const { assert } = chai;
 
 describe('petition repository', () => {
+  let exampleId = 777;
+  let exampleTitle = 'Example Petition';
+
   beforeEach(() => {
-    moxios.install();
+    sinon.stub(ApiClient, 'request');
   });
 
   afterEach(() => {
-    moxios.uninstall();
+    ApiClient.request.restore();
   });
 
   describe('all', () => {
-    it('calls the API without params', (done) => {
-      let expectedPath = /\/petitions\?offset=0&limit=12$/;
-      let expectedResponse = mockPetitions;
+    let expectedPathArgument = '/petitions';
 
-      moxios.stubRequest(expectedPath, {
-        status: 200,
-        response: mockPetitions
-      });
+    context('without any argument', () => {
+      it('calls the API client with default offset and limit', () => {
+        let expectedDataArgument = { offset: 0, limit: 12 };
 
-      petitionRepository.all().then((actualResponse) => {
-        assert.deepEqual(actualResponse, expectedResponse);
-        done();
+        petitionRepository.all();
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument
+        ));
       });
     });
 
-    it('calls the API with pagination params', (done) => {
-      let expectedPath = /\/petitions\?offset=10&limit=10$/;
-      let expectedResponse = mockPetitions;
+    context('with custom pagination argument', () => {
+      it('calls the API client with proper offset and limit', () => {
+        let expectedDataArgument = { offset: 10, limit: 10 };
 
-      moxios.stubRequest(expectedPath, {
-        status: 200,
-        response: mockPetitions
-      });
+        petitionRepository.all({ page: 2, limit: 10 });
 
-      petitionRepository.all({ page: 2, limit: 10 }).then((actualResponse) => {
-        assert.deepEqual(actualResponse, expectedResponse);
-        done();
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument
+        ));
       });
+    });
+  });
+
+  describe('find', () => {
+    let expectedPathArgument = `/petitions/${exampleId}`;
+
+    it('calls the API and returns the requested petition', () => {
+      petitionRepository.find(exampleId);
+
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument
+      ));
+    });
+  });
+
+  describe('create', () => {
+    let examplePetition = { id: exampleId, title: exampleTitle };
+    let expectedPathArgument = '/petitions';
+
+    it('calls the API client with proper arguments', () => {
+      let expectedPetitionArgument = { id: exampleId, title: exampleTitle };
+      let expectedMethodArgument = 'POST';
+
+      petitionRepository.create(examplePetition);
+
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument,
+        expectedPetitionArgument,
+        expectedMethodArgument
+      ));
+    });
+  });
+
+  describe('update', () => {
+    let examplePetition = { id: exampleId, title: exampleTitle };
+    let expectedPathArgument = `/petitions/${exampleId}`;
+
+    it('calls the API client with proper arguments', () => {
+      let expectedPetitionArgument = { title: exampleTitle };
+      let expectedMethodArgument = 'POST';
+
+      petitionRepository.update(examplePetition);
+
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument,
+        expectedPetitionArgument,
+        expectedMethodArgument
+      ));
+    });
+  });
+
+  describe('publish', () => {
+    let examplePetition = { id: exampleId, title: exampleTitle };
+    let expectedPathArgument = `/petitions/${exampleId}/event/publish`;
+
+    it('calls the API client with proper arguments', () => {
+      let expectedMethodArgument = 'POST';
+
+      petitionRepository.publish(examplePetition);
+
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument,
+        null,
+        expectedMethodArgument
+      ));
     });
   });
 });

@@ -1,31 +1,25 @@
-import moxios from 'moxios';
 import { assert } from 'chai';
+import sinon from 'sinon';
+import ApiClient from 'services/api/client';
 import authRepository from 'services/api/repositories/auth';
-import mockWhoAmI from './../../../mocks/whoAmI';
 
 describe('auth repository', () => {
   beforeEach(() => {
-    moxios.install();
+    sinon.stub(ApiClient, 'request');
   });
 
   afterEach(() => {
-    moxios.uninstall();
+    ApiClient.request.restore();
   });
 
   describe('whoAmI', () => {
-    it('calls the API and returns data', (done) => {
-      let expectedPath = /\/auth\/whoami$/;
-      let expectedResponse = mockWhoAmI;
+    let expectedPathArgument = '/auth/whoami';
 
-      moxios.stubRequest(expectedPath, {
-        status: 200,
-        response: mockWhoAmI
-      });
-
-      authRepository.whoAmI().then((actualResponse) => {
-        assert.deepEqual(actualResponse, expectedResponse);
-        done();
-      });
+    it('calls the API and returns data', () => {
+      authRepository.whoAmI();
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument
+      ));
     });
   });
 });
