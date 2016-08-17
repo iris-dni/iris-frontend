@@ -1,9 +1,7 @@
-import chai from 'chai';
+import { assert } from 'chai';
 import moment from 'moment';
 import getPetitionEndDate from 'selectors/petitionEndDate';
 import settings from 'settings';
-
-const { assert } = chai;
 
 describe('getPetitionEndDate', () => {
   it('returns the expiry date if given', () => {
