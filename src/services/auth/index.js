@@ -31,7 +31,8 @@ const Auth = (WrappedComponent) => withRouter(React.createClass({
         <WrappedComponent {...this.props} />
       );
     }
-    return <div />;
+
+    return null;
   }
 }));
 
