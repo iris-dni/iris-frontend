@@ -91,4 +91,21 @@ describe('petition repository', () => {
       ));
     });
   });
+
+  describe('publish', () => {
+    let examplePetition = { id: exampleId, title: exampleTitle };
+    let expectedPathArgument = `/petitions/${exampleId}/event/publish`;
+
+    it('calls the API client with proper arguments', () => {
+      let expectedMethodArgument = 'POST';
+
+      petitionRepository.publish(examplePetition);
+
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument,
+        null,
+        expectedMethodArgument
+      ));
+    });
+  });
 });
