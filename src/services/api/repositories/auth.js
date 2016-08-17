@@ -6,5 +6,12 @@ export default {
    */
   whoAmI: () => {
     return ApiClient.request('/auth/whoami');
+  },
+
+  /**
+   * Logout the current user
+   */
+  logout: () => {
+    return ApiClient.request('/auth/logout', null, 'POST');
   }
 };
