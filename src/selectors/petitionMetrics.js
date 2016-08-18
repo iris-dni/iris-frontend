@@ -13,6 +13,8 @@ export default (petition) => {
   const amountVotes = petition.supporters.amount;
   const timePercentage = getTimePercentage(daysRemaining, daysToVote);
   const votesPercentage = calculatePercentage(amountVotes, requiredVotes);
+  // FIXME: change check to -1 when API is behaving this way
+  const votingActive = requiredVotes > 0;
 
   return {
     timeMetric: {
@@ -33,7 +35,8 @@ export default (petition) => {
         minimum: 0,
         maximum: requiredVotes,
         value: amountVotes
-      }
+      },
+      votingActive: votingActive
     }
   };
 };

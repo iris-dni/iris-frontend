@@ -2,13 +2,13 @@ import React from 'react';
 import styles from './petition-stats.scss';
 import settings from 'settings';
 
-const PetitionStats = ({ total, required }) => (
+const PetitionStats = ({ figure, total }) => (
   <ul className={styles.root}>
     <li className={styles.item}>
-      {settings.supportersText} <b className={styles.total}>{total}</b>
+      {settings.supportersText} <b className={styles.figure}>{figure}</b>
     </li>
     <li className={styles.item}>
-      {settings.milestoneText} {required}
+      {settings.milestoneText} {total}
     </li>
   </ul>
 );
