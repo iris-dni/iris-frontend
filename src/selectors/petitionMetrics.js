@@ -1,9 +1,9 @@
-import getPetitionTimeMetric from './petitionTimeMetric';
-import getPetitionSupportersMetric from './petitionSupportersMetric';
+import getPetitionTimeMetrics from './petitionTimeMetrics';
+import getPetitionSupportersMetrics from './petitionSupportersMetrics';
 
 export default (petition = {}) => {
   return {
-    timeMetric: getPetitionTimeMetric(petition),
-    supportersMetric: getPetitionSupportersMetric(petition)
+    timeMetric: getPetitionTimeMetrics(petition),
+    supportersMetric: getPetitionSupportersMetrics(petition)
   };
 };

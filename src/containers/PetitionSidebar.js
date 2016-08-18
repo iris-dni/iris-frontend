@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PetitionSidebar from 'components/PetitionSidebar';
-import getPetitionTimeMetric from 'selectors/petitionTimeMetric';
+import getPetitionTimeMetrics from 'selectors/petitionTimeMetrics';
 
-const PetitionSidebarContainer = ({ timeMetric }) => (
-  <PetitionSidebar timeMetric={timeMetric} />
+const PetitionSidebarContainer = (props) => (
+  <PetitionSidebar {...props} />
 );
 
 const mapStateToProps = ({ petition }) => {
   return {
-    timeMetric: getPetitionTimeMetric(petition)
+    timeMetric: getPetitionTimeMetrics(petition)
   };
 };
 
