@@ -175,7 +175,7 @@ describe('PetitionActions', () => {
       moxios.install();
       moxios.stubRequest(/.*/, {
         status: 200,
-        response: { data: mockPetition }
+        response: mockPetition
       });
 
       result = createPetition(mockPetition, dispatch);
