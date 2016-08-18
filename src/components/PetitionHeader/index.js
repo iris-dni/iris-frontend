@@ -2,27 +2,18 @@ import React from 'react';
 import styles from './petition-header.scss';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
-import PetitionInfo from 'components/PetitionInfo';
-import PetitionStats from 'components/PetitionStats';
-import ProgressBar from 'components/ProgressBar';
+import Heading1 from 'components/Heading1';
+import PetitionInfo from 'containers/PetitionInfo';
+import PetitionProgress from 'containers/PetitionProgress';
+import PetitionStats from 'containers/PetitionStats';
 
-const PetitionHeader = ({ title, info, metrics }) => (
+const PetitionHeader = ({ title }) => (
   <Header>
     <PageTitle title={title} />
     <div className={styles.info}>
-      <PetitionInfo {...info} />
-      {
-        metrics.supportersMetric &&
-        metrics.supportersMetric.votingActive &&
-          <div className={styles.progress}>
-            <ProgressBar
-              animated
-              percentage={metrics.supportersMetric.percentage}
-              aria={metrics.supportersMetric.aria}
-            />
-            <PetitionStats {...metrics.supportersMetric} />
-          </div>
-      }
+      <PetitionInfo />
+      <PetitionProgress />
+      <PetitionStats />
     </div>
   </Header>
 );
