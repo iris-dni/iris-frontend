@@ -1,7 +1,7 @@
-import getPetitionAuthor from './petitionAuthor';
+import getPetitionAuthor from 'helpers/getPetitionAuthor';
 import getPetitionMetrics from './petitionMetrics';
 
-export default (petition) => {
+export default (petition = {}) => {
   if (!petition || !petition.id) {
     return {};
   }
@@ -13,7 +13,7 @@ export default (petition) => {
     footer: {
       info: {
         city: petition.city,
-        owner: getPetitionAuthor(petition.owner || {})
+        owner: getPetitionAuthor(petition.owner)
       },
       metrics: getPetitionMetrics(petition)
     }

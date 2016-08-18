@@ -1,5 +1,5 @@
 import chai from 'chai';
-import getPetitionDaysRemaining from 'selectors/petitionDaysRemaining';
+import getPetitionDaysRemaining from 'helpers/getPetitionDaysRemaining';
 
 const { assert } = chai;
 

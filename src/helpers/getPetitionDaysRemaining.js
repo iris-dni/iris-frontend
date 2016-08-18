@@ -1,5 +1,5 @@
 import moment from 'moment';
-import getPetitionEndDate from './petitionEndDate';
+import getPetitionEndDate from 'helpers/getPetitionEndDate';
 
 export default ({ created, effective, expires }) => {
   const startDate = moment(effective || created);

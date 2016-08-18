@@ -1,6 +1,6 @@
 import settings from 'settings';
 import calculatePercentage from 'helpers/calculatePercentage';
-import getPetitionDaysRemaining from './petitionDaysRemaining';
+import getPetitionDaysRemaining from 'helpers/getPetitionDaysRemaining';
 
 const getTimePercentage = (remainingDays, daysToVote) => {
   return 100 - calculatePercentage(remainingDays, daysToVote);

@@ -1,6 +1,6 @@
 import getPetitionSchema from './petitionSchema';
 
-export default (petition) => {
+export default (petition = {}) => {
   if (!petition || !petition.id) {
     return {};
   }

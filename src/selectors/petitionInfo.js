@@ -1,4 +1,4 @@
-import getPetitionDateRange from './petitionDateRange';
+import getPetitionDateRange from 'helpers/getPetitionDateRange';
 
 export default (petition = {}) => {
   return {
