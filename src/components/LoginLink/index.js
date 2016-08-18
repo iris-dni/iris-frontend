@@ -1,5 +1,6 @@
 import React from 'react';
-import authRepository from 'services/api/repositories/auth';
+import { connect } from 'react-redux';
+import { fetchWhoAmI } from 'actions/AuthActions';
 import { Link } from 'react-router';
 
 const loginLink = () => {
@@ -19,18 +20,24 @@ const LoginLink = React.createClass({
 
   componentWillMount () {
     if (__CLIENT__) {
-      authRepository.whoAmI().then(response => {
-        this.setState({
-          loggedIn: response.status === 'ok',
-          me: response.data
-        });
-      });
+      this.props.fetchWhoAmI();
     }
   },
 
   render () {
-    return this.state.loggedIn ? logoutLink() : loginLink();
+    return this.props.me ? logoutLink() : loginLink();
   }
 });
 
-export default LoginLink;
+export const mapStateToProps = (state) => {
+  return state;
+};
+
+export const mapDispatchToProps = (dispatch) => {
+  return { fetchWhoAmI: () => dispatch(fetchWhoAmI()) };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginLink);
