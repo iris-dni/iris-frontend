@@ -1,8 +1,8 @@
 import React from 'react';
 import domOnlyProps from 'form/domOnlyProps';
 import FormLabel from 'components/FormLabel';
-import FormMessage from 'components/FormMessage';
-import IconBullet from 'components/IconBullet';
+import FormValidationMessage from 'components/FormValidationMessage';
+import FormValidationIcon from 'components/FormValidationIcon';
 import styles from './text-field.scss';
 
 const getClassname = (element, error) => {
@@ -35,31 +35,17 @@ export default ({ config, helper }) => {
         />
 
         <div className={styles.message}>
-          {hasError &&
-            <FormMessage
-              text={helper.error}
-              modifier={'error'}
-            />
-          }
-          {isValid &&
-            <FormMessage
-              text={config.validated}
-            />
-          }
+          <FormValidationMessage
+            error={hasError}
+            valid={isValid}
+            message={helper.error || config.validated}
+          />
         </div>
         <div className={styles.icon}>
-          {hasError &&
-            <IconBullet
-              id={'X'}
-              modifier={'error'}
-            />
-          }
-          {isValid &&
-            <IconBullet
-              id={'Checkmark'}
-              modifier={'success'}
-            />
-          }
+          <FormValidationIcon
+            error={hasError}
+            valid={isValid}
+          />
         </div>
       </div>
     </div>
