@@ -5,7 +5,7 @@ import LayoutSidebar from 'components/LayoutSidebar';
 import Container from 'components/Container';
 import PetitionHeader from 'components/PetitionHeader';
 import PetitionBody from 'components/PetitionBody';
-import PetitionSidebar from 'components/PetitionSidebar';
+import PetitionSidebar from 'containers/PetitionSidebar';
 
 const Petition = ({ header, body, sidebar }) => (
   <Container>
@@ -16,7 +16,7 @@ const Petition = ({ header, body, sidebar }) => (
           <PetitionBody {...body} />
         </LayoutContent>
         <LayoutSidebar>
-          <PetitionSidebar {...sidebar} />
+          <PetitionSidebar />
         </LayoutSidebar>
       </LayoutWrap>
     </article>
