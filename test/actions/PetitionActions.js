@@ -7,8 +7,10 @@ import mockPetitions from '../mocks/petitions';
 import {
   requestPetition,
   receivePetition,
+  fetchPetition,
   requestPetitions,
   receivePetitions,
+  fetchPetitions,
   submitPetition,
   createdPetition,
   createPetition
@@ -43,6 +45,38 @@ describe('PetitionActions', () => {
     });
   });
 
+  describe('fetchPetition', () => {
+    let dispatch;
+    let result;
+
+    beforeEach(() => {
+      dispatch = sinon.spy();
+
+      moxios.install();
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: { data: mockPetition }
+      });
+
+      result = fetchPetition(mockPetition.data.id);
+    });
+
+    afterEach(() => {
+      moxios.uninstall();
+    });
+
+    it('returns a function that dispatches requestPetition()', () => {
+      result(dispatch);
+      assert(dispatch.calledWith(requestPetition()));
+    });
+
+    it('returns a function that returns a promise that dispatches receivePetition()', done => {
+      result(dispatch).then(() => {
+        assert(dispatch.calledWith(receivePetition(mockPetition)));
+      }).then(done, done);
+    });
+  });
+
   describe('requestPetitions', () => {
     it('returns REQUEST_PETITIONS action', () => {
       const result = requestPetitions();
@@ -68,6 +102,38 @@ describe('PetitionActions', () => {
       const expected = mockPetitions;
 
       assert.deepEqual(actual, expected);
+    });
+  });
+
+  describe('fetchPetitions', () => {
+    let dispatch;
+    let result;
+
+    beforeEach(() => {
+      dispatch = sinon.spy();
+
+      moxios.install();
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: { data: mockPetitions }
+      });
+
+      result = fetchPetitions({ location: { query: {} } });
+    });
+
+    afterEach(() => {
+      moxios.uninstall();
+    });
+
+    it('returns a function that dispatches requestPetitions()', () => {
+      result(dispatch);
+      assert(dispatch.calledWith(requestPetitions()));
+    });
+
+    it('returns a function that returns a promise that dispatches receivePetitions()', done => {
+      result(dispatch).then(() => {
+        assert(dispatch.calledWithMatch(receivePetitions({data: mockPetitions})));
+      }).then(done, done);
     });
   });
 

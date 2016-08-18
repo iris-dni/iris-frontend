@@ -44,7 +44,7 @@ export function receivePetitions (petitions) {
   };
 }
 
-export function fetchPetitions ({ petitions, location, params, perPage, currentPage }) {
+export function fetchPetitions ({ petitions, location, perPage, currentPage }) {
   const page = parseInt(location.query.page || 1);
   const limit = parseInt(location.query.limit || 12);
 
