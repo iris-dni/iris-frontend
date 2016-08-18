@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PetitionSidebar from 'components/PetitionSidebar';
-import getPetitionMetrics from 'selectors/petitionMetrics';
+import getPetitionTimeMetric from 'selectors/petitionTimeMetric';
 
 const PetitionSidebarContainer = ({ timeMetric }) => (
   <PetitionSidebar timeMetric={timeMetric} />
 );
 
 const mapStateToProps = ({ petition }) => {
-  return getPetitionMetrics(petition);
+  return {
+    timeMetric: getPetitionTimeMetric(petition)
+  };
 };
 
 PetitionSidebarContainer.propTypes = {
