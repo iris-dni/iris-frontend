@@ -1,4 +1,6 @@
-import chai from 'chai';
+import { assert } from 'chai';
+import sinon from 'sinon';
+import moxios from 'moxios';
 import mockPetition from '../mocks/petition';
 import mockPetitions from '../mocks/petitions';
 
@@ -8,10 +10,9 @@ import {
   requestPetitions,
   receivePetitions,
   submitPetition,
-  createdPetition
+  createdPetition,
+  createPetition
 } from 'actions/PetitionActions';
-
-const { assert } = chai;
 
 describe('PetitionActions', () => {
   describe('requestPetition', () => {
@@ -95,6 +96,37 @@ describe('PetitionActions', () => {
       const expected = 23;
 
       assert.equal(actual, expected);
+    });
+  });
+
+  describe('createPetition', () => {
+    let dispatch;
+    let result;
+
+    beforeEach(() => {
+      dispatch = sinon.spy();
+
+      moxios.install();
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: { data: mockPetition }
+      });
+
+      result = createPetition(mockPetition, dispatch);
+    });
+
+    afterEach(() => {
+      moxios.uninstall();
+    });
+
+    it('dispatches submitPetition()', () => {
+      assert(dispatch.calledWith(submitPetition()));
+    });
+
+    it('returns a promise that dispatches createdPetition() when done', done => {
+      result.then(() => {
+        assert(dispatch.calledWith(createdPetition(mockPetition.data.id)));
+      }).then(done, done);
     });
   });
 });
