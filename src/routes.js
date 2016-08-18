@@ -8,8 +8,9 @@ import Layout from 'views/Layout';
 import Home from 'views/Home';
 import Petition from 'containers/Petition';
 import Petitions from 'containers/Petitions';
-import Restricted from 'containers/Restricted';
 import CreatePetition from 'containers/CreatePetition';
+import Private from 'containers/Private';
+import Authenticated from 'services/auth';
 
 export default function (props = {}) {
   let history = browserHistory;
@@ -28,7 +29,7 @@ export default function (props = {}) {
         <Route path='petitions' component={Petitions} />
         <Route path='petitions/new' component={CreatePetition} />
         <Route path='petitions/:id' component={Petition} />
-        <Route path='restricted' component={Restricted} />
+        <Route path='private' component={Authenticated(Private)} />
       </Route>
     </Router>
   );
