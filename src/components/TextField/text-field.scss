@@ -5,13 +5,8 @@
   margin-bottom: map-get($spacing, 'm-bottom');
 }
 
-/*
- * 1. Space for absolutely positioned error message
- * (single line) - done to avoid form jumping when errors appear
- */
 .wrapper {
   position: relative;
-  padding-bottom: 26px; /* 1 */
 }
 
 .icon {
@@ -44,6 +39,12 @@
   composes: field;
   resize: vertical;
   min-height: 150px;
+}
+
+.message {
+  line-height: 20px;
+  min-height: 20px;
+  margin-top: 8px;
 }
 
 .valid {

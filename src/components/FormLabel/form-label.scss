@@ -2,6 +2,10 @@
 
 .root {
   margin-bottom: 8px;
+
+  @include media('<=800px') {
+    padding-right: 40px;
+  }
 }
 
 .label {

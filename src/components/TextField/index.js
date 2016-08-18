@@ -1,7 +1,7 @@
 import React from 'react';
 import domOnlyProps from 'form/domOnlyProps';
 import FormLabel from 'components/FormLabel';
-import FormError from 'components/FormError';
+import FormMessage from 'components/FormMessage';
 import IconBullet from 'components/IconBullet';
 import styles from './text-field.scss';
 
@@ -33,9 +33,20 @@ export default ({ config, helper }) => {
           // see: https://github.com/erikras/redux-form/issues/1441#issuecomment-236966387
           {...domOnlyProps(helper)}
         />
-        {hasError &&
-          <FormError text={helper.error} />
-        }
+
+        <div className={styles.message}>
+          {hasError &&
+            <FormMessage
+              text={helper.error}
+              modifier={'error'}
+            />
+          }
+          {isValid &&
+            <FormMessage
+              text={config.validated}
+            />
+          }
+        </div>
         <div className={styles.icon}>
           {hasError &&
             <IconBullet
