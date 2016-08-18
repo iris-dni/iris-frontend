@@ -45,34 +45,26 @@ export const FIELDS = [
   }
 ];
 
-const PetitionForm = React.createClass({
-  render () {
-    const { fields, handleSubmit, submitting } = this.props;
-
-    const formIsValid = fields._meta.allValid;
-
-    return (
-      <form onSubmit={handleSubmit(createPetition)}>
-        <Fieldset>
-          {FIELDS.map(field => (
-            <TextField
-              key={field.name}
-              config={field}
-              helper={fields[field.name]}
-            />
-          ))}
-        </Fieldset>
-        <Fieldset modifier={'actions'}>
-          <Button
-            disabled={submitting || !formIsValid}
-            modifier={'accent'}
-            text={settings.petitionForm.saveButton}
-          />
-        </Fieldset>
-      </form>
-    );
-  }
-});
+const PetitionForm = ({ fields, handleSubmit, submitting }) => (
+  <form onSubmit={handleSubmit(createPetition)}>
+    <Fieldset>
+      {FIELDS.map(field => (
+        <TextField
+          key={field.name}
+          config={field}
+          helper={fields[field.name]}
+        />
+      ))}
+    </Fieldset>
+    <Fieldset modifier={'actions'}>
+      <Button
+        disabled={submitting || !fields._meta.allValid}
+        modifier={'accent'}
+        text={settings.petitionForm.saveButton}
+      />
+    </Fieldset>
+  </form>
+);
 
 PetitionForm.propTypes = {
   fields: React.PropTypes.object.isRequired,
