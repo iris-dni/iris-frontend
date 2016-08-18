@@ -6,6 +6,7 @@ export default (props) => (
   <div>
     <h1>Home Component</h1>
     <p><LoginLink>Login</LoginLink></p>
+    <p><Link to='/petitions/new'>Create new Petition</Link></p>
     <p><Link to='/petitions/5'>Go to petition 5</Link></p>
     <p><Link to='/petitions'>Go to petitions</Link></p>
     <p>
