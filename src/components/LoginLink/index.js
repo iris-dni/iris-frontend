@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchWhoAmI } from 'actions/AuthActions';
 import { Link } from 'react-router';
 
 const loginLink = () => {
@@ -12,18 +11,6 @@ const logoutLink = () => {
 };
 
 const LoginLink = React.createClass({
-
-  getInitialState: () => ({
-    loggedIn: false,
-    me: null
-  }),
-
-  componentWillMount () {
-    if (__CLIENT__) {
-      this.props.fetchWhoAmI();
-    }
-  },
-
   render () {
     return this.props.me ? logoutLink() : loginLink();
   }
@@ -33,9 +20,7 @@ export const mapStateToProps = (state) => {
   return state;
 };
 
-export const mapDispatchToProps = (dispatch) => {
-  return { fetchWhoAmI: () => dispatch(fetchWhoAmI()) };
-};
+export const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(
   mapStateToProps,

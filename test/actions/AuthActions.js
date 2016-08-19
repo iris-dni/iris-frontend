@@ -6,7 +6,10 @@ import mockWhoAmI from '../mocks/whoAmI';
 import {
   requestWhoAmI,
   receiveWhoAmI,
-  fetchWhoAmI
+  fetchWhoAmI,
+  requestLogout,
+  receiveLogout,
+  logout
 } from 'actions/AuthActions';
 
 describe('AuthActions', () => {
@@ -66,6 +69,58 @@ describe('AuthActions', () => {
     it('returns a function that returns a promise that dispatches receiveWhoAmI()', done => {
       result(dispatch).then(() => {
         assert(dispatch.calledWith(receiveWhoAmI(mockWhoAmI.data)));
+      }).then(done, done);
+    });
+  });
+
+  describe('requestLogout', () => {
+    it('returns REQUEST_LOGOUT action', () => {
+      const result = requestLogout();
+      const actual = result.type;
+      const expected = 'REQUEST_LOGOUT';
+
+      assert.equal(actual, expected);
+    });
+  });
+
+  describe('receiveLogout', () => {
+    it('returns RECEIVE_LOGOUT action', () => {
+      const result = receiveLogout();
+      const actual = result.type;
+      const expected = 'RECEIVE_LOGOUT';
+
+      assert.equal(actual, expected);
+    });
+  });
+
+  describe('logout', () => {
+    let dispatch;
+    let result;
+
+    beforeEach(() => {
+      dispatch = sinon.spy();
+
+      moxios.install();
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: {}
+      });
+
+      result = logout();
+    });
+
+    afterEach(() => {
+      moxios.uninstall();
+    });
+
+    it('returns a function that dispatches requestLogout()', () => {
+      result(dispatch);
+      assert(dispatch.calledWith(requestLogout()));
+    });
+
+    it('returns a function that returns a promise that dispatches receiveLogout()', done => {
+      result(dispatch).then(() => {
+        assert(dispatch.calledWith(receiveLogout()));
       }).then(done, done);
     });
   });
