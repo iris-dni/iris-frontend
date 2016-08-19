@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { whoAmI } from '../services/api/repositories/auth';
-import ssoProviders from 'settings/ssoProviders';
+import { ssoProviders } from 'settings';
 
 const returnUrlParam = ({ pathname, search }) => {
   const baseUrl = process.env.BASE_URL;

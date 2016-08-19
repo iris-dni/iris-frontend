@@ -49,5 +49,11 @@ export default {
       placeholder: 'Tell everyone what should be done...',
       hint: 'Because you care a lot about your cause, you problably have some great ideas about how to solve it. Clearly outline the actions required to achieve your goal.'
     }
-  }
+  },
+  ssoProviders: [
+    {
+      name: 'AZ Medien',
+      loginUrl: 'http://aaz-azdev.lovelysystems.com/anmelden'
+    }
+  ]
 };
