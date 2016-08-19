@@ -1,0 +1,17 @@
+@import 'globals';
+
+.shared {
+  display: block;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.default {
+  composes: shared;
+  color: color('dimmed');
+}
+
+.error {
+  composes: shared;
+  color: color('error');
+}

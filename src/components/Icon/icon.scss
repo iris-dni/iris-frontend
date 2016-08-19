@@ -1,9 +1,7 @@
 @import 'globals';
 
 .root {
-  display: inline-block;
-  vertical-align: middle;
-  fill: color('dimmed');
+  position: relative;
 }
 
 .default {
@@ -14,6 +12,19 @@
 
 .small {
   composes: root;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
+}
+
+.invert {
+  fill: white;
+}
+
+.inline {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.use {
+  display: block;
 }

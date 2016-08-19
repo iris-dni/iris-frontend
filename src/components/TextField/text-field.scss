@@ -1,0 +1,60 @@
+@import 'globals';
+
+.root {
+  position: relative;
+  margin-bottom: map-get($spacing, 'm-bottom');
+}
+
+.wrapper {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+
+  @include media('<=800px') {
+    bottom: 100%;
+    margin-bottom: 10px;
+    right: 0;
+  }
+
+  @include media('>800px') {
+    left: 100%;
+    margin-left: 15px;
+    top: 0;
+  }
+}
+
+.field {
+  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  display: block;
+  width: 100%;
+}
+
+.input {
+  composes: field;
+}
+
+.textarea {
+  composes: field;
+  resize: vertical;
+  min-height: 200px;
+}
+
+.message {
+  line-height: 20px;
+  min-height: 20px;
+  margin-top: 8px;
+}
+
+.valid {
+  border-color: color('grey');
+}
+
+.valid:focus {
+  border-color: color('dimmed');
+}
+
+.invalid {
+  border-color: color('error');
+}

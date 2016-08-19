@@ -3,7 +3,9 @@ import {
   REQUEST_PETITION,
   RECEIVE_PETITION,
   REQUEST_PETITIONS,
-  RECEIVE_PETITIONS
+  RECEIVE_PETITIONS,
+  SUBMIT_PETITION,
+  CREATED_PETITION
 } from './actionTypes';
 
 export function requestPetition () {
@@ -42,28 +44,46 @@ export function receivePetitions (petitions) {
   };
 }
 
-export function fetchPetitions ({ petitions, location, params, perPage, currentPage }) {
-  const page = parseInt(location.query.page || 1);
-  const limit = parseInt(location.query.limit || 12);
+export function fetchPetitions ({ petitions, location, perPage, currentPage }) {
+  const page = parseInt(location.query.page || currentPage || 1);
+  const limit = parseInt(location.query.limit || perPage || 12);
 
   return (dispatch, getState) => {
     dispatch(requestPetitions());
 
-    if (!petitions || page !== currentPage) {
-      const options = {
-        page: page || currentPage,
-        limit: limit || perPage
-      };
+    if (!petitions || !petitions.length || page !== currentPage) {
+      const options = { page, limit };
 
       return petitionRepository.all(options)
         .then(response => {
-          response.currentPage = options.page;
-          response.perPage = options.limit;
+          const pagedResponse = Object.assign({}, response, {
+            currentPage: options.page,
+            perPage: options.limit
+          });
 
-          return dispatch(
-            receivePetitions(response)
-          );
+          return dispatch(receivePetitions(pagedResponse));
         });
     }
   };
+}
+
+export function submitPetition () {
+  return {
+    type: SUBMIT_PETITION
+  };
+}
+
+export function createdPetition (id) {
+  return {
+    type: CREATED_PETITION,
+    id
+  };
+}
+
+export function createPetition (data, dispatch) {
+  dispatch(submitPetition());
+  return petitionRepository.create(data)
+    .then((response) => {
+      return dispatch(createdPetition(response.data.id));
+    });
 }

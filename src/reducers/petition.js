@@ -1,5 +1,6 @@
 import {
-  RECEIVE_PETITION
+  RECEIVE_PETITION,
+  CREATED_PETITION
 } from 'actions/actionTypes';
 
 const initialState = {};
@@ -8,6 +9,10 @@ export default function petition (state = initialState, action) {
   switch (action.type) {
     case RECEIVE_PETITION:
       return Object.assign({}, state, action.petition);
+    case CREATED_PETITION:
+      return Object.assign({}, state, {
+        createdPetition: action.id
+      });
     default:
       return state;
   }

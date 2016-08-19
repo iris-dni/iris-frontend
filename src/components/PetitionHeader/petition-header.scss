@@ -1,15 +1,5 @@
 @import 'globals';
 
-.root {
-  padding-top: 5%;
-  padding-bottom: 5%;
-}
-
-.heading {
-  @include responsive-font(5vw, 30px, 55px);
-  max-width: map-get($widths, 'header-max');
-}
-
 .info {
   margin-top: 5%;
   list-style: none;

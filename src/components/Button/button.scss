@@ -1,5 +1,44 @@
 @import 'globals';
 
-.root {
-  font-family: $fonts-primary;
+.shared {
+  @include map-declarations($button-shared-defaults, $button-shared-custom);
+
+  @include media('>500px') {
+    font-size: 18px;
+  }
+}
+
+.border {
+  @include map-declarations($button-border-defaults, $button-border-custom);
+}
+
+.default {
+  composes: shared;
+  composes: border;
+}
+
+.default:hover,
+.default:active,
+.default:focus {
+  @include map-declarations($button-regular-hover-defaults, $button-regular-hover-custom);
+}
+
+.accent {
+  @include map-declarations($button-accent-defaults, $button-accent-custom);
+  composes: shared;
+}
+
+/*
+ * 1. calculated with http://razorjam.github.io/sasscolourfunctioncalculator/
+ */
+.accent:hover,
+.accent:active,
+.accent:focus {
+  @include map-declarations($button-accent-hover-defaults, $button-accent-hover-custom);
+}
+
+.disabled {
+  @include map-declarations($button-disabled-defaults, $button-disabled-custom);
+  composes: shared;
+  composes: border;
 }

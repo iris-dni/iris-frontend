@@ -34,7 +34,7 @@ PetitionsContainer.propTypes = {
   fetchPetitions: React.PropTypes.func
 };
 
-const mapStateToProps = ({ petitions }) => ({
+export const mapStateToProps = ({ petitions }) => ({
   petitions: getPetitions(petitions.data || []),
   total: petitions.total,
   currentPage: petitions.currentPage,
@@ -43,7 +43,7 @@ const mapStateToProps = ({ petitions }) => ({
 
 // Add dispatchers to the component props,
 // for fetching the data _client side_
-const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => {
   return { fetchPetitions: (options) => dispatch(fetchPetitions(options)) };
 };
 
