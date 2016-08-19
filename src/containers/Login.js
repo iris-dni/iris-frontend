@@ -2,24 +2,9 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { ssoProviders, authSettings } from 'settings';
-
-const returnUrlParam = ({ pathname, search }) => {
-  const baseUrl = process.env.BASE_URL;
-
-  if (!baseUrl) {
-    throw new Error('Please define a BASE_URL in .env');
-  }
-
-  return encodeURIComponent(`${baseUrl}${pathname}${decodeURIComponent(search)}`);
-};
-
-const ssoLoginUrl = ({ loginUrl }, location) => {
-  const delimiter = loginUrl.indexOf('?') < 0 ? '?' : '&';
-  return `${loginUrl}${delimiter}irisreturl=${returnUrlParam(location)}`;
-};
+import SsoLink from 'components/SsoLink';
 
 const Login = withRouter(React.createClass({
-
   componentWillUpdate (nextProps) {
     const redirectAfterLogin = this.props.location.query.next || authSettings.afterLoginPath;
 
@@ -35,7 +20,7 @@ const Login = withRouter(React.createClass({
         <ul>
           {ssoProviders.map(provider => (
             <li key={provider.loginUrl}>
-              <a href={ssoLoginUrl(provider, this.props.location)}>{provider.name}</a>
+              <SsoLink {...this.props} provider={provider} />
             </li>
           ))}
         </ul>
