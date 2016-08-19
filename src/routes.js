@@ -10,7 +10,7 @@ import Petition from 'containers/Petition';
 import Petitions from 'containers/Petitions';
 import CreatePetition from 'containers/CreatePetition';
 import Private from 'containers/Private';
-import Authenticated from 'services/auth';
+import Auth from 'containers/Auth';
 
 export default function (props = {}) {
   let history = browserHistory;
@@ -23,7 +23,7 @@ export default function (props = {}) {
     <Router history={history}>
       <Route path='/auth/login' component={LoginPage} />
       <Route path='/auth/logout' component={Logout} />
-      <Route path='/' component={Layout}>
+      <Route path='/' component={Auth(Layout)}>
         <IndexRoute component={Home} />
         <Route path='home' component={Home} />
         <Route path='petitions' component={Petitions} />
