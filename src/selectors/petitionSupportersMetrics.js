@@ -1,11 +1,10 @@
 import calculatePercentage from 'helpers/calculatePercentage';
+import getPetitionVotingActive from './petitionVotingActive';
 
 export default (petition = {}) => {
-  const requiredVotes = petition.supporters && petition.supporters.required;
+  const requiredVotes = petition.supporters && petition.supporters.required || 0;
   const amountVotes = petition.supporters && petition.supporters.amount;
   const votesPercentage = calculatePercentage(amountVotes, requiredVotes);
-  // FIXME: change check to -1 when API is behaving this way
-  const votingActive = requiredVotes > 0;
 
   return {
     figure: amountVotes,
@@ -16,6 +15,6 @@ export default (petition = {}) => {
       maximum: requiredVotes,
       value: amountVotes
     },
-    votingActive: votingActive
+    votingActive: getPetitionVotingActive(petition)
   };
 };
