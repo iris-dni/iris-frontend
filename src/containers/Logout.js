@@ -17,9 +17,7 @@ const Logout = withRouter(React.createClass({
   }
 }));
 
-export const mapStateToProps = (state) => {
-  return state;
-};
+export const mapStateToProps = ({ me }) => ({ me });
 
 export const mapDispatchToProps = (dispatch) => ({
   logout: () => dispatch(logout())

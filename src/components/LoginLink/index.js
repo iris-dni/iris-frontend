@@ -16,13 +16,8 @@ const LoginLink = React.createClass({
   }
 });
 
-export const mapStateToProps = (state) => {
-  return state;
-};
-
-export const mapDispatchToProps = (dispatch) => ({});
+export const mapStateToProps = ({ me }) => ({ me });
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(LoginLink);

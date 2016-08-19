@@ -20,15 +20,10 @@ const RestrictedWrapper = (WrappedComponent) => {
     }
   }));
 
-  const mapStateToProps = (state) => {
-    return state;
-  };
-
-  const mapDispatchToProps = (dispatch) => ({});
+  const mapStateToProps = (state) => (state);
 
   return connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
   )(Restricted);
 };
 

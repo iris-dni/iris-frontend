@@ -21,9 +21,9 @@ const mapStateToProps = (state) => {
   return state;
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return { fetchWhoAmI: () => dispatch(fetchWhoAmI()) };
-};
+const mapDispatchToProps = (dispatch) => ({
+  fetchWhoAmI: () => dispatch(fetchWhoAmI())
+});
 
 export default connect(
   mapStateToProps,
