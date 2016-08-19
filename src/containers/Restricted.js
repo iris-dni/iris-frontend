@@ -7,12 +7,16 @@ const RestrictedWrapper = (WrappedComponent) => {
     componentWillMount () {
       if (__CLIENT__ && !this.props.me) {
         const redirectAfterLogin = this.props.location.pathname;
-        this.props.router.push(`/auth/login?next=${encodeURIComponent(redirectAfterLogin)}`);
+        this.props.router.replace(`/auth/login?next=${encodeURIComponent(redirectAfterLogin)}`);
       }
     },
 
     render () {
-      return <WrappedComponent {...this.props} />;
+      if (this.props.me) {
+        return <WrappedComponent {...this.props} />;
+      }
+
+      return null;
     }
   }));
 
