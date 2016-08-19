@@ -6,7 +6,7 @@ import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import PetitionForm from 'components/PetitionForm';
 
-const CreatePetition = ({ createdPetition, updatedPetition }) => (
+const CreatePetition = () => (
   <Container>
     <Header>
       <PageTitle
@@ -16,10 +16,7 @@ const CreatePetition = ({ createdPetition, updatedPetition }) => (
       />
     </Header>
     <div className={styles.form}>
-      <PetitionForm
-        createdPetition={createdPetition}
-        updatedPetition={updatedPetition}
-      />
+      <PetitionForm />
     </div>
     {/* createdPetition
       ? <div className={styles.success}>

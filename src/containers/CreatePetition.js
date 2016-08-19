@@ -16,11 +16,11 @@ const CreatePetitionContainer = React.createClass({
 });
 
 CreatePetitionContainer.propTypes = {
-  createdPetition: React.PropTypes.number
+  formData: React.PropTypes.object
 };
 
 export const mapStateToProps = ({ petition }) => ({
-  createdPetition: petition && petition.createdPetition
+  formData: petition && petition.formData
 });
 
 export default connect(

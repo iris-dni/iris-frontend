@@ -16,8 +16,8 @@ export default function petition (state = initialState, action) {
         createdPetition: action.id
       });
     case UPDATED_PETITION:
-      return Object.assign({}, state, {
-        createdPetition: action.id
+      return assign({}, state, {
+        formData: action.data
       });
     default:
       return state;

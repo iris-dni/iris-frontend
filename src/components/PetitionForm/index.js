@@ -78,12 +78,19 @@ PetitionForm.propTypes = {
   handleSubmit: React.PropTypes.func.isRequired,
   resetForm: React.PropTypes.func.isRequired,
   submitting: React.PropTypes.bool.isRequired,
-  createdPetition: React.PropTypes.number,
-  updatedPetition: React.PropTypes.number
+  createdPetition: React.PropTypes.object
+};
+
+export const mapStateToProps = ({ petition }) => {
+  return {
+    initialValues: petition && petition.formData
+  };
 };
 
 export default reduxForm({
   form: 'simple',
   fields: FIELDS.map(field => field.name),
   validate: petitionValidator
-})(PetitionForm);
+},
+mapStateToProps
+)(PetitionForm);

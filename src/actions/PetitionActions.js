@@ -80,14 +80,14 @@ export function createPetition (data, dispatch, x) {
   dispatch(submitPetition());
   return petitionRepository.create(data)
     .then((response) => {
-      return dispatch(createdPetition(response.data.id));
+      return dispatch(createdPetition(response.data));
     });
 }
 
-export function createdPetition (id) {
+export function createdPetition (data) {
   return {
     type: CREATED_PETITION,
-    id
+    data
   };
 }
 
@@ -95,13 +95,13 @@ export function updatePetition (data, dispatch) {
   dispatch(submitPetition());
   return petitionRepository.update(data)
     .then((response) => {
-      return dispatch(updatedPetition(response.data.id));
+      return dispatch(updatedPetition(response.data));
     });
 }
 
-export function updatedPetition (id) {
+export function updatedPetition (data) {
   return {
     type: UPDATED_PETITION,
-    id
+    data
   };
 }
