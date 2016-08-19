@@ -1,13 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { logout } from '../services/api/repositories/auth';
+import { authSettings } from 'settings';
 
 export default withRouter(React.createClass({
   componentWillMount () {
-    const redirectAfterLogout = '/';
-
     logout().then(() => {
-      this.props.router.replace(redirectAfterLogout);
+      this.props.router.replace(authSettings.afterLogoutPath);
     });
   },
 

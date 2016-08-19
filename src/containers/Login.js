@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { whoAmI } from '../services/api/repositories/auth';
-import { ssoProviders } from 'settings';
+import { ssoProviders, authSettings } from 'settings';
 
 const returnUrlParam = ({ pathname, search }) => {
   const baseUrl = process.env.BASE_URL;
@@ -21,7 +21,7 @@ const ssoLoginUrl = ({ loginUrl }, location) => {
 export default withRouter(React.createClass({
 
   componentWillMount () {
-    const redirectAfterLogin = this.props.location.query.next || '/';
+    const redirectAfterLogin = this.props.location.query.next || authSettings.afterLoginPath;
 
     whoAmI().then(response => {
       if (response.status === 'ok') {

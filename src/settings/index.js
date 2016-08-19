@@ -18,3 +18,4 @@ const all = Object.assign({},
 
 export default all;
 export const ssoProviders = all.ssoProviders;
+export const authSettings = all.auth;
