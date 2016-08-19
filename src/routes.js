@@ -11,6 +11,7 @@ import Petitions from 'containers/Petitions';
 import CreatePetition from 'containers/CreatePetition';
 import Private from 'containers/Private';
 import Auth from 'containers/Auth';
+import Restricted from 'containers/Restricted';
 
 export default function (props = {}) {
   let history = browserHistory;
@@ -29,7 +30,7 @@ export default function (props = {}) {
         <Route path='petitions' component={Petitions} />
         <Route path='petitions/new' component={CreatePetition} />
         <Route path='petitions/:id' component={Petition} />
-        <Route path='private' component={Authenticated(Private)} />
+        <Route path='private' component={Restricted(Private)} />
       </Route>
     </Router>
   );
