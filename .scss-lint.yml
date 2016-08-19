@@ -1,7 +1,6 @@
 scss_files: './'
 exclude: [
   './node_modules/**/*',
-  './src/assets/styles/reset.scss',
   './src/assets/styles/vendor/*'
 ]
 
