@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-import { whoAmI } from '../services/api/repositories/auth';
+import { connect } from 'react-redux';
 import { ssoProviders, authSettings } from 'settings';
 
 const returnUrlParam = ({ pathname, search }) => {
@@ -18,16 +18,14 @@ const ssoLoginUrl = ({ loginUrl }, location) => {
   return `${loginUrl}${delimiter}irisreturl=${returnUrlParam(location)}`;
 };
 
-export default withRouter(React.createClass({
+const Login = withRouter(React.createClass({
 
-  componentWillMount () {
+  componentWillUpdate (nextProps) {
     const redirectAfterLogin = this.props.location.query.next || authSettings.afterLoginPath;
 
-    whoAmI().then(response => {
-      if (response.status === 'ok') {
-        this.props.router.replace(redirectAfterLogin);
-      }
-    });
+    if (nextProps.me) {
+      this.props.router.replace(redirectAfterLogin);
+    }
   },
 
   render () {
@@ -45,3 +43,9 @@ export default withRouter(React.createClass({
     );
   }
 }));
+
+export const mapStateToProps = ({ me, routing }) => ({ me, routing });
+
+export default connect(
+  mapStateToProps
+)(Login);
