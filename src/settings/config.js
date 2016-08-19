@@ -27,7 +27,7 @@ export default {
   },
   createPetitionPageTitle: 'Create a new Petition',
   createPetitionPageIntro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.',
-  requiredText: 'You must fill out this field',
+  requiredText: 'You must complete this field',
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',
   petitionForm: {

@@ -31,7 +31,7 @@ describe('fieldValidator', () => {
       { test: '' }
     );
     const expected = {
-      test: 'This field is required'
+      test: 'You must complete this field'
     };
 
     assert.deepEqual(actual, expected);
@@ -98,7 +98,7 @@ describe('fieldValidator', () => {
     );
     const expected = {
       foo: 'Cannot be more than 10 characters',
-      bar: 'This field is required'
+      bar: 'You must complete this field'
     };
 
     assert.deepEqual(actual, expected);
@@ -120,7 +120,7 @@ describe('fieldValidator', () => {
       }
     );
     const expected = {
-      test: 'This field is required'
+      test: 'You must complete this field'
     };
 
     assert.deepEqual(actual, expected);
