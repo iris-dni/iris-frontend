@@ -7,10 +7,8 @@ import PetitionStats from 'components/PetitionStats';
 import ProgressBar from 'components/ProgressBar';
 
 const PetitionHeader = ({ title, info, metrics }) => (
-  <header className={styles.root}>
-    <div className={styles.heading}>
-      <Heading1 text={title} />
-    </div>
+  <Header>
+    <PageTitle title={title} />
     <div className={styles.info}>
       <PetitionInfo {...info} />
       {
