@@ -1,7 +1,7 @@
 @import 'globals';
 
 .default {
-  @include responsive-font(5vw, 30px, 55px);
+  @include responsive-font(5vw, 30px, 56px);
   max-width: map-get($widths, 'header-max');
 }
 
@@ -10,4 +10,9 @@
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+.intro {
+  @include responsive-font(3vw, 18px, 23px);
+  margin-top: 22px;
 }

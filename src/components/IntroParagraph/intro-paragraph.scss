@@ -1,0 +1,5 @@
+@import 'globals';
+
+.root {
+  @include map-declarations($intro-paragraph-defaults, $intro-paragraph-custom);
+}

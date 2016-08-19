@@ -9,6 +9,9 @@
 }
 
 .label {
+  cursor: pointer;
+  display: block;
+
   @include media('>500px') {
     font-size: 20px;
   }
@@ -16,5 +19,6 @@
 
 .hint {
   @include map-declarations($form-hint-defaults, $form-hint-custom);
+  margin-top: 2px;
   display: block;
 }
