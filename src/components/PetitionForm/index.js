@@ -1,6 +1,6 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import { createPetition } from 'actions/PetitionActions';
+import { createPetition, updatePetition } from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
 import Fieldset from 'components/Fieldset';
 import TextField from 'components/TextField';
@@ -45,8 +45,8 @@ export const FIELDS = [
   }
 ];
 
-const PetitionForm = ({ fields, handleSubmit, submitting }) => (
-  <form onSubmit={handleSubmit(createPetition)}>
+const PetitionForm = ({ fields, handleSubmit, submitting, createdPetition }) => (
+  <form onSubmit={handleSubmit(createdPetition ? updatePetition : createPetition)}>
     <Fieldset>
       {FIELDS.map(field => (
         <TextField
@@ -59,9 +59,16 @@ const PetitionForm = ({ fields, handleSubmit, submitting }) => (
     <Fieldset modifier={'actions'}>
       <Button
         disabled={submitting || !fields._meta.allValid}
-        modifier={'accent'}
-        text={settings.petitionForm.saveButton}
+        modifier={createdPetition ? 'default' : 'accent'}
+        text={settings.petitionForm[createdPetition ? 'saveButton' : 'createButton']}
       />
+      {createdPetition &&
+        <Button
+          disabled={submitting || !fields._meta.allValid}
+          modifier={'accent'}
+          text={settings.petitionForm.publishButton}
+        />
+      }
     </Fieldset>
   </form>
 );
@@ -70,7 +77,9 @@ PetitionForm.propTypes = {
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
   resetForm: React.PropTypes.func.isRequired,
-  submitting: React.PropTypes.bool.isRequired
+  submitting: React.PropTypes.bool.isRequired,
+  createdPetition: React.PropTypes.number,
+  updatedPetition: React.PropTypes.number
 };
 
 export default reduxForm({

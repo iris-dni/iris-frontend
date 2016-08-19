@@ -6,7 +6,7 @@ import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import PetitionForm from 'components/PetitionForm';
 
-const CreatePetition = ({ createdPetition }) => (
+const CreatePetition = ({ createdPetition, updatedPetition }) => (
   <Container>
     <Header>
       <PageTitle
@@ -15,7 +15,13 @@ const CreatePetition = ({ createdPetition }) => (
         centered
       />
     </Header>
-    {createdPetition
+    <div className={styles.form}>
+      <PetitionForm
+        createdPetition={createdPetition}
+        updatedPetition={updatedPetition}
+      />
+    </div>
+    {/* createdPetition
       ? <div className={styles.success}>
         <h2>Your petition has been saved</h2>
         <a href={`/petitions/${createdPetition}`}>Click here to see a draft of it</a>
@@ -23,7 +29,7 @@ const CreatePetition = ({ createdPetition }) => (
       : <div className={styles.form}>
         <PetitionForm />
       </div>
-    }
+    */}
   </Container>
 );
 

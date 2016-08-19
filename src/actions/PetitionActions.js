@@ -7,7 +7,8 @@ import {
   REQUEST_PETITIONS,
   RECEIVE_PETITIONS,
   SUBMIT_PETITION,
-  CREATED_PETITION
+  CREATED_PETITION,
+  UPDATED_PETITION
 } from './actionTypes';
 
 export function requestPetition () {
@@ -75,6 +76,14 @@ export function submitPetition () {
   };
 }
 
+export function createPetition (data, dispatch, x) {
+  dispatch(submitPetition());
+  return petitionRepository.create(data)
+    .then((response) => {
+      return dispatch(createdPetition(response.data.id));
+    });
+}
+
 export function createdPetition (id) {
   return {
     type: CREATED_PETITION,
@@ -82,10 +91,17 @@ export function createdPetition (id) {
   };
 }
 
-export function createPetition (data, dispatch) {
+export function updatePetition (data, dispatch) {
   dispatch(submitPetition());
-  return petitionRepository.create(data)
+  return petitionRepository.update(data)
     .then((response) => {
-      return dispatch(createdPetition(response.data.id));
+      return dispatch(updatedPetition(response.data.id));
     });
+}
+
+export function updatedPetition (id) {
+  return {
+    type: UPDATED_PETITION,
+    id
+  };
 }
