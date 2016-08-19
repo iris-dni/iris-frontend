@@ -4,8 +4,6 @@ import { fetchWhoAmI } from 'actions/AuthActions';
 import Layout from 'views/Layout';
 
 const App = React.createClass({
-  getInitialState: () => ({ me: false }),
-
   componentWillMount () {
     if (__CLIENT__) {
       this.props.fetchWhoAmI();
