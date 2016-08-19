@@ -3,14 +3,18 @@ import { Link } from 'react-router';
 import styles from './teaser.scss';
 import TeaserFooter from 'components/TeaserFooter';
 
-const Teaser = ({ id, link, title, footer }) => (
+const Teaser = (props) => (
   <article className={styles.root}>
-    <Link to={link} className={styles.link}>
+    <Link to={props.link} className={styles.link}>
       <h2 className={styles.title}>
-        {title}
+        {props.title}
       </h2>
       <div className={styles.footer}>
-        <TeaserFooter {...footer} />
+        <TeaserFooter
+          city={props.city}
+          owner={props.owner}
+          metrics={props.metrics}
+        />
       </div>
     </Link>
   </article>

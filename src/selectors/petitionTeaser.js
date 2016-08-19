@@ -1,4 +1,4 @@
-import getPetitionAuthor from 'helpers/getPetitionAuthor';
+import getAuthorLabel from 'helpers/getAuthorLabel';
 import getPetitionMetrics from './petitionMetrics';
 
 export default (petition = {}) => {
@@ -10,12 +10,8 @@ export default (petition = {}) => {
     id: petition.id,
     link: `/petitions/${petition.id}`,
     title: petition.title,
-    footer: {
-      info: {
-        city: petition.city,
-        owner: getPetitionAuthor(petition.owner || {})
-      },
-      metrics: getPetitionMetrics(petition)
-    }
+    city: petition.city && petition.city.name,
+    owner: getAuthorLabel(petition.owner) || 'Max Mustermann',
+    metrics: getPetitionMetrics(petition)
   };
 };
