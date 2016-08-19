@@ -11,7 +11,11 @@ const customConfig = needsCustomThemePath
 const mergedSettings = mergeSettings(defaultConfig, customConfig);
 const bundles = getBundles();
 
-export default Object.assign({},
+const all = Object.assign({},
   mergedSettings,
   { bundles }
 );
+
+export default all;
+export const ssoProviders = all.ssoProviders;
+export const authSettings = all.auth;

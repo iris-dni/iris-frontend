@@ -1,5 +1,5 @@
 import React from 'react';
-import authRepository from 'services/api/repositories/auth';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 const loginLink = () => {
@@ -11,26 +11,13 @@ const logoutLink = () => {
 };
 
 const LoginLink = React.createClass({
-
-  getInitialState: () => ({
-    loggedIn: false,
-    me: null
-  }),
-
-  componentWillMount () {
-    if (__CLIENT__) {
-      authRepository.whoAmI().then(response => {
-        this.setState({
-          loggedIn: response.status === 'ok',
-          me: response.data
-        });
-      });
-    }
-  },
-
   render () {
-    return this.state.loggedIn ? logoutLink() : loginLink();
+    return this.props.me ? logoutLink() : loginLink();
   }
 });
 
-export default LoginLink;
+export const mapStateToProps = ({ me }) => ({ me });
+
+export default connect(
+  mapStateToProps
+)(LoginLink);

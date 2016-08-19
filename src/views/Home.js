@@ -6,7 +6,7 @@ export default (props) => (
   <div>
     <h1>Home Component</h1>
     <p><LoginLink>Login</LoginLink></p>
-    <p><Link to='/petitions/new'>Create new Petition</Link></p>
+    <p><Link to='/petitions/new'>Create new Petition (restricted)</Link></p>
     <p><Link to='/petitions/5'>Go to petition 5</Link></p>
     <p><Link to='/petitions'>Go to petitions</Link></p>
     <p>
@@ -15,6 +15,5 @@ export default (props) => (
       <Link to='/petitions?page=2'>2</Link>,
       <Link to='/petitions?page=3'>3</Link>
     </p>
-    <p><Link to='/restricted'>Example restricted page</Link></p>
   </div>
 );

@@ -2,14 +2,14 @@ import React from 'react';
 import { Route, Router, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-import LoginPage from 'services/auth/Login';
-import Logout from 'services/auth/Logout';
-import Layout from 'views/Layout';
+import App from 'containers/App';
 import Home from 'views/Home';
+import LoginPage from 'containers/Login';
+import Logout from 'containers/Logout';
 import Petition from 'containers/Petition';
 import Petitions from 'containers/Petitions';
-import Restricted from 'containers/Restricted';
 import CreatePetition from 'containers/CreatePetition';
+import Restricted from 'containers/Restricted';
 
 export default function (props = {}) {
   let history = browserHistory;
@@ -20,15 +20,14 @@ export default function (props = {}) {
 
   return (
     <Router history={history}>
-      <Route path='/auth/login' component={LoginPage} />
-      <Route path='/auth/logout' component={Logout} />
-      <Route path='/' component={Layout}>
+      <Route path='/' component={App}>
         <IndexRoute component={Home} />
         <Route path='home' component={Home} />
+        <Route path='auth/login' component={LoginPage} />
+        <Route path='auth/logout' component={Logout} />
         <Route path='petitions' component={Petitions} />
-        <Route path='petitions/new' component={CreatePetition} />
+        <Route path='petitions/new' component={Restricted(CreatePetition)} />
         <Route path='petitions/:id' component={Petition} />
-        <Route path='restricted' component={Restricted} />
       </Route>
     </Router>
   );
