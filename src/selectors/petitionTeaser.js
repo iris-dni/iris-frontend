@@ -13,7 +13,7 @@ export default (petition = {}) => {
     footer: {
       info: {
         city: petition.city,
-        owner: getPetitionAuthor(petition.owner)
+        owner: getPetitionAuthor(petition.owner || {})
       },
       metrics: getPetitionMetrics(petition)
     }
