@@ -5,16 +5,17 @@ import {
 
 const initialState = {};
 
-export default function flashMessage (state = initialState, action) {
+export default function petitions (state = initialState, action) {
   switch (action.type) {
     case SHOW_FLASH_MESSAGE:
-      console.log('reducer', action);
       return Object.assign({}, state, {
-        text: action.text
+        text: action.text,
+        modifier: action.modifier
       });
     case HIDE_FLASH_MESSAGE:
       return Object.assign({}, state, {
-        flash: ''
+        text: '',
+        modifier: ''
       });
     default:
       return state;

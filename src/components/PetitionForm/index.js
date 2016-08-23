@@ -4,8 +4,8 @@ import { createPetition, updatePetition, publishPetition } from 'actions/Petitio
 import petitionValidator from 'form/petitionValidator';
 import Fieldset from 'components/Fieldset';
 import TextField from 'components/TextField';
-import FlashMessage from 'components/FlashMessage';
 import Button from 'components/Button';
+import ButtonSet from 'components/ButtonSet';
 import settings from 'settings';
 import getPetitionForm from 'selectors/petitionForm';
 
@@ -55,7 +55,7 @@ export const FIELDS = [
   }
 ];
 
-const PetitionForm = ({ petition, fields, handleSubmit, submitting, publishPetition }) => (
+const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, publishPetition }) => (
   <form onSubmit={handleSubmit(petition.persisted ? updatePetition : createPetition)}>
     <Fieldset>
       {FIELDS.map(field => (
@@ -67,27 +67,23 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting, publishPetit
       ))}
     </Fieldset>
     <Fieldset modifier={'actions'}>
+      <ButtonSet>
       <Button
-        disabled={submitting || !fields._meta.allValid}
+        disabled={submitting || !fields._meta.allValid || pristine}
         modifier={petition.persisted ? 'default' : 'accent'}
         text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton']}
       />
       {petition.persisted && !petition.published &&
         <Button
           type={'button'}
-          disabled={submitting || !fields._meta.allValid}
+          disabled={submitting || !pristine}
           modifier={'accent'}
           text={settings.petitionForm.publishButton}
           onClick={() => publishPetition(petition)}
-        />
-      }
+          />
+        }
+      </ButtonSet>
     </Fieldset>
-    {petition.persisted &&
-      <FlashMessage
-        text={'Your petition was successfully saved'}
-        type={'success'}
-      />
-    }
   </form>
 );
 

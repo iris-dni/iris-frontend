@@ -31,9 +31,9 @@ export default {
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',
   petitionForm: {
-    createButton: 'Create your petition',
-    publishButton: 'Publish petition',
-    saveButton: 'Save petition'
+    createButton: 'Create Petition',
+    publishButton: 'Publish Petition',
+    saveButton: 'Save Petition'
   },
   petitionFields: {
     title: {

@@ -12,7 +12,10 @@ import {
   PUBLISHED_PETITION
 } from './actionTypes';
 
-import { showFlashMessage } from './FlashActions';
+import {
+  showFlashMessage,
+  hideFlashMessage
+} from './FlashActions';
 
 export function requestPetition () {
   return {
@@ -84,8 +87,12 @@ export function createPetition (data, dispatch) {
   return petitionRepository.create(data)
     .then((response) => dispatch(
       createdPetition(response.data),
-    )).then((response) => dispatch(
-      showFlashMessage('Created!!')
+    )).then(() => dispatch(
+      hideFlashMessage()
+    )).then(() => dispatch(
+      showFlashMessage('Your petition was created!', 'success')
+    )).catch(() => dispatch(
+      showFlashMessage('There was an error, please try again', 'error')
     ));
 }
 
@@ -101,8 +108,10 @@ export function updatePetition (data, dispatch) {
   return petitionRepository.update(data)
     .then((response) => dispatch(
       updatedPetition(response.data),
-    )).then((response) => dispatch(
-      showFlashMessage('Updated!!')
+    )).then(() => dispatch(
+      showFlashMessage('Your petition was updated!', 'success')
+    )).catch(() => dispatch(
+      showFlashMessage('There was an error, please try again', 'error')
     ));
 }
 
@@ -119,8 +128,8 @@ export function publishPetition (petition, dispatch) {
     return petitionRepository.publish(petition)
       .then((response) => dispatch(
         publishedPetition(response.data),
-      )).then((response) => dispatch(
-        showFlashMessage('Published!!')
+      )).catch(() => dispatch(
+        showFlashMessage('There was an error, please try again', 'error')
       ));
   };
 }

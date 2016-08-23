@@ -5,6 +5,10 @@
   margin-bottom: map-get($spacing, 'm-bottom');
 }
 
+.root:last-child {
+  margin-bottom: 0;
+}
+
 .wrapper {
   position: relative;
 }
