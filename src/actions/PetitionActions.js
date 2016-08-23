@@ -88,8 +88,6 @@ export function createPetition (data, dispatch) {
     .then((response) => dispatch(
       createdPetition(response.data),
     )).then(() => dispatch(
-      hideFlashMessage()
-    )).then(() => dispatch(
       showFlashMessage(settings.flashMessages.petitionCreated, 'success')
     )).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
