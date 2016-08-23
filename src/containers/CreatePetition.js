@@ -16,13 +16,15 @@ const CreatePetitionContainer = React.createClass({
 });
 
 CreatePetitionContainer.propTypes = {
-  formData: React.PropTypes.object,
-  publishedId: React.PropTypes.number
+  petition: React.PropTypes.object,
+  persisted: React.PropTypes.bool,
+  published: React.PropTypes.bool
 };
 
 export const mapStateToProps = ({ petition }) => ({
-  formData: petition && petition.formData,
-  publishedId: petition && petition.publishedId
+  petition,
+  persisted: petition && !!petition.id,
+  published: petition && petition.state && petition.state.parent === 'supportable'
 });
 
 export default connect(

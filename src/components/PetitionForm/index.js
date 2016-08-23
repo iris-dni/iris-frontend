@@ -54,8 +54,8 @@ export const FIELDS = [
   }
 ];
 
-const PetitionForm = ({ fields, handleSubmit, submitting, hasCreated, publishThePetition }) => (
-  <form onSubmit={handleSubmit(hasCreated ? updatePetition : createPetition)}>
+const PetitionForm = ({ petition, fields, handleSubmit, submitting, persisted, published, publishPetition }) => (
+  <form onSubmit={handleSubmit(persisted ? updatePetition : createPetition)}>
     <Fieldset>
       {FIELDS.map(field => (
         <TextField
@@ -68,20 +68,20 @@ const PetitionForm = ({ fields, handleSubmit, submitting, hasCreated, publishThe
     <Fieldset modifier={'actions'}>
       <Button
         disabled={submitting || !fields._meta.allValid}
-        modifier={hasCreated ? 'default' : 'accent'}
-        text={settings.petitionForm[hasCreated ? 'saveButton' : 'createButton']}
+        modifier={persisted ? 'default' : 'accent'}
+        text={settings.petitionForm[persisted ? 'saveButton' : 'createButton']}
       />
-      {hasCreated &&
+      {persisted && !published &&
         <Button
           type={'button'}
           disabled={submitting || !fields._meta.allValid}
           modifier={'accent'}
           text={settings.petitionForm.publishButton}
-          onClick={() => publishThePetition(hasCreated)}
+          onClick={() => publishPetition(petition)}
         />
       }
     </Fieldset>
-    {hasCreated &&
+    {persisted &&
       <FlashMessage
         text={'Your petition was successfully saved'}
         type={'success'}
@@ -95,21 +95,25 @@ PetitionForm.propTypes = {
   handleSubmit: React.PropTypes.func.isRequired,
   resetForm: React.PropTypes.func.isRequired,
   submitting: React.PropTypes.bool.isRequired,
-  hasCreated: React.PropTypes.number
+  persisted: React.PropTypes.bool,
+  published: React.PropTypes.bool
 };
 
 export const mapStateToProps = ({ petition }) => {
   return {
-    initialValues: petition && petition.formData,
-    hasCreated: petition && petition.formData && petition.formData.id
+    initialValues: petition,
+    petition,
+    persisted: petition && !!petition.id,
+    published: petition && petition.state && petition.state.parent === 'supportable'
   };
 };
+
+export const mapDispatchToProps = (dispatch) => ({
+  publishPetition: (petition) => dispatch(publishPetition(petition))
+});
 
 export default reduxForm({
   form: 'simple',
   fields: FIELDS.map(field => field.name),
   validate: petitionValidator
-},
-mapStateToProps,
-{ publishThePetition: publishPetition }
-)(PetitionForm);
+}, mapStateToProps, mapDispatchToProps)(PetitionForm);

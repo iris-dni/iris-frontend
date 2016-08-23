@@ -11,19 +11,10 @@ const initialState = {};
 export default function petition (state = initialState, action) {
   switch (action.type) {
     case RECEIVE_PETITION:
-      return assign({}, state, action.petition);
     case CREATED_PETITION:
-      return assign({}, state, {
-        createdPetition: action.id
-      });
     case UPDATED_PETITION:
-      return assign({}, state, {
-        formData: action.data
-      });
-    case PUBLISH_PETITION:
-      return assign({}, state, {
-        publishedId: action.data.id
-      });
+    case PUBLISHED_PETITION:
+      return assign({}, state, action.petition);
     default:
       return state;
   }

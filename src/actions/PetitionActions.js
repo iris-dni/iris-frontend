@@ -89,10 +89,10 @@ export function createPetition (data, dispatch) {
     ));
 }
 
-export function createdPetition (data) {
+export function createdPetition (petition) {
   return {
     type: CREATED_PETITION,
-    data
+    petition
   };
 }
 
@@ -106,17 +106,17 @@ export function updatePetition (data, dispatch) {
     ));
 }
 
-export function updatedPetition (data) {
+export function updatedPetition (petition) {
   return {
     type: UPDATED_PETITION,
-    data
+    petition
   };
 }
 
-export function publishPetition (id) {
+export function publishPetition (petition, dispatch) {
   return (dispatch, getState) => {
     dispatch(submitPetition());
-    return petitionRepository.publish(id)
+    return petitionRepository.publish(petition)
       .then((response) => dispatch(
         publishedPetition(response.data),
       )).then((response) => dispatch(
@@ -125,9 +125,9 @@ export function publishPetition (id) {
   };
 }
 
-export function publishedPetition (data) {
+export function publishedPetition (petition) {
   return {
     type: PUBLISHED_PETITION,
-    data
+    petition
   };
 }
