@@ -1,5 +1,5 @@
 import moment from 'moment';
-import getPetitionEndDate from './petitionEndDate';
+import getPetitionEndDate from 'helpers/getPetitionEndDate';
 import settings from 'settings';
 
 export default ({ created, effective, expires }) => {

@@ -1,6 +1,6 @@
 import getPetitionTeaser from './petitionTeaser';
 
-export default (petitions) => {
+export default (petitions = []) => {
   if (!petitions || !petitions.length) {
     return [];
   }

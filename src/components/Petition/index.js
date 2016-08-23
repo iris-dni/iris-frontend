@@ -3,20 +3,21 @@ import LayoutWrap from 'components/LayoutWrap';
 import LayoutContent from 'components/LayoutContent';
 import LayoutSidebar from 'components/LayoutSidebar';
 import Container from 'components/Container';
-import PetitionHeader from 'components/PetitionHeader';
-import PetitionBody from 'components/PetitionBody';
-import PetitionSidebar from 'components/PetitionSidebar';
 
-const Petition = ({ header, body, sidebar }) => (
+import PetitionHeader from 'containers/PetitionHeader';
+import PetitionBody from 'containers/PetitionBody';
+import PetitionSidebar from 'containers/PetitionSidebar';
+
+const Petition = () => (
   <Container>
     <article>
-      <PetitionHeader {...header} />
+      <PetitionHeader />
       <LayoutWrap>
         <LayoutContent>
-          <PetitionBody {...body} />
+          <PetitionBody />
         </LayoutContent>
         <LayoutSidebar>
-          <PetitionSidebar {...sidebar} />
+          <PetitionSidebar />
         </LayoutSidebar>
       </LayoutWrap>
     </article>

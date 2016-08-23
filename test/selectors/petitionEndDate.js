@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import moment from 'moment';
-import getPetitionEndDate from 'selectors/petitionEndDate';
+import getPetitionEndDate from 'helpers/getPetitionEndDate';
 import settings from 'settings';
 
 describe('getPetitionEndDate', () => {
