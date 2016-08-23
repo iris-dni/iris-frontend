@@ -1,6 +1,10 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import { createPetition, updatePetition, publishPetition } from 'actions/PetitionActions';
+import {
+  createPetition,
+  updatePetition,
+  publishPetition
+} from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
 import Fieldset from 'components/Fieldset';
 import TextField from 'components/TextField';
@@ -70,7 +74,7 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, pu
       <ButtonSet>
         <Button
           disabled={submitting || !fields._meta.allValid || pristine}
-          modifier={petition.persisted ? 'default' : 'accent'}
+          modifier={petition.persisted && pristine ? 'default' : 'accent'}
           text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton']}
         />
         {petition.persisted && !petition.published &&

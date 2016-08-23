@@ -1,6 +1,6 @@
 import petitionRepository from 'services/api/repositories/petition';
 import { assign } from 'lodash/object';
-
+import settings from 'settings';
 import {
   REQUEST_PETITION,
   RECEIVE_PETITION,
@@ -90,9 +90,9 @@ export function createPetition (data, dispatch) {
     )).then(() => dispatch(
       hideFlashMessage()
     )).then(() => dispatch(
-      showFlashMessage('Your petition was created!', 'success')
+      showFlashMessage(settings.flashMessages.petitionCreated, 'success')
     )).catch(() => dispatch(
-      showFlashMessage('There was an error, please try again', 'error')
+      showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
 }
 
@@ -109,9 +109,9 @@ export function updatePetition (data, dispatch) {
     .then((response) => dispatch(
       updatedPetition(response.data),
     )).then(() => dispatch(
-      showFlashMessage('Your petition was updated!', 'success')
+      showFlashMessage(settings.flashMessages.petitionUpdated, 'success')
     )).catch(() => dispatch(
-      showFlashMessage('There was an error, please try again', 'error')
+      showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
 }
 
@@ -128,8 +128,10 @@ export function publishPetition (petition, dispatch) {
     return petitionRepository.publish(petition)
       .then((response) => dispatch(
         publishedPetition(response.data),
+      )).then(() => dispatch(
+        hideFlashMessage()
       )).catch(() => dispatch(
-        showFlashMessage('There was an error, please try again', 'error')
+        showFlashMessage(settings.flashMessages.genericError, 'error')
       ));
   };
 }

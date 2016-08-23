@@ -65,5 +65,10 @@ export default {
   loginPage: {
     title: 'Nearly there',
     intro: 'To begin creating your Petition please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
+  },
+  flashMessages: {
+    genericError: 'Sadly something failed, please try again!',
+    petitionCreated: 'Great, your petition was created!',
+    petitionUpdated: 'Your petition was updated'
   }
 };
