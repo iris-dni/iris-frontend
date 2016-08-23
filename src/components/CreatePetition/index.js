@@ -6,7 +6,7 @@ import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import PetitionForm from 'components/PetitionForm';
 
-const CreatePetition = ({ petition, persisted, published }) => (
+const CreatePetition = ({ petition }) => (
   <Container>
     <Header>
       <PageTitle
@@ -15,7 +15,7 @@ const CreatePetition = ({ petition, persisted, published }) => (
         centered
       />
     </Header>
-    {published
+    {petition.published
       ? <div className={styles.success}>
         <h2>Your petition has been published</h2>
         <a href={`/petitions/${petition.id}`}>Click here to see a draft of it</a>

@@ -7,6 +7,7 @@ import TextField from 'components/TextField';
 import FlashMessage from 'components/FlashMessage';
 import Button from 'components/Button';
 import settings from 'settings';
+import getPetitionForm from 'selectors/petitionForm';
 
 export const FIELDS = [
   {
@@ -54,8 +55,8 @@ export const FIELDS = [
   }
 ];
 
-const PetitionForm = ({ petition, fields, handleSubmit, submitting, persisted, published, publishPetition }) => (
-  <form onSubmit={handleSubmit(persisted ? updatePetition : createPetition)}>
+const PetitionForm = ({ petition, fields, handleSubmit, submitting, publishPetition }) => (
+  <form onSubmit={handleSubmit(petition.persisted ? updatePetition : createPetition)}>
     <Fieldset>
       {FIELDS.map(field => (
         <TextField
@@ -68,10 +69,10 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting, persisted, p
     <Fieldset modifier={'actions'}>
       <Button
         disabled={submitting || !fields._meta.allValid}
-        modifier={persisted ? 'default' : 'accent'}
-        text={settings.petitionForm[persisted ? 'saveButton' : 'createButton']}
+        modifier={petition.persisted ? 'default' : 'accent'}
+        text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton']}
       />
-      {persisted && !published &&
+      {petition.persisted && !petition.published &&
         <Button
           type={'button'}
           disabled={submitting || !fields._meta.allValid}
@@ -81,7 +82,7 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting, persisted, p
         />
       }
     </Fieldset>
-    {persisted &&
+    {petition.persisted &&
       <FlashMessage
         text={'Your petition was successfully saved'}
         type={'success'}
@@ -94,19 +95,13 @@ PetitionForm.propTypes = {
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
   resetForm: React.PropTypes.func.isRequired,
-  submitting: React.PropTypes.bool.isRequired,
-  persisted: React.PropTypes.bool,
-  published: React.PropTypes.bool
+  submitting: React.PropTypes.bool.isRequired
 };
 
-export const mapStateToProps = ({ petition }) => {
-  return {
-    initialValues: petition,
-    petition,
-    persisted: petition && !!petition.id,
-    published: petition && petition.state && petition.state.parent === 'supportable'
-  };
-};
+export const mapStateToProps = ({ petition }) => ({
+  initialValues: petition,
+  petition: getPetitionForm(petition)
+});
 
 export const mapDispatchToProps = (dispatch) => ({
   publishPetition: (petition) => dispatch(publishPetition(petition))

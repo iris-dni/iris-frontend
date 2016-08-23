@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import settings from 'settings';
 import CreatePetition from 'components/CreatePetition';
+import getPetitionForm from 'selectors/petitionForm';
 
 const CreatePetitionContainer = React.createClass({
   render () {
@@ -16,15 +17,11 @@ const CreatePetitionContainer = React.createClass({
 });
 
 CreatePetitionContainer.propTypes = {
-  petition: React.PropTypes.object,
-  persisted: React.PropTypes.bool,
-  published: React.PropTypes.bool
+  petition: React.PropTypes.object
 };
 
 export const mapStateToProps = ({ petition }) => ({
-  petition,
-  persisted: petition && !!petition.id,
-  published: petition && petition.state && petition.state.parent === 'supportable'
+  petition: getPetitionForm(petition)
 });
 
 export default connect(
