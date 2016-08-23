@@ -1,9 +1,10 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import { createPetition, updatePetition } from 'actions/PetitionActions';
+import { createPetition, updatePetition, publishPetition } from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
 import Fieldset from 'components/Fieldset';
 import TextField from 'components/TextField';
+import FlashMessage from 'components/FlashMessage';
 import Button from 'components/Button';
 import settings from 'settings';
 
@@ -42,11 +43,18 @@ export const FIELDS = [
       placeholder: settings.petitionFields.suggested_solution.placeholder,
       maxLength: 500
     }
+  },
+  {
+    name: 'id',
+    element: 'input',
+    html: {
+      type: 'hidden'
+    }
   }
 ];
 
-const PetitionForm = ({ fields, handleSubmit, submitting, createdPetition }) => (
-  <form onSubmit={handleSubmit(createdPetition ? updatePetition : createPetition)}>
+const PetitionForm = ({ fields, handleSubmit, submitting, hasCreated, publishThePetition }) => (
+  <form onSubmit={handleSubmit(hasCreated ? updatePetition : createPetition)}>
     <Fieldset>
       {FIELDS.map(field => (
         <TextField
@@ -59,17 +67,28 @@ const PetitionForm = ({ fields, handleSubmit, submitting, createdPetition }) => 
     <Fieldset modifier={'actions'}>
       <Button
         disabled={submitting || !fields._meta.allValid}
-        modifier={createdPetition ? 'default' : 'accent'}
-        text={settings.petitionForm[createdPetition ? 'saveButton' : 'createButton']}
+        modifier={hasCreated ? 'default' : 'accent'}
+        text={settings.petitionForm[hasCreated ? 'saveButton' : 'createButton']}
       />
-      {createdPetition &&
+      {hasCreated &&
         <Button
+          type={'button'}
           disabled={submitting || !fields._meta.allValid}
           modifier={'accent'}
           text={settings.petitionForm.publishButton}
+          onClick={() => {
+            console.log('OK[HSADFPHOUADSBGIPUFDSAPBIU');
+            // publishThePetition(hasCreated);
+          }}
         />
       }
     </Fieldset>
+    {hasCreated &&
+      <FlashMessage
+        text={'Your petition was successfully saved'}
+        type={'success'}
+      />
+    }
   </form>
 );
 
@@ -78,12 +97,13 @@ PetitionForm.propTypes = {
   handleSubmit: React.PropTypes.func.isRequired,
   resetForm: React.PropTypes.func.isRequired,
   submitting: React.PropTypes.bool.isRequired,
-  createdPetition: React.PropTypes.object
+  hasCreated: React.PropTypes.number
 };
 
 export const mapStateToProps = ({ petition }) => {
   return {
-    initialValues: petition && petition.formData
+    initialValues: petition && petition.formData,
+    hasCreated: petition && petition.formData && petition.formData.id
   };
 };
 
@@ -92,5 +112,6 @@ export default reduxForm({
   fields: FIELDS.map(field => field.name),
   validate: petitionValidator
 },
-mapStateToProps
+mapStateToProps,
+{ publishThePetition: publishPetition }
 )(PetitionForm);

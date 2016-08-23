@@ -1,0 +1,15 @@
+@import 'globals';
+
+.default {
+  display: block;
+  margin-top: 20px;
+  font-weight: normal;
+}
+
+.success {
+  composes: default;
+  padding: 10px;
+  background-color: color('success');
+  color: color('white');
+  text-align: center;
+}

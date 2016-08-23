@@ -8,7 +8,8 @@ import {
   RECEIVE_PETITIONS,
   SUBMIT_PETITION,
   CREATED_PETITION,
-  UPDATED_PETITION
+  UPDATED_PETITION,
+  PUBLISHED_PETITION
 } from './actionTypes';
 
 export function requestPetition () {
@@ -76,7 +77,7 @@ export function submitPetition () {
   };
 }
 
-export function createPetition (data, dispatch, x) {
+export function createPetition (data, dispatch) {
   dispatch(submitPetition());
   return petitionRepository.create(data)
     .then((response) => {
@@ -93,6 +94,9 @@ export function createdPetition (data) {
 
 export function updatePetition (data, dispatch) {
   dispatch(submitPetition());
+  console.log('UPDATE');
+  console.log(data);
+  console.log(dispatch);
   return petitionRepository.update(data)
     .then((response) => {
       return dispatch(updatedPetition(response.data));
@@ -102,6 +106,25 @@ export function updatePetition (data, dispatch) {
 export function updatedPetition (data) {
   return {
     type: UPDATED_PETITION,
+    data
+  };
+}
+
+export function publishPetition (id) {
+  console.log('PETITION PUBLISH');
+  return (dispatch, getState) => {
+    dispatch(submitPetition());
+    console.log('PETITION PUBLISH2');
+    return petitionRepository.publish(id)
+      .then((response) => {
+        return dispatch(publishedPetition(response.data));
+      });
+  };
+}
+
+export function publishedPetition (data) {
+  return {
+    type: PUBLISHED_PETITION,
     data
   };
 }

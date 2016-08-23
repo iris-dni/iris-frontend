@@ -2,7 +2,8 @@ import { assign } from 'lodash/object';
 import {
   RECEIVE_PETITION,
   CREATED_PETITION,
-  UPDATED_PETITION
+  UPDATED_PETITION,
+  PUBLISH_PETITION
 } from 'actions/actionTypes';
 
 const initialState = {};
@@ -18,6 +19,10 @@ export default function petition (state = initialState, action) {
     case UPDATED_PETITION:
       return assign({}, state, {
         formData: action.data
+      });
+    case PUBLISH_PETITION:
+      return assign({}, state, {
+        publishedId: action.data.id
       });
     default:
       return state;
