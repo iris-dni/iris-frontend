@@ -68,18 +68,18 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, pu
     </Fieldset>
     <Fieldset modifier={'actions'}>
       <ButtonSet>
-      <Button
-        disabled={submitting || !fields._meta.allValid || pristine}
-        modifier={petition.persisted ? 'default' : 'accent'}
-        text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton']}
-      />
-      {petition.persisted && !petition.published &&
         <Button
-          type={'button'}
-          disabled={submitting || !pristine}
-          modifier={'accent'}
-          text={settings.petitionForm.publishButton}
-          onClick={() => publishPetition(petition)}
+          disabled={submitting || !fields._meta.allValid || pristine}
+          modifier={petition.persisted ? 'default' : 'accent'}
+          text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton']}
+        />
+        {petition.persisted && !petition.published &&
+          <Button
+            type={'button'}
+            disabled={submitting || !pristine}
+            modifier={'accent'}
+            text={settings.petitionForm.publishButton}
+            onClick={() => publishPetition(petition)}
           />
         }
       </ButtonSet>
