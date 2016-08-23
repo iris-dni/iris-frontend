@@ -76,10 +76,7 @@ const PetitionForm = ({ fields, handleSubmit, submitting, hasCreated, publishThe
           disabled={submitting || !fields._meta.allValid}
           modifier={'accent'}
           text={settings.petitionForm.publishButton}
-          onClick={() => {
-            console.log('OK[HSADFPHOUADSBGIPUFDSAPBIU');
-            // publishThePetition(hasCreated);
-          }}
+          onClick={() => publishThePetition(hasCreated)}
         />
       }
     </Fieldset>

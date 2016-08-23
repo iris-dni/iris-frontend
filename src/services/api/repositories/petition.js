@@ -26,7 +26,6 @@ export default {
   },
 
   publish: (id) => {
-    console.log('PETITION PUBLISH REPOSITORY');
     const requestPath = path.join('/petitions', id.toString(), '/event/publish');
     return ApiClient.request(requestPath, null, 'POST');
   }

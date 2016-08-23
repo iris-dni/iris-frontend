@@ -3,7 +3,7 @@ import {
   RECEIVE_PETITION,
   CREATED_PETITION,
   UPDATED_PETITION,
-  PUBLISH_PETITION
+  PUBLISHED_PETITION
 } from 'actions/actionTypes';
 
 const initialState = {};

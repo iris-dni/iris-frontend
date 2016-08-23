@@ -94,9 +94,6 @@ export function createdPetition (data) {
 
 export function updatePetition (data, dispatch) {
   dispatch(submitPetition());
-  console.log('UPDATE');
-  console.log(data);
-  console.log(dispatch);
   return petitionRepository.update(data)
     .then((response) => {
       return dispatch(updatedPetition(response.data));
@@ -111,10 +108,8 @@ export function updatedPetition (data) {
 }
 
 export function publishPetition (id) {
-  console.log('PETITION PUBLISH');
   return (dispatch, getState) => {
     dispatch(submitPetition());
-    console.log('PETITION PUBLISH2');
     return petitionRepository.publish(id)
       .then((response) => {
         return dispatch(publishedPetition(response.data));
@@ -123,6 +118,7 @@ export function publishPetition (id) {
 }
 
 export function publishedPetition (data) {
+  console.log('published');
   return {
     type: PUBLISHED_PETITION,
     data
