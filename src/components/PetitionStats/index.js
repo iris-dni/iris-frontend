@@ -7,9 +7,11 @@ const PetitionStats = ({ total, required }) => (
     <li className={styles.item}>
       {settings.supportersText} <b className={styles.total}>{total}</b>
     </li>
-    <li className={styles.item}>
-      {settings.milestoneText} {required}
-    </li>
+    {required > 0 &&
+      <li className={styles.item}>
+        {settings.milestoneText} {required}
+      </li>
+    }
   </ul>
 );
 

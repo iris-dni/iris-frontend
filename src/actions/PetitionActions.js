@@ -12,6 +12,8 @@ import {
   PUBLISHED_PETITION
 } from './actionTypes';
 
+import { showFlashMessage } from './FlashActions';
+
 export function requestPetition () {
   return {
     type: REQUEST_PETITION
@@ -80,9 +82,11 @@ export function submitPetition () {
 export function createPetition (data, dispatch) {
   dispatch(submitPetition());
   return petitionRepository.create(data)
-    .then((response) => {
-      return dispatch(createdPetition(response.data));
-    });
+    .then((response) => dispatch(
+      createdPetition(response.data),
+    )).then((response) => dispatch(
+      showFlashMessage('Created!!')
+    ));
 }
 
 export function createdPetition (data) {
@@ -95,9 +99,11 @@ export function createdPetition (data) {
 export function updatePetition (data, dispatch) {
   dispatch(submitPetition());
   return petitionRepository.update(data)
-    .then((response) => {
-      return dispatch(updatedPetition(response.data));
-    });
+    .then((response) => dispatch(
+      updatedPetition(response.data),
+    )).then((response) => dispatch(
+      showFlashMessage('Updated!!')
+    ));
 }
 
 export function updatedPetition (data) {
@@ -111,14 +117,15 @@ export function publishPetition (id) {
   return (dispatch, getState) => {
     dispatch(submitPetition());
     return petitionRepository.publish(id)
-      .then((response) => {
-        return dispatch(publishedPetition(response.data));
-      });
+      .then((response) => dispatch(
+        publishedPetition(response.data),
+      )).then((response) => dispatch(
+        showFlashMessage('Published!!')
+      ));
   };
 }
 
 export function publishedPetition (data) {
-  console.log('published');
   return {
     type: PUBLISHED_PETITION,
     data

@@ -10,6 +10,14 @@ import settings from 'settings';
 
 export const FIELDS = [
   {
+    name: 'id',
+    element: 'input',
+    hidden: true,
+    html: {
+      type: 'hidden'
+    }
+  },
+  {
     name: 'title',
     element: 'input',
     label: settings.petitionFields.title.label,
@@ -42,13 +50,6 @@ export const FIELDS = [
     html: {
       placeholder: settings.petitionFields.suggested_solution.placeholder,
       maxLength: 500
-    }
-  },
-  {
-    name: 'id',
-    element: 'input',
-    html: {
-      type: 'hidden'
     }
   }
 ];
