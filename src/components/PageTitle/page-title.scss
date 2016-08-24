@@ -1,7 +1,7 @@
 @import 'globals';
 
 .default {
-  @include responsive-font(5vw, 30px, 56px);
+  @include responsive-font(5vw, 30px, 48px);
   max-width: map-get($widths, 'header-max');
 }
 

@@ -1,7 +1,7 @@
 @import 'globals';
 
 .root {
-  max-width: 40em;
+  max-width: 35em;
 
   @include media('>sidebar') {
     flex: 1;
