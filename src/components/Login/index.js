@@ -1,25 +1,33 @@
 import React from 'react';
-// import styles from './login.scss';
+import styles from './login.scss';
+import settings from 'settings';
 import Container from 'components/Container';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
+import TextCenter from 'components/TextCenter';
 import SsoLink from 'components/SsoLink';
 
-const Login = ({ ssoProviders }) => (
+const Login = ({ location, ssoProviders }) => (
   <Container>
     <Header>
       <PageTitle
-        title={'Nearly there...'}
+        title={settings.loginPage.title}
+        intro={settings.loginPage.intro}
         centered
       />
     </Header>
-    <ul>
-      {(ssoProviders || []).map(provider => (
-        <li key={provider.loginUrl}>
-          <SsoLink provider={provider} />
-        </li>
-      ))}
-    </ul>
+    <TextCenter>
+      <div className={styles.providers}>
+        {ssoProviders.map(provider => (
+          <div key={provider.loginUrl}>
+            <SsoLink
+              location={location}
+              provider={provider}
+            />
+          </div>
+        ))}
+      </div>
+    </TextCenter>
   </Container>
 );
 

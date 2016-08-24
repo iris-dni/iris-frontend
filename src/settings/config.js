@@ -52,12 +52,16 @@ export default {
   },
   ssoProviders: [
     {
-      name: 'Login with AZ Medien',
+      name: 'Sign in with AZ Medien',
       loginUrl: 'http://aaz-azdev.lovelysystems.com/anmelden'
     }
   ],
   auth: {
     afterLoginPath: '/',
     afterLogoutPath: '/'
+  },
+  loginPage: {
+    title: 'Nearly there',
+    intro: 'To begin creating your Petition please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   }
 };
