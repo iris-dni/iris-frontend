@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><circle id="a" cx="4" cy="8" r="4"/><mask id="b" width="8" height="8" x="0" y="0" fill="#fff"><use xlink:href="#a"/></mask></defs><g fill="none" fill-rule="evenodd" transform="translate(0 -4)"><use stroke="#222" stroke-width="4" mask="url(#b)" xlink:href="#a"/><path fill="#222" d="M7 7h9v2H7V7zm7 2h2v2h-2V9z"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <circle id="a" cx="4" cy="8" r="4"/>
+    <mask id="b" width="8" height="8" x="0" y="0" fill="white">
+      <use xlink:href="#a"/>
+    </mask>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <use stroke="#222222" stroke-width="4" mask="url(#b)" xlink:href="#a"/>
+    <path fill="#222222" d="M7,7 L16,7 L16,9 L7,9 L7,7 Z M14,9 L16,9 L16,11 L14,11 L14,9 Z"/>
+  </g>
+</svg>
