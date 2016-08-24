@@ -2,6 +2,10 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { ssoProviders, authSettings } from 'settings';
+import Container from 'components/Container';
+import Header from 'components/Header';
+import PageTitle from 'components/PageTitle';
+import TextCenter from 'components/TextCenter';
 import SsoLink from 'components/SsoLink';
 
 const Login = withRouter(React.createClass({
@@ -15,16 +19,22 @@ const Login = withRouter(React.createClass({
 
   render () {
     return (
-      <div>
-        <h1>Login first!</h1>
-        <ul>
+      <Container>
+        <Header>
+          <PageTitle
+            title={'Nearly there!'}
+            intro={'To begin creating your Petition please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'}
+            centered
+          />
+        </Header>
+        <TextCenter>
           {ssoProviders.map(provider => (
-            <li key={provider.loginUrl}>
+            <div key={provider.loginUrl}>
               <SsoLink {...this.props} provider={provider} />
-            </li>
+            </div>
           ))}
-        </ul>
-      </div>
+        </TextCenter>
+      </Container>
     );
   }
 }));
