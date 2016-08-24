@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './petition-header.scss';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
-import Heading1 from 'components/Heading1';
 import PetitionInfo from 'containers/PetitionInfo';
 import PetitionProgress from 'containers/PetitionProgress';
 import PetitionStats from 'containers/PetitionStats';

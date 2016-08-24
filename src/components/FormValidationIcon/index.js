@@ -5,7 +5,7 @@ export default ({ error, valid }) => (
   <div>
     {error &&
       <IconBullet
-        id={'X'}
+        id={'Close'}
         modifier={'error'}
       />
     }

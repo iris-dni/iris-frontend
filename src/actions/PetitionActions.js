@@ -1,4 +1,6 @@
 import petitionRepository from 'services/api/repositories/petition';
+import { assign } from 'lodash/object';
+
 import {
   REQUEST_PETITION,
   RECEIVE_PETITION,
@@ -56,7 +58,7 @@ export function fetchPetitions ({ petitions, location, perPage, currentPage }) {
 
       return petitionRepository.all(options)
         .then(response => {
-          const pagedResponse = Object.assign({}, response, {
+          const pagedResponse = assign({}, response, {
             currentPage: options.page,
             perPage: options.limit
           });
