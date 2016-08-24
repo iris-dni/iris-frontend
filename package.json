@@ -69,6 +69,7 @@
     "sass-loader": "^4.0.0",
     "spritesh": "^1.2.0",
     "style-loader": "^0.13.1",
+    "svg4everybody": "^2.1.0",
     "svgo": "^0.6.6",
     "url-pattern": "^1.0.1",
     "vision": "^4.1.0",
