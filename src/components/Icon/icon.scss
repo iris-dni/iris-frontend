@@ -2,6 +2,7 @@
 
 .root {
   position: relative;
+  display: block;
 }
 
 .default {
@@ -18,6 +19,10 @@
 
 .invert {
   fill: white;
+}
+
+.dimmed {
+  fill: color('dimmed');
 }
 
 .inline {
