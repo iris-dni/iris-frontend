@@ -15,15 +15,9 @@ const CreatePetition = ({ petition }) => (
         centered
       />
     </Header>
-    {petition.published
-      ? <div className={styles.success}>
-        <h2>Your petition has been published</h2>
-        <a href={`/petitions/${petition.id}`}>Click here to see a draft of it</a>
-      </div>
-      : <div className={styles.form}>
-        <PetitionForm />
-      </div>
-    }
+    <div className={styles.form}>
+      <PetitionForm />
+    </div>
   </Container>
 );
 

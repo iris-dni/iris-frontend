@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import settings from 'settings';
 import CreatePetition from 'components/CreatePetition';
+import PublishedPetition from 'components/PublishedPetition';
 import getPetitionForm from 'selectors/petitionForm';
 
 const CreatePetitionContainer = React.createClass({
@@ -10,7 +11,10 @@ const CreatePetitionContainer = React.createClass({
     return (
       <div>
         <Helmet title={settings.createPetitionPageTitle} />
-        <CreatePetition {...this.props} />
+        {this.props.petition.published
+          ? <PublishedPetition {...this.props} />
+          : <CreatePetition {...this.props} />
+        }
       </div>
     );
   }
