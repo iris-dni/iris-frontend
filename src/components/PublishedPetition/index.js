@@ -1,11 +1,11 @@
 import React from 'react';
 import settings from 'settings';
-import styles from './published-petition.scss';
 import Container from 'components/Container';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import ButtonLink from 'components/ButtonLink';
 import Paragraph from 'components/Paragraph';
+import TextCenter from 'components/TextCenter';
 
 const PublishedPetition = ({ petition }) => (
   <Container>
@@ -15,19 +15,16 @@ const PublishedPetition = ({ petition }) => (
         centered
       />
     </Header>
-
-    <div className={styles.success}>
-      <Paragraph>{settings.publishedPetition.copy1}</Paragraph>
+    <TextCenter>
+      <Paragraph text={settings.publishedPetition.copy1} />
       <Paragraph>
-        <ButtonLink href={`/petitions/${petition.id}`} >
-          {settings.publishedPetition.previewButton}
-        </ButtonLink>
+        <ButtonLink
+          href={`/petitions/${petition.id}`}
+          text={'Preview your Petition'}
+          modifier={'accent'}
+        />
       </Paragraph>
-      <Paragraph>
-        {settings.publishedPetition.copy2}
-        {settings.publishedPetition.copy3}
-      </Paragraph>
-    </div>
+    </TextCenter>
   </Container>
 );
 
