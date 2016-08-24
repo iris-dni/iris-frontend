@@ -5,7 +5,7 @@ import styles from './icon-and-info.scss';
 const IconAndInfo = ({ children, icon, info, size }) => (
   <span>
     <span className={styles.icon}>
-      <Icon id={icon} size={size} inline />
+      <Icon id={icon} size={size} modifier={'dimmed'} inline />
     </span>
     {children || info}
   </span>

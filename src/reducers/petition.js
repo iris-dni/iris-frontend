@@ -1,3 +1,4 @@
+import { assign } from 'lodash/object';
 import {
   RECEIVE_PETITION,
   CREATED_PETITION
@@ -8,9 +9,9 @@ const initialState = {};
 export default function petition (state = initialState, action) {
   switch (action.type) {
     case RECEIVE_PETITION:
-      return Object.assign({}, state, action.petition);
+      return assign({}, state, action.petition);
     case CREATED_PETITION:
-      return Object.assign({}, state, {
+      return assign({}, state, {
         createdPetition: action.id
       });
     default:
