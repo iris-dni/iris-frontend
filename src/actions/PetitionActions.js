@@ -1,14 +1,21 @@
 import petitionRepository from 'services/api/repositories/petition';
 import { assign } from 'lodash/object';
-
+import settings from 'settings';
 import {
   REQUEST_PETITION,
   RECEIVE_PETITION,
   REQUEST_PETITIONS,
   RECEIVE_PETITIONS,
   SUBMIT_PETITION,
-  CREATED_PETITION
+  CREATED_PETITION,
+  UPDATED_PETITION,
+  PUBLISHED_PETITION
 } from './actionTypes';
+
+import {
+  showFlashMessage,
+  hideFlashMessage
+} from './FlashActions';
 
 export function requestPetition () {
   return {
@@ -75,17 +82,61 @@ export function submitPetition () {
   };
 }
 
-export function createdPetition (id) {
-  return {
-    type: CREATED_PETITION,
-    id
-  };
-}
-
 export function createPetition (data, dispatch) {
   dispatch(submitPetition());
   return petitionRepository.create(data)
-    .then((response) => {
-      return dispatch(createdPetition(response.data.id));
-    });
+    .then((response) => dispatch(
+      createdPetition(response.data),
+    )).then(() => dispatch(
+      showFlashMessage(settings.flashMessages.petitionCreated, 'success')
+    )).catch(() => dispatch(
+      showFlashMessage(settings.flashMessages.genericError, 'error')
+    ));
+}
+
+export function createdPetition (petition) {
+  return {
+    type: CREATED_PETITION,
+    petition
+  };
+}
+
+export function updatePetition (data, dispatch) {
+  dispatch(submitPetition());
+  return petitionRepository.update(data)
+    .then((response) => dispatch(
+      updatedPetition(response.data),
+    )).then(() => dispatch(
+      showFlashMessage(settings.flashMessages.petitionUpdated, 'success')
+    )).catch(() => dispatch(
+      showFlashMessage(settings.flashMessages.genericError, 'error')
+    ));
+}
+
+export function updatedPetition (petition) {
+  return {
+    type: UPDATED_PETITION,
+    petition
+  };
+}
+
+export function publishPetition (petition, dispatch) {
+  return (dispatch, getState) => {
+    dispatch(submitPetition());
+    return petitionRepository.publish(petition)
+      .then((response) => dispatch(
+        publishedPetition(response.data),
+      )).then(() => dispatch(
+        hideFlashMessage()
+      )).catch(() => dispatch(
+        showFlashMessage(settings.flashMessages.genericError, 'error')
+      ));
+  };
+}
+
+export function publishedPetition (petition) {
+  return {
+    type: PUBLISHED_PETITION,
+    petition
+  };
 }

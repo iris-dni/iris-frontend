@@ -15,12 +15,14 @@ const getClassname = (element, error) => {
 };
 
 export default ({ config, helper }) => (
-  <div className={styles.root}>
-    <FormLabel
-      fieldId={config.name}
-      label={config.label}
-      hint={config.hint}
-    />
+  <div className={config.hidden ? styles.hidden : styles.root}>
+    {!config.hidden &&
+      <FormLabel
+        fieldId={config.name}
+        label={config.label}
+        hint={config.hint}
+      />
+    }
     <div className={styles.wrapper}>
       <config.element
         className={getClassname(config.element, fieldIsInvalid(helper))}
@@ -32,19 +34,23 @@ export default ({ config, helper }) => (
         {...domOnlyProps(helper)}
       />
 
-      <div className={styles.message}>
-        <FormValidationMessage
-          error={fieldIsInvalid(helper)}
-          valid={fieldIsValid(helper)}
-          message={helper.error || config.validated}
-        />
-      </div>
-      <div className={styles.icon}>
-        <FormValidationIcon
-          error={fieldIsInvalid(helper)}
-          valid={fieldIsValid(helper)}
-        />
-      </div>
+      {!config.hidden &&
+        <div>
+          <div className={styles.message}>
+            <FormValidationMessage
+              error={fieldIsInvalid(helper)}
+              valid={fieldIsValid(helper)}
+              message={helper.error || config.validated}
+            />
+          </div>
+          <div className={styles.icon}>
+            <FormValidationIcon
+              error={fieldIsInvalid(helper)}
+              valid={fieldIsValid(helper)}
+            />
+          </div>
+        </div>
+      }
     </div>
   </div>
 );

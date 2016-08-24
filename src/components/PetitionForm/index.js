@@ -1,13 +1,27 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import { createPetition } from 'actions/PetitionActions';
+import {
+  createPetition,
+  updatePetition,
+  publishPetition
+} from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
 import Fieldset from 'components/Fieldset';
 import TextField from 'components/TextField';
 import Button from 'components/Button';
+import ButtonSet from 'components/ButtonSet';
 import settings from 'settings';
+import getPetitionForm from 'selectors/petitionForm';
 
 export const FIELDS = [
+  {
+    name: 'id',
+    element: 'input',
+    hidden: true,
+    html: {
+      type: 'hidden'
+    }
+  },
   {
     name: 'title',
     element: 'input',
@@ -45,8 +59,8 @@ export const FIELDS = [
   }
 ];
 
-const PetitionForm = ({ fields, handleSubmit, submitting }) => (
-  <form onSubmit={handleSubmit(createPetition)}>
+const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, publishPetition }) => (
+  <form onSubmit={handleSubmit(petition.persisted ? updatePetition : createPetition)}>
     <Fieldset>
       {FIELDS.map(field => (
         <TextField
@@ -57,11 +71,22 @@ const PetitionForm = ({ fields, handleSubmit, submitting }) => (
       ))}
     </Fieldset>
     <Fieldset modifier={'actions'}>
-      <Button
-        disabled={submitting || !fields._meta.allValid}
-        modifier={'accent'}
-        text={settings.petitionForm.saveButton}
-      />
+      <ButtonSet>
+        <Button
+          disabled={submitting || !fields._meta.allValid || pristine}
+          modifier={petition.persisted && pristine ? 'default' : 'accent'}
+          text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton']}
+        />
+        {petition.persisted && !petition.published &&
+          <Button
+            type={'button'}
+            disabled={submitting || !pristine}
+            modifier={'accent'}
+            text={settings.petitionForm.publishButton}
+            onClick={() => publishPetition(petition)}
+          />
+        }
+      </ButtonSet>
     </Fieldset>
   </form>
 );
@@ -73,8 +98,17 @@ PetitionForm.propTypes = {
   submitting: React.PropTypes.bool.isRequired
 };
 
+export const mapStateToProps = ({ petition }) => ({
+  initialValues: petition,
+  petition: getPetitionForm(petition)
+});
+
+export const mapDispatchToProps = (dispatch) => ({
+  publishPetition: (petition) => dispatch(publishPetition(petition))
+});
+
 export default reduxForm({
   form: 'simple',
   fields: FIELDS.map(field => field.name),
   validate: petitionValidator
-})(PetitionForm);
+}, mapStateToProps, mapDispatchToProps)(PetitionForm);

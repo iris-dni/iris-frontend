@@ -1,14 +1,16 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
-import petition from './petition';
-import petitions from './petitions';
-import me from './me';
+import petitionReducer from './petition';
+import petitionsReducer from './petitions';
+import meReducer from './me';
+import flashMessageReducer from './flashMessage';
 
 export default combineReducers({
-  petition,
-  petitions,
+  petition: petitionReducer,
+  petitions: petitionsReducer,
   form: formReducer,
-  me,
+  me: meReducer,
+  flashMessage: flashMessageReducer,
   routing: routerReducer
 });

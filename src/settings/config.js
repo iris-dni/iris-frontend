@@ -27,11 +27,20 @@ export default {
   },
   createPetitionPageTitle: 'Create a new Petition',
   createPetitionPageIntro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.',
+  publishedPetitionPageTitle: 'Your Petition has been created',
   requiredText: 'You must complete this field',
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',
   petitionForm: {
-    saveButton: 'Save your petition'
+    createButton: 'Create Petition',
+    publishButton: 'Publish Petition',
+    saveButton: 'Save Petition'
+  },
+  publishedPetition: {
+    copy1: 'Please click the link below to preview your petition.',
+    previewButton: 'Preview your Petition',
+    copy2: 'Your petition will be published within the next 48 hours.',
+    copy3: 'In the meantime share your petition and start collecting signatures.'
   },
   petitionFields: {
     title: {
@@ -63,5 +72,10 @@ export default {
   loginPage: {
     title: 'Nearly there',
     intro: 'To begin creating your Petition please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
+  },
+  flashMessages: {
+    genericError: 'Sadly something failed, please try again!',
+    petitionCreated: 'Great, your petition was created!',
+    petitionUpdated: 'Your petition was updated'
   }
 };

@@ -3,24 +3,29 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import settings from 'settings';
 import CreatePetition from 'components/CreatePetition';
+import PublishedPetition from 'components/PublishedPetition';
+import getPetitionForm from 'selectors/petitionForm';
 
 const CreatePetitionContainer = React.createClass({
   render () {
     return (
       <div>
         <Helmet title={settings.createPetitionPageTitle} />
-        <CreatePetition {...this.props} />
+        {this.props.petition.published
+          ? <PublishedPetition {...this.props} />
+          : <CreatePetition {...this.props} />
+        }
       </div>
     );
   }
 });
 
 CreatePetitionContainer.propTypes = {
-  createdPetition: React.PropTypes.number
+  petition: React.PropTypes.object
 };
 
 export const mapStateToProps = ({ petition }) => ({
-  createdPetition: petition && petition.createdPetition
+  petition: getPetitionForm(petition)
 });
 
 export default connect(

@@ -13,27 +13,23 @@ $heading-1-defaults: (
 
 $heading-2-defaults: (
   'font-size': 22px,
-  'letter-spacing': $letter-spacing,
   'line-height': $line-height,
   'margin-bottom': 10px
 ) !default;
 
 $paragraph-defaults: (
   'font-size': 18px,
-  'letter-spacing': $letter-spacing,
   'line-height': $line-height,
   'margin-bottom': 20px
 ) !default;
 
 $intro-paragraph-defaults: (
   'font-size': 1em,
-  'letter-spacing': $letter-spacing,
   'line-height': $line-height,
 ) !default;
 
 $supporting-copy-defaults: (
   'font-size': 16px,
-  'letter-spacing': $letter-spacing,
   'line-height': $line-height,
   'margin-bottom': 20px
 ) !default;
