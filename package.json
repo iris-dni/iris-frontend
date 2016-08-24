@@ -22,7 +22,7 @@
     "svgs": "svgo -f src/assets/images/icons && spritesh -i src/assets/images/icons -v '0 0 16 16' -o static/dist/assets/images/icons.svg",
     "start": "npm run server",
     "dev": "npm run clean && npm run build && concurrently --kill-others \"npm run server:dev\" \"npm run server\"",
-    "build": "npm run copy && npm run svgs && webpack --verbose --colors --progress --display-error-details --config webpack.config.prod.js",
+    "build": "npm run copy && npm run svgs && webpack --verbose --colors --display-error-details --config webpack.config.prod.js",
     "test": "npm run copy && mocha-webpack --webpack-config webpack.config.test.js",
     "test:watch": "npm run copy && mocha-webpack --webpack-config webpack.config.test.js --watch"
   },
