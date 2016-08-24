@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './button-link.scss';
+import styles from '../Button/button.scss';
 
-const ButtonLink = ({ children, text, href }) => (
-  <a href={href || '#'} className={styles.root}>
+const ButtonLink = ({ children, text, href, modifier }) => (
+  <a href={href || '#'} className={styles[modifier || 'default']}>
     {children || text}
   </a>
 );

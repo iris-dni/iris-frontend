@@ -1,4 +1,5 @@
 import React from 'react';
+import ButtonLink from 'components/ButtonLink';
 
 const baseUrl = () => {
   if (!process.env.BASE_URL) {
@@ -13,9 +14,7 @@ const SsoLink = ({ provider: { name, loginUrl }, location: { pathname, search } 
   const returnUrl = encodeURIComponent(`${baseUrl()}${pathname}${decodeURIComponent(search)}`);
   const url = `${loginUrl}${delimiter}irisreturl=${returnUrl}`;
 
-  return (
-    <a href={url}>{name}</a>
-  );
+  return <ButtonLink text={name} href={url} modifier={'accent'} />;
 };
 
 export default SsoLink;

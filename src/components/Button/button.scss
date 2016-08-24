@@ -2,6 +2,7 @@
 
 .shared {
   @include map-declarations($button-shared-defaults, $button-shared-custom);
+  text-decoration: none;
 
   @include media('>500px') {
     font-size: 18px;
