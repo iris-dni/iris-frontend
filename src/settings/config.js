@@ -52,7 +52,7 @@ export default {
   },
   ssoProviders: [
     {
-      name: 'Login with AZ Medien',
+      name: 'Sign in with AZ Medien',
       loginUrl: 'http://aaz-azdev.lovelysystems.com/anmelden'
     }
   ],
