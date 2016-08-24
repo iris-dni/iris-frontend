@@ -59,5 +59,9 @@ export default {
   auth: {
     afterLoginPath: '/',
     afterLogoutPath: '/'
+  },
+  loginPage: {
+    title: 'Nearly there',
+    intro: 'To begin creating your Petition please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   }
 };
