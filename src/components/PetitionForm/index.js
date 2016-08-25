@@ -23,19 +23,6 @@ export const FIELDS = [
     }
   },
   {
-    name: 'title',
-    element: 'input',
-    label: settings.petitionFields.title.label,
-    hint: settings.petitionFields.title.hint,
-    html: {
-      type: 'text',
-      placeholder: settings.petitionFields.title.placeholder,
-      required: true,
-      minLength: 15,
-      maxLength: 80
-    }
-  },
-  {
     name: 'description',
     element: 'textarea',
     label: settings.petitionFields.description.label,
@@ -43,7 +30,7 @@ export const FIELDS = [
     html: {
       placeholder: settings.petitionFields.description.placeholder,
       required: true,
-      minLength: 5,
+      minLength: 50,
       maxLength: 500
     }
   },
@@ -54,7 +41,21 @@ export const FIELDS = [
     hint: settings.petitionFields.suggested_solution.hint,
     html: {
       placeholder: settings.petitionFields.suggested_solution.placeholder,
+      minLength: 50,
       maxLength: 500
+    }
+  },
+  {
+    name: 'title',
+    element: 'input',
+    label: settings.petitionFields.title.label,
+    hint: settings.petitionFields.title.hint,
+    html: {
+      type: 'text',
+      placeholder: settings.petitionFields.title.placeholder,
+      required: true,
+      minLength: 15,
+      maxLength: 80
     }
   }
 ];

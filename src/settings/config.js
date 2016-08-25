@@ -27,7 +27,7 @@ export default {
   },
   createPetitionPageTitle: 'Create a new Petition',
   createPetitionPageIntro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.',
-  publishedPetitionPageTitle: 'Your Petition has been created',
+  publishedPetitionPageTitle: 'Petition published',
   requiredText: 'You must complete this field',
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',
@@ -37,10 +37,8 @@ export default {
     saveButton: 'Save Petition'
   },
   publishedPetition: {
-    copy1: 'Please click the link below to preview your petition.',
-    previewButton: 'Preview your Petition',
-    copy2: 'Your petition will be published within the next 48 hours.',
-    copy3: 'In the meantime share your petition and start collecting signatures.'
+    copy1: 'Your petition will be visible within the next 48 hours after being approved by an editor. In the meantime, share your petition and start collecting signatures:',
+    previewButton: 'Preview your Petition'
   },
   petitionFields: {
     title: {
@@ -56,7 +54,7 @@ export default {
     suggested_solution: {
       label: 'Suggest your solution',
       placeholder: 'Tell everyone what should be done...',
-      hint: 'Because you care a lot about your cause, you problably have some great ideas about how to solve it. Clearly outline the actions required to achieve your goal.'
+      hint: 'Because you care a lot about your cause, you probably have some great ideas about how to solve it. Clearly outline the actions required to achieve your goal.'
     }
   },
   ssoProviders: [

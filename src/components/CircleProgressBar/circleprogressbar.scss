@@ -8,14 +8,14 @@
 
 .small {
   composes: canvas;
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
 }
 
 .large {
   composes: canvas;
-  width: 200px;
-  height: 200px;
+  width: 210px;
+  height: 210px;
 }
 
 /* center the content of the progress bar */

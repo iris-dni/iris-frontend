@@ -2,7 +2,7 @@
 @import 'globals';
 
 html {
-  // -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -10,4 +10,8 @@ body {
   color: color('black');
   line-height: $line-height;
   letter-spacing: $letter-spacing;
+}
+
+svg {
+  display: block;
 }

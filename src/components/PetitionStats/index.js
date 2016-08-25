@@ -4,8 +4,8 @@ import settings from 'settings';
 
 const PetitionStats = ({ total, required }) => (
   <ul className={styles.root}>
-    <li className={styles.item}>
-      {settings.supportersText} <b className={styles.total}>{total}</b>
+    <li className={`${styles.item} ${styles.total}`}>
+      {settings.supportersText} {total}
     </li>
     {required > 0 &&
       <li className={styles.item}>

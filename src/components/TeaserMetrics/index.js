@@ -5,24 +5,21 @@ import PetitionMetric from 'components/PetitionMetric';
 
 export default ({ timeMetric, supportersMetric }) => (
   <div className={styles.root}>
-    <div className={styles.metric}>
-      <div className={styles['first-metric']}>
+    <div className={styles['first-metric']}>
+      <PetitionMetric
+        {...timeMetric}
+        icon={'Clock'}
+        caption={settings.teaserDaysRemaining}
+      />
+    </div>
+    {supportersMetric && supportersMetric.votingActive &&
+      <div className={styles.metric}>
         <PetitionMetric
-          {...timeMetric}
-          icon={'Clock'}
-          caption={settings.teaserDaysRemaining}
+          {...supportersMetric}
+          icon={'Signature'}
+          caption={settings.teaserSupportersText}
         />
       </div>
-
-      {supportersMetric && supportersMetric.votingActive &&
-        <div className={styles.metric}>
-          <PetitionMetric
-            {...supportersMetric}
-            icon={'Signature'}
-            caption={settings.teaserSupportersText}
-          />
-        </div>
-      }
-    </div>
+    }
   </div>
 );

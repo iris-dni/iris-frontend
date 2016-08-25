@@ -18,6 +18,8 @@
 }
 
 .button > * {
-  display: block;
-  width: 100%;
+  @include media('<=500px') {
+    display: block;
+    width: 100%;
+  }
 }

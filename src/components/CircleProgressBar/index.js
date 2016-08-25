@@ -17,19 +17,32 @@ const CircleProgressBar = React.createClass({
 
   componentDidMount () {
     this.initProgressBar();
-    this.updateProgressBar(this.props.percentage);
+    if (this.props.percentage > 0) {
+      this.updateProgressBar(this.props.percentage);
+    }
+  },
+
+  componentDidUpdate (prevProps) {
+    if (prevProps.percentage !== this.props.percentage) {
+      this.updateProgressBar(this.props.percentage);
+    }
+  },
+
+  componentWillUnmount () {
+    this.progressBar.destroy();
   },
 
   initProgressBar () {
     const canvasElement = ReactDOM.findDOMNode(this.refs.canvas);
+    const strokeWidth = this.props.size === 'small' ? 14 : 7;
 
     this.progressBar = new ProgressBar.Circle(canvasElement, {
-      strokeWidth: 10,
+      strokeWidth: strokeWidth,
       easing: 'easeInOut',
       duration: 800,
       color: this.props.color,
       trailColor: this.props.trailColor,
-      trailWidth: 10,
+      trailWidth: strokeWidth,
       svgStyle: {
         width: '100%',
         display: 'block',

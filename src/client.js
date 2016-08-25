@@ -1,4 +1,8 @@
-import 'svg4everybody';
+// Patches for IE
+require('svg4everybody');
+require('es6-object-assign').polyfill();
+require('es6-promise').polyfill();
+// Begin App code
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
