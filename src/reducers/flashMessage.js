@@ -5,7 +5,7 @@ import {
 
 const initialState = {};
 
-export default function petitions (state = initialState, action) {
+export default function flashMessage (state = initialState, action) {
   switch (action.type) {
     case SHOW_FLASH_MESSAGE:
       return Object.assign({}, state, {

@@ -23,7 +23,7 @@ const FlashMessage = React.createClass({
 
   render () {
     return (
-      <strong className={styles[this.props.modifier || 'default']}>
+      <strong className={styles[this.props.modifier || 'default']} role='alert'>
         {this.props.children || this.props.text}
       </strong>
     );

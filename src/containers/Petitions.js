@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchPetitions } from 'actions/PetitionActions';
+import { showModalWindow } from 'actions/ModalActions';
 import settings from 'settings';
 import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';
@@ -34,17 +35,19 @@ PetitionsContainer.propTypes = {
   fetchPetitions: React.PropTypes.func
 };
 
-export const mapStateToProps = ({ petitions }) => ({
+export const mapStateToProps = ({ petitions, me }) => ({
   petitions: getPetitions(petitions.data || []),
   total: petitions.total,
   currentPage: petitions.currentPage,
-  perPage: petitions.perPage
+  perPage: petitions.perPage,
+  me
 });
 
-// Add dispatchers to the component props,
-// for fetching the data _client side_
 export const mapDispatchToProps = (dispatch) => {
-  return { fetchPetitions: (options) => dispatch(fetchPetitions(options)) };
+  return {
+    fetchPetitions: (options) => dispatch(fetchPetitions(options)),
+    showModalWindow: () => dispatch(showModalWindow())
+  };
 };
 
 export default connect(

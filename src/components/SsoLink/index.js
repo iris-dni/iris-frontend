@@ -11,7 +11,7 @@ const baseUrl = () => {
 
 const SsoLink = ({ provider: { name, loginUrl }, location: { pathname, search } }) => {
   const delimiter = loginUrl.indexOf('?') < 0 ? '?' : '&';
-  const returnUrl = encodeURIComponent(`${baseUrl()}${pathname}${decodeURIComponent(search)}`);
+  const returnUrl = encodeURIComponent(`${baseUrl()}${pathname}${search ? decodeURIComponent(search) : ''}`);
   const url = `${loginUrl}${delimiter}irisreturl=${returnUrl}`;
 
   return <ButtonLink text={name} href={url} modifier={'accent'} />;

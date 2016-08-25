@@ -6,8 +6,11 @@ import GridItem from 'components/GridItem';
 import Teaser from 'components/Teaser';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
+import ButtonLink from 'components/ButtonLink';
+import TextCenter from 'components/TextCenter';
+import Paragraph from 'components/Paragraph';
 
-const Petitions = ({ total, petitions, currentPage, perPage }) => (
+const Petitions = ({ total, petitions, currentPage, perPage, showModalWindow, me }) => (
   <Container>
     <section>
       <Header>
@@ -16,6 +19,16 @@ const Petitions = ({ total, petitions, currentPage, perPage }) => (
           centered
         />
       </Header>
+      <TextCenter>
+        <Paragraph>
+          <ButtonLink
+            href={'/petitions/new'}
+            text={'Create a new Petition'}
+            modifier={'accent'}
+            onClick={!me && showModalWindow}
+          />
+        </Paragraph>
+      </TextCenter>
       <Grid>
         {petitions.map((petition) => {
           return (

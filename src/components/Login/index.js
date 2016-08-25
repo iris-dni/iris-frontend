@@ -18,7 +18,7 @@ const Login = ({ location, ssoProviders }) => (
     </Header>
     <TextCenter>
       <div className={styles.providers}>
-        {ssoProviders.map(provider => (
+        {(ssoProviders || []).map(provider => (
           <div key={provider.loginUrl}>
             <SsoLink
               location={location}
