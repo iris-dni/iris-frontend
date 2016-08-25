@@ -23,7 +23,7 @@ const CircleProgressBar = React.createClass({
   },
 
   componentDidUpdate (prevProps) {
-    if (this.props.percentage > 0 || prevProps.percentage !== this.props.percentage) {
+    if (prevProps.percentage !== this.props.percentage) {
       this.updateProgressBar(this.props.percentage);
     }
   },
