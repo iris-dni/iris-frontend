@@ -23,6 +23,7 @@ describe('petition repository', () => {
         let expectedDataArgument = { offset: 0, limit: 12 };
 
         petitionRepository.all();
+
         assert(ApiClient.request.calledWith(
           expectedPathArgument,
           expectedDataArgument
