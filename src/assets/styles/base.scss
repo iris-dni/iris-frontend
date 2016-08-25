@@ -1,0 +1,17 @@
+@import 'reset';
+@import 'globals';
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: $fonts-primary;
+  color: color('black');
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+svg {
+  display: block;
+}

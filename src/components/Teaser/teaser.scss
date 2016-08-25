@@ -1,0 +1,43 @@
+@import 'globals';
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.root {
+  composes: flex;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media('<=grid-3-cols') {
+    max-width: map-get($widths, 'teaser-max');
+  }
+}
+
+.link {
+  @include map-declarations($teaser-link-defaults, $teaser-link-custom);
+  composes: flex;
+  color: color('black');
+  border: 1px solid color('grey-lite');
+  padding: map-get($spacing, 'teaser-padding');
+  transition: transform 0.3s ease;
+}
+
+.link:hover,
+.link:active,
+.link.focus {
+  box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.title {
+  font-weight: normal;
+  margin-bottom: map-get($spacing, 'm-bottom');
+}
+
+.footer {
+  margin-top: auto;
+}

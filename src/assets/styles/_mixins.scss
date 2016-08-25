@@ -37,3 +37,57 @@
 
   font-size: $responsive;
 }
+
+///
+/// Output a loop of declarations from a Sass map
+///
+/// @author Hugo Giraudel (@hugogiraudel)
+///
+/// @param {Map}   $defaults  - Map of default declarations
+/// @param {Map}   $custom    - Map of custom declarations (merged with, and overwriting defaults)
+///
+/// @example scss - set default <h1> text styling and allow
+///  user to overwrite in declarations in their own map.
+///
+///   in user custom theme:
+///
+///   $h1-styles-custom: (
+///     'color': null,
+///     'line-height': 2,
+///
+///     ':hover, :active': (
+///       color: purple
+///     )
+///   );
+///
+///   in default theme:
+///
+///   $h1-styles-defaults: (
+///     'color': red,
+///     'text-transform': uppercase,
+///     'line-height': 1.5
+///   ) !default;
+///
+///   in component:
+///
+///   h1 {
+///     @include map-css($h1-styles-defaults, $h1-styles-custom);
+///   }
+///
+@mixin map-declarations($defaults, $custom: ()) {
+  $declarations: map-merge($defaults, $custom);
+
+  @each $property, $value in $declarations {
+    @if (type-of($value) == 'map') {
+      @at-root #{selector-append(&, $property)} {
+        @include css($value);
+      }
+    } @else {
+      $parsed-value: $value !default;
+      @if type-of($value) == string {
+        $parsed-value: unquote($value);
+      }
+      #{$property}: $parsed-value;
+    }
+  }
+}

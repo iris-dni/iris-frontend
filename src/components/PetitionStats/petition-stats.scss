@@ -1,0 +1,19 @@
+@import 'globals';
+
+.root {
+  list-style: none;
+  font-size: 1em;
+  letter-spacing: $letter-spacing;
+  align-items: stretch;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item {
+  color: color('dimmed');
+  margin-top: 15px;
+}
+
+.total {
+  color: color('primary');
+}

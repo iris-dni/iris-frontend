@@ -3,12 +3,17 @@
   <head>
     <meta charset="{{ charset or 'utf-8' }}">
     <title>{{ title or 'iris-frontend' }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% include 'theme/includes/webfonts.html' %}
     {% for stylesheet in bundles.stylesheets %}
-      <link rel="stylesheet" href="{{ stylesheet }}">
+      <link rel="stylesheet" href="{{ stylesheet }}"/>
     {% endfor %}
     {% include 'assets/includes/head.html' %}
     {% include 'theme/includes/head.html' %}
+    <script type="application/ld+json">
+      {{ schema | safe }}
+    </script>
   </head>
   <body>
     <div id="app">{{ reactMarkup | safe }}</div>

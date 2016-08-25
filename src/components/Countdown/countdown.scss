@@ -1,0 +1,24 @@
+@import 'globals';
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+}
+
+.counter {
+  line-height: 1.15;
+}
+
+.total {
+  display: block;
+  font-weight: normal;
+  font-size: 48px;
+}

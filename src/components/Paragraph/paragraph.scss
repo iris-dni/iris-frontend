@@ -1,9 +1,5 @@
 @import 'globals';
 
 .root {
-  font-family: $font-primary;
-  font-size: $paragraph-size;
-  line-height: $paragraph-line-height;
-  margin-bottom: $type-vertical-spacing;
-  letter-spacing: $paragraph-letter-spacing;
+  @include map-declarations($paragraph-defaults, $paragraph-custom);
 }

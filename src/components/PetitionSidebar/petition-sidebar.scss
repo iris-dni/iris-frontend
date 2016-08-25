@@ -1,0 +1,11 @@
+@import 'globals';
+
+.root {
+  margin-bottom: 30px;
+}
+
+.counter {
+  @include media('>petition-header') {
+    font-size: 18px;
+  }
+}

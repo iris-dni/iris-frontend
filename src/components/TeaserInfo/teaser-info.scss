@@ -1,0 +1,11 @@
+@import 'globals';
+
+.root {
+  list-style: none;
+  color: color('dimmed');
+  font-size: 13px;
+}
+
+.item {
+  margin-top: 5px;
+}

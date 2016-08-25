@@ -1,21 +1,47 @@
-$font-primary: 'Open Sans', 'Arial', 'sans-serif' !default;
+$fonts-primary: 'Open Sans', 'Arial', 'sans-serif' !default;
 
-$paragraph-size: 20px !default;
-$paragraph-line-height: 1.4 !default;
-$paragraph-letter-spacing: 0.3px !default;
+$line-height: 1.4 !default;
 
-$supporting-paragraph-size: 16px !default;
-$supporting-paragraph-line-height: 1.5 !default;
-$supporting-paragraph-letter-spacing: $paragraph-letter-spacing !default;
+$letter-spacing: 0.3px !default;
 
-$heading-1-size: 5vw !default;
-$heading-1-size-min: 26px !default;
-$heading-1-size-max: 48px !default;
-$heading-1-line-height: 1.125 !default;
-$heading-1-letter-spacing: 0.9px !default;
+$heading-1-defaults: (
+  'font-size': 1em,
+  'font-weight': normal,
+  'line-height': 1.125,
+  'letter-spacing': 0.9px
+) !default;
 
-$heading-2-size: 20px !default;
-$heading-2-line-height: $paragraph-line-height !default;
-$heading-2-letter-spacing: $paragraph-letter-spacing !default;
+$heading-2-defaults: (
+  'font-size': 20px,
+  'line-height': $line-height,
+  'margin-bottom': 10px
+) !default;
 
-$type-vertical-spacing: 30px !default;
+$paragraph-defaults: (
+  'font-size': 20px,
+  'line-height': $line-height,
+  'margin-bottom': 20px
+) !default;
+
+$intro-paragraph-defaults: (
+  'font-size': 1em,
+  'line-height': $line-height,
+) !default;
+
+$supporting-copy-defaults: (
+  'font-size': 16px,
+  'line-height': $line-height,
+  'margin-bottom': 20px
+) !default;
+
+$info-copy-defaults: (
+  'font-size': 1em,
+  'font-weight': normal,
+  'line-height': 1.125,
+  'letter-spacing': 0.9px
+) !default;
+
+$teaser-link-defaults: (
+  'line-height': 1.2,
+  'text-decoration': none
+) !default;

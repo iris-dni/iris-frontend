@@ -2,6 +2,7 @@ import moxios from 'moxios';
 import chai from 'chai';
 import server from 'server';
 import mockPetition from './mocks/petition';
+import mockPetitions from './mocks/petitions';
 
 const { assert } = chai;
 
@@ -18,9 +19,22 @@ describe('GET /', () => {
   });
 });
 
-describe('GET /basic', () => {
+describe('GET /petitions', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
   it('responds with 200', done => {
-    server.injectThen('/basic')
+    moxios.stubRequest(/.*/, {
+      status: 200,
+      response: mockPetitions
+    });
+
+    server.injectThen('/petitions')
       .then(response => {
         const actual = response.statusCode;
         const expected = 200;
@@ -43,7 +57,7 @@ describe('GET /petitions/:id', () => {
   it('responds with 200', done => {
     moxios.stubRequest(/.*/, {
       status: 200,
-      response: { data: mockPetition }
+      response: mockPetition
     });
 
     server.injectThen('/petitions/10')

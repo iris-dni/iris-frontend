@@ -1,0 +1,27 @@
+@import 'globals';
+
+.default {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  padding: 1em;
+  text-align: center;
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.success {
+  composes: default;
+  background-color: color('success');
+  color: darken(color('success'), 20%);
+}
+
+.error {
+  composes: default;
+  background-color: color('error');
+  color: darken(color('error'), 40%);
+}

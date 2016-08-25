@@ -1,0 +1,28 @@
+@import 'globals';
+
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  line-height: 1.3;
+}
+
+.progress {
+  position: relative;
+  margin-right: 5px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.caption {
+  color: color('dimmed');
+  font-size: 13px;
+}
+
+.figure {
+  color: color('primary');
+  font-size: 17px;
+}

@@ -1,3 +1,31 @@
-$container-max-width: 1200px;
+///
+/// Application-wide spacing map
+///
+/// @type Map
+///
+/// @prop {String} key - Name of the spacing
+/// @prop {Map} value - Spacing value
+///
+$spacing: (
+  'gutter': 20px,
+  'm-bottom': 20px,
+  'grid': 20px,
+  'teaser-padding': 10px
+) !default;
 
-$spacing-gutter: 20px;
+///
+/// Application-wide widths map
+///
+/// @type Map
+///
+/// @prop {String} key - Type of the width
+/// @prop {Map} value - Width value
+///
+$widths: (
+  'container-max': 1000px,
+  'container-min': 330px,
+  'header-max': 800px,
+  'teaser-max': 320px,
+  'fieldset-max': 650px
+) !default;
+

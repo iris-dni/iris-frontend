@@ -6,11 +6,20 @@ var autoprefixer = require('autoprefixer');
 
 var envVars = [
   'PORT',
-  'THEME_PATH'
+  'THEME_PATH',
+  'API_URL',
+  'BASE_URL'
+];
+
+var modulesDirs = [
+  'src',
+  'node_modules',
+  'web_modules'
 ];
 
 var cssloader = [
   'css?modules',
+  'sourceMap',
   'localIdentName=[hash:base64:5]'
 ].join('&');
 
@@ -37,7 +46,7 @@ var loaders = [
     loader: 'json'
   },
   {
-    include: /\.jsx?/,
+    include: /\.jsx?$/,
     loader: 'babel',
     exclude: /node_modules/
   },
@@ -80,11 +89,7 @@ module.exports = {
   module: { loaders: loaders },
   plugins: plugins,
   resolve: {
-    modulesDirectories: [
-      'src',
-      'node_modules',
-      'web_modules'
-    ],
+    modulesDirectories: modulesDirs,
     extensions: ['', '.json', '.js', '.jsx']
   },
   node: {

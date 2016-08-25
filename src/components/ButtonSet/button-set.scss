@@ -1,0 +1,25 @@
+@import 'globals';
+
+.root {
+  display: block;
+}
+
+.button {
+  margin-bottom: 15px;
+
+  @include media('>500px') {
+    display: inline-block;
+    margin-left: 15px;
+  }
+}
+
+.button:first-child {
+  margin-left: 0;
+}
+
+.button > * {
+  @include media('<=500px') {
+    display: block;
+    width: 100%;
+  }
+}
