@@ -29,6 +29,7 @@
   "author": "Edenspiekermann",
   "license": "ISC",
   "dependencies": {
+    "a11y-dialog": "^2.3.3",
     "ascii-json": "^0.2.0",
     "autoprefixer": "^6.3.7",
     "axios": "^0.13.1",
