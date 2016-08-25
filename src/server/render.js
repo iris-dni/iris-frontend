@@ -4,7 +4,6 @@ import { match, RouterContext } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
-import { assign } from 'lodash/object';
 import reducers from 'reducers';
 
 import routes from 'routes';
@@ -53,7 +52,7 @@ export default (request, reply, next) => {
 
           const state = store.getState();
 
-          return reply.view('index', assign({}, {
+          return reply.view('index', Object.assign({}, {
             reactMarkup: reactString,
             initialState: JSON.stringify(state)
           }, settings,

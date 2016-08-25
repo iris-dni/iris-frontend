@@ -1,7 +1,5 @@
-import { assign } from 'lodash/object';
-
 export default (defaultConfig = {}, customConfig = {}) => {
-  return assign({},
+  return Object.assign({},
     defaultConfig,
     (customConfig.default || customConfig)
   );

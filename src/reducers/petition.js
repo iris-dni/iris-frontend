@@ -1,4 +1,3 @@
-import { assign } from 'lodash/object';
 import {
   RECEIVE_PETITION,
   CREATED_PETITION,
@@ -14,7 +13,7 @@ export default function petition (state = initialState, action) {
     case CREATED_PETITION:
     case UPDATED_PETITION:
     case PUBLISHED_PETITION:
-      return assign({}, state, action.petition);
+      return Object.assign({}, state, action.petition);
     default:
       return state;
   }
