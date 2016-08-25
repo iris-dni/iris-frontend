@@ -1,0 +1,27 @@
+{
+  "name": "iris-frontend",
+  "description": "View layer of the Iris petition platform",
+  "scripts": {},
+  "env": {
+    "API_URL": {
+      "required": true
+    },
+    "BASE_URL": {
+      "required": true
+    },
+    "NODE_ENV": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs#v83"
+    }
+  ]
+}
