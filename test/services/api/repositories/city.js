@@ -23,4 +23,19 @@ describe('city repository', () => {
       ));
     });
   });
+
+  describe('search', () => {
+    let expectedPathArgument = '/cities';
+
+    it('calls the API with search arguments', () => {
+      let expectedDataArgument = { ft: 'term', sort: 'score' };
+
+      cityRepository.search('term');
+
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument,
+        expectedDataArgument
+      ));
+    });
+  });
 });
