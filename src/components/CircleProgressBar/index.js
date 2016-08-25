@@ -17,7 +17,19 @@ const CircleProgressBar = React.createClass({
 
   componentDidMount () {
     this.initProgressBar();
-    this.updateProgressBar(this.props.percentage);
+    if (this.props.percentage > 0) {
+      this.updateProgressBar(this.props.percentage);
+    }
+  },
+
+  componentDidUpdate (prevProps) {
+    if (this.props.percentage > 0 || prevProps.percentage !== this.props.percentage) {
+      this.updateProgressBar(this.props.percentage);
+    }
+  },
+
+  componentWillUnmount () {
+    this.progressBar.destroy();
   },
 
   initProgressBar () {

@@ -1,12 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ProgressBar from 'components/ProgressBar';
+import PetitionProgress from 'components/PetitionProgress';
 import getPetitionProgress from 'selectors/petitionProgress';
 
-const PetitionProgressContainer = ({ votingActive, percentage, aria }) => (
-  votingActive
-    ? <ProgressBar animated percentage={percentage} aria={aria} />
-  : null
+const PetitionProgressContainer = (props) => (
+  <PetitionProgress {...props} />
 );
 
 const mapStateToProps = ({ petition }) => {
