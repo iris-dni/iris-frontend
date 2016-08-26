@@ -12,6 +12,7 @@ import Button from 'components/Button';
 import ButtonSet from 'components/ButtonSet';
 import settings from 'settings';
 import getPetitionForm from 'selectors/petitionForm';
+import Autocomplete from 'containers/autocomplete';
 
 export const FIELDS = [
   {
@@ -62,6 +63,7 @@ export const FIELDS = [
 
 const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, publishPetition }) => (
   <form onSubmit={handleSubmit(petition.persisted ? updatePetition : createPetition)}>
+    <Autocomplete key='petitionCities' endpoint={'cities'} />
     <Fieldset>
       {FIELDS.map(field => (
         <TextField
