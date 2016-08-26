@@ -24,7 +24,7 @@ describe('me reducer', () => {
 
   it('provides fallback state', () => {
     const actual = me(undefined, {});
-    const expected = false;
+    const expected = { isLoading: false };
 
     assert.deepEqual(actual, expected);
   });

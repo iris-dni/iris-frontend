@@ -1,30 +1,29 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { ssoProviders, authSettings } from 'settings';
+import { authSettings } from 'settings';
+import CheckAuth from 'components/CheckAuth';
 import Login from 'components/Login';
+import generateSsoProviders from 'helpers/generateSsoProviders';
 
 const LoginContainer = withRouter(React.createClass({
   componentWillUpdate (nextProps) {
     const redirectAfterLogin = this.props.location.query.next || authSettings.afterLoginPath;
-
-    if (nextProps.me) {
+    if (nextProps.me && nextProps.me.id) {
       this.props.router.replace(redirectAfterLogin);
     }
   },
 
   render () {
-    if (!this.props.me) {
-      return <Login location={this.props.location} ssoProviders={ssoProviders} />;
-    }
-
-    return null;
+    return (
+      <CheckAuth me={this.props.me}>
+        <Login ssoProviders={generateSsoProviders(this.props.location)} />
+      </CheckAuth>
+    );
   }
 }));
 
-export const mapStateToProps = ({ me }) => ({
-  me
-});
+export const mapStateToProps = ({ me }) => ({ me });
 
 export default connect(
   mapStateToProps

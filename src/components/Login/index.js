@@ -7,7 +7,7 @@ import PageTitle from 'components/PageTitle';
 import TextCenter from 'components/TextCenter';
 import SsoLink from 'components/SsoLink';
 
-const Login = ({ location, ssoProviders }) => (
+const Login = ({ ssoProviders }) => (
   <Container>
     <Header>
       <PageTitle
@@ -19,10 +19,10 @@ const Login = ({ location, ssoProviders }) => (
     <TextCenter>
       <div className={styles.providers}>
         {(ssoProviders || []).map(provider => (
-          <div key={provider.loginUrl}>
+          <div key={provider.url}>
             <SsoLink
-              location={location}
-              provider={provider}
+              url={provider.url}
+              text={provider.text}
             />
           </div>
         ))}

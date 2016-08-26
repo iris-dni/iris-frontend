@@ -12,7 +12,7 @@ const logoutLink = () => {
 
 const LoginLink = React.createClass({
   render () {
-    return this.props.me ? logoutLink() : loginLink();
+    return this.props.me.id ? logoutLink() : loginLink();
   }
 });
 

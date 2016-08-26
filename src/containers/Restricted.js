@@ -1,36 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { showModalWindow } from 'actions/ModalActions';
+import { showAuthModal } from 'actions/ModalActions';
+import CheckAuth from 'components/CheckAuth';
 
 const RestrictedWrapper = (WrappedComponent) => {
   const Restricted = withRouter(React.createClass({
     componentWillMount () {
-      if (__CLIENT__ && !this.props.me) {
-        if (this.props.location.action === 'POP') {
-          this.props.router.replace(
-            `/auth/login?next=${encodeURIComponent(this.props.location.pathname)}`
+      const { me, location, router } = this.props;
+
+      if (__CLIENT__ && !me.id) {
+        if (location.action === 'POP') {
+          router.replace(
+            `/auth/login?next=${encodeURIComponent(location.pathname)}`
           );
         } else {
-          this.props.router.goBack();
-          this.props.showModalWindow();
+          router.goBack();
+          this.props.showAuthModal(location);
         }
       }
     },
 
     render () {
-      if (this.props.me) {
-        return <WrappedComponent {...this.props} />;
-      }
-
-      return null;
+      return (
+        <CheckAuth me={this.props.me}>
+          <WrappedComponent {...this.props} />
+        </CheckAuth>
+      );
     }
   }));
 
   const mapStateToProps = (state) => (state);
 
   const mapDispatchToProps = (dispatch) => {
-    return { showModalWindow: () => dispatch(showModalWindow()) };
+    return { showAuthModal: (location) => dispatch(showAuthModal(location)) };
   };
 
   return connect(
