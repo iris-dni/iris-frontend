@@ -14,7 +14,11 @@ const LoginContainer = withRouter(React.createClass({
   },
 
   render () {
-    return <Login location={this.props.location} ssoProviders={ssoProviders} />;
+    if (!this.props.me) {
+      return <Login location={this.props.location} ssoProviders={ssoProviders} />;
+    }
+
+    return null;
   }
 }));
 
