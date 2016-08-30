@@ -38,6 +38,11 @@
   composes: shared;
 }
 
+.smaller {
+  @include map-declarations($button-smaller-defaults, $button-smaller-custom);
+  composes: shared;
+}
+
 /*
  * 1. calculated with http://razorjam.github.io/sasscolourfunctioncalculator/
  */

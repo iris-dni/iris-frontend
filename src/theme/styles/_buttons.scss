@@ -23,6 +23,11 @@ $button-regular-hover-defaults: (
   'background-color': color('grey')
 );
 
+$button-smaller-defaults: (
+  'padding': 0.5em 0.625em,
+  'font-size': 90%
+);
+
 $button-accent-defaults: (
   'color': color('white'),
   'background-color': color('primary')

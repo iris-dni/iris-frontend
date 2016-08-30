@@ -8,6 +8,8 @@ const SupportButton = ({ petition, supportPetition }) => (
   <Button
     type='button'
     onClick={() => supportPetition(petition)}
+    size={'smaller'}
+    modifier={'accent'}
     text={settings.petition.supportButton} />
 );
 

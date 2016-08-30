@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './button.scss';
 
-export const getClassname = ({ disabled, modifier, fill }) => {
+export const getClassname = ({ disabled, modifier, fill, size }) => {
   return [
     styles[disabled ? 'disabled' : (modifier || 'default')],
+    styles[size],
     styles[fill ? 'block' : 'inline']
   ].join(' ');
 };
