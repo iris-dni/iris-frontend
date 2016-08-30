@@ -133,20 +133,4 @@ describe('petition repository', () => {
       ));
     });
   });
-
-  describe('support', () => {
-    let examplePetition = { id: exampleId, title: exampleTitle };
-    let expectedPathArgument = `/petitions/${exampleId}/event/support`;
-    let expectedMethodArgument = 'POST';
-
-    it('calls the API client with proper arguments', () => {
-      petitionRepository.support(examplePetition);
-
-      assert(ApiClient.request.calledWith(
-        expectedPathArgument,
-        null,
-        expectedMethodArgument
-      ));
-    });
-  });
 });
