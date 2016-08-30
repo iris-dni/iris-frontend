@@ -63,7 +63,6 @@ export const FIELDS = [
 
 const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, publishPetition }) => (
   <form onSubmit={handleSubmit(petition.persisted ? updatePetition : createPetition)}>
-    <Autocomplete key='petitionCities' endpoint={'cities'} />
     <Fieldset>
       {FIELDS.map(field => (
         <TextField
@@ -73,6 +72,11 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, pu
         />
       ))}
     </Fieldset>
+
+    <Fieldset>
+      <Autocomplete key='petitionCities' />
+    </Fieldset>
+
     <Fieldset modifier={'actions'}>
       <ButtonSet>
         <Button

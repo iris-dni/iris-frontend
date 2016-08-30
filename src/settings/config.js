@@ -59,6 +59,10 @@ export default {
     previewButton: 'Preview your Petition'
   },
   petitionFields: {
+    city: {
+      label: 'Your city',
+      placeholder: 'Aarau - 5000'
+    },
     title: {
       label: 'Your petition title',
       placeholder: '',

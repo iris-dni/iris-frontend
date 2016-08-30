@@ -1,22 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Autocomplete from 'components/Autocomplete';
-import { typeaheadSearch } from 'actions/AutocompleteActions';
+import { typeaheadSearch, toggleTypeaheadOpening } from 'actions/AutocompleteActions';
 
-const AutocompleteContainer = (props) => (
-  <Autocomplete {...props} />
-);
+const AutocompleteContainer = (props) => {
+  return <Autocomplete {...props} />;
+};
 
 AutocompleteContainer.propTypes = {
-  options: React.PropTypes.array
+  options: React.PropTypes.array,
+  isOpen: React.PropTypes.bool
 };
 
 export const mapStateToProps = ({ autocomplete }) => ({
-  options: autocomplete.results
+  options: autocomplete.results,
+  isOpen: autocomplete.isOpen
 });
 
 export const mapDispatchToProps = (dispatch) => {
-  return { typeaheadSearch: (query) => dispatch(typeaheadSearch(query)) };
+  return {
+    typeaheadSearch: (query) => dispatch(typeaheadSearch(query)),
+    toggleTypeaheadOpening: (isOpen) => dispatch(toggleTypeaheadOpening(isOpen))
+  };
 };
 
 export default connect(

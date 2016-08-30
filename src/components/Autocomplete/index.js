@@ -1,12 +1,27 @@
 import React from 'react';
+import {Typeahead} from 'react-typeahead';
+import styles from './autocomplete.scss';
 
-const Autocomplete = ({ options, endpoint, typeaheadSearch }) => (
-  <div>
-    <input onKeyUp={(e) => typeaheadSearch(e.target.value)} />
-    {(options || []).map((option) => (
-      <div key={option.id}>{option.name}</div>
-    ))}
-  </div>
+const displayOption = (option) => {
+  return option.name + ' - ' + option.zips[0];
+};
+
+const Autocomplete = ({ options, isOpen, typeaheadSearch, toggleTypeaheadOpening }) => (
+  <Typeahead
+    className={isOpen ? styles.open : ''}
+    onKeyUp={(e) => typeaheadSearch(e.target.value)}
+    onOptionSelected={() => toggleTypeaheadOpening(false)}
+    options={options}
+    maxVisible={5}
+    filterOption='name'
+    displayOption={displayOption}
+    defaultClassNames={false}
+    customClasses={{
+      input: styles.input,
+      results: styles.list,
+      listItem: styles.result
+    }}
+  />
 );
 
 export default Autocomplete;
