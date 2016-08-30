@@ -33,6 +33,6 @@ export default {
 
   support: (petition) => {
     const requestPath = path.join('/petitions', petition.id.toString(), '/event/support');
-    return ApiClient.request(requestPath, null, 'POST');
+    return ApiClient.request(requestPath, {}, 'POST');
   }
 };

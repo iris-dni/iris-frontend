@@ -105,6 +105,7 @@ describe('petition repository', () => {
   describe('publish', () => {
     let examplePetition = { id: exampleId, title: exampleTitle };
     let expectedPathArgument = `/petitions/${exampleId}/event/publish`;
+    let expectedDataArgument = null;
     let expectedMethodArgument = 'POST';
 
     it('calls the API client with proper arguments', () => {
@@ -112,7 +113,7 @@ describe('petition repository', () => {
 
       assert(ApiClient.request.calledWith(
         expectedPathArgument,
-        null,
+        expectedDataArgument,
         expectedMethodArgument
       ));
     });
@@ -121,6 +122,7 @@ describe('petition repository', () => {
   describe('support', () => {
     let examplePetition = { id: exampleId, title: exampleTitle };
     let expectedPathArgument = `/petitions/${exampleId}/event/support`;
+    let expectedDataArgument = {};
     let expectedMethodArgument = 'POST';
 
     it('calls the API client with proper arguments', () => {
@@ -128,7 +130,7 @@ describe('petition repository', () => {
 
       assert(ApiClient.request.calledWith(
         expectedPathArgument,
-        null,
+        expectedDataArgument,
         expectedMethodArgument
       ));
     });
