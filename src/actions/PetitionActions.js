@@ -16,19 +16,6 @@ import {
   hideFlashMessage
 } from './FlashActions';
 
-export function requestPetition () {
-  return {
-    type: REQUEST_PETITION
-  };
-}
-
-export function receivePetition (petition) {
-  return {
-    type: RECEIVE_PETITION,
-    petition
-  };
-}
-
 export function fetchPetition (id) {
   return (dispatch, getState) => {
     dispatch(requestPetition());
@@ -39,16 +26,16 @@ export function fetchPetition (id) {
   };
 }
 
-export function requestPetitions () {
+export function requestPetition () {
   return {
-    type: REQUEST_PETITIONS
+    type: REQUEST_PETITION
   };
 }
 
-export function receivePetitions (petitions) {
+export function receivePetition (petition) {
   return {
-    type: RECEIVE_PETITIONS,
-    petitions
+    type: RECEIVE_PETITION,
+    petition
   };
 }
 
@@ -72,6 +59,19 @@ export function fetchPetitions ({ petitions, location, perPage, currentPage }) {
           return dispatch(receivePetitions(pagedResponse));
         });
     }
+  };
+}
+
+export function requestPetitions () {
+  return {
+    type: REQUEST_PETITIONS
+  };
+}
+
+export function receivePetitions (petitions) {
+  return {
+    type: RECEIVE_PETITIONS,
+    petitions
   };
 }
 
