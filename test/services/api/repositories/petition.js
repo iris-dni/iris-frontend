@@ -19,9 +19,8 @@ describe('petition repository', () => {
     let expectedPathArgument = '/petitions';
 
     context('without any argument', () => {
-      let expectedDataArgument = { offset: 0, limit: 12, resolve: 'city,owner' };
-
       it('calls the API client with default offset and limit', () => {
+        let expectedDataArgument = { offset: 0, limit: 12, resolve: 'city,owner' };
         petitionRepository.all();
 
         assert(ApiClient.request.calledWith(
@@ -32,9 +31,8 @@ describe('petition repository', () => {
     });
 
     context('with custom pagination argument', () => {
-      let expectedDataArgument = { offset: 10, limit: 10, resolve: 'city,owner' };
-
       it('calls the API client with proper offset and limit', () => {
+        let expectedDataArgument = { offset: 10, limit: 10, resolve: 'city,owner' };
         petitionRepository.all({ page: 2, limit: 10 });
 
         assert(ApiClient.request.calledWith(
@@ -131,6 +129,22 @@ describe('petition repository', () => {
       assert(ApiClient.request.calledWith(
         expectedPathArgument,
         expectedDataArgument,
+        expectedMethodArgument
+      ));
+    });
+  });
+
+  describe('support', () => {
+    let examplePetition = { id: exampleId, title: exampleTitle };
+    let expectedPathArgument = `/petitions/${exampleId}/event/support`;
+    let expectedMethodArgument = 'POST';
+
+    it('calls the API client with proper arguments', () => {
+      petitionRepository.support(examplePetition);
+
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument,
+        null,
         expectedMethodArgument
       ));
     });
