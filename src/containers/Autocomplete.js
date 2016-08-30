@@ -19,8 +19,12 @@ export const mapStateToProps = ({ autocomplete }) => ({
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    typeaheadSearch: (query) => dispatch(typeaheadSearch(query)),
-    toggleTypeaheadOpening: (isOpen) => dispatch(toggleTypeaheadOpening(isOpen))
+    typeaheadSearch: (endpoint, query) => (
+      dispatch(typeaheadSearch(endpoint, query))
+    ),
+    toggleTypeaheadOpening: (isOpen) => (
+      dispatch(toggleTypeaheadOpening(isOpen))
+    )
   };
 };
 
