@@ -6,8 +6,8 @@ import styles from './autocomplete.scss';
 
 const getClassname = (element, error) => {
   return [
-    styles[element || styles.input],
-    styles[error ? styles.invalid : styles.valid]
+    styles[element || 'input'],
+    styles[error ? 'invalid' : 'valid']
   ].join(' ');
 };
 
@@ -27,8 +27,8 @@ const Autocomplete = ({
 }) => (
   <Typeahead
     onKeyUp={(e) => typeaheadSearch(endpoint, e.target.value)}
+    onBlur={helper.onBlur}
     onOptionSelected={() => toggleTypeaheadOpening(false)}
-
     options={isOpen ? options : []}
     maxVisible={5}
     filterOption={filterOption}
