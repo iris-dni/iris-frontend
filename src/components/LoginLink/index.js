@@ -2,19 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-const loginLink = () => {
-  return <Link to='/auth/login'>Login</Link>;
-};
-
-const logoutLink = () => {
-  return <Link to='/auth/logout'>Logout</Link>;
-};
-
-const LoginLink = React.createClass({
-  render () {
-    return this.props.me.id ? logoutLink() : loginLink();
-  }
-});
+const LoginLink = ({ me }) => (
+  me && me.id
+    ? <Link to='/auth/logout'>Logout</Link>
+    : <Link to='/auth/login'>Login</Link>
+);
 
 export const mapStateToProps = ({ me }) => ({ me });
 

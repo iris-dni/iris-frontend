@@ -27,9 +27,8 @@ describe('me reducer', () => {
   });
 
   it('handles the REQUEST_LOGOUT action', () => {
-    const actual = me({}, {
-      type: 'REQUEST_LOGOUT',
-      me: mockWhoAmI.data
+    const actual = me(mockWhoAmI.data, {
+      type: 'REQUEST_LOGOUT'
     });
     const expected = Object.assign({}, mockWhoAmI.data, {
       isLoading: true
@@ -39,7 +38,9 @@ describe('me reducer', () => {
   });
 
   it('handles the RECEIVE_LOGOUT action', () => {
-    const actual = me({}, {
+    const actual = me({
+      me: mockWhoAmI.data
+    }, {
       type: 'RECEIVE_LOGOUT'
     });
     const expected = {
@@ -50,10 +51,8 @@ describe('me reducer', () => {
   });
 
   it('provides fallback state', () => {
-    const actual = me(undefined, {});
-    const expected = {
-      isLoading: false
-    };
+    const actual = me(mockWhoAmI.data, {});
+    const expected = mockWhoAmI.data;
 
     assert.deepEqual(actual, expected);
   });

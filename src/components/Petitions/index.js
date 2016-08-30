@@ -10,7 +10,7 @@ import ButtonLink from 'components/ButtonLink';
 import TextCenter from 'components/TextCenter';
 import Paragraph from 'components/Paragraph';
 
-const Petitions = ({ total, petitions, currentPage, perPage, showModalWindow, me }) => (
+const Petitions = ({ petitions }) => (
   <Container>
     <section>
       <Header>
@@ -25,7 +25,6 @@ const Petitions = ({ total, petitions, currentPage, perPage, showModalWindow, me
             href={'/petitions/new'}
             text={'Create a new Petition'}
             modifier={'accent'}
-            onClick={!me && showModalWindow}
           />
         </Paragraph>
       </TextCenter>

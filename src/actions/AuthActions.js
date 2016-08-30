@@ -28,10 +28,9 @@ export function fetchWhoAmI () {
   };
 }
 
-export function requestLogout (me) {
+export function requestLogout () {
   return {
-    type: REQUEST_LOGOUT,
-    me
+    type: REQUEST_LOGOUT
   };
 }
 
