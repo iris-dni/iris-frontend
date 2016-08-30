@@ -17,7 +17,9 @@ import {
   updatePetition,
   updatedPetition,
   publishPetition,
-  publishedPetition
+  publishedPetition,
+  supportPetition,
+  supportedPetition
 } from 'actions/PetitionActions';
 
 describe('PetitionActions', () => {
@@ -298,6 +300,59 @@ describe('PetitionActions', () => {
 
     it('passes petition object', () => {
       const result = publishedPetition(mockPetition);
+      const actual = result.petition;
+      const expected = mockPetition;
+
+      assert.equal(actual, expected);
+    });
+  });
+
+  describe('supportPetition', () => {
+    let dispatch;
+    let result;
+    let petition;
+
+    beforeEach(() => {
+      dispatch = sinon.spy();
+
+      moxios.install();
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetition
+      });
+
+      petition = { id: 2, ...mockPetition.data };
+
+      result = supportPetition(petition, dispatch);
+    });
+
+    afterEach(() => {
+      moxios.uninstall();
+    });
+
+    it('dispatches submitPetition()', () => {
+      result(dispatch);
+      assert(dispatch.calledWith(submitPetition()));
+    });
+
+    it('returns function that returns a promise that dispatches supportedPetition() when done', done => {
+      result(dispatch).then(() => {
+        assert(dispatch.calledWithMatch(supportedPetition(mockPetition.data)));
+      }).then(done, done);
+    });
+  });
+
+  describe('supportedPetition', () => {
+    it('returns SUPPORTED_PETITION action', () => {
+      const result = supportedPetition();
+      const actual = result.type;
+      const expected = 'SUPPORTED_PETITION';
+
+      assert.equal(actual, expected);
+    });
+
+    it('passes petition object', () => {
+      const result = supportedPetition(mockPetition);
       const actual = result.petition;
       const expected = mockPetition;
 
