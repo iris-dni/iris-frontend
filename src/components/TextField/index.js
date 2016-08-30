@@ -23,6 +23,7 @@ export default ({ config, helper }) => (
         hint={config.hint}
       />
     }
+
     <div className={styles.wrapper}>
       <config.element
         className={getClassname(config.element, fieldIsInvalid(helper))}

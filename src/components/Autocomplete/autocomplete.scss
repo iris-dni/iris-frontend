@@ -1,0 +1,55 @@
+@import 'globals';
+
+$default-border-radius: map-get($form-fields-defaults, 'border-radius');
+
+.input {
+  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  width: 50%;
+  border-color: color('grey'); /* This will be removed later with valid state on input */
+}
+
+.open .input {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.list {
+  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  padding: 0;
+  border-top: 0;
+  border-color: color('grey');
+  border-radius: 0 0 $default-border-radius $default-border-radius;
+  width: 50%;
+  list-style: none;
+}
+
+.result {
+  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  border: 1px solid color('grey-lite');
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: color('success');
+    border-color: color('success');
+
+    > a {
+      color: color('white');
+    }
+  }
+
+  &:first-of-type {
+    border-top: 0;
+  }
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
+}
+
+.result > a {
+  text-decoration: none;
+  color: color('dimmed');
+}
