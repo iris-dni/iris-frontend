@@ -18,8 +18,7 @@ import {
   updatedPetition,
   publishPetition,
   publishedPetition,
-  supportPetition,
-  supportedPetition
+  supportPetition
 } from 'actions/PetitionActions';
 
 describe('PetitionActions', () => {
@@ -335,28 +334,10 @@ describe('PetitionActions', () => {
       assert(dispatch.calledWith(submitPetition()));
     });
 
-    it('returns function that returns a promise that dispatches supportedPetition() when done', done => {
+    it('returns function that returns a promise that dispatches receivePetition() when done', done => {
       result(dispatch).then(() => {
-        assert(dispatch.calledWithMatch(supportedPetition(mockPetition.data)));
+        assert(dispatch.calledWithMatch(receivePetition(mockPetition.data)));
       }).then(done, done);
-    });
-  });
-
-  describe('supportedPetition', () => {
-    it('returns SUPPORTED_PETITION action', () => {
-      const result = supportedPetition();
-      const actual = result.type;
-      const expected = 'SUPPORTED_PETITION';
-
-      assert.equal(actual, expected);
-    });
-
-    it('passes petition object', () => {
-      const result = supportedPetition(mockPetition);
-      const actual = result.petition;
-      const expected = mockPetition;
-
-      assert.equal(actual, expected);
     });
   });
 });

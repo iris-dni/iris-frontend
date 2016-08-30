@@ -8,8 +8,7 @@ import {
   SUBMIT_PETITION,
   CREATED_PETITION,
   UPDATED_PETITION,
-  PUBLISHED_PETITION,
-  SUPPORTED_PETITION
+  PUBLISHED_PETITION
 } from './actionTypes';
 
 import {
@@ -146,18 +145,11 @@ export function supportPetition (petition, dispatch) {
     dispatch(submitPetition());
     return petitionRepository.support(petition)
       .then((response) => dispatch(
-        supportedPetition(response.data),
+        receivePetition(response.data)
       )).then(() => dispatch(
         hideFlashMessage()
       )).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
       ));
-  };
-}
-
-export function supportedPetition (petition) {
-  return {
-    type: SUPPORTED_PETITION,
-    petition
   };
 }
