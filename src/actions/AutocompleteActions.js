@@ -6,7 +6,7 @@ import {
 } from './actionTypes';
 
 // Sadly, the react-typeahead module doesn‘t expose a way to detect if the
-// list is open or not, so we have to do manually toggle a class instead.
+// list is open or not, so we have to manually toggle a class instead.
 export function toggleTypeaheadOpening (isOpen) {
   return {
     type: TOGGLE_TYPEAHEAD_OPENING,

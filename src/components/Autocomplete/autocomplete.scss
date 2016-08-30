@@ -2,15 +2,39 @@
 
 $default-border-radius: map-get($form-fields-defaults, 'border-radius');
 
-.input {
+.field {
   @include map-declarations($form-fields-defaults, $form-fields-custom);
+  display: block;
+  width: 100%;
+  transition: border-radius 150ms;
+}
+
+.input {
+  composes: field;
   width: 50%;
-  border-color: color('grey'); /* This will be removed later with valid state on input */
 }
 
 .open .input {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.textarea {
+  composes: field;
+  resize: vertical;
+  min-height: 200px;
+}
+
+.valid {
+  border-color: color('grey');
+}
+
+.valid:focus {
+  border-color: color('dimmed');
+}
+
+.invalid {
+  border-color: color('error');
 }
 
 .list {
@@ -30,6 +54,7 @@ $default-border-radius: map-get($form-fields-defaults, 'border-radius');
   border-right: 0;
   border-radius: 0;
   cursor: pointer;
+  transition: all 150ms;
 
   &:hover {
     background-color: color('success');

@@ -8,24 +8,26 @@ import {
 import petitionValidator from 'form/petitionValidator';
 import Fieldset from 'components/Fieldset';
 import TextField from 'components/TextField';
+import AutocompleteField from 'components/AutocompleteField';
 import Button from 'components/Button';
 import ButtonSet from 'components/ButtonSet';
 import settings from 'settings';
 import getPetitionForm from 'selectors/petitionForm';
-import Autocomplete from 'containers/autocomplete';
 
 export const FIELDS = [
   {
-    name: 'id',
+    type: TextField,
     element: 'input',
+    name: 'id',
     hidden: true,
     html: {
       type: 'hidden'
     }
   },
   {
-    name: 'description',
+    type: TextField,
     element: 'textarea',
+    name: 'description',
     label: settings.petitionFields.description.label,
     hint: settings.petitionFields.description.hint,
     html: {
@@ -36,8 +38,9 @@ export const FIELDS = [
     }
   },
   {
-    name: 'suggested_solution',
+    type: TextField,
     element: 'textarea',
+    name: 'suggested_solution',
     label: settings.petitionFields.suggested_solution.label,
     hint: settings.petitionFields.suggested_solution.hint,
     html: {
@@ -47,8 +50,9 @@ export const FIELDS = [
     }
   },
   {
-    name: 'title',
+    type: TextField,
     element: 'input',
+    name: 'title',
     label: settings.petitionFields.title.label,
     hint: settings.petitionFields.title.hint,
     html: {
@@ -58,6 +62,20 @@ export const FIELDS = [
       minLength: 15,
       maxLength: 80
     }
+  },
+  {
+    type: AutocompleteField,
+    name: 'city',
+    label: settings.petitionFields.city.label,
+    hint: settings.petitionFields.city.hint,
+    endpoint: 'cities',
+    filterOption: 'name',
+    displayOption: (option) => {
+      return option.name + ' - ' + option.zips[0];
+    },
+    html: {
+      placeholder: settings.petitionFields.city.placeholder
+    }
   }
 ];
 
@@ -65,16 +83,12 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, pu
   <form onSubmit={handleSubmit(petition.persisted ? updatePetition : createPetition)}>
     <Fieldset>
       {FIELDS.map(field => (
-        <TextField
+        <field.type
           key={field.name}
           config={field}
           helper={fields[field.name]}
         />
       ))}
-    </Fieldset>
-
-    <Fieldset>
-      <Autocomplete key='petitionCities' endpoint='cities' />
     </Fieldset>
 
     <Fieldset modifier={'actions'}>
