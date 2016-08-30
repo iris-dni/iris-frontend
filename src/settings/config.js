@@ -62,6 +62,9 @@ export default {
       hint: 'Because you care a lot about your cause, you probably have some great ideas about how to solve it. Clearly outline the actions required to achieve your goal.'
     }
   },
+  petition: {
+    supportButton: 'Support Petition'
+  },
   ssoProviders: [
     {
       text: 'Sign in with AZ Medien',
