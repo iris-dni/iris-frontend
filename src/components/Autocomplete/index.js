@@ -1,23 +1,51 @@
 import React from 'react';
+import domOnlyProps from 'form/domOnlyProps';
+import fieldIsInvalid from 'form/fieldIsInvalid';
 import {Typeahead} from 'react-typeahead';
 import styles from './autocomplete.scss';
 
-const displayOption = (option) => {
-  return option.name + ' - ' + option.zips[0];
+const getClassname = (element, error) => {
+  return [
+    styles[element || styles.input],
+    styles[error ? styles.invalid : styles.valid]
+  ].join(' ');
 };
 
-const Autocomplete = ({ options, isOpen, endpoint, typeaheadSearch, toggleTypeaheadOpening }) => (
+const Autocomplete = ({
+  isOpen,
+  endpoint,
+  typeaheadSearch,
+  toggleTypeaheadOpening,
+  displayOption,
+  filterOption,
+  options,
+
+  inputClass,
+  helper,
+  name,
+  html
+}) => (
   <Typeahead
-    className={isOpen ? styles.open : ''}
     onKeyUp={(e) => typeaheadSearch(endpoint, e.target.value)}
     onOptionSelected={() => toggleTypeaheadOpening(false)}
-    options={options}
+
+    options={isOpen ? options : []}
     maxVisible={5}
-    filterOption='name'
+    filterOption={filterOption}
     displayOption={displayOption}
+
+    className={isOpen ? styles.open : ''}
+    inputProps={{
+      name: name,
+      id: name,
+      required: html.required,
+      autoComplete: html.autocomplete || 'off',
+      ...domOnlyProps(helper)
+    }}
+    placeholder={html.placeholder}
     defaultClassNames={false}
     customClasses={{
-      input: styles.input,
+      input: getClassname('input', fieldIsInvalid(helper)),
       results: styles.list,
       listItem: styles.result
     }}
