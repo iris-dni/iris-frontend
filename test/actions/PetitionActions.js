@@ -280,7 +280,7 @@ describe('PetitionActions', () => {
       assert(dispatch.calledWith(submitPetition()));
     });
 
-    it('returns function that returns a promise that dispatches updatedPetition() when done', done => {
+    it('returns function that returns a promise that dispatches publishedPetition() when done', done => {
       result(dispatch).then(() => {
         assert(dispatch.calledWithMatch(publishedPetition(mockPetition.data)));
       }).then(done, done);
