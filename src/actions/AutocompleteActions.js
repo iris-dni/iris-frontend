@@ -27,10 +27,23 @@ export function clearSearchResults () {
   };
 }
 
-export function typeaheadSearch (query) {
+export function typeaheadSearch (endpoint, query) {
   return (dispatch, getState) => {
     if (query && query.length > 2) {
-      return citiesRepository.search(query).then(response => {
+      let repository;
+
+      // Depending on the endpoint, we can choose the repository we must search
+      // into.
+      switch (endpoint) {
+        case 'cities':
+          repository = citiesRepository;
+          break;
+        default:
+          console.warn(`No repository found for endpoint “${endpoint}“)`);
+          return;
+      }
+
+      return repository.search(query).then(response => {
         const results = response.data;
 
         dispatch(toggleTypeaheadOpening(results.length));

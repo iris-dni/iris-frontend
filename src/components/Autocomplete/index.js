@@ -6,10 +6,10 @@ const displayOption = (option) => {
   return option.name + ' - ' + option.zips[0];
 };
 
-const Autocomplete = ({ options, isOpen, typeaheadSearch, toggleTypeaheadOpening }) => (
+const Autocomplete = ({ options, isOpen, endpoint, typeaheadSearch, toggleTypeaheadOpening }) => (
   <Typeahead
     className={isOpen ? styles.open : ''}
-    onKeyUp={(e) => typeaheadSearch(e.target.value)}
+    onKeyUp={(e) => typeaheadSearch(endpoint, e.target.value)}
     onOptionSelected={() => toggleTypeaheadOpening(false)}
     options={options}
     maxVisible={5}

@@ -74,7 +74,7 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, pu
     </Fieldset>
 
     <Fieldset>
-      <Autocomplete key='petitionCities' />
+      <Autocomplete key='petitionCities' endpoint='cities' />
     </Fieldset>
 
     <Fieldset modifier={'actions'}>
