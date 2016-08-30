@@ -6,9 +6,9 @@ describe('petition reducer', () => {
   it('handles the RECEIVE_PETITION action', () => {
     const actual = petition({}, {
       type: 'RECEIVE_PETITION',
-      petition: mockPetition
+      petition: mockPetition.data
     });
-    const expected = mockPetition;
+    const expected = mockPetition.data;
 
     assert.deepEqual(actual, expected);
   });
@@ -16,9 +16,9 @@ describe('petition reducer', () => {
   it('handles the CREATED_PETITION action', () => {
     const actual = petition({}, {
       type: 'CREATED_PETITION',
-      petition: mockPetition
+      petition: mockPetition.data
     });
-    const expected = mockPetition;
+    const expected = mockPetition.data;
 
     assert.deepEqual(actual, expected);
   });
@@ -26,9 +26,9 @@ describe('petition reducer', () => {
   it('handles the UPDATED_PETITION action', () => {
     const actual = petition({}, {
       type: 'UPDATED_PETITION',
-      petition: mockPetition
+      petition: mockPetition.data
     });
-    const expected = mockPetition;
+    const expected = mockPetition.data;
 
     assert.deepEqual(actual, expected);
   });
@@ -36,9 +36,9 @@ describe('petition reducer', () => {
   it('handles the PUBLISHED_PETITION action', () => {
     const actual = petition({}, {
       type: 'PUBLISHED_PETITION',
-      petition: mockPetition
+      petition: mockPetition.data
     });
-    const expected = mockPetition;
+    const expected = mockPetition.data;
 
     assert.deepEqual(actual, expected);
   });

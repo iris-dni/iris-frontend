@@ -35,12 +35,11 @@ PetitionsContainer.propTypes = {
   fetchPetitions: React.PropTypes.func
 };
 
-export const mapStateToProps = ({ petitions, me }) => ({
+export const mapStateToProps = ({ petitions }) => ({
   petitions: getPetitions(petitions.data || []),
   total: petitions.total,
   currentPage: petitions.currentPage,
-  perPage: petitions.perPage,
-  me
+  perPage: petitions.perPage
 });
 
 export const mapDispatchToProps = (dispatch) => {

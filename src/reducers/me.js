@@ -13,19 +13,21 @@ export default function me (state = initialState, action) {
       return Object.assign({}, state, {
         isLoading: true
       });
-    case REQUEST_LOGOUT:
-      return Object.assign({}, state, {
-        isLoading: true
-      });
     case RECEIVE_WHOAMI:
       return action.me && Object.assign({}, state, action.me, {
         isLoading: false
       });
+    case REQUEST_LOGOUT:
+      return action.me && Object.assign({}, state, action.me, {
+        isLoading: true
+      });
     case RECEIVE_LOGOUT:
-      return {
+      return Object.assign({}, state, {
         isLoading: false
-      };
+      });
     default:
-      return state;
+      return Object.assign({}, state, {
+        isLoading: false
+      });
   }
 }
