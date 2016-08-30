@@ -85,6 +85,7 @@ export default {
   flashMessages: {
     genericError: 'Sadly something failed, please try again!',
     petitionCreated: 'Great, your petition was created!',
-    petitionUpdated: 'Your petition was updated'
+    petitionUpdated: 'Your petition was updated',
+    petitionSupported: 'Thank you for signing this petition!'
   }
 };
