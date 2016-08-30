@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { showAuthModal } from 'actions/ModalActions';
+import { showModalWindow } from 'actions/ModalActions';
 import CheckAuth from 'components/CheckAuth';
 
 const RestrictedWrapper = (WrappedComponent) => {
@@ -16,7 +16,7 @@ const RestrictedWrapper = (WrappedComponent) => {
           );
         } else {
           router.goBack();
-          this.props.showAuthModal(location);
+          this.props.showModalWindow('auth', location);
         }
       }
     },
@@ -33,7 +33,7 @@ const RestrictedWrapper = (WrappedComponent) => {
   const mapStateToProps = (state) => (state);
 
   const mapDispatchToProps = (dispatch) => {
-    return { showAuthModal: (location) => dispatch(showAuthModal(location)) };
+    return { showModalWindow: (type, location) => dispatch(showModalWindow(type, location)) };
   };
 
   return connect(

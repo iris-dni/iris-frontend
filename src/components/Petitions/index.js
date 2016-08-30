@@ -6,7 +6,7 @@ import GridItem from 'components/GridItem';
 import Teaser from 'components/Teaser';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
-import ButtonLink from 'components/ButtonLink';
+import ModalTrigger from 'containers/ModalTrigger';
 import TextCenter from 'components/TextCenter';
 import Paragraph from 'components/Paragraph';
 
@@ -21,7 +21,8 @@ const Petitions = ({ petitions }) => (
       </Header>
       <TextCenter>
         <Paragraph>
-          <ButtonLink
+          <ModalTrigger
+            modal={'auth'}
             href={'/petitions/new'}
             text={'Create a new Petition'}
             modifier={'accent'}

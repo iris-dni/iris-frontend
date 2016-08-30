@@ -5,10 +5,10 @@ import ModalWindow from 'components/ModalWindow';
 import Login from 'components/Login';
 import generateSsoProviders from 'helpers/generateSsoProviders';
 
-const ModalWindowContainer = ({ type, active, location, hideModalWindow }) => (
+const ModalWindowContainer = ({ type, active, returnUrl, hideModalWindow }) => (
   <ModalWindow active={active} hideModalWindow={hideModalWindow}>
     {type === 'auth' &&
-      <Login ssoProviders={generateSsoProviders(location)} />
+      <Login ssoProviders={generateSsoProviders(returnUrl || '')} />
     }
   </ModalWindow>
 );

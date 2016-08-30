@@ -5,6 +5,7 @@ import { authSettings } from 'settings';
 import CheckAuth from 'components/CheckAuth';
 import Login from 'components/Login';
 import generateSsoProviders from 'helpers/generateSsoProviders';
+import getReturnUrlFromLocation from 'helpers/getReturnUrlFromLocation';
 
 const LoginContainer = withRouter(React.createClass({
   componentWillUpdate (nextProps) {
@@ -17,7 +18,9 @@ const LoginContainer = withRouter(React.createClass({
   render () {
     return (
       <CheckAuth me={this.props.me}>
-        <Login ssoProviders={generateSsoProviders(this.props.location)} />
+        <Login ssoProviders={generateSsoProviders(
+          getReturnUrlFromLocation(this.props.location)
+        )} />
       </CheckAuth>
     );
   }

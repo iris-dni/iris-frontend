@@ -11,10 +11,11 @@ export function showAuthModal (location) {
   };
 }
 
-export function showModalWindow (modalType) {
+export function showModalWindow (modalType, location) {
   return {
     type: SHOW_MODAL_WINDOW,
-    modalType
+    modalType,
+    location
   };
 }
 

@@ -1,15 +1,16 @@
-const baseUrl = () => {
+export default (ssoUrl, returnUrl) => {
   if (!process.env.BASE_URL) {
     throw new Error('Please define a BASE_URL in .env');
   }
 
-  return process.env.BASE_URL;
-};
+  const baseUrl = process.env.BASE_URL;
+  const delimiter = ssoUrl.indexOf('?') < 0 ? '?' : '&';
+  const irisRetUrl = encodeURIComponent([baseUrl, returnUrl].join(''));
 
-export default (url, pathname, search) => {
-  const delimiter = url.indexOf('?') < 0 ? '?' : '&';
-  const returnUrl = encodeURIComponent(
-    `${baseUrl()}${pathname}${search ? decodeURIComponent(search) : ''}`
-  );
-  return `${url}${delimiter}irisreturl=${returnUrl}`;
+  return [
+    ssoUrl,
+    delimiter,
+    'irisreturl=',
+    irisRetUrl
+  ].join('');
 };
