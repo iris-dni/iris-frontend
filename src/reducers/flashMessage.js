@@ -13,10 +13,7 @@ export default function flashMessage (state = initialState, action) {
         modifier: action.modifier
       });
     case HIDE_FLASH_MESSAGE:
-      return Object.assign({}, state, {
-        text: '',
-        modifier: ''
-      });
+      return {};
     default:
       return state;
   }
