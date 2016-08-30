@@ -23,7 +23,7 @@ describe('ModalActions', () => {
       assert.equal(actual, expected);
     });
 
-    it('passes location string', () => {
+    it('passes location to action', () => {
       const result = showModalWindow('auth', '/petitions');
       const actual = result.location;
       const expected = '/petitions';
