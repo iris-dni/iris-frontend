@@ -19,9 +19,9 @@ describe('petition repository', () => {
     let expectedPathArgument = '/petitions';
 
     context('without any argument', () => {
-      it('calls the API client with default offset and limit', () => {
-        let expectedDataArgument = { offset: 0, limit: 12, resolve: 'city,owner' };
+      let expectedDataArgument = { offset: 0, limit: 12, resolve: 'city,owner' };
 
+      it('calls the API client with default offset and limit', () => {
         petitionRepository.all();
 
         assert(ApiClient.request.calledWith(
@@ -32,9 +32,9 @@ describe('petition repository', () => {
     });
 
     context('with custom pagination argument', () => {
-      it('calls the API client with proper offset and limit', () => {
-        let expectedDataArgument = { offset: 10, limit: 10, resolve: 'city,owner' };
+      let expectedDataArgument = { offset: 10, limit: 10, resolve: 'city,owner' };
 
+      it('calls the API client with proper offset and limit', () => {
         petitionRepository.all({ page: 2, limit: 10 });
 
         assert(ApiClient.request.calledWith(
@@ -71,11 +71,10 @@ describe('petition repository', () => {
   describe('create', () => {
     let examplePetition = { id: exampleId, title: exampleTitle };
     let expectedPathArgument = '/petitions';
+    let expectedPetitionArgument = { id: exampleId, title: exampleTitle };
+    let expectedMethodArgument = 'POST';
 
     it('calls the API client with proper arguments', () => {
-      let expectedPetitionArgument = { id: exampleId, title: exampleTitle };
-      let expectedMethodArgument = 'POST';
-
       petitionRepository.create(examplePetition);
 
       assert(ApiClient.request.calledWith(
@@ -89,11 +88,10 @@ describe('petition repository', () => {
   describe('update', () => {
     let examplePetition = { id: exampleId, title: exampleTitle };
     let expectedPathArgument = `/petitions/${exampleId}`;
+    let expectedPetitionArgument = { title: exampleTitle };
+    let expectedMethodArgument = 'POST';
 
     it('calls the API client with proper arguments', () => {
-      let expectedPetitionArgument = { title: exampleTitle };
-      let expectedMethodArgument = 'POST';
-
       petitionRepository.update(examplePetition);
 
       assert(ApiClient.request.calledWith(
@@ -107,11 +105,26 @@ describe('petition repository', () => {
   describe('publish', () => {
     let examplePetition = { id: exampleId, title: exampleTitle };
     let expectedPathArgument = `/petitions/${exampleId}/event/publish`;
+    let expectedMethodArgument = 'POST';
 
     it('calls the API client with proper arguments', () => {
-      let expectedMethodArgument = 'POST';
-
       petitionRepository.publish(examplePetition);
+
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument,
+        null,
+        expectedMethodArgument
+      ));
+    });
+  });
+
+  describe('support', () => {
+    let examplePetition = { id: exampleId, title: exampleTitle };
+    let expectedPathArgument = `/petitions/${exampleId}/event/support`;
+    let expectedMethodArgument = 'POST';
+
+    it('calls the API client with proper arguments', () => {
+      petitionRepository.support(examplePetition);
 
       assert(ApiClient.request.calledWith(
         expectedPathArgument,

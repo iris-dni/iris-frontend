@@ -29,5 +29,10 @@ export default {
   publish: (petition) => {
     const requestPath = path.join('/petitions', petition.id.toString(), '/event/publish');
     return ApiClient.request(requestPath, null, 'POST');
+  },
+
+  support: (petition) => {
+    const requestPath = path.join('/petitions', petition.id.toString(), '/event/support');
+    return ApiClient.request(requestPath, null, 'POST');
   }
 };
