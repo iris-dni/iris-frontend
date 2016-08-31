@@ -1,7 +1,7 @@
 import React from 'react';
 import domOnlyProps from 'form/domOnlyProps';
 import fieldIsInvalid from 'form/fieldIsInvalid';
-import {Typeahead} from 'react-typeahead';
+import Autosuggest from 'react-autosuggest';
 import styles from './autocomplete.scss';
 
 const getClassname = (element, error) => {
@@ -12,42 +12,37 @@ const getClassname = (element, error) => {
 };
 
 const Autocomplete = ({
-  isOpen,
   endpoint,
-  typeaheadSearch,
-  toggleTypeaheadOpening,
   displayOption,
-  filterOption,
+  typeaheadSearch,
+  clearSearchResults,
   options,
-
-  inputClass,
   helper,
   name,
   html
 }) => (
-  <Typeahead
-    onKeyUp={(e) => typeaheadSearch(endpoint, e.target.value)}
-    onBlur={helper.onBlur}
-    onOptionSelected={() => toggleTypeaheadOpening(false)}
-    options={isOpen ? options : []}
-    maxVisible={5}
-    filterOption={filterOption}
-    displayOption={displayOption}
-
-    className={isOpen ? styles.open : ''}
+  <Autosuggest
+    theme={{
+      containerOpen: styles.open,
+      input: getClassname('input', fieldIsInvalid(helper)),
+      suggestionsList: styles.list,
+      suggestion: styles.result
+    }}
+    suggestions={options || []}
+    renderSuggestion={displayOption}
+    getSuggestionValue={displayOption}
+    onSuggestionsFetchRequested={(e) => typeaheadSearch(endpoint, e.value)}
+    onSuggestionsClearRequested={clearSearchResults}
     inputProps={{
       name: name,
       id: name,
       required: html.required,
+      placeholder: html.placeholder,
       autoComplete: html.autocomplete || 'off',
-      ...domOnlyProps(helper)
-    }}
-    placeholder={html.placeholder}
-    defaultClassNames={false}
-    customClasses={{
-      input: getClassname('input', fieldIsInvalid(helper)),
-      results: styles.list,
-      listItem: styles.result
+      ...domOnlyProps(helper),
+      value: helper.value,
+      onBlur: helper.onBlur,
+      onChange: (e, { newValue }) => (helper.onChange(newValue))
     }}
   />
 );

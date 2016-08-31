@@ -16,6 +16,20 @@ import getPetitionForm from 'selectors/petitionForm';
 
 export const FIELDS = [
   {
+    type: AutocompleteField,
+    name: 'city',
+    label: settings.petitionFields.city.label,
+    hint: settings.petitionFields.city.hint,
+    endpoint: 'cities',
+    filterOption: 'name',
+    displayOption: (option) => {
+      return option.name + ' - ' + option.zips[0];
+    },
+    html: {
+      placeholder: settings.petitionFields.city.placeholder
+    }
+  },
+  {
     type: TextField,
     element: 'input',
     name: 'id',
@@ -61,20 +75,6 @@ export const FIELDS = [
       required: true,
       minLength: 15,
       maxLength: 80
-    }
-  },
-  {
-    type: AutocompleteField,
-    name: 'city',
-    label: settings.petitionFields.city.label,
-    hint: settings.petitionFields.city.hint,
-    endpoint: 'cities',
-    filterOption: 'name',
-    displayOption: (option) => {
-      return option.name + ' - ' + option.zips[0];
-    },
-    html: {
-      placeholder: settings.petitionFields.city.placeholder
     }
   }
 ];
