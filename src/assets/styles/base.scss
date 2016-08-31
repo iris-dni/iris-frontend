@@ -1,8 +1,12 @@
 @import 'reset';
 @import 'globals';
 
+/*
+ * 1. Always show scrollbar so modal content does not jump
+ */
 html {
   -webkit-font-smoothing: antialiased;
+  overflow-y: scroll; /* 1 */
 }
 
 body {
@@ -14,4 +18,23 @@ body {
 
 svg {
   display: block;
+}
+
+/*
+ * Modal positioning and usability
+ *
+ * 1. Hide overflow and stop scrolling when modal active
+ * 2. Minimum 100vh height to mimic html element
+ * 3. Re-add scrollbar now hidden by html element
+ */
+:global {
+  .modal-active,
+  .modal-active body {
+    overflow: hidden; /* 1 */
+  }
+
+  .modal-active .wrapper {
+    min-height: 100vh; /* 2 */
+    overflow-y: scroll; /* 3 */
+  }
 }
