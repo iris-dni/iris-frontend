@@ -36,19 +36,13 @@ $default-border-radius: map-get($form-fields-defaults, 'border-radius');
   list-style: none;
 }
 
-.focused,
-.suggestion:hover {
-  background-color: color('success');
-  border-color: color('success');
-  color: color('white');
-}
-
 .suggestion {
   @include map-declarations($form-fields-defaults, $form-fields-custom);
   border: 1px solid color('grey-lite');
   border-left: 0;
   border-right: 0;
   border-radius: 0;
+  color: color('dimmed');
   cursor: pointer;
   transition: all 150ms;
 
@@ -61,7 +55,9 @@ $default-border-radius: map-get($form-fields-defaults, 'border-radius');
   }
 }
 
-.suggestion > a {
-  text-decoration: none;
-  color: color('dimmed');
+.focused,
+.suggestion:hover {
+  background-color: color('success');
+  border-color: color('success');
+  color: color('white');
 }
