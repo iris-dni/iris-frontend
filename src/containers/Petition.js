@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { fetchPetition } from 'actions/PetitionActions';
+import { fetchPetition, supportPetition } from 'actions/PetitionActions';
 import Petition from 'components/Petition';
 import getPetition from 'selectors/petition';
 
@@ -10,7 +10,11 @@ const PetitionContainer = React.createClass({
   // fetch Petition if `id` is not defined.
   componentWillMount () {
     if (!this.props.id || !this.props.id !== this.props.params.id) {
-      this.props.fetchPetition(this.props.params.id);
+      this.props.fetchPetition(this.props.params.id).then(() => {
+        if (__CLIENT__ && this.props.location.query.intent === 'support') {
+          this.props.supportPetition(this.props);
+        }
+      });
     }
   },
 
@@ -34,15 +38,14 @@ PetitionContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetition(params.id));
 };
 
-export const mapStateToProps = ({ petition }) => {
-  return getPetition(petition);
-};
+export const mapStateToProps = ({ petition }) => getPetition(petition);
 
 // Add dispatchers to the component props,
 // for fetching the data _client side_
-export const mapDispatchToProps = (dispatch) => {
-  return { fetchPetition: (id) => dispatch(fetchPetition(id)) };
-};
+export const mapDispatchToProps = (dispatch) => ({
+  fetchPetition: (id) => dispatch(fetchPetition(id)),
+  supportPetition: (petition) => dispatch(supportPetition(petition))
+});
 
 PetitionContainer.propTypes = {
   id: React.PropTypes.string,
