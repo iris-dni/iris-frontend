@@ -16,6 +16,12 @@
   height: 16px;
 }
 
+.large {
+  composes: root;
+  width: 25px;
+  height: 25px;
+}
+
 .invert {
   fill: white;
 }

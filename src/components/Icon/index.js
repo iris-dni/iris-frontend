@@ -3,9 +3,9 @@ import styles from './icon.scss';
 
 const getClassname = (size, modifier, inline) => {
   return [
-    styles[size || 'default'],
+    styles[size || ''],
     styles[modifier || 'default'],
-    styles[inline ? 'inline' : 'default']
+    styles[inline ? 'inline' : '']
   ].join(' ');
 };
 

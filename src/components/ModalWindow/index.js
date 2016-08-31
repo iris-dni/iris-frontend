@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './modal-window.scss';
+import CloseButton from 'components/CloseButton';
 
 const Modal = ({ active, children, hideModalWindow }) => {
   return (
@@ -8,12 +9,15 @@ const Modal = ({ active, children, hideModalWindow }) => {
       <div role='dialog' aria-labelledby='dialog-title' className={styles.content}>
         <div role='document'>
           {children}
-          <button type='button'
-            className={styles.close}
-            onClick={() => hideModalWindow()}
-            data-a11y-dialog-hide aria-label='Close this dialog window'>
-            &times;
-          </button>
+          <div className={styles.close}>
+            <CloseButton
+              onClick={hideModalWindow}
+              attrs={{
+                'data-a11y-dialog-hide': true,
+                'aria-label': 'Close this dialog window'
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
