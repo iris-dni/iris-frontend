@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { throttle } from 'throttle-debounce';
 import Autocomplete from 'components/Autocomplete';
 import { typeaheadSearch, clearSuggestions } from 'actions/AutocompleteActions';
+
+const QUERY_THROTTLE_TIME = 700;
 
 const AutocompleteContainer = (props) => {
   return <Autocomplete {...props} />;
@@ -17,9 +20,9 @@ export const mapStateToProps = ({ autocomplete }) => ({
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    typeaheadSearch: (endpoint, query) => (
+    typeaheadSearch: throttle(QUERY_THROTTLE_TIME, (endpoint, query) => (
       dispatch(typeaheadSearch(endpoint, query))
-    ),
+    )),
     clearSuggestions: () => (
       dispatch(clearSuggestions())
     )

@@ -19,30 +19,21 @@ export function clearSuggestions () {
 
 export function typeaheadSearch (endpoint, query) {
   return (dispatch, getState) => {
-    if (query) {
-      query = query.trim().toLowerCase();
+    let repository;
 
-      if (query.length > 2) {
-        let repository;
-
-        // Depending on the endpoint, we can choose the repository we must search
-        // into.
-        switch (endpoint) {
-          case 'cities':
-            repository = citiesRepository;
-            break;
-          default:
-            console.warn(`No repository found for endpoint “${endpoint}“)`);
-            return;
-        }
-
-        return repository.search(query).then(response => dispatch(
-            updateSuggestions(response.data)
-        ));
-      }
+    // Depending on the endpoint, we can choose the repository we must search
+    // into.
+    switch (endpoint) {
+      case 'cities':
+        repository = citiesRepository;
+        break;
+      default:
+        console.warn(`No repository found for endpoint “${endpoint}“)`);
+        return;
     }
 
-    return dispatch(clearSuggestions());
+    return repository.search(query).then(response => dispatch(
+      updateSuggestions(response.data)
+    ));
   };
 }
-

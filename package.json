@@ -75,6 +75,7 @@
     "style-loader": "^0.13.1",
     "svg4everybody": "^2.1.0",
     "svgo": "^0.6.6",
+    "throttle-debounce": "^1.0.1",
     "url-pattern": "^1.0.1",
     "vision": "^4.1.0",
     "webpack": "^1.13.1"

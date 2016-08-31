@@ -4,11 +4,30 @@ import fieldIsInvalid from 'form/fieldIsInvalid';
 import Autosuggest from 'react-autosuggest';
 import styles from './autocomplete.scss';
 
+const MIN_QUERY_LENGTH = 2;
+
 const getClassname = (element, error) => {
   return [
     styles[element || 'input'],
     styles[error ? 'invalid' : 'valid']
   ].join(' ');
+};
+
+// We handle the query length validation here as we don‘t want to do it in the
+// (throttled) typeahead search. If we did, the first input after
+// MIN_QUERY_LENGTH would be delayed.
+const handleFetchRequest = (endpoint, e, typeaheadSearch, clearSuggestions) => {
+  let query = e.value;
+
+  if (query) {
+    query = query.trim().toLowerCase();
+
+    if (query.length > MIN_QUERY_LENGTH) {
+      return typeaheadSearch(endpoint, query);
+    }
+  }
+
+  return clearSuggestions();
 };
 
 const Autocomplete = ({
@@ -33,7 +52,9 @@ const Autocomplete = ({
     suggestions={suggestions || []}
     renderSuggestion={displaySuggestion}
     getSuggestionValue={displaySuggestion}
-    onSuggestionsFetchRequested={(e) => typeaheadSearch(endpoint, e.value)}
+    onSuggestionsFetchRequested={(e) => (
+      handleFetchRequest(endpoint, e, typeaheadSearch, clearSuggestions)
+    )}
     onSuggestionsClearRequested={clearSuggestions}
     focusFirstSuggestion
     inputProps={{
