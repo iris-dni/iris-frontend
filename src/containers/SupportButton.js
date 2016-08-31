@@ -1,16 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { supportPetition } from 'actions/PetitionActions';
+import { showModalWindow } from 'actions/ModalActions';
 import getPetionSupportable from 'selectors/petitionSupportable';
 import SupportButton from 'components/SupportButton';
 
-const mapStateToProps = ({ petition }) => ({
+const mapStateToProps = ({ me, petition }) => ({
+  me,
   petition,
   supportable: getPetionSupportable(petition)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  supportPetition: (petition) => dispatch(supportPetition(petition))
+  supportPetition: (petition) => dispatch(supportPetition(petition)),
+  showAuthModal: (petition) => dispatch(showModalWindow('auth', `/petitions/${petition.id}?intent=support`))
 });
 
 SupportButton.propTypes = {
