@@ -15,16 +15,17 @@ const Petitions = ({ petitions }) => (
     <section>
       <Header>
         <PageTitle
-          title={settings.petitionsPageTitle}
+          title={settings.petitionsPage.title}
           centered
         />
       </Header>
       <TextCenter>
         <Paragraph>
           <ModalTrigger
+            authenticating
             modal={'auth'}
             href={'/petitions/new'}
-            text={'Create a new Petition'}
+            text={settings.petitionsPage.createButton}
             modifier={'accent'}
           />
         </Paragraph>
