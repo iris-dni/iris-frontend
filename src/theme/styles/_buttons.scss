@@ -7,6 +7,11 @@ $button-shared-defaults: (
   'transition': 'background-color 0.2s ease, color 0.2s ease'
 );
 
+$button-shared-hover-icon-defaults: (
+  'transition': fill 0.2s ease,
+  'fill': white
+);
+
 $button-border-defaults: (
   'border-color': color('grey'),
   'color': color('black'),

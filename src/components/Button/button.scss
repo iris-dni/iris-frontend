@@ -10,6 +10,14 @@
   }
 }
 
+.shared:hover,
+.shared:active,
+.shared:focus {
+  svg {
+    @include map-declarations($button-shared-hover-icon-defaults, $button-shared-hover-icon-custom);
+  }
+}
+
 .border {
   @include map-declarations($button-border-defaults, $button-border-custom);
 }

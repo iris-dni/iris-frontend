@@ -1,0 +1,19 @@
+@import 'globals';
+
+.title {
+  font-weight: normal;
+
+  @include media('>700px') {
+    font-size: 28px;
+  }
+}
+
+.intro {
+  color: color('dimmed');
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  @include media('>700px') {
+    font-size: 18px;
+  }
+}

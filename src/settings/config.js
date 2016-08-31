@@ -66,14 +66,6 @@ export default {
     {
       text: 'Sign in with AZ Medien',
       url: 'http://aaz-azdev.lovelysystems.com/anmelden'
-    },
-    {
-      text: 'Sign in with Google',
-      url: 'http://aaz-azdev.lovelysystems.com/anmelden'
-    },
-    {
-      text: 'Sign in with Facebook',
-      url: 'http://aaz-azdev.lovelysystems.com/anmelden'
     }
   ],
   auth: {

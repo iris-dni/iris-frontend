@@ -24,8 +24,7 @@ $max-from-edge: 10px;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 600px;
-  padding: 0 15px 20px;
+  width: 550px;
   max-height: calc(100vh - #{($max-from-top * 2)});
   max-width: calc(100vw - #{($max-from-edge * 2)});
   overflow-y: auto;
@@ -33,6 +32,14 @@ $max-from-edge: 10px;
 
   background-color: color('white');
   border-radius: 2px;
+
+  @include media('<=500px') {
+    padding: 20px;
+  }
+
+  @include media('>500px') {
+    padding: 30px 50px;
+  }
 }
 
 .close {
