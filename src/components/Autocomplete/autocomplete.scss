@@ -2,27 +2,16 @@
 
 $default-border-radius: map-get($form-fields-defaults, 'border-radius');
 
-.field {
+.input {
   @include map-declarations($form-fields-defaults, $form-fields-custom);
   display: block;
-  width: 100%;
-  transition: border-radius 150ms;
-}
-
-.input {
-  composes: field;
   width: 50%;
+  transition: border-radius 150ms;
 }
 
 .open .input {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-}
-
-.textarea {
-  composes: field;
-  resize: vertical;
-  min-height: 200px;
 }
 
 .valid {
@@ -47,7 +36,7 @@ $default-border-radius: map-get($form-fields-defaults, 'border-radius');
   list-style: none;
 }
 
-.result {
+.suggestion {
   @include map-declarations($form-fields-defaults, $form-fields-custom);
   border: 1px solid color('grey-lite');
   border-left: 0;
@@ -74,7 +63,7 @@ $default-border-radius: map-get($form-fields-defaults, 'border-radius');
   }
 }
 
-.result > a {
+.suggestion > a {
   text-decoration: none;
   color: color('dimmed');
 }

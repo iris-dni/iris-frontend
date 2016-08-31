@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Autocomplete from 'components/Autocomplete';
-import { typeaheadSearch, clearSearchResults } from 'actions/AutocompleteActions';
+import { typeaheadSearch, clearSuggestions } from 'actions/AutocompleteActions';
 
 const AutocompleteContainer = (props) => {
   return <Autocomplete {...props} />;
 };
 
 AutocompleteContainer.propTypes = {
-  options: React.PropTypes.array
+  suggestions: React.PropTypes.array
 };
 
 export const mapStateToProps = ({ autocomplete }) => ({
-  options: autocomplete.results
+  suggestions: autocomplete.suggestions
 });
 
 export const mapDispatchToProps = (dispatch) => {
@@ -20,8 +20,8 @@ export const mapDispatchToProps = (dispatch) => {
     typeaheadSearch: (endpoint, query) => (
       dispatch(typeaheadSearch(endpoint, query))
     ),
-    clearSearchResults: () => (
-      dispatch(clearSearchResults())
+    clearSuggestions: () => (
+      dispatch(clearSuggestions())
     )
   };
 };
