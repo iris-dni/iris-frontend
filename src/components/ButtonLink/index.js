@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import styles from '../Button/button.scss';
+import { getClassname } from 'components/Button';
 
 const createAttrs = (props) => {
   return {
@@ -8,7 +8,7 @@ const createAttrs = (props) => {
     onClick: props.onClick
       ? (e) => { e.preventDefault(); props.onClick(); }
       : () => {},
-    className: styles[props.modifier || 'default']
+    className: getClassname(props)
   };
 };
 

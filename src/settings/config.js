@@ -66,6 +66,14 @@ export default {
     {
       text: 'Sign in with AZ Medien',
       url: 'http://aaz-azdev.lovelysystems.com/anmelden'
+    },
+    {
+      text: 'Sign in with Google',
+      url: 'http://aaz-azdev.lovelysystems.com/anmelden'
+    },
+    {
+      text: 'Sign in with Facebook',
+      url: 'http://aaz-azdev.lovelysystems.com/anmelden'
     }
   ],
   auth: {
@@ -73,7 +81,7 @@ export default {
     afterLogoutPath: '/'
   },
   loginPage: {
-    title: 'Nearly there',
+    title: 'Please sign in',
     intro: 'To begin creating your Petition please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   },
   flashMessages: {

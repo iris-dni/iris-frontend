@@ -10,7 +10,7 @@ const CloseButton = ({ onClick, attrs }) => (
     <Icon
       id={'Close'}
       size={'large'}
-      modifier={'dimmed'}
+      modifier={'invert'}
     />
   </button>
 );

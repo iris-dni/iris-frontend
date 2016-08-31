@@ -3,9 +3,7 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { authSettings } from 'settings';
 import CheckAuth from 'components/CheckAuth';
-import Login from 'components/Login';
-import generateSsoProviders from 'helpers/generateSsoProviders';
-import getReturnUrlFromLocation from 'helpers/getReturnUrlFromLocation';
+import LoginPage from 'components/LoginPage';
 
 const LoginContainer = withRouter(React.createClass({
   componentWillUpdate (nextProps) {
@@ -18,9 +16,7 @@ const LoginContainer = withRouter(React.createClass({
   render () {
     return (
       <CheckAuth me={this.props.me}>
-        <Login ssoProviders={generateSsoProviders(
-          getReturnUrlFromLocation(this.props.location)
-        )} />
+        <LoginPage location={this.props.location} />
       </CheckAuth>
     );
   }

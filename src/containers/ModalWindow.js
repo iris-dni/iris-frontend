@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { hideModalWindow } from 'actions/ModalActions';
 import ModalWindow from 'components/ModalWindow';
-import Login from 'components/Login';
+import LoginModal from 'components/LoginModal';
 import generateSsoProviders from 'helpers/generateSsoProviders';
 
 const ModalWindowContainer = ({ type, active, returnUrl, hideModalWindow }) => (
   <ModalWindow active={active} hideModalWindow={hideModalWindow}>
     {type === 'auth' &&
-      <Login ssoProviders={generateSsoProviders(returnUrl || '')} />
+      <LoginModal ssoProviders={generateSsoProviders(returnUrl || '')} />
     }
   </ModalWindow>
 );

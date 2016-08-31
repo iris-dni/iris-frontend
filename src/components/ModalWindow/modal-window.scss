@@ -1,6 +1,7 @@
 @import 'globals';
 
-$max-from-edge: 20px;
+$max-from-top: 50px;
+$max-from-edge: 10px;
 
 .root {
   display: block;
@@ -17,18 +18,20 @@ $max-from-edge: 20px;
 }
 
 .content {
-  max-height: calc(100vh - #{($max-from-edge * 2)});
-  max-width: calc(100vw - #{($max-from-edge * 2)});
-  overflow-y: auto;
-  overflow-x: hidden;
-  background-color: color('white');
-  z-index: 3;
   position: fixed;
+  z-index: 3;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
   width: 600px;
-  padding: 0 20px 20px;
+  padding: 0 15px 20px;
+  max-height: calc(100vh - #{($max-from-top * 2)});
+  max-width: calc(100vw - #{($max-from-edge * 2)});
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background-color: color('white');
   border-radius: 2px;
 }
 
@@ -36,4 +39,5 @@ $max-from-edge: 20px;
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 4;
 }

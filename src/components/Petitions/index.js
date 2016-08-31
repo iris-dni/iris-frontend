@@ -8,7 +8,6 @@ import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import ModalTrigger from 'containers/ModalTrigger';
 import TextCenter from 'components/TextCenter';
-import Paragraph from 'components/Paragraph';
 
 const Petitions = ({ petitions }) => (
   <Container>
@@ -20,15 +19,13 @@ const Petitions = ({ petitions }) => (
         />
       </Header>
       <TextCenter>
-        <Paragraph>
-          <ModalTrigger
-            authenticating
-            modal={'auth'}
-            href={'/petitions/new'}
-            text={settings.petitionsPage.createButton}
-            modifier={'accent'}
-          />
-        </Paragraph>
+        <ModalTrigger
+          authenticating
+          modal={'auth'}
+          href={'/petitions/new'}
+          text={settings.petitionsPage.createButton}
+          modifier={'accent'}
+        />
       </TextCenter>
       <Grid>
         {petitions.map((petition) => {
