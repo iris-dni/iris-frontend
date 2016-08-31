@@ -4,7 +4,10 @@ import {
   UPDATE_SUGGESTION_INPUT_VALUE
 } from 'actions/actionTypes';
 
-const initialState = {};
+const initialState = {
+  suggestions: [],
+  value: ''
+};
 
 export default function autocomplete (state = initialState, action) {
   switch (action.type) {
