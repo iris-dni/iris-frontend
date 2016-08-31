@@ -29,6 +29,7 @@ const Autocomplete = ({
       suggestion: styles.suggestion,
       suggestionFocused: styles.focused
     }}
+    id={name}
     suggestions={suggestions || []}
     renderSuggestion={displaySuggestion}
     getSuggestionValue={displaySuggestion}
