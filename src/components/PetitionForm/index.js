@@ -21,7 +21,7 @@ export const FIELDS = [
     label: settings.petitionFields.city.label,
     hint: settings.petitionFields.city.hint,
     endpoint: 'cities',
-    displaySuggestion: (suggestion) => {
+    suggestionFormatter: (suggestion) => {
       return suggestion.name + ' - ' + suggestion.zips[0];
     },
     html: {

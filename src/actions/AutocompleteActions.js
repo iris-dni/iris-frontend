@@ -1,7 +1,8 @@
 import citiesRepository from 'services/api/repositories/city';
 import {
   UPDATE_SUGGESTIONS,
-  CLEAR_SUGGESTIONS
+  CLEAR_SUGGESTIONS,
+  UPDATE_SUGGESTION_INPUT_VALUE
 } from './actionTypes';
 
 export function updateSuggestions (suggestions) {
@@ -14,6 +15,13 @@ export function updateSuggestions (suggestions) {
 export function clearSuggestions () {
   return {
     type: CLEAR_SUGGESTIONS
+  };
+}
+
+export function updateSuggestionInputValue (value) {
+  return {
+    type: UPDATE_SUGGESTION_INPUT_VALUE,
+    value
   };
 }
 
