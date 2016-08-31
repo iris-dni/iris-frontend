@@ -87,24 +87,33 @@ const Autocomplete = ({
       suggestionFocused: styles.focused
     }}
     id={name}
-    suggestions={suggestions || []}
+
+    suggestions={suggestions}
     renderSuggestion={suggestionFormatter}
     getSuggestionValue={suggestionFormatter}
+    focusFirstSuggestion
+
     onSuggestionsFetchRequested={(e) => (
       handleFetchRequest(endpoint, e, typeaheadSearch, clearSuggestions)
     )}
     onSuggestionsClearRequested={clearSuggestions}
-    onSuggestionSelected={(e, option) => (handleSelection(e, option, helper))}
-    focusFirstSuggestion
+    onSuggestionSelected={(e, option) => (
+      handleSelection(e, option, helper)
+    )}
+
     inputProps={{
       name: name,
       id: name,
       required: html.required,
       placeholder: html.placeholder,
       autoComplete: html.autocomplete || 'off',
+
       ...domOnlyProps(helper),
-      value: value || '',
-      onBlur: () => (handleBlur(value, suggestionFormatter, updateSuggestionInputValue, helper)),
+
+      value: value,
+      onBlur: () => (
+        handleBlur(value, suggestionFormatter, updateSuggestionInputValue, helper)
+      ),
       onChange: (e, { newValue }) => (
         handleChange(newValue, updateSuggestionInputValue, helper)
       )
