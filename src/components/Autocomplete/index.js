@@ -26,13 +26,15 @@ const Autocomplete = ({
       containerOpen: styles.open,
       input: getClassname('input', fieldIsInvalid(helper)),
       suggestionsList: styles.list,
-      suggestion: styles.suggestion
+      suggestion: styles.suggestion,
+      suggestionFocused: styles.focused
     }}
     suggestions={suggestions || []}
     renderSuggestion={displaySuggestion}
     getSuggestionValue={displaySuggestion}
     onSuggestionsFetchRequested={(e) => typeaheadSearch(endpoint, e.value)}
     onSuggestionsClearRequested={clearSuggestions}
+    focusFirstSuggestion
     inputProps={{
       name: name,
       id: name,
