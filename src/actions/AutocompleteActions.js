@@ -1,19 +1,19 @@
 import citiesRepository from 'services/api/repositories/city';
 import {
-  UPDATE_TYPEAHEAD_SEARCH_RESULTS,
-  CLEAR_TYPEAHEAD_SEARCH_RESULTS
+  UPDATE_SUGGESTIONS,
+  CLEAR_SUGGESTIONS
 } from './actionTypes';
 
-export function updateSearchResults (results) {
+export function updateSuggestions (suggestions) {
   return {
-    type: UPDATE_TYPEAHEAD_SEARCH_RESULTS,
-    results
+    type: UPDATE_SUGGESTIONS,
+    suggestions
   };
 }
 
-export function clearSearchResults () {
+export function clearSuggestions () {
   return {
-    type: CLEAR_TYPEAHEAD_SEARCH_RESULTS
+    type: CLEAR_SUGGESTIONS
   };
 }
 
@@ -37,12 +37,12 @@ export function typeaheadSearch (endpoint, query) {
         }
 
         return repository.search(query).then(response => dispatch(
-            updateSearchResults(response.data)
+            updateSuggestions(response.data)
         ));
       }
     }
 
-    return dispatch(clearSearchResults());
+    return dispatch(clearSuggestions());
   };
 }
 

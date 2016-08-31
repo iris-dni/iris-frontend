@@ -13,10 +13,10 @@ const getClassname = (element, error) => {
 
 const Autocomplete = ({
   endpoint,
-  displayOption,
+  displaySuggestion,
   typeaheadSearch,
-  clearSearchResults,
-  options,
+  clearSuggestions,
+  suggestions,
   helper,
   name,
   html
@@ -26,13 +26,13 @@ const Autocomplete = ({
       containerOpen: styles.open,
       input: getClassname('input', fieldIsInvalid(helper)),
       suggestionsList: styles.list,
-      suggestion: styles.result
+      suggestion: styles.suggestion
     }}
-    suggestions={options || []}
-    renderSuggestion={displayOption}
-    getSuggestionValue={displayOption}
+    suggestions={suggestions || []}
+    renderSuggestion={displaySuggestion}
+    getSuggestionValue={displaySuggestion}
     onSuggestionsFetchRequested={(e) => typeaheadSearch(endpoint, e.value)}
-    onSuggestionsClearRequested={clearSearchResults}
+    onSuggestionsClearRequested={clearSuggestions}
     inputProps={{
       name: name,
       id: name,

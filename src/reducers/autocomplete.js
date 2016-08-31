@@ -1,19 +1,19 @@
 import {
-  UPDATE_TYPEAHEAD_SEARCH_RESULTS,
-  CLEAR_TYPEAHEAD_SEARCH_RESULTS
+  UPDATE_SUGGESTIONS,
+  CLEAR_SUGGESTIONS
 } from 'actions/actionTypes';
 
 const initialState = {};
 
 export default function autocomplete (state = initialState, action) {
   switch (action.type) {
-    case UPDATE_TYPEAHEAD_SEARCH_RESULTS:
+    case UPDATE_SUGGESTIONS:
       return Object.assign({}, state, {
-        results: action.results
+        suggestions: action.suggestions
       });
-    case CLEAR_TYPEAHEAD_SEARCH_RESULTS:
+    case CLEAR_SUGGESTIONS:
       return Object.assign({}, state, {
-        results: []
+        suggestions: []
       });
     default:
       return state;
