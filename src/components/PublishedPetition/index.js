@@ -16,7 +16,7 @@ const PublishedPetition = ({ petition }) => (
       />
     </Header>
     <TextCenter>
-      <Paragraph text={settings.publishedPetition.copy1} />
+      <Paragraph text={settings.publishedPetitionPage.copy1} />
       <Paragraph>
         <ButtonLink
           href={`/petitions/${petition.id}`}

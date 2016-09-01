@@ -45,7 +45,7 @@ export const mapDispatchToProps = (dispatch) => {
 };
 
 PetitionContainer.propTypes = {
-  id: React.PropTypes.number,
+  id: React.PropTypes.string,
   title: React.PropTypes.string,
   description: React.PropTypes.string,
   suggestedSolution: React.PropTypes.string,
