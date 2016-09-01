@@ -8,8 +8,8 @@
 
   margin-left: auto;
   margin-right: auto;
-  width: map-get($layout, 'sidebar-progress');
-  height: map-get($layout, 'sidebar-progress');
+  width: map-get($widths, 'sidebar-progress');
+  height: map-get($widths, 'sidebar-progress');
 }
 
 .counter {
