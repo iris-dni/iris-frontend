@@ -1,4 +1,4 @@
-import citiesRepository from 'services/api/repositories/city';
+import Repositories from 'services/api/repositories/';
 import {
   UPDATE_SUGGESTIONS,
   CLEAR_SUGGESTIONS,
@@ -27,21 +27,14 @@ export function updateSuggestionInputValue (value) {
 
 export function typeaheadSearch (endpoint, query) {
   return (dispatch, getState) => {
-    let repository;
+    const repository = Repositories[endpoint];
 
-    // Depending on the endpoint, we can choose the repository we must search
-    // into.
-    switch (endpoint) {
-      case 'cities':
-        repository = citiesRepository;
-        break;
-      default:
-        console.warn(`No repository found for endpoint “${endpoint}“)`);
-        return;
+    if (repository) {
+      return repository.search(query).then(response => dispatch(
+        updateSuggestions(response.data)
+      ));
     }
 
-    return repository.search(query).then(response => dispatch(
-      updateSuggestions(response.data)
-    ));
+    return console.warn(`No repository found for endpoint “${endpoint}“)`);
   };
 }
