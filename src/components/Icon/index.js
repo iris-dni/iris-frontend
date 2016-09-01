@@ -3,7 +3,7 @@ import styles from './icon.scss';
 
 const getClassname = (size, modifier, inline) => {
   return [
-    styles[size || ''],
+    styles[size || 'default'],
     styles[modifier || 'default'],
     styles[inline ? 'inline' : '']
   ].join(' ');

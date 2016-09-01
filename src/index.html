@@ -16,7 +16,7 @@
     </script>
   </head>
   <body>
-    <div id="app">{{ reactMarkup | safe }}</div>
+    <div id="app" class="app-init">{{ reactMarkup | safe }}</div>
   </body>
   <script>window.__INITIAL_STATE__={{ initialState | safe }}</script>
   {% for script in bundles.javascripts %}

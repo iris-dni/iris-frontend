@@ -1,8 +1,5 @@
 @import 'globals';
 
-$max-from-top: 50px;
-$max-from-edge: 10px;
-
 .root {
   display: block;
 }
@@ -15,6 +12,7 @@ $max-from-edge: 10px;
   left: 0;
   bottom: 0;
   right: 0;
+  overflow: hidden;
 }
 
 .content {
@@ -24,9 +22,9 @@ $max-from-edge: 10px;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 550px;
-  max-height: calc(100vh - #{($max-from-top * 2)});
-  max-width: calc(100vw - #{($max-from-edge * 2)});
+  width: map-get($widths, 'modal');
+  max-height: 100%;
+  max-width: 100vw;
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -43,7 +41,7 @@ $max-from-edge: 10px;
 }
 
 .close {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   z-index: 4;

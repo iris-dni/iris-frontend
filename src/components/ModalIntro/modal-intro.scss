@@ -2,6 +2,12 @@
 
 .title {
   font-weight: normal;
+  line-height: 1.3;
+
+  @include media('<700px') {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
   @include media('>700px') {
     font-size: 28px;

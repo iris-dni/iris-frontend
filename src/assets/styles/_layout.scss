@@ -23,9 +23,11 @@ $spacing: (
 ///
 $widths: (
   'container-max': 1000px,
-  'container-min': 330px,
+  'container-min': 320px,
   'header-max': 750px,
   'teaser-max': 320px,
-  'fieldset-max': 650px
+  'fieldset-max': 650px,
+  'close-button': 46px,
+  'modal': 550px
 ) !default;
 

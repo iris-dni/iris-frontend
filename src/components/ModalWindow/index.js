@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './modal-window.scss';
+import settings from 'settings';
 import CloseButton from 'components/CloseButton';
 
 const Modal = React.createClass({
@@ -26,15 +27,16 @@ const Modal = React.createClass({
           <div role='document'>
             {children}
           </div>
-        </div>
-        <div className={styles.close}>
-          <CloseButton
-            onClick={hideModalWindow}
-            attrs={{
-              'data-a11y-dialog-hide': true,
-              'aria-label': 'Close this dialog window'
-            }}
-          />
+          <div className={styles.close}>
+            <CloseButton
+              onClick={hideModalWindow}
+              text={settings.modalWindow.closeButton}
+              attrs={{
+                'data-a11y-dialog-hide': true,
+                'aria-label': settings.modalWindow.closeButton
+              }}
+            />
+          </div>
         </div>
       </div>
     );

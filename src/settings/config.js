@@ -68,6 +68,9 @@ export default {
       url: 'http://aaz-azdev.lovelysystems.com/anmelden'
     }
   ],
+  modalWindow: {
+    closeButton: 'Close this dialog window'
+  },
   auth: {
     afterLoginPath: '/',
     afterLogoutPath: '/'
