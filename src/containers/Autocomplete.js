@@ -15,8 +15,16 @@ const AutocompleteContainer = (props) => {
 };
 
 AutocompleteContainer.propTypes = {
+  endpoint: React.PropTypes.string.isRequired,
+  suggestionFormatter: React.PropTypes.func.isRequired,
+  typeaheadSearch: React.PropTypes.func.isRequired,
+  clearSuggestions: React.PropTypes.func.isRequired,
+  updateSuggestionInputValue: React.PropTypes.func.isRequired,
   suggestions: React.PropTypes.array,
-  value: React.PropTypes.string
+  value: React.PropTypes.string,
+  helper: React.PropTypes.object.isRequired,
+  name: React.PropTypes.string,
+  html: React.PropTypes.object
 };
 
 export const mapStateToProps = ({ autocomplete }) => ({
