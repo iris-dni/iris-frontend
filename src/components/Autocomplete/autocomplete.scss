@@ -10,6 +10,10 @@ $suggestion-border: 1px solid color('grey-lite');
   transition: border-radius 150ms;
 }
 
+.open {
+  position: relative;
+}
+
 .open .input {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -29,11 +33,19 @@ $suggestion-border: 1px solid color('grey-lite');
 
 .list {
   @include map-declarations($form-fields-defaults, $form-fields-custom);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 2;
+  max-height: 204px;
+  overflow-y: scroll;
+  list-style: none;
   padding: 0;
   border-top: 0;
-  border-color: color('grey');
+  border-color: color('dimmed');
   border-radius: 0 0 $default-border-radius $default-border-radius;
-  list-style: none;
+  background-color: color('white');
 }
 
 .suggestion {
