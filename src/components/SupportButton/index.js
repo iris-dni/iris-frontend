@@ -1,15 +1,18 @@
 import React from 'react';
-import Button from 'components/Button';
+import ModalTrigger from 'containers/ModalTrigger';
 import settings from 'settings';
 
 const SupportButton = ({ petition, supportable, supportPetition }) => (
-  <Button
-    type='button'
+  <ModalTrigger
+    authenticating
+    modal={'auth'}
     onClick={() => supportPetition(petition)}
+    href={`/petitions/${petition.id}?intent=support`}
+    text={settings.petition.supportButton}
     size={'smaller'}
     modifier={'accent'}
     disabled={!supportable}
-    text={settings.petition.supportButton} />
+  />
 );
 
 export default SupportButton;
