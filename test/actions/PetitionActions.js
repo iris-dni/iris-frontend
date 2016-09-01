@@ -195,7 +195,6 @@ describe('PetitionActions', () => {
 
     it('returns a promise that dispatches createdPetition() when done', done => {
       result.then(() => {
-        console.log(dispatch.lastCall.args);
         assert(dispatch.calledWithMatch(createdPetition(mockPetition.data)));
       }).then(done, done);
     });
