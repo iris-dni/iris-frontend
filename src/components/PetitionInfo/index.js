@@ -2,8 +2,16 @@ import React from 'react';
 import styles from './petition-info.scss';
 import IconAndInfo from 'components/IconAndInfo';
 
-const PetitionInfo = ({ city, dateRange }) => (
+const PetitionInfo = ({ owner, city, dateRange }) => (
   <ul className={styles.root}>
+    {owner &&
+      <li className={styles.item}>
+        <IconAndInfo
+          icon='User'
+          info={owner}
+        />
+      </li>
+    }
     {city &&
       <li className={styles.item}>
         <IconAndInfo

@@ -12,6 +12,7 @@ const mapStateToProps = ({ petition }) => {
 };
 
 PetitionInfoContainer.propTypes = {
+  owner: React.PropTypes.string,
   city: React.PropTypes.string,
   dateRange: React.PropTypes.string
 };

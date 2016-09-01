@@ -1,6 +1,7 @@
 import getAuthorLabel from 'helpers/getAuthorLabel';
 import getPetitionMetrics from './petitionMetrics';
 import petitionCity from './petitionCity';
+import petitionOwner from './petitionOwner';
 
 export default (petition = {}) => {
   if (!petition || !petition.id) {
@@ -12,7 +13,7 @@ export default (petition = {}) => {
     link: `/petitions/${petition.id}`,
     title: petition.title,
     city: petitionCity(petition),
-    owner: getAuthorLabel(petition.owner) || 'Max Mustermann',
+    owner: getAuthorLabel(petitionOwner(petition)),
     metrics: getPetitionMetrics(petition)
   };
 };
