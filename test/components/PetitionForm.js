@@ -10,9 +10,9 @@ export const getFieldByNameKey = (name) => {
 
 describe('PetitionForm', () => {
   describe('exported FIELDS const', () => {
-    it('is 4 fields in length', () => {
+    it('is 5 fields in length', () => {
       const actual = FIELDS.length;
-      const expected = 4;
+      const expected = 5;
 
       assert.equal(actual, expected);
     });
