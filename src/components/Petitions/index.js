@@ -7,7 +7,6 @@ import Teaser from 'components/Teaser';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import ModalTrigger from 'containers/ModalTrigger';
-import TextCenter from 'components/TextCenter';
 
 const Petitions = ({ petitions }) => (
   <Container>
@@ -15,18 +14,16 @@ const Petitions = ({ petitions }) => (
       <Header>
         <PageTitle
           title={settings.petitionsPage.title}
-          centered
-        />
+          centered>
+          <ModalTrigger
+            authenticating
+            modal={'auth'}
+            href={'/petitions/new'}
+            text={settings.petitionsPage.createButton}
+            modifier={'accent'}
+          />
+        </PageTitle>
       </Header>
-      <TextCenter>
-        <ModalTrigger
-          authenticating
-          modal={'auth'}
-          href={'/petitions/new'}
-          text={settings.petitionsPage.createButton}
-          modifier={'accent'}
-        />
-      </TextCenter>
       <Grid>
         {petitions.map((petition) => {
           return (
