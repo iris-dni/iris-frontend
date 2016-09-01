@@ -46,6 +46,7 @@ $suggestion-border: 1px solid color('grey-lite');
   border-color: color('dimmed');
   border-radius: 0 0 $default-border-radius $default-border-radius;
   background-color: color('white');
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 .suggestion {
@@ -67,7 +68,7 @@ $suggestion-border: 1px solid color('grey-lite');
 
 .focused,
 .suggestion:hover {
-  background-color: color('success');
-  border-color: color('success');
+  background-color: color('primary');
+  border-color: color('primary');
   color: color('white');
 }
