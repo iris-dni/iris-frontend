@@ -6,15 +6,23 @@ import GridItem from 'components/GridItem';
 import Teaser from 'components/Teaser';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
+import ModalTrigger from 'containers/ModalTrigger';
 
-const Petitions = ({ total, petitions, currentPage, perPage }) => (
+const Petitions = ({ petitions }) => (
   <Container>
     <section>
       <Header>
         <PageTitle
-          title={settings.petitionsPageTitle}
-          centered
-        />
+          title={settings.petitionsPage.title}
+          centered>
+          <ModalTrigger
+            authenticating
+            modal={'auth'}
+            href={'/petitions/new'}
+            text={settings.petitionsPage.createButton}
+            modifier={'accent'}
+          />
+        </PageTitle>
       </Header>
       <Grid>
         {petitions.map((petition) => {

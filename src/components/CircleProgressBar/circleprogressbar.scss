@@ -1,4 +1,6 @@
- .root {
+@import 'globals';
+
+.root {
   position: relative;
  }
 
@@ -14,8 +16,8 @@
 
 .large {
   composes: canvas;
-  width: 210px;
-  height: 210px;
+  width: map-get($widths, 'sidebar-progress');
+  height: map-get($widths, 'sidebar-progress');
 }
 
 /* center the content of the progress bar */

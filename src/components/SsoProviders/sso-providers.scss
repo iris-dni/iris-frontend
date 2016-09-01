@@ -1,0 +1,16 @@
+@import 'globals';
+
+.list {
+  margin-top: map-get($spacing, 'm-bottom');
+  display: inline-block;
+  list-style: none;
+}
+
+.item {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}

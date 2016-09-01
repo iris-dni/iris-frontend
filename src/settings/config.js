@@ -11,7 +11,6 @@ export default {
   teaserSupportersText: 'Supporters',
   tesaserMilestoneText: 'Target',
   teaserDaysRemaining: 'days remaining',
-  petitionsPageTitle: 'Petitions',
   daysToVote: 30,
   // FIXME: find better way to import colors
   // without duplicating them
@@ -25,9 +24,14 @@ export default {
     grey: '#ccc',
     greyLite: '#e5e5e5'
   },
-  createPetitionPageTitle: 'Create a new Petition',
-  createPetitionPageIntro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.',
-  publishedPetitionPageTitle: 'Petition published',
+  petitionsPage: {
+    title: 'Petitions',
+    createButton: 'Create a new Petition'
+  },
+  createPetitionPage: {
+    title: 'Create a new Petition',
+    intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
+  },
   requiredText: 'You must complete this field',
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',
@@ -36,7 +40,8 @@ export default {
     publishButton: 'Publish Petition',
     saveButton: 'Save Petition'
   },
-  publishedPetition: {
+  publishedPetitionPage: {
+    title: 'Petition published',
     copy1: 'Your petition will be visible within the next 48 hours after being approved by an editor. In the meantime, share your petition and start collecting signatures:',
     previewButton: 'Preview your Petition'
   },
@@ -59,16 +64,19 @@ export default {
   },
   ssoProviders: [
     {
-      name: 'Sign in with AZ Medien',
-      loginUrl: 'http://aaz-azdev.lovelysystems.com/anmelden'
+      text: 'Sign in with AZ Medien',
+      url: 'http://aaz-azdev.lovelysystems.com/anmelden'
     }
   ],
+  modalWindow: {
+    closeButton: 'Close this dialog window'
+  },
   auth: {
     afterLoginPath: '/',
     afterLogoutPath: '/'
   },
   loginPage: {
-    title: 'Nearly there',
+    title: 'Please sign in',
     intro: 'To begin creating your Petition please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   },
   flashMessages: {

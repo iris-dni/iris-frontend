@@ -16,6 +16,16 @@
   height: 16px;
 }
 
+.large {
+  composes: root;
+  width: 26px;
+  height: 26px;
+}
+
+.dark {
+  fill: color('black');
+}
+
 .invert {
   fill: white;
 }

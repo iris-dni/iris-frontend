@@ -21,4 +21,8 @@
   @include map-declarations($form-hint-defaults, $form-hint-custom);
   margin-top: 2px;
   display: block;
+
+  @include media('<=500px') {
+    font-size: 14px;
+  }
 }

@@ -5,7 +5,7 @@ const getClassname = (size, modifier, inline) => {
   return [
     styles[size || 'default'],
     styles[modifier || 'default'],
-    styles[inline ? 'inline' : 'default']
+    styles[inline ? 'inline' : '']
   ].join(' ');
 };
 

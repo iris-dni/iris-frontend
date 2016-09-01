@@ -26,6 +26,8 @@ export default ({ config, helper }) => (
     <div className={styles.wrapper}>
       <config.element
         className={getClassname(config.element, fieldIsInvalid(helper))}
+        aria-required={(config.html && config.html.required) || false}
+        aria-invalid={fieldIsInvalid(helper)}
         id={config.name}
         // pass props from config e.g. type, placeholder, maxlength
         {...config.html}

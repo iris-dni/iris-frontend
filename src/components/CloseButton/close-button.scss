@@ -1,0 +1,28 @@
+@import 'globals';
+
+.root {
+  display: block;
+  background-color: transparent;
+  height: map-get($widths, 'close-button');
+  width: map-get($widths, 'close-button');
+  position: relative;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.root:hover,
+.root:active,
+.root:focus {
+  opacity: 1;
+}
+
+.icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.text {
+  display: none;
+}

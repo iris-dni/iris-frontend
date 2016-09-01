@@ -6,8 +6,9 @@ export default (props) => (
   <div>
     <h1>Home Component</h1>
     <p><LoginLink>Login</LoginLink></p>
-    <p><Link to='/petitions/new'>Create new Petition (restricted)</Link></p>
-    <p><Link to='/petitions/5'>Go to petition 5</Link></p>
+    <p><Link to='/petitions/new'>Create new Petition (client)</Link></p>
+    <p><a href='/petitions/new'>Create new Petition (server)</a></p>
+    <p><Link to='/petitions/1ESkp'>Go to petition 1ESkp</Link></p>
     <p><Link to='/petitions'>Go to petitions</Link></p>
     <p>
       Go to petitions on Page

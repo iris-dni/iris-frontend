@@ -10,8 +10,8 @@ const CreatePetition = ({ petition }) => (
   <Container>
     <Header>
       <PageTitle
-        title={settings.createPetitionPageTitle}
-        intro={settings.createPetitionPageIntro}
+        title={settings.createPetitionPage.title}
+        intro={settings.createPetitionPage.intro}
         centered
       />
     </Header>
