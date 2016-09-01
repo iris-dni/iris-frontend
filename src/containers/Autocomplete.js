@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { throttle } from 'throttle-debounce';
+import { throttle } from 'lodash';
 import Autocomplete from 'components/Autocomplete';
 import {
   typeaheadSearch,
@@ -26,9 +26,9 @@ export const mapStateToProps = ({ autocomplete }) => ({
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    typeaheadSearch: throttle(QUERY_THROTTLE_TIME, (endpoint, query) => (
+    typeaheadSearch: throttle((endpoint, query) => (
       dispatch(typeaheadSearch(endpoint, query))
-    )),
+    ), QUERY_THROTTLE_TIME),
     clearSuggestions: () => (
       dispatch(clearSuggestions())
     ),
