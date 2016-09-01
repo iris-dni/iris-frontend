@@ -13,6 +13,12 @@
   position: relative;
 }
 
+.autocomplete-wrapper {
+  @include media('>600px') {
+    width: 65%;
+  }
+}
+
 .icon {
   position: absolute;
 
