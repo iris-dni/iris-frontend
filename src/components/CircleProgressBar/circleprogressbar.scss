@@ -14,8 +14,8 @@
 
 .large {
   composes: canvas;
-  width: map-get($layout, 'sidebar-progress');
-  height: map-get($layout, 'sidebar-progress');
+  width: map-get($widths, 'sidebar-progress');
+  height: map-get($widths, 'sidebar-progress');
 }
 
 /* center the content of the progress bar */
