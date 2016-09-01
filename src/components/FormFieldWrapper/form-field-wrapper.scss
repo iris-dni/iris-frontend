@@ -2,11 +2,7 @@
 
 .root {
   position: relative;
-  margin-bottom: map-get($spacing, 'm-bottom');
-}
-
-.root:last-child {
-  margin-bottom: 0;
+  margin-bottom: map-get($spacing, 'field-m-bottom');
 }
 
 .hidden {
@@ -45,6 +41,5 @@
 
 .message {
   line-height: 20px;
-  min-height: 20px;
   margin-top: 8px;
 }
