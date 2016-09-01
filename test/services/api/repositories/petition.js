@@ -55,6 +55,17 @@ describe('petition repository', () => {
         expectedPathArgument
       ));
     });
+
+    it('resolves owner and city', () => {
+      let expectedDataArgument = { resolve: 'city,owner' };
+
+      petitionRepository.find(exampleId);
+
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument,
+        expectedDataArgument
+      ));
+    });
   });
 
   describe('create', () => {
