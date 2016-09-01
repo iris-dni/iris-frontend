@@ -18,17 +18,15 @@ const Autocomplete = React.createClass({
     // We handle the query length validation here as we don‘t want to do it in
     // the (throttled) typeahead search. If we did, the first input after
     // MIN_QUERY_LENGTH would be delayed.
-    let query = e.value;
-
-    if (query) {
-      query = query.trim().toLowerCase();
-
-      if (query.length >= MIN_QUERY_LENGTH) {
-        return typeaheadSearch(endpoint, query);
-      }
+    if (!e.value) {
+      return clearSuggestions();
     }
 
-    return clearSuggestions();
+    const query = e.value.trim().toLowerCase();
+
+    if (query.length >= MIN_QUERY_LENGTH) {
+      return typeaheadSearch(endpoint, query);
+    }
   },
 
   handleBlur ({
