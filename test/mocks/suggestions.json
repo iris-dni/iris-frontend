@@ -1,0 +1,64 @@
+{
+  "data": [
+    {
+      "name": "Aarau",
+      "tags": [
+        "portal:aaz",
+        "region:Aarau",
+        "province:Aargau"
+      ],
+      "provider": "nwch",
+      "zips": [
+        "5000",
+        "5004",
+        "5001",
+        "6666"
+      ],
+      "treshold": 0,
+      "id": "nwch:1"
+    },
+    {
+      "name": "Aarburg",
+      "tags": [
+        "portal:aaz",
+        "region:Zofingen",
+        "province:Aargau"
+      ],
+      "provider": "nwch",
+      "zips": [
+        "4663"
+      ],
+      "treshold": 0,
+      "id": "nwch:3"
+    },
+    {
+      "name": "Aarau Rohr",
+      "tags": [
+        "portal:aaz",
+        "region:Aarau",
+        "province:Aargau"
+      ],
+      "provider": "nwch",
+      "zips": [
+        "5032"
+      ],
+      "treshold": 0,
+      "id": "nwch:2527"
+    },
+    {
+      "name": "Büren an der Aare",
+      "tags": [
+        "portal:gtb",
+        "portal:soz",
+        "region:Büren",
+        "province:Bern"
+      ],
+      "provider": "nwch",
+      "zips": [
+        "3294"
+      ],
+      "treshold": 0,
+      "id": "nwch:2560"
+    }
+  ]
+}
