@@ -1,11 +1,12 @@
 @import 'globals';
 
 $default-border-radius: map-get($form-fields-defaults, 'border-radius');
+$suggestion-border: 1px solid color('grey-lite');
 
 .input {
   @include map-declarations($form-fields-defaults, $form-fields-custom);
   display: block;
-  width: 50%;
+  width: 100%;
   transition: border-radius 150ms;
 }
 
@@ -32,16 +33,13 @@ $default-border-radius: map-get($form-fields-defaults, 'border-radius');
   border-top: 0;
   border-color: color('grey');
   border-radius: 0 0 $default-border-radius $default-border-radius;
-  width: 50%;
   list-style: none;
 }
 
 .suggestion {
-  @include map-declarations($form-fields-defaults, $form-fields-custom);
-  border: 1px solid color('grey-lite');
-  border-left: 0;
-  border-right: 0;
-  border-radius: 0;
+  padding: map-get($form-fields-defaults, 'padding');
+  border-top: $suggestion-border;
+  border-bottom: $suggestion-border;
   color: color('dimmed');
   cursor: pointer;
   transition: all 150ms;

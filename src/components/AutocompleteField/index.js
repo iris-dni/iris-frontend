@@ -18,10 +18,12 @@ export default ({ config, helper }) => (
     }
 
     <div className={styles.wrapper}>
-      <Autocomplete
-        helper={helper}
-        {...config}
-      />
+      <div className={styles['input-wrapper']}>
+        <Autocomplete
+          helper={helper}
+          {...config}
+        />
+      </div>
 
       {!config.hidden &&
         <div>
