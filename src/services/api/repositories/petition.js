@@ -5,7 +5,8 @@ import path from 'path';
 export default {
   find: (id) => {
     const requestPath = path.join('/petitions', id.toString());
-    return ApiClient.request(requestPath);
+    const requestParams = { resolve: 'city,owner' };
+    return ApiClient.request(requestPath, requestParams);
   },
 
   all: (options = {}) => {
