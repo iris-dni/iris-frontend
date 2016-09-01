@@ -11,10 +11,22 @@ const Modal = React.createClass({
   },
 
   componentDidMount () {
+    if (this.props.active) {
+      document.documentElement.classList.add('modal-active');
+    }
     document.addEventListener('keydown', this.onEscape);
   },
 
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.active) {
+      document.documentElement.classList.add('modal-active');
+    } else {
+      document.documentElement.classList.remove('modal-active');
+    }
+  },
+
   componentWillUnmount () {
+    document.documentElement.classList.remove('modal-active');
     document.removeEventListener('keydown', this.onEscape);
   },
 
