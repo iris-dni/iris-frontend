@@ -7,8 +7,7 @@ import {
 } from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
 import Fieldset from 'components/Fieldset';
-import TextField from 'components/TextField';
-import AutocompleteField from 'components/AutocompleteField';
+import FormFieldWrapper from 'components/FormFieldWrapper';
 import Button from 'components/Button';
 import ButtonSet from 'components/ButtonSet';
 import settings from 'settings';
@@ -16,7 +15,7 @@ import getPetitionForm from 'selectors/petitionForm';
 
 export const FIELDS = [
   {
-    type: AutocompleteField,
+    element: 'Autocomplete',
     name: 'city',
     label: settings.petitionFields.city.label,
     hint: settings.petitionFields.city.hint,
@@ -29,7 +28,6 @@ export const FIELDS = [
     }
   },
   {
-    type: TextField,
     element: 'input',
     name: 'id',
     hidden: true,
@@ -38,7 +36,6 @@ export const FIELDS = [
     }
   },
   {
-    type: TextField,
     element: 'textarea',
     name: 'description',
     label: settings.petitionFields.description.label,
@@ -51,7 +48,6 @@ export const FIELDS = [
     }
   },
   {
-    type: TextField,
     element: 'textarea',
     name: 'suggested_solution',
     label: settings.petitionFields.suggested_solution.label,
@@ -63,7 +59,6 @@ export const FIELDS = [
     }
   },
   {
-    type: TextField,
     element: 'input',
     name: 'title',
     label: settings.petitionFields.title.label,
@@ -82,7 +77,7 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, pu
   <form onSubmit={handleSubmit(petition.persisted ? updatePetition : createPetition)}>
     <Fieldset>
       {FIELDS.map(field => (
-        <field.type
+        <FormFieldWrapper
           key={field.name}
           config={field}
           helper={fields[field.name]}
@@ -97,6 +92,7 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, pu
           modifier={petition.persisted && pristine ? 'default' : 'accent'}
           text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton']}
         />
+
         {petition.persisted && !petition.published &&
           <Button
             type={'button'}
