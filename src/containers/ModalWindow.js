@@ -33,11 +33,16 @@ const ModalWindowContainer = React.createClass({
   },
 
   render () {
-    const { type, active, returnUrl, hideModalWindow } = this.props;
+    const { type, title, intro, active, returnUrl, hideModalWindow } = this.props;
     return (
       <ModalWindow active={active} hideModalWindow={hideModalWindow}>
         {type === 'auth' &&
-          <LoginModal ssoProviders={generateSsoProviders(returnUrl || '')} />
+          <LoginModal
+            type={type}
+            title={title}
+            intro={intro}
+            ssoProviders={generateSsoProviders(returnUrl || '')}
+          />
         }
       </ModalWindow>
     );

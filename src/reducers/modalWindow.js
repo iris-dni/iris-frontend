@@ -10,7 +10,7 @@ export default function modalWindow (state = initialState, action) {
   switch (action.type) {
     case SHOW_MODAL_WINDOW:
       return Object.assign({}, state, {
-        type: action.modalType,
+        ...action.modal,
         active: true,
         hidden: false,
         returnUrl: getReturnUrlFromLocation(action.location || '')

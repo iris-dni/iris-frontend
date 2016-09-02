@@ -26,7 +26,20 @@ export default {
   },
   petitionsPage: {
     title: 'Petitions',
-    createButton: 'Create a new Petition'
+    createButton: {
+      text: 'Create a new Petition',
+      modal: {
+        intro: 'To begin creating your Petition please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
+      }
+    }
+  },
+  petitionPage: {
+    supportButton: {
+      text: 'Support Petition',
+      modal: {
+        intro: 'To support a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
+      }
+    }
   },
   createPetitionPage: {
     title: 'Create a new Petition',
@@ -62,9 +75,6 @@ export default {
       hint: 'Because you care a lot about your cause, you probably have some great ideas about how to solve it. Clearly outline the actions required to achieve your goal.'
     }
   },
-  petition: {
-    supportButton: 'Support Petition'
-  },
   ssoProviders: [
     {
       text: 'Sign in with AZ Medien',
@@ -79,8 +89,8 @@ export default {
     afterLogoutPath: '/'
   },
   loginPage: {
-    title: 'Please sign in',
-    intro: 'To begin creating your Petition please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
+    title: 'Nearly There',
+    intro: 'Please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   },
   flashMessages: {
     genericError: 'Sadly something failed, please try again!',
