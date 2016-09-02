@@ -1,0 +1,33 @@
+@import 'globals';
+
+.field {
+  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  display: block;
+  width: 100%;
+}
+
+.input {
+  composes: field;
+}
+
+.autocomplete {
+  max-width: 420px;
+}
+
+.textarea {
+  composes: field;
+  resize: vertical;
+  min-height: 200px;
+}
+
+.valid {
+  border-color: color('grey');
+}
+
+.valid:focus {
+  border-color: color('dimmed');
+}
+
+.invalid {
+  border-color: color('error');
+}

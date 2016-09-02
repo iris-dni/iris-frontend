@@ -7,7 +7,7 @@ import {
 } from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
 import Fieldset from 'components/Fieldset';
-import FormFieldWrapper from 'components/FormFieldWrapper';
+import FormField from 'components/FormField';
 import Button from 'components/Button';
 import ButtonSet from 'components/ButtonSet';
 import settings from 'settings';
@@ -84,7 +84,7 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, pu
   <form onSubmit={handleSubmit(petition.persisted ? updatePetition : createPetition)}>
     <Fieldset>
       {FIELDS.map(field => (
-        <FormFieldWrapper
+        <FormField
           key={field.name}
           config={field}
           helper={fields[field.name]}

@@ -13,12 +13,6 @@
   position: relative;
 }
 
-.autocomplete-wrapper {
-  @include media('>600px') {
-    width: 65%;
-  }
-}
-
 .icon {
   position: absolute;
 
@@ -35,36 +29,8 @@
   }
 }
 
-.field {
-  @include map-declarations($form-fields-defaults, $form-fields-custom);
-  display: block;
-  width: 100%;
-}
-
-.input {
-  composes: field;
-}
-
-.textarea {
-  composes: field;
-  resize: vertical;
-  min-height: 200px;
-}
-
 .message {
   line-height: 20px;
   min-height: 20px;
   margin-top: 8px;
-}
-
-.valid {
-  border-color: color('grey');
-}
-
-.valid:focus {
-  border-color: color('dimmed');
-}
-
-.invalid {
-  border-color: color('error');
 }
