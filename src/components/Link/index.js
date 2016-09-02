@@ -3,7 +3,7 @@ import styles from './link.scss';
 
 const Link = ({ href, children, text }) => (
   <a href={href} className={styles.root}>
-    {children || text}
+    {children || text || href}
   </a>
 );
 

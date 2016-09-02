@@ -2,9 +2,9 @@ import React from 'react';
 import settings from 'settings';
 import Container from 'components/Container';
 import Header from 'components/Header';
-import PageTitle from 'components/PageTitle';
-import Link from 'components/Link';
 import Paragraph from 'components/Paragraph';
+import PageTitle from 'components/PageTitle';
+import PetitionLink from 'components/PetitionLink';
 import TextCenter from 'components/TextCenter';
 
 const PublishedPetition = ({ petition }) => (
@@ -19,10 +19,7 @@ const PublishedPetition = ({ petition }) => (
     </Header>
     <TextCenter>
       <Paragraph>
-        <Link
-          href={`${process.env.BASE_URL}/petitions/${petition.id}`}
-          text={`${process.env.BASE_URL}/petitions/${petition.id}`}
-        />
+        <PetitionLink id={petition.id} />
       </Paragraph>
     </TextCenter>
   </Container>
