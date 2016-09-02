@@ -40,6 +40,8 @@ const Autocomplete = React.createClass({
       this.props.updateSuggestionInputValue('');
       this.props.helper.onChange('');
     }
+
+    this.props.helper.onBlur();
   },
 
   handleChange (newValue) {
