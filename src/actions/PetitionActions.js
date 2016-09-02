@@ -1,5 +1,5 @@
 import petitionRepository from 'services/api/repositories/petition';
-import supportCountIncreased from 'helpers/supportCountIncreased';
+import getSupportedPetitionModal from 'helpers/getSupportedPetitionModal';
 import settings from 'settings';
 import {
   REQUEST_PETITION,
@@ -152,15 +152,10 @@ export function supportPetition (petition, dispatch) {
     return petitionRepository.support(petition)
       .then((response) => dispatch(
         supportedPetition(response.data)
-      )).then((response) => dispatch(
-        supportCountIncreased(petition, response.petition)
-          ? showModalWindow({
-            type: 'newlySupported'
-          })
-          : showModalWindow({
-            type: 'alreadySupported'
-          })
-      )).catch(() => dispatch(
+      )).then((response) => dispatch(showModalWindow({
+        type: 'supported',
+        ...getSupportedPetitionModal(petition, response.petition)
+      }))).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
       ));
   };

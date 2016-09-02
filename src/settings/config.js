@@ -82,6 +82,20 @@ export default {
       hint: 'Because you care a lot about your cause, you probably have some great ideas about how to solve it. Clearly outline the actions required to achieve your goal.'
     }
   },
+  supportPetition: {
+    newlySupported: {
+      modal: {
+        title: 'Thank you!',
+        intro: 'Now that you\'ve supported this petition, show even more support by sharing the link to anyone you know.'
+      }
+    },
+    alreadySupported: {
+      modal: {
+        title: 'Got it!',
+        intro: 'You\'ve already supported this petition, but go ahead and share the link to anyone you know.'
+      }
+    }
+  },
   ssoProviders: [
     {
       text: 'Sign in with AZ Medien',

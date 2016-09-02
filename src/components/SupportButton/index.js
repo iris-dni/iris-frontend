@@ -8,7 +8,7 @@ const modal = {
   type: 'auth'
 };
 
-const SupportButton = ({ petition, supportable, supportPetition }) => (
+const SupportButton = ({ petition, supportPetition }) => (
   <ModalTrigger
     authenticating
     modal={modal}
@@ -17,7 +17,6 @@ const SupportButton = ({ petition, supportable, supportPetition }) => (
     text={settings.petitionPage.supportButton.text}
     size={'smaller'}
     modifier={'accent'}
-    disabled={!supportable}
   />
 );
 
