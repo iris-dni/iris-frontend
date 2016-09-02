@@ -14,60 +14,52 @@ const Autocomplete = React.createClass({
     ].join(' ');
   },
 
-  handleFetchRequest (e, { endpoint, typeaheadSearch, clearSuggestions }) {
+  handleFetchRequest (e) {
     // We handle the query length validation here as we don‘t want to do it in
     // the (throttled) typeahead search. If we did, the first input after
     // MIN_QUERY_LENGTH would be delayed.
     if (!e.value) {
-      return clearSuggestions();
+      return this.props.clearSuggestions();
     }
 
     const query = e.value.trim().toLowerCase();
 
     if (query.length >= MIN_QUERY_LENGTH) {
-      return typeaheadSearch(endpoint, query);
+      return this.props.typeaheadSearch(this.props.endpoint, query);
     }
   },
 
-  handleBlur ({
-    value,
-    suggestionFormatter,
-    updateSuggestionInputValue,
-    helper
-  }) {
-    const savedValue = helper.value && suggestionFormatter(helper.value.data);
+  handleBlur () {
+    const savedValue = this.props.helper.value &&
+      this.props.suggestionFormatter(this.props.helper.value.data);
 
     // If the saved value in the redux-form matches the displayed value in the
     // auto-suggest input, we know that the user hasn‘t changed his choice.
     // If it did, we must reset both values as they aren‘t valid anymore.
-    if (savedValue !== value) {
-      updateSuggestionInputValue('');
-      helper.onChange('');
+    if (savedValue !== this.props.value) {
+      this.props.updateSuggestionInputValue('');
+      this.props.helper.onChange('');
     }
   },
 
-  handleChange (newValue, { updateSuggestionInputValue, helper }) {
+  handleChange (newValue) {
     // We have to manually update the displayed value in the auto-suggest.
     // This has nothing to do with the actual redux-form value.
-    updateSuggestionInputValue(newValue);
+    this.props.updateSuggestionInputValue(newValue);
 
     // If there is no more value, then we know the user has deleted his choice,
     // and we can update the redux-form store.
     if (!newValue) {
-      helper.onChange('');
+      this.props.helper.onChange('');
     }
   },
 
-  handleSelection (e, { suggestion }, helper) {
+  handleSelection (e, suggestion) {
     // Disable form submitting when selecting option with ENTER
     e.preventDefault();
 
     // Update redux-form store manually to reflect the selection
-    helper.onChange({
-      data: suggestion,
-      id: suggestion.id,
-      class: 'City'
-    });
+    this.props.helper.onChange(this.props.getFormValue(suggestion.suggestion));
   },
 
   render () {
@@ -87,12 +79,10 @@ const Autocomplete = React.createClass({
         getSuggestionValue={this.props.suggestionFormatter}
         focusFirstSuggestion
 
-        onSuggestionsFetchRequested={(e) => (
-          this.handleFetchRequest(e, {...this.props})
-        )}
+        onSuggestionsFetchRequested={(e) => (this.handleFetchRequest(e))}
         onSuggestionsClearRequested={this.props.clearSuggestions}
         onSuggestionSelected={(e, suggestion) => (
-          this.handleSelection(e, suggestion, this.props.helper)
+          this.handleSelection(e, suggestion)
         )}
 
         inputProps={{
@@ -105,12 +95,8 @@ const Autocomplete = React.createClass({
           ...domOnlyProps(this.props.helper),
 
           value: this.props.value,
-          onBlur: () => (
-            this.handleBlur({...this.props})
-          ),
-          onChange: (e, { newValue }) => (
-            this.handleChange(newValue, {...this.props})
-          )
+          onBlur: () => (this.handleBlur()),
+          onChange: (e, { newValue }) => (this.handleChange(newValue))
         }}
       />
     );
