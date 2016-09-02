@@ -1,4 +1,5 @@
-export default (petition, updatedPetition) => {
-  return updatedPetition.supporters && updatedPetition.supporters.amount >
-    petition.supporters && petition.supporters.amount;
+export default (originalPetition, updatedPetition) => {
+  const originalSupport = originalPetition.supporters || {};
+  const updatedSupport = updatedPetition.supporters || {};
+  return updatedSupport.amount > originalSupport.amount;
 };

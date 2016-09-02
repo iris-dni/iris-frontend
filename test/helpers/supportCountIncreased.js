@@ -6,9 +6,9 @@ const { assert } = chai;
 describe('getIncludedAssetPath', () => {
   it('returns `false` when both totals are equal', () => {
     const actual = supportCountIncreased({
-      supporters: { total: 10 }
+      supporters: { amount: 10 }
     }, {
-      supporters: { total: 10 }
+      supporters: { amount: 10 }
     });
     const expected = false;
 
@@ -17,9 +17,9 @@ describe('getIncludedAssetPath', () => {
 
   it('returns `false` when updatedPetition total is less', () => {
     const actual = supportCountIncreased({
-      supporters: { total: 10 }
+      supporters: { amount: 10 }
     }, {
-      supporters: { total: 9 }
+      supporters: { amount: 9 }
     });
     const expected = false;
 
@@ -28,11 +28,11 @@ describe('getIncludedAssetPath', () => {
 
   it('returns `true` when updatedPetition total is higher', () => {
     const actual = supportCountIncreased({
-      supporters: { total: 10 }
+      supporters: { amount: 10 }
     }, {
-      supporters: { total: 11 }
+      supporters: { amount: 11 }
     });
-    const expected = false;
+    const expected = true;
 
     assert.equal(actual, expected);
   });
