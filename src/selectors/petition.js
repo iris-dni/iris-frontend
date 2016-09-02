@@ -6,7 +6,7 @@ export default (petition = {}) => {
   }
 
   return {
-    id: petition.id,
+    ...petition,
     browserTitle: petition.title,
     schema: getPetitionSchema(petition)
   };

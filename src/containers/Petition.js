@@ -9,26 +9,30 @@ const PetitionContainer = React.createClass({
   // When the component gets added to the DOM,
   // fetch Petition if `id` is not defined.
   componentWillMount () {
-    if (!this.props.id || !this.props.id !== this.props.params.id) {
+    const { petition } = this.props;
+
+    if (!petition.id || !petition.id !== this.props.params.id) {
       this.props.fetchPetition(this.props.params.id).then(() => {
         if (__CLIENT__ && this.props.location.query.intent === 'support') {
-          this.props.supportPetition(this.props);
+          this.props.supportPetition(petition);
         }
       });
     }
   },
 
   render () {
+    const { petition } = this.props;
+
     return (
       <div>
         <Helmet
-          title={this.props.browserTitle}
+          title={petition.browserTitle}
           script={[{
             'type': 'application/ld+json',
-            'innerHTML': JSON.stringify(this.props.schema || {})
+            'innerHTML': JSON.stringify(petition.schema || {})
           }]}
         />
-        <Petition {...this.props} />
+        <Petition {...petition} />
       </div>
     );
   }
@@ -38,7 +42,9 @@ PetitionContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetition(params.id));
 };
 
-export const mapStateToProps = ({ petition }) => getPetition(petition);
+export const mapStateToProps = ({ petition }) => ({
+  petition: getPetition(petition)
+});
 
 // Add dispatchers to the component props,
 // for fetching the data _client side_
@@ -48,13 +54,9 @@ export const mapDispatchToProps = (dispatch) => ({
 });
 
 PetitionContainer.propTypes = {
-  id: React.PropTypes.string,
-  title: React.PropTypes.string,
-  description: React.PropTypes.string,
-  suggestedSolution: React.PropTypes.string,
-  dateRange: React.PropTypes.string,
-  city: React.PropTypes.string,
-  fetchPetition: React.PropTypes.func
+  petition: React.PropTypes.object,
+  fetchPetition: React.PropTypes.func,
+  supportPetition: React.PropTypes.func
 };
 
 export default connect(
