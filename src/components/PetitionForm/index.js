@@ -23,6 +23,13 @@ export const FIELDS = [
     suggestionFormatter: (suggestion) => {
       return suggestion.name + ' - ' + suggestion.zips[0];
     },
+    getFormValue: (suggestion) => {
+      return {
+        data: suggestion,
+        id: suggestion.id,
+        class: 'City'
+      };
+    },
     html: {
       placeholder: settings.petitionFields.city.placeholder
     }

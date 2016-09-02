@@ -20,6 +20,7 @@ AutocompleteContainer.propTypes = {
   typeaheadSearch: React.PropTypes.func.isRequired,
   clearSuggestions: React.PropTypes.func.isRequired,
   updateSuggestionInputValue: React.PropTypes.func.isRequired,
+  getFormValue: React.PropTypes.func.isRequired,
   suggestions: React.PropTypes.array,
   value: React.PropTypes.string,
   helper: React.PropTypes.object.isRequired,
