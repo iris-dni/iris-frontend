@@ -29,7 +29,8 @@ export default {
     createButton: {
       text: 'Create a new Petition',
       modal: {
-        intro: 'To begin creating your Petition please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
+        title: 'One last step',
+        intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
       }
     }
   },
@@ -37,7 +38,8 @@ export default {
     supportButton: {
       text: 'Support Petition',
       modal: {
-        intro: 'To support a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
+        title: 'Thanks for your support',
+        intro: 'In order to sign the Petition, we need you to log in using one of the services below..'
       }
     }
   },
@@ -94,8 +96,8 @@ export default {
     afterLogoutPath: '/'
   },
   loginPage: {
-    title: 'Nearly There',
-    intro: 'Please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
+    title: 'One last step',
+    intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   },
   flashMessages: {
     genericError: 'Sadly something failed, please try again!',

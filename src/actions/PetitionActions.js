@@ -154,8 +154,12 @@ export function supportPetition (petition, dispatch) {
         supportedPetition(response.data)
       )).then((response) => dispatch(
         supportCountIncreased(petition, response.petition)
-          ? showModalWindow('newlySupported')
-          : showModalWindow('alreadySupported')
+          ? showModalWindow({
+            type: 'newlySupported'
+          })
+          : showModalWindow({
+            type: 'alreadySupported'
+          })
       )).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
       ));
