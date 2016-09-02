@@ -1,6 +1,24 @@
 {
   "data": {
-    "city": null,
+    "city": {
+      "data": {
+        "name": "Clinemouth",
+        "tags": [
+          "portal:bzb"
+        ],
+        "provider": "test",
+        "zips": [
+          "17839",
+          "30359",
+          "41731",
+          "69846"
+        ],
+        "treshold": 10,
+        "id": "test:27"
+      },
+      "id": "test:27",
+      "class": "City"
+    },
     "connected_locations": [],
     "dc": {
       "created": "2016-01-28T02:54:33",
@@ -12,7 +30,20 @@
     "id": 2,
     "images": [],
     "links": [],
-    "owner": null,
+    "owner": {
+      "data": {
+        "lastname": "Ballard",
+        "state": "active",
+        "id": "1z4ZX",
+        "firstname": "Stephanie",
+        "dc": {
+          "modified": "2016-05-27T16:21:56",
+          "created": "2016-05-27T16:21:56"
+        }
+      },
+      "id": "1z4ZX",
+      "class": "User"
+    },
     "response_token": null,
     "state": "draft",
     "suggested_solution": "Fugiat quibusdam mollitia exercitationem possimus adipisci. Id natus beatae soluta fugiat. Mollitia quos architecto corrupti blanditiis. Nemo magni ratione illum dignissimos enim.\nAliquid saepe nesciunt possimus repudiandae. Itaque est odit dolore reprehenderit non corporis aperiam expedita. Animi doloribus quaerat laborum nostrum similique alias. Ipsum quibusdam modi blanditiis.\nVoluptate labore tempore ullam reiciendis possimus occaecati ab. Quaerat non sapiente consequatur nam. Eum omnis quo porro magnam veniam tempore libero.",

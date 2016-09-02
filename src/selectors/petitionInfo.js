@@ -1,8 +1,11 @@
 import getPetitionDateRange from 'helpers/getPetitionDateRange';
+import petitionOwner from './petitionOwner';
+import petitionCity from './petitionCity';
 
 export default (petition = {}) => {
   return {
-    city: petition.city && petition.city.name,
+    owner: petitionOwner(petition),
+    city: petitionCity(petition),
     dateRange: getPetitionDateRange(petition)
   };
 };
