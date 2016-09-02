@@ -56,8 +56,9 @@ export default {
     saveButton: 'Save Petition'
   },
   publishedPetitionPage: {
-    title: 'Petition published',
-    copy1: 'Your petition will be visible within the next 48 hours after being approved by an editor. In the meantime, share your petition and start collecting signatures:',
+    title: 'Your petition was successfully published',
+    intro: 'It can already be supported and will appear online within 48 hours. Until then, why not share it with others to start gaining support?',
+    preview: 'To see your petition, click the following link:',
     previewButton: 'Preview your Petition'
   },
   petitionFields: {

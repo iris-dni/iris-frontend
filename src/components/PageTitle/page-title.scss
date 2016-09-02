@@ -16,10 +16,11 @@
 }
 
 .intro {
-  @include responsive-font(3vw, 18px, 23px);
+  @include responsive-font(3vw, 18px, 22px);
   margin-top: 22px;
 }
 
 .lower {
+  @include responsive-font(3vw, 18px, 22px);
   padding-top: 5%;
 }

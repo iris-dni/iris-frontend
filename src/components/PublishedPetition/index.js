@@ -3,7 +3,7 @@ import settings from 'settings';
 import Container from 'components/Container';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
-import ButtonLink from 'components/ButtonLink';
+import Link from 'components/Link';
 import Paragraph from 'components/Paragraph';
 import TextCenter from 'components/TextCenter';
 
@@ -11,17 +11,17 @@ const PublishedPetition = ({ petition }) => (
   <Container>
     <Header>
       <PageTitle
-        title={settings.publishedPetitionPageTitle}
-        centered
-      />
+        title={settings.publishedPetitionPage.title}
+        intro={settings.publishedPetitionPage.intro}
+        centered>
+        <p>{settings.publishedPetitionPage.preview}</p>
+      </PageTitle>
     </Header>
     <TextCenter>
-      <Paragraph text={settings.publishedPetitionPage.copy1} />
       <Paragraph>
-        <ButtonLink
-          href={`/petitions/${petition.id}`}
-          text={'Preview your Petition'}
-          modifier={'accent'}
+        <Link
+          href={`${process.env.BASE_URL}/petitions/${petition.id}`}
+          text={`${process.env.BASE_URL}/petitions/${petition.id}`}
         />
       </Paragraph>
     </TextCenter>
