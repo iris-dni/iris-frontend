@@ -2,7 +2,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchPetitions } from 'actions/PetitionActions';
-import { showModalWindow } from 'actions/ModalActions';
 import settings from 'settings';
 import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';
@@ -44,8 +43,7 @@ export const mapStateToProps = ({ petitions }) => ({
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPetitions: (options) => dispatch(fetchPetitions(options)),
-    showModalWindow: () => dispatch(showModalWindow())
+    fetchPetitions: (options) => dispatch(fetchPetitions(options))
   };
 };
 

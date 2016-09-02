@@ -44,6 +44,9 @@ const ModalWindowContainer = React.createClass({
             ssoProviders={generateSsoProviders(returnUrl || '')}
           />
         }
+        {type === 'supported' &&
+          <div>well done!</div>
+        }
       </ModalWindow>
     );
   }

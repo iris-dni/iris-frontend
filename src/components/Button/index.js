@@ -3,7 +3,7 @@ import styles from './button.scss';
 
 export const getClassname = ({ disabled, modifier, fill, size }) => {
   return [
-    styles[size || 'default'],
+    styles[size || ''],
     styles[disabled ? 'disabled' : (modifier || 'default')],
     styles[size],
     styles[fill ? 'block' : 'inline']

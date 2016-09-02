@@ -17,6 +17,10 @@ import {
   hideFlashMessage
 } from './FlashActions';
 
+import {
+  showModalWindow
+} from './ModalActions';
+
 export function fetchPetition (id) {
   return (dispatch, getState) => {
     dispatch(requestPetition());
@@ -148,7 +152,7 @@ export function supportPetition (petition, dispatch) {
       .then((response) => dispatch(
         supportedPetition(response.data)
       )).then(() => dispatch(
-        showFlashMessage(settings.flashMessages.petitionSupported, 'success')
+        showModalWindow('supported')
       )).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
       ));
