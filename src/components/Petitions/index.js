@@ -8,6 +8,11 @@ import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import ModalTrigger from 'containers/ModalTrigger';
 
+const modal = {
+  ...settings.petitionsPage.createButton.modal,
+  type: 'auth'
+};
+
 const Petitions = ({ petitions }) => (
   <Container>
     <section>
@@ -17,9 +22,9 @@ const Petitions = ({ petitions }) => (
           centered>
           <ModalTrigger
             authenticating
-            modal={'auth'}
+            modal={modal}
             href={'/petitions/new'}
-            text={settings.petitionsPage.createButton}
+            text={settings.petitionsPage.createButton.text}
             modifier={'accent'}
           />
         </PageTitle>

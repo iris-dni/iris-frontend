@@ -3,10 +3,10 @@ import {
   HIDE_MODAL_WINDOW
 } from './actionTypes';
 
-export function showModalWindow (modalType, location) {
+export function showModalWindow (modal, location) {
   return {
     type: SHOW_MODAL_WINDOW,
-    modalType,
+    modal,
     location
   };
 }

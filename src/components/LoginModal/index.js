@@ -3,9 +3,12 @@ import settings from 'settings';
 import SsoProviders from 'components/SsoProviders';
 import ModalIntro from 'components/ModalIntro';
 
-const LoginModal = ({ ssoProviders }) => (
+const LoginModal = ({ title, intro, ssoProviders }) => (
   <div>
-    <ModalIntro title={'Nearly there'} intro={settings.loginPage.intro} />
+    <ModalIntro
+      title={title || settings.loginPage.title}
+      intro={intro || settings.loginPage.intro}
+    />
     <SsoProviders providers={ssoProviders} />
   </div>
 );

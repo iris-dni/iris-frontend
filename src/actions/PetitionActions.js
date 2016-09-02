@@ -8,26 +8,14 @@ import {
   SUBMIT_PETITION,
   CREATED_PETITION,
   UPDATED_PETITION,
-  PUBLISHED_PETITION
+  PUBLISHED_PETITION,
+  SUPPORTED_PETITION
 } from './actionTypes';
 
 import {
   showFlashMessage,
   hideFlashMessage
 } from './FlashActions';
-
-export function requestPetition () {
-  return {
-    type: REQUEST_PETITION
-  };
-}
-
-export function receivePetition (petition) {
-  return {
-    type: RECEIVE_PETITION,
-    petition
-  };
-}
 
 export function fetchPetition (id) {
   return (dispatch, getState) => {
@@ -39,16 +27,16 @@ export function fetchPetition (id) {
   };
 }
 
-export function requestPetitions () {
+export function requestPetition () {
   return {
-    type: REQUEST_PETITIONS
+    type: REQUEST_PETITION
   };
 }
 
-export function receivePetitions (petitions) {
+export function receivePetition (petition) {
   return {
-    type: RECEIVE_PETITIONS,
-    petitions
+    type: RECEIVE_PETITION,
+    petition
   };
 }
 
@@ -72,6 +60,19 @@ export function fetchPetitions ({ petitions, location, perPage, currentPage }) {
           return dispatch(receivePetitions(pagedResponse));
         });
     }
+  };
+}
+
+export function requestPetitions () {
+  return {
+    type: REQUEST_PETITIONS
+  };
+}
+
+export function receivePetitions (petitions) {
+  return {
+    type: RECEIVE_PETITIONS,
+    petitions
   };
 }
 
@@ -136,6 +137,27 @@ export function publishPetition (petition, dispatch) {
 export function publishedPetition (petition) {
   return {
     type: PUBLISHED_PETITION,
+    petition
+  };
+}
+
+export function supportPetition (petition, dispatch) {
+  return (dispatch, getState) => {
+    dispatch(submitPetition());
+    return petitionRepository.support(petition)
+      .then((response) => dispatch(
+        supportedPetition(response.data)
+      )).then(() => dispatch(
+        showFlashMessage(settings.flashMessages.petitionSupported, 'success')
+      )).catch(() => dispatch(
+        showFlashMessage(settings.flashMessages.genericError, 'error')
+      ));
+  };
+}
+
+export function supportedPetition (petition) {
+  return {
+    type: SUPPORTED_PETITION,
     petition
   };
 }

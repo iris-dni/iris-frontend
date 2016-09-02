@@ -5,50 +5,24 @@ import mockPetition from '../mocks/petition';
 import mockPetitions from '../mocks/petitions';
 
 import {
+  fetchPetition,
   requestPetition,
   receivePetition,
-  fetchPetition,
+  fetchPetitions,
   requestPetitions,
   receivePetitions,
-  fetchPetitions,
   submitPetition,
-  createdPetition,
   createPetition,
-  updatedPetition,
+  createdPetition,
   updatePetition,
+  updatedPetition,
+  publishPetition,
   publishedPetition,
-  publishPetition
+  supportPetition,
+  supportedPetition
 } from 'actions/PetitionActions';
 
 describe('PetitionActions', () => {
-  describe('requestPetition', () => {
-    it('returns REQUEST_PETITION action', () => {
-      const result = requestPetition();
-      const actual = result.type;
-      const expected = 'REQUEST_PETITION';
-
-      assert.equal(actual, expected);
-    });
-  });
-
-  describe('receivePetition', () => {
-    it('returns RECEIVE_PETITION action', () => {
-      const result = receivePetition();
-      const actual = result.type;
-      const expected = 'RECEIVE_PETITION';
-
-      assert.equal(actual, expected);
-    });
-
-    it('passes petition object', () => {
-      const result = receivePetition(mockPetition);
-      const actual = result.petition;
-      const expected = mockPetition;
-
-      assert.deepEqual(actual, expected);
-    });
-  });
-
   describe('fetchPetition', () => {
     let dispatch;
     let result;
@@ -81,29 +55,29 @@ describe('PetitionActions', () => {
     });
   });
 
-  describe('requestPetitions', () => {
-    it('returns REQUEST_PETITIONS action', () => {
-      const result = requestPetitions();
+  describe('requestPetition', () => {
+    it('returns REQUEST_PETITION action', () => {
+      const result = requestPetition();
       const actual = result.type;
-      const expected = 'REQUEST_PETITIONS';
+      const expected = 'REQUEST_PETITION';
 
       assert.equal(actual, expected);
     });
   });
 
-  describe('receivePetitions', () => {
-    it('returns RECEIVE_PETITIONS action', () => {
-      const result = receivePetitions();
+  describe('receivePetition', () => {
+    it('returns RECEIVE_PETITION action', () => {
+      const result = receivePetition();
       const actual = result.type;
-      const expected = 'RECEIVE_PETITIONS';
+      const expected = 'RECEIVE_PETITION';
 
       assert.equal(actual, expected);
     });
 
-    it('passes petitions object', () => {
-      const result = receivePetitions(mockPetitions);
-      const actual = result.petitions;
-      const expected = mockPetitions;
+    it('passes petition object', () => {
+      const result = receivePetition(mockPetition);
+      const actual = result.petition;
+      const expected = mockPetition;
 
       assert.deepEqual(actual, expected);
     });
@@ -141,29 +115,39 @@ describe('PetitionActions', () => {
     });
   });
 
-  describe('submitPetition', () => {
-    it('returns SUBMIT_PETITION action', () => {
-      const result = submitPetition();
+  describe('requestPetitions', () => {
+    it('returns REQUEST_PETITIONS action', () => {
+      const result = requestPetitions();
       const actual = result.type;
-      const expected = 'SUBMIT_PETITION';
+      const expected = 'REQUEST_PETITIONS';
 
       assert.equal(actual, expected);
     });
   });
 
-  describe('createdPetition', () => {
-    it('returns CREATED_PETITION action', () => {
-      const result = createdPetition();
+  describe('receivePetitions', () => {
+    it('returns RECEIVE_PETITIONS action', () => {
+      const result = receivePetitions();
       const actual = result.type;
-      const expected = 'CREATED_PETITION';
+      const expected = 'RECEIVE_PETITIONS';
 
       assert.equal(actual, expected);
     });
 
-    it('passes petition object', () => {
-      const result = createdPetition(mockPetition);
-      const actual = result.petition;
-      const expected = mockPetition;
+    it('passes petitions object', () => {
+      const result = receivePetitions(mockPetitions);
+      const actual = result.petitions;
+      const expected = mockPetitions;
+
+      assert.deepEqual(actual, expected);
+    });
+  });
+
+  describe('submitPetition', () => {
+    it('returns SUBMIT_PETITION action', () => {
+      const result = submitPetition();
+      const actual = result.type;
+      const expected = 'SUBMIT_PETITION';
 
       assert.equal(actual, expected);
     });
@@ -200,17 +184,17 @@ describe('PetitionActions', () => {
     });
   });
 
-  describe('updatedPetition', () => {
-    it('returns UPDATED_PETITION action', () => {
-      const result = updatedPetition();
+  describe('createdPetition', () => {
+    it('returns CREATED_PETITION action', () => {
+      const result = createdPetition();
       const actual = result.type;
-      const expected = 'UPDATED_PETITION';
+      const expected = 'CREATED_PETITION';
 
       assert.equal(actual, expected);
     });
 
     it('passes petition object', () => {
-      const result = updatedPetition(mockPetition);
+      const result = createdPetition(mockPetition);
       const actual = result.petition;
       const expected = mockPetition;
 
@@ -252,17 +236,17 @@ describe('PetitionActions', () => {
     });
   });
 
-  describe('publishedPetition', () => {
-    it('returns PUBLISHED_PETITION action', () => {
-      const result = publishedPetition();
+  describe('updatedPetition', () => {
+    it('returns UPDATED_PETITION action', () => {
+      const result = updatedPetition();
       const actual = result.type;
-      const expected = 'PUBLISHED_PETITION';
+      const expected = 'UPDATED_PETITION';
 
       assert.equal(actual, expected);
     });
 
     it('passes petition object', () => {
-      const result = publishedPetition(mockPetition);
+      const result = updatedPetition(mockPetition);
       const actual = result.petition;
       const expected = mockPetition;
 
@@ -298,10 +282,81 @@ describe('PetitionActions', () => {
       assert(dispatch.calledWith(submitPetition()));
     });
 
-    it('returns function that returns a promise that dispatches updatedPetition() when done', done => {
+    it('returns function that returns a promise that dispatches publishedPetition() when done', done => {
       result(dispatch).then(() => {
         assert(dispatch.calledWithMatch(publishedPetition(mockPetition.data)));
       }).then(done, done);
+    });
+  });
+
+  describe('publishedPetition', () => {
+    it('returns PUBLISHED_PETITION action', () => {
+      const result = publishedPetition();
+      const actual = result.type;
+      const expected = 'PUBLISHED_PETITION';
+
+      assert.equal(actual, expected);
+    });
+
+    it('passes petition object', () => {
+      const result = publishedPetition(mockPetition);
+      const actual = result.petition;
+      const expected = mockPetition;
+
+      assert.equal(actual, expected);
+    });
+  });
+
+  describe('supportPetition', () => {
+    let dispatch;
+    let result;
+    let petition;
+
+    beforeEach(() => {
+      dispatch = sinon.spy();
+
+      moxios.install();
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetition
+      });
+
+      petition = { id: 2, ...mockPetition.data };
+
+      result = supportPetition(petition, dispatch);
+    });
+
+    afterEach(() => {
+      moxios.uninstall();
+    });
+
+    it('dispatches submitPetition()', () => {
+      result(dispatch);
+      assert(dispatch.calledWith(submitPetition()));
+    });
+
+    it('returns function that returns a promise that dispatches supportedPetition() when done', done => {
+      result(dispatch).then(() => {
+        assert(dispatch.calledWithMatch(supportedPetition(mockPetition.data)));
+      }).then(done, done);
+    });
+  });
+
+  describe('supportedPetition', () => {
+    it('returns SUPPORTED_PETITION action', () => {
+      const result = supportedPetition();
+      const actual = result.type;
+      const expected = 'SUPPORTED_PETITION';
+
+      assert.equal(actual, expected);
+    });
+
+    it('passes petition object', () => {
+      const result = supportedPetition(mockPetition);
+      const actual = result.petition;
+      const expected = mockPetition;
+
+      assert.equal(actual, expected);
     });
   });
 });

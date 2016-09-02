@@ -26,7 +26,20 @@ export default {
   },
   petitionsPage: {
     title: 'Petitions',
-    createButton: 'Create a new Petition'
+    createButton: {
+      text: 'Create a new Petition',
+      modal: {
+        intro: 'To begin creating your Petition please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
+      }
+    }
+  },
+  petitionPage: {
+    supportButton: {
+      text: 'Support Petition',
+      modal: {
+        intro: 'To support a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
+      }
+    }
   },
   createPetitionPage: {
     title: 'Create a new Petition',
@@ -76,12 +89,13 @@ export default {
     afterLogoutPath: '/'
   },
   loginPage: {
-    title: 'Please sign in',
-    intro: 'To begin creating your Petition please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
+    title: 'Nearly There',
+    intro: 'Please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   },
   flashMessages: {
     genericError: 'Sadly something failed, please try again!',
     petitionCreated: 'Great, your petition was created!',
-    petitionUpdated: 'Your petition was updated'
+    petitionUpdated: 'Your petition was updated',
+    petitionSupported: 'Thank you for signing this petition!'
   }
 };

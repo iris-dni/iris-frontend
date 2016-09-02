@@ -43,6 +43,16 @@ describe('petition reducer', () => {
     assert.deepEqual(actual, expected);
   });
 
+  it('handles the SUPPORTED_PETITION action', () => {
+    const actual = petition({}, {
+      type: 'SUPPORTED_PETITION',
+      petition: mockPetition
+    });
+    const expected = mockPetition;
+
+    assert.deepEqual(actual, expected);
+  });
+
   it('provides fallback state', () => {
     const actual = petition(undefined, {});
     const expected = {};

@@ -10,7 +10,7 @@ describe('modalWindow reducer', () => {
       hidden: true
     }, {
       type: 'SHOW_MODAL_WINDOW',
-      modalType: 'auth',
+      modal: { type: 'auth' },
       location: '/petitions'
     });
     const expected = {
@@ -26,7 +26,7 @@ describe('modalWindow reducer', () => {
   it('handles the SHOW_MODAL_WINDOW action with location as an object', () => {
     const actual = modalWindow({}, {
       type: 'SHOW_MODAL_WINDOW',
-      modalType: 'auth',
+      modal: { type: 'auth' },
       location: {
         pathname: '/petitions',
         search: '?hello=world'
