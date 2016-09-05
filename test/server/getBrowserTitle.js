@@ -38,11 +38,20 @@ describe('getBrowserTitle', () => {
     assert.equal(actual, expected);
   });
 
-  it('returns correctly for CreatePetitionContainer', () => {
-    const actual = getBrowserTitle('CreatePetitionContainer', {
+  it('returns correctly for NewPetitionContainer', () => {
+    const actual = getBrowserTitle('NewPetitionContainer', {
       petition: mockPetitions.data
     });
     const expected = 'Create a new Petition | iris-frontend';
+
+    assert.equal(actual, expected);
+  });
+
+  it('returns correctly for EditPetitionContainer', () => {
+    const actual = getBrowserTitle('EditPetitionContainer', {
+      petition: mockPetitions.data
+    });
+    const expected = 'Edit Petition | iris-frontend';
 
     assert.equal(actual, expected);
   });

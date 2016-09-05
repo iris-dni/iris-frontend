@@ -28,9 +28,9 @@ const ModalTriggerContainer = (props) => (
 
 export const mapStateToProps = ({ me }) => ({ me });
 
-export const mapDispatchToProps = (dispatch) => {
-  return { showModalWindow: (modal, location) => dispatch(showModalWindow(modal, location)) };
-};
+export const mapDispatchToProps = (dispatch) => ({
+  showModalWindow: (modal, location) => dispatch(showModalWindow(modal, location))
+});
 
 export default connect(
   mapStateToProps,

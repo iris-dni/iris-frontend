@@ -45,17 +45,30 @@ export default {
       }
     }
   },
-  createPetitionPage: {
+  newPetitionPage: {
     title: 'Create a new Petition',
+    intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
+  },
+  editPetitionPage: {
+    title: 'Edit Petition',
     intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
   },
   requiredText: 'You must complete this field',
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',
   petitionForm: {
-    createButton: 'Create Petition',
-    publishButton: 'Publish Petition',
-    saveButton: 'Save Petition'
+    createButton: {
+      text: 'Create Petition'
+    },
+    publishButton: {
+      text: 'Publish Petition',
+      modal: {
+        intro: 'To publish a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
+      }
+    },
+    saveButton: {
+      text: 'Save Petition'
+    }
   },
   publishedPetitionPage: {
     title: 'Your petition was successfully published',
