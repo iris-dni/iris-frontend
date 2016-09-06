@@ -9,7 +9,7 @@ export const getFieldByNameKey = (name) => {
 };
 
 describe('PetitionForm', () => {
-  describe('exported FIELDS const', () => {
+  describe('FIELDS', () => {
     it('is 5 fields in length', () => {
       const actual = FIELDS.length;
       const expected = 5;
