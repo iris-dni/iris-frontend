@@ -15,7 +15,11 @@ export default function petition (state = initialState, action) {
     case UPDATED_PETITION:
     case PUBLISHED_PETITION:
     case SUPPORTED_PETITION:
-      return Object.assign({}, state, action.petition);
+      return Object.assign({},
+        state,
+        action.petition,
+        action.resolve
+      );
     default:
       return state;
   }

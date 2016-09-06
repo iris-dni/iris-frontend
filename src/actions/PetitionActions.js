@@ -151,7 +151,7 @@ export function supportPetition (petition, dispatch) {
     dispatch(submitPetition());
     return petitionRepository.support(petition)
       .then((response) => dispatch(
-        supportedPetition(response.data)
+        supportedPetition(response.data, petition)
       )).then((response) => dispatch(showModalWindow({
         type: 'supported',
         ...getSupportedPetitionModal(petition, response.petition)
@@ -161,9 +161,10 @@ export function supportPetition (petition, dispatch) {
   };
 }
 
-export function supportedPetition (petition) {
+export function supportedPetition (petition, { city, owner }) {
   return {
     type: SUPPORTED_PETITION,
-    petition
+    petition,
+    resolve: { city, owner }
   };
 }
