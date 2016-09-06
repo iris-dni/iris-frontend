@@ -29,7 +29,7 @@ export default {
     createButton: {
       text: 'Create a new Petition',
       modal: {
-        title: 'Log in required',
+        title: 'Please log in',
         intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
       }
     }
@@ -38,7 +38,7 @@ export default {
     supportButton: {
       text: 'Support Petition',
       modal: {
-        title: 'Thanks for your support',
+        title: 'Please log in',
         intro: 'In order to sign the Petition, we need you to log in using one of the services below..'
       }
     }
@@ -111,7 +111,7 @@ export default {
     afterLogoutPath: '/'
   },
   loginPage: {
-    title: 'Log in required',
+    title: 'Please log in',
     intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   },
   flashMessages: {
