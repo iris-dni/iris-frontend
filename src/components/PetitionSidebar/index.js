@@ -4,16 +4,18 @@ import Countdown from 'components/Countdown';
 import SupportButton from 'containers/SupportButton';
 import TextCenter from 'components/TextCenter';
 
-const PetitionSidebar = ({ timeMetric }) => (
+const PetitionSidebar = ({ timeMetric, supportable }) => (
   <aside role='complementary' className={styles.root}>
     <div className={styles.counter}>
       <Countdown timeMetric={timeMetric} />
     </div>
-    <div className={styles.supportButton}>
-      <TextCenter>
-        <SupportButton />
-      </TextCenter>
-    </div>
+    {supportable &&
+      <div className={styles.supportButton}>
+        <TextCenter>
+          <SupportButton />
+        </TextCenter>
+      </div>
+    }
   </aside>
 );
 

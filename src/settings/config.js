@@ -29,7 +29,8 @@ export default {
     createButton: {
       text: 'Create a new Petition',
       modal: {
-        intro: 'To begin creating your Petition please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
+        title: 'Please log in',
+        intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
       }
     }
   },
@@ -37,7 +38,8 @@ export default {
     supportButton: {
       text: 'Support Petition',
       modal: {
-        intro: 'To support a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
+        title: 'Please log in',
+        intro: 'In order to sign the Petition, we need you to log in using one of the services below..'
       }
     }
   },
@@ -54,8 +56,9 @@ export default {
     saveButton: 'Save Petition'
   },
   publishedPetitionPage: {
-    title: 'Petition published',
-    copy1: 'Your petition will be visible within the next 48 hours after being approved by an editor. In the meantime, share your petition and start collecting signatures:',
+    title: 'Your petition was successfully published',
+    intro: 'It can already be supported and will appear online within 48 hours. Until then, why not share it with others to start gaining support?',
+    preview: 'To see your petition, click the following link:',
     previewButton: 'Preview your Petition'
   },
   petitionFields: {
@@ -80,6 +83,20 @@ export default {
       hint: 'Because you care a lot about your cause, you probably have some great ideas about how to solve it. Clearly outline the actions required to achieve your goal.'
     }
   },
+  supportPetition: {
+    newlySupported: {
+      modal: {
+        title: 'Thank you!',
+        intro: 'Now that you\'ve supported this petition, show even more support by sharing the link to anyone you know.'
+      }
+    },
+    alreadySupported: {
+      modal: {
+        title: 'Got it!',
+        intro: 'You\'ve already supported this petition, but go ahead and share the link to anyone you know.'
+      }
+    }
+  },
   ssoProviders: [
     {
       text: 'Sign in with AZ Medien',
@@ -94,8 +111,8 @@ export default {
     afterLogoutPath: '/'
   },
   loginPage: {
-    title: 'Nearly There',
-    intro: 'Please sign in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
+    title: 'Please log in',
+    intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   },
   flashMessages: {
     genericError: 'Sadly something failed, please try again!',

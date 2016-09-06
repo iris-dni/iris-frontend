@@ -1,4 +1,5 @@
 import petitionRepository from 'services/api/repositories/petition';
+import getSupportedPetitionModal from 'helpers/getSupportedPetitionModal';
 import settings from 'settings';
 import {
   REQUEST_PETITION,
@@ -16,6 +17,10 @@ import {
   showFlashMessage,
   hideFlashMessage
 } from './FlashActions';
+
+import {
+  showModalWindow
+} from './ModalActions';
 
 export function fetchPetition (id) {
   return (dispatch, getState) => {
@@ -147,9 +152,10 @@ export function supportPetition (petition, dispatch) {
     return petitionRepository.support(petition)
       .then((response) => dispatch(
         supportedPetition(response.data)
-      )).then(() => dispatch(
-        showFlashMessage(settings.flashMessages.petitionSupported, 'success')
-      )).catch(() => dispatch(
+      )).then((response) => dispatch(showModalWindow({
+        type: 'supported',
+        ...getSupportedPetitionModal(petition, response.petition)
+      }))).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
       ));
   };

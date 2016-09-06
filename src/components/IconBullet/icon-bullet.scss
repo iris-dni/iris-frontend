@@ -3,8 +3,16 @@
 .root {
   border-radius: 50%;
   position: relative;
+}
+
+.small {
   width: 30px;
   height: 30px;
+}
+
+.huge {
+  width: 100px;
+  height: 100px;
 }
 
 .error {
@@ -26,4 +34,12 @@
 
 .use {
   fill: white;
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
 }
