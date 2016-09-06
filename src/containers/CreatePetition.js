@@ -8,7 +8,7 @@ import getPetitionForm from 'selectors/petitionForm';
 
 const CreatePetitionContainer = (props) => (
   <div>
-    <Helmet title={settings.createPetitionPageTitle} />
+    <Helmet title={settings.createPetitionPage.title} />
     {props.petition.published
       ? <PublishedPetition {...props} />
       : <CreatePetition {...props} />
