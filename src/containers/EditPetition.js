@@ -10,8 +10,18 @@ import getPetitionForm from 'selectors/petitionForm';
 const EditPetitionContainer = React.createClass({
 
   componentWillMount () {
-    const { fetchPetition, params: { id } } = this.props;
-    fetchPetition(id);
+    const {
+      fetchPetition,
+      publishPetition,
+      params: { id },
+      location: { query: { intent } }
+    } = this.props;
+
+    fetchPetition(id).then(({ petition }) => {
+      if (__CLIENT__ && intent === 'publish') {
+        publishPetition(petition);
+      }
+    });
   },
 
   render () {
