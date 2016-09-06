@@ -8,7 +8,7 @@ export default {
 
   search: (query, limit) => {
     const requestPath = '/cities';
-    const requestParams = { ft: query, limit: limit, sort: 'score' };
+    const requestParams = { ft: query, limit: limit, sort: '-score' };
 
     return ApiClient.request(requestPath, requestParams);
   }
