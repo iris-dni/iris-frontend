@@ -2,10 +2,11 @@ import petitionRepository from 'services/api/repositories/petition';
 import getSupportedPetitionModal from 'helpers/getSupportedPetitionModal';
 import settings from 'settings';
 import {
-  REQUEST_PETITION,
-  RECEIVE_PETITION,
   REQUEST_PETITIONS,
   RECEIVE_PETITIONS,
+  CLEAR_PETITION,
+  REQUEST_PETITION,
+  RECEIVE_PETITION,
   SUBMIT_PETITION,
   CREATED_PETITION,
   UPDATED_PETITION,
@@ -21,29 +22,6 @@ import {
 import {
   showModalWindow
 } from './ModalActions';
-
-export function fetchPetition (id) {
-  return (dispatch, getState) => {
-    dispatch(requestPetition());
-    return petitionRepository.find(id)
-      .then(response => dispatch(
-        receivePetition(response.data)
-      ));
-  };
-}
-
-export function requestPetition () {
-  return {
-    type: REQUEST_PETITION
-  };
-}
-
-export function receivePetition (petition) {
-  return {
-    type: RECEIVE_PETITION,
-    petition
-  };
-}
 
 export function fetchPetitions ({ petitions, location, perPage, currentPage }) {
   const page = parseInt(location.query.page || currentPage || 1);
@@ -81,6 +59,36 @@ export function receivePetitions (petitions) {
   };
 }
 
+export function clearPetition () {
+  return {
+    type: CLEAR_PETITION,
+    petition: null
+  };
+}
+
+export function fetchPetition (id) {
+  return (dispatch, getState) => {
+    dispatch(requestPetition());
+    return petitionRepository.find(id)
+      .then(response => dispatch(
+        receivePetition(response.data)
+      ));
+  };
+}
+
+export function requestPetition () {
+  return {
+    type: REQUEST_PETITION
+  };
+}
+
+export function receivePetition (petition) {
+  return {
+    type: RECEIVE_PETITION,
+    petition: {...petition, saved: false}
+  };
+}
+
 export function submitPetition () {
   return {
     type: SUBMIT_PETITION
@@ -102,7 +110,7 @@ export function createPetition (data, dispatch) {
 export function createdPetition (petition) {
   return {
     type: CREATED_PETITION,
-    petition
+    petition: {...petition, saved: true}
   };
 }
 
@@ -121,7 +129,7 @@ export function updatePetition (data, dispatch) {
 export function updatedPetition (petition) {
   return {
     type: UPDATED_PETITION,
-    petition
+    petition: {...petition, saved: true}
   };
 }
 

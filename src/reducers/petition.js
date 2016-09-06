@@ -1,5 +1,6 @@
 import {
   REQUEST_PETITION,
+  CLEAR_PETITION,
   RECEIVE_PETITION,
   CREATED_PETITION,
   UPDATED_PETITION,
@@ -15,6 +16,7 @@ export default function petition (state = initialState, action) {
       return Object.assign({},
         state, { isLoading: true }
       );
+    case CLEAR_PETITION:
     case RECEIVE_PETITION:
       return Object.assign({},
         action.petition, { isLoading: false }

@@ -49,6 +49,19 @@ export default {
     title: 'Create a new Petition',
     intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
   },
+  previewPetitionPage: {
+    title: 'Preview',
+    intro: 'Lorem Ipsum',
+    editButton: {
+      text: 'Edit'
+    },
+    publishButton: {
+      text: 'Publish',
+      modal: {
+        intro: 'To publish a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
+      }
+    }
+  },
   editPetitionPage: {
     title: 'Edit Petition',
     intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'

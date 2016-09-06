@@ -10,6 +10,14 @@ describe('petition reducer', () => {
     const expected = {
       isLoading: true
     };
+  });
+
+  it('handles the CLEAR_PETITION action', () => {
+    const actual = petition({}, {
+      type: 'CLEAR_PETITION',
+      petition: null
+    });
+    const expected = {};
 
     assert.deepEqual(actual, expected);
   });

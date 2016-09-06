@@ -5,38 +5,32 @@ import petitionValidator from 'form/petitionValidator';
 import Fieldset from 'components/Fieldset';
 import FormField from 'components/FormField';
 import Button from 'components/Button';
-import PublishButton from 'containers/PublishButton';
-import ButtonSet from 'components/ButtonSet';
 import settings from 'settings';
-import getPetitionForm from 'selectors/petitionForm';
 import FIELDS from './fields';
 
-const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, publishPetition }) => (
-  <form onSubmit={handleSubmit(petition.persisted ? updatePetition : createPetition)}>
-    <Fieldset>
-      {FIELDS.map(field => (
-        <FormField
-          key={field.name}
-          config={field}
-          helper={fields[field.name]}
-        />
-      ))}
-    </Fieldset>
-
-    <Fieldset modifier={'actions'}>
-      <ButtonSet>
+const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine }) => {
+  return (
+    <form onSubmit={handleSubmit(petition.persisted
+      ? updatePetition
+      : createPetition)}
+    >
+      <Fieldset>
+        {FIELDS.map(field => (
+          <FormField
+            key={field.name}
+            config={field}
+            helper={fields[field.name]}
+          />
+        ))}
+      </Fieldset>
+      <Fieldset modifier={'actions'}>
         <Button
-          disabled={submitting || !fields._meta.allValid || pristine}
-          modifier={petition.persisted && pristine ? 'default' : 'accent'}
-          text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton']}
+          text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton'].text}
         />
-        {petition.persisted && !petition.published &&
-          <PublishButton />
-        }
-      </ButtonSet>
-    </Fieldset>
-  </form>
-);
+      </Fieldset>
+    </form>
+  );
+};
 
 PetitionForm.propTypes = {
   fields: React.PropTypes.object.isRequired,
