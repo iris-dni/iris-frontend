@@ -6,6 +6,7 @@ export default ({ limit, page }) => {
 
   return {
     resolve: 'city,owner',
+    sort: '-created',
     offset: calculateParamOffset(page, saneLimit),
     limit: saneLimit
   };
