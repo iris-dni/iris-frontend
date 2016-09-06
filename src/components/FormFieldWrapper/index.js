@@ -6,16 +6,23 @@ import FormValidationMessage from 'components/FormValidationMessage';
 import FormValidationIcon from 'components/FormValidationIcon';
 import styles from './form-field-wrapper.scss';
 
-const getClassname = (element) => {
+const getRootClassname = (config) => {
+  return [
+    styles[config.hidden ? 'hidden' : 'root'],
+    styles[`${config.element.toLowerCase()}-wrapper`]
+  ].join(' ');
+};
+
+const getFieldClassname = (config) => {
   return [
     styles.field,
-    styles[(element || '').toLowerCase()]
+    styles[`${config.element.toLowerCase()}-field`]
   ].join(' ');
 };
 
 const FormFieldWrapper = (WrappedComponent) => ({ config, helper }) => (
   <div
-    className={config.hidden ? styles.hidden : styles.root}
+    className={getRootClassname(config)}
     aria-hidden={config.hidden}>
     {!config.hidden &&
       <FormLabel
@@ -25,7 +32,7 @@ const FormFieldWrapper = (WrappedComponent) => ({ config, helper }) => (
       />
     }
 
-    <div className={getClassname(config.element)}>
+    <div className={getFieldClassname(config)}>
       <WrappedComponent config={config} helper={helper} />
 
       {!config.hidden &&

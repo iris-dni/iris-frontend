@@ -5,7 +5,7 @@
   text-decoration: none;
   outline: 0;
 
-  @include media('>500px') {
+  @include media('>text-boost') {
     font-size: 1.125em;
   }
 }

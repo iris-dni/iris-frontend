@@ -62,7 +62,7 @@ export default {
     city: {
       label: 'Choose a region',
       placeholder: 'Aarau - 5000',
-      hint: 'Select the area your change concerns.'
+      hint: 'Select the area or region your change is concerned with.'
     },
     title: {
       label: 'Your petition title',
