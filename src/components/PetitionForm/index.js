@@ -30,6 +30,7 @@ export const FIELDS = [
         class: 'City'
       };
     },
+    suggestionsLimit: 4,
     html: {
       placeholder: settings.petitionFields.city.placeholder
     }

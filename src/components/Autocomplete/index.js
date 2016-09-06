@@ -25,7 +25,9 @@ const Autocomplete = React.createClass({
     const query = e.value.trim().toLowerCase();
 
     if (query.length >= MIN_QUERY_LENGTH) {
-      return this.props.typeaheadSearch(this.props.endpoint, query);
+      return this.props.typeaheadSearch(
+        this.props.endpoint, query, this.props.suggestionsLimit
+      );
     }
   },
 

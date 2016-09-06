@@ -21,6 +21,7 @@ AutocompleteContainer.propTypes = {
   clearSuggestions: React.PropTypes.func.isRequired,
   updateSuggestionInputValue: React.PropTypes.func.isRequired,
   getFormValue: React.PropTypes.func.isRequired,
+  suggestionsLimit: React.PropTypes.number,
   suggestions: React.PropTypes.array,
   value: React.PropTypes.string,
   helper: React.PropTypes.object.isRequired,
@@ -35,8 +36,8 @@ export const mapStateToProps = ({ autocomplete }) => ({
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    typeaheadSearch: throttle((endpoint, query) => (
-      dispatch(typeaheadSearch(endpoint, query))
+    typeaheadSearch: throttle((endpoint, query, limit) => (
+      dispatch(typeaheadSearch(endpoint, query, limit))
     ), QUERY_THROTTLE_TIME),
     clearSuggestions: () => (
       dispatch(clearSuggestions())

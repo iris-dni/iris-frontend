@@ -25,14 +25,14 @@ export function updateSuggestionInputValue (value) {
   };
 }
 
-export function typeaheadSearch (endpoint, query) {
+export function typeaheadSearch (endpoint, query, limit) {
   return (dispatch, getState) => {
     const repository = Repositories[endpoint];
 
     if (repository) {
-      return repository.search(query).then(response => dispatch(
-        updateSuggestions(response.data)
-      ));
+      return repository.search(query, limit).then(response => {
+        dispatch(updateSuggestions(response.data));
+      });
     }
 
     return console.warn(`No repository found for endpoint “${endpoint}“)`);

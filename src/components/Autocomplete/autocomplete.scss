@@ -31,9 +31,6 @@ $suggestion-border: 1px solid color('grey-lite');
   border-color: color('error');
 }
 
-/**
- * 1. Value so that it always fits 4 suggestions at a time.
- */
 .list {
   @include map-declarations($form-fields-defaults, $form-fields-custom);
   position: absolute;
@@ -41,8 +38,6 @@ $suggestion-border: 1px solid color('grey-lite');
   right: 0;
   top: 100%;
   z-index: 2;
-  max-height: 216px; /* 1 */
-  overflow-y: scroll;
   list-style: none;
   padding: 0;
   border-top: 0;
