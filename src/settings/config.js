@@ -29,7 +29,7 @@ export default {
     createButton: {
       text: 'Create a new Petition',
       modal: {
-        title: 'One last step',
+        title: 'Log in required',
         intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
       }
     }
@@ -111,7 +111,7 @@ export default {
     afterLogoutPath: '/'
   },
   loginPage: {
-    title: 'One last step',
+    title: 'Log in required',
     intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   },
   flashMessages: {
