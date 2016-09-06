@@ -35,6 +35,8 @@ export default {
     }
   },
   petitionPage: {
+    description: 'Description:',
+    suggestedSolution: 'Suggested solution:',
     supportButton: {
       text: 'Support Petition',
       modal: {
