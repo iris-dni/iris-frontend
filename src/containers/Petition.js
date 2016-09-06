@@ -7,15 +7,21 @@ import Loading from 'components/Loading';
 import getPetition from 'selectors/petition';
 
 const PetitionContainer = React.createClass({
-  // When the component gets added to the DOM,
-  // fetch Petition if `id` changes (clientside)
   componentWillMount () {
-    const { petition } = this.props;
+    const {
+      fetchPetition,
+      supportPetition,
+      params: { id },
+      location: { query: { intent } }
+    } = this.props;
+
+    // When the component gets added to the DOM,
+    // fetch Petition if `id` changes (clientside)
     if (petition.id !== this.props.params.id) {
-      this.props.fetchPetition(this.props.params.id).then(() => {
+      fetchPetition(id).then(({ petition }) => {
         // If we have the `support` intent, support the petition
-        if (__CLIENT__ && this.props.location.query.intent === 'support') {
-          this.props.supportPetition(petition);
+        if (__CLIENT__ && intent === 'support') {
+          supportPetition(petition);
         }
       });
     }
