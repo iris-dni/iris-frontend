@@ -63,9 +63,9 @@ export default {
   },
   petitionFields: {
     city: {
-      label: 'Choose a region',
-      placeholder: 'Aarau - 5000',
-      hint: 'Select the area or region your change is concerned with.'
+      label: 'Select a city',
+      placeholder: 'Enter city or zip code',
+      hint: 'The city your change is concerned with.'
     },
     title: {
       label: 'Your petition title',
