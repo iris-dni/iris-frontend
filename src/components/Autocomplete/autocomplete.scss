@@ -54,14 +54,14 @@ $suggestion-border: 1px solid color('grey-lite');
   color: color('dimmed');
   cursor: pointer;
   transition: all 150ms;
+}
 
-  &:first-of-type {
-    border-top: 0;
-  }
+.suggestion:first-of-type {
+  border-top: 0;
+}
 
-  &:last-of-type {
-    border-bottom: 0;
-  }
+.suggestion:last-of-type {
+  border-bottom: 0;
 }
 
 .focused,

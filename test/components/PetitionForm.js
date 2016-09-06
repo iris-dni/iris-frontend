@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { FIELDS } from 'components/PetitionForm';
+import FIELDS from 'components/PetitionForm/fields';
 
 const { assert } = chai;
 
@@ -118,6 +118,61 @@ describe('PetitionForm', () => {
       const actual = result.element;
       const expected = 'textarea';
 
+      assert.equal(actual, expected);
+    });
+
+    it('contains `city` field object', () => {
+      const result = getFieldByNameKey('city');
+      const actual = result.name;
+      const expected = 'city';
+
+      assert.equal(actual, expected);
+    });
+
+    it('`city` field is an Autocomplete', () => {
+      const result = getFieldByNameKey('city');
+      const actual = result.element;
+      const expected = 'Autocomplete';
+
+      assert.equal(actual, expected);
+    });
+
+    it('`city` field uses `cities` endpoint', () => {
+      const result = getFieldByNameKey('city');
+      const actual = result.endpoint;
+      const expected = 'cities';
+
+      assert.equal(actual, expected);
+    });
+
+    it('`city` field is optional', () => {
+      const result = getFieldByNameKey('city');
+      const actual = !result.html.required;
+      const expected = true;
+
+      assert.equal(actual, expected);
+    });
+
+    it('`city` field has a `suggestionsLimit` of 4', () => {
+      const result = getFieldByNameKey('city');
+      const actual = result.suggestionsLimit;
+      const expected = 4;
+
+      assert.equal(actual, expected);
+    });
+
+    it('`city` field has a `suggestionFormatter` callback', () => {
+      const result = getFieldByNameKey('city');
+      const actual = typeof result.suggestionFormatter;
+      const expected = 'function';
+
+      assert.equal(actual, expected);
+    });
+
+    it('`city` field has a `getFormValue` callback', () => {
+      const result = getFieldByNameKey('city');
+      const actual = typeof result.getFormValue;
+      const expected = 'function';
       assert.equal(actual, expected);
     });
   });
