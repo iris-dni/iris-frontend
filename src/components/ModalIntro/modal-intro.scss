@@ -8,14 +8,16 @@
 .title {
   font-weight: normal;
 
-  @include media('<=700px') {
+  @include media('<=modal-size') {
     padding-left: 20px;
     padding-right: 20px;
     font-size: 24px;
+    margin-bottom: 10px;
   }
 
-  @include media('>700px') {
+  @include media('>modal-size') {
     font-size: 28px;
+    margin-bottom: 20px;
   }
 }
 
@@ -24,11 +26,11 @@
   margin-top: 10px;
   margin-bottom: 5px;
 
-  @include media('<=700px') {
+  @include media('<=modal-size') {
     font-size: 18px;
   }
 
-  @include media('>700px') {
+  @include media('>modal-size') {
     font-size: 20px;
   }
 }

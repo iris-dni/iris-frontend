@@ -31,12 +31,12 @@
   background-color: color('white');
   border-radius: 2px;
 
-  @include media('<=text-boost') {
-    padding: 20px;
+  @include media('<=modal-size') {
+    padding: 30px 20px;
   }
 
-  @include media('>text-boost') {
-    padding: 30px 50px;
+  @include media('>modal-size') {
+    padding: 50px;
   }
 }
 
