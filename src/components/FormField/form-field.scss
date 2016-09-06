@@ -10,10 +10,6 @@
   composes: field;
 }
 
-.autocomplete {
-  max-width: 420px;
-}
-
 .textarea {
   composes: field;
   resize: vertical;

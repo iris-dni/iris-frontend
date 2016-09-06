@@ -9,14 +9,16 @@
   margin-bottom: 0;
 }
 
-.wrapper {
+.hidden {
+  @include visuallyhidden;
+}
+
+.field {
   position: relative;
 }
 
-.autocomplete-wrapper {
-  @include media('>600px') {
-    width: 65%;
-  }
+.autocomplete {
+  max-width: 420px;
 }
 
 .icon {

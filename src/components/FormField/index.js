@@ -21,12 +21,10 @@ const FormField = React.createClass({
     switch (config.element) {
       case 'Autocomplete':
         Field = (
-          <div className={styles.autocomplete}>
-            <Autocomplete
-              helper={helper}
-              {...config}
-            />
-          </div>
+          <Autocomplete
+            helper={helper}
+            {...config}
+          />
         );
         break;
       default:
