@@ -16,7 +16,7 @@ const RestrictedWrapper = (WrappedComponent) => {
           );
         } else {
           router.goBack();
-          this.props.showModalWindow('auth', location);
+          this.props.showModalWindow({ type: 'auth' }, location);
         }
       }
     },
