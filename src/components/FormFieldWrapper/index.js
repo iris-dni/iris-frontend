@@ -1,21 +1,29 @@
 import React from 'react';
-import domOnlyProps from 'form/domOnlyProps';
 import fieldIsValid from 'form/fieldIsValid';
 import fieldIsInvalid from 'form/fieldIsInvalid';
 import FormLabel from 'components/FormLabel';
 import FormValidationMessage from 'components/FormValidationMessage';
 import FormValidationIcon from 'components/FormValidationIcon';
-import styles from './text-field.scss';
+import styles from './form-field-wrapper.scss';
 
-const getClassname = (element, error) => {
+const getRootClassname = (config) => {
   return [
-    styles[element || 'input'],
-    styles[error ? 'invalid' : 'valid']
+    styles[config.hidden ? 'hidden' : 'root'],
+    styles[`${config.element.toLowerCase()}-wrapper`]
   ].join(' ');
 };
 
-export default ({ config, helper }) => (
-  <div className={config.hidden ? styles.hidden : styles.root}>
+const getFieldClassname = (config) => {
+  return [
+    styles.field,
+    styles[`${config.element.toLowerCase()}-field`]
+  ].join(' ');
+};
+
+const FormFieldWrapper = (WrappedComponent) => ({ config, helper }) => (
+  <div
+    className={getRootClassname(config)}
+    aria-hidden={config.hidden}>
     {!config.hidden &&
       <FormLabel
         fieldId={config.name}
@@ -23,18 +31,9 @@ export default ({ config, helper }) => (
         hint={config.hint}
       />
     }
-    <div className={styles.wrapper}>
-      <config.element
-        className={getClassname(config.element, fieldIsInvalid(helper))}
-        aria-required={(config.html && config.html.required) || false}
-        aria-invalid={fieldIsInvalid(helper)}
-        id={config.name}
-        // pass props from config e.g. type, placeholder, maxlength
-        {...config.html}
-        // domOnlyProps required with latest react and redux-form 5.x
-        // see: https://github.com/erikras/redux-form/issues/1441#issuecomment-236966387
-        {...domOnlyProps(helper)}
-      />
+
+    <div className={getFieldClassname(config)}>
+      <WrappedComponent config={config} helper={helper} />
 
       {!config.hidden &&
         <div>
@@ -45,6 +44,7 @@ export default ({ config, helper }) => (
               message={helper.error || config.validated}
             />
           </div>
+
           <div className={styles.icon}>
             <FormValidationIcon
               error={fieldIsInvalid(helper)}
@@ -56,3 +56,5 @@ export default ({ config, helper }) => (
     </div>
   </div>
 );
+
+export default FormFieldWrapper;

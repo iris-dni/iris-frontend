@@ -28,9 +28,9 @@ describe('city repository', () => {
     let expectedPathArgument = '/cities';
 
     it('calls the API with search arguments', () => {
-      let expectedDataArgument = { ft: 'term', sort: 'score' };
+      let expectedDataArgument = { ft: 'term', limit: 10, sort: '-score' };
 
-      cityRepository.search('term');
+      cityRepository.search('term', 10);
 
       assert(ApiClient.request.calledWith(
         expectedPathArgument,

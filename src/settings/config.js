@@ -59,6 +59,11 @@ export default {
     previewButton: 'Preview your Petition'
   },
   petitionFields: {
+    city: {
+      label: 'Choose a region',
+      placeholder: 'Aarau - 5000',
+      hint: 'Select the area or region your change is concerned with.'
+    },
     title: {
       label: 'Your petition title',
       placeholder: '',

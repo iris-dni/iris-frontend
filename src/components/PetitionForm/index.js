@@ -7,70 +7,25 @@ import {
 } from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
 import Fieldset from 'components/Fieldset';
-import TextField from 'components/TextField';
+import FormField from 'components/FormField';
 import Button from 'components/Button';
 import ButtonSet from 'components/ButtonSet';
 import settings from 'settings';
 import getPetitionForm from 'selectors/petitionForm';
-
-export const FIELDS = [
-  {
-    name: 'id',
-    element: 'input',
-    hidden: true,
-    html: {
-      type: 'hidden'
-    }
-  },
-  {
-    name: 'description',
-    element: 'textarea',
-    label: settings.petitionFields.description.label,
-    hint: settings.petitionFields.description.hint,
-    html: {
-      placeholder: settings.petitionFields.description.placeholder,
-      required: true,
-      minLength: 50,
-      maxLength: 500
-    }
-  },
-  {
-    name: 'suggested_solution',
-    element: 'textarea',
-    label: settings.petitionFields.suggested_solution.label,
-    hint: settings.petitionFields.suggested_solution.hint,
-    html: {
-      placeholder: settings.petitionFields.suggested_solution.placeholder,
-      minLength: 50,
-      maxLength: 500
-    }
-  },
-  {
-    name: 'title',
-    element: 'input',
-    label: settings.petitionFields.title.label,
-    hint: settings.petitionFields.title.hint,
-    html: {
-      type: 'text',
-      placeholder: settings.petitionFields.title.placeholder,
-      required: true,
-      minLength: 15,
-      maxLength: 80
-    }
-  }
-];
+import FIELDS from './fields';
 
 const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, publishPetition }) => (
   <form onSubmit={handleSubmit(petition.persisted ? updatePetition : createPetition)}>
     <Fieldset>
       {FIELDS.map(field => (
-        <TextField
+        <FormField
           key={field.name}
           config={field}
           helper={fields[field.name]}
         />
       ))}
     </Fieldset>
+
     <Fieldset modifier={'actions'}>
       <ButtonSet>
         <Button
@@ -78,6 +33,7 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, pu
           modifier={petition.persisted && pristine ? 'default' : 'accent'}
           text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton']}
         />
+
         {petition.persisted && !petition.published &&
           <Button
             type={'button'}
