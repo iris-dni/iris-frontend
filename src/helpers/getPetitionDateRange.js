@@ -3,7 +3,7 @@ import getPetitionEndDate from 'helpers/getPetitionEndDate';
 import settings from 'settings';
 
 export default ({ dc }) => {
-  const { created, effective, expires } = dc;
+  const { created, effective, expires } = dc || {};
   const startDate = moment(effective || created);
   const endDate = getPetitionEndDate({ created, expires });
   return settings.dateRange
