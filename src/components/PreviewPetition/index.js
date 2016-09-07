@@ -2,12 +2,17 @@ import React from 'react';
 import settings from 'settings';
 import styles from './preview-petition.scss';
 import Container from 'components/Container';
-import Header from 'components/Header';
-import PageTitle from 'components/PageTitle';
-import Petition from 'components/Petition';
 import ButtonSet from 'components/ButtonSet';
 import ButtonLink from 'components/ButtonLink';
 import ModalTrigger from 'containers/ModalTrigger';
+
+import LayoutWrap from 'components/LayoutWrap';
+import LayoutContent from 'components/LayoutContent';
+import LayoutSidebar from 'components/LayoutSidebar';
+
+import PetitionHeader from 'components/PetitionHeader';
+import PetitionBody from 'components/PetitionBody';
+import PetitionSidebar from 'components/PetitionSidebar';
 
 const publishModal = {
   ...settings.previewPetitionPage.publishButton.modal,
@@ -16,14 +21,24 @@ const publishModal = {
 
 const PreviewPetition = ({ petition, fetchPetition, publishPetition }) => (
   <Container>
-    <Header>
-      <PageTitle
-        title={settings.previewPetitionPage.title}
-        centered
-      />
-    </Header>
-    <div className={styles.form}>
-      <Petition />
+    <article>
+      <PetitionHeader {...petition} />
+      <LayoutWrap>
+        <LayoutContent>
+          <PetitionBody
+            {...petition}
+            suggestedSolution={petition.suggested_solution}
+          />
+        </LayoutContent>
+        <LayoutSidebar>
+          <PetitionSidebar {...petition}
+            timeMetric={{}}
+            supportable={false}
+          />
+        </LayoutSidebar>
+      </LayoutWrap>
+    </article>
+    <div className={styles.preview}>
       {!petition.published &&
         <ButtonSet>
           <ButtonLink

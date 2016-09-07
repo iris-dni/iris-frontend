@@ -50,8 +50,6 @@ export default {
     intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
   },
   previewPetitionPage: {
-    title: 'Preview',
-    intro: 'Lorem Ipsum',
     editButton: {
       text: 'Edit'
     },
