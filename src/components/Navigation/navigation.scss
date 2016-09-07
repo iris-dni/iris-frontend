@@ -13,6 +13,7 @@
  * 1. Extra 1% so that it goes under the nav's grey border.
  */
 .overlay {
+  pointer-events: none;
   position: absolute;
   height: 100vh;
   width: 100%;
@@ -21,6 +22,7 @@
   opacity: 0;
   background-color: color('black');
   transition: opacity 500ms;
+  z-index: 2;
 }
 
 .overlay.opened {
@@ -29,21 +31,20 @@
 
 .list {
   position: absolute;
-  transform: translateX(220%);
   height: 100vh;
   width: 260px;
   padding: 20px;
+  left: 100%;
   top: 101%;
   right: 0;
   background: color('white');
   list-style: none;
-
+  z-index: 2;
 
   @include media('>=940px') {
     position: static;
-    display: inline-block;
+    display: inline;
     padding: 0;
-    transform: translateX(0);
     height: auto;
     width: auto;
   }
@@ -54,7 +55,7 @@
 }
 
 .list.opened {
-  transform: translateX(0);
+  transform: translateX(-100%);
   transition: transform 500ms;
 }
 
@@ -65,7 +66,7 @@
 .element {
   @include media('>=940px') {
     display: inline-block;
-    padding: 0 20px;
+    padding: 0 1em;
     margin-bottom: -1px; /* 1 */
     vertical-align: top;
   }
@@ -79,7 +80,7 @@
   position: relative; /* 1 */
 
   padding: 0;
-  padding-right: 20px;
+  padding-right: 1em;
 }
 
 .burger-wrapper {
@@ -95,14 +96,13 @@
 
 .burger-wrapper > span {
   position: inherit;
-  right: 26px;
+  right: 2em;
   transform: translateY(-50%);
 }
 
 .burger-menu {
   position: absolute;
   right: 0;
-  display: inline-block;
   width: 16px;
   height: 16px;
   transform: translateY(-50%);
@@ -191,7 +191,7 @@ $link-padding: 16px;
 }
 
 .element:not(:last-of-type) .link {
-  margin-bottom: 10px;
+  margin-bottom: 0.5em;
 
   @include media('>=940px') {
     margin-bottom: 0;
