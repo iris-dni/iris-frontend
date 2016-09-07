@@ -12,6 +12,14 @@ describe('getPetitionsRequestParams', () => {
     assert.equal(actual, expected);
   });
 
+  it('always returns order `-created`', () => {
+    const result = getPetitionsRequestParams({});
+    const actual = result.sort;
+    const expected = '-created';
+
+    assert.equal(actual, expected);
+  });
+
   it('returns offset and limit correctly', () => {
     const result = getPetitionsRequestParams({
       limit: 50,

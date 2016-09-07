@@ -25,9 +25,16 @@ describe('calculatePercentage', () => {
     assert.equal(actual, expected);
   });
 
-  it('cannot divide by 0', () => {
+  it('if required is 0, return 0', () => {
     const actual = calculatePercentage(1, 0);
-    const expected = 100;
+    const expected = 0;
+
+    assert.equal(actual, expected);
+  });
+
+  it('if required is less than 0, return 0', () => {
+    const actual = calculatePercentage(1, -5);
+    const expected = 0;
 
     assert.equal(actual, expected);
   });

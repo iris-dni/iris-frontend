@@ -150,20 +150,27 @@ export function supportPetition (petition, dispatch) {
   return (dispatch, getState) => {
     dispatch(submitPetition());
     return petitionRepository.support(petition)
-      .then((response) => dispatch(
-        supportedPetition(response.data)
-      )).then((response) => dispatch(showModalWindow({
+      .then((response) => {
+        // Get stuff we usually `resolve` via the endpoint
+        const { city, owner } = petition;
+        // Do this here because API does not support the
+        // `resolve` param on the `event/support` endpoint
+        const resolvedPetition = Object.assign({}, response.data, { city, owner });
+        return dispatch(supportedPetition(resolvedPetition));
+      }).then((resolvedPetition) => dispatch(showModalWindow({
         type: 'supported',
-        ...getSupportedPetitionModal(petition, response.petition)
+        ...getSupportedPetitionModal(petition, resolvedPetition)
       }))).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
       ));
   };
 }
 
-export function supportedPetition (petition) {
+export function supportedPetition (returnedPetition, fullPetition) {
+  const { city, owner } = fullPetition || {};
   return {
     type: SUPPORTED_PETITION,
-    petition
+    petition: returnedPetition,
+    resolve: { city, owner }
   };
 }

@@ -20,10 +20,13 @@ describe('petition repository', () => {
 
     context('without any argument', () => {
       it('calls the API client with default offset and limit', () => {
-        let expectedDataArgument = { offset: 0, limit: 12, resolve: 'city,owner' };
+        let expectedDataArgument = {
+          offset: 0,
+          limit: 12
+        };
         petitionRepository.all();
 
-        assert(ApiClient.request.calledWith(
+        assert(ApiClient.request.calledWithMatch(
           expectedPathArgument,
           expectedDataArgument
         ));
@@ -32,10 +35,13 @@ describe('petition repository', () => {
 
     context('with custom pagination argument', () => {
       it('calls the API client with proper offset and limit', () => {
-        let expectedDataArgument = { offset: 10, limit: 10, resolve: 'city,owner' };
+        let expectedDataArgument = {
+          offset: 10,
+          limit: 10
+        };
         petitionRepository.all({ page: 2, limit: 10 });
 
-        assert(ApiClient.request.calledWith(
+        assert(ApiClient.request.calledWithMatch(
           expectedPathArgument,
           expectedDataArgument
         ));

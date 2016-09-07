@@ -35,7 +35,8 @@
 
 .title {
   font-weight: normal;
-  margin-bottom: map-get($spacing, 'm-bottom');
+  margin-bottom: 15px;
+  word-wrap: break-word;
 }
 
 .footer {
