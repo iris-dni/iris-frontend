@@ -1,7 +1,7 @@
 import 'assets/styles/base.scss';
 import React from 'react';
 import Helmet from 'react-helmet';
-import Navigation from 'components/navigation';
+import Navigation from 'components/Navigation';
 import FlashMessage from 'containers/FlashMessage';
 import ModalWindow from 'containers/ModalWindow';
 import { TITLE_TEMPLATE } from 'server/getBrowserTitle';
