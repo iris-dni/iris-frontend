@@ -11,7 +11,7 @@ const getClassname = (size, modifier, inline) => {
 };
 
 export default ({ id, modifier, size }) => (
-  <div className={getClassname(modifier, size)} aria-role={'presentation'}>
+  <div className={getClassname(size, modifier)} aria-role={'presentation'}>
     <div className={styles.icon}>
       <Icon
         id={id}
