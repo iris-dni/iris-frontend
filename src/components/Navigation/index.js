@@ -23,35 +23,75 @@ const NAVIGATION_LINKS = [
   }
 ];
 
-const Navigation = () => (
-  <nav className={styles.root}>
-    <Container>
-      <div className={styles['logo-wrapper']}>
-        <IndexLink to='home' className={styles.link}>
-          <Logo />
-        </IndexLink>
-      </div>
+const Navigation = React.createClass({
+  getInitialState () {
+    return {
+      opened: false,
+      wasOpened: false
+    };
+  },
 
-      <div className={styles['burger-menu']}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+  getClassName (defaultClass) {
+    const opened = this.state.opened
+      ? styles.opened
+      : this.state.wasOpened
+      ? styles.closed
+      : '';
 
-      <ul className={styles.list}>
-        {NAVIGATION_LINKS.map((link, key) => (
-          <li className={styles.element} key={key}>
-            <Link
-              to={link.path}
-              className={styles.link}
-              activeClassName={styles.active}>
-              {link.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </Container>
-  </nav>
-);
+    return `${defaultClass} ${opened}`;
+  },
+
+  openMenu () {
+    this.setState({
+      opened: !this.state.opened,
+      wasOpened: true
+    });
+  },
+
+  render () {
+    return (
+      <nav className={styles.root}>
+        <div className={this.getClassName(styles.overlay)}></div>
+
+        <Container>
+          <div className={styles['menu-wrapper']}>
+            <div className={styles['logo-wrapper']}>
+              <IndexLink to='home' className={styles.link}>
+                <Logo />
+              </IndexLink>
+
+              <div
+                className={this.getClassName(styles['burger-wrapper'])}
+                onClick={this.openMenu}
+              >
+                <span>Menu</span>
+
+                <div className={styles['burger-menu']}>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+
+            <ul className={this.getClassName(styles.list)}>
+              {NAVIGATION_LINKS.map((link, key) => (
+                <li className={styles.element} key={key}>
+                  <Link
+                    to={link.path}
+                    className={styles.link}
+                    activeClassName={styles.active}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Container>
+      </nav>
+    );
+  }
+});
 
 export default Navigation;
