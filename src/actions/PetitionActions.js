@@ -157,9 +157,9 @@ export function supportPetition (petition, dispatch) {
         // `resolve` param on the `event/support` endpoint
         const resolvedPetition = Object.assign({}, response.data, { city, owner });
         return dispatch(supportedPetition(resolvedPetition));
-      }).then((resolvedPetition) => dispatch(showModalWindow({
+      }).then((response) => dispatch(showModalWindow({
         type: 'supported',
-        ...getSupportedPetitionModal(petition, resolvedPetition)
+        ...getSupportedPetitionModal(petition, response.petition)
       }))).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
       ));
