@@ -1,6 +1,7 @@
 import 'assets/styles/base.scss';
 import React from 'react';
 import Helmet from 'react-helmet';
+import Navigation from 'components/navigation';
 import FlashMessage from 'containers/FlashMessage';
 import ModalWindow from 'containers/ModalWindow';
 import { TITLE_TEMPLATE } from 'server/getBrowserTitle';
@@ -11,6 +12,9 @@ export default ({ children, flashMessage, modalWindow }) => (
     {flashMessage && flashMessage.text &&
       <FlashMessage {...flashMessage} />
     }
+
+    <Navigation />
+
     <main role='main'
       aria-label='Content'
       aria-hidden={(modalWindow && modalWindow.active) || false}>

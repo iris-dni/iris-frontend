@@ -1,0 +1,156 @@
+@import 'globals';
+
+/**
+ * 1. Positioning context for burger-menu.
+ */
+.root {
+  position: relative; /* 1 */
+  border-bottom: 1px solid color('grey');
+}
+
+.list {
+  display: none;
+  list-style: none;
+
+  @include media('>=930px') {
+    display: inline-block;
+  }
+}
+
+/**
+ * 1. Allows the border of the active element and the create petition button
+ *    to overlap the nav‘s grey border.
+ */
+.element {
+  @include media('>=930px') {
+    display: inline-block;
+    padding: 0 20px;
+    margin-bottom: -1px; /* 1 */
+    vertical-align: top;
+  }
+}
+
+.logo-wrapper {
+  composes: element;
+
+  padding: 0;
+  padding-right: 20px;
+}
+
+.burger-menu {
+  float: right;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+
+
+  @include media('>=930px') {
+    display: none;
+  }
+}
+
+.burger-menu span {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: color('black');
+
+  &:first-child {
+    top: 0;
+  }
+
+  &:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &:last-child {
+    bottom: 0;
+  }
+}
+
+@keyframes test {
+  50% {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  100% {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+}
+
+@keyframes test2 {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes test3 {
+  50% {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  100% {
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+  }
+}
+
+.burger-menu:hover span {
+  &:first-child {
+    animation: test 500ms forwards;
+  }
+
+  &:nth-child(2) {
+    animation: test2 250ms forwards;
+  }
+
+  &:last-child {
+    animation: test3 500ms forwards;
+  }
+}
+
+.element:not(.logo-wrapper):last-of-type {
+  background-color: color('success');
+  color: color('white');
+  text-transform: uppercase;
+
+  @include media('>=930px') {
+    float: right;
+  }
+}
+
+$link-border-height: 6px;
+$link-padding: 16px;
+
+/**
+ * 1. We set a transparent border at the bottom, that will become green when
+ *    the link is active. We do that so that we reserve space for the border
+ *    and it doesn‘t move the whole content.
+ * 2. We remove that border height from the padding so that the link isn‘t
+ *    taller than it should be.
+ */
+.link {
+  display: inline-block;
+  border-bottom: $link-border-height solid transparent; /* 1 */
+  padding-top: $link-padding;
+  padding-bottom: $link-padding - $link-border-height; /* 2 */
+  color: inherit;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.element:not(.logo-wrapper):not(:last-of-type) .link:hover,
+.element:not(.logo-wrapper):not(:last-of-type) .active {
+  border-color: color('success');
+}
