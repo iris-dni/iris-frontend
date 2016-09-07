@@ -8,6 +8,13 @@ export default ({ limit, page }) => {
     resolve: 'city,owner',
     sort: '-created',
     offset: calculateParamOffset(page, saneLimit),
-    limit: saneLimit
+    limit: saneLimit,
+    state: [
+      'supportable.active',
+      'supportable.winner',
+      'loser',
+      'processing.*',
+      'closed'
+    ]
   };
 };
