@@ -6,6 +6,8 @@ import styles from './autocomplete.scss';
 
 const MIN_QUERY_LENGTH = 2;
 
+const NULL_VALUE = {};
+
 const Autocomplete = React.createClass({
   getClassname (element, error) {
     return [
@@ -40,7 +42,7 @@ const Autocomplete = React.createClass({
     // If it did, we must reset both values as they aren‘t valid anymore.
     if (savedValue !== this.props.value) {
       this.props.updateSuggestionInputValue('');
-      this.props.helper.onChange('');
+      this.props.helper.onChange(this.props.nullValue || NULL_VALUE);
     }
 
     this.props.helper.onBlur();
@@ -54,7 +56,7 @@ const Autocomplete = React.createClass({
     // If there is no more value, then we know the user has deleted his choice,
     // and we can update the redux-form store.
     if (!newValue) {
-      this.props.helper.onChange('');
+      this.props.helper.onChange(this.props.nullValue || NULL_VALUE);
     }
   },
 
