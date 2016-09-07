@@ -37,9 +37,7 @@ const Navigation = React.createClass({
     var windowWidth = (isBrowser ? window.innerWidth : 0);
 
     if (windowWidth >= 930) {
-      this.setState({
-        opened: false
-      });
+      this.setState(this.getInitialState);
     }
   },
 

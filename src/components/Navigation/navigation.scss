@@ -12,34 +12,50 @@
 /**
  * 1. Extra 1% so that it goes under the nav's grey border.
  */
-.overlay.opened {
+.overlay {
   position: absolute;
   height: 100vh;
   width: 100%;
   top: 101%; /* 1 */
   left: 0;
+  opacity: 0;
   background-color: color('black');
+  transition: opacity 500ms;
+}
+
+.overlay.opened {
   opacity: 0.6;
 }
 
 .list {
-  display: none;
-  list-style: none;
-
-  @include media('>=930px') {
-    display: inline-block;
-  }
-}
-
-.list.opened {
-  display: block;
   position: absolute;
+  transform: translateX(220%);
   height: 100vh;
   width: 260px;
   padding: 20px;
   top: 101%;
   right: 0;
   background: color('white');
+  list-style: none;
+
+
+  @include media('>=940px') {
+    position: static;
+    display: inline-block;
+    padding: 0;
+    transform: translateX(0);
+    height: auto;
+    width: auto;
+  }
+}
+
+.list.closed {
+  transition: transform 500ms;
+}
+
+.list.opened {
+  transform: translateX(0);
+  transition: transform 500ms;
 }
 
 /**
@@ -47,7 +63,7 @@
  *    to overlap the nav‘s grey border.
  */
 .element {
-  @include media('>=930px') {
+  @include media('>=940px') {
     display: inline-block;
     padding: 0 20px;
     margin-bottom: -1px; /* 1 */
@@ -72,7 +88,7 @@
   right: 0;
   cursor: pointer;
 
-  @include media('>=930px') {
+  @include media('>=940px') {
     display: none;
   }
 }
@@ -148,7 +164,7 @@
   text-transform: uppercase;
   text-align: center;
 
-  @include media('>=930px') {
+  @include media('>=940px') {
     float: right;
     width: auto;
   }
@@ -177,7 +193,7 @@ $link-padding: 16px;
 .element:not(:last-of-type) .link {
   margin-bottom: 10px;
 
-  @include media('>=930px') {
+  @include media('>=940px') {
     margin-bottom: 0;
   }
 }
