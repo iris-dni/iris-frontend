@@ -30,7 +30,8 @@ describe('petition reducer', () => {
       petition: mockPetition.data
     });
     const expected = Object.assign({}, mockPetition.data, {
-      isLoading: false
+      isLoading: false,
+      saved: false
     });
 
     assert.deepEqual(actual, expected);
@@ -42,7 +43,8 @@ describe('petition reducer', () => {
       petition: mockPetition.data
     });
     const expected = Object.assign({}, mockPetition.data, {
-      isLoading: false
+      isLoading: false,
+      saved: true
     });
 
     assert.deepEqual(actual, expected);
@@ -54,7 +56,8 @@ describe('petition reducer', () => {
       petition: mockPetition.data
     });
     const expected = Object.assign({}, mockPetition.data, {
-      isLoading: false
+      isLoading: false,
+      saved: true
     });
 
     assert.deepEqual(actual, expected);

@@ -92,7 +92,7 @@ describe('PetitionActions', () => {
     it('passes petition object', () => {
       const result = receivePetition(mockPetition);
       const actual = result.petition;
-      const expected = {...mockPetition, saved: false};
+      const expected = mockPetition;
 
       assert.deepEqual(actual, expected);
     });
@@ -151,7 +151,7 @@ describe('PetitionActions', () => {
     it('passes petition object', () => {
       const result = createdPetition(mockPetition);
       const actual = result.petition;
-      const expected = {...mockPetition, saved: true};
+      const expected = mockPetition;
 
       assert.deepEqual(actual, expected);
     });
@@ -203,7 +203,7 @@ describe('PetitionActions', () => {
     it('passes petition object', () => {
       const result = updatedPetition(mockPetition);
       const actual = result.petition;
-      const expected = {...mockPetition, saved: true};
+      const expected = mockPetition;
 
       assert.deepEqual(actual, expected);
     });
