@@ -7,7 +7,7 @@ import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';
 
 const PetitionsContainer = React.createClass({
-  componentDidMount () {
+  componentWillMount () {
     this.props.fetchPetitions(this.props);
   },
 

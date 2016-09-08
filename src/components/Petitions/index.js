@@ -8,7 +8,6 @@ import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import ModalTrigger from 'containers/ModalTrigger';
 import Loading from 'components/Loading';
-import { Link } from 'react-router';
 
 const modal = {
   ...settings.petitionsPage.createButton.modal,
@@ -42,12 +41,6 @@ const Petitions = ({ petitions }) => (
           })}
         </Grid>
       </Loading>
-      <p>
-        Go to petitions on Page
-        <Link to='/petitions'>1</Link>,
-        <Link to='/petitions?page=2'>2</Link>,
-        <Link to='/petitions?page=3'>3</Link>
-      </p>
     </section>
   </Container>
 );
