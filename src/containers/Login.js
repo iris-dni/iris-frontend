@@ -8,6 +8,8 @@ import LoginPage from 'components/LoginPage';
 const LoginContainer = withRouter(React.createClass({
   componentWillUpdate (nextProps) {
     const redirectAfterLogin = this.props.location.query.next || authSettings.afterLoginPath;
+      // If user is now authenticated, redirect to location
+      // from query param or default after-login location
     if (nextProps.me && nextProps.me.id) {
       this.props.router.replace(redirectAfterLogin);
     }
@@ -15,7 +17,7 @@ const LoginContainer = withRouter(React.createClass({
 
   render () {
     return (
-      <Loading isLoading={this.props.me.isLoading}>
+      <Loading isLoading={this.props.me.isLoading} onServer={__SERVER__}>
         <LoginPage location={this.props.location} />
       </Loading>
     );
