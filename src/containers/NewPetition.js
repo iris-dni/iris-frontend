@@ -1,16 +1,25 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { clearPetition, publishPetition } from 'actions/PetitionActions';
 import settings from 'settings';
 import NewPetition from 'components/NewPetition';
 import PreviewPetition from 'components/PreviewPetition';
+import getPetitionPath from 'helpers/getPetitionPath';
 import getPetitionForm from 'selectors/petitionForm';
+import petitionPublished from 'selectors/petitionPublished';
 
-const NewPetitionContainer = React.createClass({
+const NewPetitionContainer = withRouter(React.createClass({
   componentWillMount () {
     const { clearPetition } = this.props;
     clearPetition();
+  },
+
+  componentWillUpdate (nextProps) {
+    if (petitionPublished(nextProps.petition)) {
+      this.props.router.push(getPetitionPath(nextProps.petition));
+    }
   },
 
   render () {
@@ -29,7 +38,7 @@ const NewPetitionContainer = React.createClass({
       </div>
     );
   }
-});
+}));
 
 export const mapStateToProps = ({ petition }) => ({
   petition: getPetitionForm(petition)

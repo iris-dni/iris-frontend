@@ -15,8 +15,7 @@ import {
 } from './actionTypes';
 
 import {
-  showFlashMessage,
-  hideFlashMessage
+  showFlashMessage
 } from './FlashActions';
 
 import {
@@ -59,12 +58,13 @@ export function submitPetition () {
   };
 }
 
-export function createPetition (data, dispatch) {
+export function createPetition (petition, dispatch) {
   dispatch(submitPetition());
-  return petitionRepository.create(data)
-    .then((response) => dispatch(
-      createdPetition(response.data),
-    )).then(() => dispatch(
+  return petitionRepository.create(petition)
+    .then((response) => {
+      const resolvedPetition = solveResolvedObjects(petition, response.data);
+      dispatch(createdPetition(resolvedPetition));
+    }).then(() => dispatch(
       showFlashMessage(settings.flashMessages.petitionCreated, 'success')
     )).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
@@ -106,7 +106,7 @@ export function publishPetition (petition, dispatch) {
         const resolvedPetition = solveResolvedObjects(petition, response.data);
         return dispatch(publishedPetition(resolvedPetition));
       }).then(() => dispatch(
-        hideFlashMessage()
+        showFlashMessage(settings.flashMessages.petitionPublished, 'success')
       )).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
       ));
