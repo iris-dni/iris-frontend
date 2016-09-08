@@ -1,9 +1,9 @@
 import petitionRepository from 'services/api/repositories/petition';
 import getSupportedPetitionModal from 'helpers/getSupportedPetitionModal';
+import solveResolvedObjects from 'helpers/solveResolvedObjects';
 import settings from 'settings';
+
 import {
-  REQUEST_PETITIONS,
-  RECEIVE_PETITIONS,
   CLEAR_PETITION,
   REQUEST_PETITION,
   RECEIVE_PETITION,
@@ -22,42 +22,6 @@ import {
 import {
   showModalWindow
 } from './ModalActions';
-
-export function fetchPetitions ({ petitions, location, perPage, currentPage }) {
-  const page = parseInt(location.query.page || currentPage || 1);
-  const limit = parseInt(location.query.limit || perPage || 12);
-
-  return (dispatch, getState) => {
-    dispatch(requestPetitions());
-
-    if (!petitions || !petitions.length || page !== currentPage) {
-      const options = { page, limit };
-
-      return petitionRepository.all(options)
-        .then(response => {
-          const pagedResponse = Object.assign({}, response, {
-            currentPage: options.page,
-            perPage: options.limit
-          });
-
-          return dispatch(receivePetitions(pagedResponse));
-        });
-    }
-  };
-}
-
-export function requestPetitions () {
-  return {
-    type: REQUEST_PETITIONS
-  };
-}
-
-export function receivePetitions (petitions) {
-  return {
-    type: RECEIVE_PETITIONS,
-    petitions
-  };
-}
 
 export function clearPetition () {
   return {
@@ -114,12 +78,13 @@ export function createdPetition (petition) {
   };
 }
 
-export function updatePetition (data, dispatch) {
+export function updatePetition (petition, dispatch) {
   dispatch(submitPetition());
-  return petitionRepository.update(data)
-    .then((response) => dispatch(
-      updatedPetition(response.data),
-    )).then(() => dispatch(
+  return petitionRepository.update(petition)
+    .then((response) => {
+      const resolvedPetition = solveResolvedObjects(petition, response.data);
+      dispatch(updatedPetition(resolvedPetition));
+    }).then(() => dispatch(
       showFlashMessage(settings.flashMessages.petitionUpdated, 'success')
     )).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
@@ -137,9 +102,10 @@ export function publishPetition (petition, dispatch) {
   return (dispatch, getState) => {
     dispatch(submitPetition());
     return petitionRepository.publish(petition)
-      .then((response) => dispatch(
-        publishedPetition(response.data),
-      )).then(() => dispatch(
+      .then((response) => {
+        const resolvedPetition = solveResolvedObjects(petition, response.data);
+        return dispatch(publishedPetition(resolvedPetition));
+      }).then(() => dispatch(
         hideFlashMessage()
       )).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
@@ -159,11 +125,7 @@ export function supportPetition (petition, dispatch) {
     dispatch(submitPetition());
     return petitionRepository.support(petition)
       .then((response) => {
-        // Get stuff we usually `resolve` via the endpoint
-        const { city, owner } = petition;
-        // Do this here because API does not support the
-        // `resolve` param on the `event/support` endpoint
-        const resolvedPetition = Object.assign({}, response.data, { city, owner });
+        const resolvedPetition = solveResolvedObjects(petition, response.data);
         return dispatch(supportedPetition(resolvedPetition));
       }).then((response) => dispatch(showModalWindow({
         type: 'supported',

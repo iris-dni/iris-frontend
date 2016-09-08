@@ -8,7 +8,6 @@ import PreviewPetition from 'components/PreviewPetition';
 import getPetitionForm from 'selectors/petitionForm';
 
 const NewPetitionContainer = React.createClass({
-
   componentWillMount () {
     const { clearPetition } = this.props;
     clearPetition();

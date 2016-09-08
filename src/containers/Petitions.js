@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { fetchPetitions } from 'actions/PetitionActions';
+import { fetchPetitions } from 'actions/PetitionsActions';
 import settings from 'settings';
 import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';

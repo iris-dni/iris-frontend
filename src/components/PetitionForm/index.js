@@ -12,8 +12,7 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine }) 
   return (
     <form onSubmit={handleSubmit(petition.persisted
       ? updatePetition
-      : createPetition)}
-    >
+      : createPetition)}>
       <Fieldset>
         {FIELDS.map(field => (
           <FormField
@@ -26,6 +25,7 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine }) 
       <Fieldset modifier={'actions'}>
         <Button
           text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton'].text}
+          modifier={'accent'}
         />
       </Fieldset>
     </form>

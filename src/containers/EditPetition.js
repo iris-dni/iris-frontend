@@ -8,7 +8,6 @@ import PreviewPetition from 'components/PreviewPetition';
 import getPetitionForm from 'selectors/petitionForm';
 
 const EditPetitionContainer = React.createClass({
-
   componentWillMount () {
     const {
       fetchPetition,
