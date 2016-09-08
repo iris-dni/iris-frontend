@@ -15,13 +15,10 @@ export default function petition (state = initialState, action) {
   switch (action.type) {
     case REQUEST_PETITION:
       return Object.assign({},
-        state, { isLoading: true }
+        state,
+        { isLoading: true }
       );
-    case CLEAR_PETITION:
     case RECEIVE_PETITION:
-      return Object.assign({},
-        action.petition, { isLoading: false }
-      );
     case CREATED_PETITION:
     case UPDATED_PETITION:
     case SUPPORTED_PETITION:
@@ -30,14 +27,18 @@ export default function petition (state = initialState, action) {
         { isLoading: false }
       );
     case SUBMIT_PETITION:
-      return Object.assign({}, state, action.petition, {
-        isLoading: true
-      });
+      return Object.assign({},
+        state, action.petition,
+        { isLoading: true }
+      );
     case PUBLISHED_PETITION:
-      return Object.assign({}, state, action.petition, {
-        published: true,
-        isLoading: false
-      });
+      return Object.assign({},
+        state, action.petition, {
+          published: true,
+          isLoading: false
+        }
+      );
+    case CLEAR_PETITION:
     default:
       return state;
   }
