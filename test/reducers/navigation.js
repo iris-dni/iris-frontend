@@ -11,15 +11,31 @@ describe('navigation reducer', () => {
 
   it('handles the TOGGLE_MOBILE_MENU action', () => {
     const actual = navigation({
-      wasOpened: false,
-      opened: false
+      opened: false,
+      wasOpened: false
     }, {
       type: 'TOGGLE_MOBILE_MENU'
     });
 
     const expected = {
-      wasOpened: true,
-      opened: true
+      opened: true,
+      wasOpened: true
+    };
+
+    assert.deepEqual(actual, expected);
+  });
+
+  it('handles the CLOSE_MOBILE_MENU action', () => {
+    const actual = navigation({
+      opened: true,
+      wasOpened: true
+    }, {
+      type: 'CLOSE_MOBILE_MENU'
+    });
+
+    const expected = {
+      opened: false,
+      wasOpened: true
     };
 
     assert.deepEqual(actual, expected);

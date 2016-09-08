@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 import Navigation from 'components/Navigation';
 import { menuBreakpoint } from 'components/Navigation/navigation.scss';
-import { toggleMobileMenu, destroyMobileMenu } from 'actions/NavigationActions';
+import {
+  toggleMobileMenu,
+  closeMobileMenu,
+  destroyMobileMenu
+} from 'actions/NavigationActions';
 
 const isBrowser = (typeof window !== 'undefined');
 
@@ -64,6 +68,7 @@ export const mapStateToProps = ({ navigation }) => ({
 
 export const mapDispatchToProps = (dispatch) => ({
   toggleMobileMenu: () => dispatch(toggleMobileMenu()),
+  closeMobileMenu: () => dispatch(closeMobileMenu()),
   destroyMobileMenu: () => dispatch(destroyMobileMenu())
 });
 

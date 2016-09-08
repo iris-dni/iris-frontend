@@ -23,6 +23,7 @@ const MenuItems = React.createClass({
               to={link.path}
               className={styles.link}
               activeClassName={styles.active}
+              onClick={this.props.onClickHandler}
             >
               {link.label}
             </Link>

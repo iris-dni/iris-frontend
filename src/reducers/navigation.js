@@ -1,5 +1,6 @@
 import {
   TOGGLE_MOBILE_MENU,
+  CLOSE_MOBILE_MENU,
   DESTROY_MOBILE_MENU
 } from 'actions/actionTypes';
 
@@ -14,6 +15,11 @@ export default function navigation (state = initialState, action) {
       return Object.assign({}, state, {
         opened: !state.opened,
         wasOpened: true
+      });
+
+    case CLOSE_MOBILE_MENU:
+      return Object.assign({}, state, {
+        opened: false
       });
 
     case DESTROY_MOBILE_MENU:

@@ -23,7 +23,11 @@ const Navigation = React.createClass({
 
         <nav>
           <div className={styles['unhidden-wrapper']}>
-            <IndexLink to='home' className={styles.link}>
+            <IndexLink
+              to='home'
+              className={styles.link}
+              onClick={this.props.closeMobileMenu}
+            >
               <Logo />
             </IndexLink>
 
@@ -37,6 +41,7 @@ const Navigation = React.createClass({
           <MenuItems
             opened={this.props.opened}
             wasOpened={this.props.wasOpened}
+            onClickHandler={this.props.closeMobileMenu}
           />
         </nav>
       </div>
