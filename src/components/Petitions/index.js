@@ -6,13 +6,8 @@ import GridItem from 'components/GridItem';
 import Teaser from 'components/Teaser';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
-import ModalTrigger from 'containers/ModalTrigger';
+import ButtonLink from 'components/ButtonLink';
 import Loading from 'components/Loading';
-
-const modal = {
-  ...settings.petitionsPage.createButton.modal,
-  type: 'auth'
-};
 
 const Petitions = ({ petitions }) => (
   <Container>
@@ -21,9 +16,7 @@ const Petitions = ({ petitions }) => (
         <PageTitle
           title={settings.petitionsPage.title}
           centered>
-          <ModalTrigger
-            authenticating
-            modal={modal}
+          <ButtonLink
             href={'/petitions/new'}
             text={settings.petitionsPage.createButton.text}
             modifier={'accent'}

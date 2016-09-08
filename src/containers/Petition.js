@@ -9,6 +9,7 @@ import getPetition from 'selectors/petition';
 const PetitionContainer = React.createClass({
   componentWillMount () {
     const {
+      petition,
       fetchPetition,
       supportPetition,
       params: { id },
