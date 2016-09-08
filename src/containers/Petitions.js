@@ -7,14 +7,8 @@ import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';
 
 const PetitionsContainer = React.createClass({
-  // When the component gets added to the DOM,
-  // fetch Petitions if none are defined (clientside)
-  componentWillMount () {
-    const { petitions } = this.props;
-
-    if (!petitions.length) {
-      this.props.fetchPetitions(this.props);
-    }
+  componentDidMount () {
+    this.props.fetchPetitions(this.props);
   },
 
   render () {
