@@ -25,14 +25,6 @@ const NavigationContainer = React.createClass({
     }
   }, 300),
 
-  componentDidUpdate () {
-    if (this.props.opened) {
-      document.documentElement.classList.add('disabled-scroll');
-    } else {
-      document.documentElement.classList.remove('disabled-scroll');
-    }
-  },
-
   componentWillMount () {
     this.resizeHandler();
   },
@@ -40,6 +32,13 @@ const NavigationContainer = React.createClass({
     if (isBrowser) {
       window.addEventListener('resize', this.resizeHandler);
       document.addEventListener('keydown', this.onEscape);
+    }
+  },
+  componentDidUpdate () {
+    if (this.props.opened) {
+      document.documentElement.classList.add('disabled-scroll');
+    } else {
+      document.documentElement.classList.remove('disabled-scroll');
     }
   },
   componentWillUnmount () {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { IndexLink } from 'react-router';
+import Overlay from 'components/Overlay';
 import Logo from 'components/Logo';
 import MenuItems from 'components/MenuItems';
 import MenuTrigger from 'components/MenuTrigger';
@@ -19,7 +20,9 @@ const Navigation = React.createClass({
   render () {
     return (
       <div>
-        <div className={this.getClassName(styles.overlay)}></div>
+        <div className={this.getClassName(styles['overlay-wrapper'])}>
+          <Overlay active={this.props.opened} />
+        </div>
 
         <nav>
           <div className={styles['unhidden-wrapper']}>

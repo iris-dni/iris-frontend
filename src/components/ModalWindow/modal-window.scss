@@ -4,17 +4,6 @@
   display: block;
 }
 
-.overlay {
-  z-index: 2;
-  background-color: color('overlay');
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  overflow: hidden;
-}
-
 .content {
   position: fixed;
   z-index: 3;

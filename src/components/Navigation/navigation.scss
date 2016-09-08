@@ -9,18 +9,16 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
 /**
  * 1. Extra 1px so that it goes under the nav's grey border.
  */
-.overlay {
+.overlay-wrapper {
   height: calc(100vh - calc(100% + 1px));
   position: absolute;
   top: calc(100% + 1px); /* 1 */
   left: 0;
   right: 0;
-  z-index: -1;
-  transition: background-color 500ms;
+  z-index: -2;
 }
 
-.overlay.opened {
-  background-color: color('overlay');
+.overlay-wrapper.opened {
   z-index: 2;
 }
 
@@ -51,6 +49,13 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
 $link-border-height: 6px;
 $link-padding: 16px;
 
+/**
+ * 1. We set a transparent border at the bottom, that will become green when
+ *    the link is active. We do that so that we reserve space for the border
+ *    and it doesn‘t move the whole content.
+ * 2. We remove that border height from the padding so that the link isn‘t
+ *    taller than it should be.
+ */
 .link {
   display: inline-block;
   border-bottom: $link-border-height solid transparent; /* 1 */
