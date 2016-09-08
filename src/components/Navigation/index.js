@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, IndexLink } from 'react-router';
-import Container from 'components/Container';
 import Logo from 'components/Logo';
+import BurgerMenu from 'components/BurgerMenu';
 import styles from './navigation.scss';
 
 const isBrowser = (typeof window !== 'undefined');
@@ -36,7 +36,7 @@ const Navigation = React.createClass({
   resizeHandler: function (e) {
     var windowWidth = (isBrowser ? window.innerWidth : 0);
 
-    if (windowWidth >= 930) {
+    if (windowWidth >= 940) {
       this.setState(this.getInitialState);
     }
   },
@@ -74,27 +74,20 @@ const Navigation = React.createClass({
 
   render () {
     return (
-      <nav className={styles.root}>
+      <div>
         <div className={this.getClassName(styles.overlay)}></div>
 
-        <Container>
+        <nav>
           <div className={styles['logo-wrapper']}>
             <IndexLink to='home' className={styles.link}>
               <Logo />
             </IndexLink>
 
-            <div
-              className={this.getClassName(styles['burger-wrapper'])}
-              onClick={this.openMenu}
-            >
-              <span>Menu</span>
-
-              <div className={styles['burger-menu']}>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
+            <BurgerMenu
+              wasOpened={this.state.wasOpened}
+              opened={this.state.opened}
+              onClickHandler={this.openMenu}
+            />
           </div>
 
           <ul className={this.getClassName(styles.list)}>
@@ -110,8 +103,8 @@ const Navigation = React.createClass({
               </li>
             ))}
           </ul>
-        </Container>
-      </nav>
+        </nav>
+      </div>
     );
   }
 });

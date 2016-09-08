@@ -1,7 +1,7 @@
 import 'assets/styles/base.scss';
 import React from 'react';
 import Helmet from 'react-helmet';
-import Navigation from 'components/Navigation';
+import SiteHeader from 'components/SiteHeader';
 import FlashMessage from 'containers/FlashMessage';
 import ModalWindow from 'containers/ModalWindow';
 import { TITLE_TEMPLATE } from 'server/getBrowserTitle';
@@ -13,7 +13,7 @@ export default ({ children, flashMessage, modalWindow }) => (
       <FlashMessage {...flashMessage} />
     }
 
-    <Navigation />
+    <SiteHeader />
 
     <main role='main'
       aria-label='Content'
