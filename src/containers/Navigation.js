@@ -12,11 +12,6 @@ import {
 const isBrowser = (typeof window !== 'undefined');
 
 const NavigationContainer = React.createClass({
-  onEscape ({ keyCode }) {
-    if (keyCode === 27 && this.props.opened) {
-      this.props.toggleMobileMenu();
-    }
-  },
   resizeHandler: debounce(function () {
     var windowWidth = (isBrowser ? window.innerWidth : null);
 
@@ -31,20 +26,11 @@ const NavigationContainer = React.createClass({
   componentDidMount () {
     if (isBrowser) {
       window.addEventListener('resize', this.resizeHandler);
-      document.addEventListener('keydown', this.onEscape);
-    }
-  },
-  componentDidUpdate () {
-    if (this.props.opened) {
-      document.documentElement.classList.add('disabled-scroll');
-    } else {
-      document.documentElement.classList.remove('disabled-scroll');
     }
   },
   componentWillUnmount () {
     if (isBrowser) {
       window.removeEventListener('resize', this.resizeHandler);
-      document.removeEventListener('keydown', this.onEscape);
     }
   },
 
