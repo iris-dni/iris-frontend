@@ -7,51 +7,47 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
 }
 
 /**
- * 1. Extra 1% so that it goes under the nav's grey border.
+ * 1. Extra 1px so that it goes under the nav's grey border.
  */
 .overlay {
+  height: calc(100vh - calc(100% + 1px));
   position: absolute;
-  top: 101%; /* 1 */
+  top: calc(100% + 1px); /* 1 */
   left: 0;
   right: 0;
-  height: calc(100vh - 101%);
-  transition: all 500ms;
   z-index: -1;
+  transition: background-color 500ms;
 }
 
 .overlay.opened {
-  z-index: 2;
   background-color: color('overlay');
+  z-index: 2;
 }
 
 .list {
-  position: absolute;
-  height: calc(100vh - 101%);
   width: 260px;
-  padding: 20px;
+  height: calc(100vh - calc(100% + 1px));
+  position: absolute;
+  top: calc(100% + 1px);
   left: 100%;
-  top: 101%;
   right: 0;
+  padding: 20px;
   background: color('white');
   list-style: none;
   z-index: 2;
+  transition: transform 500ms;
 
   @include media('>=#{$menu-breakpoint}') {
-    position: static;
     display: inline;
-    padding: 0;
-    height: auto;
     width: auto;
+    height: auto;
+    position: static;
+    padding: 0;
   }
-}
-
-.list.closed {
-  transition: transform 500ms;
 }
 
 .list.opened {
   transform: translateX(-100%);
-  transition: transform 500ms;
 }
 
 /**
@@ -83,8 +79,8 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
   background-color: color('success');
   color: color('white');
   font-weight: bold;
-  text-transform: uppercase;
   text-align: center;
+  text-transform: uppercase;
 
   @include media('>=#{$menu-breakpoint}') {
     float: right;

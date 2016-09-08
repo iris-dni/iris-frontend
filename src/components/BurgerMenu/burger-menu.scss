@@ -10,7 +10,7 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
   cursor: pointer;
 
   @include media('>=#{$menu-breakpoint}') {
-    display: none;
+    @include visuallyhidden;
   }
 }
 
