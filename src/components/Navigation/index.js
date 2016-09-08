@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, IndexLink } from 'react-router';
 import Logo from 'components/Logo';
-import BurgerMenu from 'components/BurgerMenu';
+import MenuTrigger from 'components/MenuTrigger';
 import styles from './navigation.scss';
 
 const NAVIGATION_LINKS = [
@@ -45,7 +45,7 @@ const Navigation = React.createClass({
               <Logo />
             </IndexLink>
 
-            <BurgerMenu
+            <MenuTrigger
               wasOpened={this.props.wasOpened}
               opened={this.props.opened}
               onClickHandler={this.props.toggleMobileMenu}

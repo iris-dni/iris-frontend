@@ -3,7 +3,7 @@
 
 $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
 
-.burger-wrapper {
+.menu-trigger-wrapper {
   position: absolute;
   top: 50%;
   right: 0;
@@ -14,13 +14,13 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
   }
 }
 
-.burger-wrapper > span {
+.menu-trigger-wrapper > span {
   position: inherit;
   right: 2em;
   transform: translateY(-50%);
 }
 
-.burger-menu {
+.burger-icon {
   position: inherit;
   right: 0;
   width: 16px;
@@ -28,7 +28,7 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
   transform: translateY(-50%);
 }
 
-.burger-menu span {
+.burger-icon span {
   position: inherit;
   width: 100%;
   height: 2px;
@@ -48,7 +48,7 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
   }
 }
 
-.burger-wrapper.opened .burger-menu span {
+.menu-trigger-wrapper.opened .burger-icon span {
   &:first-child {
     animation: top-line 500ms forwards;
   }
@@ -62,7 +62,7 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
   }
 }
 
-.burger-wrapper.closed .burger-menu span {
+.menu-trigger-wrapper.closed .burger-icon span {
   &:first-child {
     animation: top-line-copy 500ms forwards reverse;
   }

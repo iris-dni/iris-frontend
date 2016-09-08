@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './burger-menu.scss';
 
-const BurgerMenu = React.createClass({
+const MenuTrigger = React.createClass({
   getClassName (defaultClass) {
     const opened = this.props.opened
       ? styles.opened
@@ -14,21 +14,26 @@ const BurgerMenu = React.createClass({
 
   render () {
     return (
-      <div
-        className={this.getClassName(styles['burger-wrapper'])}
+      <button
+        aria-label='Menu'
+        aria-controls='navigation'
+        className={this.getClassName(styles['menu-trigger-wrapper'])}
         onClick={this.props.onClickHandler}
       >
         <span>Menu</span>
 
-        <div className={styles['burger-menu']}>
+        <div
+          aria-role='presentational'
+          className={styles['burger-icon']}
+        >
           <span></span>
           <span></span>
           <span></span>
         </div>
-      </div>
+      </button>
     );
   }
 
 });
 
-export default BurgerMenu;
+export default MenuTrigger;

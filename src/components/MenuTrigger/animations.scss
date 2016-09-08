@@ -5,7 +5,7 @@
   changing it‘s properties.
 */
 
-@mixin animate-menu-icon ($angle) {
+@mixin animate-burger-icon ($angle) {
   50% {
     top: 50%;
     transform: translateY(-50%);
@@ -28,11 +28,11 @@
 }
 
 @keyframes top-line {
-  @include animate-menu-icon(45deg);
+  @include animate-burger-icon(45deg);
 }
 
 @keyframes top-line-copy {
-  @include animate-menu-icon(45deg);
+  @include animate-burger-icon(45deg);
 }
 
 @keyframes fade-out {
@@ -44,10 +44,10 @@
 }
 
 @keyframes bottom-line {
-  @include animate-menu-icon(-45deg);
+  @include animate-burger-icon(-45deg);
 }
 
 @keyframes bottom-line-copy {
-  @include animate-menu-icon(-45deg);
+  @include animate-burger-icon(-45deg);
 }
 
