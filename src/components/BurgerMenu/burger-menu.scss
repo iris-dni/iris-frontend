@@ -1,5 +1,5 @@
-
 @import 'globals';
+@import './animations';
 
 $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
 
@@ -21,7 +21,7 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
 }
 
 .burger-menu {
-  position: absolute;
+  position: inherit;
   right: 0;
   width: 16px;
   height: 16px;
@@ -29,7 +29,7 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
 }
 
 .burger-menu span {
-  position: absolute;
+  position: inherit;
   width: 100%;
   height: 2px;
   background-color: color('black');
@@ -48,98 +48,30 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
   }
 }
 
-.burger-wrapper.closed .burger-menu span {
-  &:first-child {
-    animation: test4 500ms forwards reverse;
-  }
-
-  &:nth-child(2) {
-    animation: test5 250ms forwards reverse;
-  }
-
-  &:last-child {
-    animation: test6 500ms forwards reverse;
-  }
-}
-
 .burger-wrapper.opened .burger-menu span {
   &:first-child {
-    animation: test 500ms forwards;
+    animation: top-line 500ms forwards;
   }
 
   &:nth-child(2) {
-    animation: test2 250ms forwards;
+    animation: fade-out 250ms forwards;
   }
 
   &:last-child {
-    animation: test3 500ms forwards;
+    animation: bottom-line 500ms forwards;
   }
 }
 
-@keyframes test {
-  50% {
-    top: 50%;
-    transform: translateY(-50%);
+.burger-wrapper.closed .burger-menu span {
+  &:first-child {
+    animation: top-line-copy 500ms forwards reverse;
   }
 
-  100% {
-    top: 50%;
-    transform: translateY(-50%) rotate(45deg);
-  }
-}
-
-@keyframes test2 {
-  from {
-    opacity: 1;
+  &:nth-child(2) {
+    animation: fade-out-copy 250ms forwards reverse;
   }
 
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes test3 {
-  50% {
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  100% {
-    top: 50%;
-    transform: translateY(-50%) rotate(-45deg);
-  }
-}
-
-@keyframes test4 {
-  50% {
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  100% {
-    top: 50%;
-    transform: translateY(-50%) rotate(45deg);
-  }
-}
-
-@keyframes test5 {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes test6 {
-  50% {
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  100% {
-    top: 50%;
-    transform: translateY(-50%) rotate(-45deg);
+  &:last-child {
+    animation: bottom-line-copy 500ms forwards reverse;
   }
 }
