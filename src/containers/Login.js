@@ -2,12 +2,14 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { authSettings } from 'settings';
-import CheckAuth from 'components/CheckAuth';
+import Loading from 'components/Loading';
 import LoginPage from 'components/LoginPage';
 
 const LoginContainer = withRouter(React.createClass({
   componentWillUpdate (nextProps) {
     const redirectAfterLogin = this.props.location.query.next || authSettings.afterLoginPath;
+      // If user is now authenticated, redirect to location
+      // from query param or default after-login location
     if (nextProps.me && nextProps.me.id) {
       this.props.router.replace(redirectAfterLogin);
     }
@@ -15,9 +17,9 @@ const LoginContainer = withRouter(React.createClass({
 
   render () {
     return (
-      <CheckAuth me={this.props.me}>
+      <Loading isLoading={this.props.me.isLoading} onServer={__SERVER__}>
         <LoginPage location={this.props.location} />
-      </CheckAuth>
+      </Loading>
     );
   }
 }));

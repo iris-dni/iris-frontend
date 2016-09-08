@@ -1,5 +1,4 @@
 export default (petition = {}) => {
-  return petition.city && petition.city.data
-    ? petition.city.data.name
-    : '';
+  const city = petition.city && petition.city.data;
+  return city ? `${city.name}, ${city.zips[0]}` : '';
 };

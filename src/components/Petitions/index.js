@@ -7,6 +7,7 @@ import Teaser from 'components/Teaser';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import ModalTrigger from 'containers/ModalTrigger';
+import Loading from 'components/Loading';
 
 const modal = {
   ...settings.petitionsPage.createButton.modal,
@@ -29,15 +30,17 @@ const Petitions = ({ petitions }) => (
           />
         </PageTitle>
       </Header>
-      <Grid>
-        {petitions.map((petition) => {
-          return (
-            <GridItem key={petition.id}>
-              <Teaser {...petition} key={petition.id} />
-            </GridItem>
-          );
-        })}
-      </Grid>
+      <Loading isLoading={petitions.isLoading}>
+        <Grid>
+          {petitions.map((petition) => {
+            return (
+              <GridItem key={petition.id}>
+                <Teaser {...petition} key={petition.id} />
+              </GridItem>
+            );
+          })}
+        </Grid>
+      </Loading>
     </section>
   </Container>
 );

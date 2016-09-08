@@ -25,6 +25,7 @@ export default [
         class: 'City'
       };
     },
+    nullValue: { id: null },
     suggestionsLimit: 4,
     html: {
       placeholder: settings.petitionFields.city.placeholder

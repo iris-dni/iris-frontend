@@ -2,19 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { showModalWindow } from 'actions/ModalActions';
-import CheckAuth from 'components/CheckAuth';
+import Loading from 'components/Loading';
 
 const RestrictedWrapper = (WrappedComponent) => {
   const Restricted = withRouter(React.createClass({
     componentWillMount () {
       const { me, location, router } = this.props;
-
+      // If on the client and user isn't authenticated
       if (__CLIENT__ && !me.id) {
+        // If we are coming from a first-load, redirect to
+        // /auth/login so user can authenticate
         if (location.action === 'POP') {
           router.replace(
             `/auth/login?next=${encodeURIComponent(location.pathname)}`
           );
         } else {
+          // Else we are using react-router, go back
+          // and open auth modal to authenticate
           router.goBack();
           this.props.showModalWindow({ type: 'auth' }, location);
         }
@@ -23,9 +27,9 @@ const RestrictedWrapper = (WrappedComponent) => {
 
     render () {
       return (
-        <CheckAuth me={this.props.me}>
+        <Loading isLoading={this.props.me.isLoading} onServer={__SERVER__}>
           <WrappedComponent {...this.props} />
-        </CheckAuth>
+        </Loading>
       );
     }
   }));

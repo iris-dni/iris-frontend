@@ -6,10 +6,17 @@ const { assert } = chai;
 
 describe('getPetitionCity', () => {
   it('returns name correctly', () => {
-    const actual = getPetitionCity(mockPetition.data);
-    const expected = 'Clinemouth';
+    const result = getPetitionCity(mockPetition.data);
+    const actual = result.indexOf('Clinemouth') > -1;
 
-    assert.equal(actual, expected);
+    assert.isTrue(actual);
+  });
+
+  it('returns zip correctly', () => {
+    const result = getPetitionCity(mockPetition.data);
+    const actual = result.indexOf('17839') > -1;
+
+    assert.isTrue(actual);
   });
 
   it('returns empty string as fallback', () => {
