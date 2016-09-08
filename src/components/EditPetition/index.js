@@ -14,7 +14,6 @@ const EditPetition = ({ petition }) => (
         <PageTitle
           title={settings.editPetitionPage.title}
           intro={settings.editPetitionPage.intro}
-          centered
         />
       </Header>
       <div className={styles.form}>

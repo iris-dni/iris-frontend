@@ -4,7 +4,7 @@ import PetitionActions from 'components/PetitionActions';
 import Petition from 'components/Petition';
 
 const PreviewPetition = ({ petition, fetchPetition, publishPetition }) => (
-  <div>
+  <div className={styles.root}>
     <Petition preview />
     {!petition.published &&
       <div className={styles.actions}>

@@ -51,10 +51,10 @@ export default {
   },
   previewPetitionPage: {
     editButton: {
-      text: 'Edit'
+      text: 'Edit Petition'
     },
     publishButton: {
-      text: 'Publish',
+      text: 'Publish Petition',
       modal: {
         intro: 'To publish a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
       }
@@ -78,7 +78,7 @@ export default {
       }
     },
     saveButton: {
-      text: 'Save Petition'
+      text: 'Preview Petition'
     }
   },
   publishedPetitionPage: {

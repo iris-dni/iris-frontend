@@ -21,6 +21,8 @@ const EditPetitionContainer = React.createClass({
         publishPetition(petition);
       }
     });
+
+    // TODO: if petition is published, redirect via router
   },
 
   render () {
