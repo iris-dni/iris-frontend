@@ -3,12 +3,25 @@ import petition from 'reducers/petition';
 import mockPetition from '../mocks/petition';
 
 describe('petition reducer', () => {
+  it('handles the REQUEST_PETITION action', () => {
+    const actual = petition({}, {
+      type: 'REQUEST_PETITION'
+    });
+    const expected = {
+      isLoading: true
+    };
+
+    assert.deepEqual(actual, expected);
+  });
+
   it('handles the RECEIVE_PETITION action', () => {
     const actual = petition({}, {
       type: 'RECEIVE_PETITION',
       petition: mockPetition.data
     });
-    const expected = mockPetition.data;
+    const expected = Object.assign({}, mockPetition.data, {
+      isLoading: false
+    });
 
     assert.deepEqual(actual, expected);
   });
