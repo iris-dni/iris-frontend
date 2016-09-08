@@ -24,8 +24,7 @@ import {
 
 export function clearPetition () {
   return {
-    type: CLEAR_PETITION,
-    petition: null
+    type: CLEAR_PETITION
   };
 }
 
@@ -48,7 +47,7 @@ export function requestPetition () {
 export function receivePetition (petition) {
   return {
     type: RECEIVE_PETITION,
-    petition: {...petition, saved: false}
+    petition
   };
 }
 
@@ -74,7 +73,7 @@ export function createPetition (petition, dispatch) {
 export function createdPetition (petition) {
   return {
     type: CREATED_PETITION,
-    petition: {...petition, saved: true}
+    petition
   };
 }
 
@@ -94,7 +93,7 @@ export function updatePetition (petition, dispatch) {
 export function updatedPetition (petition) {
   return {
     type: UPDATED_PETITION,
-    petition: {...petition, saved: true}
+    petition
   };
 }
 

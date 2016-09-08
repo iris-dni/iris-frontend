@@ -19,8 +19,20 @@ export default function petition (state = initialState, action) {
         { isLoading: true }
       );
     case RECEIVE_PETITION:
+      return Object.assign({},
+        state, action.petition, {
+          isLoading: false,
+          saved: false
+        }
+      );
     case CREATED_PETITION:
     case UPDATED_PETITION:
+      return Object.assign({},
+        state, action.petition, {
+          isLoading: false,
+          saved: true
+        }
+      );
     case SUPPORTED_PETITION:
       return Object.assign({},
         state, action.petition,
@@ -39,6 +51,7 @@ export default function petition (state = initialState, action) {
         }
       );
     case CLEAR_PETITION:
+      return Object.assign({});
     default:
       return state;
   }
