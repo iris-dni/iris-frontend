@@ -48,7 +48,7 @@ const Navigation = React.createClass({
             <BurgerMenu
               wasOpened={this.props.wasOpened}
               opened={this.props.opened}
-              onClickHandler={this.props.toggleMenu}
+              onClickHandler={this.props.toggleMobileMenu}
             />
           </div>
 

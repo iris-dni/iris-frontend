@@ -1,6 +1,6 @@
 import {
-  TOGGLE_MENU,
-  RESET_MENU
+  TOGGLE_MOBILE_MENU,
+  DESTROY_MOBILE_MENU
 } from 'actions/actionTypes';
 
 const initialState = {
@@ -10,13 +10,13 @@ const initialState = {
 
 export default function navigation (state = initialState, action) {
   switch (action.type) {
-    case TOGGLE_MENU:
+    case TOGGLE_MOBILE_MENU:
       return Object.assign({}, state, {
         opened: !state.opened,
         wasOpened: true
       });
 
-    case RESET_MENU:
+    case DESTROY_MOBILE_MENU:
       return Object.assign({}, state, initialState);
 
     default:

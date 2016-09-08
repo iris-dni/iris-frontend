@@ -1,24 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { debounce } from 'lodash';
 import Navigation from 'components/Navigation';
 import { menuBreakpoint } from 'components/Navigation/navigation.scss';
-import { toggleMenu, resetMenu } from 'actions/NavigationActions';
+import { toggleMobileMenu, destroyMobileMenu } from 'actions/NavigationActions';
 
 const isBrowser = (typeof window !== 'undefined');
 
 const NavigationContainer = React.createClass({
   onEscape ({ keyCode }) {
     if (keyCode === 27 && this.props.opened) {
-      this.props.toggleMenu();
+      this.props.toggleMobileMenu();
     }
   },
-  resizeHandler (e) {
-    var windowWidth = (isBrowser ? window.innerWidth : 0);
+  resizeHandler: debounce(function () {
+    var windowWidth = (isBrowser ? window.innerWidth : null);
 
     if (windowWidth >= parseInt(menuBreakpoint, 10)) {
-      this.props.resetMenu();
+      this.props.destroyMobileMenu();
     }
-  },
+  }, 300),
 
   componentDidUpdate () {
     if (this.props.opened) {
@@ -62,8 +63,8 @@ export const mapStateToProps = ({ navigation }) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  toggleMenu: () => dispatch(toggleMenu()),
-  resetMenu: () => dispatch(resetMenu())
+  toggleMobileMenu: () => dispatch(toggleMobileMenu()),
+  destroyMobileMenu: () => dispatch(destroyMobileMenu())
 });
 
 export default connect(

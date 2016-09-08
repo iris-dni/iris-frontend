@@ -9,12 +9,12 @@ describe('navigation reducer', () => {
     wasOpened: false
   };
 
-  it('handles the TOGGLE_MENU action', () => {
+  it('handles the TOGGLE_MOBILE_MENU action', () => {
     const actual = navigation({
       wasOpened: false,
       opened: false
     }, {
-      type: 'TOGGLE_MENU'
+      type: 'TOGGLE_MOBILE_MENU'
     });
 
     const expected = {
@@ -25,12 +25,12 @@ describe('navigation reducer', () => {
     assert.deepEqual(actual, expected);
   });
 
-  it('handles the RESET_MENU action', () => {
+  it('handles the DESTROY_MOBILE_MENU action', () => {
     const actual = navigation({
       opened: true,
       wasOpened: true
     }, {
-      type: 'RESET_MENU'
+      type: 'DESTROY_MOBILE_MENU'
     });
 
     const expected = INITIAL_STATE;

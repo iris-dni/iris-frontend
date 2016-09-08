@@ -1,26 +1,26 @@
 import { assert } from 'chai';
 
 import {
-  toggleMenu,
-  resetMenu
+  toggleMobileMenu,
+  destroyMobileMenu
 } from 'actions/NavigationActions';
 
 describe('NavigationActions', () => {
-  describe('toggleMenu', () => {
-    it('returns TOGGLE_MENU action', () => {
-      const result = toggleMenu();
+  describe('toggleMobileMenu', () => {
+    it('returns TOGGLE_MOBILE_MENU action', () => {
+      const result = toggleMobileMenu();
       const actual = result.type;
-      const expected = 'TOGGLE_MENU';
+      const expected = 'TOGGLE_MOBILE_MENU';
 
       assert.equal(actual, expected);
     });
   });
 
-  describe('resetMenu', () => {
-    it('returns REST_MENU action', () => {
-      const result = resetMenu();
+  describe('destroyMobileMenu', () => {
+    it('returns DESTROY_MOBILE_MENU action', () => {
+      const result = destroyMobileMenu();
       const actual = result.type;
-      const expected = 'RESET_MENU';
+      const expected = 'DESTROY_MOBILE_MENU';
 
       assert.equal(actual, expected);
     });

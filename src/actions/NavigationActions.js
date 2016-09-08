@@ -1,16 +1,16 @@
 import {
-  TOGGLE_MENU,
-  RESET_MENU
+  TOGGLE_MOBILE_MENU,
+  DESTROY_MOBILE_MENU
 } from './actionTypes';
 
-export function toggleMenu () {
+export function toggleMobileMenu () {
   return {
-    type: TOGGLE_MENU
+    type: TOGGLE_MOBILE_MENU
   };
 }
 
-export function resetMenu () {
+export function destroyMobileMenu () {
   return {
-    type: RESET_MENU
+    type: DESTROY_MOBILE_MENU
   };
 }
