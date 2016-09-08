@@ -21,7 +21,10 @@ const Navigation = React.createClass({
     return (
       <div>
         <div className={this.getClassName(styles['overlay-wrapper'])}>
-          <Overlay active={this.props.opened} />
+          <Overlay
+            active={this.props.opened}
+            onClickHandler={this.props.closeMobileMenu}
+          />
         </div>
 
         <nav>

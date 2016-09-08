@@ -6,7 +6,7 @@ import CloseButton from 'components/CloseButton';
 
 const Modal = ({ active, children, hideModalWindow }) => (
   <div aria-hidden={!active} className={styles.root}>
-    <Overlay active={active} />
+    <Overlay active={active} onClickHandler={hideModalWindow} />
     <div role='dialog' aria-labelledby='dialog-title' className={styles.content}>
       <div role='document'>
         {children}
