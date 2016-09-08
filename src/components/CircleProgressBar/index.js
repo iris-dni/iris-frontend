@@ -63,7 +63,7 @@ const CircleProgressBar = React.createClass({
 
   render () {
     return (
-      <div className={styles.root}>
+      <div className={styles[this.props.size || 'box']}>
         <div
           className={styles[this.props.size]}
           ref='canvas'

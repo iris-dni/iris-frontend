@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchPetition, supportPetition } from 'actions/PetitionActions';
 import Petition from 'components/Petition';
+import Loading from 'components/Loading';
 import getPetition from 'selectors/petition';
 
 const PetitionContainer = React.createClass({
@@ -32,7 +33,9 @@ const PetitionContainer = React.createClass({
             'innerHTML': JSON.stringify(petition.schema || {})
           }]}
         />
-        <Petition {...petition} />
+        <Loading isLoading={petition.isLoading}>
+          <Petition {...petition} />
+        </Loading>
       </div>
     );
   }

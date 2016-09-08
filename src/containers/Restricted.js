@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { showModalWindow } from 'actions/ModalActions';
-import CheckAuth from 'components/CheckAuth';
+import Loading from 'components/Loading';
 
 const RestrictedWrapper = (WrappedComponent) => {
   const Restricted = withRouter(React.createClass({
@@ -23,9 +23,9 @@ const RestrictedWrapper = (WrappedComponent) => {
 
     render () {
       return (
-        <CheckAuth me={this.props.me}>
+        <Loading isLoading={this.props.me.isLoading}>
           <WrappedComponent {...this.props} />
-        </CheckAuth>
+        </Loading>
       );
     }
   }));

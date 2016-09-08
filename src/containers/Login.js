@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { authSettings } from 'settings';
-import CheckAuth from 'components/CheckAuth';
+import Loading from 'components/Loading';
 import LoginPage from 'components/LoginPage';
 
 const LoginContainer = withRouter(React.createClass({
@@ -15,9 +15,9 @@ const LoginContainer = withRouter(React.createClass({
 
   render () {
     return (
-      <CheckAuth me={this.props.me}>
+      <Loading isLoading={this.props.me.isLoading}>
         <LoginPage location={this.props.location} />
-      </CheckAuth>
+      </Loading>
     );
   }
 }));

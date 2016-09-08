@@ -1,8 +1,8 @@
 @import 'globals';
 
-.root {
+.box {
   position: relative;
- }
+}
 
 .canvas {
   display: block;
@@ -16,6 +16,7 @@
 
 .large {
   composes: canvas;
+  composes: box;
   width: map-get($widths, 'sidebar-progress');
   height: map-get($widths, 'sidebar-progress');
 }
