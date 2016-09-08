@@ -78,7 +78,7 @@ const Navigation = React.createClass({
         <div className={this.getClassName(styles.overlay)}></div>
 
         <nav>
-          <div className={styles['logo-wrapper']}>
+          <div className={styles['unhidden-wrapper']}>
             <IndexLink to='home' className={styles.link}>
               <Logo />
             </IndexLink>

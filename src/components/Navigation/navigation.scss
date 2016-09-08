@@ -66,7 +66,7 @@
 /**
  * 1. Positioning context for burger-menu.
  */
-.logo-wrapper {
+.unhidden-wrapper {
   composes: element;
   position: relative; /* 1 */
 
@@ -74,7 +74,7 @@
   padding-right: 1em;
 }
 
-.element:not(.logo-wrapper):last-of-type {
+.element:not(.unhidden-wrapper):last-of-type {
   width: 100%;
   background-color: color('success');
   color: color('white');
@@ -116,7 +116,7 @@ $link-padding: 16px;
   }
 }
 
-.element:not(.logo-wrapper):not(:last-of-type) .link:hover,
-.element:not(.logo-wrapper):not(:last-of-type) .active {
+.element:not(.unhidden-wrapper):not(:last-of-type) .link:hover,
+.element:not(.unhidden-wrapper):not(:last-of-type) .active {
   border-color: color('success');
 }
