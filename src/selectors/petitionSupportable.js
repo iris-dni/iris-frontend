@@ -1,3 +1,3 @@
-export default (petition = {}) => {
-  return !!petition.state && petition.state.parent === 'supportable';
+export default ({ state }) => {
+  return !!state && state.parent === 'supportable';
 };
