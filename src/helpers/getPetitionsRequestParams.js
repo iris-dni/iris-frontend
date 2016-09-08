@@ -15,6 +15,6 @@ export default ({ limit, page }) => {
       'loser',
       'processing.*',
       'closed'
-    ]
+    ].join(',')
   };
 };
