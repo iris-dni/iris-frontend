@@ -9,7 +9,7 @@ const PetitionSidebar = ({ timeMetric, supportable }) => (
     <div className={styles.counter}>
       <Countdown timeMetric={timeMetric} />
     </div>
-    {supportable && timeMetric && timeMetric.votingActive &&
+    {supportable &&
       <div className={styles.supportButton}>
         <TextCenter>
           <SupportButton />
