@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from 'components/Container';
-import Navigation from 'components/Navigation';
+import Navigation from 'containers/Navigation';
 import styles from './site-header.scss';
 
 const SiteHeader = () => (

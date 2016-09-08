@@ -4,8 +4,6 @@ import Logo from 'components/Logo';
 import BurgerMenu from 'components/BurgerMenu';
 import styles from './navigation.scss';
 
-const isBrowser = (typeof window !== 'undefined');
-
 const NAVIGATION_LINKS = [
   {
     label: 'Browse petitions',
@@ -26,67 +24,14 @@ const NAVIGATION_LINKS = [
 ];
 
 const Navigation = React.createClass({
-  getInitialState () {
-    return {
-      opened: false,
-      wasOpened: false
-    };
-  },
-
-  onEscape ({ keyCode }) {
-    if (keyCode === 27 && this.state.opened) {
-      this.toggleMenu();
-    }
-  },
-  resizeHandler: function (e) {
-    var windowWidth = (isBrowser ? window.innerWidth : 0);
-
-    // We get the menu breakpoint exported from the styles, removing the last
-    // two characters, the pixels or em unit.
-    var menuBreakpoint = styles.menuBreakpoint.slice(0, -2);
-
-    if (windowWidth >= menuBreakpoint) {
-      this.setState(this.getInitialState);
-    }
-  },
-
-  componentWillMount: function () {
-    this.resizeHandler();
-  },
-  componentDidMount: function () {
-    if (isBrowser) {
-      window.addEventListener('resize', this.resizeHandler);
-      document.addEventListener('keydown', this.onEscape);
-    }
-  },
-  componentWillUnmount: function () {
-    if (isBrowser) {
-      window.removeEventListener('resize', this.resizeHandler);
-      document.removeEventListener('keydown', this.onEscape);
-    }
-  },
-
   getClassName (defaultClass) {
-    const opened = this.state.opened
+    const opened = this.props.opened
       ? styles.opened
-      : this.state.wasOpened
+      : this.props.wasOpened
       ? styles.closed
       : '';
 
     return `${defaultClass} ${opened}`;
-  },
-
-  toggleMenu () {
-    this.setState({
-      opened: !this.state.opened,
-      wasOpened: true
-    }, () => {
-      if (this.state.opened) {
-        document.documentElement.classList.add('disabled-scroll');
-      } else {
-        document.documentElement.classList.remove('disabled-scroll');
-      }
-    });
   },
 
   render () {
@@ -101,9 +46,9 @@ const Navigation = React.createClass({
             </IndexLink>
 
             <BurgerMenu
-              wasOpened={this.state.wasOpened}
-              opened={this.state.opened}
-              onClickHandler={this.toggleMenu}
+              wasOpened={this.props.wasOpened}
+              opened={this.props.opened}
+              onClickHandler={this.props.toggleMenu}
             />
           </div>
 
