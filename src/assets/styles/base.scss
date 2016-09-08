@@ -28,12 +28,12 @@ svg {
  * 3. Re-add scrollbar now hidden by html element
  */
 :global {
-  .modal-active,
-  .modal-active body {
+  .disabled-scroll,
+  .disabled-scroll body {
     overflow: hidden; /* 1 */
   }
 
-  .modal-active .wrapper {
+  .disabled-scroll .wrapper {
     min-height: 100vh; /* 2 */
     overflow-y: scroll; /* 3 */
   }

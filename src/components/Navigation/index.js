@@ -33,10 +33,19 @@ const Navigation = React.createClass({
     };
   },
 
+  onEscape ({ keyCode }) {
+    if (keyCode === 27 && this.state.opened) {
+      this.toggleMenu();
+    }
+  },
   resizeHandler: function (e) {
     var windowWidth = (isBrowser ? window.innerWidth : 0);
 
-    if (windowWidth >= 940) {
+    // We get the menu breakpoint exported from the styles, removing the last
+    // two characters, the pixels or em unit.
+    var menuBreakpoint = styles.menuBreakpoint.slice(0, -2);
+
+    if (windowWidth >= menuBreakpoint) {
       this.setState(this.getInitialState);
     }
   },
@@ -46,12 +55,14 @@ const Navigation = React.createClass({
   },
   componentDidMount: function () {
     if (isBrowser) {
-      window && window.addEventListener('resize', this.resizeHandler);
+      window.addEventListener('resize', this.resizeHandler);
+      document.addEventListener('keydown', this.onEscape);
     }
   },
   componentWillUnmount: function () {
     if (isBrowser) {
-      window && window.removeEventListener('resize', this.resizeHandler);
+      window.removeEventListener('resize', this.resizeHandler);
+      document.removeEventListener('keydown', this.onEscape);
     }
   },
 
@@ -65,10 +76,16 @@ const Navigation = React.createClass({
     return `${defaultClass} ${opened}`;
   },
 
-  openMenu () {
+  toggleMenu () {
     this.setState({
       opened: !this.state.opened,
       wasOpened: true
+    }, () => {
+      if (this.state.opened) {
+        document.documentElement.classList.add('disabled-scroll');
+      } else {
+        document.documentElement.classList.remove('disabled-scroll');
+      }
     });
   },
 
@@ -86,7 +103,7 @@ const Navigation = React.createClass({
             <BurgerMenu
               wasOpened={this.state.wasOpened}
               opened={this.state.opened}
-              onClickHandler={this.openMenu}
+              onClickHandler={this.toggleMenu}
             />
           </div>
 

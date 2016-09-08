@@ -1,28 +1,32 @@
 @import 'globals';
 
+$menu-breakpoint: map-get($breakpoints, 'navigation-menu');
+
+:export {
+  menuBreakpoint: $menu-breakpoint;
+}
+
 /**
  * 1. Extra 1% so that it goes under the nav's grey border.
  */
 .overlay {
-  pointer-events: none;
   position: absolute;
-  height: 100vh;
-  width: 100%;
   top: 101%; /* 1 */
   left: 0;
-  opacity: 0;
-  background-color: color('black');
-  transition: opacity 500ms;
-  z-index: 2;
+  right: 0;
+  height: calc(100vh - 101%);
+  transition: all 500ms;
+  z-index: -1;
 }
 
 .overlay.opened {
-  opacity: 0.6;
+  z-index: 2;
+  background-color: color('overlay');
 }
 
 .list {
   position: absolute;
-  height: 100vh;
+  height: calc(100vh - 101%);
   width: 260px;
   padding: 20px;
   left: 100%;
@@ -32,7 +36,7 @@
   list-style: none;
   z-index: 2;
 
-  @include media('>=940px') {
+  @include media('>=#{$menu-breakpoint}') {
     position: static;
     display: inline;
     padding: 0;
@@ -55,7 +59,7 @@
  *    to overlap the nav‘s grey border.
  */
 .element {
-  @include media('>=940px') {
+  @include media('>=#{$menu-breakpoint}') {
     display: inline-block;
     padding: 0 1em;
     margin-bottom: -1px; /* 1 */
@@ -82,7 +86,7 @@
   text-transform: uppercase;
   text-align: center;
 
-  @include media('>=940px') {
+  @include media('>=#{$menu-breakpoint}') {
     float: right;
     width: auto;
   }
@@ -111,7 +115,7 @@ $link-padding: 16px;
 .element:not(:last-of-type) .link {
   margin-bottom: 0.5em;
 
-  @include media('>=940px') {
+  @include media('>=#{$menu-breakpoint}') {
     margin-bottom: 0;
   }
 }

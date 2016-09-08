@@ -15,21 +15,21 @@ const ModalWindowContainer = React.createClass({
 
   componentDidMount () {
     if (this.props.active) {
-      document.documentElement.classList.add('modal-active');
+      document.documentElement.classList.add('disabled-scroll');
     }
     document.addEventListener('keydown', this.onEscape);
   },
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.active) {
-      document.documentElement.classList.add('modal-active');
+      document.documentElement.classList.add('disabled-scroll');
     } else {
-      document.documentElement.classList.remove('modal-active');
+      document.documentElement.classList.remove('disabled-scroll');
     }
   },
 
   componentWillUnmount () {
-    document.documentElement.classList.remove('modal-active');
+    document.documentElement.classList.remove('disabled-scroll');
     document.removeEventListener('keydown', this.onEscape);
   },
 

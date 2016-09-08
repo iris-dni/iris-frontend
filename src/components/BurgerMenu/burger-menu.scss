@@ -1,13 +1,15 @@
 
 @import 'globals';
 
+$menu-breakpoint: map-get($breakpoints, 'navigation-menu');
+
 .burger-wrapper {
   position: absolute;
   top: 50%;
   right: 0;
   cursor: pointer;
 
-  @include media('>=940px') {
+  @include media('>=#{$menu-breakpoint}') {
     display: none;
   }
 }
