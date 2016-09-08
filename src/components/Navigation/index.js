@@ -1,27 +1,9 @@
 import React from 'react';
-import { Link, IndexLink } from 'react-router';
+import { IndexLink } from 'react-router';
 import Logo from 'components/Logo';
+import MenuItems from 'components/MenuItems';
 import MenuTrigger from 'components/MenuTrigger';
 import styles from './navigation.scss';
-
-const NAVIGATION_LINKS = [
-  {
-    label: 'Browse petitions',
-    path: '/petitions'
-  },
-  {
-    label: 'How it works',
-    path: '/how-it-works'
-  },
-  {
-    label: 'About',
-    path: '/about'
-  },
-  {
-    label: 'Create petition',
-    path: '/petitions/new'
-  }
-];
 
 const Navigation = React.createClass({
   getClassName (defaultClass) {
@@ -46,25 +28,16 @@ const Navigation = React.createClass({
             </IndexLink>
 
             <MenuTrigger
-              wasOpened={this.props.wasOpened}
               opened={this.props.opened}
+              wasOpened={this.props.wasOpened}
               onClickHandler={this.props.toggleMobileMenu}
             />
           </div>
 
-          <ul className={this.getClassName(styles.list)}>
-            {NAVIGATION_LINKS.map((link, key) => (
-              <li className={styles.element} key={key}>
-                <Link
-                  to={link.path}
-                  className={styles.link}
-                  activeClassName={styles.active}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <MenuItems
+            opened={this.props.opened}
+            wasOpened={this.props.wasOpened}
+          />
         </nav>
       </div>
     );

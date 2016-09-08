@@ -147,5 +147,15 @@ export default {
     petitionPublished: 'Great, your petition was published!',
     petitionUpdated: 'Your petition was updated',
     petitionSupported: 'Thank you for signing this petition!'
-  }
+  },
+  navigationLinks: [
+    {
+      label: 'Browse petitions',
+      path: '/petitions'
+    },
+    {
+      label: 'Create petition',
+      path: '/petitions/new'
+    }
+  ]
 };
