@@ -1,9 +1,7 @@
 import React from 'react';
 import settings from 'settings';
 import Container from 'components/Container';
-import Grid from 'components/Grid';
-import GridItem from 'components/GridItem';
-import Teaser from 'components/Teaser';
+import TeaserGrid from 'components/TeaserGrid';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import ButtonLink from 'components/ButtonLink';
@@ -24,15 +22,10 @@ const Petitions = ({ petitions }) => (
         </PageTitle>
       </Header>
       <Loading isLoading={petitions.isLoading}>
-        <Grid>
-          {petitions.map((petition) => {
-            return (
-              <GridItem key={petition.id}>
-                <Teaser {...petition} key={petition.id} />
-              </GridItem>
-            );
-          })}
-        </Grid>
+        {petitions.length
+          ? <TeaserGrid petitions={petitions} />
+          : <div>Nothing here sadly</div>
+        }
       </Loading>
     </section>
   </Container>
