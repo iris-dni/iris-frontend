@@ -14,13 +14,35 @@ describe('petition reducer', () => {
     assert.deepEqual(actual, expected);
   });
 
+  it('handles the SUBMITTING_PETITION action', () => {
+    const actual = petition({}, {
+      type: 'SUBMITTING_PETITION'
+    });
+    const expected = {
+      isLoading: true
+    };
+
+    assert.deepEqual(actual, expected);
+  });
+
+  it('handles the CLEAR_PETITION action', () => {
+    const actual = petition({}, {
+      type: 'CLEAR_PETITION',
+      petition: null
+    });
+    const expected = {};
+
+    assert.deepEqual(actual, expected);
+  });
+
   it('handles the RECEIVE_PETITION action', () => {
     const actual = petition({}, {
       type: 'RECEIVE_PETITION',
       petition: mockPetition.data
     });
     const expected = Object.assign({}, mockPetition.data, {
-      isLoading: false
+      isLoading: false,
+      saved: false
     });
 
     assert.deepEqual(actual, expected);
@@ -31,7 +53,10 @@ describe('petition reducer', () => {
       type: 'CREATED_PETITION',
       petition: mockPetition.data
     });
-    const expected = mockPetition.data;
+    const expected = Object.assign({}, mockPetition.data, {
+      isLoading: false,
+      saved: true
+    });
 
     assert.deepEqual(actual, expected);
   });
@@ -41,7 +66,10 @@ describe('petition reducer', () => {
       type: 'UPDATED_PETITION',
       petition: mockPetition.data
     });
-    const expected = mockPetition.data;
+    const expected = Object.assign({}, mockPetition.data, {
+      isLoading: false,
+      saved: true
+    });
 
     assert.deepEqual(actual, expected);
   });
@@ -51,7 +79,21 @@ describe('petition reducer', () => {
       type: 'PUBLISHED_PETITION',
       petition: mockPetition.data
     });
-    const expected = mockPetition.data;
+    const expected = Object.assign({}, mockPetition.data, {
+      hasPublished: true,
+      isLoading: false
+    });
+
+    assert.deepEqual(actual, expected);
+  });
+
+  it('handles the SUBMITTING_SUPPORT action', () => {
+    const actual = petition({}, {
+      type: 'SUBMITTING_SUPPORT'
+    });
+    const expected = Object.assign({}, {
+      isSupporting: true
+    });
 
     assert.deepEqual(actual, expected);
   });
@@ -61,7 +103,10 @@ describe('petition reducer', () => {
       type: 'SUPPORTED_PETITION',
       petition: mockPetition
     });
-    const expected = mockPetition;
+    const expected = Object.assign({}, mockPetition, {
+      hasSupported: true,
+      isSupporting: false
+    });
 
     assert.deepEqual(actual, expected);
   });

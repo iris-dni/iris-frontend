@@ -1,16 +1,15 @@
 import petitionRepository from 'services/api/repositories/petition';
-import getSupportedPetitionModal from 'helpers/getSupportedPetitionModal';
+import solveResolvedObjects from 'helpers/solveResolvedObjects';
 import settings from 'settings';
+
 import {
+  CLEAR_PETITION,
   REQUEST_PETITION,
   RECEIVE_PETITION,
-  REQUEST_PETITIONS,
-  RECEIVE_PETITIONS,
-  SUBMIT_PETITION,
+  SUBMITTING_PETITION,
   CREATED_PETITION,
   UPDATED_PETITION,
-  PUBLISHED_PETITION,
-  SUPPORTED_PETITION
+  PUBLISHED_PETITION
 } from './actionTypes';
 
 import {
@@ -18,9 +17,11 @@ import {
   hideFlashMessage
 } from './FlashActions';
 
-import {
-  showModalWindow
-} from './ModalActions';
+export function clearPetition () {
+  return {
+    type: CLEAR_PETITION
+  };
+}
 
 export function fetchPetition (id) {
   return (dispatch, getState) => {
@@ -45,54 +46,19 @@ export function receivePetition (petition) {
   };
 }
 
-export function fetchPetitions ({ petitions, location, perPage, currentPage }) {
-  const page = parseInt(location.query.page || currentPage || 1);
-  const limit = parseInt(location.query.limit || perPage || 12);
-
-  return (dispatch, getState) => {
-    dispatch(requestPetitions());
-
-    if (!petitions || !petitions.length || page !== currentPage) {
-      const options = { page, limit };
-
-      return petitionRepository.all(options)
-        .then(response => {
-          const pagedResponse = Object.assign({}, response, {
-            currentPage: options.page,
-            perPage: options.limit
-          });
-
-          return dispatch(receivePetitions(pagedResponse));
-        });
-    }
-  };
-}
-
-export function requestPetitions () {
+export function submittingPetition () {
   return {
-    type: REQUEST_PETITIONS
+    type: SUBMITTING_PETITION
   };
 }
 
-export function receivePetitions (petitions) {
-  return {
-    type: RECEIVE_PETITIONS,
-    petitions
-  };
-}
-
-export function submitPetition () {
-  return {
-    type: SUBMIT_PETITION
-  };
-}
-
-export function createPetition (data, dispatch) {
-  dispatch(submitPetition());
-  return petitionRepository.create(data)
-    .then((response) => dispatch(
-      createdPetition(response.data),
-    )).then(() => dispatch(
+export function createPetition (petition, dispatch) {
+  dispatch(submittingPetition());
+  return petitionRepository.create(petition)
+    .then((response) => {
+      const resolvedPetition = solveResolvedObjects(petition, response.data);
+      dispatch(createdPetition(resolvedPetition));
+    }).then(() => dispatch(
       showFlashMessage(settings.flashMessages.petitionCreated, 'success')
     )).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
@@ -106,12 +72,13 @@ export function createdPetition (petition) {
   };
 }
 
-export function updatePetition (data, dispatch) {
-  dispatch(submitPetition());
-  return petitionRepository.update(data)
-    .then((response) => dispatch(
-      updatedPetition(response.data),
-    )).then(() => dispatch(
+export function updatePetition (petition, dispatch) {
+  dispatch(submittingPetition());
+  return petitionRepository.update(petition)
+    .then((response) => {
+      const resolvedPetition = solveResolvedObjects(petition, response.data);
+      dispatch(updatedPetition(resolvedPetition));
+    }).then(() => dispatch(
       showFlashMessage(settings.flashMessages.petitionUpdated, 'success')
     )).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
@@ -127,11 +94,12 @@ export function updatedPetition (petition) {
 
 export function publishPetition (petition, dispatch) {
   return (dispatch, getState) => {
-    dispatch(submitPetition());
+    dispatch(submittingPetition());
     return petitionRepository.publish(petition)
-      .then((response) => dispatch(
-        publishedPetition(response.data),
-      )).then(() => dispatch(
+      .then((response) => {
+        const resolvedPetition = solveResolvedObjects(petition, response.data);
+        return dispatch(publishedPetition(resolvedPetition));
+      }).then(() => dispatch(
         hideFlashMessage()
       )).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
@@ -143,34 +111,5 @@ export function publishedPetition (petition) {
   return {
     type: PUBLISHED_PETITION,
     petition
-  };
-}
-
-export function supportPetition (petition, dispatch) {
-  return (dispatch, getState) => {
-    dispatch(submitPetition());
-    return petitionRepository.support(petition)
-      .then((response) => {
-        // Get stuff we usually `resolve` via the endpoint
-        const { city, owner } = petition;
-        // Do this here because API does not support the
-        // `resolve` param on the `event/support` endpoint
-        const resolvedPetition = Object.assign({}, response.data, { city, owner });
-        return dispatch(supportedPetition(resolvedPetition));
-      }).then((response) => dispatch(showModalWindow({
-        type: 'supported',
-        ...getSupportedPetitionModal(petition, response.petition)
-      }))).catch(() => dispatch(
-        showFlashMessage(settings.flashMessages.genericError, 'error')
-      ));
-  };
-}
-
-export function supportedPetition (returnedPetition, fullPetition) {
-  const { city, owner } = fullPetition || {};
-  return {
-    type: SUPPORTED_PETITION,
-    petition: returnedPetition,
-    resolve: { city, owner }
   };
 }

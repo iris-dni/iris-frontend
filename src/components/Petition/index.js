@@ -8,7 +8,7 @@ import PetitionHeader from 'containers/PetitionHeader';
 import PetitionBody from 'containers/PetitionBody';
 import PetitionSidebar from 'containers/PetitionSidebar';
 
-const Petition = () => (
+const Petition = ({ preview }) => (
   <Container>
     <article>
       <PetitionHeader />

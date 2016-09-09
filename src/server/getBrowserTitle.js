@@ -9,8 +9,10 @@ export default (componentName, state = {}) => {
       return TITLE_TEMPLATE.replace('%s', petition && petition.title);
     case 'PetitionsContainer':
       return TITLE_TEMPLATE.replace('%s', settings.petitionsPage.title);
-    case 'CreatePetitionContainer':
-      return TITLE_TEMPLATE.replace('%s', settings.createPetitionPage.title);
+    case 'NewPetitionContainer':
+      return TITLE_TEMPLATE.replace('%s', settings.newPetitionPage.title);
+    case 'EditPetitionContainer':
+      return TITLE_TEMPLATE.replace('%s', settings.editPetitionPage.title);
   }
 
   return settings.title;

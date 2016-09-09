@@ -8,8 +8,9 @@ import LoginPage from 'containers/Login';
 import Logout from 'containers/Logout';
 import Petition from 'containers/Petition';
 import Petitions from 'containers/Petitions';
-import CreatePetition from 'containers/CreatePetition';
-import Restricted from 'containers/Restricted';
+import NewPetition from 'containers/NewPetition';
+import EditPetition from 'containers/EditPetition';
+import PublishedPetition from 'containers/PublishedPetition';
 
 export default function (props = {}) {
   let history = browserHistory;
@@ -26,7 +27,9 @@ export default function (props = {}) {
         <Route path='auth/login' component={LoginPage} />
         <Route path='auth/logout' component={Logout} />
         <Route path='petitions' component={Petitions} />
-        <Route path='petitions/new' component={Restricted(CreatePetition)} />
+        <Route path='petitions/new' component={NewPetition} />
+        <Route path='petitions/:id/edit' component={EditPetition} />
+        <Route path='petitions/:id/published' component={PublishedPetition} />
         <Route path='petitions/:id' component={Petition} />
       </Route>
     </Router>

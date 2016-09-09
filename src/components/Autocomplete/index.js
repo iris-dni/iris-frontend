@@ -65,7 +65,7 @@ const Autocomplete = React.createClass({
     e.preventDefault();
 
     // Update redux-form store manually to reflect the selection
-    this.props.helper.onChange(this.props.getFormValue(suggestion.suggestion));
+    this.props.helper.onChange(this.props.getFormValue(suggestion.suggestion) || this.props.nullValue || NULL_VALUE);
   },
 
   render () {

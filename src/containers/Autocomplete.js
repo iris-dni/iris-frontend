@@ -23,11 +23,18 @@ AutocompleteContainer.propTypes = {
   getFormValue: React.PropTypes.func.isRequired,
   suggestionsLimit: React.PropTypes.number,
   suggestions: React.PropTypes.array,
+  initialValue: React.PropTypes.string,
   value: React.PropTypes.string,
   helper: React.PropTypes.object.isRequired,
   name: React.PropTypes.string,
   html: React.PropTypes.object
 };
+
+// export const getInitialValue = (config, helper) => {
+//   return helper.value
+//     ? config.suggestionFormatter(helper.value.data)
+//     : '';
+// };
 
 export const mapStateToProps = ({ autocomplete }) => ({
   suggestions: autocomplete.suggestions,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { supportPetition } from 'actions/PetitionActions';
+import { supportPetition } from 'actions/SupportActions';
 import { showModalWindow } from 'actions/ModalActions';
 import SupportButton from 'components/SupportButton';
 

@@ -2,27 +2,40 @@ import { assert } from 'chai';
 import sinon from 'sinon';
 import moxios from 'moxios';
 import mockPetition from '../mocks/petition';
-import mockPetitions from '../mocks/petitions';
 
 import {
   fetchPetition,
   requestPetition,
+  clearPetition,
   receivePetition,
-  fetchPetitions,
-  requestPetitions,
-  receivePetitions,
-  submitPetition,
+  submittingPetition,
   createPetition,
   createdPetition,
   updatePetition,
   updatedPetition,
   publishPetition,
-  publishedPetition,
-  supportPetition,
-  supportedPetition
+  publishedPetition
 } from 'actions/PetitionActions';
 
 describe('PetitionActions', () => {
+  describe('clearPetition', () => {
+    it('returns CLEAR_PETITION action', () => {
+      const result = clearPetition();
+      const actual = result.type;
+      const expected = 'CLEAR_PETITION';
+
+      assert.equal(actual, expected);
+    });
+
+    it('passes null as petition object', () => {
+      const result = clearPetition();
+      const actual = result.petition;
+      const expected = null;
+
+      assert.equal(actual, expected);
+    });
+  });
+
   describe('fetchPetition', () => {
     let dispatch;
     let result;
@@ -83,71 +96,11 @@ describe('PetitionActions', () => {
     });
   });
 
-  describe('fetchPetitions', () => {
-    let dispatch;
-    let result;
-
-    beforeEach(() => {
-      dispatch = sinon.spy();
-
-      moxios.install();
-      moxios.stubRequest(/.*/, {
-        status: 200,
-        response: { data: mockPetitions }
-      });
-
-      result = fetchPetitions({ location: { query: {} } });
-    });
-
-    afterEach(() => {
-      moxios.uninstall();
-    });
-
-    it('returns a function that dispatches requestPetitions()', () => {
-      result(dispatch);
-      assert(dispatch.calledWith(requestPetitions()));
-    });
-
-    it('returns a function that returns a promise that dispatches receivePetitions()', done => {
-      result(dispatch).then(() => {
-        assert(dispatch.calledWithMatch(receivePetitions({data: mockPetitions})));
-      }).then(done, done);
-    });
-  });
-
-  describe('requestPetitions', () => {
-    it('returns REQUEST_PETITIONS action', () => {
-      const result = requestPetitions();
+  describe('submittingPetition', () => {
+    it('returns SUBMITTING_PETITION action', () => {
+      const result = submittingPetition();
       const actual = result.type;
-      const expected = 'REQUEST_PETITIONS';
-
-      assert.equal(actual, expected);
-    });
-  });
-
-  describe('receivePetitions', () => {
-    it('returns RECEIVE_PETITIONS action', () => {
-      const result = receivePetitions();
-      const actual = result.type;
-      const expected = 'RECEIVE_PETITIONS';
-
-      assert.equal(actual, expected);
-    });
-
-    it('passes petitions object', () => {
-      const result = receivePetitions(mockPetitions);
-      const actual = result.petitions;
-      const expected = mockPetitions;
-
-      assert.deepEqual(actual, expected);
-    });
-  });
-
-  describe('submitPetition', () => {
-    it('returns SUBMIT_PETITION action', () => {
-      const result = submitPetition();
-      const actual = result.type;
-      const expected = 'SUBMIT_PETITION';
+      const expected = 'SUBMITTING_PETITION';
 
       assert.equal(actual, expected);
     });
@@ -173,8 +126,8 @@ describe('PetitionActions', () => {
       moxios.uninstall();
     });
 
-    it('dispatches submitPetition()', () => {
-      assert(dispatch.calledWith(submitPetition()));
+    it('dispatches submittingPetition()', () => {
+      assert(dispatch.calledWith(submittingPetition()));
     });
 
     it('returns a promise that dispatches createdPetition() when done', done => {
@@ -198,7 +151,7 @@ describe('PetitionActions', () => {
       const actual = result.petition;
       const expected = mockPetition;
 
-      assert.equal(actual, expected);
+      assert.deepEqual(actual, expected);
     });
   });
 
@@ -225,8 +178,8 @@ describe('PetitionActions', () => {
       moxios.uninstall();
     });
 
-    it('dispatches submitPetition()', () => {
-      assert(dispatch.calledWith(submitPetition()));
+    it('dispatches submittingPetition()', () => {
+      assert(dispatch.calledWith(submittingPetition()));
     });
 
     it('returns a promise that dispatches updatedPetition() when done', done => {
@@ -250,7 +203,7 @@ describe('PetitionActions', () => {
       const actual = result.petition;
       const expected = mockPetition;
 
-      assert.equal(actual, expected);
+      assert.deepEqual(actual, expected);
     });
   });
 
@@ -277,9 +230,9 @@ describe('PetitionActions', () => {
       moxios.uninstall();
     });
 
-    it('dispatches submitPetition()', () => {
+    it('dispatches submittingPetition()', () => {
       result(dispatch);
-      assert(dispatch.calledWith(submitPetition()));
+      assert(dispatch.calledWith(submittingPetition()));
     });
 
     it('returns function that returns a promise that dispatches publishedPetition() when done', done => {
@@ -300,59 +253,6 @@ describe('PetitionActions', () => {
 
     it('passes petition object', () => {
       const result = publishedPetition(mockPetition);
-      const actual = result.petition;
-      const expected = mockPetition;
-
-      assert.equal(actual, expected);
-    });
-  });
-
-  describe('supportPetition', () => {
-    let dispatch;
-    let result;
-    let petition;
-
-    beforeEach(() => {
-      dispatch = sinon.spy();
-
-      moxios.install();
-      moxios.stubRequest(/.*/, {
-        status: 200,
-        response: mockPetition
-      });
-
-      petition = { id: 2, ...mockPetition.data };
-
-      result = supportPetition(petition, dispatch);
-    });
-
-    afterEach(() => {
-      moxios.uninstall();
-    });
-
-    it('dispatches submitPetition()', () => {
-      result(dispatch);
-      assert(dispatch.calledWith(submitPetition()));
-    });
-
-    it('returns function that returns a promise that dispatches supportedPetition() when done', done => {
-      result(dispatch).then(() => {
-        assert(dispatch.calledWithMatch(supportedPetition(mockPetition.data)));
-      }).then(done, done);
-    });
-  });
-
-  describe('supportedPetition', () => {
-    it('returns SUPPORTED_PETITION action', () => {
-      const result = supportedPetition();
-      const actual = result.type;
-      const expected = 'SUPPORTED_PETITION';
-
-      assert.equal(actual, expected);
-    });
-
-    it('passes petition object', () => {
-      const result = supportedPetition(mockPetition);
       const actual = result.petition;
       const expected = mockPetition;
 
