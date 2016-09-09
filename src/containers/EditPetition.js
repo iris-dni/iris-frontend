@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchPetition, publishPetition } from 'actions/PetitionActions';
 import settings from 'settings';
+import Loading from 'components/Loading';
 import EditPetition from 'components/EditPetition';
 import PreviewPetition from 'components/PreviewPetition';
 import getPetitionPath from 'helpers/getPetitionPath';
@@ -42,14 +43,16 @@ const EditPetitionContainer = withRouter(React.createClass({
     return (
       <div>
         <Helmet title={settings.editPetitionPage.title} />
-        {petition.saved || petition.published
-          ? <PreviewPetition
-            petition={petition}
-            fetchPetition={fetchPetition}
-            publishPetition={publishPetition}
-            />
-          : <EditPetition petition={petition} />
-        }
+        <Loading isLoading={petition.isLoading} onServer={__SERVER__}>
+          {petition.saved || petition.published
+            ? <PreviewPetition
+              petition={petition}
+              fetchPetition={fetchPetition}
+              publishPetition={publishPetition}
+              />
+            : <EditPetition petition={petition} />
+          }
+        </Loading>
       </div>
     );
   }
