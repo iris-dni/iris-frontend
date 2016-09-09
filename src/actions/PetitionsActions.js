@@ -15,6 +15,7 @@ export function fetchPetitions ({ location, params }) {
   // route params or query string params
   const queryParams = {
     page: parseInt(params && params.page || query.page || 1),
+    city: parseInt(params && params.city || query.city || ''),
     limit: parseInt(query.limit || 12)
   };
 
@@ -22,7 +23,7 @@ export function fetchPetitions ({ location, params }) {
   // picking the relavent props for filering
   const queryString = encodeParams(pick(
     query,
-    ['page', 'limit']
+    ['page', 'city', 'limit']
   ));
 
   return (dispatch, getState) => {

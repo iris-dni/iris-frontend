@@ -30,6 +30,7 @@ export default function (props = {}) {
         <Route path='petitions/new' component={NewPetition} />
         <Route path='petitions/:id/edit' component={EditPetition} />
         <Route path='petitions/:id/published' component={PublishedPetition} />
+        <Route path='petitions/:cityName-:city' component={Petitions} />
         <Route path='petitions/:id' component={Petition} />
       </Route>
     </Router>
