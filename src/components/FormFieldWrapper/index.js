@@ -29,6 +29,7 @@ const FormFieldWrapper = (WrappedComponent) => ({ config, helper }) => (
         fieldId={config.name}
         label={config.label}
         hint={config.hint}
+        optional={!config.html.required}
       />
     }
 

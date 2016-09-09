@@ -12,6 +12,10 @@ export default {
   tesaserMilestoneText: 'Target',
   teaserDaysRemaining: 'days remaining',
   daysToVote: 30,
+  optionalLabel: '(optional)',
+  requiredText: 'You must complete this field',
+  minLengthText: 'Must be %x characters or more',
+  maxLengthText: 'Cannot be more than %x characters',
   // FIXME: find better way to import colors
   // without duplicating them
   colors: {
@@ -64,9 +68,6 @@ export default {
     title: 'Edit Petition',
     intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
   },
-  requiredText: 'You must complete this field',
-  minLengthText: 'Must be %x characters or more',
-  maxLengthText: 'Cannot be more than %x characters',
   petitionForm: {
     createButton: {
       text: 'Create Petition'

@@ -11,10 +11,12 @@ const NewPetition = ({ petition }) => (
   <Container>
     <FormWrapper>
       <Header>
-        <PageTitle
-          title={settings.newPetitionPage.title}
-          intro={settings.newPetitionPage.intro}
-        />
+        <div className={styles['form-title-wrapper']}>
+          <PageTitle
+            title={settings.newPetitionPage.title}
+            intro={settings.newPetitionPage.intro}
+          />
+        </div>
       </Header>
       <div className={styles.form}>
         <PetitionForm
