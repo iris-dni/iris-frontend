@@ -6,7 +6,7 @@ import { clearPetition, publishPetition } from 'actions/PetitionActions';
 import settings from 'settings';
 import NewPetition from 'components/NewPetition';
 import PreviewPetition from 'components/PreviewPetition';
-import getPetitionCreatedPath from 'helpers/getPetitionCreatedPath';
+import getPetitionPath from 'helpers/getPetitionPath';
 import getPetitionForm from 'selectors/petitionForm';
 import petitionPublished from 'selectors/petitionPublished';
 
@@ -18,7 +18,7 @@ const NewPetitionContainer = withRouter(React.createClass({
 
   componentWillUpdate (nextProps) {
     if (petitionPublished(nextProps.petition)) {
-      this.props.router.push(getPetitionCreatedPath(nextProps.petition));
+      this.props.router.push(`${getPetitionPath(nextProps.petition)}/published`);
     }
   },
 

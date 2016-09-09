@@ -6,22 +6,25 @@ import Paragraph from 'components/Paragraph';
 import PageTitle from 'components/PageTitle';
 import PetitionLink from 'components/PetitionLink';
 import TextCenter from 'components/TextCenter';
+import Notice from 'components/Notice';
 
 const PublishedPetition = ({ id }) => (
   <Container>
     <Header>
       <PageTitle
         title={settings.publishedPetitionPage.title}
-        intro={settings.publishedPetitionPage.intro}
-        centered>
-        <p>{settings.publishedPetitionPage.preview}</p>
-      </PageTitle>
+        centered
+      />
     </Header>
-    <TextCenter>
-      <Paragraph>
-        <PetitionLink id={id} />
-      </Paragraph>
-    </TextCenter>
+    <Notice>
+      <TextCenter>
+        <Paragraph>{settings.publishedPetitionPage.intro}</Paragraph>
+        <Paragraph>{settings.publishedPetitionPage.preview}</Paragraph>
+        <Paragraph>
+          <PetitionLink id={id} />
+        </Paragraph>
+      </TextCenter>
+    </Notice>
   </Container>
 );
 
