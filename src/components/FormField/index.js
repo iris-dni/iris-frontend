@@ -2,7 +2,7 @@ import React from 'react';
 import domOnlyProps from 'form/domOnlyProps';
 import fieldIsInvalid from 'form/fieldIsInvalid';
 import styles from './form-field.scss';
-import Autocomplete, { getInitialValue } from 'containers/Autocomplete';
+import Autocomplete from 'containers/Autocomplete';
 import FormFieldWrapper from 'components/FormFieldWrapper';
 
 const getClassname = (element, error) => {
@@ -23,8 +23,6 @@ const FormField = React.createClass({
         Field = (
           <Autocomplete
             helper={helper}
-            value={helper.value}
-            initialValue={getInitialValue(config, helper)}
             {...config}
           />
         );

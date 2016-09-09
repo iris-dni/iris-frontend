@@ -30,11 +30,11 @@ AutocompleteContainer.propTypes = {
   html: React.PropTypes.object
 };
 
-export const getInitialValue = (config, helper) => {
-  return helper.value
-    ? config.suggestionFormatter(helper.value.data)
-    : '';
-};
+// export const getInitialValue = (config, helper) => {
+//   return helper.value
+//     ? config.suggestionFormatter(helper.value.data)
+//     : '';
+// };
 
 export const mapStateToProps = ({ autocomplete }) => ({
   suggestions: autocomplete.suggestions,

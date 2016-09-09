@@ -100,7 +100,7 @@ const Autocomplete = React.createClass({
 
           ...domOnlyProps(this.props.helper),
 
-          value: this.props.value || this.props.initialValue,
+          value: this.props.value,
           onBlur: () => (this.handleBlur()),
           onChange: (e, { newValue }) => (this.handleChange(newValue))
         }}
