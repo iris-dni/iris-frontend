@@ -26,7 +26,7 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting }) => {
         <Button
           text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton'].text}
           modifier={'accent'}
-          disabled={submitting}
+          disabled={submitting || !fields._meta.allValid}
         />
       </Fieldset>
     </form>
