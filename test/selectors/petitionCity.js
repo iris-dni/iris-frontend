@@ -5,22 +5,15 @@ import mockPetition from '../mocks/petition';
 const { assert } = chai;
 
 describe('getPetitionCity', () => {
-  it('returns name correctly', () => {
-    const result = getPetitionCity(mockPetition.data);
-    const actual = result.indexOf('Clinemouth') > -1;
+  it('returns label', () => {
+    const actual = getPetitionCity(mockPetition.data).label;
+    const expected = '17839 Clinemouth';
 
-    assert.isTrue(actual);
+    assert.equal(actual, expected);
   });
 
-  it('returns zip correctly', () => {
-    const result = getPetitionCity(mockPetition.data);
-    const actual = result.indexOf('17839') > -1;
-
-    assert.isTrue(actual);
-  });
-
-  it('returns empty string as fallback', () => {
-    const actual = getPetitionCity({});
+  it('returns empty label string as fallback', () => {
+    const actual = getPetitionCity({}).label;
     const expected = '';
 
     assert.equal(actual, expected);
