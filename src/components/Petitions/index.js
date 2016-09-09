@@ -6,6 +6,7 @@ import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import Loading from 'components/Loading';
 import NoResults from 'components/NoResults';
+import Pagination from 'containers/Pagination';
 
 const Petitions = ({ petitions }) => (
   <Container>
@@ -22,6 +23,7 @@ const Petitions = ({ petitions }) => (
           : <NoResults />
         }
       </Loading>
+      <Pagination type={'petitions'} />
     </section>
   </Container>
 );

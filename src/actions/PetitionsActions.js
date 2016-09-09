@@ -16,7 +16,7 @@ export function fetchPetitions ({ location, params }) {
   return (dispatch, getState) => {
     dispatch(requestPetitions());
     return petitionRepository.all(queryParams)
-      .then(response => dispatch(receivePetitions(response)));
+      .then(response => dispatch(receivePetitions(response, queryParams)));
   };
 }
 
@@ -26,9 +26,10 @@ export function requestPetitions () {
   };
 }
 
-export function receivePetitions (petitions) {
+export function receivePetitions (petitions, params) {
   return {
     type: RECEIVE_PETITIONS,
-    petitions
+    petitions,
+    params
   };
 }
