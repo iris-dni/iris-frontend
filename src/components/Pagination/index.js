@@ -1,18 +1,18 @@
 import React from 'react';
 
 const Pagination = ({
-  total,
-  showing,
   limit,
+  totalCount,
+  showingCount,
   currentPage,
-  pages
+  totalPages
 }) => (
   <nav>
-    Total: {total}
-    Showing: {showing}
     Limit: {limit}
+    Total: {totalCount}
+    Showing: {showingCount}
     Page: {currentPage}
-    Pages: {pages}
+    Pages: {totalPages}
   </nav>
 );
 

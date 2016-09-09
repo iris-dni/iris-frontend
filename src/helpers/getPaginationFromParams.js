@@ -1,11 +1,13 @@
-export default (showing, total, params = {}) => {
+export default (showingCount, totalCount, params = {}) => {
   const { page, limit } = params;
+  const totalPages = Math.ceil(totalCount / limit);
   return {
-    showing: showing,
     limit: limit,
-    total: total,
-    pages: page,
-    currentPage: Math.ceil(showing / limit),
-    isFirstPage: page <= 1
+    showingCount: showingCount,
+    totalCount: totalCount,
+    currentPage: page,
+    totalPages: totalPages,
+    isFirstPage: page <= 1,
+    isLastPage: page >= totalPages
   };
 };
