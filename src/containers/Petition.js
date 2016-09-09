@@ -1,7 +1,8 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { fetchPetition, supportPetition } from 'actions/PetitionActions';
+import { fetchPetition } from 'actions/PetitionActions';
+import { supportPetition } from 'actions/SupportActions';
 import Petition from 'components/Petition';
 import Loading from 'components/Loading';
 import getPetition from 'selectors/petition';

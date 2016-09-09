@@ -1,5 +1,4 @@
 import petitionRepository from 'services/api/repositories/petition';
-import getSupportedPetitionModal from 'helpers/getSupportedPetitionModal';
 import solveResolvedObjects from 'helpers/solveResolvedObjects';
 import settings from 'settings';
 
@@ -7,20 +6,15 @@ import {
   CLEAR_PETITION,
   REQUEST_PETITION,
   RECEIVE_PETITION,
-  SUBMIT_PETITION,
+  SUBMITTING_PETITION,
   CREATED_PETITION,
   UPDATED_PETITION,
-  PUBLISHED_PETITION,
-  SUPPORTED_PETITION
+  PUBLISHED_PETITION
 } from './actionTypes';
 
 import {
   showFlashMessage
 } from './FlashActions';
-
-import {
-  showModalWindow
-} from './ModalActions';
 
 export function clearPetition () {
   return {
@@ -51,14 +45,14 @@ export function receivePetition (petition) {
   };
 }
 
-export function submitPetition () {
+export function submittingPetition () {
   return {
-    type: SUBMIT_PETITION
+    type: SUBMITTING_PETITION
   };
 }
 
 export function createPetition (petition, dispatch) {
-  dispatch(submitPetition());
+  dispatch(submittingPetition());
   return petitionRepository.create(petition)
     .then((response) => {
       const resolvedPetition = solveResolvedObjects(petition, response.data);
@@ -78,7 +72,7 @@ export function createdPetition (petition) {
 }
 
 export function updatePetition (petition, dispatch) {
-  dispatch(submitPetition());
+  dispatch(submittingPetition());
   return petitionRepository.update(petition)
     .then((response) => {
       const resolvedPetition = solveResolvedObjects(petition, response.data);
@@ -99,7 +93,7 @@ export function updatedPetition (petition) {
 
 export function publishPetition (petition, dispatch) {
   return (dispatch, getState) => {
-    dispatch(submitPetition());
+    dispatch(submittingPetition());
     return petitionRepository.publish(petition)
       .then((response) => {
         const resolvedPetition = solveResolvedObjects(petition, response.data);
@@ -116,30 +110,5 @@ export function publishedPetition (petition) {
   return {
     type: PUBLISHED_PETITION,
     petition
-  };
-}
-
-export function supportPetition (petition, dispatch) {
-  return (dispatch, getState) => {
-    dispatch(submitPetition());
-    return petitionRepository.support(petition)
-      .then((response) => {
-        const resolvedPetition = solveResolvedObjects(petition, response.data);
-        return dispatch(supportedPetition(resolvedPetition));
-      }).then((response) => dispatch(showModalWindow({
-        type: 'supported',
-        ...getSupportedPetitionModal(petition, response.petition)
-      }))).catch(() => dispatch(
-        showFlashMessage(settings.flashMessages.genericError, 'error')
-      ));
-  };
-}
-
-export function supportedPetition (returnedPetition, fullPetition) {
-  const { city, owner } = fullPetition || {};
-  return {
-    type: SUPPORTED_PETITION,
-    petition: returnedPetition,
-    resolve: { city, owner }
   };
 }
