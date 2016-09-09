@@ -11,11 +11,13 @@ export function fetchPetitions ({ location, params }) {
   // Get query from react-router locatiin
   const { query } = location;
 
+  console.log(params);
+
   // Construct our query params, based on
   // route params or query string params
   const queryParams = {
     page: parseInt(params && params.page || query.page || 1),
-    city: parseInt(params && params.city || query.city || ''),
+    city: params && params.city || query.city || '',
     limit: parseInt(query.limit || 12)
   };
 
@@ -25,6 +27,8 @@ export function fetchPetitions ({ location, params }) {
     query,
     ['page', 'city', 'limit']
   ));
+
+  console.log(queryParams);
 
   return (dispatch, getState) => {
     dispatch(requestPetitions());
