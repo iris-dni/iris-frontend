@@ -6,6 +6,7 @@ import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import ButtonLink from 'components/ButtonLink';
 import Loading from 'components/Loading';
+import NoResults from 'components/NoResults';
 
 const Petitions = ({ petitions }) => (
   <Container>
@@ -24,7 +25,7 @@ const Petitions = ({ petitions }) => (
       <Loading isLoading={petitions.isLoading}>
         {petitions.length
           ? <TeaserGrid petitions={petitions} />
-          : <div>Nothing here sadly</div>
+          : <NoResults />
         }
       </Loading>
     </section>
