@@ -14,6 +14,7 @@ body {
   color: color('black');
   line-height: $line-height;
   letter-spacing: $letter-spacing;
+  overflow-x: hidden;
 }
 
 svg {
@@ -26,8 +27,6 @@ svg {
  * 3. Hides overflow and stop scrolling when modal active
  */
 :global {
-  /**
-   */
   .wrapper {
     position: relative; /* 1 */
     min-height: 100vh; /* 2 */
