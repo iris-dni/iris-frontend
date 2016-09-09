@@ -9,11 +9,9 @@ import {
   destroyMobileMenu
 } from 'actions/NavigationActions';
 
-const isBrowser = (typeof window !== 'undefined');
-
 const NavigationContainer = React.createClass({
   resizeHandler: debounce(function () {
-    var windowWidth = (isBrowser ? window.innerWidth : null);
+    var windowWidth = (__CLIENT__ ? window.innerWidth : null);
 
     if (windowWidth >= parseInt(menuBreakpoint, 10)) {
       this.props.destroyMobileMenu();
@@ -24,12 +22,12 @@ const NavigationContainer = React.createClass({
     this.resizeHandler();
   },
   componentDidMount () {
-    if (isBrowser) {
+    if (__CLIENT__) {
       window.addEventListener('resize', this.resizeHandler);
     }
   },
   componentWillUnmount () {
-    if (isBrowser) {
+    if (__CLIENT__) {
       window.removeEventListener('resize', this.resizeHandler);
     }
   },

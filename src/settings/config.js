@@ -148,6 +148,7 @@ export default {
     petitionUpdated: 'Your petition was updated',
     petitionSupported: 'Thank you for signing this petition!'
   },
+  logo: 'IRIS',
   navigationLinks: [
     {
       label: 'Browse petitions',
