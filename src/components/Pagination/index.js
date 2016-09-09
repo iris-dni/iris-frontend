@@ -1,10 +1,16 @@
 import React from 'react';
 
-const Pagination = ({ total, params }) => (
+const Pagination = ({
+  total,
+  showing,
+  currentPage,
+  pages
+}) => (
   <nav>
     Total: {total}
-    Page: {params && params.page}
-    Limit: {params && params.limit}
+    Showing: {showing}
+    Page: {currentPage}
+    Pages: {pages}
   </nav>
 );
 

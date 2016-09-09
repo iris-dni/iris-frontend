@@ -1,15 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Pagination from 'components/Pagination';
+import getPaginationFromParams from 'helpers/getPaginationFromParams';
 
 const PaginationContainer = (props) => (
   <Pagination {...props} />
 );
 
 const mapStateToProps = (state, props) => {
-  const type = state[props.type || 'petitions'] || {};
-  const { total, params } = type;
-  return { total, params };
+  const dataType = state[props.type || 'petitions'] || {};
+  const showingCount = dataType.data.length;
+  return getPaginationFromParams(
+    showingCount,
+    dataType.total,
+    dataType.params
+  );
 };
 
 PaginationContainer.propTypes = {
