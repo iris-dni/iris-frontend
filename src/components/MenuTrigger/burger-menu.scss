@@ -63,14 +63,14 @@
 
 .menu-trigger-wrapper.closed .burger-icon span {
   &:first-child {
-    animation: top-line-copy 500ms forwards reverse;
+    animation: top-line-copy 500ms reverse;
   }
 
   &:nth-child(2) {
-    animation: fade-out-copy 250ms forwards reverse;
+    animation: fade-out-copy 250ms reverse;
   }
 
   &:last-child {
-    animation: bottom-line-copy 500ms forwards reverse;
+    animation: bottom-line-copy 500ms reverse;
   }
 }
