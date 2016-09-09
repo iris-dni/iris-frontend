@@ -1,7 +1,7 @@
 {
   "data": [
     {
-      "city": null,
+      "city": {},
       "connected_locations": [],
       "dc": {
         "created": "2016-01-07T11:23:42",
@@ -29,7 +29,7 @@
       "videos": []
     },
     {
-      "city": null,
+      "city": {},
       "connected_locations": [],
       "dc": {
         "created": "2016-01-08T11:10:17",
@@ -57,7 +57,7 @@
       "videos": []
     },
     {
-      "city": null,
+      "city": {},
       "connected_locations": [],
       "dc": {
         "created": "2016-01-16T03:20:05",
@@ -85,7 +85,7 @@
       "videos": []
     },
     {
-      "city": null,
+      "city": {},
       "connected_locations": [],
       "dc": {
         "created": "2016-01-21T11:22:18",
@@ -113,7 +113,7 @@
       "videos": []
     },
     {
-      "city": null,
+      "city": {},
       "connected_locations": [],
       "dc": {
         "created": "2016-01-21T13:53:18",
@@ -141,7 +141,7 @@
       "videos": []
     },
     {
-      "city": null,
+      "city": {},
       "connected_locations": [],
       "dc": {
         "created": "2016-01-24T21:49:51",
@@ -169,7 +169,7 @@
       "videos": []
     },
     {
-      "city": null,
+      "city": {},
       "connected_locations": [],
       "dc": {
         "created": "2016-01-26T19:52:11",
@@ -197,7 +197,7 @@
       "videos": []
     },
     {
-      "city": null,
+      "city": {},
       "connected_locations": [],
       "dc": {
         "created": "2016-01-28T02:54:33",
@@ -225,7 +225,7 @@
       "videos": []
     },
     {
-      "city": null,
+      "city": {},
       "connected_locations": [],
       "dc": {
         "created": "2016-01-29T23:49:04",
@@ -253,7 +253,7 @@
       "videos": []
     },
     {
-      "city": null,
+      "city": {},
       "connected_locations": [],
       "dc": {
         "created": "2016-02-02T11:48:44",

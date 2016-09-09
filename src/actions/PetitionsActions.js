@@ -11,8 +11,6 @@ export function fetchPetitions ({ location, params }) {
   // Get query from react-router locatiin
   const { query } = location;
 
-  console.log(params);
-
   // Construct our query params, based on
   // route params or query string params
   const queryParams = {
