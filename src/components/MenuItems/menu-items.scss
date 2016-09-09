@@ -1,7 +1,5 @@
 @import 'globals';
 
-$menu-breakpoint: map-get($breakpoints, 'navigation-menu');
-
 .list {
   width: 260px;
   height: calc(100vh - calc(100% + 1px));
@@ -15,7 +13,7 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
   z-index: 2;
   transition: transform 500ms;
 
-  @include media('>=#{$menu-breakpoint}') {
+  @include media('>=navigation-menu') {
     display: inline;
     width: auto;
     height: auto;
@@ -33,7 +31,7 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
  *    to overlap the nav‘s grey border.
  */
 .element {
-  @include media('>=#{$menu-breakpoint}') {
+  @include media('>=navigation-menu') {
     display: inline-block;
     padding: 0 1em;
     margin-bottom: -1px; /* 1 */
@@ -48,8 +46,14 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
+  transition: all 250ms;
+  padding: 0;
 
-  @include media('>=#{$menu-breakpoint}') {
+  &:hover {
+    @include map-declarations($button-accent-hover-defaults);
+  }
+
+  @include media('>=navigation-menu') {
     float: right;
     width: auto;
   }
@@ -75,10 +79,15 @@ $link-padding: 16px;
   text-decoration: none;
 }
 
-.element:not(:last-of-type) .link {
-  margin-bottom: 0.5em;
+.element:last-of-type .link {
+  padding-right: $link-padding;
+  padding-left: $link-padding;
+}
 
-  @include media('>=#{$menu-breakpoint}') {
+.element:not(:last-of-type) .link {
+  margin-bottom: 1em;
+
+  @include media('>=navigation-menu') {
     margin-bottom: 0;
   }
 }

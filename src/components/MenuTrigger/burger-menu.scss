@@ -1,15 +1,14 @@
 @import 'globals';
 @import './animations';
 
-$menu-breakpoint: map-get($breakpoints, 'navigation-menu');
-
 .menu-trigger-wrapper {
   position: absolute;
   top: 50%;
   right: 0;
   cursor: pointer;
+  outline: none;
 
-  @include media('>=#{$menu-breakpoint}') {
+  @include media('>=navigation-menu') {
     @include visuallyhidden;
   }
 }

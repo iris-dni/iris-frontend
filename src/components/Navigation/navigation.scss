@@ -1,9 +1,7 @@
 @import 'globals';
 
-$menu-breakpoint: map-get($breakpoints, 'navigation-menu');
-
 :export {
-  menuBreakpoint: $menu-breakpoint;
+  menuBreakpoint: map-get($breakpoints, 'navigation-menu');
 }
 
 /**
@@ -27,7 +25,7 @@ $menu-breakpoint: map-get($breakpoints, 'navigation-menu');
  *    to overlap the nav‘s grey border.
  */
 .element {
-  @include media('>=#{$menu-breakpoint}') {
+  @include media('>=navigation-menu') {
     display: inline-block;
     padding: 0 1em;
     margin-bottom: -1px; /* 1 */
