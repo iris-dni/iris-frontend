@@ -5,14 +5,32 @@ const Pagination = ({
   totalCount,
   showingCount,
   currentPage,
-  totalPages
+  totalPages,
+  nextPage,
+  prevPage,
+  isFirstPage,
+  isLastPage
 }) => (
   <nav>
-    Limit: {limit}
-    Total: {totalCount}
-    Showing: {showingCount}
-    Page: {currentPage}
-    Pages: {totalPages}
+    Showing page {currentPage} of {totalPages}
+    {totalPages > 1 &&
+      <ul>
+        {!isFirstPage &&
+          <li>
+            <a href={`/petitions/page/${prevPage}`}>
+              Prev page
+            </a>
+          </li>
+        }
+        {!isLastPage &&
+          <li>
+            <a href={`/petitions/page/${nextPage}`}>
+              Next page
+            </a>
+          </li>
+        }
+      </ul>
+    }
   </nav>
 );
 

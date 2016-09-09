@@ -7,6 +7,8 @@ export default (showingCount, totalCount, params = {}) => {
     totalCount: totalCount,
     currentPage: page,
     totalPages: totalPages,
+    prevPage: Math.max(page - 1, 1),
+    nextPage: Math.min(page + 1, totalPages),
     isFirstPage: page <= 1,
     isLastPage: page >= totalPages
   };
