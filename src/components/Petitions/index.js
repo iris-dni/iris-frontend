@@ -23,7 +23,9 @@ const Petitions = ({ petitions }) => (
           : <NoResults />
         }
       </Loading>
-      <Pagination type={'petitions'} />
+      {petitions.length &&
+        <Pagination type={'petitions'} />
+      }
     </section>
   </Container>
 );
