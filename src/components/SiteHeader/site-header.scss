@@ -1,9 +1,6 @@
 @import 'globals';
 
-/**
- * 1. Positioning context for mobile menu and it‘s overlay.
- */
 .root {
-  position: relative; /* 1 */
   border-bottom: 1px solid color('grey');
+  height: map-get($heights, 'site-header');
 }

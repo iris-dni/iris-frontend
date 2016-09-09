@@ -4,13 +4,10 @@
   menuBreakpoint: map-get($breakpoints, 'navigation-menu');
 }
 
-/**
- * 1. Extra 1px so that it goes under the nav's grey border.
- */
 .overlay-wrapper {
-  height: calc(100vh - calc(100% + 1px));
   position: absolute;
-  top: calc(100% + 1px); /* 1 */
+  top: map-get($heights, 'site-header');
+  bottom: 0;
   left: 0;
   right: 0;
   z-index: -2;

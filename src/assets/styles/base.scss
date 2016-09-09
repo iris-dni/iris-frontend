@@ -21,20 +21,24 @@ svg {
 }
 
 /*
- * Modal positioning and usability
- *
- * 1. Hide overflow and stop scrolling when modal active
- * 2. Minimum 100vh height to mimic html element
- * 3. Re-add scrollbar now hidden by html element
+ * 1. Positioning context for overlay and mobile menu
+ * 2. Hides overflow and stop scrolling when modal active
+ * 3. Minimum 100vh height to mimic html element
  */
 :global {
+  /**
+   */
+  .wrapper {
+    position: relative; /* 1 */
+  }
+
   .disabled-scroll,
   .disabled-scroll body {
-    overflow: hidden; /* 1 */
+    overflow: hidden; /* 2 */
   }
 
   .disabled-scroll .wrapper {
-    min-height: 100vh; /* 2 */
-    overflow-y: scroll; /* 3 */
+    min-height: 100vh; /* 3 */
+    overflow: hidden; /* 2 */
   }
 }
