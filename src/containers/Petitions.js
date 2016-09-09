@@ -8,7 +8,9 @@ import getPetitions from 'selectors/petitions';
 
 const PetitionsContainer = React.createClass({
   componentWillMount () {
-    this.props.fetchPetitions(this.props);
+    // console.log(this.props);
+
+    // this.props.fetchPetitions(this.props);
   },
 
   render () {
@@ -41,11 +43,9 @@ export const mapStateToProps = ({ petitions }) => ({
   perPage: petitions.perPage
 });
 
-export const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchPetitions: (options) => dispatch(fetchPetitions(options))
-  };
-};
+export const mapDispatchToProps = (dispatch) => ({
+  fetchPetitions: (options) => dispatch(fetchPetitions(options))
+});
 
 export default connect(
   mapStateToProps,

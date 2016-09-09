@@ -36,13 +36,13 @@ describe('getPetitionsRequestParams', () => {
 
   it('returns offset and limit correctly', () => {
     const result = getPetitionsRequestParams({
-      limit: 100,
+      limit: 50,
       page: 6
     });
     const actualOffset = result.offset;
     const actualLimit = result.limit;
-    const expectedOffset = 500;
-    const expectedLimit = 100;
+    const expectedOffset = 250;
+    const expectedLimit = 50;
 
     assert.equal(actualOffset, expectedOffset);
     assert.equal(actualLimit, expectedLimit);
