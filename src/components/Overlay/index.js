@@ -28,13 +28,6 @@ const Overlay = React.createClass({
     document.documentElement.classList.remove(DISABLED_SCROLL_MODIFIER);
     document.removeEventListener('keydown', this.onEscape);
   },
-  componentDidUpdate () {
-    if (this.props.active) {
-      document.documentElement.classList.add(DISABLED_SCROLL_MODIFIER);
-    } else {
-      document.documentElement.classList.remove(DISABLED_SCROLL_MODIFIER);
-    }
-  },
 
   render () {
     return (
