@@ -7,7 +7,7 @@ const NoResults = ({ modifier, children, text }) => (
     <h2 className={styles.header}>
       No petitions found
     </h2>
-    <p>Please try another filter or go back to the <Link href={'/petitions'}>Browse Petitions</Link> page</p>
+    <p>Try a new search filter, <Link href={'/petitions'}>Browse all Petitions</Link> or why not <Link href={'/petitions/new'}>Create a Petition</Link> yourself!</p>
   </div>
 );
 
