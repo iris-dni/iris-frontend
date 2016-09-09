@@ -5,12 +5,7 @@ import {
   RECEIVE_PETITIONS
 } from './actionTypes';
 
-export function fetchPetitions ({
-  petitions,
-  location,
-  params,
-  currentPage
-}) {
+export function fetchPetitions ({ location, params }) {
   const queryParams = {
     page: parseInt(params && params.page || 1),
     limit: parseInt(location.query.limit || 12)
