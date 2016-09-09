@@ -16,7 +16,11 @@ export default [
     hint: settings.petitionFields.city.hint,
     endpoint: 'cities',
     suggestionFormatter: (suggestion) => {
-      return suggestion.name + ' - ' + suggestion.zips[0];
+      if (suggestion) {
+        return suggestion.name + ' - ' + suggestion.zips[0];
+      }
+
+      return '';
     },
     getFormValue: (suggestion) => {
       return {
