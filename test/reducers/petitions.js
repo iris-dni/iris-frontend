@@ -19,10 +19,12 @@ describe('petitions reducer', () => {
   it('handles the RECEIVE_PETITIONS action', () => {
     const actual = petitions({}, {
       type: 'RECEIVE_PETITIONS',
-      petitions: mockPetitions
+      petitions: mockPetitions,
+      params: {}
     });
     const expected = Object.assign({}, mockPetitions, {
-      isLoading: false
+      isLoading: false,
+      params: {}
     });
 
     assert.deepEqual(actual, expected);

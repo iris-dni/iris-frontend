@@ -37,7 +37,7 @@ describe('PetitionsActions', () => {
 
     it('returns a function that returns a promise that dispatches receivePetitions()', done => {
       result(dispatch).then(() => {
-        assert(dispatch.calledWithMatch(receivePetitions({data: mockPetitions})));
+        assert(dispatch.calledWithMatch(receivePetitions({data: mockPetitions}, {})));
       }).then(done, done);
     });
   });
