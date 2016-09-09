@@ -9,7 +9,7 @@
   padding: 20px;
   background: color('white');
   list-style: none;
-  z-index: 2;
+  z-index: 3;
   transition: transform 500ms;
 
   @include media('>=navigation-menu') {

@@ -22,23 +22,23 @@ svg {
 
 /*
  * 1. Positioning context for overlay and mobile menu
- * 2. Hides overflow and stop scrolling when modal active
- * 3. Minimum 100vh height to mimic html element
+ * 2. Minimum 100vh height to mimic html element
+ * 3. Hides overflow and stop scrolling when modal active
  */
 :global {
   /**
    */
   .wrapper {
     position: relative; /* 1 */
+    min-height: 100vh; /* 2 */
   }
 
   .disabled-scroll,
   .disabled-scroll body {
-    overflow: hidden; /* 2 */
+    overflow: hidden; /* 3 */
   }
 
   .disabled-scroll .wrapper {
-    min-height: 100vh; /* 3 */
-    overflow: hidden; /* 2 */
+    overflow: hidden; /* 3 */
   }
 }
