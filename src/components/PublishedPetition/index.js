@@ -7,7 +7,7 @@ import PageTitle from 'components/PageTitle';
 import PetitionLink from 'components/PetitionLink';
 import TextCenter from 'components/TextCenter';
 
-const PublishedPetition = ({ petition }) => (
+const PublishedPetition = ({ id }) => (
   <Container>
     <Header>
       <PageTitle
@@ -19,7 +19,7 @@ const PublishedPetition = ({ petition }) => (
     </Header>
     <TextCenter>
       <Paragraph>
-        <PetitionLink id={petition.id} />
+        <PetitionLink id={id} />
       </Paragraph>
     </TextCenter>
   </Container>

@@ -47,7 +47,7 @@ export default function petition (state = initialState, action) {
     case PUBLISHED_PETITION:
       return Object.assign({},
         state, action.petition, {
-          published: true,
+          hasPublished: true,
           isLoading: false
         }
       );

@@ -80,7 +80,7 @@ describe('petition reducer', () => {
       petition: mockPetition.data
     });
     const expected = Object.assign({}, mockPetition.data, {
-      published: true,
+      hasPublished: true,
       isLoading: false
     });
 

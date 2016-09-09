@@ -7,6 +7,7 @@ import settings from 'settings';
 import EditPetition from 'components/EditPetition';
 import PreviewPetition from 'components/PreviewPetition';
 import getPetitionPath from 'helpers/getPetitionPath';
+import getPetitionCreatedPath from 'helpers/getPetitionCreatedPath';
 import getPetitionForm from 'selectors/petitionForm';
 import petitionPublished from 'selectors/petitionPublished';
 
@@ -32,7 +33,7 @@ const EditPetitionContainer = withRouter(React.createClass({
 
   componentWillUpdate (nextProps) {
     if (petitionPublished(nextProps.petition)) {
-      this.props.router.push(getPetitionPath(nextProps.petition));
+      this.props.router.push(getPetitionCreatedPath(nextProps.petition));
     }
   },
 

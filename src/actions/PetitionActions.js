@@ -13,7 +13,8 @@ import {
 } from './actionTypes';
 
 import {
-  showFlashMessage
+  showFlashMessage,
+  hideFlashMessage
 } from './FlashActions';
 
 export function clearPetition () {
@@ -99,7 +100,7 @@ export function publishPetition (petition, dispatch) {
         const resolvedPetition = solveResolvedObjects(petition, response.data);
         return dispatch(publishedPetition(resolvedPetition));
       }).then(() => dispatch(
-        showFlashMessage(settings.flashMessages.petitionPublished, 'success')
+        hideFlashMessage()
       )).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
       ));
