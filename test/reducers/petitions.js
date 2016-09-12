@@ -24,7 +24,8 @@ describe('petitions reducer', () => {
     });
     const expected = Object.assign({}, mockPetitions, {
       isLoading: false,
-      params: {}
+      params: {},
+      qs: ''
     });
 
     assert.deepEqual(actual, expected);
