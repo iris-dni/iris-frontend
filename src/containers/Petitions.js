@@ -7,10 +7,10 @@ import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';
 
 const PetitionsContainer = React.createClass({
-  componentWillMount () {
-    // console.log(this.props);
-
-    // this.props.fetchPetitions(this.props);
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.params.page !== this.props.params.page) {
+      this.props.fetchPetitions(nextProps);
+    }
   },
 
   render () {
@@ -34,7 +34,8 @@ PetitionsContainer.propTypes = {
 };
 
 export const mapStateToProps = ({ petitions }) => ({
-  petitions: getPetitions(petitions.data || [])
+  petitions: getPetitions(petitions.data || []),
+  isLoading: petitions.isLoading
 });
 
 export const mapDispatchToProps = (dispatch) => ({

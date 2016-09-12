@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './pagination.scss';
+import { Link } from 'react-router';
 import getPaginationLink from 'helpers/getPaginationLink';
 
 const Pagination = ({
@@ -20,10 +21,13 @@ const Pagination = ({
     }
 
     {!isFirstPage &&
-      <span className={styles.previous}>
-        <a rel='prev' href={getPaginationLink(prevPage, currentQuery)} itemProp='url'>
+      <span className={styles.previous} itemProp='url'>
+        <Link
+          rel='prev'
+          itemProp='name'
+          to={getPaginationLink(prevPage, currentQuery)}>
           Previous
-        </a>
+        </Link>
       </span>
     }
 
@@ -34,10 +38,13 @@ const Pagination = ({
     }
 
     {!isLastPage &&
-      <span className={styles.next}>
-        <a rel='next' href={getPaginationLink(nextPage, currentQuery)} itemProp='url'>
+      <span className={styles.next} itemProp='url'>
+        <Link
+          rel='next'
+          itemProp='name'
+          to={getPaginationLink(nextPage, currentQuery)}>
           Next
-        </a>
+        </Link>
       </span>
     }
   </nav>

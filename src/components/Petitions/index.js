@@ -8,7 +8,7 @@ import Loading from 'components/Loading';
 import NoResults from 'components/NoResults';
 import Pagination from 'containers/Pagination';
 
-const Petitions = ({ petitions }) => (
+const Petitions = ({ petitions, isLoading }) => (
   <Container>
     <section>
       <Header>
@@ -17,7 +17,7 @@ const Petitions = ({ petitions }) => (
           centered
         />
       </Header>
-      <Loading isLoading={petitions.isLoading}>
+      <Loading isLoading={isLoading}>
         {petitions.length
           ? <TeaserGrid petitions={petitions} />
           : <NoResults />
