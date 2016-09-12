@@ -1,5 +1,9 @@
 import React from 'react';
 
+const createPagedLink = (page, qs) => {
+  return `/petitions/page/${page}${qs ? `?${qs}` : ''}`;
+};
+
 const Pagination = ({
   limit,
   totalCount,
@@ -9,7 +13,8 @@ const Pagination = ({
   nextPage,
   prevPage,
   isFirstPage,
-  isLastPage
+  isLastPage,
+  currentQuery
 }) => (
   <nav>
     Showing page {currentPage} of {totalPages}
@@ -17,14 +22,14 @@ const Pagination = ({
       <ul>
         {!isFirstPage &&
           <li>
-            <a href={`/petitions/page/${prevPage}`}>
+            <a href={createPagedLink(prevPage, currentQuery)}>
               Prev page
             </a>
           </li>
         }
         {!isLastPage &&
           <li>
-            <a href={`/petitions/page/${nextPage}`}>
+            <a href={createPagedLink(nextPage, currentQuery)}>
               Next page
             </a>
           </li>

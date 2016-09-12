@@ -4,6 +4,8 @@ export default (petitions = {}) => {
 
   const totalPages = Math.ceil(total / limit);
 
+  console.log(petitions);
+
   return {
     currentQuery: petitions.qs,
     limit: limit,
