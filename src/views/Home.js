@@ -15,8 +15,8 @@ export default (props) => (
     <p>
       Go to petitions on Page
       <Link to='/petitions'>1</Link>,
-      <Link to='/petitions?page=2'>2</Link>,
-      <Link to='/petitions?page=3'>3</Link>
+      <Link to='/petitions/page/2'>2</Link>,
+      <Link to='/petitions/page/3?limit=3'>3</Link>
     </p>
   </div>
 );

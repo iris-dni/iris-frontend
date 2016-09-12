@@ -31,7 +31,9 @@ const Pagination = ({
       </span>
     }
 
-    <span>{currentPage} of {totalPages}</span>
+    {totalPages > 1 &&
+      <span>{currentPage} of {totalPages}</span>
+    }
 
     {isLastPage &&
       <span className={styles.next}>Next</span>

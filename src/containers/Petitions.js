@@ -7,6 +7,13 @@ import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';
 
 const PetitionsContainer = React.createClass({
+  componentWillMount () {
+    if (!this.props.petitions.length ||
+      this.props.params.page !== this.props.location.query.page) {
+      this.props.fetchPetitions(this.props);
+    }
+  },
+
   componentWillReceiveProps (nextProps) {
     if (nextProps.params.page !== this.props.params.page) {
       this.props.fetchPetitions(nextProps);
