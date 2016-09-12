@@ -1,4 +1,5 @@
 import petitionRepository from 'services/api/repositories/petition';
+import encodeParams from 'helpers/encodeParams';
 
 import {
   REQUEST_PETITIONS,
@@ -13,10 +14,16 @@ export function fetchPetitions ({ location, params }) {
     limit: parseInt(location.query.limit || 12)
   };
 
+  const queryString = encodeParams(location.query);
+
   return (dispatch, getState) => {
     dispatch(requestPetitions());
     return petitionRepository.all(queryParams)
-      .then(response => dispatch(receivePetitions(response, queryParams)));
+      .then(response => dispatch(receivePetitions(
+        response,
+        queryParams,
+        queryString
+      )));
   };
 }
 
@@ -26,10 +33,11 @@ export function requestPetitions () {
   };
 }
 
-export function receivePetitions (petitions, params) {
+export function receivePetitions (petitions, params, qs) {
   return {
     type: RECEIVE_PETITIONS,
     petitions,
-    params
+    params,
+    qs
   };
 }

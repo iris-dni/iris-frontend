@@ -24,7 +24,7 @@ const Petitions = ({ petitions }) => (
         }
       </Loading>
       {petitions.length &&
-        <Pagination type={'petitions'} />
+        <Pagination />
       }
     </section>
   </Container>

@@ -1,12 +1,11 @@
-// export default (showingCount, totalCount, params = {}) => {
-export default (state) => {
-  const { total, params, data } = state;
+export default (petitions = {}) => {
+  const { total, params, data } = petitions;
   const { page, limit } = params;
 
   const totalPages = Math.ceil(total / limit);
 
   return {
-    currentQuery: state.qs,
+    currentQuery: petitions.qs,
     limit: limit,
     showingCount: data.length,
     totalCount: total,

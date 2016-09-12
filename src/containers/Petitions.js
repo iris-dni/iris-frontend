@@ -16,7 +16,7 @@ const PetitionsContainer = React.createClass({
   render () {
     return (
       <div>
-        <Helmet title={settings.petitionsText} />
+        <Helmet title={settings.petitionsPage.title} />
         <Petitions {...this.props} />
       </div>
     );
@@ -30,17 +30,11 @@ PetitionsContainer.fetchData = ({ store, location, params }) => {
 
 PetitionsContainer.propTypes = {
   petitions: React.PropTypes.array,
-  total: React.PropTypes.number,
-  currentPage: React.PropTypes.number,
-  perPage: React.PropTypes.number,
   fetchPetitions: React.PropTypes.func
 };
 
 export const mapStateToProps = ({ petitions }) => ({
-  petitions: getPetitions(petitions.data || []),
-  total: petitions.total,
-  currentPage: petitions.currentPage,
-  perPage: petitions.perPage
+  petitions: getPetitions(petitions.data || [])
 });
 
 export const mapDispatchToProps = (dispatch) => ({
