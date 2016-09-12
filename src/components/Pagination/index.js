@@ -13,7 +13,7 @@ const Pagination = ({
   isLastPage,
   currentQuery
 }) => (
-  <nav role='navigation' itemScope itemType='http://schema.org/SiteNavigationElement'>
+  <nav role='navigation' itemScope itemType='http://schema.org/SiteNavigationElement/Pagination'>
     <span>Showing page {currentPage} of {totalPages}</span>
     {totalPages > 1 &&
       <ul>
