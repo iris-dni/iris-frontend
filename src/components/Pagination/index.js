@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './pagination.scss';
 import getPaginationLink from 'helpers/getPaginationLink';
 
 const Pagination = ({
@@ -13,25 +14,31 @@ const Pagination = ({
   isLastPage,
   currentQuery
 }) => (
-  <nav role='navigation' itemScope itemType='http://schema.org/SiteNavigationElement/Pagination'>
-    <span>Showing page {currentPage} of {totalPages}</span>
-    {totalPages > 1 &&
-      <ul>
-        {!isFirstPage &&
-          <li itemProp='url'>
-            <a rel='prev' href={getPaginationLink(prevPage, currentQuery)} itemProp='name'>
-              Prev page
-            </a>
-          </li>
-        }
-        {!isLastPage &&
-          <li itemProp='url'>
-            <a rel='next' href={getPaginationLink(nextPage, currentQuery)} itemProp='name'>
-              Next page
-            </a>
-          </li>
-        }
-      </ul>
+  <nav className={styles.root} role='navigation' itemScope itemType='http://schema.org/SiteNavigationElement/Pagination'>
+    {isFirstPage &&
+      <span className={styles.previous}>Previous</span>
+    }
+
+    {!isFirstPage &&
+      <span className={styles.previous}>
+        <a rel='prev' href={getPaginationLink(prevPage, currentQuery)} itemProp='url'>
+          Previous
+        </a>
+      </span>
+    }
+
+    <span>{currentPage} of {totalPages}</span>
+
+    {isLastPage &&
+      <span className={styles.next}>Next</span>
+    }
+
+    {!isLastPage &&
+      <span className={styles.next}>
+        <a rel='next' href={getPaginationLink(nextPage, currentQuery)} itemProp='url'>
+          Next
+        </a>
+      </span>
     }
   </nav>
 );
