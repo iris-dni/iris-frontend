@@ -1,8 +1,5 @@
 import React from 'react';
-
-const createPagedLink = (page, qs) => {
-  return `/petitions/page/${page}${qs ? `?${qs}` : ''}`;
-};
+import getPaginationLink from 'helpers/getPaginationLink';
 
 const Pagination = ({
   limit,
@@ -22,14 +19,14 @@ const Pagination = ({
       <ul>
         {!isFirstPage &&
           <li>
-            <a href={createPagedLink(prevPage, currentQuery)}>
+            <a href={getPaginationLink(prevPage, currentQuery)}>
               Prev page
             </a>
           </li>
         }
         {!isLastPage &&
           <li>
-            <a href={createPagedLink(nextPage, currentQuery)}>
+            <a href={getPaginationLink(nextPage, currentQuery)}>
               Next page
             </a>
           </li>
