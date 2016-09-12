@@ -4,7 +4,8 @@ import { pick } from 'lodash/object';
 
 import {
   REQUEST_PETITIONS,
-  RECEIVE_PETITIONS
+  RECEIVE_PETITIONS,
+  UPDATE_CITY_FILTER_VALUE
 } from './actionTypes';
 
 export function fetchPetitions ({ location, params }) {
@@ -51,5 +52,12 @@ export function receivePetitions (petitions, params, qs) {
     petitions,
     params,
     qs
+  };
+}
+
+export function updateCityFilterValue (filterValue) {
+  return {
+    type: UPDATE_CITY_FILTER_VALUE,
+    filterValue
   };
 }

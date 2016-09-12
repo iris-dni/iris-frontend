@@ -1,6 +1,7 @@
 import {
   REQUEST_PETITIONS,
-  RECEIVE_PETITIONS
+  RECEIVE_PETITIONS,
+  UPDATE_CITY_FILTER_VALUE
 } from 'actions/actionTypes';
 
 const initialState = {};
@@ -20,6 +21,10 @@ export default function petitions (state = initialState, action) {
           qs: action.qs || ''
         }
       );
+    case UPDATE_CITY_FILTER_VALUE:
+      return Object.assign({}, state, {
+        cityFilterValue: action.filterValue
+      });
     default:
       return state;
   }
