@@ -20,13 +20,11 @@ export default [
         ? suggestion.name + ' - ' + suggestion.zips[0]
         : '';
     },
-    getFormValue: (suggestion) => {
-      return {
-        data: suggestion,
-        id: suggestion.id,
-        class: 'City'
-      };
-    },
+    getFormValue: (suggestion) => ({
+      data: suggestion,
+      id: suggestion.id,
+      class: 'City'
+    }),
     nullValue: { id: null },
     suggestionsLimit: 4,
     html: {
