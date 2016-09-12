@@ -9,6 +9,10 @@ const transliterateChars = RegExp(Object.keys(TRANSLITERATIONS).join('|'), 'g');
 const transliterate = (char) => TRANSLITERATIONS[char];
 
 export default (text) => {
+  if (!text) {
+    return '';
+  }
+
   const separator = '-';
   const nonUrlChars = /[^a-z0-9]+/g;
 

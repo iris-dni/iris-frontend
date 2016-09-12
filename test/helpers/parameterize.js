@@ -9,4 +9,13 @@ describe('parameterize', () => {
 
     assert.equal(actual, expected);
   });
+
+  context('for an undefined text', () => {
+    it('returns an empty string', () => {
+      const actual = '';
+      const expected = parameterize(null);
+
+      assert.equal(actual, expected);
+    });
+  });
 });
