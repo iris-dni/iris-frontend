@@ -1,0 +1,11 @@
+@import 'globals';
+
+.root {
+  transition: opacity 0.2s ease-out;
+  opacity: 1;
+}
+
+.loading {
+  composes: root;
+  opacity: 0;
+}

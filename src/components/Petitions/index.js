@@ -4,7 +4,6 @@ import Container from 'components/Container';
 import TeaserGrid from 'components/TeaserGrid';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
-import Loading from 'components/Loading';
 import NoResults from 'components/NoResults';
 import Pagination from 'containers/Pagination';
 
@@ -17,12 +16,13 @@ const Petitions = ({ petitions, isLoading }) => (
           centered
         />
       </Header>
-      <Loading isLoading={isLoading}>
-        {petitions.length
-          ? <TeaserGrid petitions={petitions} />
-          : <NoResults />
-        }
-      </Loading>
+      {petitions.length || isLoading
+        ? <TeaserGrid
+          petitions={petitions}
+          isLoading={isLoading}
+          />
+        : <NoResults />
+      }
       {petitions.length > 1 &&
         <Pagination />
       }
