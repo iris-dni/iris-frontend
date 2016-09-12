@@ -1,5 +1,6 @@
 import petitionRepository from 'services/api/repositories/petition';
 import encodeParams from 'helpers/encodeParams';
+import { pick } from 'lodash/object';
 
 import {
   REQUEST_PETITIONS,
@@ -7,14 +8,22 @@ import {
 } from './actionTypes';
 
 export function fetchPetitions ({ location, params }) {
+  // Get query from react-router locatiin
+  const { query } = location;
+
   // Construct our query params, based on
   // route params or query string params
   const queryParams = {
-    page: parseInt(params && params.page || location.query.page || 1),
-    limit: parseInt(location.query.limit || 12)
+    page: parseInt(params && params.page || query.page || 1),
+    limit: parseInt(query.limit || 12)
   };
 
-  const queryString = encodeParams(location.query);
+  // Take any query string values and encode them,
+  // picking the relavent props for filering
+  const queryString = encodeParams(pick(
+    query,
+    ['page', 'limit']
+  ));
 
   return (dispatch, getState) => {
     dispatch(requestPetitions());
