@@ -13,20 +13,20 @@ const Pagination = ({
   isLastPage,
   currentQuery
 }) => (
-  <nav>
-    Showing page {currentPage} of {totalPages}
+  <nav role='navigation' itemScope itemType='http://schema.org/SiteNavigationElement'>
+    <span>Showing page {currentPage} of {totalPages}</span>
     {totalPages > 1 &&
       <ul>
         {!isFirstPage &&
-          <li>
-            <a href={getPaginationLink(prevPage, currentQuery)}>
+          <li itemProp='url'>
+            <a rel='prev' href={getPaginationLink(prevPage, currentQuery)} itemProp='name'>
               Prev page
             </a>
           </li>
         }
         {!isLastPage &&
-          <li>
-            <a href={getPaginationLink(nextPage, currentQuery)}>
+          <li itemProp='url'>
+            <a rel='next' href={getPaginationLink(nextPage, currentQuery)} itemProp='name'>
               Next page
             </a>
           </li>
