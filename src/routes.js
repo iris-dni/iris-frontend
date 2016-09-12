@@ -22,7 +22,7 @@ export default function (props = {}) {
   return (
     <Router history={history}>
       <Route path='/' component={App}>
-        <IndexRoute component={Home} />
+        <IndexRoute component={Petitions} />
         <Route path='home' component={Home} />
         <Route path='auth/login' component={LoginPage} />
         <Route path='auth/logout' component={Logout} />
