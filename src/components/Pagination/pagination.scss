@@ -10,7 +10,7 @@
   height: 60px;
 }
 
-.containLeft {
+.contain-left {
   display: flex;
   justify-content: center;
   padding: 1.2em;
@@ -19,27 +19,25 @@
   min-height: 100%;
 }
 
-.containRight {
-  composes: containLeft;
+.contain-right {
+  composes: contain-left;
   border-right: 0;
   border-left: 1px solid color('grey');
 }
 
 .previous {
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .previous a {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .next {
   composes: previous;
-
 }
 
 .hidden {

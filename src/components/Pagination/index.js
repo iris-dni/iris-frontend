@@ -17,7 +17,7 @@ const Pagination = ({
 }) => (
   <nav className={styles.root} role='navigation' itemScope itemType='http://schema.org/SiteNavigationElement/Pagination'>
     {isFirstPage &&
-      <div className={styles.containLeft}>
+      <div className={styles['contain-left']}>
         <div className={styles.previous}>
           <span className={styles.hidden}>Previous</span>
           <span className={`${styles.left} ${styles.dimmed}`} />
@@ -26,7 +26,7 @@ const Pagination = ({
     }
 
     {!isFirstPage &&
-      <div className={styles.containLeft}>
+      <div className={styles['contain-left']}>
         <div className={styles.previous} itemProp='url'>
           <Link
             rel='prev'
@@ -43,7 +43,7 @@ const Pagination = ({
     }
 
     {isLastPage &&
-      <div className={styles.containRight}>
+      <div className={styles['contain-right']}>
         <div className={styles.next}>
           <span className={styles.hidden}>Next</span>
           <span className={`${styles.right} ${styles.dimmed}`} />
@@ -52,7 +52,7 @@ const Pagination = ({
     }
 
     {!isLastPage &&
-      <div className={styles.containRight}>
+      <div className={styles['contain-right']}>
         <div className={styles.next} itemProp='url'>
           <Link
             rel='next'
