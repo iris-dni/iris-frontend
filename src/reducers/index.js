@@ -7,6 +7,7 @@ import petitionsReducer from './petitions';
 import meReducer from './me';
 import flashMessageReducer from './flashMessage';
 import modalWindowReducer from './modalWindow';
+import navigationReducer from './navigation';
 
 export default combineReducers({
   autocomplete: autocompleteReducer,
@@ -15,6 +16,7 @@ export default combineReducers({
   form: formReducer,
   me: meReducer,
   flashMessage: flashMessageReducer,
+  navigation: navigationReducer,
   modalWindow: modalWindowReducer,
   routing: routerReducer
 });

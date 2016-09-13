@@ -7,32 +7,6 @@ import ShareModal from 'components/ShareModal';
 import generateSsoProviders from 'helpers/generateSsoProviders';
 
 const ModalWindowContainer = React.createClass({
-  onEscape ({ keyCode }) {
-    if (keyCode === 27 && typeof this.props.hideModalWindow === 'function') {
-      this.props.hideModalWindow();
-    }
-  },
-
-  componentDidMount () {
-    if (this.props.active) {
-      document.documentElement.classList.add('modal-active');
-    }
-    document.addEventListener('keydown', this.onEscape);
-  },
-
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.active) {
-      document.documentElement.classList.add('modal-active');
-    } else {
-      document.documentElement.classList.remove('modal-active');
-    }
-  },
-
-  componentWillUnmount () {
-    document.documentElement.classList.remove('modal-active');
-    document.removeEventListener('keydown', this.onEscape);
-  },
-
   render () {
     const { type, title, intro, link, active, returnUrl, hideModalWindow } = this.props;
     return (
