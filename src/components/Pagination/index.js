@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import getPaginationLink from 'helpers/getPaginationLink';
 
 const Pagination = ({
+  params,
   limit,
   totalCount,
   showingCount,
@@ -31,7 +32,7 @@ const Pagination = ({
           <Link
             rel='prev'
             itemProp='name'
-            to={getPaginationLink(prevPage, currentQuery)}>
+            to={getPaginationLink(params, prevPage, currentQuery)}>
             <span className={styles.hidden}>Previous</span>
             <span className={styles.left} />
           </Link>
@@ -60,7 +61,7 @@ const Pagination = ({
           <Link
             rel='next'
             itemProp='name'
-            to={getPaginationLink(nextPage, currentQuery)}>
+            to={getPaginationLink(params, nextPage, currentQuery)}>
             <span className={styles.hidden}>Next</span>
             <span className={styles.right} />
           </Link>

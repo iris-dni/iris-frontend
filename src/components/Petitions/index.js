@@ -8,7 +8,7 @@ import PetitionsFilters from 'components/PetitionsFilters';
 import NoResults from 'components/NoResults';
 import Pagination from 'containers/Pagination';
 
-const Petitions = ({ petitions, isLoading, title, autocompleteProps }) => (
+const Petitions = ({ params, petitions, isLoading, title, autocompleteProps }) => (
   <Container>
     <section>
       <div className={styles['header-wrapper']}>
@@ -30,7 +30,7 @@ const Petitions = ({ petitions, isLoading, title, autocompleteProps }) => (
         : <NoResults />
       }
       {petitions.length > 0 &&
-        <Pagination />
+        <Pagination params={params} />
       }
     </section>
   </Container>
