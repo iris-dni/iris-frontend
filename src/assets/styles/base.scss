@@ -36,14 +36,11 @@ svg {
   .wrapper {
     position: relative; /* 1 */
     min-height: 100vh; /* 2 */
+    overflow: hidden;
   }
 
   .disabled-scroll,
   .disabled-scroll body {
-    overflow: hidden; /* 3 */
-  }
-
-  .disabled-scroll .wrapper {
     overflow: hidden; /* 3 */
   }
 }
