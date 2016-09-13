@@ -42,6 +42,11 @@
   height: 100%;
 }
 
+.previous a:active,
+.previous a:focus {
+  color: transparent;
+}
+
 .next {
   composes: previous;
 }
