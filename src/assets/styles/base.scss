@@ -28,6 +28,15 @@ svg {
  * 3. Re-add scrollbar now hidden by html element
  */
 :global {
+  .main-content {
+    padding-bottom: calc(2em + #{map-get($heights, 'site-footer')});
+  }
+
+  .wrapper {
+    position: relative;
+    min-height: 100vh;
+  }
+
   .modal-active,
   .modal-active body {
     overflow: hidden; /* 1 */
