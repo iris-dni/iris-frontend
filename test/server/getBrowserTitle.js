@@ -33,7 +33,7 @@ describe('getBrowserTitle', () => {
     const actual = getBrowserTitle('PetitionsContainer', {
       petition: mockPetitions.data
     });
-    const expected = 'Petitions | iris-frontend';
+    const expected = 'Browse petitions | iris-frontend';
 
     assert.equal(actual, expected);
   });
