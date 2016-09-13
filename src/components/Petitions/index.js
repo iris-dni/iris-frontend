@@ -23,7 +23,7 @@ const Petitions = ({ petitions, isLoading }) => (
           />
         : <NoResults />
       }
-      {petitions.length > 1 &&
+      {petitions.length > 0 &&
         <Pagination />
       }
     </section>
