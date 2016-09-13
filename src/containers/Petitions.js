@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import citySuggestionFormatter from 'helpers/citySuggestionFormatter';
+import getPetitionsPageTitle from 'helpers/getPetitionsPageTitle';
 import { petitionsPath } from 'helpers/petitionUrls';
 import {
   fetchPetitions,
@@ -45,23 +46,13 @@ const PetitionsContainer = withRouter(React.createClass({
     html: { placeholder: settings.petitionsPage.filters.city.placeholder }
   }),
 
-  getTitle () {
-    const city = this.props.currentCity && this.props.currentCity.name;
-
-    return city
-      ? `${settings.petitionsPage.titleLocalized} ${city}`
-      : settings.petitionsPage.title;
-  },
-
   render () {
-    const title = this.getTitle();
-
     return (
       <div>
-        <Helmet title={title} />
+        <Helmet title={this.props.title} />
         <Petitions
           {...this.props}
-          title={title}
+          title={this.props.title}
           autocompleteProps={this.getAutocompleteProps(this.props)}
         />
       </div>
@@ -84,7 +75,8 @@ PetitionsContainer.propTypes = {
 export const mapStateToProps = ({ petitions }) => ({
   petitions: getPetitions(petitions.data || []),
   isLoading: petitions.isLoading,
-  currentCity: petitions.currentCity
+  currentCity: petitions.currentCity,
+  title: getPetitionsPageTitle(petitions.currentCity)
 });
 
 export const mapDispatchToProps = (dispatch) => ({
