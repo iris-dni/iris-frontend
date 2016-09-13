@@ -1,5 +1,4 @@
 import React from 'react';
-import settings from 'settings';
 import { Link } from 'react-router';
 import Container from 'components/Container';
 <<<<<<< 9b41f128f2dd40c0ee523484a4e7a11fff354a56
@@ -20,16 +19,15 @@ import PageTitle from 'components/PageTitle';
 import Autocomplete from 'containers/Autocomplete';
 import Loading from 'components/Loading';
 
-const Petitions = ({ petitions, autocompleteProps }) => (
->>>>>>> Added city filter autosuggest
+const Petitions = ({ petitions, title, autocompleteProps }) => (
   <Container>
     <section>
       <Header>
         <PageTitle
-          title={settings.petitionsPage.title}
-<<<<<<< 9b41f128f2dd40c0ee523484a4e7a11fff354a56
-          centered
-        />
+          title={title}
+          centered>
+          <Autocomplete {...autocompleteProps} />
+        </PageTitle>
       </Header>
       {petitions.length || isLoading
         ? <TeaserGrid
@@ -41,12 +39,6 @@ const Petitions = ({ petitions, autocompleteProps }) => (
       {petitions.length > 0 &&
         <Pagination />
       }
-=======
-          centered>
-
-          <Autocomplete {...autocompleteProps} />
-        </PageTitle>
-      </Header>
 
       <Loading isLoading={petitions.isLoading}>
         {petitions.length
@@ -64,7 +56,6 @@ const Petitions = ({ petitions, autocompleteProps }) => (
           </TextCenter>
         }
       </Loading>
->>>>>>> Added city filter autosuggest
     </section>
   </Container>
 );

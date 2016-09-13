@@ -6,6 +6,12 @@ export default {
     return ApiClient.request(requestPath);
   },
 
+  findOne: (id) => {
+    const requestPath = `/cities/${id}`;
+
+    return ApiClient.request(requestPath);
+  },
+
   search: (query, limit) => {
     const requestPath = '/cities';
     const requestParams = { ft: query, limit: limit, sort: 'score' };

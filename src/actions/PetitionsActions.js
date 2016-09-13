@@ -1,10 +1,12 @@
 import petitionRepository from 'services/api/repositories/petition';
+import cityRepository from 'services/api/repositories/city';
 import encodeParams from 'helpers/encodeParams';
 import { pick } from 'lodash/object';
 
 import {
   REQUEST_PETITIONS,
   RECEIVE_PETITIONS,
+  GET_CITY,
   UPDATE_CITY_FILTER_VALUE
 } from './actionTypes';
 
@@ -40,6 +42,21 @@ export function fetchPetitions ({ location, params }) {
   };
 }
 
+export function fetchCity ({ params }) {
+  const { city } = params;
+
+  return (dispatch) => {
+    if (city) {
+      return cityRepository.findOne(city)
+        .then(response => (
+          dispatch(getCity(response.data))
+        ));
+    }
+
+    return dispatch(getCity(null));
+  };
+}
+
 export function requestPetitions () {
   return {
     type: REQUEST_PETITIONS
@@ -52,6 +69,13 @@ export function receivePetitions (petitions, params, qs) {
     petitions,
     params,
     qs
+  };
+}
+
+export function getCity (city) {
+  return {
+    type: GET_CITY,
+    city
   };
 }
 

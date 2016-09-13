@@ -30,6 +30,7 @@ export default {
   },
   petitionsPage: {
     title: 'Petitions',
+    titleLocalized: 'Petitions in',
     createButton: {
       text: 'Create a new Petition',
       modal: {
