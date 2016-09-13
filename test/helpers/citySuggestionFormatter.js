@@ -2,6 +2,17 @@ import { assert } from 'chai';
 import citySuggestionFormatter from 'helpers/citySuggestionFormatter';
 
 describe('citySuggestionFormatter', () => {
+  context('for a null suggestion', () => {
+    const suggestion = null;
+
+    it('returns an empty string', () => {
+      const actual = citySuggestionFormatter(suggestion);
+      const expected = '';
+
+      assert.equal(actual, expected);
+    });
+  });
+
   context('for a suggestion without name', () => {
     const suggestion = { zips: [12345, 67890] };
 
