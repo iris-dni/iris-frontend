@@ -6,19 +6,71 @@
   justify-content: space-between;
   align-items: center;
   background-color: color('grey-lighter');
+  font-size: 14px;
+  height: 60px;
 }
 
-.previous, .next {
+.containLeft {
   display: flex;
-  align-items: center;
-  align-content: center;
+  justify-content: center;
   padding: 1.2em;
+  width: 143px;
+  border-right: 1px solid color('grey');
+  min-height: 100%;
+}
+
+.containRight {
+  composes: containLeft;
+  border-right: 0;
+  border-left: 1px solid color('grey');
 }
 
 .previous {
-  border-right: 1px solid color('grey');
+  position: relative;
+}
+
+.previous a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .next {
-  border-left: 1px solid color('grey');
+  composes: previous;
+
+}
+
+.hidden {
+  font-size: 0;
+}
+
+.right {
+  position: relative;
+  height: 16px;
+  width: 16px;
+}
+
+.right::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  height: 8px;
+  width: 8px;
+  border-top: 2px solid color('black');
+  border-right: 2px solid color('black');
+  transform: rotate(45deg);
+}
+
+.left {
+  composes: right;
+}
+
+.left::after {
+  transform: rotate(-135deg);
+}
+
+.dimmed::after {
+  border-color: color('grey');
 }

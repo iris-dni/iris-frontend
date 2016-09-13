@@ -17,18 +17,25 @@ const Pagination = ({
 }) => (
   <nav className={styles.root} role='navigation' itemScope itemType='http://schema.org/SiteNavigationElement/Pagination'>
     {isFirstPage &&
-      <span className={styles.previous}>Previous</span>
+      <div className={styles.containLeft}>
+        <div className={styles.previous}>
+          <span className={styles.hidden}>Previous</span>
+          <span className={`${styles.left} ${styles.dimmed}`} />
+        </div>
+      </div>
     }
 
     {!isFirstPage &&
-      <span className={styles.previous} itemProp='url'>
-        <Link
-          rel='prev'
-          itemProp='name'
-          to={getPaginationLink(prevPage, currentQuery)}>
-          Previous
-        </Link>
-      </span>
+      <div className={styles.containLeft}>
+        <div className={styles.previous} itemProp='url'>
+          <Link
+            rel='prev'
+            itemProp='name'
+            to={getPaginationLink(prevPage, currentQuery)}>
+            <span className={styles.left} />
+          </Link>
+        </div>
+      </div>
     }
 
     {totalPages > 1 &&
@@ -36,18 +43,25 @@ const Pagination = ({
     }
 
     {isLastPage &&
-      <span className={styles.next}>Next</span>
+      <div className={styles.containRight}>
+        <div className={styles.next}>
+          <span className={styles.hidden}>Next</span>
+          <span className={`${styles.right} ${styles.dimmed}`} />
+        </div>
+      </div>
     }
 
     {!isLastPage &&
-      <span className={styles.next} itemProp='url'>
-        <Link
-          rel='next'
-          itemProp='name'
-          to={getPaginationLink(nextPage, currentQuery)}>
-          Next
-        </Link>
-      </span>
+      <div className={styles.containRight}>
+        <div className={styles.next} itemProp='url'>
+          <Link
+            rel='next'
+            itemProp='name'
+            to={getPaginationLink(nextPage, currentQuery)}>
+            <span className={styles.right} />
+          </Link>
+        </div>
+      </div>
     }
   </nav>
 );
