@@ -7,6 +7,7 @@
 html {
   -webkit-font-smoothing: antialiased;
   overflow-y: scroll; /* 1 */
+  height: 100%;
 }
 
 body {
@@ -14,6 +15,8 @@ body {
   color: color('black');
   line-height: $line-height;
   letter-spacing: $letter-spacing;
+  overflow-x: hidden;
+  height: 100%;
 }
 
 svg {
@@ -21,11 +24,9 @@ svg {
 }
 
 /*
- * Modal positioning and usability
- *
- * 1. Hide overflow and stop scrolling when modal active
+ * 1. Positioning context for overlay and mobile menu
  * 2. Minimum 100vh height to mimic html element
- * 3. Re-add scrollbar now hidden by html element
+ * 3. Hides overflow and stop scrolling when modal active
  */
 :global {
   .main-content {
@@ -33,17 +34,13 @@ svg {
   }
 
   .wrapper {
-    position: relative;
-    min-height: 100vh;
-  }
-
-  .modal-active,
-  .modal-active body {
-    overflow: hidden; /* 1 */
-  }
-
-  .modal-active .wrapper {
+    position: relative; /* 1 */
     min-height: 100vh; /* 2 */
-    overflow-y: scroll; /* 3 */
+    overflow: hidden;
+  }
+
+  .disabled-scroll,
+  .disabled-scroll body {
+    overflow: hidden; /* 3 */
   }
 }

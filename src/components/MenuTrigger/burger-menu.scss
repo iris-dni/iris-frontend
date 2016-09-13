@@ -1,0 +1,76 @@
+@import 'globals';
+@import './animations';
+
+.menu-trigger-wrapper {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  cursor: pointer;
+  outline: none;
+
+  @include media('>=navigation-menu') {
+    @include visuallyhidden;
+  }
+}
+
+.menu-trigger-wrapper > span {
+  position: inherit;
+  right: 2em;
+  transform: translateY(-50%);
+}
+
+.burger-icon {
+  position: inherit;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+}
+
+.burger-icon span {
+  position: inherit;
+  width: 100%;
+  height: 2px;
+  background-color: color('black');
+
+  &:first-child {
+    top: 0;
+  }
+
+  &:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &:last-child {
+    bottom: 0;
+  }
+}
+
+.menu-trigger-wrapper.opened .burger-icon span {
+  &:first-child {
+    animation: top-line 500ms forwards;
+  }
+
+  &:nth-child(2) {
+    animation: fade-out 250ms forwards;
+  }
+
+  &:last-child {
+    animation: bottom-line 500ms forwards;
+  }
+}
+
+.menu-trigger-wrapper.closed .burger-icon span {
+  &:first-child {
+    animation: top-line-copy 500ms reverse;
+  }
+
+  &:nth-child(2) {
+    animation: fade-out-copy 250ms reverse;
+  }
+
+  &:last-child {
+    animation: bottom-line-copy 500ms reverse;
+  }
+}

@@ -1,0 +1,6 @@
+@import 'globals';
+
+.root {
+  border-bottom: 1px solid color('grey');
+  height: map-get($heights, 'site-header');
+}

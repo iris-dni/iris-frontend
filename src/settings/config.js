@@ -148,6 +148,17 @@ export default {
     petitionUpdated: 'Your petition was updated',
     petitionSupported: 'Thank you for signing this petition!'
   },
+  logo: 'IRIS',
+  navigationLinks: [
+    {
+      label: 'Browse petitions',
+      path: '/petitions'
+    },
+    {
+      label: 'Create petition',
+      path: '/petitions/new'
+    }
+  ],
   footer: {
     copyright: 'Copyright \u00A9 2016 Iris'
   }
