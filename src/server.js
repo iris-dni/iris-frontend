@@ -50,7 +50,14 @@ const h2o2 = {
   register: require('h2o2')
 };
 
-server.register([vision, good, inert, injectThen, h2o2], err => {
+/**
+ * Redirect all http requests to https
+ */
+const hapiRequireHttps = {
+  register: require('hapi-require-https')
+};
+
+server.register([vision, good, inert, injectThen, h2o2, hapiRequireHttps], err => {
   if (err) throw err; // something bad happened loading the plugins
 });
 
