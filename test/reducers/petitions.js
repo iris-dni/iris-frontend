@@ -24,6 +24,7 @@ describe('petitions reducer', () => {
     });
     const expected = Object.assign({}, mockPetitions, {
       isLoading: false,
+      totalCount: mockPetitions.total,
       params: {},
       qs: ''
     });
