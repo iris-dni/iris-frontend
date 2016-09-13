@@ -32,6 +32,7 @@ const Pagination = ({
             rel='prev'
             itemProp='name'
             to={getPaginationLink(prevPage, currentQuery)}>
+            <span className={styles.hidden}>Previous</span>
             <span className={styles.left} />
           </Link>
         </div>
@@ -39,7 +40,9 @@ const Pagination = ({
     }
 
     {totalPages > 1 &&
-      <span>{currentPage} of {totalPages}</span>
+      <div className={styles.count}>
+        <span className={styles.active}>{currentPage}</span> of {totalPages}
+      </div>
     }
 
     {isLastPage &&
@@ -58,6 +61,7 @@ const Pagination = ({
             rel='next'
             itemProp='name'
             to={getPaginationLink(nextPage, currentQuery)}>
+            <span className={styles.hidden}>Next</span>
             <span className={styles.right} />
           </Link>
         </div>
