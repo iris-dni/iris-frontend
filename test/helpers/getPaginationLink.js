@@ -1,7 +1,5 @@
-import chai from 'chai';
+import { assert } from 'chai';
 import getPaginationLink from 'helpers/getPaginationLink';
-
-const { assert } = chai;
 
 describe('getPaginationLink', () => {
   it('returns page correctly', () => {

@@ -1,8 +1,6 @@
-import chai from 'chai';
+import { assert } from 'chai';
 import petitionsPagination from 'selectors/petitionsPagination';
 import mockPetitions from '../mocks/petitions';
-
-const { assert } = chai;
 
 describe('petitionsPagination', () => {
   it('returns correct totalCount', () => {
