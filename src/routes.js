@@ -26,7 +26,7 @@ export default function (props = {}) {
         <Route path='home' component={Home} />
         <Route path='auth/login' component={LoginPage} />
         <Route path='auth/logout' component={Logout} />
-        <Route path='petitions' component={Petitions} />
+        <Route path='petitions(/page/:page)' component={Petitions} />
         <Route path='petitions/new' component={NewPetition} />
         <Route path='petitions/:id/edit' component={EditPetition} />
         <Route path='petitions/:id/published' component={PublishedPetition} />

@@ -37,7 +37,7 @@ describe('PetitionsActions', () => {
 
     it('returns a function that returns a promise that dispatches receivePetitions()', done => {
       result(dispatch).then(() => {
-        assert(dispatch.calledWithMatch(receivePetitions({data: mockPetitions})));
+        assert(dispatch.calledWithMatch(receivePetitions({data: mockPetitions}, {}, {})));
       }).then(done, done);
     });
   });
@@ -65,6 +65,22 @@ describe('PetitionsActions', () => {
       const result = receivePetitions(mockPetitions);
       const actual = result.petitions;
       const expected = mockPetitions;
+
+      assert.deepEqual(actual, expected);
+    });
+
+    it('passes query params', () => {
+      const result = receivePetitions(mockPetitions, { limit: 10 });
+      const actual = result.params;
+      const expected = { limit: 10 };
+
+      assert.deepEqual(actual, expected);
+    });
+
+    it('passes the query string', () => {
+      const result = receivePetitions(mockPetitions, {}, 'hello=world&page=3');
+      const actual = result.qs;
+      const expected = 'hello=world&page=3';
 
       assert.deepEqual(actual, expected);
     });

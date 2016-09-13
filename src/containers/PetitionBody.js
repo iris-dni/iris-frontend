@@ -6,12 +6,10 @@ const PetitionBodyContainer = (props) => (
   <PetitionBody {...props} />
 );
 
-const mapStateToProps = ({ petition }) => {
-  return {
-    description: petition.description,
-    suggestedSolution: petition.suggested_solution
-  };
-};
+const mapStateToProps = ({ petition }) => ({
+  description: petition.description,
+  suggestedSolution: petition.suggested_solution
+});
 
 PetitionBodyContainer.propTypes = {
   description: React.PropTypes.string,

@@ -1,30 +1,38 @@
 import petitionRepository from 'services/api/repositories/petition';
+import encodeParams from 'helpers/encodeParams';
+import { pick } from 'lodash/object';
 
 import {
   REQUEST_PETITIONS,
   RECEIVE_PETITIONS
 } from './actionTypes';
 
-export function fetchPetitions ({ petitions, location, perPage, currentPage }) {
-  const page = parseInt(location.query.page || currentPage || 1);
-  const limit = parseInt(location.query.limit || perPage || 12);
+export function fetchPetitions ({ location, params }) {
+  // Get query from react-router locatiin
+  const { query } = location;
+
+  // Construct our query params, based on
+  // route params or query string params
+  const queryParams = {
+    page: parseInt(params && params.page || query.page || 1),
+    limit: parseInt(query.limit || 12)
+  };
+
+  // Take any query string values and encode them,
+  // picking the relavent props for filering
+  const queryString = encodeParams(pick(
+    query,
+    ['page', 'limit']
+  ));
 
   return (dispatch, getState) => {
     dispatch(requestPetitions());
-
-    if (!petitions || !petitions.length || page !== currentPage) {
-      const options = { page, limit };
-
-      return petitionRepository.all(options)
-        .then(response => {
-          const pagedResponse = Object.assign({}, response, {
-            currentPage: options.page,
-            perPage: options.limit
-          });
-
-          return dispatch(receivePetitions(pagedResponse));
-        });
-    }
+    return petitionRepository.all(queryParams)
+      .then(response => dispatch(receivePetitions(
+        response,
+        queryParams,
+        queryString
+      )));
   };
 }
 
@@ -34,9 +42,11 @@ export function requestPetitions () {
   };
 }
 
-export function receivePetitions (petitions) {
+export function receivePetitions (petitions, params, qs) {
   return {
     type: RECEIVE_PETITIONS,
-    petitions
+    petitions,
+    params,
+    qs
   };
 }

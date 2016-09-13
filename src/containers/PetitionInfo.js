@@ -7,9 +7,7 @@ const PetitionInfoContainer = (props) => (
   <PetitionInfo {...props} />
 );
 
-const mapStateToProps = ({ petition }) => {
-  return getPetitionInfo(petition);
-};
+const mapStateToProps = ({ petition }) => getPetitionInfo(petition);
 
 PetitionInfoContainer.propTypes = {
   owner: React.PropTypes.string,

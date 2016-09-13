@@ -7,9 +7,7 @@ const PetitionProgressContainer = (props) => (
   <PetitionProgress {...props} />
 );
 
-const mapStateToProps = ({ petition }) => {
-  return getPetitionProgress(petition);
-};
+const mapStateToProps = ({ petition }) => getPetitionProgress(petition);
 
 PetitionProgressContainer.propTypes = {
   percentage: React.PropTypes.number,

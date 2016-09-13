@@ -9,11 +9,16 @@ export default function petitions (state = initialState, action) {
   switch (action.type) {
     case REQUEST_PETITIONS:
       return Object.assign({},
-        state, { isLoading: true }
+        state,
+        { isLoading: true }
       );
     case RECEIVE_PETITIONS:
       return Object.assign({}, state,
-        action.petitions, { isLoading: false }
+        action.petitions, {
+          isLoading: false,
+          params: action.params || {},
+          qs: action.qs || ''
+        }
       );
     default:
       return state;
