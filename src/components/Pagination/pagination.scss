@@ -14,9 +14,12 @@
   display: flex;
   justify-content: center;
   padding: 1.2em;
-  width: 143px;
   border-right: 1px solid color('grey');
   min-height: 100%;
+
+  @include media('>form-switch') {
+    width: 143px;
+  }
 }
 
 .contain-right {
@@ -89,13 +92,18 @@
 .active {
   border-radius: 50%;
   border: 1px solid color('primary');
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   color: color('primary');
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 0.5em;
+
+  @include media('>form-switch') {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .count {
