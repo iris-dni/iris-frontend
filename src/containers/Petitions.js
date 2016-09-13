@@ -22,39 +22,25 @@ const PetitionsContainer = withRouter(React.createClass({
     }
   },
 
-  getAutocompleteProps () {
-    const router = this.props.router;
-    const updateCityFilterValue = this.props.updateCityFilterValue;
-    const cityFilterValue = this.props.cityFilterValue;
+  getAutocompleteProps: ({ router, updateCityFilterValue, cityFilterValue }) => ({
+    name: 'city-filter',
+    endpoint: 'cities',
+    suggestionFormatter: citySuggestionFormatter,
+    getFormValue: (suggestion) => suggestion,
+    suggestionsLimit: 4,
+    helper: {
+      value: { data: cityFilterValue },
+      onChange (newValue) {
+        updateCityFilterValue(newValue);
 
-    return {
-      name: 'city-filter',
-      endpoint: 'cities',
-      suggestionFormatter: citySuggestionFormatter,
-      getFormValue: (suggestion) => {
-        return suggestion;
+        router.push(petitionsPath({
+          city: (newValue.id ? newValue : '')
+        }));
       },
-      suggestionsLimit: 4,
-      helper: {
-        value: {
-          data: cityFilterValue
-        },
-        onChange (newValue) {
-          updateCityFilterValue(newValue);
-
-          if (newValue.id) {
-            router.push(petitionsPath({city: newValue}));
-          } else {
-            router.push(petitionsPath());
-          }
-        },
-        onBlur () {}
-      },
-      html: {
-        placeholder: 'Filter by city'
-      }
-    };
-  },
+      onBlur () {}
+    },
+    html: { placeholder: 'Filter by city' }
+  }),
 
   render () {
     return (
@@ -62,7 +48,7 @@ const PetitionsContainer = withRouter(React.createClass({
         <Helmet title={settings.petitionsPage.title} />
         <Petitions
           {...this.props}
-          autocompleteProps={this.getAutocompleteProps()}
+          autocompleteProps={this.getAutocompleteProps(this.props)}
         />
       </div>
     );
