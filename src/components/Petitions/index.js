@@ -8,7 +8,14 @@ import PetitionsFilters from 'components/PetitionsFilters';
 import NoResults from 'components/NoResults';
 import Pagination from 'containers/Pagination';
 
-const Petitions = ({ params, petitions, isLoading, title, autocompleteProps }) => (
+const Petitions = ({
+  params,
+  petitions,
+  isLoading,
+  title,
+  totalCount,
+  autocompleteProps
+}) => (
   <Container>
     <section>
       <div className={styles['header-wrapper']}>
@@ -22,6 +29,7 @@ const Petitions = ({ params, petitions, isLoading, title, autocompleteProps }) =
           />
         </Header>
       </div>
+
       {petitions.length || isLoading
         ? <TeaserGrid
           petitions={petitions}
@@ -29,7 +37,8 @@ const Petitions = ({ params, petitions, isLoading, title, autocompleteProps }) =
           />
         : <NoResults />
       }
-      {petitions.length > 0 &&
+
+      {petitions.length > 0 && totalCount > petitions.length &&
         <Pagination params={params} />
       }
     </section>

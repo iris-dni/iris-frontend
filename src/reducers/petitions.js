@@ -17,6 +17,7 @@ export default function petitions (state = initialState, action) {
       return Object.assign({}, state,
         action.petitions, {
           isLoading: false,
+          totalCount: action.petitions.total,
           params: action.params || {},
           qs: action.qs || ''
         }

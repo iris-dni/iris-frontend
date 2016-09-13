@@ -66,17 +66,20 @@ PetitionsContainer.fetchData = ({ store, location, params }) => {
 
 PetitionsContainer.propTypes = {
   petitions: React.PropTypes.array,
+  total: React.PropTypes.number,
+  isLoading: React.PropTypes.bool,
   title: React.PropTypes.string,
+  currentCity: React.PropTypes.object,
   fetchPetitions: React.PropTypes.func,
-  citySuggestionFormatter: React.PropTypes.func,
-  currentCity: React.PropTypes.object
+  citySuggestionFormatter: React.PropTypes.func
 };
 
 export const mapStateToProps = ({ petitions }) => ({
   petitions: getPetitions(petitions.data || []),
+  totalCount: petitions.totalCount,
   isLoading: petitions.isLoading,
-  currentCity: petitions.currentCity,
-  title: getPetitionsPageTitle(petitions.currentCity)
+  title: getPetitionsPageTitle(petitions.currentCity),
+  currentCity: petitions.currentCity
 });
 
 export const mapDispatchToProps = (dispatch) => ({
