@@ -1,0 +1,53 @@
+/*
+  We need to have the same animations with different names so that we can play
+  them whenever the opened or closed classes are toggled. Without that trick,
+  the animation wouldn‘t play again, as you can‘t restart a CSS animation by
+  changing it‘s properties.
+*/
+
+@mixin animate-burger-icon ($angle) {
+  50% {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  100% {
+    top: 50%;
+    transform: translateY(-50%) rotate($angle);
+  }
+}
+
+@mixin fade-out () {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes top-line {
+  @include animate-burger-icon(45deg);
+}
+
+@keyframes top-line-copy {
+  @include animate-burger-icon(45deg);
+}
+
+@keyframes fade-out {
+  @include fade-out();
+}
+
+@keyframes fade-out-copy {
+  @include fade-out();
+}
+
+@keyframes bottom-line {
+  @include animate-burger-icon(-45deg);
+}
+
+@keyframes bottom-line-copy {
+  @include animate-burger-icon(-45deg);
+}
+

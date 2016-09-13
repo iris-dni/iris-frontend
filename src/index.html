@@ -4,7 +4,7 @@
     <meta charset="{{ charset or 'utf-8' }}">
     <title>{{ title or 'iris-frontend' }}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, height=device-height">
     {% include 'theme/includes/webfonts.html' %}
     {% for stylesheet in bundles.stylesheets %}
       <link rel="stylesheet" href="{{ stylesheet }}"/>
