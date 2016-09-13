@@ -29,6 +29,10 @@ svg {
  * 3. Hides overflow and stop scrolling when modal active
  */
 :global {
+  .main-content {
+    padding-bottom: calc(2em + #{map-get($heights, 'site-footer')});
+  }
+
   .wrapper {
     position: relative; /* 1 */
     min-height: 100vh; /* 2 */

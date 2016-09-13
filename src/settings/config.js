@@ -158,5 +158,8 @@ export default {
       label: 'Create petition',
       path: '/petitions/new'
     }
-  ]
+  ],
+  footer: {
+    copyright: 'Copyright \u00A9 2016 Iris'
+  }
 };
