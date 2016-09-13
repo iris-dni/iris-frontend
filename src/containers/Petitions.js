@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import citySuggestionFormatter from 'helpers/citySuggestionFormatter';
 import { petitionsPath } from 'helpers/petitionUrls';
 import { fetchPetitions, updateCityFilterValue } from 'actions/PetitionsActions';
 import settings from 'settings';
@@ -29,13 +30,7 @@ const PetitionsContainer = withRouter(React.createClass({
     return {
       name: 'city-filter',
       endpoint: 'cities',
-      suggestionFormatter: (suggestion) => {
-        if (suggestion.name && suggestion.zips) {
-          return suggestion.name + ' - ' + suggestion.zips[0];
-        }
-
-        return '';
-      },
+      suggestionFormatter: citySuggestionFormatter,
       getFormValue: (suggestion) => {
         return suggestion;
       },
