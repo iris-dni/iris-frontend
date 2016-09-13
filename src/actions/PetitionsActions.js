@@ -6,8 +6,7 @@ import { pick } from 'lodash/object';
 import {
   REQUEST_PETITIONS,
   RECEIVE_PETITIONS,
-  GET_CITY,
-  UPDATE_CITY_FILTER_VALUE
+  UPDATE_CURRENT_CITY
 } from './actionTypes';
 
 export function fetchPetitions ({ location, params }) {
@@ -29,8 +28,6 @@ export function fetchPetitions ({ location, params }) {
     ['page', 'city', 'limit']
   ));
 
-  console.log(queryParams);
-
   return (dispatch, getState) => {
     dispatch(requestPetitions());
     return petitionRepository.all(queryParams)
@@ -49,11 +46,11 @@ export function fetchCity ({ params }) {
     if (city) {
       return cityRepository.findOne(city)
         .then(response => (
-          dispatch(getCity(response.data))
+          dispatch(updateCurrentCity(response.data))
         ));
     }
 
-    return dispatch(getCity(null));
+    return dispatch(updateCurrentCity(null));
   };
 }
 
@@ -72,16 +69,9 @@ export function receivePetitions (petitions, params, qs) {
   };
 }
 
-export function getCity (city) {
+export function updateCurrentCity (currentCity) {
   return {
-    type: GET_CITY,
-    city
-  };
-}
-
-export function updateCityFilterValue (filterValue) {
-  return {
-    type: UPDATE_CITY_FILTER_VALUE,
-    filterValue
+    type: UPDATE_CURRENT_CITY,
+    currentCity
   };
 }

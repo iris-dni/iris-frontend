@@ -7,7 +7,7 @@ import { petitionsPath } from 'helpers/petitionUrls';
 import {
   fetchPetitions,
   fetchCity,
-  updateCityFilterValue
+  updateCurrentCity
 } from 'actions/PetitionsActions';
 import settings from 'settings';
 import Petitions from 'components/Petitions';
@@ -15,29 +15,26 @@ import getPetitions from 'selectors/petitions';
 
 const PetitionsContainer = withRouter(React.createClass({
   componentWillMount () {
-    if (this.props.location.action === 'PUSH') {
-      this.props.fetchPetitions(this.props);
-      this.props.fetchCity(this.props);
-    }
+    this.props.fetchPetitions(this.props);
+    this.props.fetchCity(this.props);
   },
 
   componentWillReceiveProps (nextProps) {
     if (this.props.location.pathname !== nextProps.location.pathname) {
       this.props.fetchPetitions(nextProps);
-      this.props.fetchCity(nextProps);
     }
   },
 
-  getAutocompleteProps: ({ router, updateCityFilterValue, cityFilterValue }) => ({
+  getAutocompleteProps: ({ router, updateCurrentCity, currentCity }) => ({
     name: 'city-filter',
     endpoint: 'cities',
     suggestionFormatter: citySuggestionFormatter,
     getFormValue: (suggestion) => suggestion,
     suggestionsLimit: 4,
     helper: {
-      value: { data: cityFilterValue },
+      value: { data: currentCity },
       onChange (newValue) {
-        updateCityFilterValue(newValue);
+        updateCurrentCity(newValue);
 
         router.push(petitionsPath({
           city: (newValue.id ? newValue : '')
@@ -49,8 +46,10 @@ const PetitionsContainer = withRouter(React.createClass({
   }),
 
   getTitle () {
-    return this.props.city
-      ? `${settings.petitionsPage.titleLocalized} ${this.props.city.name}`
+    const city = this.props.currentCity && this.props.currentCity.name;
+
+    return city
+      ? `${settings.petitionsPage.titleLocalized} ${city}`
       : settings.petitionsPage.title;
   },
 
@@ -78,20 +77,20 @@ PetitionsContainer.propTypes = {
   petitions: React.PropTypes.array,
   title: React.PropTypes.string,
   fetchPetitions: React.PropTypes.func,
-  city: React.PropTypes.object,
-  cityFilterValue: React.PropTypes.object
+  citySuggestionFormatter: React.PropTypes.func,
+  currentCity: React.PropTypes.object
 };
 
 export const mapStateToProps = ({ petitions }) => ({
   petitions: getPetitions(petitions.data || []),
   isLoading: petitions.isLoading,
-  cityFilterValue: petitions.cityFilterValue
+  currentCity: petitions.currentCity
 });
 
 export const mapDispatchToProps = (dispatch) => ({
   fetchPetitions: (options) => dispatch(fetchPetitions(options)),
   fetchCity: (options) => dispatch(fetchCity(options)),
-  updateCityFilterValue: (newValue) => dispatch(updateCityFilterValue(newValue))
+  updateCurrentCity: (newValue) => dispatch(updateCurrentCity(newValue))
 });
 
 export default connect(
