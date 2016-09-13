@@ -23,6 +23,10 @@ svg {
   display: block;
 }
 
+a {
+  color: color('tertiary');
+}
+
 /*
  * 1. Positioning context for overlay and mobile menu
  * 2. Minimum 100vh height to mimic html element
