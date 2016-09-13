@@ -7,13 +7,17 @@ import mockPetitions from './mocks/petitions';
 const { assert } = chai;
 
 describe('GET /', () => {
-  it('responds with 200', done => {
+  it('redirects to /petitions', done => {
     server.injectThen('/')
       .then(response => {
-        const actual = response.statusCode;
-        const expected = 200;
+        const actualStatus = response.statusCode;
+        const expectedStatus = 301;
 
-        assert.equal(actual, expected);
+        const actualPath = response.headers.location;
+        const expectedPath = '/petitions';
+
+        assert.equal(actualStatus, expectedStatus);
+        assert.equal(actualPath, expectedPath);
         done();
       });
   });

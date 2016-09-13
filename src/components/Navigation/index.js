@@ -30,7 +30,7 @@ const Navigation = React.createClass({
         <nav>
           <div className={styles['unhidden-wrapper']}>
             <IndexLink
-              to='home'
+              to='/'
               className={styles.link}
               onClick={this.props.closeMobileMenu}
             >
