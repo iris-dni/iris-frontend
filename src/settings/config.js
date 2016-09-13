@@ -29,13 +29,12 @@ export default {
     greyLite: '#e5e5e5'
   },
   petitionsPage: {
-    title: 'Petitions',
-    titleLocalized: 'Petitions in',
-    createButton: {
-      text: 'Create a new Petition',
-      modal: {
-        title: 'Please log in',
-        intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
+    title: 'Browse petitions',
+    titleLocalized: 'Browse petitions in',
+    filters: {
+      city: {
+        label: 'Filter by city',
+        placeholder: 'Enter city name or ZIP code'
       }
     }
   },

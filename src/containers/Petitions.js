@@ -45,7 +45,7 @@ const PetitionsContainer = withRouter(React.createClass({
       },
       onBlur () {}
     },
-    html: { placeholder: 'Filter by city' }
+    html: { placeholder: settings.petitionsPage.filters.city.placeholder }
   }),
 
   getTitle () {

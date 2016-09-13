@@ -1,0 +1,47 @@
+@import 'globals';
+
+.root {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 2em;
+}
+
+/**
+ * 1. Positioning context for input icon.
+ */
+.filter {
+  position: relative; /* 1 */
+}
+
+.label {
+  display: inline-block;
+  color: color('black');
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.icon {
+  display: none;
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+
+  @include media('>460px') {
+    display: block;
+  }
+}
+
+.input-wrapper {
+  display: inline-block;
+  width: 240px;
+  margin-left: 1em;
+  font-weight: normal;
+  color: color('black');
+
+  @include media('>460px') {
+    width: 295px;
+  }
+}
+
