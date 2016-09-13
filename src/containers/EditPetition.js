@@ -32,7 +32,7 @@ const EditPetitionContainer = withRouter(React.createClass({
   },
 
   componentWillUpdate (nextProps) {
-    if (petitionPublished(nextProps.petition)) {
+    if (nextProps.petition.hasPublished) {
       this.props.router.push(`${getPetitionPath(nextProps.petition)}/published`);
     }
   },

@@ -147,5 +147,8 @@ export default {
     petitionPublished: 'Great, your petition was published!',
     petitionUpdated: 'Your petition was updated',
     petitionSupported: 'Thank you for signing this petition!'
+  },
+  footer: {
+    copyright: 'Copyright \u00A9 2016 Iris'
   }
 };
