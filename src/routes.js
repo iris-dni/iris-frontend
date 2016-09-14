@@ -27,6 +27,7 @@ export default function (props = {}) {
         <Route path='auth/login' component={LoginPage} />
         <Route path='auth/logout' component={Logout} />
         <Route path='petitions'>
+          {/* Nest these 3 to support proper `activeClassName` behavior. */}
           <IndexRoute component={Petitions} />
           <Route path=':cityName-:city(/page/:page)' component={Petitions} />
           <Route path='page/:page' component={Petitions} />
