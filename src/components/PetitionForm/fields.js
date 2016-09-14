@@ -1,4 +1,5 @@
 import settings from 'settings';
+import citySuggestionFormatter from 'helpers/citySuggestionFormatter';
 
 export default [
   {
@@ -15,11 +16,7 @@ export default [
     label: settings.petitionFields.city.label,
     hint: settings.petitionFields.city.hint,
     endpoint: 'cities',
-    suggestionFormatter: (suggestion) => {
-      return suggestion
-        ? suggestion.name + ' - ' + suggestion.zips[0]
-        : '';
-    },
+    suggestionFormatter: citySuggestionFormatter,
     getFormValue: (suggestion) => ({
       data: suggestion,
       id: suggestion.id,

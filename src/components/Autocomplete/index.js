@@ -69,11 +69,13 @@ const Autocomplete = React.createClass({
   },
 
   render () {
+    const inputClass = this.props.inputModifier ? this.props.inputModifier : 'input';
+
     return (
       <Autosuggest
         theme={{
           containerOpen: styles.open,
-          input: this.getClassname('input', fieldIsInvalid(this.props.helper)),
+          input: this.getClassname(inputClass, fieldIsInvalid(this.props.helper)),
           suggestionsList: styles.list,
           suggestion: styles.suggestion,
           suggestionFocused: styles.focused

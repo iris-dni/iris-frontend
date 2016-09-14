@@ -10,6 +10,11 @@ $suggestion-border: 1px solid color('grey-lite');
   transition: border-radius 150ms;
 }
 
+.thin {
+  composes: input;
+  padding: 8px;
+}
+
 .open {
   position: relative;
 }

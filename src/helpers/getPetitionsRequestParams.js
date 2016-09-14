@@ -1,10 +1,10 @@
 import calculateParamOffset from 'helpers/calculateParamOffset';
 import sanitizeParamLimit from 'helpers/sanitizeParamLimit';
 
-export default ({ limit, page }) => {
+export default ({ limit, page, city }) => {
   const saneLimit = sanitizeParamLimit(limit);
 
-  return {
+  const params = {
     resolve: 'city,owner',
     sort: '-created',
     offset: calculateParamOffset(page, saneLimit),
@@ -17,4 +17,10 @@ export default ({ limit, page }) => {
       'closed'
     ].join(',')
   };
+
+  if (city) {
+    params.city = city;
+  }
+
+  return params;
 };

@@ -4,9 +4,10 @@ const serializeParam = (prefix, param, value) => {
   if (typeof (value) === 'object') {
     return Object.keys(value)
       .map(key => serializeParam(prefixedParam, parseKey(key), value[key]))
+      .filter(serializedParam => !!serializedParam)
       .join('&');
   } else {
-    return [prefixedParam, value].join('=');
+    return value && [prefixedParam, value].join('=');
   }
 };
 
