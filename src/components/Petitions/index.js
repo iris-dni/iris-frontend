@@ -1,21 +1,33 @@
 import React from 'react';
-import settings from 'settings';
+import styles from './petitions.scss';
 import Container from 'components/Container';
 import TeaserGrid from 'components/TeaserGrid';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
+import PetitionsFilters from 'components/PetitionsFilters';
 import NoResults from 'components/NoResults';
 import Pagination from 'containers/Pagination';
 
-const Petitions = ({ petitions, isLoading }) => (
+const Petitions = ({
+  petitions,
+  isLoading,
+  title,
+  autocompleteProps
+}) => (
   <Container>
     <section>
-      <Header>
-        <PageTitle
-          title={settings.petitionsPage.title}
-          centered
-        />
-      </Header>
+      <div className={styles['header-wrapper']}>
+        <Header>
+          <PageTitle
+            title={title}
+            centered />
+
+          <PetitionsFilters
+            autocompleteProps={autocompleteProps}
+          />
+        </Header>
+      </div>
+
       {petitions.length || isLoading
         ? <TeaserGrid
           petitions={petitions}
@@ -23,6 +35,7 @@ const Petitions = ({ petitions, isLoading }) => (
           />
         : <NoResults />
       }
+
       {petitions.length > 0 &&
         <Pagination />
       }

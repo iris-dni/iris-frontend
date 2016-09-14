@@ -23,6 +23,11 @@ export default {
   update: (petition) => {
     const requestPath = path.join('/petitions', petition.id.toString());
     delete petition.id;
+
+    if (petition.city && !petition.city.data) {
+      delete petition.city.data;
+    }
+
     return ApiClient.request(requestPath, petition, 'POST');
   },
 

@@ -29,4 +29,11 @@ describe('encodeParams', () => {
 
     it('returns the serialized argument', () => assert.equal(actual, expected));
   });
+
+  context('with empty arguments', () => {
+    const actual = encodeParams({ a: 1, b: undefined });
+    const expected = 'a=1';
+
+    it('does not return the empty argument', () => assert.equal(actual, expected));
+  });
 });

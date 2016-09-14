@@ -1,10 +1,12 @@
 import petitionRepository from 'services/api/repositories/petition';
+import cityRepository from 'services/api/repositories/city';
 import encodeParams from 'helpers/encodeParams';
 import { pick } from 'lodash/object';
 
 import {
   REQUEST_PETITIONS,
-  RECEIVE_PETITIONS
+  RECEIVE_PETITIONS,
+  UPDATE_CURRENT_CITY
 } from './actionTypes';
 
 export function fetchPetitions ({ location, params }) {
@@ -15,6 +17,8 @@ export function fetchPetitions ({ location, params }) {
   // route params or query string params
   const queryParams = {
     page: parseInt(params && params.page || query.page || 1),
+    city: params && params.city || query.city || '',
+    cityName: params && params.cityName || query.cityName || '',
     limit: parseInt(query.limit || 12)
   };
 
@@ -22,7 +26,7 @@ export function fetchPetitions ({ location, params }) {
   // picking the relavent props for filering
   const queryString = encodeParams(pick(
     query,
-    ['page', 'limit']
+    ['page', 'city', 'limit']
   ));
 
   return (dispatch, getState) => {
@@ -33,6 +37,21 @@ export function fetchPetitions ({ location, params }) {
         queryParams,
         queryString
       )));
+  };
+}
+
+export function fetchCity ({ params }) {
+  const { city } = params;
+
+  return (dispatch) => {
+    if (city) {
+      return cityRepository.findOne(city)
+        .then(response => (
+          dispatch(updateCurrentCity(response.data))
+        ));
+    }
+
+    return dispatch(updateCurrentCity(null));
   };
 }
 
@@ -48,5 +67,12 @@ export function receivePetitions (petitions, params, qs) {
     petitions,
     params,
     qs
+  };
+}
+
+export function updateCurrentCity (currentCity) {
+  return {
+    type: UPDATE_CURRENT_CITY,
+    currentCity
   };
 }
