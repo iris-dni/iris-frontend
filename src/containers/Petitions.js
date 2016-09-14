@@ -81,7 +81,6 @@ PetitionsContainer.propTypes = {
 
 export const mapStateToProps = ({ petitions }) => ({
   petitions: getPetitions(petitions.data || []),
-  totalCount: petitions.totalCount,
   isLoading: petitions.isLoading,
   title: getPetitionsPageTitle(petitions.currentCity),
   currentCity: petitions.currentCity

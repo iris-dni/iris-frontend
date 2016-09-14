@@ -12,7 +12,6 @@ const Petitions = ({
   petitions,
   isLoading,
   title,
-  totalCount,
   autocompleteProps
 }) => (
   <Container>
@@ -37,7 +36,7 @@ const Petitions = ({
         : <NoResults />
       }
 
-      {petitions.length > 0 && totalCount > petitions.length &&
+      {petitions.length > 0 &&
         <Pagination />
       }
     </section>
