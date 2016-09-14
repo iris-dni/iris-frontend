@@ -69,8 +69,7 @@ PetitionsContainer.propTypes = {
   isLoading: React.PropTypes.bool,
   title: React.PropTypes.string,
   currentCity: React.PropTypes.object,
-  fetchPetitions: React.PropTypes.func,
-  citySuggestionFormatter: React.PropTypes.func
+  fetchPetitions: React.PropTypes.func
 };
 
 export const mapStateToProps = ({ petitions }) => ({
