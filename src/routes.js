@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Router, IndexRoute, browserHistory } from 'react-router';
+import { Route, Router, IndexRedirect, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import App from 'containers/App';
@@ -22,7 +22,7 @@ export default function (props = {}) {
   return (
     <Router history={history}>
       <Route path='/' component={App}>
-        <IndexRoute component={Petitions} />
+        <IndexRedirect to='/petitions' />
         <Route path='home' component={Home} />
         <Route path='auth/login' component={LoginPage} />
         <Route path='auth/logout' component={Logout} />
