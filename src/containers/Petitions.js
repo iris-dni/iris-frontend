@@ -52,7 +52,6 @@ const PetitionsContainer = withRouter(React.createClass({
         <Helmet title={this.props.title} />
         <Petitions
           {...this.props}
-          title={this.props.title}
           autocompleteProps={this.getAutocompleteProps(this.props)}
         />
       </div>
