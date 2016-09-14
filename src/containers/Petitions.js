@@ -26,6 +26,10 @@ const PetitionsContainer = withRouter(React.createClass({
   componentWillReceiveProps (nextProps) {
     if (this.props.location.pathname !== nextProps.location.pathname) {
       this.props.fetchPetitions(nextProps);
+
+      if (!nextProps.params.cityName) {
+        this.props.updateCurrentCity({});
+      }
     }
   },
 
