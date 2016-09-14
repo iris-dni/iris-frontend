@@ -16,7 +16,10 @@ import getPetitions from 'selectors/petitions';
 
 const PetitionsContainer = withRouter(React.createClass({
   componentWillMount () {
-    this.props.fetchPetitions(this.props);
+    if (this.props.location.action === 'PUSH') {
+      this.props.fetchPetitions(this.props);
+    }
+
     this.props.fetchCity(this.props);
   },
 
