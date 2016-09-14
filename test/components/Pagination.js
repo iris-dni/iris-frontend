@@ -5,9 +5,16 @@ import { assert } from 'chai';
 import Pagination from 'components/Pagination';
 import styles from 'components/Pagination/pagination.scss';
 
+const params = {
+  'page': 1,
+  'city': '',
+  'cityName': '',
+  'limit': 12
+};
+
 describe('<Pagination />', () => {
   it('does not render without > 1 pages', () => {
-    const wrapper = shallow(<Pagination totalPages={1} />);
+    const wrapper = shallow(<Pagination totalPages={1} params={params} />);
     const actual = wrapper.hasClass(`${styles.root}`);
     const expected = false;
 
@@ -15,7 +22,7 @@ describe('<Pagination />', () => {
   });
 
   it('does render when > 1 pages', () => {
-    const wrapper = shallow(<Pagination totalPages={4} />);
+    const wrapper = shallow(<Pagination totalPages={4} params={params} />);
     const actual = wrapper.find(`.${styles.root}`).length;
     const expected = 1;
 
@@ -23,7 +30,7 @@ describe('<Pagination />', () => {
   });
 
   it('does not render "previous" link when on first page', () => {
-    const wrapper = shallow(<Pagination totalPages={4} isFirstPage isLastPage={false} />);
+    const wrapper = shallow(<Pagination totalPages={4} isFirstPage isLastPage={false} params={params} />);
     const actual = wrapper.find(Link).length;
     const expected = 1;
 
@@ -31,7 +38,7 @@ describe('<Pagination />', () => {
   });
 
   it('does not render "next" link when on last page', () => {
-    const wrapper = shallow(<Pagination totalPages={4} isFirstPage={false} isLastPage />);
+    const wrapper = shallow(<Pagination totalPages={4} isFirstPage={false} isLastPage params={params} />);
     const actual = wrapper.find(Link).props().rel;
     const expected = 'prev';
 
@@ -39,7 +46,7 @@ describe('<Pagination />', () => {
   });
 
   it('does not render "prev" link when on first page', () => {
-    const wrapper = shallow(<Pagination totalPages={4} isFirstPage isLastPage={false} />);
+    const wrapper = shallow(<Pagination totalPages={4} isFirstPage isLastPage={false} params={params} />);
     const actual = wrapper.find(Link).props().rel;
     const expected = 'next';
 
@@ -47,7 +54,7 @@ describe('<Pagination />', () => {
   });
 
   it('renders both "previous" and "next" links if not first or last page', () => {
-    const wrapper = shallow(<Pagination totalPages={4} isLastPage={false} isFirstPage={false} />);
+    const wrapper = shallow(<Pagination totalPages={4} isLastPage={false} isFirstPage={false} params={params} />);
     const actual = wrapper.find(Link).length;
     const expected = 2;
 
