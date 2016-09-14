@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './petition-info.scss';
 import IconAndInfo from 'components/IconAndInfo';
-import { Link } from 'react-router';
+import Link from 'components/Link';
 import { petitionsPath } from 'helpers/petitionUrls';
 
 const PetitionInfo = ({ owner, city, dateRange }) => (
@@ -17,7 +17,7 @@ const PetitionInfo = ({ owner, city, dateRange }) => (
     {city && city.label &&
       <li className={styles.item}>
         <IconAndInfo icon='Pin'>
-          <Link to={petitionsPath({ city })}>
+          <Link href={petitionsPath({ city })}>
             {city.label}
           </Link>
         </IconAndInfo>
