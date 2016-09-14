@@ -14,7 +14,7 @@ const PetitionInfo = ({ owner, city, dateRange }) => (
         />
       </li>
     }
-    {city &&
+    {city && city.label &&
       <li className={styles.item}>
         <IconAndInfo icon='Pin'>
           <Link to={petitionsPath({ city })}>
