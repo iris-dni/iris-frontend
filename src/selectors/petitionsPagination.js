@@ -16,6 +16,7 @@ export default (petitions = {}) => {
     prevPage: Math.max(currentPage - 1, 1),
     nextPage: Math.min(currentPage + 1, totalPages),
     isFirstPage: currentPage <= 1,
-    isLastPage: currentPage >= totalPages
+    isLastPage: currentPage >= totalPages,
+    params
   };
 };

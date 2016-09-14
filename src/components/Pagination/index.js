@@ -4,7 +4,6 @@ import { Link } from 'react-router';
 import getPaginationLink from 'helpers/getPaginationLink';
 
 const Pagination = ({
-  params,
   limit,
   totalCount,
   showingCount,
@@ -14,7 +13,8 @@ const Pagination = ({
   prevPage,
   isFirstPage,
   isLastPage,
-  currentQuery
+  currentQuery,
+  params
 }) => (
   <nav className={styles.root} role='navigation' itemScope itemType='http://schema.org/SiteNavigationElement/Pagination'>
     {isFirstPage &&

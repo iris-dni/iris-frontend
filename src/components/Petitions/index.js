@@ -9,7 +9,6 @@ import NoResults from 'components/NoResults';
 import Pagination from 'containers/Pagination';
 
 const Petitions = ({
-  params,
   petitions,
   isLoading,
   title,
@@ -39,7 +38,7 @@ const Petitions = ({
       }
 
       {petitions.length > 0 && totalCount > petitions.length &&
-        <Pagination params={params} />
+        <Pagination />
       }
     </section>
   </Container>
