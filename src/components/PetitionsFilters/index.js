@@ -9,21 +9,22 @@ const PetitionsFilters = ({ autocompleteProps }) => (
     <div className={styles.filter}>
       <label className={styles.label} htmlFor={autocompleteProps.name}>
         {settings.petitionsPage.filters.city.label}
-        <div className={styles['input-wrapper']}>
-          <div className={styles.icon}>
-            <Icon
-              id={'Search'}
-              inline
-              fill={'none'}
-            />
-          </div>
+      </label>
 
-          <Autocomplete
-            {...autocompleteProps}
-            inputModifier={'thin'}
+      <div className={styles['input-wrapper']}>
+        <Autocomplete
+          {...autocompleteProps}
+          inputModifier={'thin'}
+        />
+
+        <div className={styles.icon}>
+          <Icon
+            id={'Search'}
+            inline
+            fill={'none'}
           />
         </div>
-      </label>
+      </div>
     </div>
   </div>
 );
