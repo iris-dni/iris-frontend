@@ -31,10 +31,18 @@ export default {
   petitionsPage: {
     title: 'Browse petitions',
     titleLocalized: 'Browse petitions in',
+    sortBy: 'Sort by…',
+    chooseOption: 'Choose an option…',
     filters: {
       city: {
         label: 'Filter by city',
         placeholder: 'Enter city name or ZIP code'
+      },
+      date: {
+        label: 'Most recent'
+      },
+      supportersAmount: {
+        label: 'Supporters amount'
       }
     }
   },

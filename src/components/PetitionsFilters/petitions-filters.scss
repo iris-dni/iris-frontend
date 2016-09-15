@@ -11,6 +11,15 @@
 
 .filter {
   position: relative;
+
+  @include media('>=768px') {
+    margin-bottom: 0;
+  }
+
+  &:not(:last-child) {
+    margin-right: 2em;
+    margin-bottom: 1em;
+  }
 }
 
 .label {
@@ -44,3 +53,17 @@
   pointer-events: none;
 }
 
+.select {
+  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  display: block;
+  width: 100%;
+  height: 2.6em;
+  padding: map-get($form-fields-defaults, 'padding');
+  color: color('dimmed');
+  background-color: color('white');
+  border-color: color('grey');
+
+  &:focus {
+    border-color: color('dimmed');
+  }
+}
