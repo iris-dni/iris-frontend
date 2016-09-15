@@ -4,7 +4,7 @@ import Container from 'components/Container';
 import TeaserGrid from 'components/TeaserGrid';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
-import PetitionsFilters from 'components/PetitionsFilters';
+import PetitionsFilters from 'containers/PetitionsFilters';
 import NoResults from 'components/NoResults';
 import Pagination from 'containers/Pagination';
 
@@ -22,9 +22,7 @@ const Petitions = ({
             title={title}
             centered />
 
-          <PetitionsFilters
-            autocompleteProps={autocompleteProps}
-          />
+          <PetitionsFilters autocompleteProps={autocompleteProps} />
         </Header>
       </div>
 
