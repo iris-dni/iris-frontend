@@ -1,9 +1,7 @@
-import chai from 'chai';
+import { assert } from 'chai';
 import sinon from 'sinon';
 import moment from 'moment';
 import getPetitionDaysRemaining from 'helpers/getPetitionDaysRemaining';
-
-const { assert } = chai;
 
 describe('getPetitionDaysRemaining', () => {
   beforeEach(() => {
