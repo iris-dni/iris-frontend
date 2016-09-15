@@ -1,13 +1,12 @@
-import { ssoProviders } from 'settings';
 import generateSsoUrl from 'helpers/generateSsoUrl';
 
-export default (returnUrl) => {
+export default (providers, returnUrl) => {
   const defaultProvider = {
     text: process.env.SSO_PROVIDER_TEXT,
     url: process.env.SSO_PROVIDER_URL
   };
 
-  return (ssoProviders || [])
+  return (providers || [])
     .concat(defaultProvider)
     .filter(provider => !!provider.text && !!provider.url)
     .map(provider => ({
