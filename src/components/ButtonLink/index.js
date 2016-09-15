@@ -1,21 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router';
+import Link from 'components/Link';
 import { getClassname } from 'components/Button';
 
-const createAttrs = (props) => {
-  return {
-    [props.external ? 'href' : 'to']: props.href || '#',
-    onClick: props.onClick
-      ? (e) => { e.preventDefault(); props.onClick(); }
-      : () => {},
-    className: getClassname(props)
-  };
-};
-
 const ButtonLink = (props) => (
-  props.external
-    ? <a {...createAttrs(props)}>{props.children || props.text}</a>
-    : <Link {...createAttrs(props)}>{props.children || props.text}</Link>
+  <Link
+    className={getClassname(props)}
+    {...props}
+  />
 );
 
 export default ButtonLink;
