@@ -1,9 +1,24 @@
 import settings from 'settings';
 
-export default (currentCity) => {
-  const city = currentCity && currentCity.name;
+const getSort = (sort) => {
+  switch (sort) {
+    case 'supporters':
+      return settings.petitionsPage.mostSupported;
+    case 'date':
+      return settings.petitionsPage.mostRecent;
+    default:
+      return '';
+  }
+};
 
-  return city
-    ? `${settings.petitionsPage.titleLocalized} ${city}`
-    : settings.petitionsPage.title;
+export default ({ currentCity, params }) => {
+  const city = currentCity && currentCity.name;
+  const sort = params && getSort(params.sort);
+
+  let title = settings.petitionsPage.title;
+
+  title = (city ? title.replace('%y', `in ${city}`) : title.replace('%y', ''));
+  title = (sort ? title.replace('%x', sort) : title.replace('%x', ''));
+
+  return title;
 };

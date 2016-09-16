@@ -29,8 +29,9 @@ export default {
     greyLite: '#e5e5e5'
   },
   petitionsPage: {
-    title: 'Browse petitions',
-    titleLocalized: 'Browse petitions in',
+    title: 'Browse %x petitions %y',
+    mostSupported: 'most supported',
+    mostRecent: 'most recent',
     sortBy: 'Sort by…',
     chooseOption: 'Choose an option…',
     filters: {
