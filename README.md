@@ -5,6 +5,23 @@
 | Production  | [![Build Status](https://travis-ci.org/iris-dni/iris-frontend.svg?branch=master)](https://travis-ci.org/iris-dni/iris-frontend) |
 | Staging     | [![Build Status](https://travis-ci.org/iris-dni/iris-frontend.svg?branch=staging)](https://travis-ci.org/iris-dni/iris-frontend)
 
+## Theming a "private fork"
+
+1. Create an empty [new private repository](https://github.com/new) on your Github account, select the "Private" option, then click Create.
+2. On the following screen near the bottom, click "Import"
+<img alt="" src="https://cloud.githubusercontent.com/assets/547148/18585656/80543416-7c18-11e6-8ecf-017cd85923c1.png">
+3. Paste `https://github.com/iris-dni/iris-frontend` into the field that says _Your old repository’s clone URL_, then click "Begin import".
+4. Wait a few moments while the `iris-dni/iris-frontend` repo imports into your private fork.
+5. Clone **your** repo to your local machine.
+```sh
+git clone https://github.com/yourname/private-repo.git
+```
+6. Install the project
+
+```sh
+$ npm install
+```
+
 ### Node version
 
 This project requires node `>= 4.0.0` due to [hapi](https://github.com/hapijs/hapi/blob/master/package.json) dependency.
