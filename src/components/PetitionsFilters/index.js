@@ -22,11 +22,11 @@ const PetitionsFilters = ({ autocompleteProps, handleSortChange }) => (
             {settings.petitionsPage.chooseOption}
           </option>
 
-          <option value='-created'>
+          <option value='date'>
             {settings.petitionsPage.filters.date.label}
           </option>
 
-          <option value='-supporters.amount'>
+          <option value='supporters'>
             {settings.petitionsPage.filters.supportersAmount.label}
           </option>
         </select>
