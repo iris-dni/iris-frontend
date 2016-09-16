@@ -22,25 +22,24 @@ const PetitionsContainer = withRouter(React.createClass({
   },
 
   componentWillReceiveProps (nextProps) {
-    console.log(this.props.location);
     if (this.props.location.pathname !== nextProps.location.pathname ||
         this.props.location.search !== nextProps.location.search) {
       this.props.fetchPetitions(nextProps);
 
       if (!nextProps.params.cityName) {
-        this.props.updateCurrentCity({});
+        this.props.updateCurrentCity(null);
       }
     }
   },
 
   handleSortChange (e) {
     this.props.router.push(petitionsPath({
-      // city: this.props.currentCity || '',
+      city: this.props.currentCity || '',
       sort: e.target.value
     }));
   },
 
-  getAutocompleteProps: ({ router, updateCurrentCity, currentCity }) => ({
+  getAutocompleteProps: ({ router, location, updateCurrentCity, currentCity }) => ({
     name: 'city-filter',
     endpoint: 'cities',
     suggestionFormatter: citySuggestionFormatter,
@@ -52,7 +51,8 @@ const PetitionsContainer = withRouter(React.createClass({
         updateCurrentCity(newValue);
 
         router.push(petitionsPath({
-          city: (newValue.id ? newValue : '')
+          city: newValue.id ? newValue : '',
+          sort: location.query.sort || ''
         }));
       },
       onBlur () {}

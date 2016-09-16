@@ -17,8 +17,8 @@ export function fetchPetitions ({ location, params }) {
   // route params or query string params
   const queryParams = {
     page: parseInt(params && params.page || query.page || 1),
-    city: (params && params.city || query.city || ''),
-    cityName: (params && params.cityName || query.cityName || ''),
+    city: params && params.city || query.city || '',
+    cityName: params && params.cityName || query.cityName || '',
     limit: parseInt(query.limit || 12),
     sort: query.sort || ''
   };
@@ -29,8 +29,6 @@ export function fetchPetitions ({ location, params }) {
     queryParams,
     ['page', 'city', 'limit', 'sort']
   ));
-
-  console.log(queryParams);
 
   return (dispatch, getState) => {
     dispatch(requestPetitions());
