@@ -27,10 +27,11 @@ export default function (props = {}) {
         <Route path='auth/login' component={LoginPage} />
         <Route path='auth/logout' component={Logout} />
         <Route path='petitions'>
-          {/* Nest these 4 to support proper `activeClassName` behavior. */}
+          {/* Nest these 5 to support proper `activeClassName` behavior. */}
           <IndexRoute component={Petitions} />
           <Route path=':cityName-:city(/page/:page)' component={Petitions} />
           <Route path=':state(/:cityName-:city(/page/:page))' component={Petitions} />
+          <Route path=':state(/page/:page)' component={Petitions} />
           <Route path='page/:page' component={Petitions} />
         </Route>
         <Route path='/petitions/new' component={NewPetition} />

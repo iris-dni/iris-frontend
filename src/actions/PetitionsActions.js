@@ -10,11 +10,10 @@ import {
 } from './actionTypes';
 
 export function fetchPetitions ({ location, params }) {
-  // Get query from react-router locatiin
+  // Get query from react-router location
   const { query } = location;
 
-  // Construct our query params, based on
-  // route params or query string params
+  // Construct our query params based on route params or query string params
   const queryParams = {
     page: parseInt(params && params.page || query.page || 1),
     city: params && params.city || query.city || '',
@@ -24,11 +23,21 @@ export function fetchPetitions ({ location, params }) {
     sort: params && params.sort || query.sort || ''
   };
 
-  // Take any query string values and encode them,
-  // picking the relavent props for filering
+  // To avoid repetition between URL params and query params, we don’t save
+  // params taken from URL.
+  let encodedParams = [];
+
+  for (const key in queryParams) {
+    if (query[key]) {
+      encodedParams.push(key);
+    }
+  }
+
+  // Take any query string values and encode them, picking the relevant props
+  // for filtering
   const queryString = encodeParams(pick(
     queryParams,
-    ['page', 'city', 'state', 'limit', 'sort']
+    encodedParams
   ));
 
   return (dispatch, getState) => {
