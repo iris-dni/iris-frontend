@@ -20,5 +20,8 @@ export default ({ currentCity, params }) => {
   title = (city ? title.replace('%y', `in ${city}`) : title.replace('%y', ''));
   title = (sort ? title.replace('%x', sort) : title.replace('%x', ''));
 
+  // Replaces any potential double space with a single one.
+  title = title.trim().replace(/\s{2,}/g, ' ');
+
   return title;
 };
