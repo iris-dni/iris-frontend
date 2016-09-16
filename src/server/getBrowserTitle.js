@@ -1,4 +1,5 @@
 import settings from 'settings';
+import getPetitionsPageTitle from 'helpers/getPetitionsPageTitle';
 
 export const TITLE_TEMPLATE = `%s | ${settings.title}`;
 
@@ -8,7 +9,7 @@ export default (componentName, state = {}) => {
       const { petition } = state;
       return TITLE_TEMPLATE.replace('%s', petition && petition.title);
     case 'PetitionsContainer':
-      return TITLE_TEMPLATE.replace('%s', settings.petitionsPage.title);
+      return TITLE_TEMPLATE.replace('%s', getPetitionsPageTitle(state.petitions));
     case 'NewPetitionContainer':
       return TITLE_TEMPLATE.replace('%s', settings.newPetitionPage.title);
     case 'EditPetitionContainer':

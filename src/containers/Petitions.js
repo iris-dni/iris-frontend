@@ -55,7 +55,7 @@ PetitionsContainer.propTypes = {
 export const mapStateToProps = ({ petitions }) => ({
   petitions: getPetitions(petitions.data || []),
   isLoading: petitions.isLoading,
-  title: getPetitionsPageTitle(petitions.currentCity),
+  title: getPetitionsPageTitle(petitions),
   currentCity: petitions.currentCity
 });
 
