@@ -2,15 +2,12 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import citySuggestionFormatter from 'helpers/citySuggestionFormatter';
 import getPetitionsPageTitle from 'helpers/getPetitionsPageTitle';
-import { petitionsPath } from 'helpers/petitionUrls';
 import {
   fetchPetitions,
   fetchAll,
   updateCurrentCity
 } from 'actions/PetitionsActions';
-import settings from 'settings';
 import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';
 
@@ -32,43 +29,11 @@ const PetitionsContainer = withRouter(React.createClass({
     }
   },
 
-  handleSortChange (e) {
-    this.props.router.push(petitionsPath({
-      city: this.props.currentCity || '',
-      sort: e.target.value
-    }));
-  },
-
-  getAutocompleteProps: ({ router, location, updateCurrentCity, currentCity }) => ({
-    name: 'city-filter',
-    endpoint: 'cities',
-    suggestionFormatter: citySuggestionFormatter,
-    getFormValue: (suggestion) => suggestion,
-    suggestionsLimit: 4,
-    helper: {
-      value: { data: currentCity },
-      onChange (newValue) {
-        updateCurrentCity(newValue);
-
-        router.push(petitionsPath({
-          city: newValue.id ? newValue : '',
-          sort: location.query.sort || ''
-        }));
-      },
-      onBlur () {}
-    },
-    html: { placeholder: settings.petitionsPage.filters.city.placeholder }
-  }),
-
   render () {
     return (
       <div>
         <Helmet title={this.props.title} />
-        <Petitions
-          {...this.props}
-          autocompleteProps={this.getAutocompleteProps(this.props)}
-          handleSortChange={this.handleSortChange}
-        />
+        <Petitions {...this.props} />
       </div>
     );
   }
