@@ -19,6 +19,7 @@ export function fetchPetitions ({ location, params }) {
     page: parseInt(params && params.page || query.page || 1),
     city: params && params.city || query.city || '',
     cityName: params && params.cityName || query.cityName || '',
+    state: params && params.state || query.state || '',
     limit: parseInt(query.limit || 12),
     sort: params && params.sort || query.sort || ''
   };
@@ -27,7 +28,7 @@ export function fetchPetitions ({ location, params }) {
   // picking the relavent props for filering
   const queryString = encodeParams(pick(
     queryParams,
-    ['page', 'city', 'limit', 'sort']
+    ['page', 'city', 'state', 'limit', 'sort']
   ));
 
   return (dispatch, getState) => {

@@ -2,18 +2,14 @@ import encodeParams from './encodeParams';
 import parameterize from './parameterize';
 
 export const petitionsPath = (options = {}) => {
-  const { city, page, limit, sort } = options || {};
+  const { state, city, page, limit, sort } = options || {};
   const queryString = encodeParams({ page, limit, sort });
 
   let path = '/petitions';
 
-  if (city) {
-    path += `/${parameterize(city.name || '')}-${city.id}`;
-  }
-
-  if (queryString) {
-    path += `?${queryString}`;
-  }
+  path += state ? `/${parameterize(state || '')}` : '';
+  path += city ? `/${parameterize(city.name || '')}-${city.id}` : '';
+  path += queryString ? `?${queryString}` : '';
 
   return path;
 };

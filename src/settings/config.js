@@ -32,12 +32,22 @@ export default {
     title: 'Browse %x petitions %y',
     mostSupported: 'most supported',
     mostRecent: 'most recent',
+    filterBy: 'Filter by…',
     sortBy: 'Sort by…',
     chooseOption: 'Choose an option…',
     filters: {
       city: {
         label: 'Filter by city',
         placeholder: 'Enter city name or ZIP code'
+      },
+      winning: {
+        label: 'Winning petitions'
+      },
+      running: {
+        label: 'Running petitions'
+      },
+      all: {
+        label: 'All petitions'
       },
       date: {
         label: 'Most recent'

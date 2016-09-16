@@ -6,12 +6,22 @@ import Icon from 'components/Icon';
 import Autocomplete from 'containers/Autocomplete';
 import styles from './petitions-filters.scss';
 
+const FILTER_INPUT_NAME = 'filter-by';
 const SORT_INPUT_NAME = 'sort-by';
 const CITY_FILTER_NAME = 'city-filter';
 
 const PetitionsFilters = React.createClass({
+  handleFilterChange (e) {
+    this.props.router.push(petitionsPath({
+      state: e.target.value,
+      city: this.props.currentCity || '',
+      sort: this.props.location.query.sort || ''
+    }));
+  },
+
   handleSortChange (e) {
     this.props.router.push(petitionsPath({
+      state: this.props.params && this.props.params.state || this.props.location.query.state || '',
       city: this.props.currentCity || '',
       sort: e.target.value
     }));
@@ -19,6 +29,7 @@ const PetitionsFilters = React.createClass({
 
   getAutocompleteProps: ({
     router,
+    params,
     location,
     updateCurrentCity,
     currentCity
@@ -34,6 +45,7 @@ const PetitionsFilters = React.createClass({
         updateCurrentCity(newValue);
 
         router.push(petitionsPath({
+          state: params && params.state || location.query.state || '',
           city: newValue.id ? newValue : '',
           sort: location.query.sort || ''
         }));
@@ -46,6 +58,37 @@ const PetitionsFilters = React.createClass({
   render () {
     return (
       <div className={styles.root}>
+        <div className={styles.filter}>
+          <label className={styles.label} htmlFor={FILTER_INPUT_NAME}>
+            {settings.petitionsPage.filterBy}
+          </label>
+
+          <div className={styles['input-wrapper']}>
+            <select
+              className={styles.select}
+              id={FILTER_INPUT_NAME}
+              value={this.props.params && this.props.params.state || this.props.location.query.state || 'default'}
+              onChange={this.handleFilterChange}
+            >
+              <option disabled value='default'>
+                {settings.petitionsPage.chooseOption}
+              </option>
+
+              <option value='winning'>
+                {settings.petitionsPage.filters.winning.label}
+              </option>
+
+              <option value='running'>
+                {settings.petitionsPage.filters.running.label}
+              </option>
+
+              <option value='all'>
+                {settings.petitionsPage.filters.all.label}
+              </option>
+            </select>
+          </div>
+        </div>
+
         <div className={styles.filter}>
           <label className={styles.label} htmlFor={SORT_INPUT_NAME}>
             {settings.petitionsPage.sortBy}
