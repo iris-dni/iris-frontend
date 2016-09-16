@@ -29,9 +29,12 @@ export default {
     greyLite: '#e5e5e5'
   },
   petitionsPage: {
-    title: 'Browse %x petitions %y',
+    title: 'Browse %x %y petitions %z',
     mostSupported: 'most supported',
     mostRecent: 'most recent',
+    winning: 'winning',
+    running: 'running',
+    all: 'all',
     filterBy: 'Filter by…',
     sortBy: 'Sort by…',
     chooseOption: 'Choose an option…',
