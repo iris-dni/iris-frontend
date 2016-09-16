@@ -8,38 +8,29 @@ import PetitionsFilters from 'components/PetitionsFilters';
 import NoResults from 'components/NoResults';
 import Pagination from 'containers/Pagination';
 
-const Petitions = ({
-  petitions,
-  isLoading,
-  title,
-  autocompleteProps,
-  handleSortChange
-}) => (
+const Petitions = (props) => (
   <Container>
     <section>
       <div className={styles['header-wrapper']}>
         <Header>
           <PageTitle
-            title={title}
+            title={props.title}
             centered
           />
 
-          <PetitionsFilters
-            autocompleteProps={autocompleteProps}
-            handleSortChange={handleSortChange}
-          />
+          <PetitionsFilters {...props} />
         </Header>
       </div>
 
-      {petitions.length || isLoading
+      {props.petitions.length || props.isLoading
         ? <TeaserGrid
-          petitions={petitions}
-          isLoading={isLoading}
+          petitions={props.petitions}
+          isLoading={props.isLoading}
           />
         : <NoResults />
       }
 
-      {petitions.length > 0 &&
+      {props.petitions.length > 0 &&
         <Pagination />
       }
     </section>
