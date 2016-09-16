@@ -4,7 +4,7 @@ import Icon from 'components/Icon';
 import Autocomplete from 'containers/Autocomplete';
 import styles from './petitions-filters.scss';
 
-const PetitionsFilters = ({ autocompleteProps }) => (
+const PetitionsFilters = ({ autocompleteProps, handleSortChange }) => (
   <div className={styles.root}>
     <div className={styles.filter}>
       <label className={styles.label} htmlFor='sort-by'>
@@ -15,16 +15,18 @@ const PetitionsFilters = ({ autocompleteProps }) => (
         <select
           className={styles.select}
           id='sort-by'
-          defaultValue={settings.petitionsPage.chooseOption}>
+          defaultValue={settings.petitionsPage.chooseOption}
+          onChange={handleSortChange}
+        >
           <option disabled>
             {settings.petitionsPage.chooseOption}
           </option>
 
-          <option value='date'>
+          <option value='-created'>
             {settings.petitionsPage.filters.date.label}
           </option>
 
-          <option value='supporters'>
+          <option value='-supporters.amount'>
             {settings.petitionsPage.filters.supportersAmount.label}
           </option>
         </select>
