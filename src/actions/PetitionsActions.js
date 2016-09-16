@@ -17,17 +17,20 @@ export function fetchPetitions ({ location, params }) {
   // route params or query string params
   const queryParams = {
     page: parseInt(params && params.page || query.page || 1),
-    city: params && params.city || query.city || '',
-    cityName: params && params.cityName || query.cityName || '',
-    limit: parseInt(query.limit || 12)
+    city: (params && params.city || query.city || ''),
+    cityName: (params && params.cityName || query.cityName || ''),
+    limit: parseInt(query.limit || 12),
+    sort: query.sort || ''
   };
 
   // Take any query string values and encode them,
   // picking the relavent props for filering
   const queryString = encodeParams(pick(
-    query,
-    ['page', 'city', 'limit']
+    queryParams,
+    ['page', 'city', 'limit', 'sort']
   ));
+
+  console.log(queryParams);
 
   return (dispatch, getState) => {
     dispatch(requestPetitions());

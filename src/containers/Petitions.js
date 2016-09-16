@@ -22,13 +22,22 @@ const PetitionsContainer = withRouter(React.createClass({
   },
 
   componentWillReceiveProps (nextProps) {
-    if (this.props.location.pathname !== nextProps.location.pathname) {
+    console.log(this.props.location);
+    if (this.props.location.pathname !== nextProps.location.pathname ||
+        this.props.location.search !== nextProps.location.search) {
       this.props.fetchPetitions(nextProps);
 
       if (!nextProps.params.cityName) {
         this.props.updateCurrentCity({});
       }
     }
+  },
+
+  handleSortChange (e) {
+    this.props.router.push(petitionsPath({
+      // city: this.props.currentCity || '',
+      sort: e.target.value
+    }));
   },
 
   getAutocompleteProps: ({ router, updateCurrentCity, currentCity }) => ({
@@ -58,6 +67,7 @@ const PetitionsContainer = withRouter(React.createClass({
         <Petitions
           {...this.props}
           autocompleteProps={this.getAutocompleteProps(this.props)}
+          handleSortChange={this.handleSortChange}
         />
       </div>
     );
