@@ -7,7 +7,7 @@ import getPetitionsPageTitle from 'helpers/getPetitionsPageTitle';
 import { petitionsPath } from 'helpers/petitionUrls';
 import {
   fetchPetitions,
-  fetchCity,
+  fetchAll,
   updateCurrentCity
 } from 'actions/PetitionsActions';
 import settings from 'settings';
@@ -19,8 +19,6 @@ const PetitionsContainer = withRouter(React.createClass({
     if (this.props.location.action === 'PUSH') {
       this.props.fetchPetitions(this.props);
     }
-
-    this.props.fetchCity(this.props);
   },
 
   componentWillReceiveProps (nextProps) {
@@ -67,7 +65,7 @@ const PetitionsContainer = withRouter(React.createClass({
 }));
 
 PetitionsContainer.fetchData = ({ store, location, params }) => {
-  return store.dispatch(fetchPetitions({ location, params }));
+  return store.dispatch(fetchAll(location, params));
 };
 
 PetitionsContainer.propTypes = {
@@ -88,7 +86,6 @@ export const mapStateToProps = ({ petitions }) => ({
 
 export const mapDispatchToProps = (dispatch) => ({
   fetchPetitions: (options) => dispatch(fetchPetitions(options)),
-  fetchCity: (options) => dispatch(fetchCity(options)),
   updateCurrentCity: (newValue) => dispatch(updateCurrentCity(newValue))
 });
 
