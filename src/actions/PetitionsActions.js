@@ -55,6 +55,13 @@ export function fetchCity ({ params }) {
   };
 }
 
+export function fetchAll (location, params) {
+  return (dispatch) => Promise.all([
+    dispatch(fetchPetitions({ location, params })),
+    dispatch(fetchCity({ params }))
+  ]);
+}
+
 export function requestPetitions () {
   return {
     type: REQUEST_PETITIONS
