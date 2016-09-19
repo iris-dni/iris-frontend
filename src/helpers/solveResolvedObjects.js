@@ -1,6 +1,4 @@
 export default (petition, petitionResponse) => {
-  console.log(petitionResponse);
-
   // Get stuff we usually `resolve` via the endpoint
   const { city, owner } = petition;
   // Do this here because API does not return resolved
