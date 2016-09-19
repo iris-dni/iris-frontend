@@ -9,18 +9,18 @@ import {
   UPDATE_CURRENT_CITY
 } from './actionTypes';
 
-export function fetchPetitions ({ location, params }) {
+export function fetchPetitions ({ location, params = {} }) {
   // Get query from react-router location
   const { query } = location;
 
   // Construct our query params based on route params or query string params
   const queryParams = {
-    page: parseInt(params && params.page || query.page || 1),
-    city: params && params.city || query.city || '',
-    cityName: params && params.cityName || query.cityName || '',
-    state: params && params.state || query.state || '',
+    page: parseInt(params.page || query.page || 1),
+    city: params.city || query.city || '',
+    cityName: params.cityName || query.cityName || '',
+    state: params.state || query.state || '',
     limit: parseInt(query.limit || 12),
-    sort: params && params.sort || query.sort || ''
+    sort: query.sort || ''
   };
 
   // To avoid repetition between URL params and query params, we don’t save
