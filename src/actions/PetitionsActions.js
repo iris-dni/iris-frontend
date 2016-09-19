@@ -1,8 +1,7 @@
 import petitionRepository from 'services/api/repositories/petition';
 import cityRepository from 'services/api/repositories/city';
-import encodeParams from 'helpers/encodeParams';
 import getPetitionsQueryParams from 'helpers/getPetitionsQueryParams';
-import { pick } from 'lodash/object';
+import getPetitionsQueryString from 'helpers/getPetitionsQueryString';
 
 import {
   REQUEST_PETITIONS,
@@ -20,10 +19,7 @@ export function fetchPetitions ({ location, params }) {
 
   // Take any query string values and encode them,
   // picking the relavent props for filering
-  const queryString = encodeParams(pick(
-    query,
-    ['page', 'city', 'limit']
-  ));
+  const queryString = getPetitionsQueryString(query);
 
   return (dispatch, getState) => {
     dispatch(requestPetitions());
@@ -63,10 +59,8 @@ export function fetchCity (params) {
 
   return (dispatch) => city
     ? cityRepository.findOne(city)
-        .then(response => dispatch(
-          updateCurrentCity(response.data)
-        ))
-    : dispatch(updateCurrentCity(null));
+        .then(response => dispatch(updateCurrentCity(response.data)))
+    : dispatch(updateCurrentCity({}));
 }
 
 export function updateCurrentCity (currentCity) {
