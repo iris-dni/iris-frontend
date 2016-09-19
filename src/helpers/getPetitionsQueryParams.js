@@ -1,6 +1,6 @@
-export default (params, query) => ({
-  page: parseInt(params && params.page || query && query.page || 1),
-  city: params && params.city || '',
-  cityName: params && params.cityName || '',
-  limit: parseInt(query && query.limit || 12)
+export default (params = {}, query = {}) => ({
+  page: parseInt(params.page || query.page || 1),
+  city: params.city || '',
+  cityName: params.cityName || '',
+  limit: parseInt(query.limit || 12)
 });
