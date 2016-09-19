@@ -6,11 +6,7 @@ import { isEqual } from 'lodash/lang';
 import citySuggestionFormatter from 'helpers/citySuggestionFormatter';
 import getPetitionsPageTitle from 'helpers/getPetitionsPageTitle';
 import { petitionsPath } from 'helpers/petitionUrls';
-import {
-  fetchPetitions,
-  fetchPetitionsAndCity,
-  updateCurrentCity
-} from 'actions/PetitionsActions';
+import { fetchPetitionsAndCity } from 'actions/PetitionsActions';
 import settings from 'settings';
 import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';
@@ -21,7 +17,7 @@ const PetitionsContainer = withRouter(React.createClass({
     // if they have changed then we fetch petitions client-side
     if (!this.props.petitions.length ||
       !isEqual(this.props.params, this.props.routeParams)) {
-      this.props.fetchPetitions(this.props);
+      this.props.fetchPetitionsAndCity(this.props);
     }
   },
 
@@ -29,17 +25,11 @@ const PetitionsContainer = withRouter(React.createClass({
     // Deep compare filter params, if they have changes
     // then we fetch petitions again client-side
     if (!isEqual(this.props.params, nextProps.params)) {
-      this.props.fetchPetitions(nextProps);
-
-      // If no city given in new props
-      if (!nextProps.params.cityName) {
-        // Force clear autocomplete
-        this.props.updateCurrentCity({});
-      }
+      this.props.fetchPetitionsAndCity(nextProps);
     }
   },
 
-  getAutocompleteProps: ({ router, updateCurrentCity, currentCity }) => ({
+  getAutocompleteProps: ({ router, currentCity }) => ({
     name: 'city-filter',
     endpoint: 'cities',
     suggestionFormatter: citySuggestionFormatter,
@@ -48,11 +38,7 @@ const PetitionsContainer = withRouter(React.createClass({
     helper: {
       value: { data: currentCity },
       onChange (newValue) {
-        updateCurrentCity(newValue);
-
-        router.push(petitionsPath({
-          city: (newValue.id ? newValue : '')
-        }));
+        router.push(petitionsPath({ city: newValue }));
       },
       onBlur () {}
     },
@@ -93,8 +79,7 @@ export const mapStateToProps = ({ petitions }) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchPetitions: (options) => dispatch(fetchPetitions(options)),
-  updateCurrentCity: (newValue) => dispatch(updateCurrentCity(newValue))
+  fetchPetitionsAndCity: (options) => dispatch(fetchPetitionsAndCity(options))
 });
 
 export default connect(

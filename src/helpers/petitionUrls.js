@@ -7,7 +7,7 @@ export const petitionsPath = (options = {}) => {
 
   let path = '/petitions';
 
-  if (city) {
+  if (city && city.id) {
     path += `/${parameterize(city.name || '')}-${city.id}`;
   }
 
