@@ -1,6 +1,7 @@
 import petitionRepository from 'services/api/repositories/petition';
 import cityRepository from 'services/api/repositories/city';
 import encodeParams from 'helpers/encodeParams';
+import getPetitionsQueryParams from 'helpers/getPetitionsQueryParams';
 import { pick } from 'lodash/object';
 
 import {
@@ -10,17 +11,12 @@ import {
 } from './actionTypes';
 
 export function fetchPetitions ({ location, params }) {
-  // Get query from react-router locatiin
+  // Get query from react-router location
   const { query } = location;
 
   // Construct our query params, based on
   // route params or query string params
-  const queryParams = {
-    page: parseInt(params && params.page || query.page || 1),
-    city: params && params.city || query.city || '',
-    cityName: params && params.cityName || query.cityName || '',
-    limit: parseInt(query.limit || 12)
-  };
+  const queryParams = getPetitionsQueryParams(params, query);
 
   // Take any query string values and encode them,
   // picking the relavent props for filering
@@ -40,25 +36,10 @@ export function fetchPetitions ({ location, params }) {
   };
 }
 
-export function fetchCity ({ params }) {
-  const { city } = params;
-
-  return (dispatch) => {
-    if (city) {
-      return cityRepository.findOne(city)
-        .then(response => (
-          dispatch(updateCurrentCity(response.data))
-        ));
-    }
-
-    return dispatch(updateCurrentCity(null));
-  };
-}
-
-export function fetchAll (location, params) {
+export function fetchPetitionsAndCity ({ location, params }) {
   return (dispatch) => Promise.all([
     dispatch(fetchPetitions({ location, params })),
-    dispatch(fetchCity({ params }))
+    dispatch(fetchCity(params))
   ]);
 }
 
@@ -75,6 +56,17 @@ export function receivePetitions (petitions, params, qs) {
     params,
     qs
   };
+}
+
+export function fetchCity (params) {
+  const { city } = params;
+
+  return (dispatch) => city
+    ? cityRepository.findOne(city)
+        .then(response => dispatch(
+          updateCurrentCity(response.data)
+        ))
+    : dispatch(updateCurrentCity(null));
 }
 
 export function updateCurrentCity (currentCity) {

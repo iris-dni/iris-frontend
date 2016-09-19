@@ -8,7 +8,7 @@ import getPetitionsPageTitle from 'helpers/getPetitionsPageTitle';
 import { petitionsPath } from 'helpers/petitionUrls';
 import {
   fetchPetitions,
-  fetchAll,
+  fetchPetitionsAndCity,
   updateCurrentCity
 } from 'actions/PetitionsActions';
 import settings from 'settings';
@@ -73,7 +73,7 @@ const PetitionsContainer = withRouter(React.createClass({
 }));
 
 PetitionsContainer.fetchData = ({ store, location, params }) => {
-  return store.dispatch(fetchAll(location, params));
+  return store.dispatch(fetchPetitionsAndCity({ location, params }));
 };
 
 PetitionsContainer.propTypes = {
