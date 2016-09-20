@@ -12,14 +12,14 @@ describe('petitionsPath', () => {
   context('with a city filter', () => {
     const city = { name: 'Oberdorf (BL)', id: 'nwch:2616' };
     const actual = urlHelpers.petitionsPath({ city });
-    const expected = '/petitions/oberdorf-bl-nwch:2616';
+    const expected = '/petitions/in/oberdorf-bl-nwch:2616';
 
     it(`returns ${expected}`, () => assert.equal(actual, expected));
   });
 
   context('with pagination params', () => {
     const actual = urlHelpers.petitionsPath({ page: 5, limit: 10 });
-    const expected = '/petitions?page=5&limit=10';
+    const expected = '/petitions/page/5?limit=10';
 
     it(`returns ${expected}`, () => assert.equal(actual, expected));
   });
@@ -27,7 +27,7 @@ describe('petitionsPath', () => {
   context('with pagination params and city', () => {
     const city = { name: 'Oberdorf (BL)', id: 'nwch:2616' };
     const actual = urlHelpers.petitionsPath({ city, page: 5 });
-    const expected = '/petitions/oberdorf-bl-nwch:2616?page=5';
+    const expected = '/petitions/in/oberdorf-bl-nwch:2616/page/5';
 
     it(`returns ${expected}`, () => assert.equal(actual, expected));
   });
