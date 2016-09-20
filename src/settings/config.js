@@ -173,5 +173,23 @@ export default {
   ],
   footer: {
     copyright: 'Copyright \u00A9 2016 Iris'
+  },
+  petitionsStates: {
+    running: ['supportable.active', 'supportable.winner'],
+    winning: ['supportable.winner', 'processing.*', 'closed'],
+    all: [
+      'supportable.winner',
+      'supportable.active',
+      'processing.*',
+      'closed',
+      'loser'
+    ],
+    default: [
+      'supportable.active',
+      'supportable.winner',
+      'loser',
+      'processing.*',
+      'closed'
+    ]
   }
 };
