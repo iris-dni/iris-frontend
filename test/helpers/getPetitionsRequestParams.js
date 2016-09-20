@@ -1,7 +1,5 @@
-import chai from 'chai';
+import { assert } from 'chai';
 import getPetitionsRequestParams from 'helpers/getPetitionsRequestParams';
-
-const { assert } = chai;
 
 describe('getPetitionsRequestParams', () => {
   it('always returns resolved city and owner', () => {
