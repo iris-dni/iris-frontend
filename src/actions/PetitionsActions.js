@@ -32,6 +32,15 @@ export function fetchPetitions ({ location, params }) {
   };
 }
 
+export function fetchCity ({ params }) {
+  const { city } = params;
+
+  return (dispatch) => city
+    ? cityRepository.findOne(city)
+        .then(response => dispatch(updateCurrentCity(response.data)))
+    : dispatch(updateCurrentCity({}));
+}
+
 export function fetchPetitionsAndCity ({ location, params }) {
   return (dispatch) => Promise.all([
     dispatch(fetchPetitions({ location, params })),
@@ -52,15 +61,6 @@ export function receivePetitions (petitions, params, qs) {
     params,
     qs
   };
-}
-
-export function fetchCity ({ params }) {
-  const { city } = params;
-
-  return (dispatch) => city
-    ? cityRepository.findOne(city)
-        .then(response => dispatch(updateCurrentCity(response.data)))
-    : dispatch(updateCurrentCity({}));
 }
 
 export function updateCurrentCity (currentCity) {
