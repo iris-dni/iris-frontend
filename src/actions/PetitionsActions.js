@@ -19,7 +19,7 @@ export function fetchPetitions ({ location, params = {} }) {
     city: params.city || query.city || '',
     cityName: params.cityName || query.cityName || '',
     state: params.state || query.state || '',
-    limit: parseInt(query.limit || 12),
+    limit: query.limit && parseInt(query.limit),
     sort: query.sort || ''
   };
 
