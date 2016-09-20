@@ -38,7 +38,7 @@ export default {
     filters: {
       city: {
         label: 'Select a city',
-        placeholder: 'Enter city name or ZIP code'
+        placeholder: 'Enter name or ZIP'
       },
       winning: 'Winning petitions',
       running: 'Running petitions',

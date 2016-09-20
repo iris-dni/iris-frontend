@@ -1,26 +1,5 @@
 @import 'globals';
 
-.root {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  float: left;
-  width: 100%;
-  margin-bottom: map-get($spacing, 'grid');
-  padding-left: map-get($spacing, 'grid');
-
-  @include media('>grid-2-cols', '<=grid-3-cols') {
-    &:not(:first-child) {
-      width: (100% / 2);
-    }
-  }
-
-  @include media('>grid-3-cols') {
-    width: (100% / 3);
-    margin-bottom: 0;
-  }
-}
-
 .label {
   color: color('black');
   font-weight: bold;
@@ -31,8 +10,4 @@
   margin-top: 0.5em;
   font-weight: normal;
   color: color('black');
-
-  @include media('<grid-2-cols') {
-    max-width: map-get($widths, 'autocomplete-max');
-  }
 }
