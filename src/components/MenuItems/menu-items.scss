@@ -12,7 +12,7 @@
   z-index: 3;
   transition: transform 500ms;
 
-  @include media('>=navigation-menu') {
+  @include media('>navigation-menu') {
     display: inline;
     width: auto;
     height: auto;
@@ -30,7 +30,7 @@
  *    to overlap the nav‘s grey border.
  */
 .element {
-  @include media('>=navigation-menu') {
+  @include media('>navigation-menu') {
     display: inline-block;
     padding: 0 1em;
     margin-bottom: -1px; /* 1 */
@@ -40,7 +40,7 @@
 
 .element:last-of-type {
   width: 100%;
-  background-color: color('success');
+  background-color: color('primary');
   color: color('white');
   font-weight: bold;
   text-align: center;
@@ -48,7 +48,7 @@
   transition: all 250ms;
   padding: 0;
 
-  @include media('>=navigation-menu') {
+  @include media('>navigation-menu') {
     float: right;
     width: auto;
   }
@@ -84,15 +84,13 @@ $link-padding: 16px;
 }
 
 .element:not(:last-of-type) .link {
-  margin-bottom: 1em;
-
-  @include media('>=navigation-menu') {
-    margin-bottom: 0;
+  @include media('<=navigation-menu') {
+    margin-bottom: 1em;
   }
 }
 
 .element:not(:last-of-type) .link:hover,
 .element:not(:last-of-type) .active {
-  border-color: color('success');
+  border-color: color('primary');
 }
 

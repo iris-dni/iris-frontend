@@ -1,33 +1,25 @@
 import petitionRepository from 'services/api/repositories/petition';
-import cityRepository from 'services/api/repositories/city';
-import encodeParams from 'helpers/encodeParams';
-import { pick } from 'lodash/object';
+import getPetitionsQueryParams from 'helpers/getPetitionsQueryParams';
+import getPetitionsQueryString from 'helpers/getPetitionsQueryString';
+
+import { fetchCity } from 'actions/CityActions';
 
 import {
   REQUEST_PETITIONS,
-  RECEIVE_PETITIONS,
-  UPDATE_CURRENT_CITY
+  RECEIVE_PETITIONS
 } from './actionTypes';
 
 export function fetchPetitions ({ location, params }) {
-  // Get query from react-router locatiin
+  // Get query from react-router location
   const { query } = location;
 
   // Construct our query params, based on
   // route params or query string params
-  const queryParams = {
-    page: parseInt(params && params.page || query.page || 1),
-    city: params && params.city || query.city || '',
-    cityName: params && params.cityName || query.cityName || '',
-    limit: parseInt(query.limit || 12)
-  };
+  const queryParams = getPetitionsQueryParams(params, query);
 
   // Take any query string values and encode them,
   // picking the relavent props for filering
-  const queryString = encodeParams(pick(
-    query,
-    ['page', 'city', 'limit']
-  ));
+  const queryString = getPetitionsQueryString(query);
 
   return (dispatch, getState) => {
     dispatch(requestPetitions());
@@ -40,22 +32,7 @@ export function fetchPetitions ({ location, params }) {
   };
 }
 
-export function fetchCity ({ params }) {
-  const { city } = params;
-
-  return (dispatch) => {
-    if (city) {
-      return cityRepository.findOne(city)
-        .then(response => (
-          dispatch(updateCurrentCity(response.data))
-        ));
-    }
-
-    return dispatch(updateCurrentCity(null));
-  };
-}
-
-export function fetchAll (location, params) {
+export function fetchPetitionsAndCity ({ location, params }) {
   return (dispatch) => Promise.all([
     dispatch(fetchPetitions({ location, params })),
     dispatch(fetchCity({ params }))
@@ -74,12 +51,5 @@ export function receivePetitions (petitions, params, qs) {
     petitions,
     params,
     qs
-  };
-}
-
-export function updateCurrentCity (currentCity) {
-  return {
-    type: UPDATE_CURRENT_CITY,
-    currentCity
   };
 }

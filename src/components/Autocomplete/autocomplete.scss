@@ -12,7 +12,8 @@ $suggestion-border: 1px solid color('grey-lite');
 
 .thin {
   composes: input;
-  padding: 8px;
+  padding: 8px 40px 8px 8px;
+  font-size: 14px;
 }
 
 .open {
