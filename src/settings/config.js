@@ -125,9 +125,8 @@ export default {
     }
   },
   /**
-   * You can configure one SSO provider in the ENV variables using
-   * SSO_PROVIDER_TEXT and SSO_PROVIDER_URL or you can set multiple ssoProviders
-   * here:
+   * You can configure one environment-specific SSO provider in the ENV variables using
+   * SSO_PROVIDER_TEXT and SSO_PROVIDER_URL. Or you can set multiple ssoProviders here:
    */
   // ssoProviders: [
   //   {
