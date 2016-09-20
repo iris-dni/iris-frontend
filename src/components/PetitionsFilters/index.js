@@ -7,6 +7,8 @@ import Select from 'components/Select';
 import Autocomplete from 'containers/Autocomplete';
 import styles from './petitions-filters.scss';
 
+const CITY_FILTER_NAME = 'city-filter';
+
 const FILTER_INPUT_NAME = 'filter-by';
 const FILTER_INPUT_OPTIONS = [
   {
@@ -44,8 +46,6 @@ const SORT_INPUT_OPTIONS = [
     label: settings.petitionsPage.filters.supportersAmount
   }
 ];
-
-const CITY_FILTER_NAME = 'city-filter';
 
 const PetitionsFilters = React.createClass({
   handleFilterChange (e) {
@@ -101,6 +101,20 @@ const PetitionsFilters = React.createClass({
     return (
       <div className={styles.root}>
         <PetitionsFiltersField
+          name={CITY_FILTER_NAME}
+          label={settings.petitionsPage.filters.city.label}
+        >
+          <Autocomplete
+            {...this.getAutocompleteProps(this.props)}
+            inputModifier='thin'
+            icon={{
+              id: 'Search',
+              fill: 'none'
+            }}
+          />
+        </PetitionsFiltersField>
+
+        <PetitionsFiltersField
           name={FILTER_INPUT_NAME}
           label={settings.petitionsPage.filterBy}
         >
@@ -120,20 +134,6 @@ const PetitionsFilters = React.createClass({
             value={this.getSelectValue('sort')}
             handleChange={this.handleSortChange}
             options={SORT_INPUT_OPTIONS} />
-        </PetitionsFiltersField>
-
-        <PetitionsFiltersField
-          name={CITY_FILTER_NAME}
-          label={settings.petitionsPage.filters.city.label}
-        >
-          <Autocomplete
-            {...this.getAutocompleteProps(this.props)}
-            inputModifier='thin'
-            icon={{
-              id: 'Search',
-              fill: 'none'
-            }}
-          />
         </PetitionsFiltersField>
       </div>
     );

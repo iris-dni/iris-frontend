@@ -35,12 +35,12 @@ export default {
     winning: 'winning',
     running: 'running',
     all: 'all',
-    filterBy: 'Filter by…',
-    sortBy: 'Sort by…',
+    filterBy: 'Filter by',
+    sortBy: 'Sort by',
     chooseOption: 'Choose an option…',
     filters: {
       city: {
-        label: 'Filter by city',
+        label: 'Select a city',
         placeholder: 'Enter city name or ZIP code'
       },
       winning: 'Winning petitions',
