@@ -1,7 +1,8 @@
 import cityRepository from 'services/api/repositories/city';
 
 import {
-  UPDATE_CURRENT_CITY
+  UPDATE_CURRENT_CITY,
+  CLEAR_CURRENT_CITY
 } from './actionTypes';
 
 export function fetchCity ({ params }) {
@@ -17,5 +18,11 @@ export function updateCurrentCity (currentCity) {
   return {
     type: UPDATE_CURRENT_CITY,
     currentCity
+  };
+}
+
+export function clearCurrentCity () {
+  return {
+    type: CLEAR_CURRENT_CITY
   };
 }
