@@ -3,7 +3,7 @@
 .root {
   padding-top: 2em;
 
-  @include media('>=768px') {
+  @include media('>768px') {
     display: flex;
     justify-content: flex-end;
   }
@@ -39,14 +39,14 @@
   font-weight: normal;
   color: color('black');
 
-  @include media('>=768px') {
+  @include media('>768px') {
     display: inline-block;
   }
 }
 
 .icon {
   position: absolute;
-  right: 1em;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 2;

@@ -1,5 +1,5 @@
 export default (params, page, qs) => {
-  var petitionsPath = '/petitions/';
+  let petitionsPath = '/petitions/';
 
   if (params.cityName && params.city) {
     petitionsPath += `${params.cityName}-${params.city}/`;

@@ -2,30 +2,28 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { isEqual } from 'lodash/lang';
 import getPetitionsPageTitle from 'helpers/getPetitionsPageTitle';
-import {
-  fetchPetitions,
-  fetchAll,
-  updateCurrentCity
-} from 'actions/PetitionsActions';
+import { fetchPetitionsAndCity } from 'actions/PetitionsActions';
 import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';
 
 const PetitionsContainer = withRouter(React.createClass({
   componentWillMount () {
-    if (this.props.location.action === 'PUSH') {
-      this.props.fetchPetitions(this.props);
+    // If there are no petitions, or deep compare filter params;
+    // if they have changed then we fetch petitions client-side
+    if (!this.props.petitions.length ||
+      !isEqual(this.props.params, this.props.routeParams)) {
+      this.props.fetchPetitionsAndCity(this.props);
     }
   },
 
   componentWillReceiveProps (nextProps) {
-    if (this.props.location.pathname !== nextProps.location.pathname ||
-        this.props.location.search !== nextProps.location.search) {
-      this.props.fetchPetitions(nextProps);
-
-      if (!nextProps.params.cityName) {
-        this.props.updateCurrentCity(null);
-      }
+    // Deep compare filter params, if they have changes
+    // then we fetch petitions again client-side
+    if (!isEqual(this.props.params, nextProps.params) ||
+        !isEqual(this.props.location.query, nextProps.location.query)) {
+      this.props.fetchPetitionsAndCity(nextProps);
     }
   },
 
@@ -40,7 +38,7 @@ const PetitionsContainer = withRouter(React.createClass({
 }));
 
 PetitionsContainer.fetchData = ({ store, location, params }) => {
-  return store.dispatch(fetchAll(location, params));
+  return store.dispatch(fetchPetitionsAndCity({ location, params }));
 };
 
 PetitionsContainer.propTypes = {
@@ -60,8 +58,7 @@ export const mapStateToProps = ({ petitions }) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchPetitions: (options) => dispatch(fetchPetitions(options)),
-  updateCurrentCity: (newValue) => dispatch(updateCurrentCity(newValue))
+  fetchPetitionsAndCity: (options) => dispatch(fetchPetitionsAndCity(options))
 });
 
 export default connect(

@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { fetchPetition } from 'actions/PetitionActions';
 import settings from 'settings';
 import PublishedPetition from 'components/PublishedPetition';
-import getPetitionPath from 'helpers/getPetitionPath';
 import Loading from 'components/Loading';
 import getPetition from 'selectors/petition';
+import getPetitionPath from 'selectors/petitionPath';
 
 const PublishedPetitionContainer = withRouter(React.createClass({
   componentWillMount () {

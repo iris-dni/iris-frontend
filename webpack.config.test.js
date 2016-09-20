@@ -1,3 +1,4 @@
+require('dotenv').config();
 var webpack = require('webpack');
 var nodeExternals = require('webpack-node-externals');
 var config = require('./webpack.config.prod.js');
@@ -9,6 +10,7 @@ config.target = 'node';
 config.externals = [nodeExternals()];
 
 config.plugins = config.plugins.concat([
+  new webpack.EnvironmentPlugin(config.envVars),
   new webpack.DefinePlugin({
     'process.env': {
       'TEST_ENV': JSON.stringify('true')
