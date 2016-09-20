@@ -1,12 +1,12 @@
 import petitionRepository from 'services/api/repositories/petition';
-import cityRepository from 'services/api/repositories/city';
 import getPetitionsQueryParams from 'helpers/getPetitionsQueryParams';
 import getPetitionsQueryString from 'helpers/getPetitionsQueryString';
 
+import { fetchCity } from 'actions/CityActions';
+
 import {
   REQUEST_PETITIONS,
-  RECEIVE_PETITIONS,
-  UPDATE_CURRENT_CITY
+  RECEIVE_PETITIONS
 } from './actionTypes';
 
 export function fetchPetitions ({ location, params }) {
@@ -32,15 +32,6 @@ export function fetchPetitions ({ location, params }) {
   };
 }
 
-export function fetchCity ({ params }) {
-  const { city } = params;
-
-  return (dispatch) => city
-    ? cityRepository.findOne(city)
-        .then(response => dispatch(updateCurrentCity(response.data)))
-    : dispatch(updateCurrentCity({}));
-}
-
 export function fetchPetitionsAndCity ({ location, params }) {
   return (dispatch) => Promise.all([
     dispatch(fetchPetitions({ location, params })),
@@ -60,12 +51,5 @@ export function receivePetitions (petitions, params, qs) {
     petitions,
     params,
     qs
-  };
-}
-
-export function updateCurrentCity (currentCity) {
-  return {
-    type: UPDATE_CURRENT_CITY,
-    currentCity
   };
 }
