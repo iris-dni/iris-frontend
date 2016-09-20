@@ -16,10 +16,7 @@ const ModalWindowContainer = React.createClass({
           <LoginModal
             title={title}
             intro={intro}
-            ssoProviders={generateSsoProviders(
-              ssoProviders,
-              returnUrl || ''
-            )}
+            ssoProviders={generateSsoProviders(ssoProviders, returnUrl)}
           />
         }
         {type === 'supported' &&

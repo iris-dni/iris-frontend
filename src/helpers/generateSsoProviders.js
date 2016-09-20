@@ -1,6 +1,6 @@
 import generateSsoUrl from 'helpers/generateSsoUrl';
 
-export default (providers, returnUrl) => {
+export default (providers, returnUrl = '') => {
   const defaultProvider = {
     text: process.env.SSO_PROVIDER_TEXT,
     url: process.env.SSO_PROVIDER_URL
