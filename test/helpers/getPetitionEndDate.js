@@ -14,9 +14,10 @@ describe('getPetitionEndDate', () => {
 
   context('when an expiry date is given', () => {
     it('returns the expiry date', () => {
-      const expires = 'Thu Dec 01 2016 00:00:00 GMT+0100';
+      const date = 'Thu Dec 01 2016 00:00:00 GMT+0100';
+      const expires = moment(date).toISOString();
       const actual = getPetitionEndDate({ expires }).toString();
-      const expected = expires;
+      const expected = date;
 
       assert.equal(actual, expected);
     });
@@ -24,9 +25,10 @@ describe('getPetitionEndDate', () => {
 
   context('when a created date is given and no expiry date is given', () => {
     it('returns the expiry date', () => {
-      const created = 'Thu Dec 01 2016 00:00:00 GMT+0100';
+      const date = 'Thu Dec 01 2016 00:00:00 GMT+0100';
+      const created = moment(date).toISOString();
       const actual = getPetitionEndDate({ created }).toString();
-      const expected = moment(created).add(30, 'days').toString();
+      const expected = moment(date).add(30, 'days').toString();
 
       assert.equal(actual, expected);
     });
