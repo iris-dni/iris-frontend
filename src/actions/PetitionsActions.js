@@ -35,7 +35,7 @@ export function fetchPetitions ({ location, params }) {
 export function fetchPetitionsAndCity ({ location, params }) {
   return (dispatch) => Promise.all([
     dispatch(fetchPetitions({ location, params })),
-    dispatch(fetchCity(params))
+    dispatch(fetchCity({ params }))
   ]);
 }
 
@@ -54,8 +54,8 @@ export function receivePetitions (petitions, params, qs) {
   };
 }
 
-export function fetchCity (params) {
-  const { city } = params;
+export function fetchCity ({ params }) {
+  const { city } = params || {};
 
   return (dispatch) => city
     ? cityRepository.findOne(city)
