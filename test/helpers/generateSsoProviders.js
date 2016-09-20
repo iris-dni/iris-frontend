@@ -7,15 +7,14 @@ describe('generateSsoProviders', () => {
   const returnPath = '/return-url';
   const escapedReturnUrl = escape([envVars.baseUrl, returnPath].join(''));
 
+  const ssoProvidersFromEnv = envVars.ssoProviderText && envVars.ssoProviderUrl
+    ? [{ text: envVars.ssoProviderText, url: `${envVars.ssoProviderUrl}?irisreturl=${escapedReturnUrl}` }]
+    : [];
+
   context('without providers from settings but with an ENV provider', () => {
     it('returns only the ENV provider', () => {
       const actual = generateSsoProviders([], returnPath);
-      const expected = [
-        {
-          text: envVars.ssoProviderText,
-          url: `${envVars.ssoProviderUrl}?irisreturl=${escapedReturnUrl}`
-        }
-      ];
+      const expected = ssoProvidersFromEnv;
 
       assert.deepEqual(actual, expected);
     });
@@ -43,12 +42,8 @@ describe('generateSsoProviders', () => {
         {
           text: 'Sign in with B',
           url: `https://b.example.com?irisreturl=${escapedReturnUrl}`
-        },
-        {
-          text: envVars.ssoProviderText,
-          url: `${envVars.ssoProviderUrl}?irisreturl=${escapedReturnUrl}`
         }
-      ];
+      ].concat(ssoProvidersFromEnv);
 
       assert.deepEqual(actual, expected);
     });
@@ -73,12 +68,8 @@ describe('generateSsoProviders', () => {
       {
         text: 'Sign in with A',
         url: `https://a.example.com?irisreturl=${escapedReturnUrl}`
-      },
-      {
-        text: envVars.ssoProviderText,
-        url: `${envVars.ssoProviderUrl}?irisreturl=${escapedReturnUrl}`
       }
-    ];
+    ].concat(ssoProvidersFromEnv);
 
     assert.deepEqual(actual, expected);
   });

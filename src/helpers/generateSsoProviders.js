@@ -8,7 +8,7 @@ export default (providers, returnUrl) => {
 
   return (providers || [])
     .concat(defaultProvider)
-    .filter(provider => !!provider.text && !!provider.url)
+    .filter(provider => provider.text && provider.url)
     .map(provider => ({
       text: provider.text,
       url: generateSsoUrl(provider.url, returnUrl)
