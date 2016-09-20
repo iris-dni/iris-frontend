@@ -23,9 +23,6 @@ const PetitionsContainer = withRouter(React.createClass({
       !isEqual(this.props.params, this.props.routeParams)) {
       this.props.fetchPetitions(this.props);
     }
-
-    // Fetch the city to populate autocomplete
-    this.props.fetchCity(this.props);
   },
 
   componentWillReceiveProps (nextProps) {
