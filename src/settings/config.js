@@ -29,15 +29,12 @@ export default {
     greyLite: '#e5e5e5'
   },
   petitionsPage: {
-    title: 'Browse %x %y petitions %z',
-    mostSupported: 'most supported',
-    mostRecent: 'most recent',
+    title: 'Browse %x petitions %y',
     winning: 'winning',
     running: 'running',
     all: 'all',
     filterBy: 'Filter by',
     sortBy: 'Sort by',
-    chooseOption: 'Choose an option…',
     filters: {
       city: {
         label: 'Select a city',

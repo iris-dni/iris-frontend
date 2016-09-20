@@ -12,17 +12,12 @@ const CITY_FILTER_NAME = 'city-filter';
 const FILTER_INPUT_NAME = 'filter-by';
 const FILTER_INPUT_OPTIONS = [
   {
-    disabled: true,
-    value: 'default',
-    label: settings.petitionsPage.chooseOption
+    value: 'running',
+    label: settings.petitionsPage.filters.running
   },
   {
     value: 'winning',
     label: settings.petitionsPage.filters.winning
-  },
-  {
-    value: 'running',
-    label: settings.petitionsPage.filters.running
   },
   {
     value: 'all',
@@ -32,11 +27,6 @@ const FILTER_INPUT_OPTIONS = [
 
 const SORT_INPUT_NAME = 'sort-by';
 const SORT_INPUT_OPTIONS = [
-  {
-    disabled: true,
-    value: 'default',
-    label: settings.petitionsPage.chooseOption
-  },
   {
     value: 'date',
     label: settings.petitionsPage.filters.date
@@ -92,9 +82,9 @@ const PetitionsFilters = React.createClass({
     html: { placeholder: settings.petitionsPage.filters.city.placeholder }
   }),
 
-  getSelectValue (key) {
+  getSelectValue (key, defaultValue) {
     return this.props.params && this.props.params[key] ||
-      this.props.location.query[key] || 'default';
+      this.props.location.query[key] || defaultValue;
   },
 
   render () {
@@ -120,7 +110,7 @@ const PetitionsFilters = React.createClass({
         >
           <Select
             name={FILTER_INPUT_NAME}
-            value={this.getSelectValue('state')}
+            value={this.getSelectValue('state', 'running')}
             handleChange={this.handleFilterChange}
             options={FILTER_INPUT_OPTIONS} />
         </PetitionsFiltersField>
@@ -131,7 +121,7 @@ const PetitionsFilters = React.createClass({
         >
           <Select
             name={SORT_INPUT_NAME}
-            value={this.getSelectValue('sort')}
+            value={this.getSelectValue('sort', 'date')}
             handleChange={this.handleSortChange}
             options={SORT_INPUT_OPTIONS} />
         </PetitionsFiltersField>
