@@ -43,21 +43,11 @@ export default {
         label: 'Filter by city',
         placeholder: 'Enter city name or ZIP code'
       },
-      winning: {
-        label: 'Winning petitions'
-      },
-      running: {
-        label: 'Running petitions'
-      },
-      all: {
-        label: 'All petitions'
-      },
-      date: {
-        label: 'Most recent'
-      },
-      supportersAmount: {
-        label: 'Supporters amount'
-      }
+      winning: 'Winning petitions',
+      running: 'Running petitions',
+      all: 'All petitions',
+      date: 'Most recent',
+      supportersAmount: 'Supporters amount'
     }
   },
   petitionPage: {
