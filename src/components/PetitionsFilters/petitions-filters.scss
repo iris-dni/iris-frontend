@@ -3,7 +3,7 @@
 .root {
   padding-top: 2em;
 
-  @include media('>=768px') {
+  @include media('>768px') {
     display: flex;
     justify-content: flex-end;
   }
@@ -30,7 +30,7 @@
   font-weight: normal;
   color: color('black');
 
-  @include media('>=768px') {
+  @include media('>768px') {
     display: inline-block;
   }
 }
