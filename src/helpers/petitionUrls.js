@@ -3,12 +3,11 @@ import parameterize from './parameterize';
 
 export const petitionsPath = (options = {}) => {
   const { state, city, page, limit, sort } = options || {};
-  const queryString = encodeParams({ limit, sort });
+  const queryString = encodeParams({ limit, sort, state });
 
   let path = '/petitions';
 
-  path += city ? `/in/${parameterize(city.name || '')}-${city.id}` : '';
-  path += state ? `/s/${parameterize(state || '')}` : '';
+  path += city ? `/${parameterize(city.name || '')}-${city.id}` : '';
   path += page ? `/page/${page}` : '';
   path += queryString ? `?${queryString}` : '';
 
