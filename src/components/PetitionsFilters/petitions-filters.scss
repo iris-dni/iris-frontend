@@ -1,10 +1,10 @@
 @import 'globals';
 
-.root {
-  padding-top: 2em;
+$spacing: map-get($spacing, 'grid');
 
-  @include media('>=768px') {
-    display: flex;
-    justify-content: center;
-  }
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$spacing;
+  padding-top: 2em;
 }

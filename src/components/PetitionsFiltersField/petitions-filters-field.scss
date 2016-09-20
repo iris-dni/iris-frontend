@@ -2,14 +2,22 @@
 
 .root {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  float: left;
+  width: 100%;
+  margin-bottom: map-get($spacing, 'grid');
+  padding-left: map-get($spacing, 'grid');
 
-  @include media('>=768px') {
-    margin-bottom: 0;
+  @include media('>grid-2-cols', '<=grid-3-cols') {
+    &:not(:first-child) {
+      width: (100% / 2);
+    }
   }
 
-  &:not(:last-child) {
-    margin-right: 2em;
-    margin-bottom: 1em;
+  @include media('>grid-3-cols') {
+    width: (100% / 3);
+    margin-bottom: 0;
   }
 }
 
@@ -20,13 +28,11 @@
 }
 
 .input-wrapper {
-  width: 100%;
-  max-width: 300px;
-  margin-top: 1em;
+  margin-top: 0.5em;
   font-weight: normal;
   color: color('black');
 
-  @include media('>=768px') {
-    display: inline-block;
+  @include media('<grid-2-cols') {
+    max-width: map-get($widths, 'autocomplete-max');
   }
 }
