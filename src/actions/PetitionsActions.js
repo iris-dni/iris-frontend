@@ -55,7 +55,7 @@ export function receivePetitions (petitions, params, qs) {
 }
 
 export function fetchCity ({ params }) {
-  const { city } = params || {};
+  const { city } = params;
 
   return (dispatch) => city
     ? cityRepository.findOne(city)
