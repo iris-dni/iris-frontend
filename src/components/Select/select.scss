@@ -1,16 +1,45 @@
 @import 'globals';
 
-.root {
-  @include map-declarations($form-fields-defaults, $form-fields-custom);
-  display: block;
+/**
+ * 1. Positioning context for caret symbol if appearance none is supported.
+ */
+.wrapper {
+  position: relative; /* 1 */
   width: 100%;
-  height: 2.6em;
-  padding: map-get($form-fields-defaults, 'padding');
-  color: color('dimmed');
-  background-color: color('white');
-  border-color: color('grey');
 
-  &:focus {
-    border-color: color('dimmed');
+  &::after {
+    content: '▼';
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0.5em;
+    pointer-events: none;
+    color: color('black');
+  }
+}
+
+.select {
+  width: 100%;
+}
+
+@supports (-webkit-appearance: none) or (appearance: none)
+          or ((-moz-appearance: none) and (mask-type: alpha)) {
+  .wrapper::after {
+    display: block;
+  }
+
+  .select {
+    @include map-declarations($form-fields-defaults, $form-fields-custom);
+    appearance: none;
+    padding: 0.5em;
+    background-color: color('white');
+    border-color: color('grey');
+
+    color: color('dimmed');
+
+    &:focus {
+      border-color: currentcolor;
+    }
   }
 }
