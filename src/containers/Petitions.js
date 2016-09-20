@@ -24,7 +24,7 @@ const PetitionsContainer = withRouter(React.createClass({
       this.props.fetchPetitions(this.props);
     }
 
-    // Fetch the city to popular autocomplete
+    // Fetch the city to populate autocomplete
     this.props.fetchCity(this.props);
   },
 
