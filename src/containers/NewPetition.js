@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { clearPetition, publishPetition } from 'actions/PetitionActions';
+import { clearCurrentCity } from 'actions/CityActions';
 import settings from 'settings';
 import NewPetition from 'components/NewPetition';
 import PreviewPetition from 'components/PreviewPetition';
@@ -14,6 +15,7 @@ const NewPetitionContainer = withRouter(React.createClass({
   componentWillMount () {
     const { clearPetition } = this.props;
     clearPetition();
+    clearCurrentCity();
   },
 
   componentWillUpdate (nextProps) {
