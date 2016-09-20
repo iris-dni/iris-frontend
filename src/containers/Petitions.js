@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { isEqual } from 'lodash/lang';
 import citySuggestionFormatter from 'helpers/citySuggestionFormatter';
 import getPetitionsPageTitle from 'helpers/getPetitionsPageTitle';
 import { petitionsPath } from 'helpers/petitionUrls';
@@ -16,16 +17,23 @@ import getPetitions from 'selectors/petitions';
 
 const PetitionsContainer = withRouter(React.createClass({
   componentWillMount () {
-    if (this.props.location.action === 'PUSH') {
+    // If there are no petitions, or deep compare filter params;
+    // if they have changed then we fetch petitions client-side
+    if (!this.props.petitions.length ||
+      !isEqual(this.props.params, this.props.routeParams)) {
       this.props.fetchPetitions(this.props);
     }
   },
 
   componentWillReceiveProps (nextProps) {
-    if (this.props.location.pathname !== nextProps.location.pathname) {
+    // Deep compare filter params, if they have changes
+    // then we fetch petitions again client-side
+    if (!isEqual(this.props.params, nextProps.params)) {
       this.props.fetchPetitions(nextProps);
 
+      // If no city given in new props
       if (!nextProps.params.cityName) {
+        // Force clear autocomplete
         this.props.updateCurrentCity({});
       }
     }
