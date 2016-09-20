@@ -16,6 +16,7 @@ export default {
   requiredText: 'You must complete this field',
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',
+  petitionsPerPage: 12,
   // FIXME: find better way to import colors
   // without duplicating them
   colors: {
