@@ -22,7 +22,7 @@
  *    to overlap the nav‘s grey border.
  */
 .element {
-  @include media('>=navigation-menu') {
+  @include media('>navigation-menu') {
     display: inline-block;
     padding: 0 1em;
     margin-bottom: -1px; /* 1 */
