@@ -3,6 +3,7 @@
 $spacing: map-get($spacing, 'grid');
 
 .root {
+  @include clearfix;
   display: flex;
   flex-wrap: wrap;
   margin-left: -$spacing;

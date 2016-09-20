@@ -30,19 +30,16 @@ export default {
     greyLite: '#e5e5e5'
   },
   petitionsPage: {
-    title: 'Browse %x %y petitions %z',
-    mostSupported: 'most supported',
-    mostRecent: 'most recent',
+    title: 'Browse %x petitions %y',
     winning: 'winning',
     running: 'running',
     all: 'all',
-    filterBy: 'Filter by…',
-    sortBy: 'Sort by…',
-    chooseOption: 'Choose an option…',
+    filterBy: 'Filter by',
+    sortBy: 'Sort by',
     filters: {
       city: {
-        label: 'Filter by city',
-        placeholder: 'Enter city name or ZIP code'
+        label: 'Select a city',
+        placeholder: 'Enter name or ZIP'
       },
       winning: 'Winning petitions',
       running: 'Running petitions',

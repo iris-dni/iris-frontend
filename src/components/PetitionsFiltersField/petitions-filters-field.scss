@@ -1,18 +1,5 @@
 @import 'globals';
 
-.root {
-  position: relative;
-
-  @include media('>=768px') {
-    margin-bottom: 0;
-  }
-
-  &:not(:last-child) {
-    margin-right: 2em;
-    margin-bottom: 1em;
-  }
-}
-
 .label {
   color: color('black');
   font-weight: bold;
@@ -20,13 +7,7 @@
 }
 
 .input-wrapper {
-  width: 100%;
-  max-width: 300px;
-  margin-top: 1em;
+  margin-top: 0.5em;
   font-weight: normal;
   color: color('black');
-
-  @include media('>=768px') {
-    display: inline-block;
-  }
 }

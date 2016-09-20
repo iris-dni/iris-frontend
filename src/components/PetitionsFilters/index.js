@@ -7,20 +7,17 @@ import Select from 'components/Select';
 import Autocomplete from 'containers/Autocomplete';
 import styles from './petitions-filters.scss';
 
+const CITY_FILTER_NAME = 'city-filter';
+
 const FILTER_INPUT_NAME = 'filter-by';
 const FILTER_INPUT_OPTIONS = [
   {
-    disabled: true,
-    value: 'default',
-    label: settings.petitionsPage.chooseOption
+    value: 'running',
+    label: settings.petitionsPage.filters.running
   },
   {
     value: 'winning',
     label: settings.petitionsPage.filters.winning
-  },
-  {
-    value: 'running',
-    label: settings.petitionsPage.filters.running
   },
   {
     value: 'all',
@@ -31,11 +28,6 @@ const FILTER_INPUT_OPTIONS = [
 const SORT_INPUT_NAME = 'sort-by';
 const SORT_INPUT_OPTIONS = [
   {
-    disabled: true,
-    value: 'default',
-    label: settings.petitionsPage.chooseOption
-  },
-  {
     value: 'date',
     label: settings.petitionsPage.filters.date
   },
@@ -44,8 +36,6 @@ const SORT_INPUT_OPTIONS = [
     label: settings.petitionsPage.filters.supportersAmount
   }
 ];
-
-const CITY_FILTER_NAME = 'city-filter';
 
 const PetitionsFilters = React.createClass({
   handleFilterChange (e) {
@@ -92,49 +82,55 @@ const PetitionsFilters = React.createClass({
     html: { placeholder: settings.petitionsPage.filters.city.placeholder }
   }),
 
-  getSelectValue (key) {
+  getSelectValue (key, defaultValue) {
     return this.props.params && this.props.params[key] ||
-      this.props.location.query[key] || 'default';
+      this.props.location.query[key] || defaultValue;
   },
 
   render () {
     return (
       <div className={styles.root}>
-        <PetitionsFiltersField
-          name={FILTER_INPUT_NAME}
-          label={settings.petitionsPage.filterBy}
-        >
-          <Select
-            name={FILTER_INPUT_NAME}
-            value={this.getSelectValue('state')}
-            handleChange={this.handleFilterChange}
-            options={FILTER_INPUT_OPTIONS} />
-        </PetitionsFiltersField>
-
-        <PetitionsFiltersField
-          name={SORT_INPUT_NAME}
-          label={settings.petitionsPage.sortBy}
-        >
-          <Select
-            name={SORT_INPUT_NAME}
-            value={this.getSelectValue('sort')}
-            handleChange={this.handleSortChange}
-            options={SORT_INPUT_OPTIONS} />
-        </PetitionsFiltersField>
-
-        <PetitionsFiltersField
-          name={CITY_FILTER_NAME}
-          label={settings.petitionsPage.filters.city.label}
-        >
-          <Autocomplete
-            {...this.getAutocompleteProps(this.props)}
-            inputModifier='thin'
-            icon={{
-              id: 'Search',
-              fill: 'none'
-            }}
-          />
-        </PetitionsFiltersField>
+        <div className={styles.grid}>
+          <div className={styles['full-item']}>
+            <PetitionsFiltersField
+              name={CITY_FILTER_NAME}
+              label={settings.petitionsPage.filters.city.label}
+            >
+              <Autocomplete
+                {...this.getAutocompleteProps(this.props)}
+                inputModifier='thin'
+                icon={{
+                  id: 'Search',
+                  fill: 'none'
+                }}
+              />
+            </PetitionsFiltersField>
+          </div>
+          <div className={styles['half-item']}>
+            <PetitionsFiltersField
+              name={FILTER_INPUT_NAME}
+              label={settings.petitionsPage.filterBy}
+            >
+              <Select
+                name={FILTER_INPUT_NAME}
+                value={this.getSelectValue('state', 'running')}
+                handleChange={this.handleFilterChange}
+                options={FILTER_INPUT_OPTIONS} />
+            </PetitionsFiltersField>
+          </div>
+          <div className={styles['half-item']}>
+            <PetitionsFiltersField
+              name={SORT_INPUT_NAME}
+              label={settings.petitionsPage.sortBy}
+            >
+              <Select
+                name={SORT_INPUT_NAME}
+                value={this.getSelectValue('sort', 'date')}
+                handleChange={this.handleSortChange}
+                options={SORT_INPUT_OPTIONS} />
+            </PetitionsFiltersField>
+          </div>
+        </div>
       </div>
     );
   }
