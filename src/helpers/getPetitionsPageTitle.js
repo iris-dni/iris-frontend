@@ -8,9 +8,9 @@ const getState = (state) => {
       return settings.petitionsPage.past;
     case 'all':
       return '';
-    case 'running':
+    case 'current':
     default:
-      return settings.petitionsPage.running;
+      return settings.petitionsPage.current;
   }
 };
 
