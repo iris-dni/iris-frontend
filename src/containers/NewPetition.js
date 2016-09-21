@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { clearPetition, publishPetition } from 'actions/PetitionActions';
+import { clearSuggestionInputValue } from 'actions/AutocompleteActions';
 import settings from 'settings';
 import NewPetition from 'components/NewPetition';
 import PreviewPetition from 'components/PreviewPetition';
@@ -12,8 +13,9 @@ import petitionPublished from 'selectors/petitionPublished';
 
 const NewPetitionContainer = withRouter(React.createClass({
   componentWillMount () {
-    const { clearPetition } = this.props;
+    const { clearPetition, clearSuggestionInputValue } = this.props;
     clearPetition();
+    clearSuggestionInputValue();
   },
 
   componentWillUpdate (nextProps) {
@@ -46,6 +48,7 @@ export const mapStateToProps = ({ petition }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   clearPetition: () => dispatch(clearPetition()),
+  clearSuggestionInputValue: () => dispatch(clearSuggestionInputValue()),
   publishPetition: (petition) => dispatch(publishPetition(petition))
 });
 
