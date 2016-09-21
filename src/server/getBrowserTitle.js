@@ -10,7 +10,9 @@ export default (componentName, state = {}) => {
       return TITLE_TEMPLATE.replace('%s', petition && petition.title);
     case 'PetitionsContainer':
       const { petitions } = state;
-      const contextualPageTitle = getPetitionsPageTitle(petitions && petitions.currentCity);
+      const contextualPageTitle = getPetitionsPageTitle(
+        petitions && petitions.currentCity || {}
+      );
       return TITLE_TEMPLATE.replace('%s', contextualPageTitle);
     case 'NewPetitionContainer':
       return TITLE_TEMPLATE.replace('%s', settings.newPetitionPage.title);
