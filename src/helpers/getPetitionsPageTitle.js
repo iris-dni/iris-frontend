@@ -1,24 +1,24 @@
 import settings from 'settings';
 
-const getSort = (sort) => {
-  switch (sort) {
-    case 'supporters':
-      return settings.petitionsPage.mostSupported;
-    case 'date':
-      return settings.petitionsPage.mostRecent;
-    default:
+const getState = (state) => {
+  switch (state) {
+    case 'winning':
+      return settings.petitionsPage.winning;
+    case 'all':
       return '';
+    case 'running':
+    default:
+      return settings.petitionsPage.running;
   }
 };
 
 export default ({ currentCity, params }) => {
+  const state = params && getState(params.state);
   const city = currentCity && currentCity.name;
-  const sort = params && getSort(params.sort);
-
   let title = settings.petitionsPage.title;
 
+  title = (state ? title.replace('%x', state) : title.replace('%x', ''));
   title = (city ? title.replace('%y', `in ${city}`) : title.replace('%y', ''));
-  title = (sort ? title.replace('%x', sort) : title.replace('%x', ''));
 
   // Replaces any potential double space with a single one.
   title = title.trim().replace(/\s{2,}/g, ' ');

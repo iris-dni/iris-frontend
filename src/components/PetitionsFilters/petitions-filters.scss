@@ -1,69 +1,53 @@
 @import 'globals';
 
+$spacing: map-get($spacing, 'grid');
+
 .root {
-  padding-top: 2em;
+  margin-top: 30px;
 
-  @include media('>768px') {
-    display: flex;
-    justify-content: flex-end;
+  @include media('<=800px') {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
-.filter {
-  position: relative;
-
-  @include media('>=768px') {
-    margin-bottom: 0;
-  }
-
-  &:not(:last-child) {
-    margin-right: 2em;
-    margin-bottom: 1em;
-  }
+.grid {
+  @include clearfix;
+  margin-bottom: -$spacing;
+  margin-left: -$spacing;
 }
 
-.label {
-  color: color('black');
-  font-weight: bold;
-  cursor: pointer;
+.item {
+  float: left;
+  padding-left: $spacing;
+  margin-bottom: $spacing;
 }
 
-/**
- * 1. Positioning context for input icon.
- */
-.input-wrapper {
-  position: relative; /* 1 */
-  width: 100%;
-  max-width: 300px;
-  margin-top: 1em;
-  font-weight: normal;
-  color: color('black');
+.full-item {
+  composes: item;
 
-  @include media('>768px') {
-    display: inline-block;
+  @include media('<=800px') {
+    width: 100%;
+  }
+
+  @include media('>800px') {
+    width: 33.33%;
   }
 }
 
-.icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  pointer-events: none;
-}
+.half-item {
+  composes: item;
 
-.select {
-  @include map-declarations($form-fields-defaults, $form-fields-custom);
-  display: block;
-  width: 100%;
-  height: 2.6em;
-  padding: map-get($form-fields-defaults, 'padding');
-  color: color('dimmed');
-  background-color: color('white');
-  border-color: color('grey');
+  @include media('<=480px') {
+    width: 100%;
+  }
 
-  &:focus {
-    border-color: color('dimmed');
+  @include media('>480px', '<=800px') {
+    width: 50%;
+  }
+
+  @include media('>800px') {
+    width: 33.33%;
   }
 }

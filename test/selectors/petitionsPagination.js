@@ -19,14 +19,6 @@ describe('petitionsPagination', () => {
     assert.equal(actual, expected);
   });
 
-  it('returns fallback limit when no params', () => {
-    const result = petitionsPagination(mockPetitions);
-    const actual = result.limit;
-    const expected = 12;
-
-    assert.equal(actual, expected);
-  });
-
   it('returns fallback currentPage when no params', () => {
     const result = petitionsPagination(mockPetitions);
     const actual = result.currentPage;
@@ -65,26 +57,30 @@ describe('petitionsPagination', () => {
     assert.equal(actual, expected);
   });
 
-  it('returns limit when given in parmas', () => {
-    const state = Object.assign({}, mockPetitions, {
-      params: { limit: 24 }
-    });
-    const result = petitionsPagination(state);
-    const actual = result.limit;
-    const expected = 24;
-
-    assert.equal(actual, expected);
-  });
-
-  it('returns totalPages calculated correctly', () => {
+  context('with limit params', () => {
     const state = Object.assign({}, mockPetitions, {
       params: { limit: 2 }
     });
-    const result = petitionsPagination(state);
-    const actual = result.totalPages;
-    const expected = 25;
 
-    assert.equal(actual, expected);
+    it('returns totalPages calculated correctly', () => {
+      const result = petitionsPagination(state);
+      const actual = result.totalPages;
+      const expected = 25;
+
+      assert.equal(actual, expected);
+    });
+  });
+
+  context('without limit params', () => {
+    const state = Object.assign({}, mockPetitions, {});
+
+    it('returns totalPages calculated correctly', () => {
+      const result = petitionsPagination(state);
+      const actual = result.totalPages;
+      const expected = 5;
+
+      assert.equal(actual, expected);
+    });
   });
 
   it('returns prevPage correctly', () => {

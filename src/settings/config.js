@@ -16,6 +16,7 @@ export default {
   requiredText: 'You must complete this field',
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',
+  petitionsPerPage: 12,
   // FIXME: find better way to import colors
   // without duplicating them
   colors: {
@@ -30,21 +31,21 @@ export default {
   },
   petitionsPage: {
     title: 'Browse %x petitions %y',
-    mostSupported: 'most supported',
-    mostRecent: 'most recent',
-    sortBy: 'Sort by…',
-    chooseOption: 'Choose an option…',
+    winning: 'winning',
+    running: 'running',
+    all: 'all',
+    filterBy: 'Filter by',
+    sortBy: 'Sort by',
     filters: {
       city: {
-        label: 'Filter by city',
-        placeholder: 'Enter city name or ZIP code'
+        label: 'Select a city',
+        placeholder: 'Enter name or ZIP'
       },
-      date: {
-        label: 'Most recent'
-      },
-      supportersAmount: {
-        label: 'Supporters amount'
-      }
+      winning: 'Winning petitions',
+      running: 'Running petitions',
+      all: 'All petitions',
+      date: 'Most recent',
+      supportersAmount: 'Supporters amount'
     }
   },
   petitionPage: {
