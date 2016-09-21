@@ -35,8 +35,8 @@ export default {
     current: 'current',
     past: 'past',
     all: 'all',
-    filterBy: 'Filter by',
-    sortBy: 'Sort by',
+    filterBy: 'Show me',
+    orderBy: 'Order by',
     filters: {
       city: {
         label: 'Select a city',
@@ -47,7 +47,7 @@ export default {
       past: 'Past petitions',
       all: 'All petitions',
       date: 'Most recent',
-      supportersAmount: 'Supporters amount'
+      supportersAmount: 'Most supported'
     }
   },
   petitionPage: {

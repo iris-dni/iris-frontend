@@ -7,10 +7,10 @@ const getState = (state) => {
     case 'past':
       return settings.petitionsPage.past;
     case 'all':
-      return '';
+      return settings.petitionsPage.all;
     case 'current':
     default:
-      return settings.petitionsPage.current;
+      return '';
   }
 };
 
