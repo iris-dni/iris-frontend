@@ -65,7 +65,18 @@ describe('petition repository', () => {
 
       petitionRepository.find(exampleId);
 
-      assert(ApiClient.request.calledWith(
+      assert(ApiClient.request.calledWithMatch(
+        expectedPathArgument,
+        expectedDataArgument
+      ));
+    });
+
+    it('requests the supporting extension', () => {
+      let expectedDataArgument = { extend: 'supporting' };
+
+      petitionRepository.find(exampleId);
+
+      assert(ApiClient.request.calledWithMatch(
         expectedPathArgument,
         expectedDataArgument
       ));
