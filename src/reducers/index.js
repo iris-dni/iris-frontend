@@ -8,7 +8,6 @@ import meReducer from './me';
 import flashMessageReducer from './flashMessage';
 import modalWindowReducer from './modalWindow';
 import navigationReducer from './navigation';
-import currentCityReducer from './currentCity';
 
 export default combineReducers({
   autocomplete: autocompleteReducer,
@@ -19,6 +18,5 @@ export default combineReducers({
   flashMessage: flashMessageReducer,
   navigation: navigationReducer,
   modalWindow: modalWindowReducer,
-  currentCity: currentCityReducer,
   routing: routerReducer
 });
