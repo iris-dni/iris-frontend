@@ -56,10 +56,10 @@ describe('getBrowserTitle', () => {
       const actual = getBrowserTitle('PetitionsContainer', {
         petitions: Object.assign({},
           mockPetitions.data, {
-            params: { state: 'running' }
+            params: { state: 'current' }
           })
       });
-      const expected = 'Browse running petitions | iris-frontend';
+      const expected = 'Browse current petitions | iris-frontend';
 
       assert.equal(actual, expected);
     });
@@ -69,10 +69,10 @@ describe('getBrowserTitle', () => {
         petitions: Object.assign({},
           mockPetitions.data, {
             currentCity: mockCity,
-            params: { state: 'running' }
+            params: { state: 'current' }
           })
       });
-      const expected = 'Browse running petitions in Aarau | iris-frontend';
+      const expected = 'Browse current petitions in Aarau | iris-frontend';
 
       assert.equal(actual, expected);
     });

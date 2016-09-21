@@ -4,11 +4,13 @@ const getState = (state) => {
   switch (state) {
     case 'winning':
       return settings.petitionsPage.winning;
+    case 'past':
+      return settings.petitionsPage.past;
     case 'all':
       return '';
-    case 'running':
+    case 'current':
     default:
-      return settings.petitionsPage.running;
+      return settings.petitionsPage.current;
   }
 };
 

@@ -28,11 +28,20 @@ describe('getPetitionsPageTitle', () => {
     assert.equal(actual, expected);
   });
 
-  it('returns appended running state when given', () => {
+  it('returns appended current state when given', () => {
     const actual = getPetitionsPageTitle({
-      params: { state: 'running' }
+      params: { state: 'current' }
     });
-    const expected = 'Browse running petitions';
+    const expected = 'Browse current petitions';
+
+    assert.equal(actual, expected);
+  });
+
+  it('returns appended past state when given', () => {
+    const actual = getPetitionsPageTitle({
+      params: { state: 'past' }
+    });
+    const expected = 'Browse past petitions';
 
     assert.equal(actual, expected);
   });
@@ -49,9 +58,9 @@ describe('getPetitionsPageTitle', () => {
   it('combines state and city correctly', () => {
     const actual = getPetitionsPageTitle({
       currentCity: city,
-      params: { state: 'running' }
+      params: { state: 'current' }
     });
-    const expected = 'Browse running petitions in Aarau';
+    const expected = 'Browse current petitions in Aarau';
 
     assert.equal(actual, expected);
   });

@@ -32,7 +32,8 @@ export default {
   petitionsPage: {
     title: 'Browse %x petitions %y',
     winning: 'winning',
-    running: 'running',
+    current: 'current',
+    past: 'past',
     all: 'all',
     filterBy: 'Filter by',
     sortBy: 'Sort by',
@@ -42,7 +43,8 @@ export default {
         placeholder: 'Enter name or ZIP'
       },
       winning: 'Winning petitions',
-      running: 'Running petitions',
+      current: 'Current petitions',
+      past: 'Past petitions',
       all: 'All petitions',
       date: 'Most recent',
       supportersAmount: 'Supporters amount'
