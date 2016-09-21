@@ -37,6 +37,15 @@ describe('getPetitionsPageTitle', () => {
     assert.equal(actual, expected);
   });
 
+  it('returns appended past state when given', () => {
+    const actual = getPetitionsPageTitle({
+      params: { state: 'past' }
+    });
+    const expected = 'Browse past petitions';
+
+    assert.equal(actual, expected);
+  });
+
   it('ignores state when === \'all\'', () => {
     const actual = getPetitionsPageTitle({
       params: { state: 'all' }

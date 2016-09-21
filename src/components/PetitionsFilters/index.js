@@ -20,6 +20,10 @@ const FILTER_INPUT_OPTIONS = [
     label: settings.petitionsPage.filters.winning
   },
   {
+    value: 'past',
+    label: settings.petitionsPage.filters.past
+  },
+  {
     value: 'all',
     label: settings.petitionsPage.filters.all
   }

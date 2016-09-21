@@ -33,6 +33,7 @@ export default {
     title: 'Browse %x petitions %y',
     winning: 'winning',
     running: 'running',
+    past: 'past',
     all: 'all',
     filterBy: 'Filter by',
     sortBy: 'Sort by',
@@ -43,6 +44,7 @@ export default {
       },
       winning: 'Winning petitions',
       running: 'Running petitions',
+      past: 'Past petitions',
       all: 'All petitions',
       date: 'Most recent',
       supportersAmount: 'Supporters amount'
