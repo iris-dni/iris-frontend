@@ -87,7 +87,6 @@ const Autocomplete = React.createClass({
           suggestions={this.props.suggestions}
           renderSuggestion={this.props.suggestionFormatter}
           getSuggestionValue={this.props.suggestionFormatter}
-          focusFirstSuggestion
 
           onSuggestionsFetchRequested={(e) => (this.handleFetchRequest(e))}
           onSuggestionsClearRequested={this.props.clearSuggestions}
