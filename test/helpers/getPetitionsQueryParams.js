@@ -3,7 +3,7 @@ import getPetitionsQueryParams from 'helpers/getPetitionsQueryParams';
 
 const { assert } = chai;
 
-describe('getPetitionsQueryString', () => {
+describe('getPetitionsQueryParams', () => {
   it('returns correct `page` from params', () => {
     const result = getPetitionsQueryParams({
       page: 2
@@ -14,20 +14,8 @@ describe('getPetitionsQueryString', () => {
     assert.equal(actual, expected);
   });
 
-  it('returns correct `page` from query string', () => {
+  it('ignores `page` from query params', () => {
     const result = getPetitionsQueryParams({}, {
-      page: 2
-    });
-    const actual = result.page;
-    const expected = 2;
-
-    assert.equal(actual, expected);
-  });
-
-  it('accepts `page` from params over query string', () => {
-    const result = getPetitionsQueryParams({
-      page: 1
-    }, {
       page: 2
     });
     const actual = result.page;
@@ -37,9 +25,9 @@ describe('getPetitionsQueryString', () => {
   });
 
   it('parses integers for `page` params', () => {
-    const result = getPetitionsQueryParams({}, {
+    const result = getPetitionsQueryParams({
       page: '2'
-    });
+    }, {});
     const actual = result.page;
     const expected = 2;
 
