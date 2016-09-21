@@ -9,7 +9,7 @@
 
 .icon {
   position: absolute;
-  right: 1em;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 2;
@@ -69,12 +69,21 @@ $suggestion-border: 1px solid color('grey-lite');
 }
 
 .suggestion {
-  padding: map-get($form-fields-defaults, 'padding');
   border-top: $suggestion-border;
   border-bottom: $suggestion-border;
   color: color('dimmed');
   cursor: pointer;
   transition: all 150ms;
+}
+
+.suggestion-regular {
+  composes: suggestion;
+  padding: map-get($form-fields-defaults, 'padding');
+}
+
+.suggestion-thin {
+  composes: suggestion;
+  padding: 10px 8px;
 }
 
 .suggestion:first-of-type {

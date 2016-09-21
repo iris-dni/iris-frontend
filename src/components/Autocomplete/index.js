@@ -70,7 +70,8 @@ const Autocomplete = React.createClass({
   },
 
   render () {
-    const inputClass = this.props.inputModifier ? this.props.inputModifier : 'input';
+    const inputClass = this.props.inputModifier || 'input';
+    const suggestionStyles = this.props.inputModifier ? styles['suggestion-thin'] : styles['suggestion-regular'];
 
     return (
       <div className={styles.root}>
@@ -79,7 +80,7 @@ const Autocomplete = React.createClass({
             containerOpen: styles.open,
             input: this.getClassname(inputClass, fieldIsInvalid(this.props.helper)),
             suggestionsList: styles.list,
-            suggestion: styles.suggestion,
+            suggestion: suggestionStyles,
             suggestionFocused: styles.focused
           }}
           id={this.props.name}
