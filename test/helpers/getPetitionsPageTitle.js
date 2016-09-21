@@ -28,11 +28,11 @@ describe('getPetitionsPageTitle', () => {
     assert.equal(actual, expected);
   });
 
-  it('returns appended current state when given', () => {
+  it('ignores state when === \'current\'', () => {
     const actual = getPetitionsPageTitle({
       params: { state: 'current' }
     });
-    const expected = 'Browse current petitions';
+    const expected = 'Browse petitions';
 
     assert.equal(actual, expected);
   });
@@ -46,11 +46,11 @@ describe('getPetitionsPageTitle', () => {
     assert.equal(actual, expected);
   });
 
-  it('ignores state when === \'all\'', () => {
+  it('returns appended all state when given', () => {
     const actual = getPetitionsPageTitle({
       params: { state: 'all' }
     });
-    const expected = 'Browse petitions';
+    const expected = 'Browse all petitions';
 
     assert.equal(actual, expected);
   });
@@ -58,9 +58,9 @@ describe('getPetitionsPageTitle', () => {
   it('combines state and city correctly', () => {
     const actual = getPetitionsPageTitle({
       currentCity: city,
-      params: { state: 'current' }
+      params: { state: 'past' }
     });
-    const expected = 'Browse current petitions in Aarau';
+    const expected = 'Browse past petitions in Aarau';
 
     assert.equal(actual, expected);
   });

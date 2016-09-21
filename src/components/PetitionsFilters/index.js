@@ -119,7 +119,7 @@ const PetitionsFilters = React.createClass({
           <div className={styles['half-item']}>
             <PetitionsFiltersField
               name={SORT_INPUT_NAME}
-              label={settings.petitionsPage.sortBy}
+              label={settings.petitionsPage.orderBy}
             >
               <Select
                 name={SORT_INPUT_NAME}
