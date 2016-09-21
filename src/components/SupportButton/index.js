@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ModalTrigger from 'containers/ModalTrigger';
 import settings from 'settings';
@@ -13,10 +12,11 @@ const SupportButton = ({ petition, supportPetition }) => (
     authenticating
     modal={modal}
     onClick={() => supportPetition(petition)}
-    href={`/petitions/${petition.id}?intent=support`}
+    href={!petition.supportedByMe && `/petitions/${petition.id}?intent=support`}
     text={settings.petitionPage.supportButton.text}
     size={'smaller'}
     modifier={'accent'}
+    disabled={petition.supportedByMe}
   />
 );
 
