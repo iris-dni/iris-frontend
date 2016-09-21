@@ -10,10 +10,10 @@ import getPetitions from 'selectors/petitions';
 
 const PetitionsContainer = withRouter(React.createClass({
   componentWillMount () {
-    // If there are no petitions, or deep compare filter params;
-    // if they have changed then we fetch petitions client-side
+    // If there are no petitions, or if we arrived on the page by clicking
+    // a client-side router link, then we fetch petitions client-side
     if (!this.props.petitions.length ||
-      !isEqual(this.props.params, this.props.routeParams)) {
+        this.props.location.action === 'PUSH') {
       this.props.fetchPetitionsAndCity(this.props);
     }
   },
