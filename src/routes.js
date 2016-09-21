@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Router, IndexRedirect, browserHistory } from 'react-router';
+import { Route, IndexRoute, Router, IndexRedirect, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import App from 'containers/App';
@@ -26,7 +26,12 @@ export default function (props = {}) {
         <Route path='home' component={Home} />
         <Route path='auth/login' component={LoginPage} />
         <Route path='auth/logout' component={Logout} />
-        <Route path='petitions(/:cityName-:city)(/page(/:page))' component={Petitions} />
+        <Route path='petitions'>
+          {/* Nest these 3 to support proper `activeClassName` behavior. */}
+          <IndexRoute component={Petitions} />
+          <Route path=':cityName-:city(/page(/:page))' component={Petitions} />
+          <Route path='page/:page' component={Petitions} />
+        </Route>
         <Route path='petitions/new' component={NewPetition} />
         <Route path='petitions/:id' component={Petition} />
         <Route path='petitions/:id/edit' component={EditPetition} />
