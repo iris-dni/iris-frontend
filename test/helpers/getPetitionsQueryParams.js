@@ -114,11 +114,31 @@ describe('getPetitionsQueryParams', () => {
     assert.equal(actual, expected);
   });
 
+  it('returns correct `sort` from query string', () => {
+    const result = getPetitionsQueryParams({}, {
+      sort: 'date'
+    });
+    const actual = result.sort;
+    const expected = 'date';
+
+    assert.equal(actual, expected);
+  });
+
   it('does not return `cityName` from query string', () => {
     const result = getPetitionsQueryParams({}, {
       cityName: 'aargau'
     });
     const actual = result.cityName;
+    const expected = '';
+
+    assert.equal(actual, expected);
+  });
+
+  it('does not return `sort` from params', () => {
+    const result = getPetitionsQueryParams({
+      sort: 'params'
+    }, {});
+    const actual = result.sort;
     const expected = '';
 
     assert.equal(actual, expected);
