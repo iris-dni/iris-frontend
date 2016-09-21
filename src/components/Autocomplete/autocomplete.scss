@@ -46,7 +46,7 @@ $suggestion-border: 1px solid color('grey-lite');
   z-index: 2;
   list-style: none;
   padding: 0;
-  border-top: 0 !important;
+  border-top: 0;
   border-color: color('dimmed');
   border-radius: 0 0 $default-border-radius $default-border-radius;
   background-color: color('white');

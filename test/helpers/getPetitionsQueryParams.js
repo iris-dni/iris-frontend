@@ -3,7 +3,7 @@ import getPetitionsQueryParams from 'helpers/getPetitionsQueryParams';
 
 const { assert } = chai;
 
-describe('getPetitionsQueryString', () => {
+describe('getPetitionsQueryParams', () => {
   it('returns correct `page` from params', () => {
     const result = getPetitionsQueryParams({
       page: 2
@@ -14,20 +14,8 @@ describe('getPetitionsQueryString', () => {
     assert.equal(actual, expected);
   });
 
-  it('returns correct `page` from query string', () => {
+  it('ignores `page` from query string', () => {
     const result = getPetitionsQueryParams({}, {
-      page: 2
-    });
-    const actual = result.page;
-    const expected = 2;
-
-    assert.equal(actual, expected);
-  });
-
-  it('accepts `page` from params over query string', () => {
-    const result = getPetitionsQueryParams({
-      page: 1
-    }, {
       page: 2
     });
     const actual = result.page;
@@ -37,9 +25,9 @@ describe('getPetitionsQueryString', () => {
   });
 
   it('parses integers for `page` params', () => {
-    const result = getPetitionsQueryParams({}, {
+    const result = getPetitionsQueryParams({
       page: '2'
-    });
+    }, {});
     const actual = result.page;
     const expected = 2;
 
@@ -62,6 +50,36 @@ describe('getPetitionsQueryString', () => {
     });
     const actual = result.cityName;
     const expected = 'aargau';
+
+    assert.equal(actual, expected);
+  });
+
+  it('ignores `page` from query string', () => {
+    const result = getPetitionsQueryParams({}, {
+      page: 2
+    });
+    const actual = result.page;
+    const expected = 1;
+
+    assert.equal(actual, expected);
+  });
+
+  it('ignores `city` from query string', () => {
+    const result = getPetitionsQueryParams({}, {
+      city: 'nwch:5'
+    });
+    const actual = result.city;
+    const expected = '';
+
+    assert.equal(actual, expected);
+  });
+
+  it('ignores `cityName` from query string', () => {
+    const result = getPetitionsQueryParams({}, {
+      cityName: 'aargau'
+    });
+    const actual = result.cityName;
+    const expected = '';
 
     assert.equal(actual, expected);
   });
@@ -96,11 +114,31 @@ describe('getPetitionsQueryString', () => {
     assert.equal(actual, expected);
   });
 
+  it('returns correct `sort` from query string', () => {
+    const result = getPetitionsQueryParams({}, {
+      sort: 'date'
+    });
+    const actual = result.sort;
+    const expected = 'date';
+
+    assert.equal(actual, expected);
+  });
+
   it('does not return `cityName` from query string', () => {
     const result = getPetitionsQueryParams({}, {
       cityName: 'aargau'
     });
     const actual = result.cityName;
+    const expected = '';
+
+    assert.equal(actual, expected);
+  });
+
+  it('does not return `sort` from params', () => {
+    const result = getPetitionsQueryParams({
+      sort: 'params'
+    }, {});
+    const actual = result.sort;
     const expected = '';
 
     assert.equal(actual, expected);

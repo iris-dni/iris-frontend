@@ -31,7 +31,7 @@ describe('getBrowserTitle', () => {
 
   it('returns correctly for PetitionsContainer', () => {
     const actual = getBrowserTitle('PetitionsContainer', {
-      petition: mockPetitions.data
+      petitions: mockPetitions.data
     });
     const expected = 'Browse petitions | iris-frontend';
 

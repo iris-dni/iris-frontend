@@ -29,12 +29,21 @@ export default {
     greyLite: '#e5e5e5'
   },
   petitionsPage: {
-    title: 'Browse petitions',
-    titleLocalized: 'Browse petitions in',
+    title: 'Browse %x petitions %y',
+    mostSupported: 'most supported',
+    mostRecent: 'most recent',
+    sortBy: 'Sort by…',
+    chooseOption: 'Choose an option…',
     filters: {
       city: {
         label: 'Filter by city',
         placeholder: 'Enter city name or ZIP code'
+      },
+      date: {
+        label: 'Most recent'
+      },
+      supportersAmount: {
+        label: 'Supporters amount'
       }
     }
   },
