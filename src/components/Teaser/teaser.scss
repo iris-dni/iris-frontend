@@ -26,11 +26,6 @@
   transition: transform 0.3s ease;
 }
 
-.winning:hover::before {
-  transform: translate(-5px, calc(-50% - 2px));
-}
-
-.winning:hover .link,
 .link:hover,
 .link:active,
 .link.focus {
