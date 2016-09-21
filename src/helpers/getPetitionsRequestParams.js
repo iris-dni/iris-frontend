@@ -5,8 +5,8 @@ import getPetitionsStates from 'helpers/getPetitionsStates';
 export default ({ limit, page, city, sort, state }) => {
   const saneLimit = sanitizeParamLimit(limit);
 
-  sort = (sort === 'supporters') ? '-supporters.amount' : '-created';
   state = getPetitionsStates(state);
+  sort = (sort === 'supporters') ? '-supporters.amount' : '-created';
 
   const params = {
     resolve: 'city,owner',

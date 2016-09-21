@@ -41,7 +41,7 @@ const PetitionContainer = React.createClass({
             'innerHTML': JSON.stringify(petition.schema || {})
           }]}
         />
-        <Loading isLoading={petition.isLoading}>
+        <Loading isLoading={!petition.id || petition.isLoading}>
           <Petition {...petition} />
         </Loading>
       </div>

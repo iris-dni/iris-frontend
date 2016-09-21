@@ -1,44 +1,25 @@
 import petitionRepository from 'services/api/repositories/petition';
-import cityRepository from 'services/api/repositories/city';
-import encodeParams from 'helpers/encodeParams';
-import { pick } from 'lodash/object';
+import getPetitionsQueryParams from 'helpers/getPetitionsQueryParams';
+import getPetitionsQueryString from 'helpers/getPetitionsQueryString';
+
+import { fetchCity } from 'actions/CityActions';
 
 import {
   REQUEST_PETITIONS,
-  RECEIVE_PETITIONS,
-  UPDATE_CURRENT_CITY
+  RECEIVE_PETITIONS
 } from './actionTypes';
 
-export function fetchPetitions ({ location, params = {} }) {
+export function fetchPetitions ({ location, params }) {
   // Get query from react-router location
   const { query } = location;
 
-  // Construct our query params based on route params or query string params
-  const queryParams = {
-    page: parseInt(params.page || query.page || 1),
-    city: params.city || query.city || '',
-    cityName: params.cityName || query.cityName || '',
-    state: params.state || query.state || '',
-    limit: query.limit && parseInt(query.limit),
-    sort: query.sort || ''
-  };
+  // Construct our query params, based on
+  // route params or query string params
+  const queryParams = getPetitionsQueryParams(params, query);
 
-  // To avoid repetition between URL params and query params, we don’t save
-  // params taken from URL.
-  let encodedParams = [];
-
-  for (const key in queryParams) {
-    if (query[key]) {
-      encodedParams.push(key);
-    }
-  }
-
-  // Take any query string values and encode them, picking the relevant props
-  // for filtering
-  const queryString = encodeParams(pick(
-    queryParams,
-    encodedParams
-  ));
+  // Take any query string values and encode them,
+  // picking the relavent props for filering
+  const queryString = getPetitionsQueryString(query);
 
   return (dispatch, getState) => {
     dispatch(requestPetitions());
@@ -51,22 +32,7 @@ export function fetchPetitions ({ location, params = {} }) {
   };
 }
 
-export function fetchCity ({ params }) {
-  const { city } = params;
-
-  return (dispatch) => {
-    if (city) {
-      return cityRepository.findOne(city)
-        .then(response => (
-          dispatch(updateCurrentCity(response.data))
-        ));
-    }
-
-    return dispatch(updateCurrentCity(null));
-  };
-}
-
-export function fetchAll (location, params) {
+export function fetchPetitionsAndCity ({ location, params }) {
   return (dispatch) => Promise.all([
     dispatch(fetchPetitions({ location, params })),
     dispatch(fetchCity({ params }))
@@ -85,12 +51,5 @@ export function receivePetitions (petitions, params, qs) {
     petitions,
     params,
     qs
-  };
-}
-
-export function updateCurrentCity (currentCity) {
-  return {
-    type: UPDATE_CURRENT_CITY,
-    currentCity
   };
 }

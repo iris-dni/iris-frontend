@@ -125,6 +125,15 @@
       "__SERVER__"
     ]
   },
+  "eslintConfig": {
+    "extends": [
+      "semistandard",
+      "standard-jsx"
+    ],
+    "env": {
+      "mocha": true
+    }
+  },
   "engines": {
     "node": ">=4.0.0"
   }

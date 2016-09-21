@@ -7,9 +7,17 @@ export const petitionsPath = (options = {}) => {
 
   let path = '/petitions';
 
-  path += city ? `/${parameterize(city.name || '')}-${city.id}` : '';
-  path += page ? `/page/${page}` : '';
-  path += queryString ? `?${queryString}` : '';
+  if (city && city.id) {
+    path += `/${parameterize(city.name || '')}-${city.id}`;
+  }
+
+  if (page) {
+    path += `/page/${page}`;
+  }
+
+  if (queryString) {
+    path += `?${queryString}`;
+  }
 
   return path;
 };

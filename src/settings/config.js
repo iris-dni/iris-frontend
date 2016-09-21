@@ -134,12 +134,17 @@ export default {
       }
     }
   },
-  ssoProviders: [
-    {
-      text: 'Sign in with AZ Medien',
-      url: 'http://aaz-azdev.lovelysystems.com/anmelden'
-    }
-  ],
+  /**
+   * You can configure one environment-specific SSO provider in the ENV variables using
+   * SSO_PROVIDER_TEXT and SSO_PROVIDER_URL. Or you can set multiple ssoProviders here:
+   */
+  // ssoProviders: [
+  //   {
+  //     text: 'Sign in with MY SSO SERVICE',
+  //     url: 'https://MYSSOSERVICE.com/login'
+  //   }
+  // ],
+  ssoProviders: [],
   modalWindow: {
     closeButton: 'Close this dialog window'
   },

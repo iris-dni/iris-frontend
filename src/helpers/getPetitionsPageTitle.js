@@ -13,9 +13,8 @@ const getState = (state) => {
 };
 
 export default ({ currentCity, params }) => {
-  const city = currentCity && currentCity.name;
   const state = params && getState(params.state);
-
+  const city = currentCity && currentCity.name;
   let title = settings.petitionsPage.title;
 
   title = (state ? title.replace('%x', state) : title.replace('%x', ''));

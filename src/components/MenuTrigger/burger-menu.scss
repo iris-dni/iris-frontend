@@ -8,7 +8,7 @@
   cursor: pointer;
   outline: none;
 
-  @include media('>=navigation-menu') {
+  @include media('>navigation-menu') {
     @include visuallyhidden;
   }
 }

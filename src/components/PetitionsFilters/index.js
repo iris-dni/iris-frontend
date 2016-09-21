@@ -41,26 +41,20 @@ const PetitionsFilters = React.createClass({
   handleFilterChange (e) {
     this.props.router.push(petitionsPath({
       state: e.target.value,
-      city: this.props.currentCity || '',
-      sort: this.props.location.query.sort || ''
+      city: this.props.currentCity,
+      sort: this.props.location.query.sort
     }));
   },
 
   handleSortChange (e) {
     this.props.router.push(petitionsPath({
-      state: this.props.params && this.props.params.state || this.props.location.query.state || '',
-      city: this.props.currentCity || '',
+      state: this.props.location.query.state,
+      city: this.props.currentCity,
       sort: e.target.value
     }));
   },
 
-  getAutocompleteProps: ({
-    router,
-    params,
-    location,
-    updateCurrentCity,
-    currentCity
-  }) => ({
+  getAutocompleteProps: ({ router, location, currentCity }) => ({
     name: CITY_FILTER_NAME,
     endpoint: 'cities',
     suggestionFormatter: citySuggestionFormatter,
@@ -69,12 +63,10 @@ const PetitionsFilters = React.createClass({
     helper: {
       value: { data: currentCity },
       onChange (newValue) {
-        updateCurrentCity(newValue);
-
         router.push(petitionsPath({
-          state: params && params.state || location.query.state || '',
-          city: newValue.id ? newValue : '',
-          sort: location.query.sort || ''
+          city: newValue,
+          sort: location.query.sort,
+          state: location.query.state
         }));
       },
       onBlur () {}
@@ -106,6 +98,7 @@ const PetitionsFilters = React.createClass({
               />
             </PetitionsFiltersField>
           </div>
+
           <div className={styles['half-item']}>
             <PetitionsFiltersField
               name={FILTER_INPUT_NAME}
@@ -118,6 +111,7 @@ const PetitionsFilters = React.createClass({
                 options={FILTER_INPUT_OPTIONS} />
             </PetitionsFiltersField>
           </div>
+
           <div className={styles['half-item']}>
             <PetitionsFiltersField
               name={SORT_INPUT_NAME}
