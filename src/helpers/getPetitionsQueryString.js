@@ -3,5 +3,5 @@ import { pick } from 'lodash/object';
 
 export default (query) => encodeParams(pick(
   query,
-  ['limit', 'sort']
+  ['limit', 'state', 'sort']
 ));
