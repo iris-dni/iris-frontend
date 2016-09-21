@@ -5,11 +5,14 @@ import { withRouter } from 'react-router';
 import { isEqual } from 'lodash/lang';
 import getPetitionsPageTitle from 'helpers/getPetitionsPageTitle';
 import { fetchPetitionsAndCity } from 'actions/PetitionsActions';
+import { clearSuggestionInputValue } from 'actions/AutocompleteActions';
 import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';
 
 const PetitionsContainer = withRouter(React.createClass({
   componentWillMount () {
+    this.props.clearSuggestionInputValue();
+
     // If there are no petitions, or if we arrived on the page by clicking
     // a client-side router link, then we fetch petitions client-side
     if (!this.props.petitions.length ||
@@ -58,7 +61,8 @@ export const mapStateToProps = ({ petitions }) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchPetitionsAndCity: (options) => dispatch(fetchPetitionsAndCity(options))
+  fetchPetitionsAndCity: (options) => dispatch(fetchPetitionsAndCity(options)),
+  clearSuggestionInputValue: () => dispatch(clearSuggestionInputValue())
 });
 
 export default connect(
