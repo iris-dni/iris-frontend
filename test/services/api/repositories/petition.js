@@ -4,7 +4,8 @@ import ApiClient from 'services/api/client';
 import petitionRepository from 'services/api/repositories/petition';
 
 describe('petition repository', () => {
-  let exampleId = 777;
+  let exampleId = '7UV7m';
+  let exampleResponseToken = '1C9LQ';
   let exampleTitle = 'Example Petition';
 
   beforeEach(() => {
@@ -51,18 +52,12 @@ describe('petition repository', () => {
 
   describe('find', () => {
     let expectedPathArgument = `/petitions/${exampleId}`;
+    let expectedDataArgument = {
+      resolve: 'city,owner',
+      extend: 'supporting'
+    };
 
-    it('calls the API and returns the requested petition', () => {
-      petitionRepository.find(exampleId);
-
-      assert(ApiClient.request.calledWith(
-        expectedPathArgument
-      ));
-    });
-
-    it('resolves owner and city', () => {
-      let expectedDataArgument = { resolve: 'city,owner' };
-
+    it('calls the API client with proper arguments', () => {
       petitionRepository.find(exampleId);
 
       assert(ApiClient.request.calledWithMatch(
@@ -70,11 +65,16 @@ describe('petition repository', () => {
         expectedDataArgument
       ));
     });
+  });
 
-    it('requests the supporting extension', () => {
-      let expectedDataArgument = { extend: 'supporting' };
+  describe('findByResponseToken', () => {
+    let expectedPathArgument = `/token/${exampleResponseToken}/petitions`;
+    let expectedDataArgument = {
+      resolve: 'city,owner'
+    };
 
-      petitionRepository.find(exampleId);
+    it('calls the API client with proper arguments', () => {
+      petitionRepository.findByResponseToken(exampleResponseToken);
 
       assert(ApiClient.request.calledWithMatch(
         expectedPathArgument,

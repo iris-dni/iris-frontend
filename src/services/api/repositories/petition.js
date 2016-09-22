@@ -9,6 +9,12 @@ export default {
     return ApiClient.request(requestPath, requestParams);
   },
 
+  findByResponseToken: (responseToken) => {
+    const requestPath = path.join('/token/', responseToken, '/petitions');
+    const requestParams = { resolve: 'city,owner' };
+    return ApiClient.request(requestPath, requestParams);
+  },
+
   all: (options = {}) => {
     const requestPath = '/petitions';
     const requestParams = getRequestParams(options);
