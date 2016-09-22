@@ -3,23 +3,6 @@ import CircleProgressBar from 'components/CircleProgressBar';
 import styles from './loading.scss';
 
 const Loading = React.createClass({
-
-  getInitialState () {
-    return { percentage: 75 };
-  },
-
-  tick () {
-    this.setState({ percentage: this.state.percentage + 125 });
-  },
-
-  componentDidMount () {
-    this.interval = setInterval(this.tick, 1000);
-  },
-
-  componentWillUnmount () {
-    clearInterval(this.interval);
-  },
-
   render () {
     const { isLoading, children, onServer } = this.props;
 
@@ -28,10 +11,7 @@ const Loading = React.createClass({
         <div
           className={styles.root}
           aria-busy='true'>
-          <CircleProgressBar
-            percentage={this.state.percentage}
-            animated
-          />
+          <CircleProgressBar isSpinner />
         </div>
       );
     }
