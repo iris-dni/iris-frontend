@@ -13,9 +13,8 @@ import petitionPublished from 'selectors/petitionPublished';
 
 const NewPetitionContainer = withRouter(React.createClass({
   componentWillMount () {
-    const { clearPetition, clearSuggestionInputValue } = this.props;
-    clearPetition();
-    clearSuggestionInputValue();
+    this.props.clearPetition();
+    this.props.clearSuggestionInputValue();
   },
 
   componentWillUpdate (nextProps) {
