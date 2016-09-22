@@ -1,16 +1,16 @@
 import { assert } from 'chai';
-import getPetionSupportable from 'selectors/petitionSupportable';
+import getPetitionSupportable from 'selectors/petitionSupportable';
 
-describe('getPetionSupportable', () => {
+describe('getPetitionSupportable', () => {
   context('with a new petition', () => {
-    const actual = getPetionSupportable({});
+    const actual = getPetitionSupportable({});
     const expected = false;
 
     it('returns false', () => assert.equal(actual, expected));
   });
 
   context('with a published petition', () => {
-    const actual = getPetionSupportable({state: { name: 'pending', parent: 'supportable' }});
+    const actual = getPetitionSupportable({state: { name: 'pending', parent: 'supportable' }});
     const expected = true;
 
     it('returns true', () => assert.equal(actual, expected));

@@ -16,6 +16,7 @@ export default {
   requiredText: 'You must complete this field',
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',
+  petitionsPerPage: 12,
   // FIXME: find better way to import colors
   // without duplicating them
   colors: {
@@ -29,13 +30,24 @@ export default {
     greyLite: '#e5e5e5'
   },
   petitionsPage: {
-    title: 'Browse petitions',
-    titleLocalized: 'Browse petitions in',
+    title: 'Browse %x petitions %y',
+    winning: 'winning',
+    current: 'current',
+    past: 'past',
+    all: 'all',
+    filterBy: 'Show me',
+    orderBy: 'Order by',
     filters: {
       city: {
-        label: 'Filter by city',
-        placeholder: 'Enter city name or ZIP code'
-      }
+        label: 'Select a city',
+        placeholder: 'Enter name or ZIP'
+      },
+      winning: 'Winning petitions',
+      current: 'Current petitions',
+      past: 'Past petitions',
+      all: 'All petitions',
+      date: 'Most recent',
+      supportersAmount: 'Most supported'
     }
   },
   petitionPage: {
@@ -124,12 +136,17 @@ export default {
       }
     }
   },
-  ssoProviders: [
-    {
-      text: 'Sign in with AZ Medien',
-      url: 'http://aaz-azdev.lovelysystems.com/anmelden'
-    }
-  ],
+  /**
+   * You can configure one environment-specific SSO provider in the ENV variables using
+   * SSO_PROVIDER_TEXT and SSO_PROVIDER_URL. Or you can set multiple ssoProviders here:
+   */
+  // ssoProviders: [
+  //   {
+  //     text: 'Sign in with MY SSO SERVICE',
+  //     url: 'https://MYSSOSERVICE.com/login'
+  //   }
+  // ],
+  ssoProviders: [],
   modalWindow: {
     closeButton: 'Close this dialog window'
   },

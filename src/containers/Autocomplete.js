@@ -27,7 +27,8 @@ AutocompleteContainer.propTypes = {
   value: React.PropTypes.string,
   helper: React.PropTypes.object.isRequired,
   name: React.PropTypes.string,
-  html: React.PropTypes.object
+  html: React.PropTypes.object,
+  icon: React.PropTypes.object
 };
 
 export const mapStateToProps = ({ autocomplete }, {helper, suggestionFormatter}) => {

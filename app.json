@@ -9,6 +9,12 @@
     "BASE_URL": {
       "required": true
     },
+    "SSO_PROVIDER_TEXT": {
+      "required": true
+    },
+    "SSO_PROVIDER_URL": {
+      "required": true
+    },
     "NODE_ENV": {
       "required": true
     }

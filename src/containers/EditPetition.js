@@ -7,7 +7,7 @@ import settings from 'settings';
 import Loading from 'components/Loading';
 import EditPetition from 'components/EditPetition';
 import PreviewPetition from 'components/PreviewPetition';
-import getPetitionPath from 'helpers/getPetitionPath';
+import getPetitionPath from 'selectors/petitionPath';
 import getPetitionForm from 'selectors/petitionForm';
 import petitionPublished from 'selectors/petitionPublished';
 

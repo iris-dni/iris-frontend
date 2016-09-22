@@ -1,7 +1,8 @@
 import React from 'react';
+import Autosuggest from 'react-autosuggest';
 import domOnlyProps from 'form/domOnlyProps';
 import fieldIsInvalid from 'form/fieldIsInvalid';
-import Autosuggest from 'react-autosuggest';
+import Icon from 'components/Icon';
 import styles from './autocomplete.scss';
 
 const MIN_QUERY_LENGTH = 2;
@@ -72,41 +73,52 @@ const Autocomplete = React.createClass({
     const inputClass = this.props.inputModifier ? this.props.inputModifier : 'input';
 
     return (
-      <Autosuggest
-        theme={{
-          containerOpen: styles.open,
-          input: this.getClassname(inputClass, fieldIsInvalid(this.props.helper)),
-          suggestionsList: styles.list,
-          suggestion: styles.suggestion,
-          suggestionFocused: styles.focused
-        }}
-        id={this.props.name}
+      <div className={styles.root}>
+        <Autosuggest
+          theme={{
+            containerOpen: styles.open,
+            input: this.getClassname(inputClass, fieldIsInvalid(this.props.helper)),
+            suggestionsList: styles.list,
+            suggestion: styles.suggestion,
+            suggestionFocused: styles.focused
+          }}
+          id={this.props.name}
 
-        suggestions={this.props.suggestions}
-        renderSuggestion={this.props.suggestionFormatter}
-        getSuggestionValue={this.props.suggestionFormatter}
-        focusFirstSuggestion
+          suggestions={this.props.suggestions}
+          renderSuggestion={this.props.suggestionFormatter}
+          getSuggestionValue={this.props.suggestionFormatter}
 
-        onSuggestionsFetchRequested={(e) => (this.handleFetchRequest(e))}
-        onSuggestionsClearRequested={this.props.clearSuggestions}
-        onSuggestionSelected={(e, suggestion) => (
-          this.handleSelection(e, suggestion)
-        )}
+          onSuggestionsFetchRequested={(e) => (this.handleFetchRequest(e))}
+          onSuggestionsClearRequested={this.props.clearSuggestions}
+          onSuggestionSelected={(e, suggestion) => (
+            this.handleSelection(e, suggestion)
+          )}
 
-        inputProps={{
-          name: this.props.name,
-          id: this.props.name,
-          required: this.props.html.required,
-          placeholder: this.props.html.placeholder,
-          autoComplete: this.props.html.autocomplete || 'off',
+          inputProps={{
+            name: this.props.name,
+            id: this.props.name,
+            required: this.props.html.required,
+            placeholder: this.props.html.placeholder,
+            autoComplete: this.props.html.autocomplete || 'off',
 
-          ...domOnlyProps(this.props.helper),
+            ...domOnlyProps(this.props.helper),
 
-          value: this.props.value,
-          onBlur: () => (this.handleBlur()),
-          onChange: (e, { newValue }) => (this.handleChange(newValue))
-        }}
-      />
+            value: this.props.value,
+            onBlur: () => (this.handleBlur()),
+            onChange: (e, { newValue }) => (this.handleChange(newValue))
+          }}
+        />
+
+        {this.props.icon &&
+          <div className={styles.icon}>
+            <Icon
+              id={this.props.icon.id}
+              inline
+              fill={this.props.icon.fill}
+            />
+          </div>
+        }
+      </div>
     );
   }
 });
