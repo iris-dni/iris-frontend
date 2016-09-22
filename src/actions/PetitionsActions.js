@@ -6,7 +6,8 @@ import { fetchCity } from 'actions/CityActions';
 
 import {
   REQUEST_PETITIONS,
-  RECEIVE_PETITIONS
+  RECEIVE_PETITIONS,
+  CLEAR_PETITIONS
 } from './actionTypes';
 
 export function fetchPetitions ({ location, params }) {
@@ -51,5 +52,11 @@ export function receivePetitions (petitions, params, qs) {
     petitions,
     params,
     qs
+  };
+}
+
+export function clearPetitions () {
+  return {
+    type: CLEAR_PETITIONS
   };
 }

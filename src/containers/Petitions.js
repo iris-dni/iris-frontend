@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { isEqual } from 'lodash/lang';
 import getPetitionsPageTitle from 'helpers/getPetitionsPageTitle';
-import { fetchPetitionsAndCity } from 'actions/PetitionsActions';
+import {
+  fetchPetitionsAndCity,
+  clearPetitions
+} from 'actions/PetitionsActions';
 import { clearSuggestionInputValue } from 'actions/AutocompleteActions';
 import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';
@@ -13,10 +16,11 @@ const PetitionsContainer = withRouter(React.createClass({
   componentWillMount () {
     this.props.clearSuggestionInputValue();
 
-    // If there are no petitions, or if we arrived on the page by clicking
-    // a client-side router link, then we fetch petitions client-side
+    // If there are no petitions, or if the user arrived on the page by clicking
+    // a client-side router link, then we fetch petitions client-side.
     if (!this.props.petitions.length ||
         this.props.location.action === 'PUSH') {
+      this.props.clearPetitions();
       this.props.fetchPetitionsAndCity(this.props);
     }
   },
@@ -62,6 +66,7 @@ export const mapStateToProps = ({ petitions }) => ({
 
 export const mapDispatchToProps = (dispatch) => ({
   fetchPetitionsAndCity: (options) => dispatch(fetchPetitionsAndCity(options)),
+  clearPetitions: () => dispatch(clearPetitions()),
   clearSuggestionInputValue: () => dispatch(clearSuggestionInputValue())
 });
 

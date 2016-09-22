@@ -35,7 +35,7 @@ const Autocomplete = React.createClass({
   },
 
   handleBlur (e, focusedSuggestion) {
-    // If the user exits the input with a suggestion selected (which should only
+    // If the user exits the input with a suggestion focused (which should only
     // happen on TAB out), we select that value and update the redux-form store.
     if (focusedSuggestion) {
       this.props.updateSuggestionInputValue(
