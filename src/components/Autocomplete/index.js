@@ -59,7 +59,7 @@ const Autocomplete = React.createClass({
       }
     }
 
-    this.props.helper.onBlur();
+    this.props.helper.onBlur && this.props.helper.onBlur();
   },
 
   handleChange (newValue) {
@@ -122,9 +122,9 @@ const Autocomplete = React.createClass({
 
             value: this.props.value,
             onBlur: (e, { focusedSuggestion }) =>
-              (this.handleBlur(e, focusedSuggestion)),
+              this.handleBlur(e, focusedSuggestion),
             onChange: (e, { newValue }) =>
-              (this.handleChange(newValue))
+              this.handleChange(newValue)
           }}
         />
 

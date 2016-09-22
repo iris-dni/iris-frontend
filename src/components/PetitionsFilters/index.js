@@ -72,8 +72,7 @@ const PetitionsFilters = React.createClass({
           sort: location.query.sort,
           state: location.query.state
         }));
-      },
-      onBlur () {}
+      }
     },
     html: { placeholder: settings.petitionsPage.filters.city.placeholder }
   }),
