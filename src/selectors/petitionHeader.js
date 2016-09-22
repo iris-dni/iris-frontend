@@ -1,5 +1,3 @@
-export default (petition = {}) => {
-  return {
-    title: petition.title
-  };
-};
+export default (petition = {}) => ({
+  title: petition.title
+});

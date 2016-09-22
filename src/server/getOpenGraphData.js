@@ -1,3 +1,10 @@
+import getPetitionOpenGraphData from 'selectors/petitionOpenGraphData';
+
 export default (componentName, state = {}) => {
-  return [];
+  switch (componentName) {
+    case 'PetitionContainer':
+      return getPetitionOpenGraphData(state.petition);
+    default:
+      return [];
+  }
 };
