@@ -5,9 +5,11 @@ import { withRouter } from 'react-router';
 import { isEqual } from 'lodash/lang';
 import getPetitionsPageTitle from 'helpers/getPetitionsPageTitle';
 import {
-  fetchPetitionsAndCity,
-  clearPetitions
+  fetchPetitions,
+  clearPetitions,
+  fetchPetitionsAndCity
 } from 'actions/PetitionsActions';
+import { updateCurrentCity } from 'actions/CityActions';
 import { clearSuggestionInputValue } from 'actions/AutocompleteActions';
 import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';
@@ -27,10 +29,12 @@ const PetitionsContainer = withRouter(React.createClass({
 
   componentWillReceiveProps (nextProps) {
     // Deep compare filter params, if they have changes
-    // then we fetch petitions again client-side
+    // then we fetch petitions again client-side. We don’t need to fetch the
+    // info on the new/current city, as it has already been updated when we
+    // selected the suggestion.
     if (!isEqual(this.props.params, nextProps.params) ||
         !isEqual(this.props.location.query, nextProps.location.query)) {
-      this.props.fetchPetitionsAndCity(nextProps);
+      this.props.fetchPetitions(nextProps);
     }
   },
 
@@ -65,9 +69,11 @@ export const mapStateToProps = ({ petitions }) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchPetitionsAndCity: (options) => dispatch(fetchPetitionsAndCity(options)),
+  fetchPetitions: (options) => dispatch(fetchPetitions(options)),
   clearPetitions: () => dispatch(clearPetitions()),
-  clearSuggestionInputValue: () => dispatch(clearSuggestionInputValue())
+  fetchPetitionsAndCity: (options) => dispatch(fetchPetitionsAndCity(options)),
+  clearSuggestionInputValue: () => dispatch(clearSuggestionInputValue()),
+  updateCurrentCity: (city) => dispatch(updateCurrentCity(city))
 });
 
 export default connect(
