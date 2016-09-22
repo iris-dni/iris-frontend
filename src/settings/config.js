@@ -59,7 +59,8 @@ export default {
         title: 'Please log in',
         intro: 'In order to sign the Petition, we need you to log in using one of the services below..'
       }
-    }
+    },
+    cityResponse: 'Official response:'
   },
   newPetitionPage: {
     title: 'Create a new Petition',
@@ -79,6 +80,10 @@ export default {
   editPetitionPage: {
     title: 'Edit Petition',
     intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
+  },
+  answerPetitionPage: {
+    title: 'Answer Petition',
+    intro: 'Write an official statement in response to this petition.'
   },
   petitionForm: {
     createButton: {

@@ -11,6 +11,7 @@ import Petitions from 'containers/Petitions';
 import NewPetition from 'containers/NewPetition';
 import EditPetition from 'containers/EditPetition';
 import PublishedPetition from 'containers/PublishedPetition';
+import AnswerPetition from 'containers/AnswerPetition';
 
 export default function (props = {}) {
   let history = browserHistory;
@@ -36,6 +37,7 @@ export default function (props = {}) {
         <Route path='petitions/:id' component={Petition} />
         <Route path='petitions/:id/edit' component={EditPetition} />
         <Route path='petitions/:id/published' component={PublishedPetition} />
+        <Route path='petitions/answer/:token' component={AnswerPetition} />
       </Route>
     </Router>
   );
