@@ -5,6 +5,9 @@
     <title>{{ title or 'iris-frontend' }}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, height=device-height">
+    {% for meta in openGraph %}
+      <meta property="{{ meta.property }}" content="{{ meta.content }}"/>
+    {% endfor %}
     {% include 'theme/includes/webfonts.html' %}
     {% for stylesheet in bundles.stylesheets %}
       <link rel="stylesheet" href="{{ stylesheet }}"/>
