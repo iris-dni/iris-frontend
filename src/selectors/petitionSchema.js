@@ -1,4 +1,5 @@
 import getPetitionStartDate from 'helpers/getPetitionStartDate';
+import getPetitionOwner from 'selectors/petitionOwner';
 
 export default (petition = {}) => ({
   '@context': 'http://schema.org',
@@ -7,12 +8,12 @@ export default (petition = {}) => ({
   'upvoteCount': petition.supporters.amount,
   'text': petition.description,
   'dateCreated': getPetitionStartDate(petition.dc || {}),
-  'author': { /* todo */ },
+  'author': getPetitionOwner(petition),
   'suggestedAnswer': {
     '@type': 'Answer',
     'upvoteCount': petition.supporters.amount,
     'text': petition.suggested_solution,
     'dateCreated': getPetitionStartDate(petition.dc || {}),
-    'author': { /* todo */ }
+    'author': getPetitionOwner(petition)
   }
 });
