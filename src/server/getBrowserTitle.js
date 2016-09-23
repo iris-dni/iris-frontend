@@ -17,7 +17,7 @@ export default (componentName, state = {}) => {
       return TITLE_TEMPLATE.replace('%s', settings.newPetitionPage.title);
     case 'EditPetitionContainer':
       return TITLE_TEMPLATE.replace('%s', settings.editPetitionPage.title);
+    default:
+      return settings.title;
   }
-
-  return settings.title;
 };

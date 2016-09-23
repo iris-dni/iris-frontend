@@ -7,9 +7,7 @@ describe('getMetaData', () => {
   it('returns title key', () => {
     const result = getMetaData();
     const actual = result.hasOwnProperty('title');
-    const expected = true;
-
-    assert.equal(actual, expected);
+    assert.isTrue(actual);
   });
 
   it('title is a string', () => {
@@ -23,9 +21,7 @@ describe('getMetaData', () => {
   it('returns schema key', () => {
     const result = getMetaData();
     const actual = result.hasOwnProperty('schema');
-    const expected = true;
-
-    assert.equal(actual, expected);
+    assert.isTrue(actual);
   });
 
   it('schema is a JSON string', () => {
@@ -34,5 +30,17 @@ describe('getMetaData', () => {
     const expected = 'string';
 
     assert.equal(actual, expected);
+  });
+
+  it('returns openGraph key', () => {
+    const result = getMetaData();
+    const actual = result.hasOwnProperty('openGraph');
+    assert.isTrue(actual);
+  });
+
+  it('openGraph is an array', () => {
+    const result = getMetaData();
+    const actual = result.openGraph instanceof Array;
+    assert.isTrue(actual);
   });
 });

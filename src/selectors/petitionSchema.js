@@ -1,18 +1,19 @@
-export default (petition = {}) => {
-  return {
-    '@context': 'http://schema.org',
-    '@type': 'Question',
-    'name': petition.title,
+import getPetitionStartDate from 'helpers/getPetitionStartDate';
+import getPetitionOwner from 'selectors/petitionOwner';
+
+export default (petition = {}) => ({
+  '@context': 'http://schema.org',
+  '@type': 'Question',
+  'name': petition.title,
+  'upvoteCount': petition.supporters.amount,
+  'text': petition.description,
+  'dateCreated': getPetitionStartDate(petition.dc || {}),
+  'author': getPetitionOwner(petition),
+  'suggestedAnswer': {
+    '@type': 'Answer',
     'upvoteCount': petition.supporters.amount,
-    'text': petition.description,
-    'dateCreated': petition.dc.effective || petition.dc.created,
-    'author': { /* todo */ },
-    'suggestedAnswer': {
-      '@type': 'Answer',
-      'upvoteCount': petition.supporters.amount,
-      'text': petition.suggested_solution,
-      'dateCreated': petition.dc.effective || petition.dc.created,
-      'author': { /* todo */ }
-    }
-  };
-};
+    'text': petition.suggested_solution,
+    'dateCreated': getPetitionStartDate(petition.dc || {}),
+    'author': getPetitionOwner(petition)
+  }
+});
