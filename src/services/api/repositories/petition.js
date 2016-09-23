@@ -1,4 +1,4 @@
-import ApiClient from 'services/api/client';
+import ApiClient, { POST } from 'services/api/client';
 import getRequestParams from 'helpers/getPetitionsRequestParams';
 import path from 'path';
 
@@ -23,7 +23,7 @@ export default {
 
   create: (petition) => {
     const requestPath = '/petitions';
-    return ApiClient.request(requestPath, petition, 'POST');
+    return ApiClient.request(requestPath, petition, POST);
   },
 
   update: (petition) => {
@@ -34,21 +34,21 @@ export default {
       delete petition.city.data;
     }
 
-    return ApiClient.request(requestPath, petition, 'POST');
+    return ApiClient.request(requestPath, petition, POST);
   },
 
   publish: (petition) => {
     const requestPath = path.join('/petitions', petition.id.toString(), '/event/publish');
-    return ApiClient.request(requestPath, null, 'POST');
+    return ApiClient.request(requestPath, null, POST);
   },
 
   support: (petition) => {
     const requestPath = path.join('/petitions', petition.id.toString(), '/event/support');
-    return ApiClient.request(requestPath, {}, 'POST');
+    return ApiClient.request(requestPath, {}, POST);
   },
 
   respond: (petition, response) => {
     const requestPath = path.join('/petitions', petition.id.toString(), 'event/setFeedback');
-    return ApiClient.request(requestPath, response, 'POST');
+    return ApiClient.request(requestPath, response, POST);
   }
 };
