@@ -8,7 +8,7 @@
     "clean": "rm -rf static/dist",
     "nodecheckversion": "node ./scripts/node-checkversion.js",
     "preinstall": "npm run nodecheckversion",
-    "postinstall": "sh ./scripts/upstream.sh && npm run build",
+    "postinstall": "npm run build",
     "server": "NODE_PATH=\"./src\" node ./babel.server",
     "server:dev": "webpack-dev-server --config webpack.config.dev.js",
     "lint": "npm run lint:js && npm run lint:scss",
@@ -25,6 +25,7 @@
     "build": "npm run copy && npm run svgs && webpack --verbose --colors --display-error-details --config webpack.config.prod.js",
     "test": "npm run copy && mocha-webpack --webpack-config webpack.config.test.js",
     "test:watch": "npm run copy && mocha-webpack --webpack-config webpack.config.test.js --watch",
+    "upstream": "sh ./scripts/upstream.sh",
     "update": "sh ./scripts/update.sh"
   },
   "author": "Edenspiekermann",
