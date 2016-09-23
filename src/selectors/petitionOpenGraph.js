@@ -36,4 +36,4 @@ export default (petition = {}) => ([
     property: 'article:expiration_time',
     content: petition.dc && petition.dc.expires
   }
-]);
+].filter(meta => meta.content));
