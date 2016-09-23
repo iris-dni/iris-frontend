@@ -3,6 +3,7 @@ import styles from './petition-sidebar.scss';
 import Countdown from 'components/Countdown';
 import SupportButton from 'containers/SupportButton';
 import TextCenter from 'components/TextCenter';
+import ShareButtons from 'components/ShareButtons';
 
 const PetitionSidebar = ({ timeMetric, supportable }) => (
   <aside role='complementary' className={styles.root}>
@@ -16,6 +17,9 @@ const PetitionSidebar = ({ timeMetric, supportable }) => (
         </TextCenter>
       </div>
     }
+    <div className={styles.share}>
+      <ShareButtons />
+    </div>
   </aside>
 );
 

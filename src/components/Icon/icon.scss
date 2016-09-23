@@ -16,6 +16,12 @@
   height: 16px;
 }
 
+.medium {
+  composes: root;
+  width: 22px;
+  height: 22px;
+}
+
 .large {
   composes: root;
   width: 26px;

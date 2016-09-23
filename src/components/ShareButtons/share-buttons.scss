@@ -1,0 +1,12 @@
+@import 'globals';
+
+.root {
+  list-style: none;
+  text-align: center;
+}
+
+.item {
+  display: inline-block;
+  margin-left: 6px;
+  margin-right: 6px;
+}
