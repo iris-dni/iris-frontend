@@ -1,26 +1,17 @@
 import calculateParamOffset from 'helpers/calculateParamOffset';
 import sanitizeParamLimit from 'helpers/sanitizeParamLimit';
+import getPetitionsStates from 'helpers/getPetitionsStates';
+import getPetitionsSortParam from 'helpers/getPetitionsSortParam';
 
-export default ({ limit, page, city }) => {
+export default ({ limit, page, city, sort, state }) => {
   const saneLimit = sanitizeParamLimit(limit);
 
-  const params = {
+  return {
     resolve: 'city,owner',
-    sort: '-created',
     offset: calculateParamOffset(page, saneLimit),
     limit: saneLimit,
-    state: [
-      'supportable.active',
-      'supportable.winner',
-      'loser',
-      'processing.*',
-      'closed'
-    ].join(',')
+    city: city || '',
+    state: getPetitionsStates(state),
+    sort: getPetitionsSortParam(sort)
   };
-
-  if (city) {
-    params.city = city;
-  }
-
-  return params;
 };

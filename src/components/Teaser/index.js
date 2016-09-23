@@ -4,7 +4,7 @@ import styles from './teaser.scss';
 import TeaserFooter from 'components/TeaserFooter';
 
 const Teaser = (props) => (
-  <article className={styles.root}>
+  <article className={props.winning ? styles.winning : styles.root}>
     <Link to={props.link} className={styles.link}>
       <h2 className={styles.title}>
         {props.title}

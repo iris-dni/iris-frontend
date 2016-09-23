@@ -1,5 +1,5 @@
 import React from 'react';
-import settings from 'settings';
+import { loginPage, ssoProviders } from 'settings';
 import Container from 'components/Container';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
@@ -11,12 +11,13 @@ const LoginPage = ({ location }) => (
   <Container>
     <Header>
       <PageTitle
-        title={settings.loginPage.title}
-        intro={settings.loginPage.intro}
+        title={loginPage.title}
+        intro={loginPage.intro}
         centered
       />
     </Header>
     <SsoProviders providers={generateSsoProviders(
+      ssoProviders,
       getReturnUrlFromLocation(location)
     )} />
   </Container>

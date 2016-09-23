@@ -1,14 +1,23 @@
 import encodeParams from './encodeParams';
 import parameterize from './parameterize';
+import settings from 'settings';
 
 export const petitionsPath = (options = {}) => {
-  const { city, page, limit } = options || {};
-  const queryString = encodeParams({ page, limit });
+  const { state, city, page, limit, sort } = options || {};
+  const queryString = encodeParams({
+    limit: (limit !== settings.petitionsPerPage ? limit : {}),
+    sort,
+    state
+  });
 
   let path = '/petitions';
 
-  if (city) {
+  if (city && city.id) {
     path += `/${parameterize(city.name || '')}-${city.id}`;
+  }
+
+  if (page) {
+    path += `/page/${page}`;
   }
 
   if (queryString) {

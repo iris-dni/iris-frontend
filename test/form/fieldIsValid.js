@@ -15,11 +15,45 @@ describe('fieldIsValid', () => {
     assert.equal(actual, expected);
   });
 
+  it('returns false when field is pristine', () => {
+    const actual = fieldIsValid({
+      touched: true,
+      pristine: true,
+      error: '',
+      value: 'Hello'
+    });
+    const expected = false;
+
+    assert.equal(actual, expected);
+  });
+
   it('returns false when field has no value', () => {
     const actual = fieldIsValid({
       touched: true,
       error: '',
       value: ''
+    });
+    const expected = false;
+
+    assert.equal(actual, expected);
+  });
+
+  it('returns false when field value is empty object', () => {
+    const actual = fieldIsValid({
+      touched: true,
+      error: '',
+      value: {}
+    });
+    const expected = false;
+
+    assert.equal(actual, expected);
+  });
+
+  it('returns false when field value has empty object values', () => {
+    const actual = fieldIsValid({
+      touched: true,
+      error: '',
+      value: { id: null, hello: null }
     });
     const expected = false;
 
@@ -40,10 +74,11 @@ describe('fieldIsValid', () => {
   it('returns true when field has no error', () => {
     const actual = fieldIsValid({
       touched: true,
+      pristine: false,
       error: '',
       value: 'Hello'
     });
-    const expected = 'Hello';
+    const expected = true;
 
     assert.equal(actual, expected);
   });

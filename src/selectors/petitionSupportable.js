@@ -1,3 +1,1 @@
-export default ({ state }) => {
-  return !!state && state.parent === 'supportable';
-};
+export default ({ state }) => !!state && state.parent === 'supportable';

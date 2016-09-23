@@ -1,5 +1,21 @@
 @import 'globals';
 
+/**
+ * 1. Positioning context for optional icon on the input.
+ */
+.root {
+  position: relative; /* 1 */
+}
+
+.icon {
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
 $default-border-radius: map-get($form-fields-defaults, 'border-radius');
 $suggestion-border: 1px solid color('grey-lite');
 
@@ -12,7 +28,7 @@ $suggestion-border: 1px solid color('grey-lite');
 
 .thin {
   composes: input;
-  padding: 8px;
+  padding: 8px 40px 8px 8px;
 }
 
 .open {
@@ -42,10 +58,10 @@ $suggestion-border: 1px solid color('grey-lite');
   left: 0;
   right: 0;
   top: 100%;
-  z-index: 2;
+  z-index: 3;
   list-style: none;
   padding: 0;
-  border-top: 0 !important;
+  border-top: 0;
   border-color: color('dimmed');
   border-radius: 0 0 $default-border-radius $default-border-radius;
   background-color: color('white');

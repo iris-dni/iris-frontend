@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { ssoProviders } from 'settings';
 import { hideModalWindow } from 'actions/ModalActions';
 import ModalWindow from 'components/ModalWindow';
 import LoginModal from 'components/LoginModal';
@@ -15,7 +16,7 @@ const ModalWindowContainer = React.createClass({
           <LoginModal
             title={title}
             intro={intro}
-            ssoProviders={generateSsoProviders(returnUrl || '')}
+            ssoProviders={generateSsoProviders(ssoProviders, returnUrl)}
           />
         }
         {type === 'supported' &&

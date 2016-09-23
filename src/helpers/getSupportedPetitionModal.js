@@ -1,13 +1,13 @@
 import supportCountIncreased from 'helpers/supportCountIncreased';
 import settings from 'settings';
-import getPetitionLink from './getPetitionLink';
+import getPetitionURL from './getPetitionURL';
 
 export default (oldPetiton, newPetition) => {
   const contentKey = supportCountIncreased(oldPetiton, newPetition)
     ? 'newlySupported'
     : 'alreadySupported';
   return {
-    link: getPetitionLink(newPetition.id),
+    link: getPetitionURL(newPetition.id),
     ...settings.supportPetition[contentKey].modal
   };
 };

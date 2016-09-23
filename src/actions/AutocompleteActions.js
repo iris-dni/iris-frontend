@@ -25,6 +25,10 @@ export function updateSuggestionInputValue (value) {
   };
 }
 
+export function clearSuggestionInputValue () {
+  return updateSuggestionInputValue('');
+}
+
 export function typeaheadSearch (endpoint, query, limit) {
   return (dispatch, getState) => {
     const repository = Repositories[endpoint];

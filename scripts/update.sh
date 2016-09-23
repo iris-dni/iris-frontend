@@ -4,7 +4,7 @@ ORIGINAL_REPO=iris-dni/iris-frontend.git
 HAS_CONFIGURED_UPSTREAM=$(git config --get remote.upstream.url | grep $ORIGINAL_REPO)
 
 if [ "$HAS_CONFIGURED_UPSTREAM" ]; then
-  read -p "You should definitely stash any changes before doing this. Continue? [Y/n] " -n 1 -r
+  read -p "You should definitely stash any changes before doing this. Continue? [y/n] " -n 1 -r
   echo # blank line
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "Fetching updates from upstream..."

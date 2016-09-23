@@ -1,9 +1,29 @@
 import settings from 'settings';
 
-export default (currentCity) => {
-  const city = currentCity && currentCity.name;
+const getState = (state) => {
+  switch (state) {
+    case 'winning':
+      return settings.petitionsPage.winning;
+    case 'past':
+      return settings.petitionsPage.past;
+    case 'all':
+      return settings.petitionsPage.all;
+    case 'current':
+    default:
+      return '';
+  }
+};
 
-  return city
-    ? `${settings.petitionsPage.titleLocalized} ${city}`
-    : settings.petitionsPage.title;
+export default ({ currentCity, params }) => {
+  const state = params && getState(params.state);
+  const city = currentCity && currentCity.name;
+  let title = settings.petitionsPage.title;
+
+  title = (state ? title.replace('%x', state) : title.replace('%x', ''));
+  title = (city ? title.replace('%y', `in ${city}`) : title.replace('%y', ''));
+
+  // Replaces any potential double space with a single one.
+  title = title.trim().replace(/\s{2,}/g, ' ');
+
+  return title;
 };
