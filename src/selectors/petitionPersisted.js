@@ -1,3 +1,1 @@
-export default ({ id }) => {
-  return !!id;
-};
+export default ({ id }) => !!id;
