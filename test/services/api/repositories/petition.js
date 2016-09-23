@@ -150,4 +150,29 @@ describe('petition repository', () => {
       ));
     });
   });
+
+  describe('respond', () => {
+    let examplePetition = { id: exampleId, title: exampleTitle };
+    let exampleResponse = {
+      answer: {
+        text: 'Example Answer',
+        name: 'Jane Doe, Mayor'
+      },
+      token: exampleResponseToken
+    };
+
+    let expectedPathArgument = `/petitions/${exampleId}/event/setFeedback`;
+    let expectedDataArgument = exampleResponse;
+    let expectedMethodArgument = 'POST';
+
+    it('calls the API client with proper arguments', () => {
+      petitionRepository.respond(examplePetition, exampleResponse);
+
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument,
+        expectedDataArgument,
+        expectedMethodArgument
+      ));
+    });
+  });
 });
