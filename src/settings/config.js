@@ -81,8 +81,8 @@ export default {
     title: 'Edit Petition',
     intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
   },
-  answerPetitionPage: {
-    title: 'Answer Petition',
+  respondToPetitionPage: {
+    title: 'Respond to Petition',
     intro: 'Write an official statement in response to this petition.'
   },
   petitionForm: {
@@ -97,6 +97,17 @@ export default {
     },
     saveButton: {
       text: 'Preview Petition'
+    }
+  },
+  respondToPetitionForm: {
+    publishButton: {
+      text: 'Publish Response',
+      modal: {
+        intro: 'To publish a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
+      }
+    },
+    saveButton: {
+      text: 'Preview Response'
     }
   },
   publishedPetitionPage: {
@@ -126,6 +137,11 @@ export default {
       placeholder: 'Tell everyone what should be done...',
       hint: 'Because you care a lot about your cause, you probably have some great ideas about how to solve it. Clearly outline the actions required to achieve your goal.'
     }
+  },
+  respondToPetitionFields: {
+    label: 'Explain what the official response to this petition is.',
+    placeholder: 'Tell everyone what actions will be taken...',
+    hint: 'Placeholder hint.'
   },
   supportPetition: {
     newlySupported: {

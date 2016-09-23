@@ -1,8 +1,9 @@
 export default (petition = {}) => {
-  const isProcessing = petition.state.name === 'processing';
+  const hasResponded = petition.state.parent === 'processing' &&
+    petition.state.name === 'letterResponseArrived';
   const hasText = !!petition.city_answer.text;
 
-  if (isProcessing && hasText) {
+  if (hasResponded && hasText) {
     return petition.city_answer;
   }
 
