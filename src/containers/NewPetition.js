@@ -12,15 +12,15 @@ import getPetitionForm from 'selectors/petitionForm';
 import petitionPublished from 'selectors/petitionPublished';
 
 const NewPetitionContainer = withRouter(React.createClass({
-  componentWillMount () {
-    this.props.clearPetition();
-    this.props.clearSuggestionInputValue();
-  },
-
   componentWillUpdate (nextProps) {
     if (petitionPublished(nextProps.petition)) {
       this.props.router.push(`${getPetitionPath(nextProps.petition)}/published`);
     }
+  },
+
+  componentWillUnmount () {
+    this.props.clearPetition();
+    this.props.clearSuggestionInputValue();
   },
 
   render () {

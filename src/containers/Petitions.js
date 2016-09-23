@@ -16,12 +16,11 @@ import getPetitions from 'selectors/petitions';
 
 const PetitionsContainer = withRouter(React.createClass({
   componentWillMount () {
-    this.props.clearSuggestionInputValue();
-
     // If there are no petitions, or if the user arrived on the page by clicking
     // a client-side router link, then we fetch petitions client-side.
     if (!this.props.petitions.length ||
-        this.props.location.action === 'PUSH') {
+        this.props.location.action === 'PUSH' ||
+        this.props.location.action === 'REPLACE') {
       this.props.clearPetitions();
       this.props.fetchPetitionsAndCity(this.props);
     }
@@ -34,8 +33,20 @@ const PetitionsContainer = withRouter(React.createClass({
     // selected the suggestion.
     if (!isEqual(this.props.params, nextProps.params) ||
         !isEqual(this.props.location.query, nextProps.location.query)) {
+      // Handles edge case of clicking on the logo, which doesn’t trigger a PUSH
+      // or a component unmount.
+      if (nextProps.location.action === 'REPLACE') {
+        this.props.clearSuggestionInputValue();
+        this.props.updateCurrentCity({});
+      }
+
       this.props.fetchPetitions(nextProps);
     }
+  },
+
+  componentWillUnmount () {
+    this.props.clearSuggestionInputValue();
+    this.props.updateCurrentCity({});
   },
 
   render () {
