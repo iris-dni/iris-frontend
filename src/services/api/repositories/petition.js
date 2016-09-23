@@ -45,5 +45,10 @@ export default {
   support: (petition) => {
     const requestPath = path.join('/petitions', petition.id.toString(), '/event/support');
     return ApiClient.request(requestPath, {}, 'POST');
+  },
+
+  respond: (petition, response) => {
+    const requestPath = path.join('/petitions', petition.id.toString(), 'event/setFeedback');
+    return ApiClient.request(requestPath, response, 'POST');
   }
 };
