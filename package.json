@@ -24,7 +24,8 @@
     "dev": "npm run clean && npm run build && concurrently --kill-others \"npm run server:dev\" \"npm run server\"",
     "build": "npm run copy && npm run svgs && webpack --verbose --colors --display-error-details --config webpack.config.prod.js",
     "test": "npm run copy && mocha-webpack --webpack-config webpack.config.test.js",
-    "test:watch": "npm run copy && mocha-webpack --webpack-config webpack.config.test.js --watch"
+    "test:watch": "npm run copy && mocha-webpack --webpack-config webpack.config.test.js --watch",
+    "update": "sh ./scripts/update.sh"
   },
   "author": "Edenspiekermann",
   "license": "ISC",
