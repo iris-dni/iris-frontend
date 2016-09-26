@@ -7,17 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, height=device-height">
     {{ head.meta | safe }}
     {{ head.link | safe }}
-    {% for meta in openGraph %}
-      <meta property="{{ meta.property }}" content="{{ meta.content }}"/>
-    {% endfor %}
     {% include 'theme/includes/webfonts.html' %}
     {% for stylesheet in bundles.stylesheets %}
       <link rel="stylesheet" href="{{ stylesheet }}"/>
     {% endfor %}
-    {% include 'assets/includes/head.html' %}
-    {% include 'theme/includes/head.html' %}
     {{ head.script | safe }}
     {{ head.style | safe }}
+    {% include 'assets/includes/head.html' %}
+    {% include 'theme/includes/head.html' %}
   </head>
   <body>
     <div id="app">{{ reactMarkup | safe }}</div>

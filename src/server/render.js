@@ -8,8 +8,8 @@ import { Provider } from 'react-redux';
 import reducers from 'reducers';
 
 import routes from 'routes';
-import settings from 'settings';
 import stringifyHeadData from 'server/stringifyHeadData';
+import getBundles from 'server/getBundles';
 
 export default (request, reply, next) => {
   match({ routes: routes(), location: { pathname: request.path, query: request.query } }, (error, redirectLocation, renderProps) => {
@@ -55,9 +55,9 @@ export default (request, reply, next) => {
           // Render Nunjucks view with required data
           return reply.view('index', Object.assign({}, {
             reactMarkup: reactString,
-            initialState: JSON.stringify(initialState)
-          }, settings, {
-            head: stringifyHeadData(headData)
+            initialState: JSON.stringify(initialState),
+            head: stringifyHeadData(headData),
+            bundles: getBundles()
           }));
         })
         .catch((err) => {
