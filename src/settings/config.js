@@ -82,8 +82,15 @@ export default {
     intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
   },
   respondToPetitionPage: {
-    title: 'Respond to Petition',
-    intro: 'Write an official statement in response to this petition.'
+    title: 'Response form',
+    intro: 'This is the form where you submit your official response to a petition. This response will be displayed on the original petition, so this is your opportunity to communicate with everyone who supported the initiative. Make sure your response is a good one.',
+    hints: {
+      title: 'Here’s a few pointers on what makes a good response:',
+      first: 'Make sure to answer to the original complaint/idea.',
+      second: 'Outline what the next steps are.',
+      third: 'Remember to sign with your name and department.',
+      fourth: 'The citizens in your city cared enough to write and/or support a cause, be respectful of their opinions.'
+    }
   },
   petitionForm: {
     createButton: {

@@ -6,6 +6,7 @@ import FormWrapper from 'components/FormWrapper';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import RespondToPetitionForm from 'components/RespondToPetitionForm';
+import RespondToPetitionHints from 'components/RespondToPetitionHints';
 
 const RespondToPetition = ({ petition }) => (
   <Container>
@@ -16,6 +17,7 @@ const RespondToPetition = ({ petition }) => (
           intro={settings.respondToPetitionPage.intro}
         />
       </Header>
+      <RespondToPetitionHints petition={petition} />
       <div className={styles.form}>
         <RespondToPetitionForm
           initialValues={petition}

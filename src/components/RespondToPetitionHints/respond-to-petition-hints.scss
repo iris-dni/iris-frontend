@@ -1,0 +1,13 @@
+@import 'globals';
+
+.hints {
+  background-color: color('grey-lighter');
+  padding: 1em;
+}
+
+.icon {
+  display: inline-block;
+  margin-right: 0.4em;
+  position: relative;
+  top: 1px;
+}
