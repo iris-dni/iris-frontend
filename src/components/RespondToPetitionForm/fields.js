@@ -12,13 +12,26 @@ export default [
   {
     element: 'textarea',
     name: 'response',
-    label: settings.respondToPetitionFields.label,
-    hint: settings.respondToPetitionFields.hint,
+    label: settings.respondToPetitionFields.response.label,
+    hint: settings.respondToPetitionFields.response.hint,
     html: {
-      placeholder: settings.respondToPetitionFields.placeholder,
+      placeholder: settings.respondToPetitionFields.response.placeholder,
       required: true,
       minLength: 50,
       maxLength: 500
+    }
+  },
+  {
+    element: 'input',
+    name: 'name',
+    label: settings.respondToPetitionFields.name.label,
+    hint: '',
+    html: {
+      type: 'text',
+      placeholder: '',
+      required: true,
+      minLength: 15,
+      maxLength: 80
     }
   }
 ];

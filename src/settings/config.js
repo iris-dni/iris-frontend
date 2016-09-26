@@ -92,13 +92,11 @@ export default {
       fourth: 'The citizens in your city cared enough to write and/or support a cause, be respectful of their opinions.'
     },
     details: {
-      title: 'Petition details',
-      article: 'The petition',
-      from: 'from',
-      in: 'in',
-      collected: 'collected',
-      votes: 'votes',
-      url: 'URL'
+      for: 'The petition',
+      by: 'By',
+      in: 'In',
+      collected: 'Collected',
+      votes: 'votes'
     }
   },
   petitionForm: {
@@ -117,13 +115,10 @@ export default {
   },
   respondToPetitionForm: {
     publishButton: {
-      text: 'Publish Response',
+      text: 'Submit response',
       modal: {
         intro: 'To publish a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
       }
-    },
-    saveButton: {
-      text: 'Preview Response'
     }
   },
   publishedPetitionPage: {
@@ -155,9 +150,14 @@ export default {
     }
   },
   respondToPetitionFields: {
-    label: 'Explain what the official response to this petition is.',
-    placeholder: 'Tell everyone what actions will be taken...',
-    hint: 'Placeholder hint.'
+    response: {
+      label: 'Write your response',
+      placeholder: 'Tell the petitioner and supporters what you plan to do…',
+      hint: 'To write a good response, you should clearly communicate why you care about this cause, how it impacts the local community and what steps you plan to take.'
+    },
+    name: {
+      label: 'Include your name and department'
+    }
   },
   supportPetition: {
     newlySupported: {
