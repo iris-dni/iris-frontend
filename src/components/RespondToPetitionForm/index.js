@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import { respondToPetition } from 'actions/RespondActions';
-import petitionValidator from 'form/petitionValidator';
+import petitionResponseValidator from 'form/petitionResponseValidator';
 import Fieldset from 'components/Fieldset';
 import FormField from 'components/FormField';
 import Button from 'components/Button';
@@ -39,7 +39,7 @@ RespondToPetitionForm.propTypes = {
 };
 
 export default reduxForm({
-  form: 'simple',
+  form: 'simple2',
   fields: FIELDS.map(field => field.name),
-  validate: petitionValidator
+  validate: petitionResponseValidator
 })(RespondToPetitionForm);

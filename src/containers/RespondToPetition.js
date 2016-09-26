@@ -26,7 +26,7 @@ const RespondToPetitionContainer = withRouter(React.createClass({
 
   componentWillUpdate (nextProps) {
     if (nextProps.petition.hasPublished) {
-      this.props.router.push(`${getPetitionPath(nextProps.petition)}/published`);
+      this.props.router.push(`${getPetitionPath(nextProps.petition)}`);
     }
   },
 

@@ -23,9 +23,9 @@ export function fetchPetitionByResponseToken (responseToken) {
   };
 }
 
-export function respondToPetition (petition, response, dispatch) {
+export function respondToPetition (petition, dispatch) {
   dispatch(submittingPetition());
-  return petitionRepository.respond(petition, response)
+  return petitionRepository.respond(petition)
     .then((response) => {
       const resolvedPetition = solveResolvedObjects(petition, response.data);
       dispatch(updatedPetition(resolvedPetition));
