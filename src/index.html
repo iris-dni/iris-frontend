@@ -2,9 +2,11 @@
 <html lang="{{ lang or 'en' }}">
   <head>
     <meta charset="{{ charset or 'utf-8' }}">
-    <title>{{ title or 'iris-frontend' }}</title>
+    {{ head.title | safe }}
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, height=device-height">
+    {{ head.meta | safe }}
+    {{ head.link | safe }}
     {% for meta in openGraph %}
       <meta property="{{ meta.property }}" content="{{ meta.content }}"/>
     {% endfor %}
@@ -14,9 +16,8 @@
     {% endfor %}
     {% include 'assets/includes/head.html' %}
     {% include 'theme/includes/head.html' %}
-    <script type="application/ld+json">
-      {{ schema | safe }}
-    </script>
+    {{ head.script | safe }}
+    {{ head.style | safe }}
   </head>
   <body>
     <div id="app">{{ reactMarkup | safe }}</div>
