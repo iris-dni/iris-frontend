@@ -1,3 +1,5 @@
 export default (id) => (
-  [process.env.BASE_URL, 'petitions', id].join('/')
+  id
+    ? [process.env.BASE_URL, 'petitions', id].join('/')
+    : ''
 );

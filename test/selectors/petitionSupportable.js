@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import getPetitionSupportable from 'selectors/petitionSupportable';
 
-describe('getPetitionSupportable', () => {
+describe('petitionSupportable selector', () => {
   context('with a new petition', () => {
     const actual = getPetitionSupportable({});
     const expected = false;

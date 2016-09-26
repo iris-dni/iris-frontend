@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import getPetitionHeader from 'selectors/petitionHeader';
 import mockPetition from '../mocks/petition';
 
-describe('getPetitionHeader', () => {
+describe('petitionHeader selector', () => {
   it('returns `title` key', () => {
     const result = getPetitionHeader();
     const actual = result.hasOwnProperty('title');

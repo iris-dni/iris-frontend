@@ -31,6 +31,7 @@ const PetitionsContainer = withRouter(React.createClass({
   },
 
   render () {
+    console.log(this.props.title);
     return (
       <div>
         <Helmet title={this.props.title} />

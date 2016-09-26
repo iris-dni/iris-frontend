@@ -6,6 +6,7 @@ import { supportPetition } from 'actions/SupportActions';
 import Petition from 'components/Petition';
 import Loading from 'components/Loading';
 import getPetition from 'selectors/petition';
+import getPetitionMetaData from 'helpers/getPetitionMetaData';
 
 const PetitionContainer = React.createClass({
   componentWillMount () {
@@ -30,12 +31,13 @@ const PetitionContainer = React.createClass({
   },
 
   render () {
-    const { petition } = this.props;
+    const { petition } = this.props || {};
 
     return (
       <div>
         <Helmet
           title={petition.browserTitle}
+          meta={getPetitionMetaData(petition)}
           script={[{
             'type': 'application/ld+json',
             'innerHTML': JSON.stringify(petition.schema || {})

@@ -4,7 +4,7 @@ import mockPetition from '../mocks/petition';
 
 const { assert } = chai;
 
-describe('getPetitionOwner', () => {
+describe('petitionOwner selector', () => {
   it('returns name correctly', () => {
     const actual = getPetitionOwner(mockPetition.data);
     const expected = 'Stephanie Ballard';
