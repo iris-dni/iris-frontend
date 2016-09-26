@@ -15,8 +15,6 @@ const getState = (state) => {
 };
 
 export default ({ currentCity, params }) => {
-  console.log(params);
-
   const state = params && getState(params.state);
   const city = currentCity && currentCity.name;
   let title = settings.petitionsPage.title;
