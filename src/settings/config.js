@@ -85,11 +85,20 @@ export default {
     title: 'Response form',
     intro: 'This is the form where you submit your official response to a petition. This response will be displayed on the original petition, so this is your opportunity to communicate with everyone who supported the initiative. Make sure your response is a good one.',
     hints: {
-      title: 'Here’s a few pointers on what makes a good response:',
+      title: 'A few pointers on what makes a good response:',
       first: 'Make sure to answer to the original complaint/idea.',
       second: 'Outline what the next steps are.',
       third: 'Remember to sign with your name and department.',
       fourth: 'The citizens in your city cared enough to write and/or support a cause, be respectful of their opinions.'
+    },
+    details: {
+      title: 'Petition details',
+      article: 'The petition',
+      from: 'from',
+      in: 'in',
+      collected: 'collected',
+      votes: 'votes',
+      url: 'URL'
     }
   },
   petitionForm: {

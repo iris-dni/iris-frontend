@@ -2,7 +2,11 @@
 
 .hints {
   background-color: color('grey-lighter');
-  padding: 1em;
+  padding: 1.2em;
+
+  @include media('>=text-boost') {
+    padding: 2em;
+  }
 }
 
 .icon {
