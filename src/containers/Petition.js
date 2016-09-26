@@ -17,15 +17,15 @@ const PetitionContainer = React.createClass({
       location: { query: { intent } }
     } = this.props;
 
+    const isSupporting = __CLIENT__ && intent === 'support';
+
     // When the component gets added to the DOM,
-    // fetch Petition if `id` changes (clientside)
-    if (petition.id !== this.props.params.id) {
-      fetchPetition(id).then(({ petition }) => {
-        // If we have the `support` intent, support the petition
-        if (__CLIENT__ && intent === 'support') {
-          supportPetition(petition);
-        }
-      });
+    // fetch Petition if `id` changes (clientside),
+    // or if we need to support a petition
+    if (petition.id !== this.props.params.id || isSupporting) {
+      fetchPetition(id).then(({ petition }) => isSupporting
+        ? supportPetition(petition)
+        : () => {});
     }
   },
 
