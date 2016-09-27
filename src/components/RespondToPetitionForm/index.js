@@ -9,7 +9,7 @@ import Button from 'components/Button';
 import settings from 'settings';
 import FIELDS from './fields';
 
-const RespondToPetitionForm = ({ petition, fields, handleSubmit, submitting }) => {
+const RespondToPetitionForm = ({ petition, petitionResponse, fields, handleSubmit, submitting }) => {
   return (
     <form onSubmit={handleSubmit(respondToPetition)}>
       <Fieldset>
@@ -34,6 +34,7 @@ const RespondToPetitionForm = ({ petition, fields, handleSubmit, submitting }) =
 
 RespondToPetitionForm.propTypes = {
   petition: React.PropTypes.object.isRequired,
+  petitionResponse: React.PropTypes.object.isRequired,
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
   submitting: React.PropTypes.bool.isRequired

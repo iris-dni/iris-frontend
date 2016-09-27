@@ -3,7 +3,15 @@ import settings from 'settings';
 export default [
   {
     element: 'input',
-    name: 'id',
+    name: 'petitionId',
+    hidden: true,
+    html: {
+      type: 'hidden'
+    }
+  },
+  {
+    element: 'input',
+    name: 'token',
     hidden: true,
     html: {
       type: 'hidden'
@@ -11,7 +19,7 @@ export default [
   },
   {
     element: 'textarea',
-    name: 'response',
+    name: 'answer.text',
     label: settings.respondToPetitionFields.response.label,
     hint: settings.respondToPetitionFields.response.hint,
     html: {
@@ -23,7 +31,7 @@ export default [
   },
   {
     element: 'input',
-    name: 'name',
+    name: 'answer.name',
     label: settings.respondToPetitionFields.name.label,
     hint: '',
     html: {

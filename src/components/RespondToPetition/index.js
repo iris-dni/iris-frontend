@@ -13,7 +13,7 @@ import RespondToPetitionForm from 'components/RespondToPetitionForm';
 import RespondToPetitionHints from 'components/RespondToPetitionHints';
 import Paragraph from 'components/Paragraph';
 
-const RespondToPetition = ({ petition, router }) => (
+const RespondToPetition = ({ petition, petitionResponse, router }) => (
   <Container>
     <FormWrapper>
       <Header>
@@ -38,8 +38,9 @@ const RespondToPetition = ({ petition, router }) => (
       <RespondToPetitionHints petition={petition} />
       <div className={styles.form}>
         <RespondToPetitionForm
-          initialValues={petition}
+          initialValues={petitionResponse}
           petition={petition}
+          petitionResponse={petitionResponse}
         />
       </div>
     </FormWrapper>
