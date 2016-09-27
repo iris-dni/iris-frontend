@@ -1,6 +1,7 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import { respondToPetition } from 'actions/RespondActions';
+import { get } from 'lodash/object';
 import petitionResponseValidator from 'form/petitionResponseValidator';
 import Fieldset from 'components/Fieldset';
 import FormField from 'components/FormField';
@@ -16,7 +17,7 @@ const RespondToPetitionForm = ({ petition, fields, handleSubmit, submitting }) =
           <FormField
             key={field.name}
             config={field}
-            helper={fields[field.name]}
+            helper={get(fields, field.name)}
           />
         ))}
       </Fieldset>
