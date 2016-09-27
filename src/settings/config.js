@@ -2,6 +2,7 @@ export default {
   lang: 'en',
   charset: 'utf-8',
   title: 'iris-frontend',
+  twitterAccount: 'azmedien',
   dateRange: '%s to %e',
   dateFormat: 'DD-MM-YYYY',
   authorLabel: 'by %a',

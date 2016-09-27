@@ -4,7 +4,7 @@ import mockPetition from '../mocks/petition';
 
 const { assert } = chai;
 
-describe('getPetitionCity', () => {
+describe('petitionCity selector', () => {
   it('returns label', () => {
     const actual = getPetitionCity(mockPetition.data).label;
     const expected = '17839 Clinemouth';

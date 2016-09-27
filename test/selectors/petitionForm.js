@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import getPetionForm from 'selectors/petitionForm';
 
-describe('getPetionForm', () => {
+describe('petionForm selector', () => {
   let subject;
 
   context('with a new petition', () => {

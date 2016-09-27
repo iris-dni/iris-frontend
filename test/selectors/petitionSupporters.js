@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import getPetitionSupporters from 'selectors/petitionSupporters';
 import mockPetition from '../mocks/petition';
 
-describe('getPetitionSupporters', () => {
+describe('petitionSupporters selector', () => {
   it('returns `total` key', () => {
     const result = getPetitionSupporters();
     const actual = result.hasOwnProperty('total');
