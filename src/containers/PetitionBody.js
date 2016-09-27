@@ -11,7 +11,7 @@ const mapStateToProps = ({ petition }) => ({
   description: petition.description,
   suggestedSolution: petition.suggested_solution,
   cityResponse: getCityResponse(petition)
-  links: petition.links
+  links: petition.links || []
 });
 
 PetitionBodyContainer.propTypes = {

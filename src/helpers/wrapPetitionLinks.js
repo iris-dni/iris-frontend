@@ -2,7 +2,7 @@ export default (links) => {
   return links && links
     .filter(link => link)
     .map(link => {
-      if (!link.data) {
+      if (!link.data && !link.url) {
         link = JSON.parse(link);
       }
 

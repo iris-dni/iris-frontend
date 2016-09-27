@@ -6,7 +6,7 @@ const PetitionLinksField = React.createClass({
   getInitialState: () => ({ value: '', links: [] }),
 
   componentWillMount () {
-    this.setState({ links: this.props.petitionLinks });
+    this.setState({ links: this.props.petitionLinks || [] });
   },
 
   handleChange (e) {
@@ -16,7 +16,7 @@ const PetitionLinksField = React.createClass({
   componentWillUpdate (nextProps) {
     const { helper } = nextProps;
 
-    if (helper.length !== this.props.helper.length) {
+    if (helper.length > this.props.helper.length) {
       const { links } = this.state;
       const lastLinkIndex = helper.length - 1;
       const lastLink = helper[lastLinkIndex];
@@ -45,27 +45,23 @@ const PetitionLinksField = React.createClass({
       const { helper } = this.props;
 
       if (value) {
-        if (links.filter(link => (value === link.url)).length) {
-          // @TODO find a way to display error on the input
-          console.warn('Please add different links.');
-        } else if (links.length < 3) {
-          if (isLink(value)) {
-            const savedValue = { url: value };
-
-            // Update redux-form value
-            helper.addField(JSON.stringify(savedValue));
-
-            // Update state with new links and reset input value
-            links.push(savedValue);
-            this.setState({ value: '', links });
-          } else {
-            // @TODO find a way to display error on the input
-            console.warn('Not a link.');
-          }
-        } else {
-          // @TODO find a way to display error on the input
-          console.warn('You can’t add more than 3 links.');
+        // @TODO find a way to display errors on the input…
+        if (!isLink(value)) {
+          return console.warn('This is not a valid link.');
+        } else if (links.length >= 3) {
+          return console.warn('You can’t add more than 3 links.');
+        } else if (links.filter(link => (value === link.url)).length) {
+          return console.warn('Please add unique links.');
         }
+
+        const savedValue = { url: value };
+
+        // Update redux-form value
+        helper.addField(JSON.stringify(savedValue));
+
+        // Update state with new links and reset input value
+        links.push(savedValue);
+        this.setState({ value: '', links });
       }
     }
   },
