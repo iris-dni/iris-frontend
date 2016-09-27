@@ -19,6 +19,7 @@ const RespondToPetitionContainer = withRouter(React.createClass({
     } = this.props;
 
     fetchPetitionByResponseToken(token).then(({ petition }) => {
+      console.log(petition);
       if (petitionResponded(petition)) {
         this.props.router.push(getPetitionPath(petition));
       }
@@ -48,6 +49,10 @@ const RespondToPetitionContainer = withRouter(React.createClass({
     );
   }
 }));
+
+RespondToPetitionContainer.fetchData = ({ store, params }) => {
+  return store.dispatch(fetchPetitionByResponseToken(params.token));
+};
 
 export const mapStateToProps = ({ petition, petitionResponse }) => ({
   petition: getPetitionForm(petition),
