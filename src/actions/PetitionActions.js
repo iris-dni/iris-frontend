@@ -1,5 +1,6 @@
 import petitionRepository from 'services/api/repositories/petition';
 import solveResolvedObjects from 'helpers/solveResolvedObjects';
+import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
 import settings from 'settings';
 
 import {
@@ -64,6 +65,9 @@ export function submittingPetition () {
 
 export function createPetition (petition, dispatch) {
   dispatch(submittingPetition());
+
+  petition.links = wrapPetitionLinks(petition.links);
+
   return petitionRepository.create(petition)
     .then((response) => {
       const resolvedPetition = solveResolvedObjects(petition, response.data);
@@ -84,6 +88,9 @@ export function createdPetition (petition) {
 
 export function updatePetition (petition, dispatch) {
   dispatch(submittingPetition());
+
+  petition.links = wrapPetitionLinks(petition.links);
+
   return petitionRepository.update(petition)
     .then((response) => {
       const resolvedPetition = solveResolvedObjects(petition, response.data);

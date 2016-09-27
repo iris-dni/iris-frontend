@@ -4,9 +4,17 @@ import styles from './petition-links-field.scss';
 
 const PetitionLinksField = React.createClass({
   getInitialState: () => ({
+    // @TODO MOVE TO REDUCER
     value: '',
     links: []
   }),
+
+  componentWillMount () {
+    // @TODO MOVE TO CONTAINER?
+    this.setState({
+      links: this.props.petitionLinks.map(link => ({ url: link.data.url }))
+    });
+  },
 
   getClassName (element, error) {
     return [
@@ -29,14 +37,15 @@ const PetitionLinksField = React.createClass({
 
       // @TODO validation is URL? + find a way to display error on the input
       if (links.length < 3) {
-        const savedValue = { url: value };
-
         // Fetch open graph data for the given link
-        this.props.fetchOpenGraph(value).then((a) => {
-          // @TODO find a way to display error on the input
+        this.props.fetchOpenGraph(value).then(({ openGraph }) => {
+          const savedValue = {
+            url: value,
+            og: openGraph
+          };
 
           // Update redux-form value
-          this.props.helper.addField(savedValue);
+          this.props.helper.addField(value);
 
           // Update state with new links and reset input value
           // @TODO ACTIONS
@@ -45,14 +54,6 @@ const PetitionLinksField = React.createClass({
         }).catch((e) => {
           // @TODO find a way to display error on the input
           console.warn(e);
-
-          // Update redux-form value
-          this.props.helper.addField(savedValue);
-
-          // Update state with new links and reset input value
-          // @TODO ACTIONS
-          links.push(savedValue);
-          this.setState({ value: '', links });
         });
       } else {
         // @TODO find a way to display error on the input
