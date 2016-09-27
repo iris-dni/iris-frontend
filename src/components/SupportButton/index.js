@@ -14,7 +14,7 @@ const SupportButton = ({ petition, supportPetition }) => (
     onClick={() => supportPetition(petition)}
     href={!petition.supportedByMe && `/petitions/${petition.id}?intent=support`}
     text={settings.petitionPage.supportButton.text}
-    size={'smaller'}
+    block
     modifier={'accent'}
     disabled={petition.supportedByMe}
   />

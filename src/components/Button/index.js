@@ -1,14 +1,18 @@
 import React from 'react';
 import styles from './button.scss';
 
-export const getClassname = ({ disabled, modifier, fill, size }) => {
-  return [
-    styles[size || ''],
-    styles[disabled ? 'disabled' : (modifier || 'default')],
-    styles[size],
-    styles[fill ? 'block' : 'inline']
-  ].join(' ');
-};
+export const getClassname = ({
+  disabled,
+  modifier,
+  block,
+  size,
+  brand
+}) => ([
+  styles[disabled ? 'is-disabled' : (modifier || 'default')],
+  styles[block ? 'display-block' : 'display-inline'],
+  styles[size ? `size-${size}` : 'size-regular'],
+  styles[brand ? `brand-${brand}` : '']
+].join(' '));
 
 const Button = (props) => (
   <button

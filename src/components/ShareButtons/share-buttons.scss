@@ -1,12 +1,14 @@
 @import 'globals';
 
 .root {
-  list-style: none;
   text-align: center;
 }
 
+.list {
+  list-style: none;
+  text-align: left;
+}
+
 .item {
-  display: inline-block;
-  margin-left: 6px;
-  margin-right: 6px;
+  margin-bottom: 10px;
 }

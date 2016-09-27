@@ -10,7 +10,19 @@
   }
 }
 
-.support-button,
+.specifics {
+  color: color('dimmed');
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.support-button {
+  text-align: center;
+}
+
 .share {
   margin-top: 30px;
 }

@@ -1,7 +1,7 @@
 import getPetitionOwner from 'selectors/petitionOwner';
 import getPetitionCity from 'selectors/petitionCity';
 import getPetitionURL from 'helpers/getPetitionURL';
-import getPetitionStartDate from 'helpers/getPetitionStartDate';
+import getPetitionStartDate from 'selectors/petitionStartDate';
 
 export default (petition = {}) => ([
   {
