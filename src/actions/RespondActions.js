@@ -17,14 +17,14 @@ export function fetchPetitionByResponseToken (responseToken) {
     dispatch(requestPetition());
     return petitionRepository.findByResponseToken(responseToken)
       .then(response => dispatch(
-        receivePetition(response.data)
+        receivePetition({ ...response.data, token: responseToken })
       ));
   };
 }
 
-export function respondToPetition (response, dispatch) {
+export function respondToPetition (petitionResponse, dispatch) {
   dispatch(submittingPetition());
-  return petitionRepository.respond(response)
+  return petitionRepository.respond(petitionResponse)
     .then((response) => {
       dispatch(updatedPetition(response.data));
     }).then(() => dispatch(

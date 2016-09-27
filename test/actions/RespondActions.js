@@ -45,9 +45,12 @@ describe('RespondActions', () => {
       assert(dispatch.calledWith(requestPetition()));
     });
 
-    it('returns a function that returns a promise that dispatches receivePetition()', done => {
+    it('returns a function that returns a promise that adds the token to the response and dispatches receivePetition()', done => {
       result(dispatch).then(() => {
-        assert(dispatch.calledWith(receivePetition(mockPetition)));
+        assert(dispatch.calledWith(receivePetition({
+          ...mockPetition,
+          token: exampleResponseToken
+        })));
       }).then(done, done);
     });
   });
