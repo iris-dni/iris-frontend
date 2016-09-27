@@ -7,6 +7,7 @@ import settings from 'settings';
 import Loading from 'components/Loading';
 import RespondToPetition from 'components/RespondToPetition';
 import getPetitionForm from 'selectors/petitionForm';
+import getPetitionResponseForm from 'selectors/petitionResponseForm';
 import petitionResponded from 'selectors/petitionResponded';
 import getPetitionPath from 'helpers/getPetitionPath';
 
@@ -31,21 +32,26 @@ const RespondToPetitionContainer = withRouter(React.createClass({
   },
 
   render () {
-    const { petition } = this.props;
+    const { petition, petitionResponse } = this.props;
+    const isLoading = petition.isLoading && petitionResponse.isLoading;
 
     return (
       <div>
         <Helmet title={settings.editPetitionPage.title} />
-        <Loading isLoading={petition.isLoading} onServer={__SERVER__}>
-          <RespondToPetition petition={petition} />
+        <Loading isLoading={isLoading} onServer={__SERVER__}>
+          <RespondToPetition
+            petition={petition}
+            petitionResponse={petitionResponse}
+          />
         </Loading>
       </div>
     );
   }
 }));
 
-export const mapStateToProps = ({ petition }) => ({
-  petition: getPetitionForm(petition)
+export const mapStateToProps = ({ petition, petitionResponse }) => ({
+  petition: getPetitionForm(petition),
+  petitionResponse: getPetitionResponseForm(petitionResponse)
 });
 
 export const mapDispatchToProps = (dispatch) => ({
