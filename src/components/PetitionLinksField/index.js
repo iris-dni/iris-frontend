@@ -45,7 +45,10 @@ const PetitionLinksField = React.createClass({
       const { helper } = this.props;
 
       if (value) {
-        if (links.length < 3) {
+        if (links.filter(link => (value === link.url)).length) {
+          // @TODO find a way to display error on the input
+          console.warn('Please add different links.');
+        } else if (links.length < 3) {
           if (isLink(value)) {
             const savedValue = { url: value };
 
