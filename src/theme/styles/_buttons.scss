@@ -6,14 +6,12 @@ $button-shared-defaults: (
   'line-height': normal,
   'border-radius': 4px,
   'border': 2px solid transparent,
-  // 'transition': 'background-color 0.2s ease, color 0.2s ease',
   'text-decoration': none,
   'outline': 0,
   'font-size': 1em
 );
 
 $button-shared-hover-icon-defaults: (
-  // 'transition': fill 0.2s ease,
   'fill': white
 );
 
