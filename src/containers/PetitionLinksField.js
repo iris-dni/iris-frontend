@@ -7,9 +7,8 @@ const PetitionLinksFieldContainer = (props) => (
   <PetitionLinksField {...props} />
 );
 
-const mapStateToProps = ({ petition, openGraph }) => ({
-  petitionLinks: petition.links || [],
-  isLoading: openGraph.isLoading
+const mapStateToProps = ({ petition }) => ({
+  petitionLinks: petition.links || []
 });
 
 const mapDispatchToProps = (dispatch) => ({

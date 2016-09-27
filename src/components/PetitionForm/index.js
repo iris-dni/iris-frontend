@@ -8,7 +8,7 @@ import Button from 'components/Button';
 import settings from 'settings';
 import FIELDS from './fields';
 
-const PetitionForm = ({ petition, fields, handleSubmit, submitting }) => {
+const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting }) => {
   return (
     <form onSubmit={handleSubmit(petition.persisted
       ? updatePetition
@@ -26,7 +26,7 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting }) => {
         <Button
           text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton'].text}
           modifier={'accent'}
-          disabled={submitting || !fields._meta.allValid}
+          disabled={openGraph.isLoading || submitting || !fields._meta.allValid}
         />
       </Fieldset>
     </form>
@@ -35,6 +35,7 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting }) => {
 
 PetitionForm.propTypes = {
   petition: React.PropTypes.object.isRequired,
+  openGraph: React.PropTypes.object.isRequired,
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
   submitting: React.PropTypes.bool.isRequired

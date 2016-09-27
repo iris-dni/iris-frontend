@@ -35,6 +35,7 @@ const PetitionLinksField = React.createClass({
       e.preventDefault();
 
       let { value, links } = this.state;
+      const { helper, fetchOpenGraph } = this.props;
 
       if (value) {
         if (links.length < 3) {
@@ -42,7 +43,7 @@ const PetitionLinksField = React.createClass({
             const savedValue = { url: value };
 
             // Update redux-form value
-            this.props.helper.addField(value);
+            helper.addField(value);
 
             // Update state with new links and reset input value
             // @TODO ACTIONS
@@ -50,11 +51,12 @@ const PetitionLinksField = React.createClass({
             this.setState({ value: '', links });
 
             // Fetch open graph data for the given link
-            this.props.fetchOpenGraph(value).then(({ openGraph }) => {
-              // @TODO on success, update the teaser and add og data to the link
-              // in the state
-              console.log('Finished fetching OG data');
-            });
+            fetchOpenGraph(value)
+              .then(({ openGraph }) => {
+                // @TODO on success, update the teaser and add og data to the link
+                // in the state
+                console.log('Finished fetching OG data');
+              });
           } else {
             // @TODO find a way to display error on the input
             console.warn('Not a link.');

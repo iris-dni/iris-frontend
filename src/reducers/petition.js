@@ -12,7 +12,7 @@ import {
   PETITION_NOT_FOUND
 } from 'actions/actionTypes';
 
-const initialState = {};
+const initialState = { isSubmittable: true };
 
 export default function petition (state = initialState, action) {
   switch (action.type) {
