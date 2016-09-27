@@ -140,6 +140,23 @@ export default {
       }
     }
   },
+  shareButtons: {
+    facebook: {
+      label: 'Share on Facebook'
+    },
+    twitter: {
+      label: 'Share on Twitter',
+      tweetText: 'This petition needs your support:'
+    },
+    whatsapp: {
+      label: 'Send via Whatsapp'
+    },
+    email: {
+      label: 'Send via Email',
+      subject: 'This petition needs your support',
+      body: 'Get informed and support the following petition:'
+    }
+  },
   /**
    * You can configure one environment-specific SSO provider in the ENV variables using
    * SSO_PROVIDER_TEXT and SSO_PROVIDER_URL. Or you can set multiple ssoProviders here:

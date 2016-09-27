@@ -9,7 +9,10 @@ const ShareButtons = ({ openPopup, buttons = [] }) => (
       {buttons.map(button => (
         <li className={styles.item} key={button.brand}>
           <ButtonLink block external
-            onClick={openPopup.bind(this, button.href)}
+            onClick={button.popup
+              ? openPopup.bind(this, button.href)
+              : null
+            }
             href={button.href}
             size={'compact'}
             brand={button.brand}>
