@@ -1,7 +1,7 @@
 import { assert } from 'chai';
-import getPetitionStartDate from 'helpers/getPetitionStartDate';
+import getPetitionStartDate from 'selectors/petitionStartDate';
 
-describe('getPetitionStartDate', () => {
+describe('petitionStartDate selector', () => {
   context('with effective date given', () => {
     const dc = {
       created: '2016-10-10',

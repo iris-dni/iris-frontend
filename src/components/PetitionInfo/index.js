@@ -4,7 +4,7 @@ import IconAndInfo from 'components/IconAndInfo';
 import Link from 'components/Link';
 import { petitionsPath } from 'helpers/petitionUrls';
 
-const PetitionInfo = ({ owner, city, dateRange }) => (
+const PetitionInfo = ({ owner, city, ending }) => (
   <ul className={styles.root}>
     {owner &&
       <li className={styles.item}>
@@ -26,7 +26,7 @@ const PetitionInfo = ({ owner, city, dateRange }) => (
     <li className={styles.item}>
       <IconAndInfo
         icon='Clock'
-        info={dateRange}
+        info={ending}
       />
     </li>
   </ul>

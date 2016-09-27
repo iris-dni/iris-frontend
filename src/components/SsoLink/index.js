@@ -4,7 +4,7 @@ import ButtonIcon from 'components/ButtonIcon';
 
 const SsoLink = ({ text, url }) => {
   return (
-    <ButtonLink fill external href={url}>
+    <ButtonLink block external href={url}>
       <ButtonIcon id={'User'} fill={'Dark'}>
         {text}
       </ButtonIcon>
