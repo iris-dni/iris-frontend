@@ -10,7 +10,8 @@ export default (petition = {}) => ([
   },
   {
     property: 'og:description',
-    content: petition.description.replace(/\n/g, ' ')
+    content: petition.description &&
+      petition.description.replace(/\n/g, ' ')
   },
   {
     property: 'og:url',

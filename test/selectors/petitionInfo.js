@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import getPetitionInfo from 'selectors/petitionInfo';
 
-describe('getPetitionSupporters', () => {
+describe('petitionInfo selector', () => {
   it('returns `city` key', () => {
     const result = getPetitionInfo();
     const actual = result.hasOwnProperty('city');

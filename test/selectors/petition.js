@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import mockPetition from '../mocks/petition';
 import getPetition from 'selectors/petition';
 
-describe('getPetition', () => {
+describe('petiton selector', () => {
   context('with a petition I have not supported yet', () => {
     const petition = {
       ...mockPetition.data,

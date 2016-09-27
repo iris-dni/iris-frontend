@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import petitionsPagination from 'selectors/petitionsPagination';
 import mockPetitions from '../mocks/petitions';
 
-describe('petitionsPagination', () => {
+describe('petitionsPagination selector', () => {
   it('returns correct totalCount', () => {
     const result = petitionsPagination(mockPetitions);
     const actual = result.totalCount;
