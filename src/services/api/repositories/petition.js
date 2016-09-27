@@ -23,7 +23,7 @@ export default {
 
   create: (petition) => {
     const requestPath = '/petitions';
-    return ApiClient.request(requestPath, petition, POST);
+    return ApiClient.request(requestPath, { data: petition }, 'POST');
   },
 
   update: (petition) => {
@@ -34,7 +34,7 @@ export default {
       delete petition.city.data;
     }
 
-    return ApiClient.request(requestPath, petition, POST);
+    return ApiClient.request(requestPath, { data: petition }, 'POST');
   },
 
   publish: (petition) => {

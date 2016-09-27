@@ -29,7 +29,7 @@ export default {
         break;
       case POST:
         if (data !== {}) {
-          payload = { data: data };
+          payload = data;
         }
         break;
     }
