@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchOpenGraph } from 'actions/OpenGraphActions';
+import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
 import PetitionLinksField from 'components/PetitionLinksField';
 
 const PetitionLinksFieldContainer = (props) => (
@@ -8,7 +9,7 @@ const PetitionLinksFieldContainer = (props) => (
 );
 
 const mapStateToProps = ({ petition }) => ({
-  petitionLinks: petition.links || []
+  petitionLinks: wrapPetitionLinks(petition.links)
 });
 
 const mapDispatchToProps = (dispatch) => ({

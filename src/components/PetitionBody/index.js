@@ -15,7 +15,12 @@ const PetitionBody = ({ description, suggestedSolution, links }) => (
     }
     {
       links.length > 0 && links.map((link, index) => (
-        <p key={index}>{link.url}</p>
+        <div key={index}>
+          <p>{link.url}</p>
+          {link.og &&
+            <p>{link.og.description}</p>
+          }
+        </div>
       ))
     }
   </div>

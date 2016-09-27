@@ -1,32 +1,39 @@
 import React from 'react';
-import fieldIsInvalid from 'form/fieldIsInvalid';
 import isLink from 'helpers/isLink';
 import styles from './petition-links-field.scss';
 
 const PetitionLinksField = React.createClass({
-  getInitialState: () => ({
-    // @TODO MOVE TO REDUCER
-    value: '',
-    links: []
-  }),
+  getInitialState: () => ({ value: '', links: [] }),
 
   componentWillMount () {
-    // @TODO MOVE TO CONTAINER?
-    this.setState({
-      links: this.props.petitionLinks.map(link => ({ url: link.data.url }))
-    });
-  },
-
-  getClassName (element, error) {
-    return [
-      styles[element || 'input'],
-      styles[error ? 'invalid' : 'valid']
-    ].join(' ');
+    this.setState({ links: this.props.petitionLinks });
   },
 
   handleChange (e) {
-    // @TODO ACTION OR LEAVE AS SETSTATE
     this.setState({ value: e.target.value });
+  },
+
+  componentWillUpdate (nextProps) {
+    const { helper } = nextProps;
+
+    if (helper.length !== this.props.helper.length) {
+      const { links } = this.state;
+      const lastLinkIndex = helper.length - 1;
+      const lastLink = helper[lastLinkIndex];
+      const value = lastLink.value.data
+        ? lastLink.value.data
+        : JSON.parse(lastLink.value);
+
+      // Fetch open graph data for the last link
+      this.props.fetchOpenGraph(value.url).then(({ openGraph }) => {
+        const newValue = { url: value.url, og: openGraph };
+
+        links[lastLinkIndex] = newValue;
+        helper[lastLinkIndex].onChange(JSON.stringify(newValue));
+
+        this.setState({ links });
+      });
+    }
   },
 
   handleLinkAdded (e) {
@@ -35,7 +42,7 @@ const PetitionLinksField = React.createClass({
       e.preventDefault();
 
       let { value, links } = this.state;
-      const { helper, fetchOpenGraph } = this.props;
+      const { helper } = this.props;
 
       if (value) {
         if (links.length < 3) {
@@ -43,20 +50,11 @@ const PetitionLinksField = React.createClass({
             const savedValue = { url: value };
 
             // Update redux-form value
-            helper.addField(value);
+            helper.addField(JSON.stringify(savedValue));
 
             // Update state with new links and reset input value
-            // @TODO ACTIONS
             links.push(savedValue);
             this.setState({ value: '', links });
-
-            // Fetch open graph data for the given link
-            fetchOpenGraph(value)
-              .then(({ openGraph }) => {
-                // @TODO on success, update the teaser and add og data to the link
-                // in the state
-                console.log('Finished fetching OG data');
-              });
           } else {
             // @TODO find a way to display error on the input
             console.warn('Not a link.');
@@ -73,20 +71,23 @@ const PetitionLinksField = React.createClass({
     let { links } = this.state;
     links.splice(index, 1);
 
-    this.props.helper.removeField(index);
     this.setState({ links });
+    this.props.helper.removeField(index);
   },
 
   render () {
-    const { helper, config } = this.props;
     const { value, links } = this.state;
+    const { config } = this.props;
 
     return (
       <div>
         <div>
           {links.length > 0 && links.map((link, index) => (
             <div key={index}>
-              <span>{link.url}</span>
+              <p>{link.url}</p>
+              {link.og &&
+                <p>{link.og.description}</p>
+              }
               <button
                 type='button'
                 onClick={() => this.handleLinkRemoved(index)}>
@@ -97,7 +98,7 @@ const PetitionLinksField = React.createClass({
         </div>
 
         <input
-          className={this.getClassName('input', fieldIsInvalid(helper))}
+          className={`${styles.input} ${styles.valid}`}
           id={config.name}
           {...config.html}
           value={value}
