@@ -1,5 +1,6 @@
 import React from 'react';
 import fieldIsInvalid from 'form/fieldIsInvalid';
+import isLink from 'helpers/isLink';
 import styles from './petition-links-field.scss';
 
 const PetitionLinksField = React.createClass({
@@ -24,7 +25,7 @@ const PetitionLinksField = React.createClass({
   },
 
   handleChange (e) {
-    // @TODO ACTIONS
+    // @TODO ACTION OR LEAVE AS SETSTATE
     this.setState({ value: e.target.value });
   },
 
@@ -35,29 +36,33 @@ const PetitionLinksField = React.createClass({
 
       let { value, links } = this.state;
 
-      // @TODO validation is URL? + find a way to display error on the input
-      if (links.length < 3) {
-        // Fetch open graph data for the given link
-        this.props.fetchOpenGraph(value).then(({ openGraph }) => {
-          const savedValue = {
-            url: value,
-            og: openGraph
-          };
+      if (value) {
+        if (links.length < 3) {
+          if (isLink(value)) {
+            const savedValue = { url: value };
 
-          // Update redux-form value
-          this.props.helper.addField(value);
+            // Update redux-form value
+            this.props.helper.addField(value);
 
-          // Update state with new links and reset input value
-          // @TODO ACTIONS
-          links.push(savedValue);
-          this.setState({ value: '', links });
-        }).catch((e) => {
+            // Update state with new links and reset input value
+            // @TODO ACTIONS
+            links.push(savedValue);
+            this.setState({ value: '', links });
+
+            // Fetch open graph data for the given link
+            this.props.fetchOpenGraph(value).then(({ openGraph }) => {
+              // @TODO on success, update the teaser and add og data to the link
+              // in the state
+              console.log('Finished fetching OG data');
+            });
+          } else {
+            // @TODO find a way to display error on the input
+            console.warn('Not a link.');
+          }
+        } else {
           // @TODO find a way to display error on the input
-          console.warn(e);
-        });
-      } else {
-        // @TODO find a way to display error on the input
-        console.warn('You can’t add more than 3 links.');
+          console.warn('You can’t add more than 3 links.');
+        }
       }
     }
   },
