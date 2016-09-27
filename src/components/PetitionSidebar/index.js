@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './petition-sidebar.scss';
 import Countdown from 'components/Countdown';
 import SupportButton from 'containers/SupportButton';
-import ShareButtons from 'components/ShareButtons';
+import SharePetition from 'containers/SharePetition';
 
 const PetitionSidebar = ({ timeMetric, supportable, startDate, runningTime }) => (
   <aside role='complementary' className={styles.root}>
@@ -19,7 +19,7 @@ const PetitionSidebar = ({ timeMetric, supportable, startDate, runningTime }) =>
       </div>
     }
     <div className={styles.share}>
-      <ShareButtons />
+      <SharePetition />
     </div>
   </aside>
 );
