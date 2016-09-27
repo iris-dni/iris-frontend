@@ -1,0 +1,21 @@
+@import 'globals';
+
+.input {
+  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  display: block;
+  width: 100%;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.valid {
+  border-color: color('grey');
+}
+
+.valid:focus {
+  border-color: color('dimmed');
+}
+
+.invalid {
+  border-color: color('error');
+}

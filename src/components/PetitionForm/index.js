@@ -18,7 +18,7 @@ const PetitionForm = ({ petition, fields, handleSubmit, submitting }) => {
           <FormField
             key={field.name}
             config={field}
-            helper={fields[field.name]}
+            helper={fields[field.name.replace('[]', '')]}
           />
         ))}
       </Fieldset>

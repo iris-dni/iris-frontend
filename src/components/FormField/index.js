@@ -3,6 +3,7 @@ import domOnlyProps from 'form/domOnlyProps';
 import fieldIsInvalid from 'form/fieldIsInvalid';
 import styles from './form-field.scss';
 import Autocomplete from 'containers/Autocomplete';
+import PetitionLinksField from 'containers/PetitionLinksField';
 import FormFieldWrapper from 'components/FormFieldWrapper';
 
 const getClassname = (element, error) => {
@@ -24,6 +25,14 @@ const FormField = React.createClass({
           <Autocomplete
             helper={helper}
             {...config}
+          />
+        );
+        break;
+      case 'PetitionLinksField':
+        Field = (
+          <PetitionLinksField
+            helper={helper}
+            config={config}
           />
         );
         break;
