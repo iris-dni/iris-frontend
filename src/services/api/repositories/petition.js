@@ -47,8 +47,12 @@ export default {
     return ApiClient.request(requestPath, {}, POST);
   },
 
-  respond: (petition, response) => {
-    const requestPath = path.join('/petitions', petition.id.toString(), 'event/setFeedback');
-    return ApiClient.request(requestPath, response, POST);
+  respond: (response) => {
+    const requestPath = path.join('/petitions', response.petitionId.toString(), 'event/setFeedback');
+    const requestPayload = {
+      answer: response.answer,
+      token: response.token
+    };
+    return ApiClient.request(requestPath, requestPayload, POST);
   }
 };

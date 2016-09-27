@@ -59,6 +59,7 @@ describe('RespondActions', () => {
         text: 'Example answer',
         name: 'Jane Doe, Mayor'
       },
+      petitionId: examplePetition.id,
       token: exampleResponseToken
     };
     let examplePetitionWithResponse = {
@@ -71,16 +72,16 @@ describe('RespondActions', () => {
         status: 200,
         response: { data: examplePetitionWithResponse }
       });
-
-      result = respondToPetition(examplePetition, exampleResponse, dispatch);
     });
 
-    it('dispatches submittingPetition()', () => {
-      assert(dispatch.calledWith(submittingPetition()));
+    it('dispatches submittingPetition()', done => {
+      respondToPetition(exampleResponse, dispatch).then(() => {
+        assert(dispatch.calledWith(submittingPetition()));
+      }).then(done, done);
     });
 
     it('returns a promise that dispatches updatedPetition() when done', done => {
-      result.then(() => {
+      respondToPetition(exampleResponse, dispatch).then(() => {
         assert(dispatch.calledWithMatch(updatedPetition(examplePetitionWithResponse)));
       }).then(done, done);
     });

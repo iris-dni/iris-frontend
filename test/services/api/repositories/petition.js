@@ -152,23 +152,26 @@ describe('petition repository', () => {
   });
 
   describe('respond', () => {
-    let examplePetition = { id: exampleId, title: exampleTitle };
     let exampleResponse = {
       answer: {
         text: 'Example Answer',
         name: 'Jane Doe, Mayor'
       },
+      petitionId: exampleId,
       token: exampleResponseToken
     };
 
     let expectedPathArgument = `/petitions/${exampleId}/event/setFeedback`;
-    let expectedDataArgument = exampleResponse;
+    let expectedDataArgument = {
+      answer: exampleResponse.answer,
+      token: exampleResponse.token
+    };
     let expectedMethodArgument = 'POST';
 
     it('calls the API client with proper arguments', () => {
-      petitionRepository.respond(examplePetition, exampleResponse);
+      petitionRepository.respond(exampleResponse);
 
-      assert(ApiClient.request.calledWith(
+      assert(ApiClient.request.calledWithMatch(
         expectedPathArgument,
         expectedDataArgument,
         expectedMethodArgument

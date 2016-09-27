@@ -1,5 +1,4 @@
 import petitionRepository from 'services/api/repositories/petition';
-import solveResolvedObjects from 'helpers/solveResolvedObjects';
 import settings from 'settings';
 
 import {
@@ -23,12 +22,11 @@ export function fetchPetitionByResponseToken (responseToken) {
   };
 }
 
-export function respondToPetition (petition, dispatch) {
+export function respondToPetition (response, dispatch) {
   dispatch(submittingPetition());
-  return petitionRepository.respond(petition)
+  return petitionRepository.respond(response)
     .then((response) => {
-      const resolvedPetition = solveResolvedObjects(petition, response.data);
-      dispatch(updatedPetition(resolvedPetition));
+      dispatch(updatedPetition(response.data));
     }).then(() => dispatch(
       showFlashMessage(settings.flashMessages.petitionUpdated, 'success')
     )).catch(() => dispatch(
