@@ -9,6 +9,7 @@ import flashMessageReducer from './flashMessage';
 import modalWindowReducer from './modalWindow';
 import navigationReducer from './navigation';
 import openGraphReducer from './openGraph';
+import petitionResponseReducer from './petitionResponse';
 
 export default combineReducers({
   autocomplete: autocompleteReducer,
@@ -20,5 +21,6 @@ export default combineReducers({
   navigation: navigationReducer,
   modalWindow: modalWindowReducer,
   routing: routerReducer,
-  openGraph: openGraphReducer
+  openGraph: openGraphReducer,
+  petitionResponse: petitionResponseReducer
 });
