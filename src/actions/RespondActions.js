@@ -28,7 +28,7 @@ export function respondToPetition (petitionResponse, dispatch) {
     .then((response) => {
       dispatch(updatedPetition(response.data));
     }).then(() => dispatch(
-      showFlashMessage(settings.flashMessages.petitionUpdated, 'success')
+      showFlashMessage(settings.flashMessages.petitionAnswered, 'success')
     )).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));

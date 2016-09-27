@@ -200,7 +200,8 @@ export default {
     petitionCreated: 'Great, your petition was created!',
     petitionPublished: 'Great, your petition was published!',
     petitionUpdated: 'Your petition was updated',
-    petitionSupported: 'Thank you for signing this petition!'
+    petitionSupported: 'Thank you for signing this petition!',
+    petitionAnswered: 'Thank you for answering this petition!'
   },
   logo: 'IRIS',
   navigationLinks: [
