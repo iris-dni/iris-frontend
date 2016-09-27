@@ -11,6 +11,11 @@ export function fetchOpenGraph (url) {
     return openGraphRepository.check(url)
       .then(response => dispatch(
         receiveOpenGraph(response.data)
+      ))
+      // Instead of responding with an empty object when no OG data is found,
+      // the API responds with a status of 400, triggering an error.
+      .catch(() => dispatch(
+        receiveOpenGraph({})
       ));
   };
 }
