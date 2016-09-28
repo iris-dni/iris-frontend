@@ -75,6 +75,19 @@ describe('petition reducer', () => {
     assert.deepEqual(actual, expected);
   });
 
+  it('handles the RESPONDED_TO_PETITION action', () => {
+    const actual = petition({}, {
+      type: 'RESPONDED_TO_PETITION',
+      petition: mockPetition.data
+    });
+    const expected = Object.assign({}, mockPetition.data, {
+      isLoading: false,
+      saved: true
+    });
+
+    assert.deepEqual(actual, expected);
+  });
+
   it('handles the PUBLISHED_PETITION action', () => {
     const actual = petition({}, {
       type: 'PUBLISHED_PETITION',

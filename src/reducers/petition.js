@@ -4,6 +4,7 @@ import {
   RECEIVE_PETITION,
   CREATED_PETITION,
   UPDATED_PETITION,
+  RESPONDED_TO_PETITION,
   SUBMITTING_PETITION,
   SUBMITTING_SUPPORT,
   PUBLISHED_PETITION,
@@ -30,6 +31,7 @@ export default function petition (state = initialState, action) {
       );
     case CREATED_PETITION:
     case UPDATED_PETITION:
+    case RESPONDED_TO_PETITION:
       return Object.assign({},
         state, action.petition, {
           isLoading: false,

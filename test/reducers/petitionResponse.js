@@ -4,6 +4,12 @@ import mockPetition from '../mocks/petition';
 
 describe('petitionResponse reducer', () => {
   const exampleToken = '1JWSF';
+  const exampleAnswer = { text: 'Example answer text', name: 'Jane Doe, Mayor' };
+  const examplePetition = {
+    ...mockPetition.data,
+    token: exampleToken,
+    city_answer: exampleAnswer
+  };
 
   it('handles the REQUEST_PETITION action', () => {
     const actual = petitionResponse({}, {
@@ -17,13 +23,6 @@ describe('petitionResponse reducer', () => {
   });
 
   it('handles the RECEIVE_PETITION action', () => {
-    const exampleAnswer = { text: 'Example answer text', name: 'Jane Doe, Mayor' };
-    const examplePetition = {
-      ...mockPetition.data,
-      token: exampleToken,
-      city_answer: exampleAnswer
-    };
-
     const actual = petitionResponse({}, {
       type: 'RECEIVE_PETITION',
       petition: examplePetition
@@ -34,6 +33,22 @@ describe('petitionResponse reducer', () => {
       answer: exampleAnswer,
       isLoading: false,
       saved: false
+    });
+
+    assert.deepEqual(actual, expected);
+  });
+
+  it('handles the RESPONDED_TO_PETITION action', () => {
+    const actual = petitionResponse({}, {
+      type: 'RESPONDED_TO_PETITION',
+      petition: examplePetition
+    });
+    const expected = Object.assign({}, {}, {
+      petitionId: examplePetition.id,
+      token: exampleToken,
+      answer: exampleAnswer,
+      isLoading: false,
+      saved: true
     });
 
     assert.deepEqual(actual, expected);
