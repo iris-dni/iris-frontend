@@ -53,7 +53,7 @@ export default [
   },
   {
     element: 'PetitionLinksField',
-    name: 'links[]',
+    name: 'links',
     label: settings.petitionFields.links.label,
     hint: settings.petitionFields.links.hint,
     maxLinks: 3,

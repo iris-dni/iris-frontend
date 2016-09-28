@@ -1,48 +1,29 @@
 import React from 'react';
 import isLink from 'helpers/isLink';
+import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
 import styles from './petition-links-field.scss';
 
 const PetitionLinksField = React.createClass({
-  getInitialState: () => ({ value: '', links: [] }),
+  getInitialState: () => ({ value: '' }),
 
   componentWillMount () {
-    this.setState({ links: this.props.petitionLinks || [] });
+    const { helper } = this.props;
+    let links = helper.value;
+
+    links = wrapPetitionLinks(links);
+    helper.onChange(links);
   },
 
-  handleChange (e) {
-    this.setState({ value: e.target.value });
-  },
-
-  componentWillUpdate (nextProps) {
-    const { helper } = nextProps;
-
-    if (helper.length > this.props.helper.length) {
-      const { links } = this.state;
-      const lastLinkIndex = helper.length - 1;
-      const lastLink = helper[lastLinkIndex];
-      const value = lastLink.value.data
-        ? lastLink.value.data
-        : JSON.parse(lastLink.value);
-
-      // Fetch open graph data for the last link
-      this.props.fetchOpenGraph(value.url).then(({ openGraph }) => {
-        const newValue = { url: value.url, og: openGraph };
-
-        links[lastLinkIndex] = newValue;
-        helper[lastLinkIndex].onChange(JSON.stringify(newValue));
-
-        this.setState({ links });
-      });
-    }
-  },
+  handleChange (e) { this.setState({ value: e.target.value }); },
 
   handleLinkAdded (e) {
     if (e.key === 'Enter' || e.type === 'blur') {
       // Disable form submitting when pressing ENTER
       e.preventDefault();
 
-      let { value, links } = this.state;
+      const { value } = this.state;
       const { helper } = this.props;
+      let links = helper.value;
 
       if (value) {
         // @TODO find a way to display errors on the input…
@@ -54,29 +35,34 @@ const PetitionLinksField = React.createClass({
           return console.warn('Please add unique links.');
         }
 
-        const savedValue = { url: value };
+        links.push({ url: value });
+        helper.onChange(links); // Update redux-form value
+        this.setState({ value: '' }); // Clear input value
 
-        // Update redux-form value
-        helper.addField(JSON.stringify(savedValue));
+        // Fetch open graph data for the last link
+        this.props.fetchOpenGraph(value).then(({ openGraph }) => {
+          const newValue = { url: value, og: openGraph };
+          const lastLinkIndex = links.length - 1;
 
-        // Update state with new links and reset input value
-        links.push(savedValue);
-        this.setState({ value: '', links });
+          links[lastLinkIndex] = newValue;
+          helper.onChange(links);
+        });
       }
     }
   },
 
   handleLinkRemoved (index) {
-    let { links } = this.state;
+    let links = this.props.helper.value;
+
     links.splice(index, 1);
 
-    this.setState({ links });
-    this.props.helper.removeField(index);
+    this.props.helper.onChange(links);
   },
 
   render () {
-    const { value, links } = this.state;
-    const { config } = this.props;
+    const { value } = this.state;
+    const { config, helper } = this.props;
+    const links = helper.value;
 
     return (
       <div>

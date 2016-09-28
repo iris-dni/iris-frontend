@@ -18,7 +18,7 @@ const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting })
           <FormField
             key={field.name}
             config={field}
-            helper={fields[field.name.replace('[]', '')]}
+            helper={fields[field.name]}
           />
         ))}
       </Fieldset>
@@ -44,5 +44,7 @@ PetitionForm.propTypes = {
 export default reduxForm({
   form: 'simple',
   fields: FIELDS.map(field => field.name),
-  validate: petitionValidator
+  validate: petitionValidator,
+  // Initialize links field as an array so that we can push values into it later
+  initialValues: { links: [] }
 })(PetitionForm);

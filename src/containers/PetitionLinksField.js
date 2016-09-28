@@ -18,5 +18,10 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  null,
+  // See “My views aren’t updating when something changes outside of Redux"
+  // section on:
+  // https://github.com/reactjs/react-redux/blob/master/docs/troubleshooting.md
+  { pure: false }
 )(PetitionLinksFieldContainer);
