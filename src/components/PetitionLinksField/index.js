@@ -46,6 +46,10 @@ const PetitionLinksField = React.createClass({
 
           links[lastLinkIndex] = newValue;
           helper.onChange(links);
+          // For some reason, redux-form onChange doesn’t trigger a
+          // re-render, only on the create petition page (not on edit)…
+          // We force the component to re-render.
+          this.forceUpdate();
         });
       }
     }
@@ -57,6 +61,10 @@ const PetitionLinksField = React.createClass({
     links.splice(index, 1);
 
     this.props.helper.onChange(links);
+    // For some reason, redux-form onChange doesn’t trigger a
+    // re-render, only on the create petition page (not on edit)…
+    // We force the component to re-render.
+    this.forceUpdate();
   },
 
   render () {
