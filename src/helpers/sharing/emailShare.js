@@ -1,8 +1,8 @@
 import settings from 'settings';
-import generateMailTo from './generateMailTo';
+import generateMailToLink from './generateMailToLink';
 
 export default ({ url, subject, body }) => ({
-  href: generateMailTo({
+  href: generateMailToLink({
     mailto: '',
     subject,
     body: `${body} \r\n\r\n ${url}`
