@@ -57,7 +57,17 @@ describe('petition repository', () => {
       extend: 'supporting'
     };
 
-    it('calls the API client with proper arguments', () => {
+    it('calls the API and returns the requested petition', () => {
+      petitionRepository.find(exampleId);
+
+      assert(ApiClient.request.calledWith(
+        expectedPathArgument
+      ));
+    });
+
+    it('resolves owner, city and links', () => {
+      let expectedDataArgument = { resolve: 'city,owner,links' };
+
       petitionRepository.find(exampleId);
 
       assert(ApiClient.request.calledWithMatch(
