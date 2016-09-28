@@ -36,9 +36,7 @@ export function respondToPetition (petitionResponse, dispatch) {
   return petitionRepository.respond(petitionResponse)
     .then((response) => {
       dispatch(respondedToPetition(response.data));
-    }).then(() => dispatch(
-      showFlashMessage(settings.flashMessages.petitionAnswered, 'success')
-    )).catch(() => dispatch(
+    }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
 }
