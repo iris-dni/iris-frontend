@@ -9,7 +9,8 @@ import {
   SUBMITTING_PETITION,
   CREATED_PETITION,
   UPDATED_PETITION,
-  PUBLISHED_PETITION
+  PUBLISHED_PETITION,
+  PETITION_NOT_FOUND
 } from './actionTypes';
 
 import {
@@ -110,6 +111,13 @@ export function publishPetition (petition, dispatch) {
 export function publishedPetition (petition) {
   return {
     type: PUBLISHED_PETITION,
+    petition
+  };
+}
+
+export function petitionNotFound (petition = {}) {
+  return {
+    type: PETITION_NOT_FOUND,
     petition
   };
 }

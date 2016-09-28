@@ -7,7 +7,8 @@ import {
   requestPetition,
   receivePetition,
   submittingPetition,
-  updatedPetition
+  updatedPetition,
+  petitionNotFound
 } from 'actions/PetitionActions';
 
 import {
@@ -31,27 +32,53 @@ describe('RespondActions', () => {
   });
 
   describe('fetchPetitionByResponseToken', () => {
-    beforeEach(() => {
-      moxios.stubRequest(/.*/, {
-        status: 200,
-        response: { data: mockPetition }
+    context('with an existing token', () => {
+      beforeEach(() => {
+        moxios.stubRequest(/.*/, {
+          status: 200,
+          response: { data: mockPetition }
+        });
+
+        result = fetchPetitionByResponseToken(exampleResponseToken);
       });
 
-      result = fetchPetitionByResponseToken(exampleResponseToken);
+      it('returns a function that dispatches requestPetition()', () => {
+        result(dispatch);
+        assert(dispatch.calledWith(requestPetition()));
+      });
+
+      it('returns a function that returns a promise that adds the token to the response and dispatches receivePetition()', done => {
+        result(dispatch).then(() => {
+          assert(dispatch.calledWith(receivePetition({
+            ...mockPetition,
+            token: exampleResponseToken
+          })));
+        }).then(done, done);
+      });
     });
 
-    it('returns a function that dispatches requestPetition()', () => {
-      result(dispatch);
-      assert(dispatch.calledWith(requestPetition()));
-    });
+    context('with a non existing token', () => {
+      beforeEach(() => {
+        moxios.stubRequest(/.*/, {
+          status: 404,
+          response: { data: null }
+        });
 
-    it('returns a function that returns a promise that adds the token to the response and dispatches receivePetition()', done => {
-      result(dispatch).then(() => {
-        assert(dispatch.calledWith(receivePetition({
-          ...mockPetition,
-          token: exampleResponseToken
-        })));
-      }).then(done, done);
+        result = fetchPetitionByResponseToken(exampleResponseToken);
+      });
+
+      it('returns a function that dispatches requestPetition()', () => {
+        result(dispatch);
+        assert(dispatch.calledWith(requestPetition()));
+      });
+
+      it('returns a function that returns a promise that adds the token to the response and dispatches petitionNotFound()', done => {
+        result(dispatch).then(() => {
+          assert(dispatch.calledWith(petitionNotFound({
+            token: exampleResponseToken
+          })));
+        }).then(done, done);
+      });
     });
   });
 

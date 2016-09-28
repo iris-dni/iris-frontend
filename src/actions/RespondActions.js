@@ -5,7 +5,8 @@ import {
   requestPetition,
   receivePetition,
   submittingPetition,
-  updatedPetition
+  updatedPetition,
+  petitionNotFound
 } from 'actions/PetitionActions';
 
 import {
@@ -18,7 +19,12 @@ export function fetchPetitionByResponseToken (responseToken) {
     return petitionRepository.findByResponseToken(responseToken)
       .then(response => dispatch(
         receivePetition({ ...response.data, token: responseToken })
-      ));
+      ))
+      .catch(err => {
+        if (err.response && err.response.status === 404) {
+          dispatch(petitionNotFound({ token: responseToken }));
+        }
+      });
   };
 }
 

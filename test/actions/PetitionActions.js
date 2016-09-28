@@ -14,7 +14,8 @@ import {
   updatePetition,
   updatedPetition,
   publishPetition,
-  publishedPetition
+  publishedPetition,
+  petitionNotFound
 } from 'actions/PetitionActions';
 
 describe('PetitionActions', () => {
@@ -257,6 +258,37 @@ describe('PetitionActions', () => {
       const expected = mockPetition;
 
       assert.equal(actual, expected);
+    });
+  });
+
+  describe('petitionNotFound', () => {
+    it('returns PETITION_NOT_FOUND action', () => {
+      const result = petitionNotFound();
+      const actual = result.type;
+      const expected = 'PETITION_NOT_FOUND';
+
+      assert.equal(actual, expected);
+    });
+
+    context('without a petition stub', () => {
+      it('passes an empty petition object', () => {
+        const result = petitionNotFound();
+        const actual = result.petition;
+        const expected = {};
+
+        assert.deepEqual(actual, expected);
+      });
+    });
+
+    context('with a petition stub', () => {
+      it('passes an empty petition object', () => {
+        const petitionStub = { token: 'exampleToken' };
+        const result = petitionNotFound(petitionStub);
+        const actual = result.petition;
+        const expected = petitionStub;
+
+        assert.deepEqual(actual, expected);
+      });
     });
   });
 });
