@@ -104,7 +104,10 @@ export default {
   petitionNotFoundByResponseTokenPage: {
     title: 'Sorry but looks like a wrong link, or it’s no longer working.',
     intro: 'The link you entered is either invalid or incorrect.',
-    hint: 'Please re-enter the link or contact our admins if you believe there is a mistake and you are unsure of how to proceed.'
+    hint: 'Please re-enter the link or contact our admins if you believe there is a mistake and you are unsure of how to proceed.',
+    homeButton: {
+      text: 'Okay, take me home'
+    }
   },
   petitionForm: {
     createButton: {
