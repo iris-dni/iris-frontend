@@ -24,7 +24,7 @@ const NewPetitionContainer = withRouter(React.createClass({
   },
 
   render () {
-    const { petition, openGraph, publishPetition } = this.props;
+    const { petition, publishPetition } = this.props;
 
     return (
       <div>
@@ -34,16 +34,15 @@ const NewPetitionContainer = withRouter(React.createClass({
             petition={petition}
             publishPetition={publishPetition}
             />
-          : <NewPetition petition={petition} openGraph={openGraph} />
+          : <NewPetition petition={petition} />
         }
       </div>
     );
   }
 }));
 
-export const mapStateToProps = ({ petition, openGraph }) => ({
-  petition: getPetitionForm(petition),
-  openGraph
+export const mapStateToProps = ({ petition }) => ({
+  petition: getPetitionForm(petition)
 });
 
 const mapDispatchToProps = (dispatch) => ({

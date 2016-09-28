@@ -173,9 +173,9 @@ export default {
       hint: 'Because you care a lot about your cause, you probably have some great ideas about how to solve it. Clearly outline the actions required to achieve your goal.'
     },
     links: {
-      label: 'Include links that will help support your petition',
+      label: 'Related links',
       placeholder: 'http://',
-      hint: 'You can add up to 3 links.',
+      hint: 'Include up to 3 links that support your petition.',
       maxLinks: 3,
       invalidLinkFormat: 'This is not a valid link',
       invalidLinkCount: 'You can’t add more than %x links',

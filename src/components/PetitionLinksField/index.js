@@ -17,9 +17,7 @@ const PetitionLinksField = React.createClass({
 
   componentWillMount () {
     const { helper } = this.props;
-    let links = helper.value;
-
-    links = wrapPetitionLinks(links);
+    const links = wrapPetitionLinks(helper.value);
     helper.onChange(links);
   },
 
