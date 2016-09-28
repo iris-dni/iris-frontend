@@ -3,7 +3,7 @@ import settings from 'settings';
 import getPetitionOwner from 'selectors/petitionOwner';
 import getPetitionCity from 'selectors/petitionCity';
 import getPetitionPath from 'helpers/getPetitionPath';
-import { Link } from 'react-router';
+import Link from 'components/Link';
 import styles from 'components/EditPetition/edit-petition.scss';
 import Container from 'components/Container';
 import FormWrapper from 'components/FormWrapper';
@@ -24,7 +24,7 @@ const RespondToPetition = ({ petition, petitionResponse, router }) => (
       </Header>
       <Paragraph noMargin>
         {`${settings.respondToPetitionPage.details.for} `}
-        <Link to={getPetitionPath(petition.id)}>{petition.title}</Link>
+        <Link href={getPetitionPath(petition.id)}>{petition.title}</Link>
       </Paragraph>
       <Paragraph noMargin>
         {`${settings.respondToPetitionPage.details.by} ${getPetitionOwner(petition)}`}
