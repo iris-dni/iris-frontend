@@ -8,7 +8,6 @@ import Loading from 'components/Loading';
 import RespondToPetition from 'components/RespondToPetition';
 import getPetitionForm from 'selectors/petitionForm';
 import getPetitionResponseForm from 'selectors/petitionResponseForm';
-import petitionResponded from 'selectors/petitionResponded';
 import getPetitionPath from 'helpers/getPetitionPath';
 
 const RespondToPetitionContainer = withRouter(React.createClass({
@@ -18,12 +17,7 @@ const RespondToPetitionContainer = withRouter(React.createClass({
       params: { token }
     } = this.props;
 
-    fetchPetitionByResponseToken(token).then(({ petition }) => {
-      console.log(petition);
-      if (petitionResponded(petition)) {
-        this.props.router.push(getPetitionPath(petition));
-      }
-    });
+    fetchPetitionByResponseToken(token);
   },
 
   componentWillUpdate (nextProps) {
