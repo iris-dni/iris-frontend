@@ -84,6 +84,7 @@ export default {
   },
   respondToPetitionPage: {
     title: 'Response Form',
+    pageTitle: 'Your reply',
     intro: 'This is the form where you submit your official response to a petition. This response will be displayed on the original petition, so this is your opportunity to communicate with everyone who supported the initiative. Make sure your response is a good one.',
     hints: {
       title: 'A few pointers on what makes a good response:',
@@ -93,7 +94,7 @@ export default {
       fourth: 'The citizens in your city cared enough to write and/or support a cause, be respectful of their opinions.'
     },
     details: {
-      for: 'The petition',
+      for: 'For',
       by: 'By',
       in: 'In',
       collected: 'Collected',
