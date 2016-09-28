@@ -5,7 +5,7 @@ import facebookShare from 'helpers/sharing/facebookShare';
 const { assert } = chai;
 
 describe('facebookShare', () => {
-  it('returns correct brand value', () => {
+  it('returns correct `brand` value', () => {
     const result = facebookShare({});
     const actual = result.brand;
     const expected = 'facebook';
@@ -13,7 +13,7 @@ describe('facebookShare', () => {
     assert.equal(actual, expected);
   });
 
-  it('returns correct icon value', () => {
+  it('returns correct `icon` value', () => {
     const result = facebookShare({});
     const actual = result.icon;
     const expected = 'Facebook';
@@ -21,7 +21,7 @@ describe('facebookShare', () => {
     assert.equal(actual, expected);
   });
 
-  it('returns label form settings', () => {
+  it('returns `label` from settings', () => {
     const result = facebookShare({});
     const actual = result.label;
     const expected = settings.shareButtons.facebook.label;

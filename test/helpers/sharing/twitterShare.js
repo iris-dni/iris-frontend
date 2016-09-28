@@ -5,7 +5,7 @@ import twitterShare from 'helpers/sharing/twitterShare';
 const { assert } = chai;
 
 describe('twitterShare', () => {
-  it('returns correct brand value', () => {
+  it('returns correct `brand` value', () => {
     const result = twitterShare({});
     const actual = result.brand;
     const expected = 'twitter';
@@ -13,7 +13,7 @@ describe('twitterShare', () => {
     assert.equal(actual, expected);
   });
 
-  it('returns correct icon value', () => {
+  it('returns correct `icon` value', () => {
     const result = twitterShare({});
     const actual = result.icon;
     const expected = 'Twitter';
@@ -21,7 +21,7 @@ describe('twitterShare', () => {
     assert.equal(actual, expected);
   });
 
-  it('returns label form settings', () => {
+  it('returns `label` from settings', () => {
     const result = twitterShare({});
     const actual = result.label;
     const expected = settings.shareButtons.twitter.label;
