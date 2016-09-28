@@ -1,5 +1,6 @@
 import React from 'react';
 import settings from 'settings';
+import styles from './petition-not-found-by-response-token.scss';
 import Link from 'components/Link';
 import ButtonLink from 'components/ButtonLink';
 import Container from 'components/Container';
@@ -20,15 +21,17 @@ const PetitionNotFoundByResponseToken = ({ petition, petitionResponse, router })
     </Header>
     <Notice>
       <TextCenter>
-        <Paragraph>{settings.petitionNotFoundByResponseTokenPage.intro}</Paragraph>
-        <Paragraph><Link href={respondToPetitionUrl(petitionResponse)} /></Paragraph>
-        <Paragraph>{settings.petitionNotFoundByResponseTokenPage.hint}</Paragraph>
-        <Paragraph>
-          <ButtonLink
-            href={petitionsPath()}
-            text={settings.petitionNotFoundByResponseTokenPage.homeButton.text}
-          />
-        </Paragraph>
+        <div className={styles.notice}>
+          <Paragraph>{settings.petitionNotFoundByResponseTokenPage.intro}</Paragraph>
+          <Paragraph><Link href={respondToPetitionUrl(petitionResponse)} /></Paragraph>
+          <Paragraph>{settings.petitionNotFoundByResponseTokenPage.hint}</Paragraph>
+          <Paragraph>
+            <ButtonLink
+              href={petitionsPath()}
+              text={settings.petitionNotFoundByResponseTokenPage.homeButton.text}
+            />
+          </Paragraph>
+        </div>
       </TextCenter>
     </Notice>
   </Container>
