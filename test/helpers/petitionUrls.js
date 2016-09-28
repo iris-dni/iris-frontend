@@ -42,6 +42,29 @@ describe('petitionUrls helper', () => {
     });
   });
 
+  describe('petitionPath', () => {
+    context('without an id', () => {
+      const actual = urlHelpers.petitionPath({});
+      const expected = undefined;
+
+      it(`returns ${expected}`, () => assert.equal(actual, expected));
+    });
+
+    context('with an id', () => {
+      const actual = urlHelpers.petitionPath({id: '7UV7m'});
+      const expected = '/petitions/7UV7m';
+
+      it(`returns ${expected}`, () => assert.equal(actual, expected));
+    });
+  });
+
+  describe('petitionUrl', () => {
+    const actual = urlHelpers.petitionUrl({ id: '7UV7m' });
+    const expected = 'http://localhost:8000/petitions/7UV7m';
+
+    it(`returns ${expected}`, () => assert.equal(actual, expected));
+  });
+
   describe('respondToPetitionPath', () => {
     context('without a token', () => {
       const actual = urlHelpers.respondToPetitionPath({});

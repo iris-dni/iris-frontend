@@ -28,6 +28,18 @@ export const petitionsPath = (options = {}) => {
   return path;
 };
 
+export const petitionPath = (options = {}) => {
+  const { id } = options || {};
+
+  if (id) {
+    return `/petitions/${id}`;
+  }
+};
+
+export const petitionUrl = (options = {}) => {
+  return [baseUrl(), petitionPath(options)].join('');
+};
+
 export const respondToPetitionPath = (options = {}) => {
   const { token } = options || {};
 
