@@ -5,7 +5,7 @@ import whatsappShare from 'helpers/sharing/whatsappShare';
 const { assert } = chai;
 
 describe('whatsappShare', () => {
-  it('returns correct brand value', () => {
+  it('returns correct `brand` value', () => {
     const result = whatsappShare({});
     const actual = result.brand;
     const expected = 'whatsapp';
@@ -13,7 +13,7 @@ describe('whatsappShare', () => {
     assert.equal(actual, expected);
   });
 
-  it('returns correct icon value', () => {
+  it('returns correct `icon` value', () => {
     const result = whatsappShare({});
     const actual = result.icon;
     const expected = 'Whatsapp';
@@ -21,7 +21,7 @@ describe('whatsappShare', () => {
     assert.equal(actual, expected);
   });
 
-  it('returns label form settings', () => {
+  it('returns `label` from settings', () => {
     const result = whatsappShare({});
     const actual = result.label;
     const expected = settings.shareButtons.whatsapp.label;
