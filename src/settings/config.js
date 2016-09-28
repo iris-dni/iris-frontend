@@ -105,7 +105,7 @@ export default {
     }
   },
   respondedToPetitionPage: {
-    title: 'Congratulations, your response have been succesfully published.',
+    title: 'Congratulations, your response has been succesfully published.',
     hint: 'To see your response, click the following link:'
   },
   petitionNotFoundByResponseTokenPage: {
