@@ -7,23 +7,20 @@ import settings from 'settings';
 import Loading from 'components/Loading';
 import RespondToPetition from 'components/RespondToPetition';
 import PetitionNotFoundByResponseToken from 'components/PetitionNotFoundByResponseToken';
+import RespondedToPetition from 'components/RespondedToPetition';
 import getPetitionForm from 'selectors/petitionForm';
 import getPetitionResponseForm from 'selectors/petitionResponseForm';
-import getPetitionPath from 'helpers/getPetitionPath';
 
 const RespondToPetitionContainer = withRouter(React.createClass({
   componentWillMount () {
     const {
+      petitionResponse,
       fetchPetitionByResponseToken,
       params: { token }
     } = this.props;
 
-    fetchPetitionByResponseToken(token);
-  },
-
-  componentWillUpdate (nextProps) {
-    if (nextProps.petition.saved) {
-      this.props.router.push(`${getPetitionPath(nextProps.petition.id)}`);
+    if (!petitionResponse.saved) {
+      fetchPetitionByResponseToken(token);
     }
   },
 
@@ -35,16 +32,28 @@ const RespondToPetitionContainer = withRouter(React.createClass({
       <div>
         <Helmet title={settings.respondToPetitionPage.title} />
         <Loading isLoading={isLoading} onServer={__SERVER__}>
-          {petition.found
-            ? <RespondToPetition
-              petition={petition}
-              petitionResponse={petitionResponse}
-              />
-            : <PetitionNotFoundByResponseToken
+          <div>
+          {petitionResponse.saved &&
+            <RespondedToPetition
               petition={petition}
               petitionResponse={petitionResponse}
             />
           }
+
+          {!petition.saved && petition.found &&
+            <RespondToPetition
+              petition={petition}
+              petitionResponse={petitionResponse}
+            />
+          }
+
+          {!petition.saved && !petition.found &&
+            <PetitionNotFoundByResponseToken
+              petition={petition}
+              petitionResponse={petitionResponse}
+            />
+          }
+          </div>
         </Loading>
       </div>
     );

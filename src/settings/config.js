@@ -104,6 +104,10 @@ export default {
       votes: 'votes'
     }
   },
+  respondedToPetitionPage: {
+    title: 'Congratulations, your response have been succesfully published.',
+    hint: 'To see your response, click the following link:'
+  },
   petitionNotFoundByResponseTokenPage: {
     title: 'Sorry but looks like a wrong link, or it’s no longer working.',
     intro: 'The link you entered is either invalid or incorrect.',
