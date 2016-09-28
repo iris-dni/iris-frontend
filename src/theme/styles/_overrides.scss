@@ -23,18 +23,28 @@ $form-fields-custom: ();
 
 $form-hint-custom: ();
 
+/*
+ * Shared button styles
+ */
 $button-shared-custom: ();
 
 $button-shared-hover-icon-custom: ();
 
-$button-border-custom: ();
+/*
+ * Regular (default) button, bordered
+ */
+$button-regular-custom: ();
 
 $button-regular-hover-custom: ();
 
-$button-smaller-custom: ();
-
+/*
+ * Accent button, primary background
+ */
 $button-accent-custom: ();
 
 $button-accent-hover-custom: ();
 
+/*
+ * Disabled button
+ */
 $button-disabled-custom: ();

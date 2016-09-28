@@ -1,5 +1,5 @@
 import moment from 'moment';
-import getPetitionEndDate from 'helpers/getPetitionEndDate';
+import getPetitionEndDate from 'selectors/petitionEndDate';
 import settings from 'settings';
 
 export default ({ dc }) => {
@@ -7,6 +7,6 @@ export default ({ dc }) => {
   const startDate = moment(effective || created);
   const endDate = getPetitionEndDate({ created, expires });
   return settings.dateRange
-    .replace('%s', startDate.format(settings.dateFormat))
-    .replace('%e', endDate.format(settings.dateFormat));
+    .replace('%s', moment(startDate).format(settings.dateFormat))
+    .replace('%e', moment(endDate).format(settings.dateFormat));
 };
