@@ -8,3 +8,8 @@ $spacing: map-get($spacing, 'grid');
   margin-left: -$spacing;
   margin-bottom: -$spacing;
 }
+
+.centered {
+  composes: root;
+  justify-content: center;
+}

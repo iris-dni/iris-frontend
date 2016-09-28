@@ -59,6 +59,7 @@ export default {
   petitionPage: {
     description: 'Description:',
     suggestedSolution: 'Suggested solution:',
+    attachedLinks: 'Links attached to this petition:',
     supportButton: {
       text: 'Support Petition',
       supportedText: 'Supported',

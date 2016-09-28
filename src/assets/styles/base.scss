@@ -36,7 +36,7 @@ a {
  */
 :global {
   .main-content {
-    padding-bottom: calc(80px + #{map-get($heights, 'site-footer')});
+    padding-bottom: map-get($heights, 'site-footer');
   }
 
   .wrapper {
