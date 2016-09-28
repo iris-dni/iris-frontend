@@ -1,4 +1,4 @@
-import getPetitionStartDate from 'helpers/getPetitionStartDate';
+import getPetitionStartDate from 'selectors/petitionStartDate';
 import getPetitionOwner from 'selectors/petitionOwner';
 
 export default (petition = {}) => ({

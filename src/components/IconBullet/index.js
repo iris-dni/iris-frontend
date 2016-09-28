@@ -10,14 +10,14 @@ const getClassname = (size, modifier, inline) => {
   ].join(' ');
 };
 
-export default ({ id, modifier, size }) => (
-  <div className={getClassname(size, modifier)} aria-role={'presentation'}>
-    <div className={styles.icon}>
+export default ({ id, modifier, iconModifier, size }) => (
+  <span className={getClassname(size, modifier)} aria-hidden aria-role={'presentation'}>
+    <span className={styles.icon}>
       <Icon
         id={id}
-        modifier={'invert'}
+        modifier={iconModifier || 'invert'}
         size={size || 'small'}
       />
-    </div>
-  </div>
+    </span>
+  </span>
 );

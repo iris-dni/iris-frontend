@@ -14,9 +14,9 @@ describe('petitionInfo selector', () => {
     assert.isTrue(actual);
   });
 
-  it('returns `dateRange` from petition', () => {
+  it('returns `ending` key', () => {
     const result = getPetitionInfo();
-    const actual = result.hasOwnProperty('dateRange');
+    const actual = result.hasOwnProperty('ending');
     assert.isTrue(actual);
   });
 });
