@@ -93,6 +93,22 @@
 }
 
 /*
+ * Disabled button
+ */
+.is-disabled {
+  @include map-declarations($button-shared-defaults, $button-regular-custom);
+  @include map-declarations($button-regular-defaults, $button-regular-custom);
+  @include map-declarations($button-disabled-defaults, $button-disabled-custom);
+  cursor: normal;
+}
+
+.is-disabled:hover,
+.is-disabled:active,
+.is-disabled:focus {
+  background-color: inherit;
+}
+
+/*
  * Brand buttons
  */
 .brand-facebook:hover,
