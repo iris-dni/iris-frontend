@@ -6,6 +6,7 @@ import { fetchPetitionByResponseToken, respondToPetition } from 'actions/Respond
 import settings from 'settings';
 import Loading from 'components/Loading';
 import RespondToPetition from 'components/RespondToPetition';
+import PetitionNotFoundByResponseToken from 'components/PetitionNotFoundByResponseToken';
 import getPetitionForm from 'selectors/petitionForm';
 import getPetitionResponseForm from 'selectors/petitionResponseForm';
 import getPetitionPath from 'helpers/getPetitionPath';
@@ -32,12 +33,18 @@ const RespondToPetitionContainer = withRouter(React.createClass({
 
     return (
       <div>
-        <Helmet title={settings.editPetitionPage.title} />
+        <Helmet title={settings.respondToPetitionPage.title} />
         <Loading isLoading={isLoading} onServer={__SERVER__}>
-          <RespondToPetition
-            petition={petition}
-            petitionResponse={petitionResponse}
-          />
+          {petition.found
+            ? <RespondToPetition
+              petition={petition}
+              petitionResponse={petitionResponse}
+              />
+            : <PetitionNotFoundByResponseToken
+              petition={petition}
+              petitionResponse={petitionResponse}
+            />
+          }
         </Loading>
       </div>
     );

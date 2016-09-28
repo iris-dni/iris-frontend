@@ -83,7 +83,7 @@ export default {
     intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
   },
   respondToPetitionPage: {
-    title: 'Response form',
+    title: 'Response Form',
     intro: 'This is the form where you submit your official response to a petition. This response will be displayed on the original petition, so this is your opportunity to communicate with everyone who supported the initiative. Make sure your response is a good one.',
     hints: {
       title: 'A few pointers on what makes a good response:',
@@ -99,6 +99,11 @@ export default {
       collected: 'Collected',
       votes: 'votes'
     }
+  },
+  petitionNotFoundByResponseTokenPage: {
+    title: 'Sorry but looks like a wrong link, or it’s no longer working.',
+    intro: 'The link you entered is either invalid or incorrect.',
+    hint: 'Please re-enter the link or contact our admins if you believe there is a mistake and you are unsure of how to proceed.'
   },
   petitionForm: {
     createButton: {
