@@ -42,7 +42,8 @@ describe('petition reducer', () => {
     });
     const expected = Object.assign({}, mockPetition.data, {
       isLoading: false,
-      saved: false
+      saved: false,
+      found: true
     });
 
     assert.deepEqual(actual, expected);
@@ -106,6 +107,20 @@ describe('petition reducer', () => {
     const expected = Object.assign({}, mockPetition, {
       hasSupported: true,
       isSupporting: false
+    });
+
+    assert.deepEqual(actual, expected);
+  });
+
+  it('handles the PETITION_NOT_FOUND action', () => {
+    const actual = petition({}, {
+      type: 'PETITION_NOT_FOUND',
+      petition: {}
+    });
+
+    const expected = Object.assign({}, {}, {
+      isLoading: false,
+      found: false
     });
 
     assert.deepEqual(actual, expected);

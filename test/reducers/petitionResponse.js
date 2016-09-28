@@ -3,6 +3,8 @@ import petitionResponse from 'reducers/petitionResponse';
 import mockPetition from '../mocks/petition';
 
 describe('petitionResponse reducer', () => {
+  const exampleToken = '1JWSF';
+
   it('handles the REQUEST_PETITION action', () => {
     const actual = petitionResponse({}, {
       type: 'REQUEST_PETITION'
@@ -15,7 +17,6 @@ describe('petitionResponse reducer', () => {
   });
 
   it('handles the RECEIVE_PETITION action', () => {
-    const exampleToken = '1JWSF';
     const exampleAnswer = { text: 'Example answer text', name: 'Jane Doe, Mayor' };
     const examplePetition = {
       ...mockPetition.data,
@@ -33,6 +34,22 @@ describe('petitionResponse reducer', () => {
       answer: exampleAnswer,
       isLoading: false,
       saved: false
+    });
+
+    assert.deepEqual(actual, expected);
+  });
+
+  it('handles the PETITION_NOT_FOUND action', () => {
+    const stubPetition = { token: exampleToken };
+    const actual = petitionResponse({}, {
+      type: 'PETITION_NOT_FOUND',
+      petition: stubPetition
+    });
+
+    const expected = Object.assign({}, {}, {
+      isLoading: false,
+      saved: false,
+      token: exampleToken
     });
 
     assert.deepEqual(actual, expected);

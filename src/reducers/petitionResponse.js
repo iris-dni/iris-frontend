@@ -1,6 +1,7 @@
 import {
   REQUEST_PETITION,
-  RECEIVE_PETITION
+  RECEIVE_PETITION,
+  PETITION_NOT_FOUND
 } from 'actions/actionTypes';
 
 const initialState = {};
@@ -17,6 +18,14 @@ export default function petitionResponse (state = initialState, action) {
         state, initialState, {
           petitionId: action.petition.id,
           answer: action.petition.city_answer,
+          token: action.petition.token,
+          isLoading: false,
+          saved: false
+        }
+      );
+    case PETITION_NOT_FOUND:
+      return Object.assign({},
+        state, initialState, {
           token: action.petition.token,
           isLoading: false,
           saved: false
