@@ -20,6 +20,7 @@ const RespondedToPetition = ({ petition, petitionResponse, router }) => (
     </Header>
     <Notice>
       <TextCenter>
+        <img src={'/dist/assets/images/RespondedToPetition.svg'} />
         <div className={styles.notice}>
           <Paragraph>{settings.respondedToPetitionPage.hint}</Paragraph>
           <Paragraph>
