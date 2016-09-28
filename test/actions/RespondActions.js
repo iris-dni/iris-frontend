@@ -7,19 +7,20 @@ import {
   requestPetition,
   receivePetition,
   submittingPetition,
-  updatedPetition,
   petitionNotFound
 } from 'actions/PetitionActions';
 
 import {
   fetchPetitionByResponseToken,
-  respondToPetition
+  respondToPetition,
+  respondedToPetition
 } from 'actions/RespondActions';
 
 describe('RespondActions', () => {
   let dispatch;
   let result;
   let exampleResponseToken = '1C9LQ';
+  let examplePetition = mockPetition.data;
 
   beforeEach(() => {
     dispatch = sinon.spy();
@@ -83,7 +84,6 @@ describe('RespondActions', () => {
   });
 
   describe('respondToPetition', () => {
-    let examplePetition = mockPetition.data;
     let exampleResponse = {
       answer: {
         text: 'Example answer',
@@ -110,10 +110,28 @@ describe('RespondActions', () => {
       }).then(done, done);
     });
 
-    it('returns a promise that dispatches updatedPetition() when done', done => {
+    it('returns a promise that dispatches respondedToPetition() when done', done => {
       respondToPetition(exampleResponse, dispatch).then(() => {
-        assert(dispatch.calledWithMatch(updatedPetition(examplePetitionWithResponse)));
+        assert(dispatch.calledWithMatch(respondedToPetition(examplePetitionWithResponse)));
       }).then(done, done);
+    });
+  });
+
+  describe('respondedToPetition', () => {
+    it('returns RESPONDED_TO_PETITION action', () => {
+      const result = respondedToPetition(examplePetition);
+      const actual = result.type;
+      const expected = 'RESPONDED_TO_PETITION';
+
+      assert.equal(actual, expected);
+    });
+
+    it('passes petition object', () => {
+      const result = respondedToPetition(examplePetition);
+      const actual = result.petition;
+      const expected = examplePetition;
+
+      assert.deepEqual(actual, expected);
     });
   });
 });
