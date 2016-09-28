@@ -175,7 +175,11 @@ export default {
     links: {
       label: 'Include links that will help support your petition',
       placeholder: 'http://',
-      hint: 'You can add up to 3 links.'
+      hint: 'You can add up to 3 links.',
+      maxLinks: 3,
+      invalidLinkFormat: 'This is not a valid link',
+      invalidLinkCount: 'You can’t add more than %x links',
+      invalidSimilarLink: 'Please only add unique links'
     }
   },
   respondToPetitionFields: {

@@ -1,9 +1,18 @@
 import React from 'react';
-import isLink from 'helpers/isLink';
+import domOnlyProps from 'form/domOnlyProps';
+import fieldIsInvalid from 'form/fieldIsInvalid';
+import getLinkInputErrors from 'form/getLinkInputErrors';
 import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
 import styles from './petition-links-field.scss';
 
 const PetitionLinksField = React.createClass({
+  getClassname (element, error) {
+    return [
+      styles[element || 'input'],
+      styles[error ? 'invalid' : 'valid']
+    ].join(' ');
+  },
+
   getInitialState: () => ({ value: '' }),
 
   componentWillMount () {
@@ -17,23 +26,27 @@ const PetitionLinksField = React.createClass({
   handleChange (e) { this.setState({ value: e.target.value }); },
 
   handleLinkAdded (e) {
+    const { helper, config } = this.props;
+    helper.touched = true;
+    helper.onBlur();
+
     if (e.key === 'Enter' || e.type === 'blur') {
       // Disable form submitting when pressing ENTER
       e.preventDefault();
 
       const { value } = this.state;
-      const { helper } = this.props;
       let links = helper.value;
 
       if (value) {
-        // @TODO find a way to display errors on the input…
-        if (!isLink(value)) {
-          return console.warn('This is not a valid link.');
-        } else if (links.length >= 3) {
-          return console.warn('You can’t add more than 3 links.');
-        } else if (links.filter(link => (value === link.url)).length) {
-          return console.warn('Please add unique links.');
+        // Specific validation for the link field.
+        const error = getLinkInputErrors(value, links, config);
+
+        if (error) {
+          helper.error = error;
+          return;
         }
+
+        helper.error = false;
 
         links.push({ url: value });
         helper.onChange(links); // Update redux-form value
@@ -46,10 +59,6 @@ const PetitionLinksField = React.createClass({
 
           links[lastLinkIndex] = newValue;
           helper.onChange(links);
-          // For some reason, redux-form onChange doesn’t trigger a
-          // re-render, only on the create petition page (not on edit)…
-          // We force the component to re-render.
-          this.forceUpdate();
         });
       }
     }
@@ -59,12 +68,7 @@ const PetitionLinksField = React.createClass({
     let links = this.props.helper.value;
 
     links.splice(index, 1);
-
     this.props.helper.onChange(links);
-    // For some reason, redux-form onChange doesn’t trigger a
-    // re-render, only on the create petition page (not on edit)…
-    // We force the component to re-render.
-    this.forceUpdate();
   },
 
   render () {
@@ -91,9 +95,10 @@ const PetitionLinksField = React.createClass({
         </div>
 
         <input
-          className={`${styles.input} ${styles.valid}`}
+          className={this.getClassname('input', fieldIsInvalid(helper))}
           id={config.name}
           {...config.html}
+          {...domOnlyProps(helper)}
           value={value}
           onChange={this.handleChange}
           onKeyPress={this.handleLinkAdded}
