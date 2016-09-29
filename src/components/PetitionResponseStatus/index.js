@@ -1,4 +1,5 @@
 import React from 'react';
+import Markdown from 'react-markdown';
 import styles from './petition-response-status.scss';
 import getPetitionResponseStatusTitle from 'helpers/getPetitionResponseStatusTitle';
 import getPetitionResponseStatusText from 'helpers/getPetitionResponseStatusText';
@@ -14,7 +15,7 @@ const PetitionResponseStatus = (props) => (
         {getPetitionResponseStatusTitle(props)}
       </h2>
     </div>
-    <p>{getPetitionResponseStatusText(props)}</p>
+    <Markdown source={getPetitionResponseStatusText(props)} />
   </div>
 );
 

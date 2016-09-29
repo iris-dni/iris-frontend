@@ -9,7 +9,7 @@ describe('getPetitionsPageText', () => {
       required: 50,
       daysPending: 10
     });
-    const expected = 'This petition reached its target goal of 50 votes and is awaiting response since 10 days ago.';
+    const expected = 'This petition reached its target goal of 50 votes and is awaiting response since **10** days ago.';
 
     assert.equal(actual, expected);
   });
