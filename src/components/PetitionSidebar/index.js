@@ -8,6 +8,7 @@ import SharePetition from 'containers/SharePetition';
 import settings from 'settings';
 import {mediaQueries, serverMediaQueries} from 'helpers/getMediaQueries';
 import settings from 'settings';
+import { mediaQueries, serverMediaQueries } from 'helpers/getMediaQueries';
 
 const PetitionSidebar = ({
   timeMetric,
