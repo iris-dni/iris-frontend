@@ -1,11 +1,16 @@
 import React from 'react';
 import styles from './petition-sidebar.scss';
 import Countdown from 'components/Countdown';
+import PetitionResponseStatus from 'containers/PetitionResponseStatus';
 import SupportButton from 'containers/SupportButton';
 import SharePetition from 'containers/SharePetition';
 
-const PetitionSidebar = ({ timeMetric, supportable, startDate, runningTime }) => (
+const PetitionSidebar = ({ timeMetric, supportable, processing, startDate, runningTime }) => (
   <aside role='complementary' className={styles.root}>
+    {processing &&
+      <PetitionResponseStatus />
+    }
+
     <div className={styles.counter}>
       <Countdown timeMetric={timeMetric} />
     </div>
