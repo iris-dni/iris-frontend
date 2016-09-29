@@ -140,6 +140,16 @@ export default {
       }
     }
   },
+  petitionResponseStatus: {
+    pending: {
+      title: 'Pending response from Gemeinde',
+      text: 'This petition reached its target goal of %required votes and is awaiting response since %daysPending days ago.'
+    },
+    arrived: {
+      title: 'Response from Gemeinde',
+      text: 'This petition reached its target goal of %required votes and has already been answered by %name.'
+    }
+  },
   shareButtons: {
     facebook: {
       label: 'Share on Facebook'
