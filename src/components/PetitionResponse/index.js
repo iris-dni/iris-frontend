@@ -20,9 +20,8 @@ const PetitionResponse = ({ cityResponse }) => {
           text={settings.petitionPage.cityResponse}
         />
       </div>
-      <Paragraph
-        text={cityResponse.text}
-      />
+      <Paragraph text={cityResponse.text} />
+      <Paragraph text={cityResponse.name} />
     </div>
   );
 };
