@@ -14,7 +14,9 @@
 }
 
 .item:last-of-type {
-  text-align: right;
+  @include media('>sidebar') {
+    text-align: right;
+  }
 }
 
 
