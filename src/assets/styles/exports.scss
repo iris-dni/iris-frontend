@@ -1,0 +1,5 @@
+@import 'breakpoints';
+
+:export {
+  sidebarBreakpoint: map-get($breakpoints, 'sidebar');
+}
