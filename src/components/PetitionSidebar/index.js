@@ -6,6 +6,7 @@ import FakeButton from 'components/FakeButton';
 import SupportButton from 'containers/SupportButton';
 import SharePetition from 'containers/SharePetition';
 import settings from 'settings';
+import {mediaQueries, serverMediaQueries} from 'helpers/getMediaQueries';
 
 const PetitionSidebar = ({
   timeMetric,
@@ -16,7 +17,11 @@ const PetitionSidebar = ({
 }) => (
   <aside role='complementary' className={styles.root}>
     <div className={styles.counter}>
-      <Countdown timeMetric={timeMetric} />
+      <Countdown
+        timeMetric={timeMetric}
+        mq={mediaQueries}
+        serverMedia={serverMediaQueries}
+      />
     </div>
     <div className={styles.specifics}>
       <p>{startDate}</p>
