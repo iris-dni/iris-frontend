@@ -10,10 +10,20 @@
 }
 
 .item {
-  color: color('dimmed');
   margin-top: 15px;
 }
 
-.total {
+.item:last-of-type {
+  text-align: right;
+}
+
+
+.figure {
+  display: block;
   color: color('primary');
+  font-size: 1.5em;
+}
+
+.label {
+  color: color('black');
 }
