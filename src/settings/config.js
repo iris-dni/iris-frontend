@@ -1,5 +1,5 @@
 export default {
-  lang: 'en',
+  locale: 'en-US',
   charset: 'utf-8',
   title: 'iris-frontend',
   twitterAccount: 'azmedien',
