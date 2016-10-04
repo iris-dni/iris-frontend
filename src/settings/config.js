@@ -64,7 +64,11 @@ export default {
         intro: 'In order to sign the Petition, we need you to log in using one of the services below..'
       }
     },
-    cityResponse: 'Official response:'
+    cityResponse: 'Official response:',
+    tags: {
+      winner: 'Winner',
+      response: 'Response'
+    }
   },
   newPetitionPage: {
     title: 'Create a new Petition',

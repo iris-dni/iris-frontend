@@ -1,4 +1,5 @@
 import React from 'react';
+import settings from 'settings';
 import styles from './petition-tags.scss';
 import Icon from 'components/Icon';
 
@@ -15,7 +16,7 @@ const PetitionTags = ({ winner, response }) => {
           <span className={styles.icon}>
             <Icon id='Flag' size='tiny' modifier='invert' />
           </span>
-          <span>Winner</span>
+          <span>{settings.petitionPage.tags.winner}</span>
         </div>}
 
       {response.text &&
@@ -23,7 +24,7 @@ const PetitionTags = ({ winner, response }) => {
           <span className={styles.icon}>
             <Icon id='Note' size='tiny' modifier='invert' />
           </span>
-          <span>Response</span>
+          <span>{settings.petitionPage.tags.response}</span>
         </div>}
     </div>
   );
