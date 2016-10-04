@@ -21,13 +21,18 @@ const PetitionSidebar = ({
       <PetitionResponseStatus />
     }
 
-    <div className={styles.counter}>
-      <Countdown timeMetric={timeMetric} />
-    </div>
-    <div className={styles.specifics}>
-      <p>{startDate}</p>
-      <p>{runningTime}</p>
-    </div>
+    {isSupportable &&
+      <div>
+        <div className={styles.counter}>
+          <Countdown timeMetric={timeMetric} />
+        </div>
+        <div className={styles.specifics}>
+          <p>{startDate}</p>
+          <p>{runningTime}</p>
+        </div>
+      </div>
+    }
+
     <div className={styles['support-button']}>
       {isSupportable && !userHasSupported &&
         <SupportButton />
