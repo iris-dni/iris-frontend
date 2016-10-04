@@ -10,7 +10,7 @@ const PetitionHeaderContainer = (props) => (
 const mapStateToProps = ({ petition }) => getPetitionHeader(petition);
 
 PetitionHeaderContainer.propTypes = {
-  title: React.PropTypes.string
+  title: React.PropTypes.string.isRequired
 };
 
 export default connect(

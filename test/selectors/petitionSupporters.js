@@ -3,21 +3,21 @@ import getPetitionSupporters from 'selectors/petitionSupporters';
 import mockPetition from '../mocks/petition';
 
 describe('petitionSupporters selector', () => {
-  it('returns `total` key', () => {
+  it('returns `amount` key', () => {
     const result = getPetitionSupporters();
-    const actual = result.hasOwnProperty('total');
+    const actual = result.hasOwnProperty('amount');
     assert.isTrue(actual);
   });
 
   it('returns `required` key', () => {
     const result = getPetitionSupporters();
-    const actual = result.hasOwnProperty('total');
+    const actual = result.hasOwnProperty('amount');
     assert.isTrue(actual);
   });
 
-  it('returns `total` from petition', () => {
+  it('returns `amount` from petition', () => {
     const result = getPetitionSupporters(mockPetition.data);
-    const actual = result.total;
+    const actual = result.amount;
     const expected = 13;
 
     assert.equal(actual, expected);

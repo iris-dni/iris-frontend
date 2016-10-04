@@ -4,10 +4,12 @@ import {
   RECEIVE_PETITION,
   CREATED_PETITION,
   UPDATED_PETITION,
+  RESPONDED_TO_PETITION,
   SUBMITTING_PETITION,
   SUBMITTING_SUPPORT,
   PUBLISHED_PETITION,
-  SUPPORTED_PETITION
+  SUPPORTED_PETITION,
+  PETITION_NOT_FOUND
 } from 'actions/actionTypes';
 
 const initialState = {};
@@ -23,11 +25,13 @@ export default function petition (state = initialState, action) {
       return Object.assign({},
         state, action.petition, {
           isLoading: false,
-          saved: false
+          saved: false,
+          found: true
         }
       );
     case CREATED_PETITION:
     case UPDATED_PETITION:
+    case RESPONDED_TO_PETITION:
       return Object.assign({},
         state, action.petition, {
           isLoading: false,
@@ -56,6 +60,13 @@ export default function petition (state = initialState, action) {
         state, action.petition, {
           hasSupported: true,
           isSupporting: false
+        }
+      );
+    case PETITION_NOT_FOUND:
+      return Object.assign({},
+        state, initialState, {
+          isLoading: false,
+          found: false
         }
       );
     case CLEAR_PETITION:

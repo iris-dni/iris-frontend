@@ -1,0 +1,40 @@
+@import 'globals';
+
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+  font-size: 12px;
+}
+
+.winner,
+.response {
+  composes: root;
+  padding: 0.2em 0.5em;
+  margin-right: 2px;
+
+  /* Offsets padding in `header.scss` so the winner and
+     response tags fit nicely inside, if present */
+  @include media('<=text-boost') {
+    margin-top: -30px;
+    margin-bottom: 20px;
+  }
+
+  @include media('>text-boost') {
+    margin-top: -7%;
+  }
+}
+
+.winner {
+  background-color: color('primary');
+
+}
+
+.response {
+  background-color: color('secondary');
+}
+
+.icon {
+  margin-right: 0.3em;
+}

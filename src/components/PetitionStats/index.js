@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './petition-stats.scss';
 import settings from 'settings';
 
-const PetitionStats = ({ total, required }) => (
+const PetitionStats = ({ amount, required }) => (
   <ul className={styles.root}>
     <li className={`${styles.item} ${styles.total}`}>
-      {settings.supportersText} {total}
+      {settings.supportersText} {amount}
     </li>
     {required > 0 &&
       <li className={styles.item}>
