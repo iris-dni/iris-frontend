@@ -1,6 +1,12 @@
 import React from 'react';
 import styles from './link-teaser.scss';
 
+const getImageLink = (link) => (
+  link.og && link.og.image
+    ? `url(${link.og.image.url})`
+    : ''
+);
+
 const LinkTeaser = ({ link }) => (
   <a
     target='_blank'
@@ -8,9 +14,8 @@ const LinkTeaser = ({ link }) => (
     href={link.url}
     className={styles.root}
     style={{
-      backgroundImage: link.og && link.og.image
-        ? `url(${link.og.image.url})`
-        : ''
+      background: getImageLink(link) ? '' : '#213872',
+      backgroundImage: getImageLink(link)
     }}>
     {link.og &&
       <div>
