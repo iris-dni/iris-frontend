@@ -49,17 +49,13 @@ const PetitionLinksField = React.createClass({
 
         helper.error = false;
 
-        // Remove HTTP/HTTPS protocols from the link. The links will be
-        // displayed with a relative protocol URL instead.
-        const protocolFreeURL = value.replace(/^(https?:\/\/)/, '');
-
-        links.push({ url: protocolFreeURL });
+        links.push({ url: value });
         helper.onChange(links); // Update redux-form value
         this.setState({ value: '' }); // Clear input value
 
         // Fetch open graph data for the last link
-        this.props.fetchOpenGraph(protocolFreeURL).then(({ openGraph }) => {
-          const newValue = { url: protocolFreeURL, og: openGraph };
+        this.props.fetchOpenGraph(value).then(({ openGraph }) => {
+          const newValue = { url: value, og: openGraph };
           const lastLinkIndex = links.length - 1;
 
           links[lastLinkIndex] = newValue;
