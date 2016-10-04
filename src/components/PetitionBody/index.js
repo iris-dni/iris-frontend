@@ -12,14 +12,14 @@ const PetitionBody = ({ description, suggestedSolution }) => (
       text={description}
     />
     {suggestedSolution &&
-      <Heading2
-        text={settings.petitionPage.suggestedSolution}
-      />
-    }
-    {suggestedSolution &&
-      <Paragraph
-        text={suggestedSolution}
-      />
+      <div>
+        <Heading2
+          text={settings.petitionPage.suggestedSolution}
+        />
+        <Paragraph
+          text={suggestedSolution}
+        />
+      </div>
     }
   </div>
 );

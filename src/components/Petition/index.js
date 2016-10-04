@@ -7,6 +7,7 @@ import Section from 'components/Section';
 
 import PetitionHeader from 'containers/PetitionHeader';
 import PetitionBody from 'containers/PetitionBody';
+import PetitionResponse from 'containers/PetitionResponse';
 import PetitionSidebar from 'containers/PetitionSidebar';
 
 const Petition = ({ preview }) => (
@@ -20,6 +21,7 @@ const Petition = ({ preview }) => (
       <LayoutWrap>
         <LayoutContent>
           <PetitionBody />
+          <PetitionResponse />
         </LayoutContent>
         <LayoutSidebar>
           <PetitionSidebar />

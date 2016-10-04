@@ -1,5 +1,6 @@
 import encodeParams from './encodeParams';
 import parameterize from './parameterize';
+import baseUrl from 'helpers/baseUrl';
 import settings from 'settings';
 
 export const petitionsPath = (options = {}) => {
@@ -25,4 +26,28 @@ export const petitionsPath = (options = {}) => {
   }
 
   return path;
+};
+
+export const petitionPath = (options = {}) => {
+  const { id } = options || {};
+
+  if (id) {
+    return `/petitions/${id}`;
+  }
+};
+
+export const petitionUrl = (options = {}) => {
+  return [baseUrl(), petitionPath(options)].join('');
+};
+
+export const respondToPetitionPath = (options = {}) => {
+  const { token } = options || {};
+
+  if (token) {
+    return `/respond/${token}`;
+  }
+};
+
+export const respondToPetitionUrl = (options = {}) => {
+  return [baseUrl(), respondToPetitionPath(options)].join('');
 };

@@ -10,7 +10,7 @@ const PetitionStatsContainer = (props) => (
 const mapStateToProps = ({ petition }) => getPetitionSupporters(petition);
 
 PetitionStatsContainer.propTypes = {
-  total: React.PropTypes.number,
+  amount: React.PropTypes.number,
   required: React.PropTypes.number
 };
 

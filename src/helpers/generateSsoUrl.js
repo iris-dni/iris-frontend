@@ -1,11 +1,8 @@
-export default (ssoUrl, returnUrl) => {
-  if (!process.env.BASE_URL) {
-    throw new Error('Please define a BASE_URL in .env');
-  }
+import baseUrl from 'helpers/baseUrl';
 
-  const baseUrl = process.env.BASE_URL;
+export default (ssoUrl, returnUrl) => {
   const delimiter = ssoUrl.indexOf('?') < 0 ? '?' : '&';
-  const irisRetUrl = encodeURIComponent([baseUrl, returnUrl].join(''));
+  const irisRetUrl = encodeURIComponent([baseUrl(), returnUrl].join(''));
 
   return [
     ssoUrl,

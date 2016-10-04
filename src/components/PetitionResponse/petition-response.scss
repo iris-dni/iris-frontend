@@ -1,0 +1,17 @@
+@import 'globals';
+
+.root {
+  border: 4px solid color('blue');
+  padding: 1em;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.icon {
+  margin-right: 0.2em;
+  margin-top: 0.3em;
+}
