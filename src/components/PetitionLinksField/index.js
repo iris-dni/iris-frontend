@@ -35,7 +35,7 @@ const PetitionLinksField = React.createClass({
       // Disable form submitting when pressing ENTER
       e.preventDefault();
 
-      const { value } = this.state;
+      const value = this.state.value.trim();
       let links = helper.value;
 
       if (value) {

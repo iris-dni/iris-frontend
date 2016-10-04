@@ -2,6 +2,12 @@ import React from 'react';
 import Icon from 'components/Icon';
 import styles from './external-teaser.scss';
 
+const getIcon = (type) => (
+  (type === 'video')
+  ? 'Video'
+  : 'Link'
+);
+
 const ExternalTeaser = ({ url, og }) => (
   <article className={styles.root}>
     <a
@@ -27,7 +33,11 @@ const ExternalTeaser = ({ url, og }) => (
 
         <p className={styles.url}>
           <span className={styles['link-icon']}>
-            <Icon size={'small'} id={'User'} modifier={'invert'} />
+            <Icon
+              size={'small'}
+              id={getIcon(og && og.type)}
+              modifier={'invert'}
+            />
           </span>
           {url}
         </p>
