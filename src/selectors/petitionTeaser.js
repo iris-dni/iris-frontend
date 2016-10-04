@@ -2,7 +2,6 @@ import getAuthorLabel from 'helpers/getAuthorLabel';
 import getPetitionMetrics from './petitionMetrics';
 import petitionCity from './petitionCity';
 import petitionOwner from './petitionOwner';
-import petitionWinning from './petitionWinning';
 
 export default (petition = {}) => {
   if (!petition || !petition.id) {
@@ -15,7 +14,6 @@ export default (petition = {}) => {
     title: petition.title,
     city: petitionCity(petition),
     owner: getAuthorLabel(petitionOwner(petition)),
-    metrics: getPetitionMetrics(petition),
-    winning: petitionWinning(petition)
+    metrics: getPetitionMetrics(petition)
   };
 };

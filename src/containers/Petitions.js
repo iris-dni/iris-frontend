@@ -4,30 +4,49 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { isEqual } from 'lodash/lang';
 import getPetitionsPageTitle from 'helpers/getPetitionsPageTitle';
-import { fetchPetitionsAndCity } from 'actions/PetitionsActions';
+import {
+  fetchPetitions,
+  clearPetitions,
+  fetchPetitionsAndCity
+} from 'actions/PetitionsActions';
+import { updateCurrentCity } from 'actions/CityActions';
 import { clearSuggestionInputValue } from 'actions/AutocompleteActions';
 import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';
 
 const PetitionsContainer = withRouter(React.createClass({
   componentWillMount () {
-    this.props.clearSuggestionInputValue();
-
-    // If there are no petitions, or if we arrived on the page by clicking
-    // a client-side router link, then we fetch petitions client-side
+    // If there are no petitions, or if the user arrived on the page by clicking
+    // a client-side router link, then we fetch petitions client-side.
     if (!this.props.petitions.length ||
-        this.props.location.action === 'PUSH') {
+        this.props.location.action === 'PUSH' ||
+        this.props.location.action === 'REPLACE') {
+      this.props.clearPetitions();
       this.props.fetchPetitionsAndCity(this.props);
     }
   },
 
   componentWillReceiveProps (nextProps) {
     // Deep compare filter params, if they have changes
-    // then we fetch petitions again client-side
+    // then we fetch petitions again client-side. We don’t need to fetch the
+    // info on the new/current city, as it has already been updated when we
+    // selected the suggestion.
     if (!isEqual(this.props.params, nextProps.params) ||
         !isEqual(this.props.location.query, nextProps.location.query)) {
-      this.props.fetchPetitionsAndCity(nextProps);
+      // Handles edge case of clicking on the logo, which doesn’t trigger a PUSH
+      // or a component unmount.
+      if (nextProps.location.action === 'REPLACE') {
+        this.props.clearSuggestionInputValue();
+        this.props.updateCurrentCity({});
+      }
+
+      this.props.fetchPetitions(nextProps);
     }
+  },
+
+  componentWillUnmount () {
+    this.props.clearSuggestionInputValue();
+    this.props.updateCurrentCity({});
   },
 
   render () {
@@ -61,8 +80,11 @@ export const mapStateToProps = ({ petitions }) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
+  fetchPetitions: (options) => dispatch(fetchPetitions(options)),
+  clearPetitions: () => dispatch(clearPetitions()),
   fetchPetitionsAndCity: (options) => dispatch(fetchPetitionsAndCity(options)),
-  clearSuggestionInputValue: () => dispatch(clearSuggestionInputValue())
+  clearSuggestionInputValue: () => dispatch(clearSuggestionInputValue()),
+  updateCurrentCity: (city) => dispatch(updateCurrentCity(city))
 });
 
 export default connect(

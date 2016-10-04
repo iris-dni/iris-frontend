@@ -58,7 +58,7 @@ const PetitionsFilters = React.createClass({
     }));
   },
 
-  getAutocompleteProps: ({ router, location, currentCity }) => ({
+  getAutocompleteProps: ({ router, location, currentCity, updateCurrentCity }) => ({
     name: CITY_FILTER_NAME,
     endpoint: 'cities',
     suggestionFormatter: citySuggestionFormatter,
@@ -67,13 +67,14 @@ const PetitionsFilters = React.createClass({
     helper: {
       value: { data: currentCity },
       onChange (newValue) {
+        updateCurrentCity(newValue);
+
         router.push(petitionsPath({
           city: newValue,
           sort: location.query.sort,
           state: location.query.state
         }));
-      },
-      onBlur () {}
+      }
     },
     html: { placeholder: settings.petitionsPage.filters.city.placeholder }
   }),
