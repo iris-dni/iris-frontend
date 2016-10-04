@@ -206,7 +206,8 @@ export default {
     arrived: {
       title: 'Response from Gemeinde',
       text: 'This petition reached its target goal of %required votes and has already been answered by %name.'
-    }
+    },
+    link: 'View official reply'
   },
   shareButtons: {
     facebook: {

@@ -11,7 +11,7 @@ const PetitionResponse = ({ cityResponse }) => {
   }
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root} id='response'>
       <div className={styles.top}>
         <span className={styles.icon}>
           <Icon id='Note' size='small' />
