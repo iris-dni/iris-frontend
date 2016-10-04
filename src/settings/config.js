@@ -21,8 +21,10 @@ export default {
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',
   petitionsPerPage: 12,
-  // FIXME: find better way to import colors
-  // without duplicating them
+  /* FIXME: find better way to import colors
+     without duplicating them
+     Try regex with https://github.com/webpack/raw-loader
+     to import vars from stylesheet. */
   colors: {
     black: '#222',
     white: '#fff',
