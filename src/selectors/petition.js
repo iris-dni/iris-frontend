@@ -10,7 +10,6 @@ export default (petition = {}) => {
     ...petition,
     browserTitle: petition.title,
     schema: getPetitionSchema(petition),
-    supporters: getPetitionSupporters(petition),
-    supportedByMe: petition.extensions && petition.extensions.supporting
+    supporters: getPetitionSupporters(petition)
   };
 };

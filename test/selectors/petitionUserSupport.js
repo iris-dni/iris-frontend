@@ -1,17 +1,16 @@
 import { assert } from 'chai';
 import mockPetition from '../mocks/petition';
-import getPetition from 'selectors/petition';
+import getPetitionUserSupport from 'selectors/petitionUserSupport';
 
-describe('petiton selector', () => {
+describe('petitionUserSupport selector', () => {
   context('with a petition I have not supported yet', () => {
     const petition = {
       ...mockPetition.data,
       extensions: { supporting: false }
     };
-    const actual = getPetition(petition).supportedByMe;
-    const expected = false;
+    const actual = getPetitionUserSupport(petition);
 
-    it('returns false', () => assert.equal(actual, expected));
+    it('returns false', () => assert.isFalse(actual));
   });
 
   context('with a petition I have already supported', () => {
@@ -19,9 +18,8 @@ describe('petiton selector', () => {
       ...mockPetition.data,
       extensions: { supporting: true }
     };
-    const actual = getPetition(petition).supportedByMe;
-    const expected = true;
+    const actual = getPetitionUserSupport(petition);
 
-    it('returns true', () => assert.equal(actual, expected));
+    it('returns true', () => assert.isTrue(actual));
   });
 });
