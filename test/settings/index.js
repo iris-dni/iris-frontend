@@ -5,8 +5,8 @@ const { assert } = chai;
 
 describe('settings', () => {
   it('returns default lang', () => {
-    const actual = settings.lang;
-    const expected = 'en';
+    const actual = settings.locale;
+    const expected = 'en-US';
 
     assert.equal(actual, expected);
   });
