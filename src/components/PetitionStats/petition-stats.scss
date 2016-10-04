@@ -10,22 +10,33 @@
 }
 
 .item {
-  margin-top: 15px;
-}
+  margin-top: 10px;
 
-.item:last-of-type {
-  @include media('>sidebar') {
-    text-align: right;
+  @include media('<=text-boost') {
+    max-width: 110px;
+    word-wrap: break-word;
   }
 }
-
 
 .figure {
   display: block;
   color: color('primary');
-  font-size: 1.5em;
+
+  @include media('<=text-boost') {
+    font-size: 18px;
+  }
+
+  @include media('>text-boost') {
+    font-size: 24px;
+  }
 }
 
 .label {
   color: color('black');
+  display: block;
+
+  @include media('<=text-boost') {
+    font-size: 13px;
+    line-height: 1.2;
+  }
 }
