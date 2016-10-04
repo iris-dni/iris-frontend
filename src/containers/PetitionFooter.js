@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PetitionFooter from 'components/PetitionFooter';
 
-const PetitionFooterContainer = (props) => (
-  <PetitionFooter {...props} />
+const PetitionFooterContainer = ({ links }) => (
+  links.length
+    ? <PetitionFooter links={links} />
+    : null
 );
 
 const mapStateToProps = ({ petition }) => ({
