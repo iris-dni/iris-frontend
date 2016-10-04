@@ -5,6 +5,7 @@ import PetitionSidebar from 'components/PetitionSidebar';
 import getPetitionTimeMetrics from 'selectors/petitionTimeMetrics';
 import getPetitionSupportable from 'selectors/petitionSupportable';
 import getPetitionProcessing from 'selectors/petitionProcessing';
+import getPetitionUserSupport from 'selectors/petitionUserSupport';
 import getPetitionStartDate from 'helpers/getPetitionStartDate';
 
 const PetitionSidebarContainer = (props) => (
@@ -13,15 +14,18 @@ const PetitionSidebarContainer = (props) => (
 
 const mapStateToProps = ({ petition }) => ({
   timeMetric: getPetitionTimeMetrics(petition),
-  supportable: getPetitionSupportable(petition),
   processing: getPetitionProcessing(petition),
+  isSupportable: getPetitionSupportable(petition),
+  userHasSupported: getPetitionUserSupport(petition),
   startDate: getPetitionStartDate(petition),
   runningTime: settings.runningTime
 });
 
 PetitionSidebarContainer.propTypes = {
   timeMetric: React.PropTypes.object,
-  supportable: React.PropTypes.bool,
+  processing: React.PropTypes.bool,
+  isSupportable: React.PropTypes.bool,
+  userHasSupported: React.PropTypes.bool,
   startDate: React.PropTypes.string,
   runningTime: React.PropTypes.string
 };

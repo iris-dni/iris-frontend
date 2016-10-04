@@ -3,7 +3,6 @@
 .root {
   display: flex;
   flex-direction: column;
-  float: left;
   margin-bottom: map-get($spacing, 'grid');
   padding-left: map-get($spacing, 'grid');
 
