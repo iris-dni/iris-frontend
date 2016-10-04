@@ -7,7 +7,7 @@ const ExternalTeaser = ({ url, og }) => (
     <a
       target='_blank'
       rel='noopener noreferrer'
-      href={url}
+      href={`//${url}`}
       className={styles.link}
     >
       <div className={styles['image-wrap']}>
@@ -19,9 +19,9 @@ const ExternalTeaser = ({ url, og }) => (
       <div className={styles['content-wrap']}>
         <h1 className={styles.title}>{og.title}</h1>
 
-        {/* og.description &&
+        {og.description &&
           <p className={styles.description}>{og.description}</p>
-        */}
+        }
 
         <p className={styles.url}>
           <span className={styles['link-icon']}>
