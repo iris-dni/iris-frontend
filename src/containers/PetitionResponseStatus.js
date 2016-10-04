@@ -18,7 +18,7 @@ const mapStateToProps = ({ petition, petitionResponse }) => ({
 
 PetitionResponseStatusContainer.propTypes = {
   required: React.PropTypes.number.isRequired,
-  total: React.PropTypes.number.isRequired, // @TODO: change to `amount` since selector is different in another branch.
+  amount: React.PropTypes.number.isRequired,
   daysPending: React.PropTypes.number,
   name: React.PropTypes.string,
   pending: React.PropTypes.bool
