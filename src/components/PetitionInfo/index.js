@@ -23,7 +23,7 @@ const PetitionInfo = ({ owner, city, ending }) => (
         </IconAndInfo>
       </li>
     }
-    <li className={styles.item}>
+    <li className={styles['last-item']}>
       <IconAndInfo
         icon='Clock'
         info={ending}
