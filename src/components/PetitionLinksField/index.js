@@ -63,9 +63,9 @@ const PetitionLinksField = React.createClass({
     }
   },
 
-  handleLinkRemoved (index) {
+  handleLinkRemoved (index, url) {
     let links = this.props.helper.value;
-
+    this.props.removeOpenGraph(url);
     links.splice(index, 1);
     this.props.helper.onChange(links);
   },
@@ -73,7 +73,7 @@ const PetitionLinksField = React.createClass({
   render () {
     const { value } = this.state;
     const { config, helper } = this.props;
-    const links = helper.value;
+    const links = this.props.openGraph.links || [];
 
     return (
       <div>
@@ -87,7 +87,7 @@ const PetitionLinksField = React.createClass({
               }
               <button
                 type='button'
-                onClick={() => this.handleLinkRemoved(index)}>
+                onClick={() => this.handleLinkRemoved(index, link.url)}>
                 remove
               </button>
             </div>

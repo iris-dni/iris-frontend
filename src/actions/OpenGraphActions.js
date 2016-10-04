@@ -2,7 +2,8 @@ import openGraphRepository from 'services/api/repositories/openGraph';
 
 import {
   REQUEST_OPEN_GRAPH,
-  RECEIVE_OPEN_GRAPH
+  RECEIVE_OPEN_GRAPH,
+  REMOVE_OPEN_GRAPH
 } from './actionTypes';
 
 export function fetchOpenGraph (url) {
@@ -23,6 +24,13 @@ export function fetchOpenGraph (url) {
 export function requestOpenGraph () {
   return {
     type: REQUEST_OPEN_GRAPH
+  };
+}
+
+export function removeOpenGraph (url) {
+  return {
+    type: REMOVE_OPEN_GRAPH,
+    url
   };
 }
 

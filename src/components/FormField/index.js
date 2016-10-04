@@ -15,7 +15,7 @@ const getClassname = (element, error) => {
 
 const FormField = React.createClass({
   render () {
-    const { config, helper } = this.props;
+    const { config, helper, openGraph } = this.props;
 
     let Field;
 
@@ -33,6 +33,7 @@ const FormField = React.createClass({
           <PetitionLinksField
             helper={helper}
             config={config}
+            openGraph={openGraph}
           />
         );
         break;

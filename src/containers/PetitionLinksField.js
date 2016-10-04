@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchOpenGraph } from 'actions/OpenGraphActions';
+import { fetchOpenGraph, removeOpenGraph } from 'actions/OpenGraphActions';
 import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
 import PetitionLinksField from 'components/PetitionLinksField';
 
@@ -13,7 +13,8 @@ const mapStateToProps = ({ petition }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchOpenGraph: (url) => dispatch(fetchOpenGraph(url))
+  fetchOpenGraph: (url) => dispatch(fetchOpenGraph(url)),
+  removeOpenGraph: (url) => dispatch(removeOpenGraph(url))
 });
 
 export default connect(

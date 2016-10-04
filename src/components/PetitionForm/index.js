@@ -17,6 +17,7 @@ const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting })
         <FormField
           key={field.name}
           config={field}
+          openGraph={openGraph}
           helper={fields[field.name]}
         />
       ))}
