@@ -5,18 +5,19 @@
 }
 
 .counter {
-  @include media('>petition-header') {
+  @include media('>sidebar') {
+    margin-bottom: 20px;
     font-size: 18px;
   }
 }
 
 .specifics {
   color: color('dimmed');
-  margin-top: 30px;
   margin-bottom: 15px;
   font-size: 14px;
   line-height: 1.5;
   text-align: center;
+  margin-top: 20px;
 }
 
 .support-button {
@@ -24,5 +25,5 @@
 }
 
 .share {
-  margin-top: 30px;
+  margin-top: 20px;
 }

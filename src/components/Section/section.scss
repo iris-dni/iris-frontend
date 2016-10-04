@@ -2,5 +2,12 @@
 
 .grey {
   background-color: color('grey-lighter');
-  margin-bottom: 35px;
+
+  @include media('<=sidebar') {
+    margin-bottom: 30px;
+  }
+
+  @include media('>sidebar') {
+    margin-bottom: 40px;
+  }
 }

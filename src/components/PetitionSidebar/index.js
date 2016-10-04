@@ -4,6 +4,7 @@ import Countdown from 'components/Countdown';
 import PetitionResponseStatus from 'containers/PetitionResponseStatus';
 import ButtonIcon from 'components/ButtonIcon';
 import FakeButton from 'components/FakeButton';
+import ShowWhen from 'components/ShowWhen';
 import SupportButton from 'containers/SupportButton';
 import SharePetition from 'containers/SharePetition';
 import settings from 'settings';
@@ -22,15 +23,12 @@ const PetitionSidebar = ({
     }
 
     {isSupportable &&
-      <div className={styles.counter}>
-        <Countdown timeMetric={timeMetric} />
-      </div>
+      <ShowWhen when={'medium'}>
+        <div className={styles.counter}>
+          <Countdown timeMetric={timeMetric} />
+        </div>
+      </ShowWhen>
     }
-
-    <div className={styles.specifics}>
-      <p>{startDate}</p>
-      <p>{runningTime}</p>
-    </div>
 
     <div className={styles['support-button']}>
       {isSupportable && !userHasSupported &&
@@ -50,11 +48,18 @@ const PetitionSidebar = ({
           {settings.petitionPage.supportButton.unsupportableText}
         </FakeButton>
       }
+    </div>
 
+    <div className={styles.specifics}>
+      <p>{startDate}</p>
+      <p>{runningTime}</p>
     </div>
-    <div className={styles.share}>
-      <SharePetition />
-    </div>
+
+    <ShowWhen when={'medium'}>
+      <div className={styles.share}>
+        <SharePetition />
+      </div>
+    </ShowWhen>
   </aside>
 );
 

@@ -10,10 +10,40 @@
 }
 
 .item {
-  color: color('dimmed');
-  margin-top: 15px;
+  margin-top: 10px;
+
+  @include media('<=text-boost') {
+    word-wrap: break-word;
+  }
 }
 
-.total {
+.days-item {
+  composes: item;
+
+  @include media('>sidebar') {
+    @include visuallyhidden;
+  }
+}
+
+.figure {
+  display: block;
   color: color('primary');
+
+  @include media('<=text-boost') {
+    font-size: 18px;
+  }
+
+  @include media('>text-boost') {
+    font-size: 24px;
+  }
+}
+
+.label {
+  color: color('black');
+  display: block;
+
+  @include media('<=text-boost') {
+    font-size: 13px;
+    line-height: 1.2;
+  }
 }
