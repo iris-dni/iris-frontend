@@ -35,7 +35,7 @@ a {
  */
 :global {
   .main-content {
-    padding-bottom: calc(80px + #{map-get($heights, 'site-footer')});
+    padding-bottom: map-get($heights, 'site-footer');
   }
 
   .wrapper {
@@ -47,5 +47,9 @@ a {
   .disabled-scroll,
   .disabled-scroll body {
     overflow: hidden; /* 3 */
+  }
+
+  .disabled-scroll .app-wrapper {
+    overflow-y: scroll;
   }
 }
