@@ -74,8 +74,9 @@ const PetitionLinksField = React.createClass({
 
   render () {
     const { value } = this.state;
-    const { config, helper } = this.props;
-    const links = this.props.openGraph.links || [];
+    const { config, helper, openGraph } = this.props;
+    const links = openGraph.links || [];
+    const isLoading = openGraph.isLoading;
 
     return (
       <div>
@@ -101,6 +102,10 @@ const PetitionLinksField = React.createClass({
               </button>
             </div>
           ))}
+
+          {isLoading &&
+            <p>LOADING</p>
+          }
         </div>
 
         {links.length < settings.petitionFields.links.maxLinks &&
