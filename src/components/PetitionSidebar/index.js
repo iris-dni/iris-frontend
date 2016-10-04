@@ -22,16 +22,15 @@ const PetitionSidebar = ({
     }
 
     {isSupportable &&
-      <div>
-        <div className={styles.counter}>
-          <Countdown timeMetric={timeMetric} />
-        </div>
-        <div className={styles.specifics}>
-          <p>{startDate}</p>
-          <p>{runningTime}</p>
-        </div>
+      <div className={styles.counter}>
+        <Countdown timeMetric={timeMetric} />
       </div>
     }
+
+    <div className={styles.specifics}>
+      <p>{startDate}</p>
+      <p>{runningTime}</p>
+    </div>
 
     <div className={styles['support-button']}>
       {isSupportable && !userHasSupported &&
@@ -51,6 +50,7 @@ const PetitionSidebar = ({
           {settings.petitionPage.supportButton.unsupportableText}
         </FakeButton>
       }
+
     </div>
     <div className={styles.share}>
       <SharePetition />
