@@ -17,7 +17,7 @@ const PetitionFooter = ({ links }) => (
 
     <Grid modifier='centered'>
       {links.map((link, index) => (
-        <GridItem key={link.title}>
+        <GridItem key={index}>
           <ExternalTeaser {...link} />
         </GridItem>
       ))}
