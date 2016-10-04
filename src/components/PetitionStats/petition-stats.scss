@@ -13,8 +13,15 @@
   margin-top: 10px;
 
   @include media('<=text-boost') {
-    max-width: 110px;
     word-wrap: break-word;
+  }
+}
+
+.days-item {
+  composes: item;
+
+  @include media('>sidebar') {
+    @include visuallyhidden;
   }
 }
 

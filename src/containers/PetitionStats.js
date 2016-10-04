@@ -2,13 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PetitionStats from 'components/PetitionStats';
 import getPetitionMetrics from 'selectors/petitionMetrics';
-import {mediaQueries, serverMediaQueries} from 'helpers/getMediaQueries';
 
 const PetitionStatsContainer = (props) => (
-  <PetitionStats {...props}
-    mq={mediaQueries}
-    serverMedia={serverMediaQueries}
-  />
+  <PetitionStats {...props} />
 );
 
 const mapStateToProps = ({ petition }) => {

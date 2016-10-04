@@ -3,6 +3,10 @@
 .root {
   border: 4px solid color('blue');
   padding: 1em;
+
+  @include media('>sidebar') {
+    margin-top: 30px;
+  }
 }
 
 .top {

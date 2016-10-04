@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './petition.scss';
 import LayoutWrap from 'components/LayoutWrap';
 import LayoutContent from 'components/LayoutContent';
 import LayoutSidebar from 'components/LayoutSidebar';
@@ -9,6 +10,8 @@ import PetitionHeader from 'containers/PetitionHeader';
 import PetitionBody from 'containers/PetitionBody';
 import PetitionResponse from 'containers/PetitionResponse';
 import PetitionSidebar from 'containers/PetitionSidebar';
+import ShowWhen from 'components/ShowWhen';
+import SharePetition from 'containers/SharePetition';
 
 const Petition = ({ preview }) => (
   <article>
@@ -21,6 +24,11 @@ const Petition = ({ preview }) => (
       <LayoutWrap>
         <LayoutContent>
           <PetitionBody />
+          <ShowWhen when={'small'}>
+            <div className={styles.share}>
+              <SharePetition />
+            </div>
+          </ShowWhen>
           <PetitionResponse />
         </LayoutContent>
         <LayoutSidebar>

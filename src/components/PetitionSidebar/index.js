@@ -3,12 +3,10 @@ import styles from './petition-sidebar.scss';
 import Countdown from 'components/Countdown';
 import ButtonIcon from 'components/ButtonIcon';
 import FakeButton from 'components/FakeButton';
+import ShowWhen from 'components/ShowWhen';
 import SupportButton from 'containers/SupportButton';
 import SharePetition from 'containers/SharePetition';
 import settings from 'settings';
-import {mediaQueries, serverMediaQueries} from 'helpers/getMediaQueries';
-import settings from 'settings';
-import { mediaQueries, serverMediaQueries } from 'helpers/getMediaQueries';
 
 const PetitionSidebar = ({
   timeMetric,
@@ -18,17 +16,11 @@ const PetitionSidebar = ({
   runningTime
 }) => (
   <aside role='complementary' className={styles.root}>
-    <div className={styles.counter}>
-      <Countdown
-        timeMetric={timeMetric}
-        mq={mediaQueries}
-        serverMedia={serverMediaQueries}
-      />
-    </div>
-    <div className={styles.specifics}>
-      <p>{startDate}</p>
-      <p>{runningTime}</p>
-    </div>
+    <ShowWhen when={'medium'}>
+      <div className={styles.counter}>
+        <Countdown timeMetric={timeMetric} />
+      </div>
+    </ShowWhen>
     <div className={styles['support-button']}>
       {isSupportable && !userHasSupported &&
         <SupportButton />
@@ -48,9 +40,15 @@ const PetitionSidebar = ({
         </FakeButton>
       }
     </div>
-    <div className={styles.share}>
-      <SharePetition />
+    <div className={styles.specifics}>
+      <p>{startDate}</p>
+      <p>{runningTime}</p>
     </div>
+    <ShowWhen when={'medium'}>
+      <div className={styles.share}>
+        <SharePetition />
+      </div>
+    </ShowWhen>
   </aside>
 );
 
