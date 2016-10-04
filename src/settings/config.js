@@ -175,6 +175,7 @@ export default {
     },
     links: {
       label: 'Related links',
+      removeLinkLabel: 'Remove link',
       placeholder: 'http://',
       hint: 'Include up to 3 links that support your petition.',
       maxLinks: 3,

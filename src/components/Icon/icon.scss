@@ -16,6 +16,12 @@
   height: 10px;
 }
 
+.smaller {
+  composes: root;
+  width: 12px;
+  height: 12px;
+}
+
 .small {
   composes: root;
   width: 16px;

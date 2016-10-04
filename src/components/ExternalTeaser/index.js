@@ -11,15 +11,17 @@ const ExternalTeaser = ({ url, og }) => (
       className={styles.link}
     >
       <div className={styles['image-wrap']}>
-        {og.image &&
+        {og && og.image &&
           <img className={styles.image} src={og.image.url} />
         }
       </div>
 
       <div className={styles['content-wrap']}>
-        <h1 className={styles.title}>{og.title}</h1>
+        {og && og.title &&
+          <h3 className={styles.title}>{og.title}</h3>
+        }
 
-        {og.description &&
+        {og && og.description &&
           <p className={styles.description}>{og.description}</p>
         }
 

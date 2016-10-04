@@ -4,6 +4,8 @@ import domOnlyProps from 'form/domOnlyProps';
 import fieldIsInvalid from 'form/fieldIsInvalid';
 import getLinkInputErrors from 'form/getLinkInputErrors';
 import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
+import Icon from 'components/Icon';
+import ExternalTeaser from 'components/ExternalTeaser';
 import styles from './petition-links-field.scss';
 
 const PetitionLinksField = React.createClass({
@@ -81,23 +83,29 @@ const PetitionLinksField = React.createClass({
 
     return (
       <div>
-        {/* URL TEASER */}
-        <div>
+        <div className={styles['teasers-preview-wrapper']}>
           {links.length > 0 && links.map((link, index) => (
-            <div key={index}>
-              <p>{link.url}</p>
-              {link.og &&
-                <p>{link.og.description}</p>
-              }
+            <div key={index} className={styles['teaser-wrapper']}>
+              <ExternalTeaser {...link} />
+
               <button
+                className={styles['remove-link-button']}
                 type='button'
-                onClick={() => this.handleLinkRemoved(index, link.url)}>
-                remove
+                onClick={() => this.handleLinkRemoved(index, link.url)}
+              >
+                <Icon
+                  size={'smaller'}
+                  id={'Close'}
+                  modifier={'invert'}
+                />
+
+                <span className={styles.hidden}>
+                  {settings.petitionFields.links.removeLinkLabel}
+                </span>
               </button>
             </div>
           ))}
         </div>
-        {/* END URL TEASER */}
 
         {links.length < settings.petitionFields.links.maxLinks &&
           <input
