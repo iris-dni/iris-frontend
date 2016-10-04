@@ -34,6 +34,15 @@ export function fetchPetition (id) {
   };
 }
 
+export function refreshPetition (id) {
+  return (dispatch, getState) => {
+    return petitionRepository.find(id)
+      .then(response => dispatch(
+        receivePetition(response.data)
+      ));
+  };
+}
+
 export function requestPetition () {
   return {
     type: REQUEST_PETITION
