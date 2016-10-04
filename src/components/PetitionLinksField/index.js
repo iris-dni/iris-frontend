@@ -1,4 +1,5 @@
 import React from 'react';
+import settings from 'settings';
 import domOnlyProps from 'form/domOnlyProps';
 import fieldIsInvalid from 'form/fieldIsInvalid';
 import getLinkInputErrors from 'form/getLinkInputErrors';
@@ -76,6 +77,7 @@ const PetitionLinksField = React.createClass({
 
     return (
       <div>
+        {/* URL TEASER */}
         <div>
           {links.length > 0 && links.map((link, index) => (
             <div key={index}>
@@ -91,17 +93,20 @@ const PetitionLinksField = React.createClass({
             </div>
           ))}
         </div>
+        {/* END URL TEASER */}
 
-        <input
-          className={this.getClassname('input', fieldIsInvalid(helper))}
-          id={config.name}
-          {...config.html}
-          {...domOnlyProps(helper)}
-          value={value}
-          onChange={this.handleChange}
-          onKeyPress={this.handleLinkAdded}
-          onBlur={this.handleLinkAdded}
-        />
+        {links.length < settings.petitionFields.links.maxLinks &&
+          <input
+            className={this.getClassname('input', fieldIsInvalid(helper))}
+            id={config.name}
+            {...config.html}
+            {...domOnlyProps(helper)}
+            value={value}
+            onChange={this.handleChange}
+            onKeyPress={this.handleLinkAdded}
+            onBlur={this.handleLinkAdded}
+          />
+        }
       </div>
     );
   }

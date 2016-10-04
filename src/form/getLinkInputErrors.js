@@ -3,15 +3,15 @@ import isLink from 'helpers/isLink';
 
 export default function (currentValue, links) {
   let error = '';
-  const MAX_LINKS = settings.petitionFields.links.maxLinks;
+  const LINKS_SETTINGS = settings.petitionFields.links;
+  const MAX_LINKS = LINKS_SETTINGS.maxLinks;
 
   if (!isLink(currentValue)) {
-    error = settings.petitionFields.links.invalidLinkFormat;
+    error = LINKS_SETTINGS.invalidLinkFormat;
   } else if (links.length >= MAX_LINKS) {
-    error = settings.petitionFields.links.invalidLinkCount
-      .replace('%x', MAX_LINKS);
+    error = LINKS_SETTINGS.invalidLinkCount.replace('%x', MAX_LINKS);
   } else if (links.filter(link => (currentValue === link.url)).length) {
-    error = settings.petitionFields.links.invalidSimilarLink;
+    error = LINKS_SETTINGS.invalidSimilarLink;
   }
 
   return error;
