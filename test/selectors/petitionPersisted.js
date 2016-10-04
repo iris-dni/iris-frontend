@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import getPetionPersisted from 'selectors/petitionPersisted';
 
-describe('getPetionPersisted', () => {
+describe('petitionPersisted selector', () => {
   context('with a new petition', () => {
     const actual = getPetionPersisted({});
     const expected = false;

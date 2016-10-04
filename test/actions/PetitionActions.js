@@ -5,6 +5,7 @@ import mockPetition from '../mocks/petition';
 
 import {
   fetchPetition,
+  refreshPetition,
   requestPetition,
   clearPetition,
   receivePetition,
@@ -59,6 +60,33 @@ describe('PetitionActions', () => {
     it('returns a function that dispatches requestPetition()', () => {
       result(dispatch);
       assert(dispatch.calledWith(requestPetition()));
+    });
+
+    it('returns a function that returns a promise that dispatches receivePetition()', done => {
+      result(dispatch).then(() => {
+        assert(dispatch.calledWith(receivePetition(mockPetition)));
+      }).then(done, done);
+    });
+  });
+
+  describe('refreshPetition', () => {
+    let dispatch;
+    let result;
+
+    beforeEach(() => {
+      dispatch = sinon.spy();
+
+      moxios.install();
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: { data: mockPetition }
+      });
+
+      result = refreshPetition(mockPetition.data.id);
+    });
+
+    afterEach(() => {
+      moxios.uninstall();
     });
 
     it('returns a function that returns a promise that dispatches receivePetition()', done => {

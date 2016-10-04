@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import Helmet from 'react-helmet';
 import { match, RouterContext } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
@@ -7,8 +8,8 @@ import { Provider } from 'react-redux';
 import reducers from 'reducers';
 
 import routes from 'routes';
-import settings from 'settings';
-import getMetaData from 'server/getMetaData';
+import stringifyHeadData from 'server/stringifyHeadData';
+import getBundles from 'server/getBundles';
 
 export default (request, reply, next) => {
   match({ routes: routes(), location: { pathname: request.path, query: request.query } }, (error, redirectLocation, renderProps) => {
@@ -32,10 +33,6 @@ export default (request, reply, next) => {
       const components = renderProps.components || [];
       // Extract our page component
       const Component = components[components.length - 1];
-      // Get component to pass
-      const ComponentObject = Component && Component.WrappedComponent || Component || {};
-      // Get name of component rendered
-      const ComponentName = ComponentObject.displayName || '';
       // Extract `fetchData` if exists
       const fetchData = (Component && Component.fetchData) || (() => Promise.resolve());
       // Get from renderProps
@@ -50,14 +47,18 @@ export default (request, reply, next) => {
             </Provider>
           );
 
-          const state = store.getState();
+          // Get <head> meta data
+          const headData = Helmet.rewind();
+          // Get (initial) state from store
+          const initialState = store.getState();
 
+          // Render Nunjucks view with required data
           return reply.view('index', Object.assign({}, {
             reactMarkup: reactString,
-            initialState: JSON.stringify(state)
-          }, settings,
-            getMetaData(ComponentName, state)
-          ));
+            initialState: JSON.stringify(initialState),
+            head: stringifyHeadData(headData),
+            bundles: getBundles()
+          }));
         })
         .catch((err) => {
           return err.response && err.response.status

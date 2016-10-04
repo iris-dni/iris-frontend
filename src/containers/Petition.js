@@ -1,41 +1,47 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { fetchPetition } from 'actions/PetitionActions';
+import { fetchPetition, refreshPetition } from 'actions/PetitionActions';
 import { supportPetition } from 'actions/SupportActions';
 import Petition from 'components/Petition';
 import Loading from 'components/Loading';
 import getPetition from 'selectors/petition';
+import getPetitionMetaData from 'helpers/getPetitionMetaData';
 
 const PetitionContainer = React.createClass({
   componentWillMount () {
     const {
       petition,
-      fetchPetition,
-      supportPetition,
+      fetchPetition, refreshPetition, supportPetition,
       params: { id },
       location: { query: { intent } }
     } = this.props;
 
+    // Boolean if we have supporting a petition intent
+    const isSupporting = __CLIENT__ && intent === 'support';
+
     // When the component gets added to the DOM,
-    // fetch Petition if `id` changes (clientside)
-    if (petition.id !== this.props.params.id) {
-      fetchPetition(id).then(({ petition }) => {
-        // If we have the `support` intent, support the petition
-        if (__CLIENT__ && intent === 'support') {
-          supportPetition(petition);
-        }
-      });
+    // fetch Petition if `id` changes (clientside),
+    // or if we need to support a petition
+    if (petition.id !== this.props.params.id || isSupporting) {
+      fetchPetition(id).then(({ petition }) => isSupporting
+        ? supportPetition(petition)
+        : () => {});
+    } else {
+      // Otherwise, refresh the petition
+      // in the background, no loading states
+      refreshPetition(petition.id);
     }
   },
 
   render () {
-    const { petition } = this.props;
+    const { petition } = this.props || {};
 
     return (
       <div>
         <Helmet
           title={petition.browserTitle}
+          meta={getPetitionMetaData(petition)}
           script={[{
             'type': 'application/ld+json',
             'innerHTML': JSON.stringify(petition.schema || {})
@@ -61,6 +67,7 @@ export const mapStateToProps = ({ petition }) => ({
 // for fetching the data _client side_
 export const mapDispatchToProps = (dispatch) => ({
   fetchPetition: (id) => dispatch(fetchPetition(id)),
+  refreshPetition: (id) => dispatch(refreshPetition(id)),
   supportPetition: (petition) => dispatch(supportPetition(petition))
 });
 

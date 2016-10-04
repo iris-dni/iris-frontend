@@ -1,11 +1,11 @@
 import chai from 'chai';
-import bundles from 'settings/bundles';
+import getBundles from 'server/getBundles';
 
 const { assert } = chai;
 
-describe('config bundles', () => {
+describe('getBundles', () => {
   it('returns javascripts key', () => {
-    const result = bundles();
+    const result = getBundles();
     const actual = result.hasOwnProperty('javascripts');
     const expected = true;
 
@@ -13,7 +13,7 @@ describe('config bundles', () => {
   });
 
   it('returns client.js path in javascripts', () => {
-    const result = bundles();
+    const result = getBundles();
     const actual = result.javascripts.indexOf('/dist/client.js') > -1;
     const expected = true;
 
@@ -21,7 +21,7 @@ describe('config bundles', () => {
   });
 
   it('returns stylesheets key', () => {
-    const result = bundles();
+    const result = getBundles();
     const actual = result.hasOwnProperty('stylesheets');
     const expected = true;
 
@@ -29,7 +29,7 @@ describe('config bundles', () => {
   });
 
   it('returns styles.css path in stylesheets', () => {
-    const result = bundles();
+    const result = getBundles();
     const actual = result.stylesheets.indexOf('/dist/styles.css') > -1;
     const expected = true;
 

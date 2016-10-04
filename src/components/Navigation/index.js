@@ -1,5 +1,6 @@
 import React from 'react';
 import { IndexLink } from 'react-router';
+import { debounce } from 'lodash';
 import Overlay from 'components/Overlay';
 import Logo from 'components/Logo';
 import MenuItems from 'components/MenuItems';
@@ -17,6 +18,28 @@ const Navigation = React.createClass({
     return `${defaultClass} ${opened}`;
   },
 
+  resizeHandler: debounce(function resize () {
+    var windowWidth = (__CLIENT__ ? window.innerWidth : null);
+
+    if (windowWidth >= parseInt(styles.menuBreakpoint, 10)) {
+      this.props.destroyMobileMenu();
+    }
+  }, 300),
+
+  componentWillMount () {
+    this.resizeHandler();
+  },
+  componentDidMount () {
+    if (__CLIENT__) {
+      window.addEventListener('resize', this.resizeHandler);
+    }
+  },
+  componentWillUnmount () {
+    if (__CLIENT__) {
+      window.removeEventListener('resize', this.resizeHandler);
+    }
+  },
+
   render () {
     return (
       <div>
@@ -28,7 +51,7 @@ const Navigation = React.createClass({
         </div>
 
         <nav>
-          <div className={styles['unhidden-wrapper']}>
+          <div className={styles['visible-elements-wrapper']}>
             <IndexLink
               to='/'
               className={styles.link}

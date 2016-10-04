@@ -1,17 +1,10 @@
 @import 'globals';
 
+/*
+ * Shared button styles
+ */
 .shared {
   @include map-declarations($button-shared-defaults, $button-shared-custom);
-  text-decoration: none;
-  outline: 0;
-
-  @include media('<=text-boost') {
-    font-size: 16px;
-  }
-
-  @include media('>text-boost') {
-    font-size: 18px;
-  }
 }
 
 .shared:hover,
@@ -22,13 +15,12 @@
   }
 }
 
-.border {
-  @include map-declarations($button-border-defaults, $button-border-custom);
-}
-
+/*
+ * Regular (default) button, bordered
+ */
 .default {
+  @include map-declarations($button-regular-defaults, $button-regular-custom);
   composes: shared;
-  composes: border;
 }
 
 .default:hover,
@@ -37,30 +29,96 @@
   @include map-declarations($button-regular-hover-defaults, $button-regular-hover-custom);
 }
 
+/*
+ * Accent button, primary background
+ */
 .accent {
   @include map-declarations($button-accent-defaults, $button-accent-custom);
   composes: shared;
 }
 
-/*
- * 1. calculated with http://razorjam.github.io/sasscolourfunctioncalculator/
- */
 .accent:hover,
 .accent:active,
 .accent:focus {
   @include map-declarations($button-accent-hover-defaults, $button-accent-hover-custom);
 }
 
-.disabled {
+/*
+ * Disabled button
+ */
+.is-disabled {
+  @include map-declarations($button-shared-defaults, $button-regular-custom);
+  @include map-declarations($button-regular-defaults, $button-regular-custom);
   @include map-declarations($button-disabled-defaults, $button-disabled-custom);
-  composes: shared;
-  composes: border;
+  cursor: normal;
 }
 
-.block {
+.is-disabled:hover,
+.is-disabled:active,
+.is-disabled:focus {
+  background-color: inherit;
+}
+
+/*
+ * Regular size
+ */
+.size-regular {
+  padding: 1.125em 1.5em;
+
+  @include media('>text-boost') {
+    font-size: 1.0875em;
+  }
+}
+
+/*
+ * Compact size
+ */
+.size-compact {
+  padding: 1em;
+  font-size: 0.925em;
+}
+
+/*
+ * Default display
+ */
+.display-inline {
+  display: inline-block;
+}
+
+/*
+ * Using `<Button block />`
+ */
+.display-block {
   display: block;
 }
 
-.inline {
-  display: inline-block;
+/*
+ * Brand buttons
+ */
+.brand-facebook:hover,
+.brand-facebook:active,
+.brand-facebook:focus {
+  border-color: #3a5795;
+  background-color: #3a5795;
+}
+
+.brand-twitter:hover,
+.brand-twitter:active,
+.brand-twitter:focus {
+  border-color: #55acee;
+  background-color: #55acee;
+}
+
+.brand-whatsapp:hover,
+.brand-whatsapp:active,
+.brand-whatsapp:focus {
+  border-color: #4dc247;
+  background-color: #4dc247;
+}
+
+.brand-email:hover,
+.brand-email:active,
+.brand-email:focus {
+  border-color: color('black');
+  background-color: color('black');
 }

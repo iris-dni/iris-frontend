@@ -53,7 +53,7 @@ const CircleProgressBar = React.createClass({
 
   initProgressBar () {
     const canvasElement = ReactDOM.findDOMNode(this.refs.canvas);
-    const strokeWidth = this.props.size === 'small' ? 14 : 7;
+    const strokeWidth = this.props.size === 'small' ? 14 : 8;
 
     this.progressBar = new ProgressBar.Circle(canvasElement, {
       strokeWidth: strokeWidth,

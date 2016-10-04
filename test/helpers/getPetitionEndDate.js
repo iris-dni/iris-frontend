@@ -1,34 +1,30 @@
 import { assert } from 'chai';
-import moment from 'moment';
 import getPetitionEndDate from 'helpers/getPetitionEndDate';
 
 describe('getPetitionEndDate', () => {
-  context('when no dates given', () => {
-    it('returns the date <daysToVote> days in the future', () => {
-      const actual = getPetitionEndDate({}).toString();
-      const expected = moment().add(30, 'days').toString();
+  context('with a full dc object', () => {
+    const dc = {
+      created: '2016-10-10',
+      effective: '2016-10-15',
+      expires: '2016-11-01'
+    };
+
+    it('returns the correct text string', () => {
+      const actual = getPetitionEndDate({ dc });
+      const expected = 'Ending on 01-11-2016';
 
       assert.equal(actual, expected);
     });
   });
 
-  context('when an expiry date is given', () => {
-    it('returns the expiry date', () => {
-      const date = '2016-01-28T02:54:33';
-      const expires = date;
-      const actual = getPetitionEndDate({ expires }).toString();
-      const expected = moment(date).toString();
+  context('without expires date', () => {
+    const dc = {
+      created: '2016-10-10'
+    };
 
-      assert.equal(actual, expected);
-    });
-  });
-
-  context('when a created date is given and no expiry date is given', () => {
-    it('returns the expiry date', () => {
-      const date = '2016-01-28T02:54:33';
-      const created = date;
-      const actual = getPetitionEndDate({ created }).toString();
-      const expected = moment(date).add(30, 'days').toString();
+    it('returns the correct text string', () => {
+      const actual = getPetitionEndDate({ dc });
+      const expected = 'Ending on 09-11-2016';
 
       assert.equal(actual, expected);
     });

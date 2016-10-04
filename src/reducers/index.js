@@ -8,6 +8,7 @@ import meReducer from './me';
 import flashMessageReducer from './flashMessage';
 import modalWindowReducer from './modalWindow';
 import navigationReducer from './navigation';
+import openGraphReducer from './openGraph';
 
 export default combineReducers({
   autocomplete: autocompleteReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
   flashMessage: flashMessageReducer,
   navigation: navigationReducer,
   modalWindow: modalWindowReducer,
-  routing: routerReducer
+  routing: routerReducer,
+  openGraph: openGraphReducer
 });

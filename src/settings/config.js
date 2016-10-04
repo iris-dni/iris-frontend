@@ -2,7 +2,11 @@ export default {
   lang: 'en',
   charset: 'utf-8',
   title: 'iris-frontend',
+  twitterAccount: 'azmedien',
   dateRange: '%s to %e',
+  startDate: 'Started on %d',
+  endDate: 'Ending on %d',
+  runningTime: 'Petitions run for 30 days',
   dateFormat: 'DD-MM-YYYY',
   authorLabel: 'by %a',
   supportersText: 'Supporters:',
@@ -55,6 +59,8 @@ export default {
     suggestedSolution: 'Suggested solution:',
     supportButton: {
       text: 'Support Petition',
+      supportedText: 'Supported',
+      unsupportableText: 'Petition Ended',
       modal: {
         title: 'Please log in',
         intro: 'In order to sign the Petition, we need you to log in using one of the services below..'
@@ -134,6 +140,23 @@ export default {
         title: 'Got it!',
         intro: 'You\'ve already supported this petition, but go ahead and share the link to anyone you know.'
       }
+    }
+  },
+  shareButtons: {
+    facebook: {
+      label: 'Share on Facebook'
+    },
+    twitter: {
+      label: 'Share on Twitter',
+      tweetText: 'This petition needs your support:'
+    },
+    whatsapp: {
+      label: 'Send via Whatsapp'
+    },
+    email: {
+      label: 'Send via Email',
+      subject: 'This petition needs your support',
+      body: 'Get informed and support the following petition:'
     }
   },
   /**
