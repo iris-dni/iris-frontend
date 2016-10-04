@@ -3,7 +3,8 @@ import styles from './petition-tags.scss';
 import Icon from 'components/Icon';
 
 const PetitionTags = ({ winner, response }) => {
-  if (!winner && !response.text) {
+  const hasResponse = !!(response && response.text);
+  if (!winner && !hasResponse) {
     return null;
   }
 
