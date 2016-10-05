@@ -4,14 +4,14 @@ import getPetitionResponseStatusTitle from 'helpers/getPetitionResponseStatusTit
 describe('getPetitionsPageTitle', () => {
   it('returns the title for a pending response', () => {
     const actual = getPetitionResponseStatusTitle({ pending: true });
-    const expected = 'Pending response from Gemeinde';
+    const expected = 'Pending official response';
 
     assert.equal(actual, expected);
   });
 
   it('returns the title for an arrived response', () => {
     const actual = getPetitionResponseStatusTitle({ pending: false });
-    const expected = 'Response from Gemeinde';
+    const expected = 'Official response';
 
     assert.equal(actual, expected);
   });
