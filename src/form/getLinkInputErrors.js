@@ -10,7 +10,7 @@ export default function (currentValue, links) {
     error = LINKS_SETTINGS.invalidLinkFormat;
   } else if (links.length >= MAX_LINKS) {
     error = LINKS_SETTINGS.invalidLinkCount.replace('%x', MAX_LINKS);
-  } else if (links.filter(link => currentValue === link.url).length) {
+  } else if (links.filter(link => currentValue.toLowerCase() === link.url.toLowerCase()).length) {
     error = LINKS_SETTINGS.invalidSimilarLink;
   }
 

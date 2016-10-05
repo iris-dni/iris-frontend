@@ -43,7 +43,7 @@ const PetitionLinksField = React.createClass({
         // displayed without the protocol, and the link to it will be a relative
         // protocol URL.
         const PROTOCOL_REGEX = new RegExp(/^(https?:\/\/)/i);
-        const protocolFreeURL = value.replace(PROTOCOL_REGEX, '').toLowerCase();
+        const protocolFreeURL = value.replace(PROTOCOL_REGEX, '');
 
         // Specific validation for the link field.
         const error = getLinkInputErrors(protocolFreeURL, links, config);
