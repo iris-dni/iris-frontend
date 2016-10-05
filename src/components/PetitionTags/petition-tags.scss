@@ -8,6 +8,11 @@
   white-space: nowrap;
 }
 
+.item--small {
+  composes: item;
+  font-size: 10px;
+}
+
 .winner,
 .response {
   padding: 2px 6px;
