@@ -32,13 +32,9 @@ AutocompleteContainer.propTypes = {
 };
 
 export const mapStateToProps = ({ autocomplete }, {helper, suggestionFormatter}) => {
-  let value = '';
-
-  if (!autocomplete.value && helper.value) {
-    value = suggestionFormatter(helper.value.data);
-  } else {
-    value = autocomplete.value;
-  }
+  const value = !autocomplete.value && helper.value
+    ? suggestionFormatter(helper.value.data)
+    : autocomplete.value;
 
   return {
     suggestions: autocomplete.suggestions,

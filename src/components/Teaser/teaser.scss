@@ -17,24 +17,6 @@
   }
 }
 
-.winning {
-  composes: root;
-}
-
-.winning::before {
-  content: 'Winner';
-  color: white;
-  font-size: 10px;
-  padding: 2px 5px;
-  line-height: 1;
-  display: block;
-  position: absolute;
-  background-color: color('secondary');
-  transform: translate(-5px, -50%);
-  transition: transform 0.3s ease;
-  z-index: 2;
-}
-
 .link {
   @include map-declarations($teaser-link-defaults, $teaser-link-custom);
   composes: flex;
@@ -44,11 +26,6 @@
   transition: transform 0.3s ease;
 }
 
-.winning:hover::before {
-  transform: translate(-5px, calc(-50% - 2px));
-}
-
-.winning:hover .link,
 .link:hover,
 .link:active,
 .link.focus {
