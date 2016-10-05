@@ -179,7 +179,9 @@ export default {
       hint: 'To write a good response, you should clearly communicate why you care about this cause, how it impacts the local community and what steps you plan to take.'
     },
     name: {
-      label: 'Include your name and department'
+      label: 'Include your name and department',
+      hint: 'This appears below your response',
+      placeholder: 'Max Mustermann, Mayor'
     }
   },
   supportPetition: {
