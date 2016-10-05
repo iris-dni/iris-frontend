@@ -1,5 +1,15 @@
 @import 'globals';
 
+.tags {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  @include media('>800px') {
+    margin-top: 1.75%;
+  }
+}
+
 .info {
   list-style: none;
   font-size: 16px;

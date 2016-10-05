@@ -1,29 +1,16 @@
 @import 'globals';
 
-.root {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.item {
   color: white;
-  font-size: 12px;
+  font-size: 13px;
+  display: inline-block;
+  margin-right: 3px;
+  white-space: nowrap;
 }
 
 .winner,
 .response {
-  composes: root;
-  padding: 0.2em 0.5em;
-  margin-right: 2px;
-
-  /* Offsets padding in `header.scss` so the winner and
-     response tags fit nicely inside, if present */
-  @include media('<=text-boost') {
-    margin-top: -30px;
-    margin-bottom: 20px;
-  }
-
-  @include media('>text-boost') {
-    margin-top: -7%;
-  }
+  padding: 2px 6px;
 }
 
 .winner {
@@ -36,5 +23,8 @@
 }
 
 .icon {
+  display: inline-block;
   margin-right: 0.3em;
+  vertical-align: middle;
+  margin-top: -1px;
 }

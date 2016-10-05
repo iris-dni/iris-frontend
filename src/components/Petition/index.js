@@ -24,12 +24,12 @@ const Petition = ({ preview }) => (
       <LayoutWrap>
         <LayoutContent>
           <PetitionBody />
+          <PetitionResponse />
           <ShowWhen when={'small'}>
             <div className={styles.share}>
               <SharePetition />
             </div>
           </ShowWhen>
-          <PetitionResponse />
         </LayoutContent>
         <LayoutSidebar>
           <PetitionSidebar />

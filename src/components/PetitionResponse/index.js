@@ -11,7 +11,7 @@ const PetitionResponse = ({ cityResponse }) => {
   }
 
   return (
-    <div className={styles.root}>
+    <article className={styles.root}>
       <div className={styles.top}>
         <span className={styles.icon}>
           <Icon id='Note' size='small' />
@@ -22,7 +22,7 @@ const PetitionResponse = ({ cityResponse }) => {
       </div>
       <Paragraph text={cityResponse.text} />
       <Paragraph text={cityResponse.name} />
-    </div>
+    </article>
   );
 };
 

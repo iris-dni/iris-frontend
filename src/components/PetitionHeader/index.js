@@ -9,7 +9,9 @@ import PetitionStats from 'containers/PetitionStats';
 
 const PetitionHeader = ({ title }) => (
   <Header>
-    <PetitionTags />
+    <div className={styles.tags}>
+      <PetitionTags />
+    </div>
     <PageTitle title={title} />
     <div className={styles.info}>
       <PetitionInfo />

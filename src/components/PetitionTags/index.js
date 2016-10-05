@@ -11,21 +11,28 @@ const PetitionTags = ({ winner, response }) => {
 
   return (
     <div className={styles.root}>
-      {winner &&
-        <div className={styles.winner}>
-          <span className={styles.icon}>
-            <Icon id='Flag' size='tiny' modifier='invert' />
-          </span>
-          <span>{settings.petitionPage.tags.winner}</span>
-        </div>}
-
-      {response.text &&
-        <div className={styles.response}>
-          <span className={styles.icon}>
-            <Icon id='Note' size='tiny' modifier='invert' />
-          </span>
-          <span>{settings.petitionPage.tags.response}</span>
-        </div>}
+      <ul className={styles.list}>
+        {winner &&
+          <li className={styles.item}>
+            <div className={styles.winner}>
+              <span className={styles.icon}>
+                <Icon id='Flag' size='tiny' modifier='invert' />
+              </span>
+              <span>{settings.petitionPage.tags.winner}</span>
+            </div>
+          </li>
+        }
+        {response.text &&
+          <li className={styles.item}>
+            <div className={styles.response}>
+              <span className={styles.icon}>
+                <Icon id='Note' size='tiny' modifier='invert' />
+              </span>
+              <span>{settings.petitionPage.tags.response}</span>
+            </div>
+          </li>
+        }
+      </ul>
     </div>
   );
 };

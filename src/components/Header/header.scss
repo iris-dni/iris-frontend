@@ -2,9 +2,10 @@
 
 .root {
   padding-bottom: 30px;
+  position: relative;
 
   @include media('<=text-boost') {
-    padding-top: 30px;
+    padding-top: 35px;
   }
 
   @include media('>text-boost') {
