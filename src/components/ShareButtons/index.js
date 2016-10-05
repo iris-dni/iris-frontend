@@ -1,9 +1,8 @@
 import React from 'react';
 import styles from './share-buttons.scss';
-import CopyToClipboard from 'react-copy-to-clipboard';
-import Button from 'components/Button';
 import ButtonLink from 'components/ButtonLink';
 import ButtonIcon from 'components/ButtonIcon';
+import CopyPetitionLink from 'components/CopyPetitionLink';
 
 const ShareButtons = React.createClass({
   getInitialState: () => ({
@@ -15,7 +14,7 @@ const ShareButtons = React.createClass({
   },
 
   render () {
-    const { openPopup, buttons = [], petitionURL } = this.props;
+    const { openPopup, petitionURL, buttons = [] } = this.props;
     return (
       <div className={styles.root}>
         <ul className={styles.list}>
@@ -36,28 +35,7 @@ const ShareButtons = React.createClass({
             </li>
           ))}
           <li className={styles.item} key={'link'}>
-            <CopyToClipboard text={petitionURL} onCopy={this.handleCopy}>
-              <div>
-                {this.state.copied &&
-                  <Button type={'button'} block
-                    size={'compact'}
-                    brand={'link-copied'}>
-                    <ButtonIcon id={'Checkmark'} modifier={'success'}>
-                      {'Link copied'}
-                    </ButtonIcon>
-                  </Button>
-                }
-                {!this.state.copied &&
-                  <Button type={'button'} block
-                    size={'compact'}
-                    brand={'email'}>
-                    <ButtonIcon id={'Link'}>
-                      {'Share by URL'}
-                    </ButtonIcon>
-                  </Button>
-                }
-              </div>
-            </CopyToClipboard>
+            <CopyPetitionLink url={petitionURL} />
           </li>
         </ul>
       </div>

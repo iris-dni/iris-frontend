@@ -236,6 +236,10 @@ export default {
       label: 'Send via Email',
       subject: 'This petition needs your support',
       body: 'Get informed and support the following petition:'
+    },
+    link: {
+      label: 'Share by URL',
+      copiedLabel: 'Link copied'
     }
   },
   /**

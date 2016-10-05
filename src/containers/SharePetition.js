@@ -9,10 +9,11 @@ import getPetitionURL from 'helpers/getPetitionURL';
 
 const POPUP_WINDOW_TITLE = 'Share this petition';
 
-const SharePetitionContainer = ({ openPopup, buttons, isTouch }) => (
+const SharePetitionContainer = ({ openPopup, buttons, isTouch, petitionURL }) => (
   <ShareButtons
     openPopup={openPopup}
     buttons={filterShareButtonsForTouch(buttons, isTouch)}
+    petitionURL={petitionURL}
   />
 );
 

@@ -1,7 +1,7 @@
 @import 'globals';
 
 .root {
-  @include media('>=sidebar') {
+  @include media('>sidebar') {
     margin-left: auto;
     margin-right: 0;
     width: 40%;

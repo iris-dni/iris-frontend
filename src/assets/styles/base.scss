@@ -41,6 +41,7 @@ textarea {
 :global {
   .main-content {
     padding-bottom: map-get($heights, 'site-footer');
+    margin-bottom: 60px;
   }
 
   .wrapper {
