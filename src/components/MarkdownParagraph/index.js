@@ -5,7 +5,7 @@ import styles from 'components/Paragraph/paragraph.scss';
 const MarkdownParagraph = ({ text, noMargin }) => (
   <Markdown
     className={styles[noMargin ? 'no-margin' : 'root']}
-    disallowedTypes={['HtmlInline', 'HtmlBlock', 'Image']}
+    disallowedTypes={['HtmlBlock', 'Image']}
     source={text} />
 );
 
