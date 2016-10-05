@@ -1,5 +1,7 @@
 import React from 'react';
+import Markdown from 'react-markdown';
 import styles from './petition-response.scss';
+import paragraphStyles from 'components/Paragraph/paragraph.scss';
 import settings from 'settings';
 import Heading2 from 'components/Heading2';
 import Paragraph from 'components/Paragraph';
@@ -20,7 +22,10 @@ const PetitionResponse = ({ cityResponse }) => {
           text={settings.petitionPage.cityResponse}
         />
       </div>
-      <Paragraph text={cityResponse.text} />
+      <Markdown
+        className={paragraphStyles.root}
+        disallowedTypes={['HtmlInline', 'HtmlBlock', 'Image']}
+        source={cityResponse.text} />
       <Paragraph text={cityResponse.name} />
     </div>
   );
