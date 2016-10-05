@@ -4,6 +4,11 @@
   padding-bottom: 30px;
   position: relative;
 
+}
+
+.padding {
+  composes: root;
+
   @include media('<=text-boost') {
     padding-top: 35px;
   }

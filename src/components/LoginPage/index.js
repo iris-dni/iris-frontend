@@ -9,7 +9,7 @@ import getReturnUrlFromLocation from 'helpers/getReturnUrlFromLocation';
 
 const LoginPage = ({ location }) => (
   <Container>
-    <Header>
+    <Header padding>
       <PageTitle
         title={settings.loginPage.title}
         intro={settings.loginPage.intro}

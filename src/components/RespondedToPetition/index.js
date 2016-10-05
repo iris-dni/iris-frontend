@@ -12,7 +12,7 @@ import { petitionPath, petitionUrl } from 'helpers/petitionUrls';
 
 const RespondedToPetition = ({ petition, petitionResponse, router }) => (
   <Container>
-    <Header>
+    <Header padding>
       <PageTitle
         title={settings.respondedToPetitionPage.title}
         centered

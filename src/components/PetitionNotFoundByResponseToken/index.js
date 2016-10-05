@@ -13,7 +13,7 @@ import { petitionsPath, respondToPetitionUrl } from 'helpers/petitionUrls';
 
 const PetitionNotFoundByResponseToken = ({ petition, petitionResponse, router }) => (
   <Container>
-    <Header>
+    <Header padding>
       <PageTitle
         title={settings.petitionNotFoundByResponseTokenPage.title}
         centered

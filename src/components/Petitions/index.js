@@ -12,7 +12,7 @@ const Petitions = (props) => (
   <Container>
     <section>
       <div className={styles['header-wrapper']}>
-        <Header>
+        <Header padding>
           <PageTitle
             title={props.title}
             centered
