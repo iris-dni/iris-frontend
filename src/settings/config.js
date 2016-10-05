@@ -112,7 +112,7 @@ export default {
   },
   respondedToPetitionPage: {
     title: 'Congratulations, your response has been succesfully published.',
-    hint: 'To see your response, click the following link:'
+    link: 'View your response'
   },
   petitionNotFoundByResponseTokenPage: {
     title: 'Sorry but looks like a wrong link, or it’s no longer working.',
