@@ -1,35 +1,39 @@
 @import 'globals';
 @import './animations';
 
+$padding-value: 30px;
+
 .menu-trigger-wrapper {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  cursor: pointer;
-  outline: none;
+  @include media('<=navigation-menu') {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -$padding-value;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    padding-right: (2 * $padding-value);
+    padding-left: $padding-value;
+  }
 
   @include media('>navigation-menu') {
     @include visuallyhidden;
   }
 }
 
-.menu-trigger-wrapper > span {
-  position: inherit;
-  right: 2em;
-  transform: translateY(-50%);
-}
-
 .burger-icon {
-  position: inherit;
-  right: 0;
+  position: absolute;
+  right: $padding-value;
+  top: 50%;
   width: 16px;
   height: 16px;
   transform: translateY(-50%);
 }
 
 .burger-icon span {
-  position: inherit;
-  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
   height: 2px;
   background-color: color('black');
 

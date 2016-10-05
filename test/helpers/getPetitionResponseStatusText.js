@@ -22,7 +22,7 @@ describe('getPetitionsPageText', () => {
       daysPending: 10,
       name: 'Jane Doe, Mayor'
     });
-    const expected = 'This petition reached its target goal of 50 votes and has already been answered by Jane Doe, Mayor.\n\n<a href="#response">View official reply</a>.';
+    const expected = 'This petition reached its target goal of 50 votes and has already been answered by Jane Doe, Mayor.\n\n[View official reply](#response).';
 
     assert.equal(actual, expected);
   });

@@ -2,7 +2,7 @@ import settings from 'settings';
 
 export default ({ pending, amount, required, daysPending, name }) => {
   const key = pending ? 'pending' : 'arrived';
-  const link = !pending ? `\n\n<a href="#response">${settings.petitionResponseStatus.link}</a>.` : '';
+  const link = !pending ? `\n\n[${settings.petitionResponseStatus.link}](#response).` : '';
 
   return settings.petitionResponseStatus[key].text
     .replace('%amount', amount.toLocaleString(settings.locale))

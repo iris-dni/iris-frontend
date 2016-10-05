@@ -12,7 +12,7 @@ const PetitionResponse = ({ cityResponse }) => {
   }
 
   return (
-    <div className={styles.root} id='response'>
+    <article className={styles.root} id='response'>
       <div className={styles.top}>
         <span className={styles.icon}>
           <Icon id='Note' size='small' />
@@ -23,7 +23,7 @@ const PetitionResponse = ({ cityResponse }) => {
       </div>
       <MarkdownParagraph text={cityResponse.text} />
       <Paragraph text={cityResponse.name} />
-    </div>
+    </article>
   );
 };
 

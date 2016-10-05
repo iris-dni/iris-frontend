@@ -16,7 +16,6 @@ body {
   color: color('black');
   line-height: $line-height;
   letter-spacing: $letter-spacing;
-  overflow-x: hidden;
   min-height: 100%;
   height: 100%;
 }
@@ -27,6 +26,11 @@ svg {
 
 a {
   color: color('tertiary');
+}
+
+input,
+textarea {
+  appearance: none;
 }
 
 /*
@@ -48,5 +52,9 @@ a {
   .disabled-scroll,
   .disabled-scroll body {
     overflow: hidden; /* 3 */
+  }
+
+  .disabled-scroll .app-wrapper {
+    overflow-y: scroll;
   }
 }

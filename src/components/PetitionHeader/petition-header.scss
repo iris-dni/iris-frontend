@@ -1,14 +1,24 @@
 @import 'globals';
 
+.tags {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  @include media('>800px') {
+    margin-top: 2.5%;
+  }
+}
+
 .info {
   list-style: none;
   font-size: 16px;
 
-  @include media('<=text-boost') {
+  @include media('<=800px') {
     margin-top: 20px;
   }
 
-  @include media('>text-boost') {
-    margin-top: 30px;
+  @include media('>800px') {
+    margin-top: 25px;
   }
 }

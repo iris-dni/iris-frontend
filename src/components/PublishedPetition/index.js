@@ -10,7 +10,7 @@ import Notice from 'components/Notice';
 
 const PublishedPetition = ({ id }) => (
   <Container>
-    <Header>
+    <Header padding>
       <PageTitle
         title={settings.publishedPetitionPage.title}
         centered

@@ -8,8 +8,10 @@ import PetitionProgress from 'containers/PetitionProgress';
 import PetitionStats from 'containers/PetitionStats';
 
 const PetitionHeader = ({ title }) => (
-  <Header>
-    <PetitionTags />
+  <Header padding>
+    <div className={styles.tags}>
+      <PetitionTags />
+    </div>
     <PageTitle title={title} />
     <div className={styles.info}>
       <PetitionInfo />
