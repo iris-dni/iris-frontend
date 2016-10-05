@@ -28,6 +28,11 @@ a {
   color: color('tertiary');
 }
 
+input,
+textarea {
+  appearance: none;
+}
+
 /*
  * 1. Positioning context for overlay and mobile menu
  * 2. Minimum 100vh height to mimic html element
