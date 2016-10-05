@@ -16,14 +16,9 @@ export function fetchOpenGraph (url) {
       // Instead of responding with an empty object when no OG data is found,
       // (probably only happens when the website doesn’t exist), the API
       // responds with a status of 400, triggering an error.
-      .catch(() => {
-        const PROTOCOL_REGEX = new RegExp(/^(https?:\/\/)/i);
-        // Dispatch the result with only the URL property available.
-        return dispatch(receiveOpenGraph({
-          // Force prepend a HTTP protocol if no protocol is present.
-          url: PROTOCOL_REGEX.test(url) ? url : `http://${url}`
-        }));
-      });
+      .catch(() => dispatch(
+        receiveOpenGraph({ url })
+      ));
   };
 }
 

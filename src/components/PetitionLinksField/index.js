@@ -39,8 +39,14 @@ const PetitionLinksField = React.createClass({
       let links = helper.value;
 
       if (value) {
+        // Remove any protocol from the URL. In the teaser, the URL will be
+        // displayed without the protocol, and the link to it will be a relative
+        // protocol URL.
+        const PROTOCOL_REGEX = new RegExp(/^(https?:\/\/)/i);
+        const protocolFreeURL = value.replace(PROTOCOL_REGEX, '').toLowerCase();
+
         // Specific validation for the link field.
-        const error = getLinkInputErrors(value, links, config);
+        const error = getLinkInputErrors(protocolFreeURL, links, config);
 
         if (error) {
           helper.error = error;
@@ -49,13 +55,13 @@ const PetitionLinksField = React.createClass({
 
         helper.error = false;
 
-        links.push({ url: value });
+        links.push({ url: protocolFreeURL });
         helper.onChange(links); // Update redux-form value
         this.setState({ value: '' }); // Clear input value
 
         // Fetch open graph data for the last link
-        this.props.fetchOpenGraph(value).then(({ openGraph }) => {
-          const newValue = { url: value, og: openGraph };
+        this.props.fetchOpenGraph(protocolFreeURL).then(({ openGraph }) => {
+          const newValue = { url: protocolFreeURL, og: openGraph };
           const lastLinkIndex = links.length - 1;
 
           links[lastLinkIndex] = newValue;
