@@ -57,6 +57,7 @@ export default [
     label: settings.petitionFields.links.label,
     hint: settings.petitionFields.links.hint,
     maxLinks: 3,
+    hideValidationIcon: true,
     html: {
       type: 'text',
       placeholder: settings.petitionFields.links.placeholder

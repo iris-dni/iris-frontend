@@ -50,12 +50,14 @@ const FormFieldWrapper = (WrappedComponent) => ({ config, helper, openGraph }) =
             />
           </div>
 
-          <div className={styles.icon}>
-            <FormValidationIcon
-              error={fieldIsInvalid(helper)}
-              valid={fieldIsValid(helper)}
-            />
-          </div>
+          {!config.hideValidationIcon &&
+            <div className={styles.icon}>
+              <FormValidationIcon
+                error={fieldIsInvalid(helper)}
+                valid={fieldIsValid(helper)}
+              />
+            </div>
+          }
         </div>
       }
     </div>
