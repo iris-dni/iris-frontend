@@ -19,7 +19,7 @@ const Navigation = React.createClass({
   },
 
   resizeHandler: debounce(function resize () {
-    var windowWidth = (__CLIENT__ ? window.innerWidth : null);
+    const windowWidth = (__CLIENT__ ? window.innerWidth : null);
 
     if (windowWidth >= parseInt(styles.menuBreakpoint, 10)) {
       this.props.destroyMobileMenu();
