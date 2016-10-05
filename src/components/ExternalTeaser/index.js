@@ -24,11 +24,7 @@ const ExternalTeaser = ({ url, og }) => (
 
       <div className={styles['content-wrap']}>
         {og && og.title &&
-          <h3 className={styles.title}>{og.title}</h3>
-        }
-
-        {og && og.description &&
-          <p className={styles.description}>{og.description}</p>
+          <h1 className={styles.title}>{og.title}</h1>
         }
 
         <p className={styles.url}>

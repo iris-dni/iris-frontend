@@ -50,8 +50,15 @@
   opacity: 0.45;
 }
 
+$title-line-height: 1.2;
+
+/**
+ * 1. Limits the title to 3 lines.
+ */
 .title {
-  line-height: 1.2;
+  overflow: hidden; /* 1 */
+  max-height: $title-line-height * 3em; /* 1 */
+  line-height: $title-line-height;
   margin-bottom: 8px;
 }
 
