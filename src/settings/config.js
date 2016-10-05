@@ -1,5 +1,5 @@
 export default {
-  lang: 'en',
+  locale: 'en-US',
   charset: 'utf-8',
   title: 'iris-frontend',
   twitterAccount: 'azmedien',
@@ -21,8 +21,10 @@ export default {
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',
   petitionsPerPage: 12,
-  // FIXME: find better way to import colors
-  // without duplicating them
+  /* FIXME: find better way to import colors
+     without duplicating them
+     Try regex with https://github.com/webpack/raw-loader
+     to import vars from stylesheet. */
   colors: {
     black: '#222',
     white: '#fff',
@@ -112,11 +114,10 @@ export default {
   },
   respondedToPetitionPage: {
     title: 'Congratulations, your response has been succesfully published.',
-    hint: 'To see your response, click the following link:'
+    link: 'View your response'
   },
   petitionNotFoundByResponseTokenPage: {
     title: 'Sorry but looks like a wrong link, or it’s no longer working.',
-    intro: 'The link you entered is either invalid or incorrect.',
     hint: 'Please re-enter the link or contact our admins if you believe there is a mistake and you are unsure of how to proceed.',
     homeButton: {
       text: 'Okay, take me home'
@@ -179,7 +180,9 @@ export default {
       hint: 'To write a good response, you should clearly communicate why you care about this cause, how it impacts the local community and what steps you plan to take.'
     },
     name: {
-      label: 'Include your name and department'
+      label: 'Include your name and department',
+      hint: 'This appears below your response',
+      placeholder: 'Max Mustermann, Mayor'
     }
   },
   supportPetition: {
@@ -195,6 +198,17 @@ export default {
         intro: 'You\'ve already supported this petition, but go ahead and share the link to anyone you know.'
       }
     }
+  },
+  petitionResponseStatus: {
+    pending: {
+      title: 'Pending official response',
+      text: 'This petition reached its target goal of %required votes and is awaiting response since **%daysPending** days ago.'
+    },
+    arrived: {
+      title: 'Official response',
+      text: 'This petition reached its target goal of %required votes and has already been answered by %name.'
+    },
+    link: 'View official reply'
   },
   shareButtons: {
     facebook: {

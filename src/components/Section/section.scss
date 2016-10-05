@@ -1,7 +1,7 @@
 @import 'globals';
 
 .grey {
-  background-color: #f8f8f8;
+  background-color: color('grey-lighter');
 
   @include media('<=sidebar') {
     margin-bottom: 30px;

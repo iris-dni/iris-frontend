@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './petition-sidebar.scss';
 import Countdown from 'components/Countdown';
+import PetitionResponseStatus from 'containers/PetitionResponseStatus';
 import ButtonIcon from 'components/ButtonIcon';
 import FakeButton from 'components/FakeButton';
 import ShowWhen from 'components/ShowWhen';
@@ -9,6 +10,7 @@ import SharePetition from 'containers/SharePetition';
 import settings from 'settings';
 
 const PetitionSidebar = ({
+  processing,
   timeMetric,
   isSupportable,
   userHasSupported,
@@ -16,11 +18,18 @@ const PetitionSidebar = ({
   runningTime
 }) => (
   <aside role='complementary' className={styles.root}>
-    <ShowWhen when={'medium'}>
-      <div className={styles.counter}>
-        <Countdown timeMetric={timeMetric} />
-      </div>
-    </ShowWhen>
+    {processing &&
+      <PetitionResponseStatus />
+    }
+
+    {isSupportable &&
+      <ShowWhen when={'medium'}>
+        <div className={styles.counter}>
+          <Countdown timeMetric={timeMetric} />
+        </div>
+      </ShowWhen>
+    }
+
     <div className={styles['support-button']}>
       {isSupportable && !userHasSupported &&
         <SupportButton />
@@ -40,10 +49,12 @@ const PetitionSidebar = ({
         </FakeButton>
       }
     </div>
+
     <div className={styles.specifics}>
       <p>{startDate}</p>
       <p>{runningTime}</p>
     </div>
+
     <ShowWhen when={'medium'}>
       <div className={styles.share}>
         <SharePetition />
