@@ -1,10 +1,9 @@
 import React from 'react';
-import Markdown from 'react-markdown';
 import styles from './petition-response.scss';
-import paragraphStyles from 'components/Paragraph/paragraph.scss';
 import settings from 'settings';
 import Heading2 from 'components/Heading2';
 import Paragraph from 'components/Paragraph';
+import MarkdownParagraph from 'components/MarkdownParagraph';
 import Icon from 'components/Icon';
 
 const PetitionResponse = ({ cityResponse }) => {
@@ -22,10 +21,7 @@ const PetitionResponse = ({ cityResponse }) => {
           text={settings.petitionPage.cityResponse}
         />
       </div>
-      <Markdown
-        className={paragraphStyles.root}
-        disallowedTypes={['HtmlInline', 'HtmlBlock', 'Image']}
-        source={cityResponse.text} />
+      <MarkdownParagraph text={cityResponse.text} />
       <Paragraph text={cityResponse.name} />
     </div>
   );
