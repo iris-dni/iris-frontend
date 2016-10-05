@@ -1,12 +1,11 @@
 @import 'globals';
 
 .root {
-  margin: 0 auto;
-  max-width: 280px;
-
   @include media('>=sidebar') {
+    margin-left: auto;
     margin-right: 0;
     width: 40%;
+    max-width: 280px;
     padding-left: 40px;
   }
 }
