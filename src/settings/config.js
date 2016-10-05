@@ -114,11 +114,10 @@ export default {
   },
   respondedToPetitionPage: {
     title: 'Congratulations, your response has been succesfully published.',
-    hint: 'To see your response, click the following link:'
+    link: 'View your response'
   },
   petitionNotFoundByResponseTokenPage: {
     title: 'Sorry but looks like a wrong link, or it’s no longer working.',
-    intro: 'The link you entered is either invalid or incorrect.',
     hint: 'Please re-enter the link or contact our admins if you believe there is a mistake and you are unsure of how to proceed.',
     homeButton: {
       text: 'Okay, take me home'
@@ -181,7 +180,9 @@ export default {
       hint: 'To write a good response, you should clearly communicate why you care about this cause, how it impacts the local community and what steps you plan to take.'
     },
     name: {
-      label: 'Include your name and department'
+      label: 'Include your name and department',
+      hint: 'This appears below your response',
+      placeholder: 'Max Mustermann, Mayor'
     }
   },
   supportPetition: {

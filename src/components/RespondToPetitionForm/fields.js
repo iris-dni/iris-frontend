@@ -33,10 +33,10 @@ export default [
     element: 'input',
     name: 'answer.name',
     label: settings.respondToPetitionFields.name.label,
-    hint: '',
+    hint: settings.respondToPetitionFields.name.hint,
     html: {
       type: 'text',
-      placeholder: '',
+      placeholder: settings.respondToPetitionFields.name.placeholder,
       required: true,
       minLength: 15,
       maxLength: 80

@@ -29,11 +29,18 @@ export const petitionsPath = (options = {}) => {
 };
 
 export const petitionPath = (options = {}) => {
-  const { id } = options || {};
+  const { id, responseAnchor } = options || {};
+  let path = '';
 
   if (id) {
-    return `/petitions/${id}`;
+    path += `/petitions/${id}`;
   }
+
+  if (responseAnchor) {
+    path += '#response';
+  }
+
+  return path;
 };
 
 export const petitionUrl = (options = {}) => {
