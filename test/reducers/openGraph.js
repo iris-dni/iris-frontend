@@ -15,11 +15,16 @@ describe('Open Graph reducer', () => {
   });
 
   it('handles the RECEIVE_OPEN_GRAPH action', () => {
-    const actual = openGraph({}, {
+    const actual = openGraph({ links: [] }, {
       type: 'RECEIVE_OPEN_GRAPH',
       openGraph: mockOpenGraph.data
     });
-    const expected = Object.assign({}, { [mockOpenGraph.data.url]: mockOpenGraph.data }, {
+
+    const expected = Object.assign({}, {
+      links: [{
+        url: mockOpenGraph.data.url,
+        og: mockOpenGraph.data
+      }],
       isLoading: false
     });
 

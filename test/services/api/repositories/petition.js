@@ -52,10 +52,6 @@ describe('petition repository', () => {
 
   describe('find', () => {
     let expectedPathArgument = `/petitions/${exampleId}`;
-    let expectedDataArgument = {
-      resolve: 'city,owner',
-      extend: 'supporting'
-    };
 
     it('calls the API and returns the requested petition', () => {
       petitionRepository.find(exampleId);

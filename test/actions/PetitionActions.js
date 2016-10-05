@@ -109,7 +109,7 @@ describe('PetitionActions', () => {
 
   describe('receivePetition', () => {
     it('returns RECEIVE_PETITION action', () => {
-      const result = receivePetition();
+      const result = receivePetition(mockPetition);
       const actual = result.type;
       const expected = 'RECEIVE_PETITION';
 
