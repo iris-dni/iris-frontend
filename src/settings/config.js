@@ -59,6 +59,7 @@ export default {
   petitionPage: {
     description: 'Description:',
     suggestedSolution: 'Suggested solution:',
+    attachedLinks: 'Links attached to this petition:',
     supportButton: {
       text: 'Support Petition',
       supportedText: 'Supported',
@@ -171,6 +172,16 @@ export default {
       label: 'Suggest your solution',
       placeholder: 'Tell everyone what should be done...',
       hint: 'Because you care a lot about your cause, you probably have some great ideas about how to solve it. Clearly outline the actions required to achieve your goal.'
+    },
+    links: {
+      label: 'Related links',
+      removeLinkLabel: 'Remove link',
+      placeholder: 'http://',
+      hint: 'Include up to 3 links that support your petition.',
+      maxLinks: 3,
+      invalidLinkFormat: 'This is not a valid link',
+      invalidLinkCount: 'You can’t add more than %x links',
+      invalidSimilarLink: 'Please only add unique links'
     }
   },
   respondToPetitionFields: {

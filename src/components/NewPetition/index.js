@@ -19,9 +19,7 @@ const NewPetition = ({ petition }) => (
         </div>
       </Header>
       <div className={styles.form}>
-        <PetitionForm
-          petition={petition}
-        />
+        <PetitionForm petition={petition} />
       </div>
     </FormWrapper>
   </Container>

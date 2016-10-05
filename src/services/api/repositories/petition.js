@@ -5,7 +5,7 @@ import path from 'path';
 export default {
   find: (id) => {
     const requestPath = path.join('/petitions', id.toString());
-    const requestParams = { resolve: 'city,owner', extend: 'supporting' };
+    const requestParams = { resolve: 'city,owner,links', extend: 'supporting' };
     return ApiClient.request(requestPath, requestParams);
   },
 
@@ -23,7 +23,7 @@ export default {
 
   create: (petition) => {
     const requestPath = '/petitions';
-    return ApiClient.request(requestPath, petition, POST);
+    return ApiClient.request(requestPath, { data: petition }, 'POST');
   },
 
   update: (petition) => {
@@ -34,7 +34,7 @@ export default {
       delete petition.city.data;
     }
 
-    return ApiClient.request(requestPath, petition, POST);
+    return ApiClient.request(requestPath, { data: petition }, 'POST');
   },
 
   publish: (petition) => {
