@@ -45,7 +45,7 @@ describe('petitionUrls helper', () => {
   describe('petitionPath', () => {
     context('without an id', () => {
       const actual = urlHelpers.petitionPath({});
-      const expected = undefined;
+      const expected = '';
 
       it(`returns ${expected}`, () => assert.equal(actual, expected));
     });

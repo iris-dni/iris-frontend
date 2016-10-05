@@ -1,7 +1,6 @@
 import React from 'react';
 import settings from 'settings';
 import styles from './petition-not-found-by-response-token.scss';
-import Link from 'components/Link';
 import ButtonLink from 'components/ButtonLink';
 import Container from 'components/Container';
 import Header from 'components/Header';
@@ -9,7 +8,7 @@ import PageTitle from 'components/PageTitle';
 import Notice from 'components/Notice';
 import TextCenter from 'components/TextCenter';
 import Paragraph from 'components/Paragraph';
-import { petitionsPath, respondToPetitionUrl } from 'helpers/petitionUrls';
+import { petitionsPath } from 'helpers/petitionUrls';
 
 const PetitionNotFoundByResponseToken = ({ petition, petitionResponse, router }) => (
   <Container>
@@ -23,7 +22,6 @@ const PetitionNotFoundByResponseToken = ({ petition, petitionResponse, router })
       <TextCenter>
         <div className={styles.notice}>
           <Paragraph>{settings.petitionNotFoundByResponseTokenPage.intro}</Paragraph>
-          <Paragraph><Link href={respondToPetitionUrl(petitionResponse)} /></Paragraph>
           <Paragraph>{settings.petitionNotFoundByResponseTokenPage.hint}</Paragraph>
           <Paragraph>
             <ButtonLink

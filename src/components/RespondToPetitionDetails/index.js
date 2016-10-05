@@ -9,17 +9,17 @@ import Link from 'components/Link';
 const RespondToPetitionDetails = ({ petition }) => (
   <div>
     <Paragraph noMargin>
-      {`${settings.respondToPetitionPage.details.for} `}
+      <strong>{`${settings.respondToPetitionPage.details.for} `}</strong>
       <Link href={getPetitionPath(petition.id)}>{petition.title}</Link>
     </Paragraph>
     <Paragraph noMargin>
-      {`${settings.respondToPetitionPage.details.by} ${getPetitionOwner(petition)}`}
+      <strong>{`${settings.respondToPetitionPage.details.by}`}</strong> {`${getPetitionOwner(petition)}`}
     </Paragraph>
     <Paragraph noMargin>
-      {`${settings.respondToPetitionPage.details.in} ${getPetitionCity(petition).name}`}
+      <strong>{`${settings.respondToPetitionPage.details.in}`}</strong> {`${getPetitionCity(petition).name}`}
     </Paragraph>
     <Paragraph>
-      {`${settings.respondToPetitionPage.details.collected} ${petition.supporters.amount} ${settings.respondToPetitionPage.details.votes}`}
+      <strong>{`${settings.respondToPetitionPage.details.collected}`}</strong> {`${petition.supporters.amount} ${settings.respondToPetitionPage.details.votes}`}
     </Paragraph>
   </div>
 );
