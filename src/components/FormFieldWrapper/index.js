@@ -34,7 +34,10 @@ const FormFieldWrapper = (WrappedComponent) => ({ config, helper }) => (
     }
 
     <div className={getFieldClassname(config)}>
-      <WrappedComponent config={config} helper={helper} />
+      <WrappedComponent
+        config={config}
+        helper={helper}
+      />
 
       {!config.hidden &&
         <div>
@@ -46,12 +49,14 @@ const FormFieldWrapper = (WrappedComponent) => ({ config, helper }) => (
             />
           </div>
 
-          <div className={styles.icon}>
-            <FormValidationIcon
-              error={fieldIsInvalid(helper)}
-              valid={fieldIsValid(helper)}
-            />
-          </div>
+          {!config.hideValidationIcon &&
+            <div className={styles.icon}>
+              <FormValidationIcon
+                error={fieldIsInvalid(helper)}
+                valid={fieldIsValid(helper)}
+              />
+            </div>
+          }
         </div>
       }
     </div>

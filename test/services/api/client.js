@@ -54,9 +54,9 @@ describe('API client', () => {
       });
     });
 
-    it('wraps data on POST requests', (done) => {
+    it('sends payload on POST requests', (done) => {
       let expectedUrl = /\/test$/;
-      let expectedData = JSON.stringify({ data: exampleData });
+      let expectedData = JSON.stringify(exampleData);
 
       ApiClient.request('/test', exampleData, 'POST').then((response) => {
         let request = moxios.requests.mostRecent();

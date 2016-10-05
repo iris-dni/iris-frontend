@@ -1,0 +1,81 @@
+@import 'globals';
+
+.root {
+  width: 100%;
+  max-width: map-get($widths, 'teaser-max');
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  font-size: 0.925em;
+  position: relative;
+}
+
+.link {
+  display: block;
+  text-decoration: none;
+  color: color('white');
+}
+
+/*
+ * 1. Aspect ratio of suggested Facebook OG size
+ */
+.image-wrap {
+  position: relative;
+  padding-top: (630/1200) * 100%; /* 1 */
+  background-color: #213872;
+}
+
+.content-wrap {
+  overflow: hidden;
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+}
+
+/*
+ * Content
+ */
+.image {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  transform: translate(-50%, -50%);
+  opacity: 0.45;
+}
+
+$title-line-height: 1.2;
+
+/**
+ * 1. Limits the title to 3 lines.
+ */
+.title {
+  overflow: hidden; /* 1 */
+  max-height: $title-line-height * 3em; /* 1 */
+  line-height: $title-line-height;
+  margin-bottom: 8px;
+}
+
+.url {
+  white-space: nowrap;
+  overflow: hidden;
+  height: 15px;
+  font-size: 85%;
+  line-height: 15px;
+  text-overflow: ellipsis;
+  padding-left: 20px;
+  position: relative;
+}
+
+.link-icon {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}

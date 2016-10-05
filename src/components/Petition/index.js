@@ -12,6 +12,7 @@ import PetitionResponse from 'containers/PetitionResponse';
 import PetitionSidebar from 'containers/PetitionSidebar';
 import ShowWhen from 'components/ShowWhen';
 import SharePetition from 'containers/SharePetition';
+import PetitionFooter from 'containers/PetitionFooter';
 
 const Petition = ({ preview }) => (
   <article>
@@ -36,6 +37,11 @@ const Petition = ({ preview }) => (
         </LayoutSidebar>
       </LayoutWrap>
     </Container>
+    <Section theme={'grey-lightest'}>
+      <Container>
+        <PetitionFooter />
+      </Container>
+    </Section>
   </article>
 );
 
