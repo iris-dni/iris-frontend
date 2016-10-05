@@ -20,7 +20,7 @@ const getFieldClassname = (config) => {
   ].join(' ');
 };
 
-const FormFieldWrapper = (WrappedComponent) => ({ config, helper, openGraph }) => (
+const FormFieldWrapper = (WrappedComponent) => ({ config, helper }) => (
   <div
     className={getRootClassname(config)}
     aria-hidden={config.hidden}>
@@ -37,7 +37,6 @@ const FormFieldWrapper = (WrappedComponent) => ({ config, helper, openGraph }) =
       <WrappedComponent
         config={config}
         helper={helper}
-        openGraph={openGraph}
       />
 
       {!config.hidden &&

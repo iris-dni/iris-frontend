@@ -13,7 +13,7 @@ const ExternalTeaser = ({ url, og }) => (
     <a
       target='_blank'
       rel='noopener noreferrer'
-      href={url}
+      href={og && og.url || url}
       className={styles.link}
     >
       <div className={styles['image-wrap']}>

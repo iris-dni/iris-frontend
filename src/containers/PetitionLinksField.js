@@ -7,8 +7,7 @@ const PetitionLinksFieldContainer = (props) => (
   <PetitionLinksField {...props} />
 );
 
-const mapStateToProps = ({ petition }) => ({
-  petitionLinks: petition.links
+const mapStateToProps = () => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({

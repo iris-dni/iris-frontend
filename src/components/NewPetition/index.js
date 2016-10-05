@@ -7,7 +7,7 @@ import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import PetitionForm from 'components/PetitionForm';
 
-const NewPetition = ({ petition, openGraph }) => (
+const NewPetition = ({ petition }) => (
   <Container>
     <FormWrapper>
       <Header>
@@ -19,10 +19,7 @@ const NewPetition = ({ petition, openGraph }) => (
         </div>
       </Header>
       <div className={styles.form}>
-        <PetitionForm
-          petition={petition}
-          openGraph={openGraph}
-        />
+        <PetitionForm petition={petition} />
       </div>
     </FormWrapper>
   </Container>

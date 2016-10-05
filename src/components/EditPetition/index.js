@@ -7,7 +7,7 @@ import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import PetitionForm from 'components/PetitionForm';
 
-const EditPetition = ({ petition, openGraph }) => (
+const EditPetition = ({ petition }) => (
   <Container>
     <FormWrapper>
       <Header>
@@ -20,7 +20,6 @@ const EditPetition = ({ petition, openGraph }) => (
         <PetitionForm
           initialValues={petition}
           petition={petition}
-          openGraph={openGraph}
         />
       </div>
     </FormWrapper>
