@@ -97,7 +97,7 @@ linters:
 
   PropertySpelling:
     enabled: true
-    extra_properties: ['text-size-adjust', 'composes', 'menuBreakpoint']
+    extra_properties: ['text-size-adjust', 'composes', 'menuBreakpoint', 'sidebarBreakpoint']
 
   QualifyingElement:
     enabled: true

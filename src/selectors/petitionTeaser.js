@@ -14,7 +14,6 @@ export default (petition = {}) => {
     title: petition.title,
     city: petitionCity(petition),
     owner: getAuthorLabel(petitionOwner(petition)),
-    metrics: getPetitionMetrics(petition),
-    winning: petition.state.name === 'winner'
+    metrics: getPetitionMetrics(petition)
   };
 };

@@ -34,19 +34,32 @@ const Autocomplete = React.createClass({
     }
   },
 
-  handleBlur () {
-    const savedValue = this.props.helper.value &&
-      this.props.suggestionFormatter(this.props.helper.value.data);
+  handleBlur (e, focusedSuggestion) {
+    // If the user exits the input with a suggestion focused (which should only
+    // happen on TAB out), we select that value and update the redux-form store.
+    if (focusedSuggestion) {
+      this.props.updateSuggestionInputValue(
+        this.props.suggestionFormatter(focusedSuggestion)
+      );
 
-    // If the saved value in the redux-form matches the displayed value in the
-    // auto-suggest input, we know that the user hasn‘t changed his choice.
-    // If it did, we must reset both values as they aren‘t valid anymore.
-    if (savedValue !== this.props.value) {
-      this.props.updateSuggestionInputValue('');
-      this.props.helper.onChange(this.props.nullValue || NULL_VALUE);
+      this.props.helper.onChange(
+        this.props.getFormValue(focusedSuggestion) ||
+        this.props.nullValue || NULL_VALUE
+      );
+    } else {
+      const savedValue = this.props.helper.value &&
+        this.props.suggestionFormatter(this.props.helper.value.data);
+
+      // If the saved value in the redux-form matches the displayed value in the
+      // auto-suggest input, we know that the user hasn‘t changed his choice.
+      // If it did, we must reset both values as they aren‘t valid anymore.
+      if (savedValue !== this.props.value) {
+        this.props.updateSuggestionInputValue('');
+        this.props.helper.onChange(this.props.nullValue || NULL_VALUE);
+      }
     }
 
-    this.props.helper.onBlur();
+    this.props.helper.onBlur && this.props.helper.onBlur();
   },
 
   handleChange (newValue) {
@@ -66,11 +79,15 @@ const Autocomplete = React.createClass({
     e.preventDefault();
 
     // Update redux-form store manually to reflect the selection
-    this.props.helper.onChange(this.props.getFormValue(suggestion.suggestion) || this.props.nullValue || NULL_VALUE);
+    this.props.helper.onChange(
+      this.props.getFormValue(suggestion.suggestion) ||
+      this.props.nullValue || NULL_VALUE
+    );
   },
 
   render () {
-    const inputClass = this.props.inputModifier ? this.props.inputModifier : 'input';
+    const inputClass = this.props.inputModifier || 'input';
+    const suggestionStyles = this.props.inputModifier ? styles['suggestion-thin'] : styles['suggestion-regular'];
 
     return (
       <div className={styles.root}>
@@ -79,7 +96,7 @@ const Autocomplete = React.createClass({
             containerOpen: styles.open,
             input: this.getClassname(inputClass, fieldIsInvalid(this.props.helper)),
             suggestionsList: styles.list,
-            suggestion: styles.suggestion,
+            suggestion: suggestionStyles,
             suggestionFocused: styles.focused
           }}
           id={this.props.name}
@@ -104,8 +121,10 @@ const Autocomplete = React.createClass({
             ...domOnlyProps(this.props.helper),
 
             value: this.props.value,
-            onBlur: () => (this.handleBlur()),
-            onChange: (e, { newValue }) => (this.handleChange(newValue))
+            onBlur: (e, { focusedSuggestion }) =>
+              this.handleBlur(e, focusedSuggestion),
+            onChange: (e, { newValue }) =>
+              this.handleChange(newValue)
           }}
         />
 

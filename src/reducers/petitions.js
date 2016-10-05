@@ -1,6 +1,7 @@
 import {
   REQUEST_PETITIONS,
   RECEIVE_PETITIONS,
+  CLEAR_PETITIONS,
   UPDATE_CURRENT_CITY
 } from 'actions/actionTypes';
 
@@ -21,6 +22,10 @@ export default function petitions (state = initialState, action) {
           qs: action.qs || ''
         }
       );
+    case CLEAR_PETITIONS:
+      return Object.assign({}, state, {
+        data: []
+      });
     case UPDATE_CURRENT_CITY:
       return Object.assign({}, state, {
         currentCity: action.currentCity

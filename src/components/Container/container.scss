@@ -11,8 +11,13 @@
     padding-right: map-get($spacing, 'gutter');
   }
 
-  @include media('>text-max') {
+  @include media('>text-max', '<=1300px') {
     padding-left: 5%;
     padding-right: 5%;
+  }
+
+  @include media('>1300px') {
+    padding-left: 60px;
+    padding-right: 60px;
   }
 }

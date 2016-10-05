@@ -3,3 +3,8 @@
 .root {
   @include map-declarations($paragraph-defaults, $paragraph-custom);
 }
+
+.no-margin {
+  composes: root;
+  margin-bottom: 0;
+}

@@ -9,12 +9,12 @@ export default {
   runningTime: 'Petitions run for 30 days',
   dateFormat: 'DD-MM-YYYY',
   authorLabel: 'by %a',
-  supportersText: 'Supporters:',
-  milestoneText: 'Target:',
-  daysRemaining: 'days remaining',
+  supportersText: 'Supporters',
+  milestoneText: 'Target',
+  daysRemaining: 'Days left',
   teaserSupportersText: 'Supporters',
   tesaserMilestoneText: 'Target',
-  teaserDaysRemaining: 'days remaining',
+  teaserDaysRemaining: 'days left',
   daysToVote: 30,
   optionalLabel: '(optional)',
   requiredText: 'You must complete this field',
@@ -65,6 +65,11 @@ export default {
         title: 'Please log in',
         intro: 'In order to sign the Petition, we need you to log in using one of the services below..'
       }
+    },
+    cityResponse: 'Official response:',
+    tags: {
+      winner: 'Winner',
+      response: 'Response'
     }
   },
   newPetitionPage: {
@@ -86,6 +91,37 @@ export default {
     title: 'Edit Petition',
     intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
   },
+  respondToPetitionPage: {
+    title: 'Response Form',
+    pageTitle: 'Your reply',
+    intro: 'This is the form where you submit your official response to a petition. This response will be displayed on the original petition, so this is your opportunity to communicate with everyone who supported the initiative. Make sure your response is a good one.',
+    hints: {
+      title: 'A few pointers on what makes a good response:',
+      first: 'Make sure to answer to the original complaint/idea.',
+      second: 'Outline what the next steps are.',
+      third: 'Remember to sign with your name and department.',
+      fourth: 'The citizens in your city cared enough to write and/or support a cause, be respectful of their opinions.'
+    },
+    details: {
+      for: 'For',
+      by: 'By',
+      in: 'In',
+      collected: 'Collected',
+      votes: 'votes'
+    }
+  },
+  respondedToPetitionPage: {
+    title: 'Congratulations, your response has been succesfully published.',
+    hint: 'To see your response, click the following link:'
+  },
+  petitionNotFoundByResponseTokenPage: {
+    title: 'Sorry but looks like a wrong link, or it’s no longer working.',
+    intro: 'The link you entered is either invalid or incorrect.',
+    hint: 'Please re-enter the link or contact our admins if you believe there is a mistake and you are unsure of how to proceed.',
+    homeButton: {
+      text: 'Okay, take me home'
+    }
+  },
   petitionForm: {
     createButton: {
       text: 'Create Petition'
@@ -98,6 +134,14 @@ export default {
     },
     saveButton: {
       text: 'Preview Petition'
+    }
+  },
+  respondToPetitionForm: {
+    publishButton: {
+      text: 'Submit response',
+      modal: {
+        intro: 'To publish a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
+      }
     }
   },
   publishedPetitionPage: {
@@ -126,6 +170,16 @@ export default {
       label: 'Suggest your solution',
       placeholder: 'Tell everyone what should be done...',
       hint: 'Because you care a lot about your cause, you probably have some great ideas about how to solve it. Clearly outline the actions required to achieve your goal.'
+    }
+  },
+  respondToPetitionFields: {
+    response: {
+      label: 'Write your response',
+      placeholder: 'Tell the petitioner and supporters what you plan to do…',
+      hint: 'To write a good response, you should clearly communicate why you care about this cause, how it impacts the local community and what steps you plan to take.'
+    },
+    name: {
+      label: 'Include your name and department'
     }
   },
   supportPetition: {

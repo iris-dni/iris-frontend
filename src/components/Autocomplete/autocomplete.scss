@@ -1,38 +1,26 @@
 @import 'globals';
 
+$default-border-radius: map-get($form-fields-defaults, 'border-radius');
+$suggestion-border: 1px solid color('grey-lite');
+$thin-field-padding: 8px;
+
 /**
  * 1. Positioning context for optional icon on the input.
  */
-.root {
+.root,
+.open {
   position: relative; /* 1 */
 }
-
-.icon {
-  position: absolute;
-  right: 1em;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  pointer-events: none;
-}
-
-$default-border-radius: map-get($form-fields-defaults, 'border-radius');
-$suggestion-border: 1px solid color('grey-lite');
 
 .input {
   @include map-declarations($form-fields-defaults, $form-fields-custom);
   display: block;
   width: 100%;
-  transition: border-radius 150ms;
 }
 
 .thin {
   composes: input;
-  padding: 8px 40px 8px 8px;
-}
-
-.open {
-  position: relative;
+  padding: $thin-field-padding 40px $thin-field-padding $thin-field-padding;
 }
 
 .open .input {
@@ -61,28 +49,42 @@ $suggestion-border: 1px solid color('grey-lite');
   z-index: 3;
   list-style: none;
   padding: 0;
-  border-top: 0;
   border-color: color('dimmed');
-  border-radius: 0 0 $default-border-radius $default-border-radius;
   background-color: color('white');
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Keep here due to sass re-ordering on prod */
+.list {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top: 0;
+}
+
 .suggestion {
-  padding: map-get($form-fields-defaults, 'padding');
   border-top: $suggestion-border;
   border-bottom: $suggestion-border;
   color: color('dimmed');
   cursor: pointer;
-  transition: all 150ms;
+  transition: background-color 150ms;
+
+  &:first-child {
+    border-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
 }
 
-.suggestion:first-of-type {
-  border-top: 0;
+.suggestion-regular {
+  composes: suggestion;
+  padding: map-get($form-fields-defaults, 'padding');
 }
 
-.suggestion:last-of-type {
-  border-bottom: 0;
+.suggestion-thin {
+  composes: suggestion;
+  padding: 10px $thin-field-padding;
 }
 
 .focused,
@@ -90,4 +92,13 @@ $suggestion-border: 1px solid color('grey-lite');
   background-color: color('primary');
   border-color: color('primary');
   color: color('white');
+}
+
+.icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  pointer-events: none;
 }

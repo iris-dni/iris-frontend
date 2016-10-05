@@ -10,6 +10,12 @@
   height: 20px;
 }
 
+.tiny {
+  composes: root;
+  width: 10px;
+  height: 10px;
+}
+
 .small {
   composes: root;
   width: 16px;
@@ -40,6 +46,10 @@
 
 .invert {
   fill: white;
+}
+
+.primary {
+  fill: color('primary');
 }
 
 .dimmed {
