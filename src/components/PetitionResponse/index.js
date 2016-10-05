@@ -3,6 +3,7 @@ import styles from './petition-response.scss';
 import settings from 'settings';
 import Heading2 from 'components/Heading2';
 import Paragraph from 'components/Paragraph';
+import MarkdownParagraph from 'components/MarkdownParagraph';
 import Icon from 'components/Icon';
 
 const PetitionResponse = ({ cityResponse }) => {
@@ -11,7 +12,7 @@ const PetitionResponse = ({ cityResponse }) => {
   }
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root} id='response'>
       <div className={styles.top}>
         <span className={styles.icon}>
           <Icon id='Note' size='small' />
@@ -20,7 +21,7 @@ const PetitionResponse = ({ cityResponse }) => {
           text={settings.petitionPage.cityResponse}
         />
       </div>
-      <Paragraph text={cityResponse.text} />
+      <MarkdownParagraph text={cityResponse.text} />
       <Paragraph text={cityResponse.name} />
     </div>
   );
