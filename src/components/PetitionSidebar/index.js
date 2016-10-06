@@ -5,8 +5,7 @@ import PetitionResponseStatus from 'containers/PetitionResponseStatus';
 import PetitionRunningTime from 'containers/PetitionRunningTime';
 import PetitionSupportButton from 'containers/PetitionSupportButton';
 import ShowWhen from 'components/ShowWhen';
-import SharePetition from 'containers/SharePetition';
-import DisabledShareButtons from 'components/DisabledShareButtons';
+import PetitionShareButtons from 'components/PetitionShareButtons';
 
 const PetitionSidebar = ({
   preview,
@@ -37,13 +36,7 @@ const PetitionSidebar = ({
 
     <ShowWhen when={'medium'}>
       <div className={styles.share}>
-        {!preview &&
-          <SharePetition />
-        }
-
-        {preview &&
-          <DisabledShareButtons />
-        }
+        <PetitionShareButtons preview={preview} />
       </div>
     </ShowWhen>
   </aside>
