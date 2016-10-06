@@ -169,8 +169,10 @@ describe('petition repository', () => {
 
     let expectedPathArgument = `/petitions/${exampleId}/event/setFeedback`;
     let expectedDataArgument = {
-      answer: exampleResponse.answer,
-      token: exampleResponse.token
+      data: {
+        answer: exampleResponse.answer,
+        token: exampleResponse.token
+      }
     };
     let expectedMethodArgument = 'POST';
 
