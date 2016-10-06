@@ -181,7 +181,7 @@ export default {
       maxLinks: 3,
       invalidLinkFormat: 'This is not a valid link',
       invalidLinkCount: 'You can’t add more than %x links',
-      invalidSimilarLink: 'Please only add unique links'
+      invalidSimilarLink: 'You can only add unique links'
     }
   },
   respondToPetitionFields: {
