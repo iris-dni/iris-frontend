@@ -10,11 +10,12 @@ import PetitionShareButtons from 'components/PetitionShareButtons';
 const PetitionSidebar = ({
   preview,
   processing,
+  closed,
   timeMetric,
   isSupportable
 }) => (
   <aside role='complementary' className={styles.root}>
-    {processing &&
+    {(processing || closed) &&
       <PetitionResponseStatus />
     }
 

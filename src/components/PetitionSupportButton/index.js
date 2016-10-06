@@ -7,17 +7,15 @@ import settings from 'settings';
 const PetitionSupportButton = ({
   isSupportable,
   userHasSupported,
-  preview
+  preview,
+  closed,
+  winning,
+  processing
 }) => (
   <div>
     {preview &&
       <FakeButton disabled block>
         {settings.petitionPage.supportButton.text}
-      </FakeButton>
-    }
-    {!isSupportable && !preview &&
-      <FakeButton disabled block>
-        {settings.petitionPage.supportButton.unsupportableText}
       </FakeButton>
     }
 
@@ -30,6 +28,18 @@ const PetitionSupportButton = ({
         <ButtonIcon id={'Checkmark'} modifier={'dimmed'}>
           {settings.petitionPage.supportButton.supportedText}
         </ButtonIcon>
+      </FakeButton>
+    }
+
+    {(!isSupportable && !winning && !closed) &&
+      <FakeButton disabled block>
+        {settings.petitionPage.supportButton.unsupportableText}
+      </FakeButton>
+    }
+
+    {(winning || processing || closed) &&
+      <FakeButton disabled block>
+        {settings.petitionPage.supportButton.closedText}
       </FakeButton>
     }
   </div>

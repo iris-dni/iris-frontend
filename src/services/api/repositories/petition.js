@@ -48,7 +48,7 @@ export default {
   },
 
   respond: (response) => {
-    const requestPath = path.join('/petitions', response.petitionId.toString(), 'event/setFeedback');
+    const requestPath = path.join('/petitions', response.petitionId.toString(), 'event/setFeedback?resolve=city');
     const requestPayload = {
       data: {
         answer: response.answer,

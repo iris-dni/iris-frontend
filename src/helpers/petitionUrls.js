@@ -28,6 +28,18 @@ export const petitionsPath = (options = {}) => {
   return path;
 };
 
+export const petitionsByCityPath = (options = {}) => {
+  const { city } = options || {};
+
+  let path = '/petitions';
+
+  if (city && city.id) {
+    path += `/${parameterize(city.name || '')}-${city.id}`;
+  }
+
+  return path;
+};
+
 export const petitionPath = (options = {}) => {
   const { id, responseAnchor } = options || {};
   let path = '';

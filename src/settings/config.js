@@ -63,7 +63,8 @@ export default {
     supportButton: {
       text: 'Support Petition',
       supportedText: 'Supported',
-      unsupportableText: 'Petition Ended',
+      unsupportableText: 'Not supportable',
+      closedText: 'Petition Ended',
       modal: {
         title: 'Please log in',
         intro: 'In order to sign the Petition, we need you to log in using one of the services below..'
@@ -114,8 +115,9 @@ export default {
     }
   },
   respondedToPetitionPage: {
-    title: 'Congratulations, your response has been succesfully published.',
-    link: 'View your response'
+    title: 'Congratulations, your response has been succesfully submitted.',
+    hint: 'Your response will be reviewed within one working day.',
+    link: 'Let’s go explore'
   },
   petitionResponseTokenErrorPage: {
     title: 'Sorry but looks like a wrong link, or it’s no longer working.',

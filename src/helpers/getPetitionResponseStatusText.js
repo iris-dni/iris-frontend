@@ -1,8 +1,8 @@
 import settings from 'settings';
 
-export default ({ pending, amount, required, daysPending, name }) => {
+export default ({ pending, closed, amount, required, daysPending, name }) => {
   const key = pending ? 'pending' : 'arrived';
-  const link = !pending ? `\n\n[${settings.petitionResponseStatus.link}](#response).` : '';
+  const link = closed ? `\n\n[${settings.petitionResponseStatus.link}](#response).` : '';
 
   return settings.petitionResponseStatus[key].text
     .replace('%amount', amount.toLocaleString(settings.locale))

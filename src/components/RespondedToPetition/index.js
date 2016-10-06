@@ -8,7 +8,7 @@ import PageTitle from 'components/PageTitle';
 import Notice from 'components/Notice';
 import TextCenter from 'components/TextCenter';
 import Paragraph from 'components/Paragraph';
-import { petitionPath } from 'helpers/petitionUrls';
+import { petitionsByCityPath } from 'helpers/petitionUrls';
 
 const RespondedToPetition = ({ petition, petitionResponse, router }) => (
   <Container>
@@ -23,8 +23,11 @@ const RespondedToPetition = ({ petition, petitionResponse, router }) => (
         <img src={'/dist/assets/images/RespondedToPetition.svg'} />
         <div className={styles.notice}>
           <Paragraph>
+            {settings.respondedToPetitionPage.hint}
+          </Paragraph>
+          <Paragraph>
             <ButtonLink
-              href={petitionPath(petition, { responseAnchor: true })}
+              href={petitionsByCityPath(petition)}
               text={settings.respondedToPetitionPage.link}
             />
           </Paragraph>

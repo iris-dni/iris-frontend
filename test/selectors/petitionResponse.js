@@ -1,9 +1,9 @@
 import { assert } from 'chai';
-import getPetionResponse from 'selectors/petitionResponse';
+import getPetitionResponse from 'selectors/petitionResponse';
 
 describe('petionResponse selector', () => {
-  context('with petition in state other than `letterResponseArrived`', () => {
-    const actual = getPetionResponse({
+  context('with petition in state other than `closed`', () => {
+    const actual = getPetitionResponse({
       state: { name: 'draft', parent: '' }
     });
     const expected = {};
@@ -11,10 +11,10 @@ describe('petionResponse selector', () => {
     it('returns empty object', () => assert.deepEqual(actual, expected));
   });
 
-  context('with petition in `letterResponseArrived` state and has `city_answer`', () => {
+  context('with petition in `closed` state and has `city_answer`', () => {
     const answer = { text: 'An official response', name: 'Bürgermeister' };
-    const actual = getPetionResponse({
-      state: { name: 'letterResponseArrived', parent: 'processing' },
+    const actual = getPetitionResponse({
+      state: { name: 'closed', parent: '' },
       city_answer: answer
     });
     const expected = answer;
