@@ -20,6 +20,7 @@ const PetitionResponseTokenError = ({ petition, petitionResponse, router }) => (
     </Header>
     <Notice>
       <TextCenter>
+        <img src={'/dist/assets/images/Error.svg'} alt='Error illustration' />
         <div className={styles.notice}>
           <Paragraph>{settings.petitionResponseTokenErrorPage.intro}</Paragraph>
           <Paragraph>{settings.petitionResponseTokenErrorPage.hint}</Paragraph>
