@@ -270,6 +270,36 @@ export default {
     title: 'Please log in',
     intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   },
+  trustPage: {
+    title: 'Fill out your details',
+    intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
+  },
+  trustFields: {
+    firstname: {
+      label: 'First name'
+    },
+    lastname: {
+      label: 'Last name'
+    },
+    street: {
+      label: 'Street address'
+    },
+    housenumber: {
+      label: 'House number'
+    },
+    zip: {
+      label: 'Zip code'
+    },
+    city: {
+      label: 'Town / city'
+    },
+    email: {
+      label: 'Email address'
+    },
+    phone: {
+      label: 'Telephone'
+    }
+  },
   flashMessages: {
     genericError: 'Sadly something failed, please try again!',
     petitionCreated: 'Great, your petition was created!',

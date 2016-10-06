@@ -5,6 +5,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import App from 'containers/App';
 import LoginPage from 'containers/Login';
 import Logout from 'containers/Logout';
+import TrustPage from 'containers/Trust';
 import Petition from 'containers/Petition';
 import Petitions from 'containers/Petitions';
 import NewPetition from 'containers/NewPetition';
@@ -24,6 +25,7 @@ export default function (props = {}) {
       <Route path='/' component={App}>
         <IndexRedirect to='/petitions' />
         <Route path='auth/login' component={LoginPage} />
+        <Route path='auth/trust/:action' component={TrustPage} />
         <Route path='auth/logout' component={Logout} />
         <Route path='petitions'>
           {/* Nest these 3 to support proper `activeClassName` behavior. */}

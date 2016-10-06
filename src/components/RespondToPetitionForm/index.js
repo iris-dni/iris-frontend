@@ -41,7 +41,7 @@ RespondToPetitionForm.propTypes = {
 };
 
 export default reduxForm({
-  form: 'simple2',
+  form: 'response',
   fields: FIELDS.map(field => field.name),
   validate: petitionResponseValidator
 })(RespondToPetitionForm);

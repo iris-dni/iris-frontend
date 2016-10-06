@@ -1,17 +1,13 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import { createPetition, updatePetition } from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
 import Fieldset from 'components/Fieldset';
 import FormField from 'components/FormField';
 import Button from 'components/Button';
-import settings from 'settings';
 import FIELDS from './fields';
 
-const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting }) => (
-  <form onSubmit={handleSubmit(petition.persisted
-    ? updatePetition
-    : createPetition)}>
+const TrustForm = ({ fields, handleSubmit, submitting }) => (
+  <form onSubmit={() => {}}>
     <Fieldset>
       {FIELDS.map(field => (
         <FormField
@@ -23,17 +19,15 @@ const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting })
     </Fieldset>
     <Fieldset modifier={'actions'}>
       <Button
-        text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton'].text}
+        text={'Proceed'}
         modifier={'accent'}
-        disabled={openGraph.isLoading || submitting || !fields._meta.allValid}
+        disabled={submitting || !fields._meta.allValid}
       />
     </Fieldset>
   </form>
 );
 
-PetitionForm.propTypes = {
-  petition: React.PropTypes.object.isRequired,
-  openGraph: React.PropTypes.object.isRequired,
+TrustForm.propTypes = {
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
   submitting: React.PropTypes.bool.isRequired
@@ -44,9 +38,7 @@ export const mapStateToProps = ({ openGraph }) => ({
 });
 
 export default reduxForm({
-  form: 'petition',
+  form: 'trust',
   fields: FIELDS.map(field => field.name),
-  validate: petitionValidator,
-  // Initialize links field as an array so that we can push values into it later
-  initialValues: { links: [] }
-}, mapStateToProps)(PetitionForm);
+  validate: petitionValidator
+}, mapStateToProps)(TrustForm);
