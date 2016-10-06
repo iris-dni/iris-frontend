@@ -9,7 +9,7 @@ import generateSsoProviders from 'helpers/generateSsoProviders';
 
 const ModalWindowContainer = React.createClass({
   render () {
-    const { type, title, intro, link, active, returnUrl, hideModalWindow } = this.props;
+    const { type, title, intro, link, href, active, returnUrl, hideModalWindow } = this.props;
     return (
       <ModalWindow active={active} hideModalWindow={hideModalWindow}>
         {type === 'auth' &&
@@ -23,6 +23,7 @@ const ModalWindowContainer = React.createClass({
           <ShareModal
             title={title}
             intro={intro}
+            href={href}
             link={link}
           />
         }
