@@ -114,8 +114,9 @@ export default {
     }
   },
   respondedToPetitionPage: {
-    title: 'Congratulations, your response has been succesfully published.',
-    link: 'View your response'
+    title: 'Congratulations, your response is now under review!',
+    hint: 'The editors will review your response within the next day.',
+    link: 'See the petition'
   },
   petitionNotFoundByResponseTokenPage: {
     title: 'Sorry but looks like a wrong link, or it’s no longer working.',

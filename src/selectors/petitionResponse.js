@@ -1,9 +1,10 @@
+import getPetitionClosed from './petitionClosed';
+
 export default (petition = {}) => {
-  const hasResponded = petition.state.parent === 'processing' &&
-    petition.state.name === 'letterResponseArrived';
+  const hasClosed = getPetitionClosed(petition);
   const hasText = !!petition.city_answer && !!petition.city_answer.text;
 
-  if (hasResponded && hasText) {
+  if (hasClosed && hasText) {
     return petition.city_answer;
   }
 

@@ -11,6 +11,7 @@ import settings from 'settings';
 
 const PetitionSidebar = ({
   processing,
+  closed,
   timeMetric,
   isSupportable,
   userHasSupported,
@@ -18,7 +19,7 @@ const PetitionSidebar = ({
   runningTime
 }) => (
   <aside role='complementary' className={styles.root}>
-    {processing &&
+    {processing || closed &&
       <PetitionResponseStatus />
     }
 

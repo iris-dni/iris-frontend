@@ -23,6 +23,9 @@ const RespondedToPetition = ({ petition, petitionResponse, router }) => (
         <img src={'/dist/assets/images/RespondedToPetition.svg'} />
         <div className={styles.notice}>
           <Paragraph>
+            {settings.respondedToPetitionPage.link}
+          </Paragraph>
+          <Paragraph>
             <ButtonLink
               href={petitionPath(petition, { responseAnchor: true })}
               text={settings.respondedToPetitionPage.link}
