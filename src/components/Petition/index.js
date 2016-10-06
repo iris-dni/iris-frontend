@@ -33,7 +33,7 @@ const Petition = ({ preview }) => (
           </ShowWhen>
         </LayoutContent>
         <LayoutSidebar>
-          <PetitionSidebar />
+          <PetitionSidebar preview />
         </LayoutSidebar>
       </LayoutWrap>
     </Container>

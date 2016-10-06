@@ -117,7 +117,7 @@ export default {
     title: 'Congratulations, your response has been succesfully published.',
     link: 'View your response'
   },
-  petitionNotFoundByResponseTokenPage: {
+  petitionResponseTokenErrorPage: {
     title: 'Sorry but looks like a wrong link, or it’s no longer working.',
     hint: 'Please re-enter the link or contact our admins if you believe there is a mistake and you are unsure of how to proceed.',
     homeButton: {
