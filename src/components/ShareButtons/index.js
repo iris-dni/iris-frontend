@@ -16,29 +16,27 @@ const ShareButtons = React.createClass({
   render () {
     const { openPopup, petitionURL, buttons = [] } = this.props;
     return (
-      <div className={styles.root}>
-        <ul className={styles.list}>
-          {buttons.map(button => (
-            <li className={styles.item} key={button.brand}>
-              <ButtonLink block external
-                onClick={button.popup
-                  ? openPopup.bind(this, button.href)
-                  : null
-                }
-                href={button.href}
-                size={'compact'}
-                brand={button.brand}>
-                <ButtonIcon id={button.icon}>
-                  {button.label}
-                </ButtonIcon>
-              </ButtonLink>
-            </li>
-          ))}
-          <li className={styles.item} key={'link'}>
-            <CopyPetitionLink url={petitionURL} />
+      <ul className={styles.list}>
+        {buttons.map(button => (
+          <li className={styles.item} key={button.brand}>
+            <ButtonLink block external
+              onClick={button.popup
+                ? openPopup.bind(this, button.href)
+                : null
+              }
+              href={button.href}
+              size={'compact'}
+              brand={button.brand}>
+              <ButtonIcon id={button.icon}>
+                {button.label}
+              </ButtonIcon>
+            </ButtonLink>
           </li>
-        </ul>
-      </div>
+        ))}
+        <li className={styles.item} key={'link'}>
+          <CopyPetitionLink url={petitionURL} />
+        </li>
+      </ul>
     );
   }
 });
