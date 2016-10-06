@@ -229,7 +229,8 @@ export default {
     },
     twitter: {
       label: 'Share on Twitter',
-      tweetText: 'This petition needs your support:'
+      tweetText: 'This petition needs your support:',
+      localisedTweetText: 'This petition in %s needs your support:'
     },
     whatsapp: {
       label: 'Send via Whatsapp'
@@ -237,7 +238,9 @@ export default {
     email: {
       label: 'Send via Email',
       subject: 'This petition needs your support',
-      body: 'Get informed and support the following petition:'
+      localisedSubject: 'This petition in %s needs your support',
+      body: 'Get informed and support the following petition:',
+      localisedBody: 'Get informed and support the following petition in %s:'
     },
     link: {
       label: 'Share by URL',

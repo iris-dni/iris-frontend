@@ -1,5 +1,11 @@
 {
   "id": "nwch:1",
   "name": "Aarau",
-  "provider": "nwch"
+  "provider": "nwch",
+  "zips": [
+    "17839",
+    "30359",
+    "41731",
+    "69846"
+  ]
 }
