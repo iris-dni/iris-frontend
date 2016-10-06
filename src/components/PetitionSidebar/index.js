@@ -20,7 +20,7 @@ const PetitionSidebar = ({
   runningTime
 }) => (
   <aside role='complementary' className={styles.root}>
-    {processing || closed &&
+    {(processing || closed) &&
       <PetitionResponseStatus />
     }
 
