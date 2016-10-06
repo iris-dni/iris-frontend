@@ -19,11 +19,11 @@ const PetitionSupportButton = ({
       </FakeButton>
     }
 
-    {isSupportable && !userHasSupported &&
+    {(isSupportable && !userHasSupported) &&
       <SupportButton />
     }
 
-    {isSupportable && userHasSupported &&
+    {(isSupportable && userHasSupported) &&
       <FakeButton disabled block>
         <ButtonIcon id={'Checkmark'} modifier={'dimmed'}>
           {settings.petitionPage.supportButton.supportedText}
@@ -31,7 +31,7 @@ const PetitionSupportButton = ({
       </FakeButton>
     }
 
-    {(!isSupportable && !winning && !closed) &&
+    {(!preview && !isSupportable && !winning && !closed) &&
       <FakeButton disabled block>
         {settings.petitionPage.supportButton.unsupportableText}
       </FakeButton>

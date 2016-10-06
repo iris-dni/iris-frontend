@@ -28,7 +28,7 @@ const PetitionSidebar = ({
     }
 
     <div className={styles['support-button']}>
-      <PetitionSupportButton />
+      <PetitionSupportButton preview={preview} />
     </div>
 
     <div className={styles.specifics}>

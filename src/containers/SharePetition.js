@@ -21,7 +21,7 @@ const openPopup = (url, event) => openShareWindow(url, event, POPUP_WINDOW_TITLE
 
 const mapStateToProps = ({ petition }) => ({
   openPopup: openPopup,
-  buttons: generateShareButtons(petition.id),
+  buttons: generateShareButtons(petition),
   petitionURL: getPetitionURL(petition.id)
 });
 
