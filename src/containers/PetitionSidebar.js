@@ -1,33 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import settings from 'settings';
 import PetitionSidebar from 'components/PetitionSidebar';
 import getPetitionTimeMetrics from 'selectors/petitionTimeMetrics';
 import getPetitionSupportable from 'selectors/petitionSupportable';
 import getPetitionProcessing from 'selectors/petitionProcessing';
-import getPetitionUserSupport from 'selectors/petitionUserSupport';
-import getPetitionStartDate from 'helpers/getPetitionStartDate';
 
 const PetitionSidebarContainer = (props) => (
   <PetitionSidebar {...props} />
 );
 
 const mapStateToProps = ({ petition }) => ({
-  timeMetric: getPetitionTimeMetrics(petition),
   processing: getPetitionProcessing(petition),
-  isSupportable: getPetitionSupportable(petition),
-  userHasSupported: getPetitionUserSupport(petition),
-  startDate: getPetitionStartDate(petition),
-  runningTime: settings.runningTime
+  timeMetric: getPetitionTimeMetrics(petition),
+  isSupportable: getPetitionSupportable(petition)
 });
 
 PetitionSidebarContainer.propTypes = {
-  timeMetric: React.PropTypes.object,
   processing: React.PropTypes.bool,
-  isSupportable: React.PropTypes.bool,
-  userHasSupported: React.PropTypes.bool,
-  startDate: React.PropTypes.string,
-  runningTime: React.PropTypes.string
+  timeMetric: React.PropTypes.object,
+  isSupportable: React.PropTypes.bool
 };
 
 export default connect(

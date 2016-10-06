@@ -11,7 +11,7 @@ import PetitionBody from 'containers/PetitionBody';
 import PetitionResponse from 'containers/PetitionResponse';
 import PetitionSidebar from 'containers/PetitionSidebar';
 import ShowWhen from 'components/ShowWhen';
-import SharePetition from 'containers/SharePetition';
+import PetitionShareButtons from 'components/PetitionShareButtons';
 import PetitionFooter from 'containers/PetitionFooter';
 
 const Petition = ({ preview }) => (
@@ -28,12 +28,12 @@ const Petition = ({ preview }) => (
           <PetitionResponse />
           <ShowWhen when={'small'}>
             <div className={styles.share}>
-              <SharePetition />
+              <PetitionShareButtons preview={preview} />
             </div>
           </ShowWhen>
         </LayoutContent>
         <LayoutSidebar>
-          <PetitionSidebar />
+          <PetitionSidebar preview={preview} />
         </LayoutSidebar>
       </LayoutWrap>
     </Container>

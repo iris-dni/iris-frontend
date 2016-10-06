@@ -6,7 +6,7 @@ import { fetchPetitionByResponseToken, respondToPetition } from 'actions/Respond
 import settings from 'settings';
 import Loading from 'components/Loading';
 import RespondToPetition from 'components/RespondToPetition';
-import PetitionNotFoundByResponseToken from 'components/PetitionNotFoundByResponseToken';
+import PetitionResponseTokenError from 'components/PetitionResponseTokenError';
 import RespondedToPetition from 'components/RespondedToPetition';
 import getPetitionForm from 'selectors/petitionForm';
 import getPetitionResponseForm from 'selectors/petitionResponseForm';
@@ -48,7 +48,7 @@ const RespondToPetitionContainer = withRouter(React.createClass({
           }
 
           {!petition.saved && !petition.found &&
-            <PetitionNotFoundByResponseToken
+            <PetitionResponseTokenError
               petition={petition}
               petitionResponse={petitionResponse}
             />

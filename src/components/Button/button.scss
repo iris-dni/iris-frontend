@@ -105,6 +105,7 @@
  * Using `<Button block />`
  */
 .display-block {
+  width: 100%;
   display: block;
 }
 
@@ -137,4 +138,11 @@
 .brand-email:focus {
   border-color: color('black');
   background-color: color('black');
+}
+
+.brand-link-copied:hover,
+.brand-link-copied:active,
+.brand-link-copied:focus {
+  border-color: color('success');
+  background-color: color('success');
 }

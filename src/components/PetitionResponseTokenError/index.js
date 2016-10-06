@@ -10,23 +10,23 @@ import TextCenter from 'components/TextCenter';
 import Paragraph from 'components/Paragraph';
 import { petitionsPath } from 'helpers/petitionUrls';
 
-const PetitionNotFoundByResponseToken = ({ petition, petitionResponse, router }) => (
+const PetitionResponseTokenError = ({ petition, petitionResponse, router }) => (
   <Container>
     <Header padding>
       <PageTitle
-        title={settings.petitionNotFoundByResponseTokenPage.title}
+        title={settings.petitionResponseTokenErrorPage.title}
         centered
       />
     </Header>
     <Notice>
       <TextCenter>
         <div className={styles.notice}>
-          <Paragraph>{settings.petitionNotFoundByResponseTokenPage.intro}</Paragraph>
-          <Paragraph>{settings.petitionNotFoundByResponseTokenPage.hint}</Paragraph>
+          <Paragraph>{settings.petitionResponseTokenErrorPage.intro}</Paragraph>
+          <Paragraph>{settings.petitionResponseTokenErrorPage.hint}</Paragraph>
           <Paragraph>
             <ButtonLink
               href={petitionsPath()}
-              text={settings.petitionNotFoundByResponseTokenPage.homeButton.text}
+              text={settings.petitionResponseTokenErrorPage.homeButton.text}
             />
           </Paragraph>
         </div>
@@ -35,4 +35,4 @@ const PetitionNotFoundByResponseToken = ({ petition, petitionResponse, router })
   </Container>
 );
 
-export default PetitionNotFoundByResponseToken;
+export default PetitionResponseTokenError;
