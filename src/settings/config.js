@@ -63,7 +63,8 @@ export default {
     supportButton: {
       text: 'Support Petition',
       supportedText: 'Supported',
-      unsupportableText: 'Petition Ended',
+      unsupportableText: 'Not supportable',
+      closedText: 'Petition Ended',
       modal: {
         title: 'Please log in',
         intro: 'In order to sign the Petition, we need you to log in using one of the services below..'

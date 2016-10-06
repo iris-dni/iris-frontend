@@ -11,6 +11,7 @@ import settings from 'settings';
 
 const PetitionSidebar = ({
   processing,
+  winning,
   closed,
   timeMetric,
   isSupportable,
@@ -44,9 +45,15 @@ const PetitionSidebar = ({
         </FakeButton>
       }
 
-      {!isSupportable &&
+      {(!isSupportable && !winning && !closed) &&
         <FakeButton disabled block>
           {settings.petitionPage.supportButton.unsupportableText}
+        </FakeButton>
+      }
+
+      {(winning || processing || closed) &&
+        <FakeButton disabled block>
+          {settings.petitionPage.supportButton.closedText}
         </FakeButton>
       }
     </div>
