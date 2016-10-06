@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import settings from 'settings';
+import { connect } from 'react-redux';
 import PetitionSidebar from 'components/PetitionSidebar';
 import getPetitionTimeMetrics from 'selectors/petitionTimeMetrics';
 import getPetitionSupportable from 'selectors/petitionSupportable';
@@ -15,25 +15,25 @@ const PetitionSidebarContainer = (props) => (
 );
 
 const mapStateToProps = ({ petition }) => ({
-  timeMetric: getPetitionTimeMetrics(petition),
   processing: getPetitionProcessing(petition),
   winning: getPetitionWinning(petition),
   closed: getPetitionClosed(petition),
   isSupportable: getPetitionSupportable(petition),
   userHasSupported: getPetitionUserSupport(petition),
   startDate: getPetitionStartDate(petition),
-  runningTime: settings.runningTime
+  runningTime: settings.runningTime,
+  timeMetric: getPetitionTimeMetrics(petition)
 });
 
 PetitionSidebarContainer.propTypes = {
-  timeMetric: React.PropTypes.object,
   processing: React.PropTypes.bool,
   closed: React.PropTypes.bool,
   isSupportable: React.PropTypes.bool,
   userHasSupported: React.PropTypes.bool,
   winning: React.PropTypes.bool,
   startDate: React.PropTypes.string,
-  runningTime: React.PropTypes.string
+  runningTime: React.PropTypes.string,
+  timeMetric: React.PropTypes.object
 };
 
 export default connect(

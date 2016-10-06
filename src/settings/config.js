@@ -119,7 +119,7 @@ export default {
     hint: 'Your response will be reviewed within one working day.',
     link: 'Let’s go explore'
   },
-  petitionNotFoundByResponseTokenPage: {
+  petitionResponseTokenErrorPage: {
     title: 'Sorry but looks like a wrong link, or it’s no longer working.',
     hint: 'Please re-enter the link or contact our admins if you believe there is a mistake and you are unsure of how to proceed.',
     homeButton: {
@@ -238,6 +238,10 @@ export default {
       label: 'Send via Email',
       subject: 'This petition needs your support',
       body: 'Get informed and support the following petition:'
+    },
+    link: {
+      label: 'Share by URL',
+      copiedLabel: 'Link copied'
     }
   },
   /**
