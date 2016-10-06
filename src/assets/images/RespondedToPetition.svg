@@ -31,10 +31,6 @@
       <rect width="102" height="6" x="35" y="142" fill="#CCCCCC" rx="3"/>
       <rect width="180" height="6" x="35" y="30" fill="#CCCCCC" rx="3"/>
     </g>
-    <g transform="translate(256 225)">
-      <circle cx="15" cy="15" r="15" fill="#2FCD0C"/>
-      <polygon fill="#FFFFFF" points="6 13 1 8.192 2.4 6.846 6 10.308 13.6 3 15 4.346" transform="translate(7 7)"/>
-    </g>
     <rect width="460" height="30" fill="#CCCCCC"/>
     <rect width="251" height="12" x="30" y="50" fill="#CCCCCC" rx="6"/>
     <rect width="161" height="12" x="30" y="73" fill="#CCCCCC" rx="6"/>
