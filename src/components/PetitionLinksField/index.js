@@ -3,6 +3,7 @@ import settings from 'settings';
 import domOnlyProps from 'form/domOnlyProps';
 import fieldIsInvalid from 'form/fieldIsInvalid';
 import getLinkInputErrors from 'form/getLinkInputErrors';
+import stripProtocolFromURL from 'helpers/stripProtocolFromURL';
 import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
 import Icon from 'components/Icon';
 import ExternalTeaser from 'components/ExternalTeaser';
@@ -42,8 +43,7 @@ const PetitionLinksField = React.createClass({
         // Remove any protocol from the URL. In the teaser, the URL will be
         // displayed without the protocol, and the link to it will be a relative
         // protocol URL.
-        const PROTOCOL_REGEX = new RegExp(/^(https?:\/\/)?(www\.)?/i);
-        const protocolFreeURL = value.replace(PROTOCOL_REGEX, '');
+        const protocolFreeURL = stripProtocolFromURL(value);
 
         // Specific validation for the link field.
         const error = getLinkInputErrors(protocolFreeURL, links, config);

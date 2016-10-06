@@ -4,7 +4,7 @@ import ModalIntro from 'components/ModalIntro';
 import Link from 'components/Link';
 import TextCenter from 'components/TextCenter';
 
-const ShareModal = ({ title, intro, link }) => (
+const ShareModal = ({ title, intro, link, href }) => (
   <div>
     <ModalIntro
       title={title}
@@ -12,7 +12,7 @@ const ShareModal = ({ title, intro, link }) => (
     />
     <TextCenter>
       <span className={styles.link}>
-        <Link href={link} text={link} />
+        <Link href={href} text={link} />
       </span>
     </TextCenter>
   </div>

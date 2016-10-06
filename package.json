@@ -88,6 +88,7 @@
     "babel-eslint": "^6.1.0",
     "babel-plugin-typecheck": "^3.9.0",
     "chai": "^3.5.0",
+    "chai-things": "^0.2.0",
     "concurrently": "^2.2.0",
     "enzyme": "^2.4.1",
     "lint-staged": "^2.0.2",
