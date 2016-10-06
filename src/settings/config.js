@@ -3,6 +3,10 @@ export default {
   charset: 'utf-8',
   title: 'iris-frontend',
   twitterAccount: 'azmedien',
+  ga: {
+    APIKey: '',
+    initOptions: {}
+  },
   dateRange: '%s to %e',
   startDate: 'Started on %d',
   endDate: 'Ending on %d',
