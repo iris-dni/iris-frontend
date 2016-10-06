@@ -1,22 +1,31 @@
 import React from 'react';
 import Markdown from 'react-markdown';
+import settings from 'settings';
 import styles from './petition-response-status.scss';
 import getPetitionResponseStatusTitle from 'helpers/getPetitionResponseStatusTitle';
 import getPetitionResponseStatusText from 'helpers/getPetitionResponseStatusText';
 import Icon from 'components/Icon';
+import Link from 'components/Link';
 
 const PetitionResponseStatus = (props) => (
-  <div className={styles.root} >
-    <div className={styles.top}>
+  <article className={styles.root} >
+    <header className={styles.top}>
       <span className={styles.icon}>
         <Icon id='Flag' size='small' modifier='highlight' />
       </span>
-      <h2>
+      <h2 className={styles.title}>
         {getPetitionResponseStatusTitle(props)}
       </h2>
-    </div>
+    </header>
     <Markdown source={getPetitionResponseStatusText(props)} />
-  </div>
+    {props.closed &&
+      <p className={styles.anchor}>
+        <Link external href={'#response'}>
+          {settings.petitionResponseStatus.link}
+        </Link>
+      </p>
+    }
+  </article>
 );
 
 export default PetitionResponseStatus;

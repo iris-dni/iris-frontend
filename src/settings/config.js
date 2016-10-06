@@ -64,7 +64,8 @@ export default {
       text: 'Support Petition',
       supportedText: 'Supported',
       unsupportableText: 'Not Supportable',
-      closedText: 'Petition Ended',
+      endedText: 'Petition Ended',
+      closedText: 'Petition Closed',
       modal: {
         title: 'Please log in',
         intro: 'In order to sign the Petition, we need you to log in using one of the services below..'
@@ -111,7 +112,7 @@ export default {
       by: 'By',
       in: 'In',
       collected: 'Collected',
-      votes: 'votes'
+      supporters: 'supporters'
     }
   },
   respondedToPetitionPage: {
@@ -215,13 +216,13 @@ export default {
   petitionResponseStatus: {
     pending: {
       title: 'Pending official response',
-      text: 'This petition reached its target goal of %required votes and is awaiting response since **%daysPending** days ago.'
+      text: 'This petition reached its target of **%required** supporters and has been awaiting an official response for **%daysPending** days.'
     },
     arrived: {
       title: 'Official response',
-      text: 'This petition reached its target goal of %required votes and has already been answered by %name.'
+      text: 'This petition reached its target of **%required** supporters and has been officially answered by %name.'
     },
-    link: 'View official reply'
+    link: 'View official response'
   },
   shareButtons: {
     facebook: {

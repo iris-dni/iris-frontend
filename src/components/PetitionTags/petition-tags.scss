@@ -2,15 +2,15 @@
 
 .item {
   color: white;
-  font-size: 13px;
+  font-size: 14px;
   display: inline-block;
-  margin-right: 3px;
+  margin-right: 5px;
   white-space: nowrap;
 }
 
 .item--small {
   composes: item;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .winner,
