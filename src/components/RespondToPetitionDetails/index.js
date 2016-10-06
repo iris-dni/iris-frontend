@@ -19,7 +19,7 @@ const RespondToPetitionDetails = ({ petition }) => (
       <strong>{`${settings.respondToPetitionPage.details.in}`}</strong> {`${getPetitionCity(petition).name}`}
     </Paragraph>
     <Paragraph>
-      <strong>{`${settings.respondToPetitionPage.details.collected}`}</strong> {`${petition.supporters.amount} ${settings.respondToPetitionPage.details.votes}`}
+      <strong>{`${settings.respondToPetitionPage.details.collected}`}</strong> {`${petition.supporters.amount} ${settings.respondToPetitionPage.details.supporters}`}
     </Paragraph>
   </div>
 );
