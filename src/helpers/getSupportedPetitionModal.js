@@ -1,5 +1,6 @@
 import supportCountIncreased from 'helpers/supportCountIncreased';
 import settings from 'settings';
+import getPetitionURL from './getPetitionURL';
 import getPetitionPath from './getPetitionPath';
 
 export default (oldPetiton, newPetition) => {
@@ -7,7 +8,8 @@ export default (oldPetiton, newPetition) => {
     ? 'newlySupported'
     : 'alreadySupported';
   return {
-    link: getPetitionPath(newPetition.id),
+    href: getPetitionPath(newPetition.id),
+    link: getPetitionURL(newPetition.id),
     ...settings.supportPetition[contentKey].modal
   };
 };
