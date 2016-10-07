@@ -3,7 +3,7 @@ import settings from 'settings';
 export default [
   {
     element: 'input',
-    name: 'id',
+    name: 'petitionId',
     hidden: true,
     html: {
       type: 'hidden'
@@ -72,12 +72,12 @@ export default [
   },
   {
     element: 'input',
-    name: 'user.phone',
-    label: settings.trustFields.phone.label,
-    hint: settings.trustFields.phone.hint,
+    name: 'user.mobile',
+    label: settings.trustFields.mobile.label,
+    hint: settings.trustFields.mobile.hint,
     html: {
       type: 'tel',
-      placeholder: settings.trustFields.phone.placeholder,
+      placeholder: settings.trustFields.mobile.placeholder,
       required: true
     }
   }

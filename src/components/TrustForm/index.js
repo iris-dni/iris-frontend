@@ -17,7 +17,7 @@ const TrustForm = ({ fields, handleSubmit, submitting }) => (
     </Fieldset>
     <Fieldset modifier={'actions'}>
       <Button
-        text={'Proceed'}
+        text={'Go to verification'}
         modifier={'accent'}
         disabled={submitting || !fields._meta.allValid}
       />
@@ -33,7 +33,7 @@ TrustForm.propTypes = {
 
 export const mapStateToProps = ({ petition, me }) => ({
   initialValues: {
-    id: petition.id,
+    petitionId: petition.id,
     user: me || {}
   }
 });

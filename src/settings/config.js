@@ -296,8 +296,8 @@ export default {
     email: {
       label: 'Email address'
     },
-    phone: {
-      label: 'Telephone'
+    mobile: {
+      label: 'Mobile number'
     }
   },
   flashMessages: {

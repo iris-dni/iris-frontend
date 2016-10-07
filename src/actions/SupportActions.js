@@ -1,6 +1,6 @@
 import petitionRepository from 'services/api/repositories/petition';
-import getSupportedPetitionModal from 'helpers/getSupportedPetitionModal';
-import solveResolvedObjects from 'helpers/solveResolvedObjects';
+import getPetitionURL from 'helpers/getPetitionURL';
+import isUntrustedUser from 'helpers/isUntrustedUser';
 import settings from 'settings';
 
 import {
@@ -22,28 +22,30 @@ export function submittingSupport () {
   };
 }
 
-export function supportPetition (petition, dispatch) {
-  console.log(petition);
-  return (dispatch, getState) => {
-    dispatch(submittingSupport());
-    return petitionRepository.support(petition)
-      .then((response) => {
-        const resolvedPetition = solveResolvedObjects(petition, response.data);
-        return dispatch(supportedPetition(resolvedPetition));
-      }).then((response) => dispatch(showModalWindow({
+export function supportPetition (trustData, dispatch) {
+  dispatch(submittingSupport());
+  const mockPetitionForNow = { id: trustData.petitionId };
+  return petitionRepository.support(trustData)
+    .then((response) => {
+      if (isUntrustedUser(response)) {
+        // THIS WILL BE WHERE WE SHOW THE TAN PAGE
+      }
+      // THIS IS THE TRUSTED USER FLOW
+      return dispatch(supportedPetition(mockPetitionForNow));
+    }).then((response) => dispatch(
+      showModalWindow({
         type: 'supported',
-        ...getSupportedPetitionModal(petition, response.petition)
-      }))).catch(() => dispatch(
-        showFlashMessage(settings.flashMessages.genericError, 'error')
-      ));
-  };
+        link: getPetitionURL(mockPetitionForNow.id),
+        ...settings.supportPetition.newlySupported.modal
+      })
+    )).catch(() => dispatch(
+      showFlashMessage(settings.flashMessages.genericError, 'error')
+    ));
 }
 
-export function supportedPetition (returnedPetition, fullPetition) {
-  const { city, owner } = fullPetition || {};
+export function supportedPetition (petition) {
   return {
     type: SUPPORTED_PETITION,
-    petition: returnedPetition,
-    resolve: { city, owner }
+    petition
   };
 }
