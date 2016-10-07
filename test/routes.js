@@ -7,17 +7,26 @@ import mockPetitions from './mocks/petitions';
 const { assert } = chai;
 
 describe('GET /', () => {
-  it('redirects to /petitions', done => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
+  it('responds with 200', done => {
+    moxios.stubRequest(/.*/, {
+      status: 200,
+      response: mockPetitions
+    });
+
     server.injectThen('/')
       .then(response => {
-        const actualStatus = response.statusCode;
-        const expectedStatus = 301;
+        const actual = response.statusCode;
+        const expected = 200;
 
-        const actualPath = response.headers.location;
-        const expectedPath = '/petitions';
-
-        assert.equal(actualStatus, expectedStatus);
-        assert.equal(actualPath, expectedPath);
+        assert.equal(actual, expected);
         done();
       });
   });
