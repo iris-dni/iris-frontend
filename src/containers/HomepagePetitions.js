@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TeaserGrid from 'components/TeaserGrid';
+import HomepagePetitions from 'components/HomepagePetitions';
 import getPetitions from 'selectors/petitions';
 
 const HomepagePetitionsContainer = (props) => (
-  <TeaserGrid {...props} />
+  <HomepagePetitions {...props} />
 );
 
 HomepagePetitionsContainer.propTypes = {

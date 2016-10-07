@@ -13,6 +13,8 @@ export default [
   },
   {
     component: HomepagePetitions,
-    props: {}
+    props: {
+      title: 'Recent Petitions'
+    }
   }
 ];
