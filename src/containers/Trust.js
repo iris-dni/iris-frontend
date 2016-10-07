@@ -2,38 +2,30 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import { fetchPetition } from 'actions/PetitionActions';
 import settings from 'settings';
 import Trust from 'components/Trust';
 
-const TrustContainer = withRouter(React.createClass({
-  componentWillMount () {
-  },
+const TrustContainer = withRouter((props) => (
+  <div>
+    <Helmet title={settings.trustPage.title} />
+    <Trust {...props} />
+  </div>
+));
 
-  componentWillUpdate (nextProps) {
-  },
+TrustContainer.fetchData = ({ store, params }) => {
+  return store.dispatch(fetchPetition(params.id));
+};
 
-  componentWillUnmount () {
-  },
+export const mapStateToProps = ({ me, petition }) => ({
+  petition,
+  isLoggedIn: me && !!me.id
+});
 
-  render () {
-    return (
-      <div>
-        <Helmet title={settings.trustPage.title} />
-        <Trust />
-      </div>
-    );
-  }
-}));
-
-export const mapStateToProps = ({ petition }) => ({});
-
-// const mapDispatchToProps = (dispatch) => ({
-//   clearPetition: () => dispatch(clearPetition()),
-//   clearSuggestionInputValue: () => dispatch(clearSuggestionInputValue()),
-//   publishPetition: (petition) => dispatch(publishPetition(petition))
-// });
+TrustContainer.propTypes = {
+  isLoggedIn: React.PropTypes.bool.isRequired
+};
 
 export default connect(
-  mapStateToProps,
-  // mapDispatchToProps
+  mapStateToProps
 )(TrustContainer);

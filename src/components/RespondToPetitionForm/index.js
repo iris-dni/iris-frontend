@@ -1,10 +1,9 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import { respondToPetition } from 'actions/RespondActions';
-import { get } from 'lodash/object';
 import petitionResponseValidator from 'form/petitionResponseValidator';
 import Fieldset from 'components/Fieldset';
-import FormField from 'components/FormField';
+import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
 import settings from 'settings';
 import FIELDS from './fields';
@@ -13,13 +12,10 @@ const RespondToPetitionForm = ({ petition, petitionResponse, fields, handleSubmi
   return (
     <form onSubmit={handleSubmit(respondToPetition)}>
       <Fieldset>
-        {FIELDS.map(field => (
-          <FormField
-            key={field.name}
-            config={field}
-            helper={get(fields, field.name)}
-          />
-        ))}
+        <FormFieldsIterator
+          reduxFormFields={fields}
+          fieldsArray={FIELDS}
+        />
       </Fieldset>
       <Fieldset modifier={'actions'}>
         <Button

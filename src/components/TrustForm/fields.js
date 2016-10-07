@@ -3,7 +3,15 @@ import settings from 'settings';
 export default [
   {
     element: 'input',
-    name: 'firstname',
+    name: 'id',
+    hidden: true,
+    html: {
+      type: 'hidden'
+    }
+  },
+  {
+    element: 'input',
+    name: 'user.firstname',
     label: settings.trustFields.firstname.label,
     hint: settings.trustFields.firstname.hint,
     html: {
@@ -13,7 +21,7 @@ export default [
   },
   {
     element: 'input',
-    name: 'lastname',
+    name: 'user.lastname',
     label: settings.trustFields.lastname.label,
     hint: settings.trustFields.lastname.hint,
     html: {
@@ -23,7 +31,7 @@ export default [
   },
   {
     element: 'input',
-    name: 'street',
+    name: 'user.street',
     label: settings.trustFields.street.label,
     hint: settings.trustFields.street.hint,
     html: {
@@ -33,17 +41,7 @@ export default [
   },
   {
     element: 'input',
-    name: 'housenumber',
-    label: settings.trustFields.housenumber.label,
-    hint: settings.trustFields.housenumber.hint,
-    html: {
-      placeholder: settings.trustFields.housenumber.placeholder,
-      required: true
-    }
-  },
-  {
-    element: 'input',
-    name: 'zip',
+    name: 'user.zip',
     label: settings.trustFields.zip.label,
     hint: settings.trustFields.zip.hint,
     html: {
@@ -53,7 +51,7 @@ export default [
   },
   {
     element: 'input',
-    name: 'city',
+    name: 'user.city',
     label: settings.trustFields.city.label,
     hint: settings.trustFields.city.hint,
     html: {
@@ -63,7 +61,7 @@ export default [
   },
   {
     element: 'input',
-    name: 'email',
+    name: 'user.email',
     label: settings.trustFields.email.label,
     hint: settings.trustFields.email.hint,
     html: {
@@ -74,7 +72,7 @@ export default [
   },
   {
     element: 'input',
-    name: 'phone',
+    name: 'user.phone',
     label: settings.trustFields.phone.label,
     hint: settings.trustFields.phone.hint,
     html: {

@@ -21,7 +21,9 @@ export function submittingSupport () {
     type: SUBMITTING_SUPPORT
   };
 }
+
 export function supportPetition (petition, dispatch) {
+  console.log(petition);
   return (dispatch, getState) => {
     dispatch(submittingSupport());
     return petitionRepository.support(petition)
