@@ -15,7 +15,9 @@ import EditPetition from 'containers/EditPetition';
 import PublishedPetition from 'containers/PublishedPetition';
 import RespondToPetition from 'containers/RespondToPetition';
 
-const pageviewEvent = __CLIENT__ && new CustomEvent('IRIS_pageview');
+const pageviewEvent = __CLIENT__ &&
+  typeof CustomEvent !== 'undefined' && // Required as it’s not defined during tests.
+  new CustomEvent('IRIS_pageview');
 const ga = settings.ga;
 
 const logPageView = () => {
