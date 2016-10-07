@@ -4,12 +4,9 @@ import { withRouter } from 'react-router';
 import { fetchPetitions, clearPetitions } from 'actions/PetitionsActions';
 import Home from 'components/Home';
 import getPetitions from 'selectors/petitions';
+import getPetitionsHomeQuery from 'selectors/petitionsHomeQuery';
 
-const params = {
-  state: 'supportable.active',
-  limit: 3,
-  sort: 'supporters.amount'
-};
+const HOME_QUERY = getPetitionsHomeQuery({ limit: 3 });
 
 const HomeContainer = withRouter(React.createClass({
 
@@ -19,11 +16,10 @@ const HomeContainer = withRouter(React.createClass({
     if (!this.props.petitions.length ||
         this.props.location.action === 'PUSH' ||
         this.props.location.action === 'REPLACE') {
+      const location = Object.assign({}, this.props.location, HOME_QUERY);
+
       this.props.clearPetitions();
-      this.props.fetchPetitions({
-        location: this.props.location,
-        params: params
-      });
+      this.props.fetchPetitions({ location });
     }
   },
 
@@ -34,8 +30,11 @@ const HomeContainer = withRouter(React.createClass({
   }
 }));
 
-HomeContainer.fetchData = ({ store, location }) => {
-  return store.dispatch(fetchPetitions({ location, params }));
+HomeContainer.fetchData = (props) => {
+  const { store } = props;
+  const location = Object.assign({}, props.location, HOME_QUERY);
+
+  return store.dispatch(fetchPetitions({ location }));
 };
 
 HomeContainer.propTypes = {
