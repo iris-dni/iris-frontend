@@ -3,7 +3,7 @@ import { Route, IndexRoute, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import App from 'containers/App';
-import Home from 'components/Home';
+import Home from 'containers/Home';
 import LoginPage from 'containers/Login';
 import Logout from 'containers/Logout';
 import Petition from 'containers/Petition';

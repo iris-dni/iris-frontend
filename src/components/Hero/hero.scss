@@ -1,0 +1,21 @@
+@import 'globals';
+
+.top {
+  position: relative;
+  min-height: 440px;
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}

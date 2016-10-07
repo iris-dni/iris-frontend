@@ -2,7 +2,7 @@ export default (params = {}, query = {}) => ({
   page: parseInt(params.page || 1),
   city: params.city || '',
   cityName: params.cityName || '',
-  limit: parseInt(query.limit || 12),
+  limit: parseInt(query.limit || params.limit || 12),
   state: query.state || 'current',
-  sort: query.sort || ''
+  sort: query.sort || params.sort || ''
 });

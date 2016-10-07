@@ -1,9 +1,9 @@
 import React from 'react';
-import modules from 'components/Home/modules';
+import MODULES from './modules';
 
 const Home = () => (
   <article>
-    {modules.map((block, index) =>
+    {MODULES.map((block, index) =>
       React.createElement(block.component, Object.assign({}, block.props,
         { key: index }
       ))
