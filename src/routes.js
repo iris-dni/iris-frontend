@@ -25,8 +25,8 @@ export default function (props = {}) {
       <Route path='/' component={App}>
         <IndexRedirect to='/petitions' />
         <Route path='auth/login' component={LoginPage} />
-        <Route path='auth/trust/:action' component={TrustPage} />
         <Route path='auth/logout' component={Logout} />
+        <Route path='trust/support/:id' component={TrustPage} />
         <Route path='petitions'>
           {/* Nest these 3 to support proper `activeClassName` behavior. */}
           <IndexRoute component={Petitions} />
