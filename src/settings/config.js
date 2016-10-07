@@ -290,7 +290,7 @@ export default {
     zip: {
       label: 'Zip code'
     },
-    city: {
+    town: {
       label: 'Town / city'
     },
     email: {

@@ -24,6 +24,7 @@ export function submittingSupport () {
 
 export function supportPetition (trustData, dispatch) {
   dispatch(submittingSupport());
+  console.log(trustData);
   const mockPetitionForNow = { id: trustData.petitionId };
   return petitionRepository.support(trustData)
     .then((response) => {
@@ -31,6 +32,7 @@ export function supportPetition (trustData, dispatch) {
         // THIS WILL BE WHERE WE SHOW THE TAN PAGE
       }
       // THIS IS THE TRUSTED USER FLOW
+      console.log(mockPetitionForNow);
       return dispatch(supportedPetition(mockPetitionForNow));
     }).then((response) => dispatch(
       showModalWindow({

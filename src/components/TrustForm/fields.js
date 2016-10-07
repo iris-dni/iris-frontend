@@ -51,11 +51,11 @@ export default [
   },
   {
     element: 'input',
-    name: 'user.city',
-    label: settings.trustFields.city.label,
-    hint: settings.trustFields.city.hint,
+    name: 'user.town',
+    label: settings.trustFields.town.label,
+    hint: settings.trustFields.town.hint,
     html: {
-      placeholder: settings.trustFields.city.placeholder,
+      placeholder: settings.trustFields.town.placeholder,
       required: true
     }
   },

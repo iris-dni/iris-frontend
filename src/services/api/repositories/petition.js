@@ -43,9 +43,7 @@ export default {
   },
 
   support: (trustData) => {
-    console.log('SUPPORT');
     const requestPath = path.join('/petitions', trustData.petitionId.toString(), '/event/support');
-    console.log(requestPath);
     return ApiClient.request(requestPath, { data: trustData }, POST);
   },
 
