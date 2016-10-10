@@ -24,16 +24,13 @@ export function submittingSupport () {
 
 export function supportPetition (trustData, dispatch) {
   dispatch(submittingSupport());
-  console.log(trustData);
   const mockPetitionForNow = { id: trustData.petitionId };
   return petitionRepository.support(trustData)
     .then((response) => {
-      console.log('response', response);
       if (isUntrustedUser(response)) {
         // THIS WILL BE WHERE WE SHOW THE TAN PAGE
       }
       // THIS IS THE TRUSTED USER FLOW
-      console.log(mockPetitionForNow);
       return dispatch(supportedPetition(mockPetitionForNow));
     }).then((response) => dispatch(
       showModalWindow({
@@ -42,7 +39,7 @@ export function supportPetition (trustData, dispatch) {
         ...settings.supportPetition.newlySupported.modal
       })
     )).catch((e) => {
-      console.log('error', e);
+      // console.log('error', e);
       return dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
       );
