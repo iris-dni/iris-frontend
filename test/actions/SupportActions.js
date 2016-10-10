@@ -50,7 +50,7 @@ describe('SupportActions', () => {
 
     it('returns function that returns a promise that dispatches supportedPetition() when done', done => {
       result.then(() => {
-        // assert(dispatch.calledWithMatch(supportedPetition({ id: '1BV3l' })));
+        assert(dispatch.calledWithMatch(supportedPetition({ id: mockTrustData.petitionId })));
       }).then(done, done);
     });
   });

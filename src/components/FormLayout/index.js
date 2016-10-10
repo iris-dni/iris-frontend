@@ -9,10 +9,12 @@ const FormLayout = ({ children, title, intro }) => (
   <Container>
     <FormWrapper>
       <Header>
-        <PageTitle
-          title={title}
-          intro={intro}
-        />
+        <div className={styles['form-title-wrapper']}>
+          <PageTitle
+            title={title}
+            intro={intro}
+          />
+        </div>
       </Header>
       <div className={styles.form}>
         {children}
