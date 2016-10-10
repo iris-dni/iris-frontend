@@ -28,6 +28,7 @@ export function supportPetition (trustData, dispatch) {
   const mockPetitionForNow = { id: trustData.petitionId };
   return petitionRepository.support(trustData)
     .then((response) => {
+      console.log('response', response);
       if (isUntrustedUser(response)) {
         // THIS WILL BE WHERE WE SHOW THE TAN PAGE
       }
@@ -40,9 +41,12 @@ export function supportPetition (trustData, dispatch) {
         link: getPetitionURL(mockPetitionForNow.id),
         ...settings.supportPetition.newlySupported.modal
       })
-    )).catch(() => dispatch(
-      showFlashMessage(settings.flashMessages.genericError, 'error')
-    ));
+    )).catch((e) => {
+      console.log('error', e);
+      return dispatch(
+        showFlashMessage(settings.flashMessages.genericError, 'error')
+      );
+    });
 }
 
 export function supportedPetition (petition) {
