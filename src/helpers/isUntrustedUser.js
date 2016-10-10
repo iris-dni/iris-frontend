@@ -1,4 +1,4 @@
 export default (response = {}) => {
   return response.reasons &&
-    response.reasons[0] === 'mobile_untrusted';
+    response.reasons.indexOf('mobile_untrusted') > -1 || false;
 };
