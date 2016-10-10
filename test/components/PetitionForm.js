@@ -3,8 +3,8 @@ import FIELDS from 'components/PetitionForm/fields';
 
 const { assert } = chai;
 
-export const getFieldByNameKey = (name) => {
-  const filteredField = FIELDS.filter(field => field && field.name === name);
+export const getFieldByNameKey = (name, fields = FIELDS) => {
+  const filteredField = fields.filter(field => field && field.name === name);
   return filteredField[0];
 };
 
@@ -42,7 +42,7 @@ describe('PetitionForm', () => {
 
     it('`id` field has `hidden` html attr', () => {
       const result = getFieldByNameKey('id');
-      const actual = result.html && result.html.type;
+      const actual = result.html.type;
       const expected = 'hidden';
 
       assert.equal(actual, expected);

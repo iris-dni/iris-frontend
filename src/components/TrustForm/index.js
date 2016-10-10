@@ -5,14 +5,14 @@ import trustValidator from 'form/trustValidator';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
-import FIELDS from './fields';
+import FIELDS_SUPPORTING from './fieldsForSupporting';
 
 const TrustForm = ({ fields, handleSubmit, submitting }) => (
   <form onSubmit={handleSubmit(supportPetition)}>
     <Fieldset>
       <FormFieldsIterator
         reduxFormFields={fields}
-        fieldsArray={FIELDS}
+        fieldsArray={FIELDS_SUPPORTING}
       />
     </Fieldset>
     <Fieldset modifier={'actions'}>
@@ -40,6 +40,6 @@ export const mapStateToProps = ({ petition, me }) => ({
 
 export default reduxForm({
   form: 'trust',
-  fields: FIELDS.map(field => field.name),
+  fields: FIELDS_SUPPORTING.map(field => field.name),
   validate: trustValidator
 }, mapStateToProps)(TrustForm);

@@ -31,16 +31,6 @@ export default [
   },
   {
     element: 'input',
-    name: 'user.street',
-    label: settings.trustFields.street.label,
-    hint: settings.trustFields.street.hint,
-    html: {
-      placeholder: settings.trustFields.street.placeholder,
-      required: true
-    }
-  },
-  {
-    element: 'input',
     name: 'user.zip',
     label: settings.trustFields.zip.label,
     hint: settings.trustFields.zip.hint,
@@ -55,8 +45,7 @@ export default [
     label: settings.trustFields.town.label,
     hint: settings.trustFields.town.hint,
     html: {
-      placeholder: settings.trustFields.town.placeholder,
-      required: true
+      placeholder: settings.trustFields.town.placeholder
     }
   },
   {
@@ -66,8 +55,7 @@ export default [
     hint: settings.trustFields.email.hint,
     html: {
       type: 'email',
-      placeholder: settings.trustFields.email.placeholder,
-      required: true
+      placeholder: settings.trustFields.email.placeholder
     }
   },
   {
