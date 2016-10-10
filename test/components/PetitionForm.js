@@ -17,6 +17,37 @@ describe('PetitionForm', () => {
       assert.equal(actual, expected);
     });
 
+    it('contains `id` field object', () => {
+      const result = getFieldByNameKey('id');
+      const actual = result.name;
+      const expected = 'id';
+
+      assert.equal(actual, expected);
+    });
+
+    it('`id` field is an input', () => {
+      const result = getFieldByNameKey('id');
+      const actual = result.element;
+      const expected = 'input';
+
+      assert.equal(actual, expected);
+    });
+
+    it('`id` field is hidden', () => {
+      const result = getFieldByNameKey('id');
+      const actual = result.hidden;
+
+      assert.isTrue(actual);
+    });
+
+    it('`id` field has `hidden` html attr', () => {
+      const result = getFieldByNameKey('id');
+      const actual = result.html && result.html.type;
+      const expected = 'hidden';
+
+      assert.equal(actual, expected);
+    });
+
     it('contains `title` field object', () => {
       const result = getFieldByNameKey('title');
       const actual = result.name;
@@ -173,6 +204,38 @@ describe('PetitionForm', () => {
       const result = getFieldByNameKey('city');
       const actual = typeof result.getFormValue;
       const expected = 'function';
+      assert.equal(actual, expected);
+    });
+
+    it('contains `links` field object', () => {
+      const result = getFieldByNameKey('links');
+      const actual = result.name;
+      const expected = 'links';
+
+      assert.equal(actual, expected);
+    });
+
+    it('`links` field is an PetitionLinksField', () => {
+      const result = getFieldByNameKey('links');
+      const actual = result.element;
+      const expected = 'PetitionLinksField';
+
+      assert.equal(actual, expected);
+    });
+
+    it('`links` field is optional', () => {
+      const result = getFieldByNameKey('links');
+      const actual = !result.html.required;
+      const expected = true;
+
+      assert.equal(actual, expected);
+    });
+
+    it('`city` field has a `maxLinks` of 3', () => {
+      const result = getFieldByNameKey('links');
+      const actual = result.maxLinks;
+      const expected = 3;
+
       assert.equal(actual, expected);
     });
   });
