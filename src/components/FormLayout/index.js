@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './edit-petition.scss';
+import styles from './form-layout.scss';
 import Container from 'components/Container';
 import FormWrapper from 'components/FormWrapper';
 import Header from 'components/Header';
