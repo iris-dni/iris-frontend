@@ -1,4 +1,6 @@
 import React from 'react';
+import settings from 'settings';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { fetchPetitions, clearPetitions } from 'actions/PetitionsActions';
@@ -25,7 +27,10 @@ const HomeContainer = withRouter(React.createClass({
 
   render () {
     return (
-      <Home {...this.props} />
+      <div>
+        <Helmet title={this.props.title} />
+        <Home {...this.props} />
+      </div>
     );
   }
 }));
@@ -47,7 +52,8 @@ export const mapDispatchToProps = (dispatch) => ({
 });
 
 export const mapStateToProps = ({ petitions }) => ({
-  petitions: getPetitions(petitions.data || [])
+  petitions: getPetitions(petitions.data || []),
+  title: settings.homePage.title
 });
 
 export default connect(
