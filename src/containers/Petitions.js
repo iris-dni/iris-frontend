@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { isEqual } from 'lodash/lang';
 import getPetitionsPageTitle from 'helpers/getPetitionsPageTitle';
+import isClientSideRouting from 'helpers/isClientSideRouting';
 import {
   fetchPetitions,
   clearPetitions,
@@ -18,9 +19,7 @@ const PetitionsContainer = withRouter(React.createClass({
   componentWillMount () {
     // If there are no petitions, or if the user arrived on the page by clicking
     // a client-side router link, then we fetch petitions client-side.
-    if (!this.props.petitions.length ||
-        this.props.location.action === 'PUSH' ||
-        this.props.location.action === 'REPLACE') {
+    if (!this.props.petitions.length || isClientSideRouting(this.props.location)) {
       this.props.clearPetitions();
       this.props.fetchPetitionsAndCity(this.props);
     }

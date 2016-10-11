@@ -7,6 +7,7 @@ import { fetchPetitions, clearPetitions } from 'actions/PetitionsActions';
 import Home from 'components/Home';
 import getPetitions from 'selectors/petitions';
 import getPetitionsHomeQuery from 'selectors/petitionsHomeQuery';
+import isClientSideRouting from 'helpers/isClientSideRouting';
 
 const HOME_QUERY = getPetitionsHomeQuery({ limit: 3 });
 
@@ -15,9 +16,7 @@ const HomeContainer = withRouter(React.createClass({
   componentWillMount () {
     // If there are no petitions, or if the user arrived on the page by clicking
     // a client-side router link, then we fetch petitions client-side.
-    if (!this.props.petitions.length ||
-        this.props.location.action === 'PUSH' ||
-        this.props.location.action === 'REPLACE') {
+    if (!this.props.petitions.length || isClientSideRouting(this.props.location)) {
       const location = Object.assign({}, this.props.location, HOME_QUERY);
 
       this.props.clearPetitions();
