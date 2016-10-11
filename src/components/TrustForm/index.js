@@ -31,11 +31,12 @@ TrustForm.propTypes = {
   submitting: React.PropTypes.bool.isRequired
 };
 
-export const mapStateToProps = ({ petition, me }) => ({
+export const mapStateToProps = ({ petition, me, trust }) => ({
   initialValues: {
     petitionId: petition.id,
     user: me || {}
-  }
+  },
+  submitting: trust.isSubmitting
 });
 
 export default reduxForm({
