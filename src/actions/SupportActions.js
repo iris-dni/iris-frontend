@@ -1,12 +1,15 @@
 import petitionRepository from 'services/api/repositories/petition';
 import getPetitionURL from 'helpers/getPetitionURL';
-import isUntrustedUser from 'helpers/isUntrustedUser';
+import isTrustedUser from 'helpers/isTrustedUser';
+import { receiveWhoAmI } from 'actions/AuthActions';
+import {
+  userIsTrusted,
+  userIsUntrusted,
+  submittingTrust
+} from 'actions/TrustActions';
 import settings from 'settings';
 
-import {
-  SUBMITTING_SUPPORT,
-  SUPPORTED_PETITION
-} from './actionTypes';
+import { SUPPORTED_PETITION } from './actionTypes';
 
 import {
   showFlashMessage
@@ -16,34 +19,35 @@ import {
   showModalWindow
 } from './ModalActions';
 
-export function submittingSupport () {
-  return {
-    type: SUBMITTING_SUPPORT
-  };
-}
-
 export function supportPetition (trustData, dispatch) {
-  dispatch(submittingSupport());
-  const mockPetitionForNow = { id: trustData.petitionId };
+  const { petitionId, user } = trustData;
+  // Set trust as submitting
+  dispatch(submittingTrust(petitionId));
+  // Add submitted user data to me object for future
+  dispatch(receiveWhoAmI(user));
+  // Trigger support action
   return petitionRepository.support(trustData)
     .then((response) => {
-      if (isUntrustedUser(response)) {
-        // THIS WILL BE WHERE WE SHOW THE TAN PAGE
+      if (isTrustedUser(response)) {
+        // When the user is trusted
+        dispatch(userIsTrusted());
+        // Set petition as supported
+        dispatch(supportedPetition(response.data));
+        // Dispatch modal confirmation
+        dispatch(
+          showModalWindow({
+            type: 'supported',
+            link: getPetitionURL(petitionId),
+            ...settings.supportPetition.newlySupported.modal
+          })
+        );
+      } else {
+        // When the user is untrusted
+        dispatch(userIsUntrusted());
       }
-      // THIS IS THE TRUSTED USER FLOW
-      return dispatch(supportedPetition(mockPetitionForNow));
-    }).then((response) => dispatch(
-      showModalWindow({
-        type: 'supported',
-        link: getPetitionURL(mockPetitionForNow.id),
-        ...settings.supportPetition.newlySupported.modal
-      })
-    )).catch((e) => {
-      // console.log('error', e);
-      return dispatch(
-        showFlashMessage(settings.flashMessages.genericError, 'error')
-      );
-    });
+    }).catch((e) => dispatch(
+      showFlashMessage(settings.flashMessages.genericError, 'error')
+    ));
 }
 
 export function supportedPetition (petition) {
