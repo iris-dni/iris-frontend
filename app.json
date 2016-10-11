@@ -9,6 +9,9 @@
     "BASE_URL": {
       "required": true
     },
+    "SITE_NAME": {
+      "required": true
+    },
     "SSO_PROVIDER_TEXT": {
       "required": true
     },
