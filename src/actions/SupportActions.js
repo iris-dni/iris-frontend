@@ -20,11 +20,11 @@ import {
 } from './ModalActions';
 
 export function supportPetition (trustData, dispatch) {
-  const { petitionId } = trustData;
+  const { petitionId, user } = trustData;
   // Set trust as submitting
   dispatch(submittingTrust(petitionId));
   // Add submitted user data to me object for future
-  dispatch(receiveWhoAmI(trustData.user));
+  dispatch(receiveWhoAmI(user));
   // Trigger support action
   return petitionRepository.support(trustData)
     .then((response) => {
