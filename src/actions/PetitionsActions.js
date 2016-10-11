@@ -1,6 +1,7 @@
 import petitionRepository from 'services/api/repositories/petition';
 import getPetitionsQueryParams from 'helpers/getPetitionsQueryParams';
 import getPetitionsQueryString from 'helpers/getPetitionsQueryString';
+import getHomePagePetitionsQuery from 'helpers/getHomePagePetitionsQuery';
 
 import { fetchCity } from 'actions/CityActions';
 
@@ -31,6 +32,13 @@ export function fetchPetitions ({ location, params }) {
         queryString
       )));
   };
+}
+
+export function fetchLatestPetitions (props = {}) {
+  const sortQuery = getHomePagePetitionsQuery();
+  const location = Object.assign({}, props.location, sortQuery);
+
+  return (dispatch) => dispatch(fetchPetitions({ location }));
 }
 
 export function fetchPetitionsAndCity ({ location, params }) {

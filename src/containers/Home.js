@@ -2,25 +2,19 @@ import React from 'react';
 import settings from 'settings';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { fetchPetitions, clearPetitions } from 'actions/PetitionsActions';
+import { fetchLatestPetitions, clearPetitions } from 'actions/PetitionsActions';
 import Home from 'components/Home';
 import getPetitions from 'selectors/petitions';
-import getPetitionsHomeQuery from 'selectors/petitionsHomeQuery';
 import isClientSideRouting from 'helpers/isClientSideRouting';
 
-const HOME_QUERY = getPetitionsHomeQuery({ limit: 3 });
-
-const HomeContainer = withRouter(React.createClass({
+const HomeContainer = React.createClass({
 
   componentWillMount () {
     // If there are no petitions, or if the user arrived on the page by clicking
     // a client-side router link, then we fetch petitions client-side.
     if (!this.props.petitions.length || isClientSideRouting(this.props.location)) {
-      const location = Object.assign({}, this.props.location, HOME_QUERY);
-
       this.props.clearPetitions();
-      this.props.fetchPetitions({ location });
+      this.props.fetchLatestPetitions(this.props);
     }
   },
 
@@ -32,13 +26,12 @@ const HomeContainer = withRouter(React.createClass({
       </div>
     );
   }
-}));
+});
 
 HomeContainer.fetchData = (props) => {
   const { store } = props;
-  const location = Object.assign({}, props.location, HOME_QUERY);
 
-  return store.dispatch(fetchPetitions({ location }));
+  return store.dispatch(fetchLatestPetitions(props));
 };
 
 HomeContainer.propTypes = {
@@ -46,7 +39,7 @@ HomeContainer.propTypes = {
 };
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchPetitions: (options) => dispatch(fetchPetitions(options)),
+  fetchLatestPetitions: (options) => dispatch(fetchLatestPetitions(options)),
   clearPetitions: () => dispatch(clearPetitions())
 });
 

@@ -1,7 +1,7 @@
-export default ({ limit }) => ({
+export default () => ({
   query: {
     state: 'current',
-    limit: limit,
+    limit: 3,
     sort: 'supporters.amount'
   }
 });
