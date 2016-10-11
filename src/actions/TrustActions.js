@@ -4,9 +4,10 @@ import {
   USER_IS_UNTRUSTED
 } from './actionTypes';
 
-export function submittingTrust () {
+export function submittingTrust (petitionId) {
   return {
-    type: SUBMITTING_TRUST
+    type: SUBMITTING_TRUST,
+    petitionId
   };
 }
 

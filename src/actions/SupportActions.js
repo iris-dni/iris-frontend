@@ -1,8 +1,12 @@
 import petitionRepository from 'services/api/repositories/petition';
 import getPetitionURL from 'helpers/getPetitionURL';
-import isUntrustedUser from 'helpers/isUntrustedUser';
+import isTrustedUser from 'helpers/isTrustedUser';
 import { receiveWhoAmI } from 'actions/AuthActions';
-import { userIsUntrusted, submittingTrust } from 'actions/TrustActions';
+import {
+  userIsTrusted,
+  userIsUntrusted,
+  submittingTrust
+} from 'actions/TrustActions';
 import settings from 'settings';
 
 import { SUPPORTED_PETITION } from './actionTypes';
@@ -16,25 +20,30 @@ import {
 } from './ModalActions';
 
 export function supportPetition (trustData, dispatch) {
-  dispatch(submittingTrust());
-  // Add submitted data to me object for future
+  const { petitionId } = trustData;
+  // Set trust as submitting
+  dispatch(submittingTrust(petitionId));
+  // Add submitted user data to me object for future
   dispatch(receiveWhoAmI(trustData.user));
   // Trigger support action
   return petitionRepository.support(trustData)
     .then((response) => {
-      // If the user is untrusted
-      if (isUntrustedUser(response)) {
-        dispatch(userIsUntrusted());
-      } else {
-        // Otherwise, we have supported
+      if (isTrustedUser(response)) {
+        // When the user is trusted
+        dispatch(userIsTrusted());
+        // Set petition as supported
         dispatch(supportedPetition(response.data));
+        // Dispatch modal confirmation
         dispatch(
           showModalWindow({
             type: 'supported',
-            link: getPetitionURL(trustData.petitionId),
+            link: getPetitionURL(petitionId),
             ...settings.supportPetition.newlySupported.modal
           })
         );
+      } else {
+        // When the user is untrusted
+        dispatch(userIsUntrusted());
       }
     }).catch((e) => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')

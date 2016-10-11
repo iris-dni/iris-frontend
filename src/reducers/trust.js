@@ -13,7 +13,8 @@ export default function trust (state = initialState, action) {
   switch (action.type) {
     case SUBMITTING_TRUST:
       return Object.assign({}, state, {
-        isSubmitting: true
+        isSubmitting: true,
+        trustId: action.petitionId
       });
     case USER_IS_TRUSTED:
       return Object.assign({}, state, {
