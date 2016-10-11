@@ -281,6 +281,10 @@ export default {
     title: 'Fill out your details',
     intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   },
+  trustConfirmationPage: {
+    title: 'Confirm your identity',
+    intro: 'Please verify your phone number'
+  },
   trustFields: {
     firstname: {
       label: 'First name'
@@ -305,6 +309,11 @@ export default {
     },
     mobile: {
       label: 'Mobile number'
+    }
+  },
+  trustConfirmationFields: {
+    mobile_token: {
+      label: 'Verification code'
     }
   },
   flashMessages: {
