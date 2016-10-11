@@ -3,7 +3,7 @@ import { reduxForm } from 'redux-form';
 import { createPetition, updatePetition } from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
 import Fieldset from 'components/Fieldset';
-import FormField from 'components/FormField';
+import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
 import settings from 'settings';
 import FIELDS from './fields';
@@ -13,13 +13,10 @@ const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting })
     ? updatePetition
     : createPetition)}>
     <Fieldset>
-      {FIELDS.map(field => (
-        <FormField
-          key={field.name}
-          config={field}
-          helper={fields[field.name]}
-        />
-      ))}
+      <FormFieldsIterator
+        reduxFormFields={fields}
+        fieldsArray={FIELDS}
+      />
     </Fieldset>
     <Fieldset modifier={'actions'}>
       <Button
@@ -44,7 +41,7 @@ export const mapStateToProps = ({ openGraph }) => ({
 });
 
 export default reduxForm({
-  form: 'simple',
+  form: 'petition',
   fields: FIELDS.map(field => field.name),
   validate: petitionValidator,
   // Initialize links field as an array so that we can push values into it later

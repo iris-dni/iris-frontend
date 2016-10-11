@@ -3,10 +3,14 @@
 .root {
   background-color: color('grey-lighter');
   padding: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
-h2 {
+.anchor {
+  margin-top: 10px;
+}
+
+.title {
   font-size: 16px;
   margin-bottom: 10px;
 }
@@ -19,6 +23,6 @@ h2 {
 
 .icon {
   margin-right: 0.625em;
-  margin-top: 0.3em;
+  margin-top: 1px;
   color: color('primary');
 }

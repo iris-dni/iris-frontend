@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './share-modal.scss';
 import ModalIntro from 'components/ModalIntro';
-import Link from 'components/Link';
+import CopyPetitionLink from 'components/CopyPetitionLink';
 import TextCenter from 'components/TextCenter';
 
 const ShareModal = ({ title, intro, link, href }) => (
@@ -12,7 +12,7 @@ const ShareModal = ({ title, intro, link, href }) => (
     />
     <TextCenter>
       <span className={styles.link}>
-        <Link href={href} text={link} />
+        <CopyPetitionLink url={link} />
       </span>
     </TextCenter>
   </div>

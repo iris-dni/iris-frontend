@@ -13,14 +13,14 @@ const PetitionResponse = ({ cityResponse }) => {
 
   return (
     <article className={styles.root} id='response'>
-      <div className={styles.top}>
+      <header className={styles.top}>
         <span className={styles.icon}>
           <Icon id='Note' size='small' />
         </span>
         <Heading2
           text={settings.petitionPage.cityResponse}
         />
-      </div>
+      </header>
       <MarkdownParagraph text={cityResponse.text} />
       <Paragraph text={cityResponse.name} />
     </article>
