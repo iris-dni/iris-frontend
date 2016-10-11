@@ -6,6 +6,7 @@ import { fetchGroupedPetitions, clearPetitions } from 'actions/PetitionsActions'
 import Home from 'components/Home';
 import getPetitionsGroups from 'selectors/petitionsGroups';
 import isClientSideRouting from 'helpers/isClientSideRouting';
+import hasPetitionGroups from 'helpers/hasPetitionGroups';
 import getPetitionsGroupsList from 'helpers/getPetitionsGroupsList';
 
 const PETITIONS_GROUPS = getPetitionsGroupsList();
@@ -15,7 +16,7 @@ const HomeContainer = React.createClass({
   componentWillMount () {
     // If there are no petitions, or if the user arrived on the page by clicking
     // a client-side router link, then we fetch petitions client-side.
-    if (!this.props.petitions.latest.length || isClientSideRouting(this.props.location)) {
+    if (!hasPetitionGroups(this.props.petitions) || isClientSideRouting(this.props.location)) {
       this.props.clearPetitions();
       this.props.fetchGroupedPetitions(this.props, PETITIONS_GROUPS);
     }
