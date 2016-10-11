@@ -47,13 +47,6 @@ export function fetchGroupedPetitions (props = {}, groups = []) {
   };
 }
 
-export function fetchLatestPetitions (props = {}) {
-  const sortQuery = getHomePagePetitionsQuery();
-  const location = Object.assign({}, props.location, sortQuery);
-
-  return (dispatch) => dispatch(fetchPetitions({ location }));
-}
-
 export function fetchPetitionsAndCity ({ location, params }) {
   return (dispatch) => Promise.all([
     dispatch(fetchPetitions({ location, params })),
