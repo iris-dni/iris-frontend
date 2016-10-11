@@ -1,7 +1,5 @@
-/* global CustomEvent */
 import React from 'react';
-import { Route, IndexRoute, Router, IndexRedirect, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { Route, IndexRoute, Router, IndexRedirect } from 'react-router';
 import ReactGA from 'react-ga';
 
 import settings from 'settings';
@@ -14,38 +12,19 @@ import NewPetition from 'containers/NewPetition';
 import EditPetition from 'containers/EditPetition';
 import PublishedPetition from 'containers/PublishedPetition';
 import RespondToPetition from 'containers/RespondToPetition';
-
-const pageviewEvent = __CLIENT__ &&
-  typeof CustomEvent !== 'undefined' && // Required as it’s not defined during tests.
-  new CustomEvent('IRIS_pageview');
-const ga = settings.ga;
-
-const logPageView = () => {
-  if (__CLIENT__) {
-    const pathname = window.location.pathname;
-
-    if (ga.APIKey) {
-      ReactGA.set({ page: pathname });
-      ReactGA.pageview(pathname);
-    }
-
-    window.dispatchEvent(pageviewEvent);
-  }
-};
+import getHistory from 'helpers/getHistory';
+import logPageview from 'helpers/logPageview';
 
 export default function (props = {}) {
-  let history = browserHistory;
+  const history = getHistory(props.store);
+  const { ga } = settings;
 
-  if (props.store) {
-    history = syncHistoryWithStore(browserHistory, props.store);
-  }
-
-  if (ga.APIKey) {
+  if (ga.APIKey.length) {
     ReactGA.initialize(ga.APIKey, ga.initOptions);
   }
 
   return (
-    <Router history={history} onUpdate={logPageView}>
+    <Router history={history} onUpdate={logPageview}>
       <Route path='/' component={App}>
         <IndexRedirect to='/petitions' />
         <Route path='auth/login' component={LoginPage} />
