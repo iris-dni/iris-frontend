@@ -12,7 +12,7 @@ const HomepagePetitions = ({ petitions, title }) => (
         <TextCenter>
           <Heading2 text={title} />
         </TextCenter>
-        <TeaserGrid petitions={petitions} />
+        <TeaserGrid petitions={petitions.latest} />
       </Container>
     </Section>
   </section>
