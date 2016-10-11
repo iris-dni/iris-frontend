@@ -87,3 +87,16 @@ describe('GET a not defined route', () => {
       });
   });
 });
+
+describe('GET /trust/support/:id', () => {
+  it('responds with 200', done => {
+    server.injectThen('/trust/support/1BV3l')
+      .then(response => {
+        const actual = response.statusCode;
+        const expected = 200;
+
+        assert.equal(actual, expected);
+        done();
+      });
+  });
+});

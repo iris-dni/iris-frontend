@@ -42,9 +42,9 @@ export default {
     return ApiClient.request(requestPath, null, POST);
   },
 
-  support: (petition) => {
-    const requestPath = path.join('/petitions', petition.id.toString(), '/event/support');
-    return ApiClient.request(requestPath, {}, POST);
+  support: (trustData) => {
+    const requestPath = path.join('/petitions', trustData.petitionId.toString(), '/event/support');
+    return ApiClient.request(requestPath, { data: trustData }, POST);
   },
 
   respond: (response) => {

@@ -141,13 +141,13 @@ describe('petition repository', () => {
   });
 
   describe('support', () => {
-    let examplePetition = { id: exampleId, title: exampleTitle };
+    let exampleTrustData = { petitionId: exampleId, user: {} };
     let expectedPathArgument = `/petitions/${exampleId}/event/support`;
-    let expectedDataArgument = {};
+    let expectedDataArgument = { data: exampleTrustData };
     let expectedMethodArgument = 'POST';
 
     it('calls the API client with proper arguments', () => {
-      petitionRepository.support(examplePetition);
+      petitionRepository.support(exampleTrustData);
 
       assert(ApiClient.request.calledWith(
         expectedPathArgument,
