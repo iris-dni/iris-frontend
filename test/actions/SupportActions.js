@@ -5,22 +5,20 @@ import mockPetition from '../mocks/petition';
 import mockUser from '../mocks/user';
 
 import {
-  submittingSupport,
   supportPetition,
   supportedPetition
 } from 'actions/SupportActions';
 
+import {
+  submittingTrust,
+  userIsUntrusted
+} from 'actions/TrustActions';
+
+import {
+  receiveWhoAmI
+} from 'actions/AuthActions';
+
 describe('SupportActions', () => {
-  describe('submittingSupport', () => {
-    it('returns SUBMITTING_SUPPORT action', () => {
-      const result = submittingSupport();
-      const actual = result.type;
-      const expected = 'SUBMITTING_SUPPORT';
-
-      assert.equal(actual, expected);
-    });
-  });
-
   describe('supportPetition', () => {
     let dispatch;
     let result;
@@ -44,14 +42,20 @@ describe('SupportActions', () => {
       moxios.uninstall();
     });
 
-    it('dispatches submittingSupport()', () => {
-      assert(dispatch.calledWith(submittingSupport()));
+    it('dispatches submittingTrust() with the petition id', () => {
+      assert(dispatch.calledWith(submittingTrust(mockTrustData.petitionId)));
     });
 
-    it('returns function that returns a promise that dispatches supportedPetition() when done', done => {
-      result.then(() => {
-        assert(dispatch.calledWithMatch(supportedPetition({ id: mockTrustData.petitionId })));
-      }).then(done, done);
+    it('dispatches receiveWhoAmI() with passed user', () => {
+      assert(dispatch.calledWith(receiveWhoAmI(mockUser)));
+    });
+
+    context('when user is untrusted', () => {
+      it('dispatches userIsUntrusted()', done => {
+        result.then(() => {
+          assert(dispatch.calledWithMatch(userIsUntrusted()));
+        }).then(done, done);
+      });
     });
   });
 

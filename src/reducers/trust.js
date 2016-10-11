@@ -1,7 +1,8 @@
 import {
   SUBMITTING_TRUST,
   USER_IS_TRUSTED,
-  USER_IS_UNTRUSTED
+  USER_IS_UNTRUSTED,
+  FINISHED_TRUST
 } from 'actions/actionTypes';
 
 const initialState = {
@@ -15,6 +16,10 @@ export default function trust (state = initialState, action) {
       return Object.assign({}, state, {
         isSubmitting: true,
         trustId: action.petitionId
+      });
+    case FINISHED_TRUST:
+      return Object.assign({}, state, {
+        trustId: false
       });
     case USER_IS_TRUSTED:
       return Object.assign({}, state, {
