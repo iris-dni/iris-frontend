@@ -10,11 +10,11 @@ describe('trustParams selector', () => {
     assert.isTrue(actual);
   });
 
-  it('returns `trustId` key', () => {
+  it('returns `petitionId` key', () => {
     const result = getTrustParams({
-      trustId: '1234'
+      petitionId: '1234'
     });
-    const actual = result.hasOwnProperty('trustId');
+    const actual = result.hasOwnProperty('petitionId');
     assert.isTrue(actual);
   });
 });

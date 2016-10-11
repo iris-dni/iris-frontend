@@ -8,11 +8,11 @@ describe('trust reducer', () => {
       isSubmitting: false
     }, {
       type: 'SUBMITTING_TRUST',
-      petitionId: mockPetition.id
+      petitionId: mockPetition.data.id
     });
     const expected = {
       isSubmitting: true,
-      trustId: mockPetition.id
+      petitionId: mockPetition.data.id
     };
 
     assert.deepEqual(actual, expected);

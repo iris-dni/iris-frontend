@@ -10,7 +10,7 @@ import {
 describe('TrustActions', () => {
   describe('submittingTrust', () => {
     it('returns RECEIVE_PETITION action', () => {
-      const result = submittingTrust(mockPetition.id);
+      const result = submittingTrust(mockPetition.data.id);
       const actual = result.type;
       const expected = 'SUBMITTING_TRUST';
 
@@ -18,9 +18,9 @@ describe('TrustActions', () => {
     });
 
     it('passes petition id', () => {
-      const result = submittingTrust(mockPetition.id);
+      const result = submittingTrust(mockPetition.data.id);
       const actual = result.petitionId;
-      const expected = mockPetition.id;
+      const expected = mockPetition.data.id;
 
       assert.deepEqual(actual, expected);
     });

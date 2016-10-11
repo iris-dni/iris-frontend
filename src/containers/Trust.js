@@ -13,11 +13,11 @@ const TrustContainer = withRouter(React.createClass({
     const {
       router,
       petition,
-      trustId,
+      petitionId,
       isTrustedUser
     } = nextProps;
     // If we have submitted trust for the given petition
-    if (trustId === petition.id) {
+    if (petitionId === petition.id) {
       router.push(isTrustedUser
         ? getPetitionPath(petition)
         : `/trust/support/${petition.id}/confirm`
