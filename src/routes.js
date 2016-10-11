@@ -6,6 +6,7 @@ import App from 'containers/App';
 import Home from 'containers/Home';
 import LoginPage from 'containers/Login';
 import Logout from 'containers/Logout';
+import TrustPage from 'containers/Trust';
 import Petition from 'containers/Petition';
 import Petitions from 'containers/Petitions';
 import NewPetition from 'containers/NewPetition';
@@ -26,6 +27,7 @@ export default function (props = {}) {
         <IndexRoute component={Home} />
         <Route path='auth/login' component={LoginPage} />
         <Route path='auth/logout' component={Logout} />
+        <Route path='trust/support/:id' component={TrustPage} />
         <Route path='petitions'>
           {/* Nest these 3 to support proper `activeClassName` behavior. */}
           <IndexRoute component={Petitions} />

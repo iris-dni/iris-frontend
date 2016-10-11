@@ -1,18 +1,10 @@
 import React from 'react';
-import ModalTrigger from 'containers/ModalTrigger';
+import ButtonLink from 'components/ButtonLink';
 import settings from 'settings';
 
-const modal = {
-  ...settings.petitionPage.supportButton.modal,
-  type: 'auth'
-};
-
-const SupportButton = ({ petition, supportPetition }) => (
-  <ModalTrigger
-    authenticating
-    modal={modal}
-    onClick={() => supportPetition(petition)}
-    href={`/petitions/${petition.id}?intent=support`}
+const SupportButton = ({ petition }) => (
+  <ButtonLink
+    href={`/trust/support/${petition.id}`}
     text={settings.petitionPage.supportButton.text}
     block
     modifier={'accent'}
