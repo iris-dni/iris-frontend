@@ -2,7 +2,8 @@ import {
   SUBMITTING_TRUST,
   USER_IS_TRUSTED,
   USER_IS_UNTRUSTED,
-  FINISHED_TRUST
+  FINISHED_TRUST,
+  NEW_TRUST_STEP
 } from './actionTypes';
 
 export function submittingTrust (petitionId) {
@@ -27,6 +28,12 @@ export function userIsUntrusted () {
 export function finishedTrust () {
   return {
     type: FINISHED_TRUST
+  };
+}
+
+export function newTrustStep () {
+  return {
+    type: NEW_TRUST_STEP
   };
 }
 

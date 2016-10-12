@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchPetition } from 'actions/PetitionActions';
 import { showFlashMessage } from 'actions/FlashActions';
+import { newTrustStep } from 'actions/TrustActions';
 import settings from 'settings';
 import Trust from 'components/Trust';
 import getPetitionPath from 'selectors/petitionPath';
@@ -12,6 +13,7 @@ import trustSubmitted from 'helpers/trustSubmitted';
 
 const TrustContainer = withRouter(React.createClass({
   componentWillMount () {
+    this.props.newTrustStep();
     // const { router, petition, showFlashMessage } = this.props;
     // If a petition is not supportable, redirect to petition page
     // if (!petition.isSupportable) {
@@ -20,8 +22,13 @@ const TrustContainer = withRouter(React.createClass({
     // }
   },
 
+  componentWillUnmount () {
+    this.props.newTrustStep();
+  },
+
   componentWillUpdate (nextProps) {
     const { router, petition, trustSubmitted, isTrustedUser } = nextProps;
+    console.log('update', trustSubmitted);
     // If we have submitted trust for the given petition
     if (trustSubmitted) {
       router.push(
@@ -55,7 +62,8 @@ export const mapStateToProps = ({ petition, trust, me }) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  showFlashMessage: (message, type) => dispatch(showFlashMessage(message, type))
+  showFlashMessage: (message, type) => dispatch(showFlashMessage(message, type)),
+  newTrustStep: () => dispatch(newTrustStep())
 });
 
 TrustContainer.propTypes = {

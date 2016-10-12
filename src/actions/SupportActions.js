@@ -6,7 +6,8 @@ import { receiveWhoAmI } from 'actions/AuthActions';
 import {
   userIsTrusted,
   userIsUntrusted,
-  submittingTrust
+  submittingTrust,
+  finishedTrust
 } from 'actions/TrustActions';
 
 import settings from 'settings';
@@ -33,6 +34,7 @@ const supportPetitionSuccess = (id, data, dispatch) => {
       ...settings.supportPetition.newlySupported.modal
     })
   );
+  dispatch(finishedTrust());
 };
 
 const supportPetitionErrors = (response, dispatch) => {
@@ -46,6 +48,7 @@ const supportPetitionErrors = (response, dispatch) => {
     // All other errors
     dispatch(showFlashMessage(settings.flashMessages.genericError, 'error'));
   }
+  dispatch(finishedTrust());
 };
 
 export function supportPetition (trustData, dispatch) {
