@@ -38,4 +38,11 @@ describe('settings merge', () => {
 
     assert.deepEqual(actual, expected);
   });
+
+  it('merges deep objects', () => {
+    const actual = merge({ foo: { bar: { baz: { text: 'text' } } } }, { foo: { bar: {} } });
+    const expected = { foo: { bar: { baz: { text: 'text' } } } };
+
+    assert.deepEqual(actual, expected);
+  });
 });
