@@ -11,6 +11,9 @@ import routes from 'routes';
 import stringifyHeadData from 'server/stringifyHeadData';
 import getBundles from 'server/getBundles';
 
+// Needed to prefix pageview events for analytics.
+const SITE_NAME = process.env.SITE_NAME;
+
 export default (request, reply, next) => {
   match({ routes: routes(), location: { pathname: request.path, query: request.query } }, (error, redirectLocation, renderProps) => {
     if (redirectLocation) {
@@ -57,7 +60,8 @@ export default (request, reply, next) => {
             reactMarkup: reactString,
             initialState: JSON.stringify(initialState),
             head: stringifyHeadData(headData),
-            bundles: getBundles()
+            bundles: getBundles(),
+            siteName: SITE_NAME
           }));
         })
         .catch((err) => {

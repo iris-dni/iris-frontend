@@ -1,5 +1,6 @@
 export default {
   baseUrl: process.env.BASE_URL,
+  siteName: process.env.SITE_NAME,
   apiUrl: process.env.API_URL,
   themePath: process.env.THEME_PATH,
   ssoProviderText: process.env.SSO_PROVIDER_TEXT,

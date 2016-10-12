@@ -1,7 +1,8 @@
 import React from 'react';
-import { Route, IndexRoute, Router, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import ReactGA from 'react-ga';
+import { Route, IndexRoute, Router } from 'react-router';
 
+import settings from 'settings';
 import App from 'containers/App';
 import Home from 'containers/Home';
 import LoginPage from 'containers/Login';
@@ -13,16 +14,19 @@ import NewPetition from 'containers/NewPetition';
 import EditPetition from 'containers/EditPetition';
 import PublishedPetition from 'containers/PublishedPetition';
 import RespondToPetition from 'containers/RespondToPetition';
+import getHistory from 'helpers/getHistory';
+import logPageview from 'helpers/logPageview';
 
 export default function (props = {}) {
-  let history = browserHistory;
+  const history = getHistory(props.store);
+  const { ga } = settings;
 
-  if (props.store) {
-    history = syncHistoryWithStore(browserHistory, props.store);
+  if (ga.APIKey.length) {
+    ReactGA.initialize(ga.APIKey, ga.initOptions);
   }
 
   return (
-    <Router history={history}>
+    <Router history={history} onUpdate={logPageview}>
       <Route path='/' component={App}>
         <IndexRoute component={Home} />
         <Route path='auth/login' component={LoginPage} />
