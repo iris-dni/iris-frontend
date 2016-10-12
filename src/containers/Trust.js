@@ -8,6 +8,7 @@ import settings from 'settings';
 import Trust from 'components/Trust';
 import getPetitionPath from 'selectors/petitionPath';
 import getTrustPetition from 'selectors/trustPetition';
+import trustSubmitted from 'helpers/trustSubmitted';
 
 const TrustContainer = withRouter(React.createClass({
   componentWillMount () {
@@ -20,12 +21,13 @@ const TrustContainer = withRouter(React.createClass({
   },
 
   componentWillUpdate (nextProps) {
-    const { router, petition, trust } = nextProps;
+    const { router, petition, trustSubmitted, isTrustedUser } = nextProps;
     // If we have submitted trust for the given petition
-    if (petition.id === trust.petitionId && !trust.isSubmitting) {
-      router.push(trust.isTrustedUser
-        ? getPetitionPath(petition)
-        : `/trust/support/${petition.id}/confirm`
+    if (trustSubmitted) {
+      router.push(
+        isTrustedUser
+          ? getPetitionPath(petition)
+          : `/trust/support/${petition.id}/confirm`
       );
     }
   },
@@ -46,9 +48,10 @@ TrustContainer.fetchData = ({ store, params }) => {
 
 export const mapStateToProps = ({ petition, trust, me }) => ({
   petition: getTrustPetition(petition),
-  trust,
-  me,
-  isLoggedIn: me && !!me.id
+  trustSubmitted: trustSubmitted(petition, trust),
+  isTrustedUser: trust.isTrustedUser,
+  isLoggedIn: me && !!me.id,
+  me
 });
 
 export const mapDispatchToProps = (dispatch) => ({
@@ -57,7 +60,8 @@ export const mapDispatchToProps = (dispatch) => ({
 
 TrustContainer.propTypes = {
   petition: React.PropTypes.object.isRequired,
-  trust: React.PropTypes.object.isRequired,
+  trustSubmitted: React.PropTypes.bool.isRequired,
+  isTrustedUser: React.PropTypes.bool.isRequired,
   isLoggedIn: React.PropTypes.bool.isRequired
 };
 
