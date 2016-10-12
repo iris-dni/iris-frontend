@@ -6,7 +6,6 @@ import {
   UPDATED_PETITION,
   RESPONDED_TO_PETITION,
   SUBMITTING_PETITION,
-  SUBMITTING_SUPPORT,
   PUBLISHED_PETITION,
   SUPPORTED_PETITION,
   PETITION_NOT_FOUND
@@ -43,11 +42,6 @@ export default function petition (state = initialState, action) {
         state, action.petition,
         { isLoading: true }
       );
-    case SUBMITTING_SUPPORT:
-      return Object.assign({},
-        state,
-        { isSupporting: true }
-      );
     case PUBLISHED_PETITION:
       return Object.assign({},
         state, action.petition, {
@@ -58,8 +52,7 @@ export default function petition (state = initialState, action) {
     case SUPPORTED_PETITION:
       return Object.assign({},
         state, action.petition, {
-          hasSupported: true,
-          isSupporting: false
+          hasSupported: true
         }
       );
     case PETITION_NOT_FOUND:
