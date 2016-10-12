@@ -7,6 +7,7 @@ import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
 import FIELDS from './fields';
 import { supportPetition } from 'actions/SupportActions';
+import trustForm from 'selectors/trustForm';
 
 const TrustConfirmationForm = ({ fields, handleSubmit, submitting, me }) => (
   <form onSubmit={handleSubmit((values, dispatch) => supportPetition(
@@ -31,16 +32,11 @@ const TrustConfirmationForm = ({ fields, handleSubmit, submitting, me }) => (
 TrustConfirmationForm.propTypes = {
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
+  me: React.PropTypes.object.isRequired,
   submitting: React.PropTypes.bool.isRequired
 };
 
-export const mapStateToProps = ({ petition, me, trust }) => ({
-  me,
-  initialValues: {
-    petitionId: petition.id
-  },
-  submitting: trust.isSubmitting
-});
+export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, me, trust);
 
 export default reduxForm({
   form: 'trustConfirmation',

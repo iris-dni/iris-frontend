@@ -8,6 +8,7 @@ import {
   userIsUntrusted,
   submittingTrust
 } from 'actions/TrustActions';
+
 import settings from 'settings';
 
 import { SUPPORTED_PETITION } from './actionTypes';
@@ -34,6 +35,19 @@ const supportPetitionSuccess = (id, data, dispatch) => {
   );
 };
 
+const supportPetitionErrors = (response, dispatch) => {
+  if (isUntrustedUser(response)) {
+    // When the user is untrusted
+    dispatch(userIsUntrusted());
+  } else if (isInvalidVerification(response)) {
+    // When the verification code is invalid
+    dispatch(showFlashMessage(settings.flashMessages.invalidVerificationError, 'error'));
+  } else {
+    // All other errors
+    dispatch(showFlashMessage(settings.flashMessages.genericError, 'error'));
+  }
+};
+
 export function supportPetition (trustData, dispatch) {
   const { petitionId, user } = trustData;
   // Set trust as submitting
@@ -43,17 +57,14 @@ export function supportPetition (trustData, dispatch) {
   // Trigger support action
   return petitionRepository.support(trustData)
     .then((response) => {
-      if (isUntrustedUser(response)) {
-        // When the user is untrusted
-        dispatch(userIsUntrusted());
-      } else if (isInvalidVerification(response)) {
-        // When the code is invalid
-        dispatch(
-          showFlashMessage(settings.flashMessages.genericError, 'error')
-        );
-      } else {
-        // Otherwise, successfully submitted
-        supportPetitionSuccess(petitionId, response.data, dispatch);
+      switch (response.status) {
+        case 'ok':
+          // Successful support
+          supportPetitionSuccess(petitionId, response.data, dispatch);
+          break;
+        case 'error':
+          // Error given
+          supportPetitionErrors(response, dispatch);
       }
     }).catch((e) => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')

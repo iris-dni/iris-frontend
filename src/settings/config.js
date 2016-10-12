@@ -321,7 +321,10 @@ export default {
     petitionCreated: 'Great, your petition was created!',
     petitionPublished: 'Great, your petition was published!',
     petitionUpdated: 'Your petition was updated',
-    petitionSupported: 'Thank you for signing this petition!'
+    petitionSupported: 'Thank you for signing this petition!',
+    invalidVerificationError: 'Invalid verification code',
+    invalidUserDataError: 'Complete your details to support this petition',
+    noLongerSupportable: 'This petition is no longer supportable'
   },
   logo: 'IRIS',
   navigationLinks: [

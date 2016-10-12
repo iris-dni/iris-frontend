@@ -6,6 +6,7 @@ import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
 import FIELDS_SUPPORTING from './fieldsForSupporting';
+import trustForm from 'selectors/trustForm';
 
 const TrustForm = ({ fields, handleSubmit, submitting }) => (
   <form onSubmit={handleSubmit(supportPetition)}>
@@ -31,13 +32,7 @@ TrustForm.propTypes = {
   submitting: React.PropTypes.bool.isRequired
 };
 
-export const mapStateToProps = ({ petition, me, trust }) => ({
-  initialValues: {
-    petitionId: petition.id,
-    user: me || {}
-  },
-  submitting: trust.isSubmitting
-});
+export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, me, trust);
 
 export default reduxForm({
   form: 'trust',

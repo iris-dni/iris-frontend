@@ -3,14 +3,27 @@ import Helmet from 'react-helmet';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchPetition } from 'actions/PetitionActions';
+import { showFlashMessage } from 'actions/FlashActions';
 import settings from 'settings';
 import TrustConfirmation from 'components/TrustConfirmation';
+import getPetitionPath from 'selectors/petitionPath';
+import getTrustPetition from 'selectors/trustPetition';
+import hasValidUserData from 'helpers/hasValidUserData';
 
 const TrustConfirmationContainer = withRouter(React.createClass({
   componentWillMount () {
-    const { router, petition, hasValidMeData } = this.props;
-    if (!hasValidMeData) {
-      router.push(`/trust/support/${petition.id}`);
+    // const { router, petition, hasValidUserData, showFlashMessage } = this.props;
+    // if (!hasValidUserData) {
+    //   showFlashMessage(settings.flashMessages.invalidUserDataError, 'error');
+    //   router.push(`/trust/support/${petition.id}`);
+    // }
+  },
+
+  componentWillUpdate (nextProps) {
+    const { router, petition, trust } = nextProps;
+    // If we have submitted trust successfully for the given petition
+    if (petition.id === trust.petitionId && !trust.isSubmitting && trust.isTrustedUser) {
+      router.push(getPetitionPath(petition));
     }
   },
 
@@ -28,20 +41,22 @@ TrustConfirmationContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetition(params.id));
 };
 
-const hasValidMeData = (me) => {
-  return me && !!me.mobile && !!me.firstname && !!me.lastname && !!me.zip;
-};
+export const mapStateToProps = ({ petition, trust, me }) => ({
+  petition: getTrustPetition(petition),
+  trust,
+  hasValidUserData: hasValidUserData(me)
+});
 
-export const mapStateToProps = ({ me, petition, trust }) => ({
-  petition,
-  hasValidMeData: hasValidMeData(me)
+export const mapDispatchToProps = (dispatch) => ({
+  showFlashMessage: (message, type) => dispatch(showFlashMessage(message, type))
 });
 
 TrustConfirmationContainer.propTypes = {
   petition: React.PropTypes.object.isRequired,
-  hasValidMeData: React.PropTypes.bool.isRequired
+  hasValidUserData: React.PropTypes.bool.isRequired
 };
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(TrustConfirmationContainer);
