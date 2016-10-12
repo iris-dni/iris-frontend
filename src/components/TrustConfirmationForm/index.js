@@ -1,19 +1,17 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import { supportPetition } from 'actions/SupportActions';
 import trustConfirmationValidator from 'form/trustConfirmationValidator';
+import assignUserData from 'form/assignUserData';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
 import FIELDS from './fields';
-
-const supportWithUserData = (data, dispatch) => {
-  const userData = Object.assign({}, data);
-  return supportPetition(userData, dispatch);
-};
+import { supportPetition } from 'actions/SupportActions';
 
 const TrustConfirmationForm = ({ fields, handleSubmit, submitting, me }) => (
-  <form onSubmit={handleSubmit(supportWithUserData)}>
+  <form onSubmit={handleSubmit((values, dispatch) => supportPetition(
+    assignUserData(values, me), dispatch)
+  )}>
     <Fieldset>
       <FormFieldsIterator
         reduxFormFields={fields}
@@ -37,10 +35,10 @@ TrustConfirmationForm.propTypes = {
 };
 
 export const mapStateToProps = ({ petition, me, trust }) => ({
+  me,
   initialValues: {
     petitionId: petition.id
   },
-  me,
   submitting: trust.isSubmitting
 });
 

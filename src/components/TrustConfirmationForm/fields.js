@@ -16,8 +16,8 @@ export default [
     hint: settings.trustConfirmationFields.mobile_token.hint,
     html: {
       placeholder: settings.trustConfirmationFields.mobile_token.placeholder,
-      maxLength: 6,
-      minLength: 6,
+      maxLength: 5,
+      minLength: 5,
       required: true
     }
   }

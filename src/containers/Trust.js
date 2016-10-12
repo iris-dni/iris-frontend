@@ -6,19 +6,13 @@ import { fetchPetition } from 'actions/PetitionActions';
 import settings from 'settings';
 import Trust from 'components/Trust';
 import getPetitionPath from 'selectors/petitionPath';
-import getTrustParams from 'selectors/trustParams';
 
 const TrustContainer = withRouter(React.createClass({
   componentWillUpdate (nextProps) {
-    const {
-      router,
-      petition,
-      petitionId,
-      isTrustedUser
-    } = nextProps;
+    const { router, petition, trust } = nextProps;
     // If we have submitted trust for the given petition
-    if (petitionId === petition.id) {
-      router.push(isTrustedUser
+    if (petition.id === trust.petitionId && !trust.isSubmitting) {
+      router.push(trust.isTrustedUser
         ? getPetitionPath(petition)
         : `/trust/support/${petition.id}/confirm`
       );
@@ -39,17 +33,17 @@ TrustContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetition(params.id));
 };
 
-export const mapStateToProps = ({ me, petition, trust }) => ({
+export const mapStateToProps = ({ petition, trust, me }) => ({
   petition,
-  isLoggedIn: me && !!me.id,
-  ...getTrustParams(trust)
+  trust,
+  me,
+  isLoggedIn: me && !!me.id
 });
 
 TrustContainer.propTypes = {
   petition: React.PropTypes.object.isRequired,
-  isLoggedIn: React.PropTypes.bool.isRequired,
-  isTrustedUser: React.PropTypes.bool.isRequired,
-  trustId: React.PropTypes.string
+  trust: React.PropTypes.object.isRequired,
+  isLoggedIn: React.PropTypes.bool.isRequired
 };
 
 export default connect(

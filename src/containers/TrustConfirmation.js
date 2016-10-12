@@ -5,11 +5,13 @@ import { connect } from 'react-redux';
 import { fetchPetition } from 'actions/PetitionActions';
 import settings from 'settings';
 import TrustConfirmation from 'components/TrustConfirmation';
-// import getPetitionPath from 'selectors/petitionPath';
-import getTrustParams from 'selectors/trustParams';
 
 const TrustConfirmationContainer = withRouter(React.createClass({
-  componentWillUpdate (nextProps) {
+  componentWillMount () {
+    const { router, petition, hasValidMeData } = this.props;
+    if (!hasValidMeData) {
+      router.push(`/trust/support/${petition.id}`);
+    }
   },
 
   render () {
@@ -26,17 +28,18 @@ TrustConfirmationContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetition(params.id));
 };
 
+const hasValidMeData = (me) => {
+  return me && !!me.mobile && !!me.firstname && !!me.lastname && !!me.zip;
+};
+
 export const mapStateToProps = ({ me, petition, trust }) => ({
   petition,
-  isLoggedIn: me && !!me.id,
-  ...getTrustParams(trust)
+  hasValidMeData: hasValidMeData(me)
 });
 
 TrustConfirmationContainer.propTypes = {
   petition: React.PropTypes.object.isRequired,
-  isLoggedIn: React.PropTypes.bool.isRequired,
-  isTrustedUser: React.PropTypes.bool.isRequired,
-  trustId: React.PropTypes.string
+  hasValidMeData: React.PropTypes.bool.isRequired
 };
 
 export default connect(
