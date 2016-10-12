@@ -21,7 +21,8 @@ export default function trust (state = initialState, action) {
       });
     case NEW_TRUST_STEP:
       return Object.assign({}, state, {
-        hasSubmitted: false
+        hasSubmitted: false,
+        isSubmitting: false
       });
     case FINISHED_TRUST:
       return Object.assign({}, state, {

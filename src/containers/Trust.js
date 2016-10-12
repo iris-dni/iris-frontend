@@ -28,7 +28,6 @@ const TrustContainer = withRouter(React.createClass({
 
   componentWillUpdate (nextProps) {
     const { router, petition, trustSubmitted, isTrustedUser } = nextProps;
-    console.log('update', trustSubmitted);
     // If we have submitted trust for the given petition
     if (trustSubmitted) {
       router.push(
