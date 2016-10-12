@@ -1,8 +1,9 @@
 import React from 'react';
-import { Route, IndexRoute, Router, IndexRedirect, browserHistory } from 'react-router';
+import { Route, IndexRoute, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import App from 'containers/App';
+import Home from 'containers/Home';
 import LoginPage from 'containers/Login';
 import Logout from 'containers/Logout';
 import TrustPage from 'containers/Trust';
@@ -23,7 +24,7 @@ export default function (props = {}) {
   return (
     <Router history={history}>
       <Route path='/' component={App}>
-        <IndexRedirect to='/petitions' />
+        <IndexRoute component={Home} />
         <Route path='auth/login' component={LoginPage} />
         <Route path='auth/logout' component={Logout} />
         <Route path='trust/support/:id' component={TrustPage} />
