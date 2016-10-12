@@ -131,6 +131,9 @@ export default {
       text: 'Okay, take me home'
     }
   },
+  homePage: {
+    title: 'Home Page Title -- Replace with your own!'
+  },
   petitionForm: {
     createButton: {
       text: 'Create Petition'

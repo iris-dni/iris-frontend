@@ -1,6 +1,7 @@
 import petitionRepository from 'services/api/repositories/petition';
 import getPetitionsQueryParams from 'helpers/getPetitionsQueryParams';
 import getPetitionsQueryString from 'helpers/getPetitionsQueryString';
+import getHomePagePetitionsQuery from 'helpers/getHomePagePetitionsQuery';
 
 import { fetchCity } from 'actions/CityActions';
 
@@ -10,7 +11,7 @@ import {
   CLEAR_PETITIONS
 } from './actionTypes';
 
-export function fetchPetitions ({ location, params }) {
+export function fetchPetitions ({ location, params }, group) {
   // Get query from react-router location
   const { query } = location;
 
@@ -28,8 +29,21 @@ export function fetchPetitions ({ location, params }) {
       .then(response => dispatch(receivePetitions(
         response,
         queryParams,
-        queryString
+        queryString,
+        group
       )));
+  };
+}
+
+export function fetchGroupedPetitions (props = {}, groups = []) {
+  const sortQuery = getHomePagePetitionsQuery();
+  const location = Object.assign({}, props.location, sortQuery);
+
+  return (dispatch) => {
+    const groupDispatches = groups.map(group =>
+      dispatch(fetchPetitions({ location }, group)));
+
+    return Promise.all(groupDispatches);
   };
 }
 
@@ -46,10 +60,14 @@ export function requestPetitions () {
   };
 }
 
-export function receivePetitions (petitions, params, qs) {
+export function receivePetitions (petitions, params, qs, group) {
+  const groupedPetitions = group
+    ? { [group]: petitions }
+    : petitions;
+
   return {
     type: RECEIVE_PETITIONS,
-    petitions,
+    petitions: groupedPetitions,
     params,
     qs
   };

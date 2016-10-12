@@ -1,9 +1,10 @@
 import React from 'react';
-import { Route, IndexRoute, Router, IndexRedirect } from 'react-router';
 import ReactGA from 'react-ga';
+import { Route, IndexRoute, Router } from 'react-router';
 
 import settings from 'settings';
 import App from 'containers/App';
+import Home from 'containers/Home';
 import LoginPage from 'containers/Login';
 import Logout from 'containers/Logout';
 import TrustPage from 'containers/Trust';
@@ -27,7 +28,7 @@ export default function (props = {}) {
   return (
     <Router history={history} onUpdate={logPageview}>
       <Route path='/' component={App}>
-        <IndexRedirect to='/petitions' />
+        <IndexRoute component={Home} />
         <Route path='auth/login' component={LoginPage} />
         <Route path='auth/logout' component={Logout} />
         <Route path='trust/support/:id' component={TrustPage} />
