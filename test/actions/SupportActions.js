@@ -49,11 +49,13 @@ describe('SupportActions', () => {
       assert(dispatch.calledWith(receiveWhoAmI(mockUser)));
     });
 
-    it('dispatches userIsUntrusted()', done => {
-      result.then(() => {
-        // TODO: figure out way to test all support outcomes
-        // assert(dispatch.calledWith(userIsUntrusted()));
-      }).then(done, done);
+    context('supports a petition then', () => {
+      it('dispatches userIsUntrusted()', done => {
+        result.then(() => {
+          // TODO: figure out way to test all support outcomes
+          // assert(dispatch.calledWith(userIsUntrusted()));
+        }).then(done, done);
+      });
     });
   });
 
