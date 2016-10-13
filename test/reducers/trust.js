@@ -18,14 +18,30 @@ describe('trust reducer', () => {
     assert.deepEqual(actual, expected);
   });
 
+  it('handles the NEW_TRUST_STEP action', () => {
+    const actual = trust({
+      hasSubmitted: true
+    }, {
+      type: 'NEW_TRUST_STEP'
+    });
+    const expected = {
+      hasSubmitted: false,
+      isSubmitting: false
+    };
+
+    assert.deepEqual(actual, expected);
+  });
+
   it('handles the FINISHED_TRUST action', () => {
     const actual = trust({
-      trustId: mockPetition.id
+      hasSubmitted: false,
+      isSubmitting: true
     }, {
       type: 'FINISHED_TRUST'
     });
     const expected = {
-      trustId: false
+      hasSubmitted: true,
+      isSubmitting: false
     };
 
     assert.deepEqual(actual, expected);
@@ -33,13 +49,11 @@ describe('trust reducer', () => {
 
   it('handles the USER_IS_TRUSTED action', () => {
     const actual = trust({
-      isSubmitting: true,
       isTrustedUser: false
     }, {
       type: 'USER_IS_TRUSTED'
     });
     const expected = {
-      isSubmitting: false,
       isTrustedUser: true
     };
 
@@ -48,13 +62,11 @@ describe('trust reducer', () => {
 
   it('handles the USER_IS_UNTRUSTED action', () => {
     const actual = trust({
-      isSubmitting: true,
       isTrustedUser: true
     }, {
       type: 'USER_IS_UNTRUSTED'
     });
     const expected = {
-      isSubmitting: false,
       isTrustedUser: false
     };
 

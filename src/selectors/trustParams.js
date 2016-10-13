@@ -1,1 +1,5 @@
-export default ({ isTrustedUser, petitionId }) => ({ isTrustedUser, petitionId });
+export default ({ isTrustedUser, petitionId, isSubmitting }) => ({
+  isTrustedUser,
+  petitionId,
+  isSubmitting
+});

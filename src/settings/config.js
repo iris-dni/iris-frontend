@@ -281,6 +281,10 @@ export default {
     title: 'Fill out your details',
     intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   },
+  trustConfirmationPage: {
+    title: 'Confirm your identity',
+    intro: 'Please verify your phone number'
+  },
   trustFields: {
     firstname: {
       label: 'First name'
@@ -307,12 +311,20 @@ export default {
       label: 'Mobile number'
     }
   },
+  trustConfirmationFields: {
+    mobile_token: {
+      label: 'Verification code'
+    }
+  },
   flashMessages: {
     genericError: 'Sadly something failed, please try again!',
     petitionCreated: 'Great, your petition was created!',
     petitionPublished: 'Great, your petition was published!',
     petitionUpdated: 'Your petition was updated',
-    petitionSupported: 'Thank you for signing this petition!'
+    petitionSupported: 'Thank you for signing this petition!',
+    invalidVerificationError: 'Invalid verification code',
+    invalidUserDataError: 'Complete your details to support this petition',
+    noLongerSupportable: 'This petition is no longer supportable'
   },
   logo: 'IRIS',
   navigationLinks: [

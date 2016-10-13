@@ -1,24 +1,27 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import { supportPetition } from 'actions/SupportActions';
-import trustValidator from 'form/trustValidator';
+import trustConfirmationValidator from 'form/trustConfirmationValidator';
+import assignUserData from 'form/assignUserData';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
-import FIELDS_SUPPORTING from './fieldsForSupporting';
+import FIELDS from './fields';
+import { supportPetition } from 'actions/SupportActions';
 import trustForm from 'selectors/trustForm';
 
-const TrustForm = ({ fields, handleSubmit, submitting }) => (
-  <form onSubmit={handleSubmit(supportPetition)}>
+const TrustConfirmationForm = ({ fields, handleSubmit, submitting, me }) => (
+  <form onSubmit={handleSubmit((values, dispatch) => supportPetition(
+    assignUserData(values, me), dispatch)
+  )}>
     <Fieldset>
       <FormFieldsIterator
         reduxFormFields={fields}
-        fieldsArray={FIELDS_SUPPORTING}
+        fieldsArray={FIELDS}
       />
     </Fieldset>
     <Fieldset modifier={'actions'}>
       <Button
-        text={'Go to verification'}
+        text={'Complete verification'}
         modifier={'accent'}
         disabled={submitting || !fields._meta.allValid}
       />
@@ -26,16 +29,17 @@ const TrustForm = ({ fields, handleSubmit, submitting }) => (
   </form>
 );
 
-TrustForm.propTypes = {
+TrustConfirmationForm.propTypes = {
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
+  me: React.PropTypes.object.isRequired,
   submitting: React.PropTypes.bool.isRequired
 };
 
 export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, me, trust);
 
 export default reduxForm({
-  form: 'trust',
-  fields: FIELDS_SUPPORTING.map(field => field.name),
-  validate: trustValidator
-}, mapStateToProps)(TrustForm);
+  form: 'trustConfirmation',
+  fields: FIELDS.map(field => field.name),
+  validate: trustConfirmationValidator
+}, mapStateToProps)(TrustConfirmationForm);
