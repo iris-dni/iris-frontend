@@ -5,11 +5,12 @@ import assignUserData from 'form/assignUserData';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
+import ButtonLink from 'components/ButtonLink';
 import FIELDS from './fields';
 import { supportPetition } from 'actions/SupportActions';
 import trustForm from 'selectors/trustForm';
 
-const TrustConfirmationForm = ({ fields, handleSubmit, submitting, me }) => (
+const TrustConfirmationForm = ({ fields, handleSubmit, submitting, me, petitionId }) => (
   <form onSubmit={handleSubmit((values, dispatch) => supportPetition(
     assignUserData(values, me), dispatch)
   )}>
@@ -20,6 +21,10 @@ const TrustConfirmationForm = ({ fields, handleSubmit, submitting, me }) => (
       />
     </Fieldset>
     <Fieldset modifier={'actions'}>
+      <ButtonLink
+        href={`/trust/support/${petitionId}`}
+        text={'Back to details'}
+      />
       <Button
         text={'Complete verification'}
         modifier={'accent'}
