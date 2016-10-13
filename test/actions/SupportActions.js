@@ -11,7 +11,6 @@ import {
 
 import {
   submittingTrust
-  // userIsUntrusted
 } from 'actions/TrustActions';
 
 import {
@@ -50,12 +49,11 @@ describe('SupportActions', () => {
       assert(dispatch.calledWith(receiveWhoAmI(mockUser)));
     });
 
-    context('when user is untrusted', () => {
-      it('dispatches userIsUntrusted()', done => {
-        result.then(() => {
-          // assert(dispatch.calledWithMatch(userIsUntrusted()));
-        }).then(done, done);
-      });
+    it('dispatches userIsUntrusted()', done => {
+      result.then(() => {
+        // TODO: figure out way to test all support outcomes
+        // assert(dispatch.calledWith(userIsUntrusted()));
+      }).then(done, done);
     });
   });
 
