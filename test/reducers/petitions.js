@@ -1,6 +1,7 @@
 import chai from 'chai';
 import petitions from 'reducers/petitions';
 import mockPetitions from '../mocks/petitions';
+import mockGroupedPetitions from '../mocks/groupedPetitions';
 
 const { assert } = chai;
 
@@ -26,6 +27,20 @@ describe('petitions reducer', () => {
       isLoading: false,
       params: {},
       qs: ''
+    });
+
+    assert.deepEqual(actual, expected);
+  });
+
+  it('handles the RECEIVE_GROUPED_PETITIONS action', () => {
+    const actual = petitions({}, {
+      type: 'RECEIVE_GROUPED_PETITIONS',
+      groupedPetitions: mockGroupedPetitions,
+      params: {}
+    });
+    const expected = Object.assign({}, mockGroupedPetitions, {
+      isLoading: false,
+      params: {}
     });
 
     assert.deepEqual(actual, expected);
