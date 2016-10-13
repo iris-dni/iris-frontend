@@ -19,6 +19,12 @@ import getHistory from 'helpers/getHistory';
 export default function (props = {}) {
   const history = getHistory(props.store);
 
+  const { googleAnalytics } = settings;
+
+  if (googleAnalytics.APIKey.length) {
+    ReactGA.initialize(googleAnalytics.APIKey, googleAnalytics.initOptions);
+  }
+
   return (
     <Router history={history} onUpdate={logPageview}>
       <Route path='/' component={App}>

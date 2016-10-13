@@ -3,7 +3,7 @@ export default {
   charset: 'utf-8',
   title: 'iris-frontend',
   twitterAccount: 'azmedien',
-  ga: {
+  googleAnalytics: {
     APIKey: '',
     initOptions: {}
   },

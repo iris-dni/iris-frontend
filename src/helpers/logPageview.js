@@ -5,13 +5,13 @@ import settings from 'settings';
 export default () => {
   if (__CLIENT__) {
     const { pathname } = window.location;
-    const { ga } = settings;
+    const { googleAnalytics } = settings;
     const pageviewEventName = `${process.env.SITE_NAME}_pageview`.trim();
 
     const pageviewEvent = typeof CustomEvent !== 'undefined' && // Required as it’s not defined during tests.
       new CustomEvent(pageviewEventName);
 
-    if (ga.APIKey) {
+    if (googleAnalytics.APIKey) {
       ReactGA.set({ page: pathname });
       ReactGA.pageview(pathname);
     }
