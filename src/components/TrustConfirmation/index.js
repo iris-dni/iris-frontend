@@ -5,11 +5,12 @@ import TrustConfirmationForm from 'components/TrustConfirmationForm';
 
 const TrustConfirmation = ({
   isLoggedIn,
-  petition
+  me
 }) => (
   <FormLayout
     title={settings.trustConfirmationPage.title}
     intro={settings.trustConfirmationPage.intro}>
+    <p>Thanks {me.firstname} - we send an SMS verification code to <b>{me.mobile}</b></p>
     <TrustConfirmationForm />
   </FormLayout>
 );

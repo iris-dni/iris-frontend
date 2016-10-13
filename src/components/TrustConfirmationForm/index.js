@@ -6,6 +6,7 @@ import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
 import ButtonLink from 'components/ButtonLink';
+import ButtonSet from 'components/ButtonSet';
 import FIELDS from './fields';
 import { supportPetition } from 'actions/SupportActions';
 import trustForm from 'selectors/trustForm';
@@ -21,15 +22,17 @@ const TrustConfirmationForm = ({ fields, handleSubmit, submitting, me, petitionI
       />
     </Fieldset>
     <Fieldset modifier={'actions'}>
-      <ButtonLink
-        href={`/trust/support/${petitionId}`}
-        text={'Back to details'}
-      />
-      <Button
-        text={'Complete verification'}
-        modifier={'accent'}
-        disabled={submitting || !fields._meta.allValid}
-      />
+      <ButtonSet>
+        <ButtonLink
+          href={`/trust/support/${petitionId}`}
+          text={'Back to details'}
+        />
+        <Button
+          text={'Complete verification'}
+          modifier={'accent'}
+          disabled={submitting || !fields._meta.allValid}
+        />
+      </ButtonSet>
     </Fieldset>
   </form>
 );

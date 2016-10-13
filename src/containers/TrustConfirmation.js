@@ -7,7 +7,6 @@ import { showFlashMessage } from 'actions/FlashActions';
 import settings from 'settings';
 import TrustConfirmation from 'components/TrustConfirmation';
 import getPetitionPath from 'selectors/petitionPath';
-import getTrustPetition from 'selectors/trustPetition';
 import trustSubmitted from 'helpers/trustSubmitted';
 import hasValidUserData from 'helpers/hasValidUserData';
 
@@ -43,7 +42,7 @@ TrustConfirmationContainer.fetchData = ({ store, params }) => {
 };
 
 export const mapStateToProps = ({ petition, trust, me }) => ({
-  petition: getTrustPetition(petition),
+  me,
   trustSubmitted: trustSubmitted(petition, trust),
   isTrustedUser: trust.isTrustedUser,
   hasValidUserData: hasValidUserData(me)
@@ -54,7 +53,7 @@ export const mapDispatchToProps = (dispatch) => ({
 });
 
 TrustConfirmationContainer.propTypes = {
-  petition: React.PropTypes.object.isRequired,
+  me: React.PropTypes.object.isRequired,
   trustSubmitted: React.PropTypes.bool.isRequired,
   isTrustedUser: React.PropTypes.bool.isRequired,
   hasValidUserData: React.PropTypes.bool.isRequired
