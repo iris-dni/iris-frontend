@@ -38,14 +38,8 @@ export function fetchGroupedPetitions (props = {}, groups = []) {
   return (dispatch) => {
     dispatch(requestPetitions());
 
-    /*
-      groups is not available here for some reason
-      if called from client-side.
-    */
-
     const groupDispatches = groups.map(group => {
       const query = Object.assign({}, props.location, group.query);
-
       const queryParams = getPetitionsQueryParams({}, query);
 
       return petitionRepository.all(queryParams)
