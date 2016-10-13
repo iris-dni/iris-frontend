@@ -1,17 +1,17 @@
 import petitionRepository from 'services/api/repositories/petition';
 import getPetitionsQueryParams from 'helpers/getPetitionsQueryParams';
 import getPetitionsQueryString from 'helpers/getPetitionsQueryString';
-import getHomePagePetitionsQuery from 'helpers/getHomePagePetitionsQuery';
 
 import { fetchCity } from 'actions/CityActions';
 
 import {
   REQUEST_PETITIONS,
   RECEIVE_PETITIONS,
+  RECEIVE_GROUPED_PETITIONS,
   CLEAR_PETITIONS
 } from './actionTypes';
 
-export function fetchPetitions ({ location, params }, group) {
+export function fetchPetitions ({ location, params }) {
   // Get query from react-router location
   const { query } = location;
 
@@ -29,19 +29,32 @@ export function fetchPetitions ({ location, params }, group) {
       .then(response => dispatch(receivePetitions(
         response,
         queryParams,
-        queryString,
-        group
+        queryString
       )));
   };
 }
 
 export function fetchGroupedPetitions (props = {}, groups = []) {
-  const sortQuery = getHomePagePetitionsQuery();
-  const location = Object.assign({}, props.location, sortQuery);
-
   return (dispatch) => {
-    const groupDispatches = groups.map(group =>
-      dispatch(fetchPetitions({ location }, group)));
+    dispatch(requestPetitions());
+
+    /*
+      groups is not available here for some reason
+      if called from client-side.
+    */
+
+    const groupDispatches = groups.map(group => {
+      const query = Object.assign({}, props.location, group.query);
+
+      const queryParams = getPetitionsQueryParams({}, query);
+
+      return petitionRepository.all(queryParams)
+        .then(response => dispatch(receiveGroupedPetitions(
+        response,
+        queryParams,
+        group.group
+      )));
+    });
 
     return Promise.all(groupDispatches);
   };
@@ -60,14 +73,18 @@ export function requestPetitions () {
   };
 }
 
-export function receivePetitions (petitions, params, qs, group) {
-  const groupedPetitions = group
-    ? { [group]: petitions }
-    : petitions;
+export function receiveGroupedPetitions (petitions, params, group) {
+  return {
+    type: RECEIVE_GROUPED_PETITIONS,
+    params,
+    groupedPetitions: { [group]: petitions }
+  };
+}
 
+export function receivePetitions (petitions, params, qs) {
   return {
     type: RECEIVE_PETITIONS,
-    petitions: groupedPetitions,
+    petitions,
     params,
     qs
   };

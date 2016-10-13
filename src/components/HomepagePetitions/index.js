@@ -5,14 +5,14 @@ import Section from 'components/Section';
 import Heading2 from 'components/Heading2';
 import TextCenter from 'components/TextCenter';
 
-const HomepagePetitions = ({ petitions, title }) => (
+const HomepagePetitions = ({ groupedPetitions, title }) => (
   <section>
     <Section>
       <Container>
         <TextCenter>
           <Heading2 text={title} />
         </TextCenter>
-        <TeaserGrid petitions={petitions.latest} />
+        <TeaserGrid petitions={groupedPetitions.latest} />
       </Container>
     </Section>
   </section>

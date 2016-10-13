@@ -1,6 +1,7 @@
 import {
   REQUEST_PETITIONS,
   RECEIVE_PETITIONS,
+  RECEIVE_GROUPED_PETITIONS,
   CLEAR_PETITIONS,
   UPDATE_CURRENT_CITY
 } from 'actions/actionTypes';
@@ -21,6 +22,11 @@ export default function petitions (state = initialState, action) {
           params: action.params || {},
           qs: action.qs || ''
         }
+      );
+    case RECEIVE_GROUPED_PETITIONS:
+      return Object.assign({}, state,
+        action.groupedPetitions,
+        { isLoading: false, params: action.params || '' }
       );
     case CLEAR_PETITIONS:
       return Object.assign({}, state, {

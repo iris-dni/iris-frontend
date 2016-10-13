@@ -1,12 +1,11 @@
 import { set } from 'lodash/object';
-import { forEach } from 'lodash/collection';
 import getPetitions from 'selectors/petitions';
 
-export default (petitions = {}, groups = []) => {
+export default (petitions, groups) => {
   const petitionGroups = {};
 
-  forEach(groups, (group) =>
-    set(petitionGroups, group, getPetitions(petitions[group].data || []))
+  groups.forEach((group) =>
+    set(petitionGroups, group.group, getPetitions(petitions[group.group] && petitions[group.group].data || []))
   );
 
   return petitionGroups;
