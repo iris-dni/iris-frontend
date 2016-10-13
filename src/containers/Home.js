@@ -43,7 +43,7 @@ HomeContainer.propTypes = {
 };
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchGroupedPetitions: (options) => dispatch(fetchGroupedPetitions(options))
+  fetchGroupedPetitions: (options) => dispatch(fetchGroupedPetitions(options, PETITIONS_GROUPS))
 });
 
 export const mapStateToProps = ({ petitions }) => ({
