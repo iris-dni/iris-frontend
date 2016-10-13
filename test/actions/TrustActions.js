@@ -4,7 +4,9 @@ import mockPetition from '../mocks/petition';
 import {
   submittingTrust,
   userIsTrusted,
-  userIsUntrusted
+  userIsUntrusted,
+  finishedTrust,
+  newTrustStep
 } from 'actions/TrustActions';
 
 describe('TrustActions', () => {
@@ -41,6 +43,26 @@ describe('TrustActions', () => {
       const result = userIsUntrusted();
       const actual = result.type;
       const expected = 'USER_IS_UNTRUSTED';
+
+      assert.equal(actual, expected);
+    });
+  });
+
+  describe('finishedTrust', () => {
+    it('returns FINISHED_TRUST action', () => {
+      const result = finishedTrust();
+      const actual = result.type;
+      const expected = 'FINISHED_TRUST';
+
+      assert.equal(actual, expected);
+    });
+  });
+
+  describe('newTrustStep', () => {
+    it('returns NEW_TRUST_STEP action', () => {
+      const result = newTrustStep();
+      const actual = result.type;
+      const expected = 'NEW_TRUST_STEP';
 
       assert.equal(actual, expected);
     });
