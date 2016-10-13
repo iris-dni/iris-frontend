@@ -14,32 +14,30 @@ describe('TrustConfirmationForm', () => {
     });
 
     describe('`petitionId` field', () => {
+      const field = getFieldByNameKey('petitionId', FIELDS);
+
       it('is present', () => {
-        const result = getFieldByNameKey('petitionId', FIELDS);
-        const actual = result.name;
+        const actual = field.name;
         const expected = 'petitionId';
 
         assert.equal(actual, expected);
       });
 
       it('is an input', () => {
-        const result = getFieldByNameKey('petitionId', FIELDS);
-        const actual = result.element;
+        const actual = field.element;
         const expected = 'input';
 
         assert.equal(actual, expected);
       });
 
       it('is hidden', () => {
-        const result = getFieldByNameKey('petitionId', FIELDS);
-        const actual = result.hidden;
+        const actual = field.hidden;
 
         assert.isTrue(actual);
       });
 
       it('has `hidden` html attr', () => {
-        const result = getFieldByNameKey('petitionId', FIELDS);
-        const actual = result.html.type;
+        const actual = field.html.type;
         const expected = 'hidden';
 
         assert.equal(actual, expected);
@@ -48,40 +46,37 @@ describe('TrustConfirmationForm', () => {
   });
 
   describe('`mobile_token` field', () => {
+    const field = getFieldByNameKey('mobile_token', FIELDS);
+
     it('is present', () => {
-      const result = getFieldByNameKey('mobile_token', FIELDS);
-      const actual = result.name;
+      const actual = field.name;
       const expected = 'mobile_token';
 
       assert.equal(actual, expected);
     });
 
     it('is an input', () => {
-      const result = getFieldByNameKey('mobile_token', FIELDS);
-      const actual = result.element;
+      const actual = field.element;
       const expected = 'input';
 
       assert.equal(actual, expected);
     });
 
     it('is required', () => {
-      const result = getFieldByNameKey('mobile_token', FIELDS);
-      const actual = result.html.required;
+      const actual = field.html.required;
 
       assert.isTrue(actual);
     });
 
     it('has a minLength of 5', () => {
-      const result = getFieldByNameKey('mobile_token', FIELDS);
-      const actual = result.html.minLength;
+      const actual = field.html.minLength;
       const expected = 5;
 
       assert.equal(actual, expected);
     });
 
     it('has a maxLength of 5', () => {
-      const result = getFieldByNameKey('mobile_token', FIELDS);
-      const actual = result.html.maxLength;
+      const actual = field.html.maxLength;
       const expected = 5;
 
       assert.equal(actual, expected);
