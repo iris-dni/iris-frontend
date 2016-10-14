@@ -31,6 +31,25 @@ describe('petitions reducer', () => {
     assert.deepEqual(actual, expected);
   });
 
+  it('handles the RECEIVE_GROUPED_PETITIONS action', () => {
+    const actual = petitions({}, {
+      type: 'RECEIVE_GROUPED_PETITIONS',
+      petitions: mockPetitions,
+      group: 'latest',
+      params: {}
+    });
+    const expected = Object.assign({},
+      {
+        latest: mockPetitions
+      },
+      { params: {} }
+    );
+
+    expected.latest.isLoading = false;
+
+    assert.deepEqual(actual, expected);
+  });
+
   it('provides fallback state', () => {
     const actual = petitions(undefined, {});
     const expected = {};
