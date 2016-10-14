@@ -4,10 +4,6 @@
   display: block;
 }
 
-.title {
-  @include visuallyhidden;
-}
-
 .content {
   position: fixed;
   z-index: 3;
