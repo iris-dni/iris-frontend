@@ -39,7 +39,7 @@ const TrustConfirmationForm = ({
           onClick={() => resendVerification(petitionId, me)}
           disabled={!hasValidUserData(me)}
           type={'button'}
-          text={'Se-rend SMS'}
+          text={'Re-send SMS'}
         />
         <Button
           text={'Complete verification'}
