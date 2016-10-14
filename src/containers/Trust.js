@@ -27,14 +27,30 @@ const TrustContainer = withRouter(React.createClass({
   },
 
   componentWillUpdate (nextProps) {
-    const { router, petition, trustSubmitted, isTrustedUser } = nextProps;
-    // If we have submitted trust for the given petition
+    const {
+      router,
+      route,
+      petition,
+      trustSubmitted,
+      isTrustedUser
+    } = nextProps;
+
+    // If we've submitted the Trust form
     if (trustSubmitted) {
-      router.push(
-        isTrustedUser
-          ? getPetitionPath(petition)
-          : `/trust/support/${petition.id}/confirm`
-      );
+      // Check our action and act accordingly
+      switch (route.action) {
+        case 'support':
+          // Go to petition path, or confirmation
+          router.push(isTrustedUser
+            ? getPetitionPath(petition.id)
+            : `/trust/support/${petition.id}/confirm`
+          );
+          break;
+        case 'publish': {
+          // Go to petition preview
+          router.push(`/petitions/${petition.id}/preview`);
+        }
+      }
     }
   },
 
@@ -42,7 +58,7 @@ const TrustContainer = withRouter(React.createClass({
     return (
       <div>
         <Helmet title={settings.trustPage.title} />
-        <Trust {...this.props} />
+        <Trust {...this.props} action={this.props.route.action} />
       </div>
     );
   }

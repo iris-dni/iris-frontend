@@ -17,7 +17,7 @@ const TrustConfirmationForm = ({
   handleSubmit,
   resendVerification,
   me,
-  petitionId,
+  petition,
   submitting
 }) => (
   <form onSubmit={handleSubmit((values, dispatch) => supportPetition(
@@ -32,11 +32,11 @@ const TrustConfirmationForm = ({
     <Fieldset modifier={'actions'}>
       <ButtonSet>
         <ButtonLink
-          href={`/trust/support/${petitionId}`}
+          href={`/trust/support/${petition.id}`}
           text={'Back to details'}
         />
         <Button
-          onClick={() => resendVerification(petitionId, me)}
+          onClick={() => resendVerification(petition.id, me)}
           disabled={!hasValidUserData(me)}
           type={'button'}
           text={'Re-send SMS'}
@@ -56,7 +56,7 @@ TrustConfirmationForm.propTypes = {
   handleSubmit: React.PropTypes.func.isRequired,
   resendVerification: React.PropTypes.func.isRequired,
   me: React.PropTypes.object.isRequired,
-  petitionId: React.PropTypes.string.isRequired,
+  petition: React.PropTypes.object.isRequired,
   submitting: React.PropTypes.bool.isRequired
 };
 

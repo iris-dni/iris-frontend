@@ -22,8 +22,10 @@ export default (props = {}) => (
       <IndexRoute component={Home} />
       <Route path='auth/login' component={LoginPage} />
       <Route path='auth/logout' component={Logout} />
-      <Route path='trust/support/:id' component={TrustPage} />
-      <Route path='trust/support/:id/confirm' component={TrustConfirmationPage} />
+      <Route path='trust/support/:id' component={TrustPage} action={'support'} />
+      <Route path='trust/support/:id/confirm' component={TrustConfirmationPage} action={'support'} />
+      <Route path='trust/publish/:id' component={TrustPage} action={'publish'} />
+      <Route path='trust/publish/:id/confirm' component={TrustConfirmationPage} action={'publish'} />
       <Route path='petitions'>
         {/* Nest these 3 to support proper `activeClassName` behavior. */}
         <IndexRoute component={Petitions} />

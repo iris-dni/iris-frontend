@@ -3,7 +3,7 @@ export default (petition, me, trust) => ({
     petitionId: petition && petition.id,
     user: me || {}
   },
-  petitionId: petition && petition.id,
+  petition: petition || {},
   submitting: trust && trust.isSubmitting,
   me: me || {}
 });

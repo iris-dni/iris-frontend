@@ -76,9 +76,7 @@ export function createPetition (petition, dispatch) {
     .then((response) => {
       const resolvedPetition = solveResolvedObjects(petition, response.data);
       dispatch(createdPetition(resolvedPetition));
-    }).then(() => dispatch(
-      showFlashMessage(settings.flashMessages.petitionCreated, 'success')
-    )).catch(() => dispatch(
+    }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
 }

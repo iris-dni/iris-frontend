@@ -1,21 +1,21 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import { supportPetition } from 'actions/SupportActions';
-import trustValidator from 'form/trustValidator';
+import trustSupportValidator from 'form/trustSupportValidator';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
 import ButtonLink from 'components/ButtonLink';
 import ButtonSet from 'components/ButtonSet';
-import FIELDS_SUPPORTING from './fieldsForSupporting';
+import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
 
-const TrustForm = ({ fields, handleSubmit, submitting, petitionId }) => (
+const TrustSupportForm = ({ fields, handleSubmit, submitting, petitionId }) => (
   <form onSubmit={handleSubmit(supportPetition)}>
     <Fieldset>
       <FormFieldsIterator
         reduxFormFields={fields}
-        fieldsArray={FIELDS_SUPPORTING}
+        fieldsArray={FIELDS}
       />
     </Fieldset>
     <Fieldset modifier={'actions'}>
@@ -34,7 +34,7 @@ const TrustForm = ({ fields, handleSubmit, submitting, petitionId }) => (
   </form>
 );
 
-TrustForm.propTypes = {
+TrustSupportForm.propTypes = {
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
   submitting: React.PropTypes.bool.isRequired
@@ -44,6 +44,6 @@ export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, 
 
 export default reduxForm({
   form: 'trust',
-  fields: FIELDS_SUPPORTING.map(field => field.name),
-  validate: trustValidator
-}, mapStateToProps)(TrustForm);
+  fields: FIELDS.map(field => field.name),
+  validate: trustSupportValidator
+}, mapStateToProps)(TrustSupportForm);
