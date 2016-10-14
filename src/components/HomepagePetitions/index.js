@@ -13,7 +13,10 @@ const HomepagePetitions = ({ petitions, title, text, linkText }) => (
       <Container>
         <BlockContainer>
           <div className={styles.head}>
-            <Heading2 text={title} />
+            <div className={styles.left}>
+              <Heading2 text={title} />
+              <span className={styles.text}>{text}</span>
+            </div>
             <Link href='/petitions'>{linkText}</Link>
           </div>
         </BlockContainer>
