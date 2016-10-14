@@ -2,12 +2,9 @@ import { assert } from 'chai';
 import sinon from 'sinon';
 import moxios from 'moxios';
 import mockPetitions from '../mocks/petitions';
-import mockGroupedPetitions from '../mocks/groupedPetitions';
-import getPetitionsGroupsList from 'helpers/getPetitionsGroupsList';
 
 import {
   fetchPetitions,
-  fetchGroupedPetitions,
   requestPetitions,
   receivePetitions,
   receiveGroupedPetitions
@@ -44,38 +41,6 @@ describe('PetitionsActions', () => {
         assert(dispatch.calledWithMatch(receivePetitions({data: mockPetitions}, {}, {})));
       }).then(done, done);
     });
-  });
-
-  describe('fetchGroupedPetitions', () => {
-    let dispatch;
-    let result;
-    const groups = getPetitionsGroupsList();
-
-    beforeEach(() => {
-      dispatch = sinon.spy();
-
-      moxios.install();
-      moxios.stubRequest(/.*/, {
-        status: 200,
-        response: { data: mockPetitions }
-      });
-
-      result = fetchGroupedPetitions({ location: { query: {} } }, groups);
-    });
-
-    afterEach(() => {
-      moxios.uninstall();
-    });
-
-    it('returns a function that dispatches requestPetitions()', () => {
-      result(dispatch);
-      assert(dispatch.calledWith(requestPetitions()));
-    });
-
-    // TODO: How to test `fetchGroupedPetitions` returns Promise.all with dispatches?
-    // it('returns a function that returns an array of promises to dispatch receiveGroupedPetitions()', done => {
-    //
-    // });
   });
 
   describe('requestPetitions', () => {
@@ -131,10 +96,18 @@ describe('PetitionsActions', () => {
       assert.equal(actual, expected);
     });
 
-    it('passes groupedPetitions object', () => {
-      const result = receiveGroupedPetitions(mockGroupedPetitions, {}, 'latest');
-      const actual = result.groupedPetitions.latest;
-      const expected = mockGroupedPetitions;
+    it('passes group name', () => {
+      const result = receiveGroupedPetitions(mockPetitions, {}, 'latest');
+      const actual = result.group;
+      const expected = 'latest';
+
+      assert.equal(actual, expected);
+    });
+
+    it('passes petitions', () => {
+      const result = receiveGroupedPetitions(mockPetitions, {}, '');
+      const actual = result.petitions;
+      const expected = mockPetitions;
 
       assert.deepEqual(actual, expected);
     });
