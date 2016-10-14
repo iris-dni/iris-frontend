@@ -51,6 +51,22 @@ const supportPetitionErrors = (response, dispatch) => {
   dispatch(finishedTrust());
 };
 
+export function resendVerification (trustData) {
+  return (dispatch, getState) => {
+    return petitionRepository.support(trustData)
+      .then((response) => {
+        if (isUntrustedUser(response)) {
+          dispatch(showFlashMessage(settings.flashMessages.verificationResent, 'success'));
+        } else {
+          // All other errors
+          dispatch(showFlashMessage(settings.flashMessages.genericError, 'error'));
+        }
+      }).catch((e) => dispatch(
+        showFlashMessage(settings.flashMessages.genericError, 'error')
+      ));
+  };
+}
+
 export function supportPetition (trustData, dispatch) {
   const { petitionId, user } = trustData;
   // Set trust as submitting

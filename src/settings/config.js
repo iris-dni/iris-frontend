@@ -3,7 +3,7 @@ export default {
   charset: 'utf-8',
   title: 'iris-frontend',
   twitterAccount: 'azmedien',
-  ga: {
+  googleAnalytics: {
     APIKey: '',
     initOptions: {}
   },
@@ -323,6 +323,7 @@ export default {
     petitionUpdated: 'Your petition was updated',
     petitionSupported: 'Thank you for signing this petition!',
     invalidVerificationError: 'Invalid verification code',
+    verificationResent: 'Verification code has been re-sent',
     invalidUserDataError: 'Complete your details to support this petition',
     noLongerSupportable: 'This petition is no longer supportable'
   },
