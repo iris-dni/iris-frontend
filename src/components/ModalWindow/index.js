@@ -4,7 +4,7 @@ import settings from 'settings';
 import Overlay from 'components/Overlay';
 import CloseButton from 'components/CloseButton';
 
-const Modal = ({ active, children, hideModalWindow }) => (
+const Modal = ({ active, title, children, hideModalWindow }) => (
   <div aria-hidden={!active} className={styles.root}>
     <Overlay active={active} onClickHandler={hideModalWindow} />
     <div role='dialog' aria-labelledby='dialog-title' className={styles.content}>
@@ -16,7 +16,6 @@ const Modal = ({ active, children, hideModalWindow }) => (
           onClick={hideModalWindow}
           text={settings.modalWindow.closeButton}
           attrs={{
-            'data-a11y-dialog-hide': true,
             'aria-label': settings.modalWindow.closeButton
           }}
         />
