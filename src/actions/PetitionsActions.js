@@ -6,6 +6,7 @@ import { fetchCity } from 'actions/CityActions';
 
 import {
   REQUEST_PETITIONS,
+  REQUEST_GROUPED_PETITIONS,
   RECEIVE_PETITIONS,
   RECEIVE_GROUPED_PETITIONS,
   CLEAR_PETITIONS
@@ -36,9 +37,9 @@ export function fetchPetitions ({ location, params }) {
 
 export function fetchGroupedPetitions (props = {}, groups = []) {
   return (dispatch) => {
-    dispatch(requestPetitions());
-
     const groupDispatches = groups.map(group => {
+      dispatch(requestGroupedPetitions(group.group));
+
       const query = Object.assign({}, props.location, group.query);
       const queryParams = getPetitionsQueryParams({}, query);
 
@@ -67,11 +68,19 @@ export function requestPetitions () {
   };
 }
 
+export function requestGroupedPetitions (group) {
+  return {
+    type: REQUEST_GROUPED_PETITIONS,
+    group: group
+  };
+}
+
 export function receiveGroupedPetitions (petitions, params, group) {
   return {
     type: RECEIVE_GROUPED_PETITIONS,
+    petitions,
     params,
-    groupedPetitions: { [group]: petitions }
+    group
   };
 }
 

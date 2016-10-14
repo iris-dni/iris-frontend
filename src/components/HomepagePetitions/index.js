@@ -12,7 +12,10 @@ const HomepagePetitions = ({ groupedPetitions, title }) => (
         <TextCenter>
           <Heading2 text={title} />
         </TextCenter>
-        <TeaserGrid petitions={groupedPetitions.latest} />
+        <TeaserGrid
+          petitions={groupedPetitions.latest.data}
+          isLoading={groupedPetitions.latest.isLoading}
+        />
       </Container>
     </Section>
   </section>
