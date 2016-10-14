@@ -4,5 +4,5 @@ export default (params = {}, query = {}) => ({
   cityName: params.cityName || '',
   limit: parseInt(query.limit || 12),
   state: query.state || 'current',
-  sort: query.sort || ''
+  sort: query['sort'] || ''
 });

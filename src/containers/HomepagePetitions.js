@@ -11,14 +11,11 @@ const HomepagePetitionsContainer = (props) => (
 );
 
 HomepagePetitionsContainer.propTypes = {
-  petitions: React.PropTypes.shape({
-    latest: React.PropTypes.array,
-    trending: React.PropTypes.array
-  })
+  groupedPetitions: React.PropTypes.object
 };
 
 export const mapStateToProps = ({ petitions }) => ({
-  petitions: getPetitionsGroups(petitions, PETITIONS_GROUPS)
+  groupedPetitions: getPetitionsGroups(petitions, PETITIONS_GROUPS)
 });
 
 export default connect(

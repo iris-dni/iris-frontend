@@ -4,6 +4,6 @@ export default (petition, me, trust) => ({
     user: me || {}
   },
   petitionId: petition && petition.id,
-  submitting: trust.isSubmitting,
+  submitting: trust && trust.isSubmitting,
   me: me || {}
 });

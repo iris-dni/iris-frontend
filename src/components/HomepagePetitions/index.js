@@ -7,7 +7,7 @@ import Heading2 from 'components/Heading2';
 import styles from './homepage-petitions.scss';
 import Link from 'components/Link';
 
-const HomepagePetitions = ({ petitions, title, text, linkText }) => (
+const HomepagePetitions = ({ groupedPetitions, title, text, linkText }) => (
   <section>
     <Section>
       <Container>
@@ -20,7 +20,10 @@ const HomepagePetitions = ({ petitions, title, text, linkText }) => (
             <Link href='/petitions'>{linkText}</Link>
           </div>
         </BlockContainer>
-        <TeaserGrid petitions={petitions.trending} />
+        <TeaserGrid
+          petitions={groupedPetitions.trending.data}
+          isLoading={groupedPetitions.trending.isLoading}
+        />
       </Container>
     </Section>
   </section>

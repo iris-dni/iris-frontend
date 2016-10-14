@@ -17,4 +17,12 @@ describe('trustParams selector', () => {
     const actual = result.hasOwnProperty('petitionId');
     assert.isTrue(actual);
   });
+
+  it('returns `isSubmitting` key', () => {
+    const result = getTrustParams({
+      isSubmitting: true
+    });
+    const actual = result.hasOwnProperty('isSubmitting');
+    assert.isTrue(actual);
+  });
 });

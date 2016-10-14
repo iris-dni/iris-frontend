@@ -2,10 +2,9 @@ import React from 'react';
 import settings from 'settings';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { fetchGroupedPetitions, clearPetitions } from 'actions/PetitionsActions';
+import { fetchGroupedPetitions } from 'actions/PetitionsActions';
 import Home from 'components/Home';
 import getPetitionsGroups from 'selectors/petitionsGroups';
-import isClientSideRouting from 'helpers/isClientSideRouting';
 import hasPetitionGroups from 'helpers/hasPetitionGroups';
 import getPetitionsGroupsList from 'helpers/getPetitionsGroupsList';
 
@@ -16,8 +15,7 @@ const HomeContainer = React.createClass({
   componentWillMount () {
     // If there are no petitions, or if the user arrived on the page by clicking
     // a client-side router link, then we fetch petitions client-side.
-    if (!hasPetitionGroups(this.props.petitions) || isClientSideRouting(this.props.location)) {
-      this.props.clearPetitions();
+    if (!hasPetitionGroups(this.props)) {
       this.props.fetchGroupedPetitions(this.props, PETITIONS_GROUPS);
     }
   },
@@ -26,7 +24,7 @@ const HomeContainer = React.createClass({
     return (
       <div>
         <Helmet title={this.props.title} />
-        <Home {...this.props} />
+        <Home />
       </div>
     );
   }
@@ -39,20 +37,16 @@ HomeContainer.fetchData = (props) => {
 };
 
 HomeContainer.propTypes = {
-  petitions: React.PropTypes.shape({
-    latest: React.PropTypes.array,
-    trending: React.PropTypes.array
-  }),
+  groupedPetitions: React.PropTypes.object,
   title: React.PropTypes.string
 };
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchGroupedPetitions: (options) => dispatch(fetchGroupedPetitions(options)),
-  clearPetitions: () => dispatch(clearPetitions())
+  fetchGroupedPetitions: (options) => dispatch(fetchGroupedPetitions(options, PETITIONS_GROUPS))
 });
 
 export const mapStateToProps = ({ petitions }) => ({
-  petitions: getPetitionsGroups(petitions, PETITIONS_GROUPS),
+  groupedPetitions: getPetitionsGroups(petitions, PETITIONS_GROUPS),
   title: settings.homePage.title
 });
 
