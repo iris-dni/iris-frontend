@@ -1,20 +1,20 @@
 import chai from 'chai';
-import FIELDS_SUPPORTING from 'components/TrustForm/fieldsForSupporting';
+import FIELDS from 'components/TrustSupportForm/fields';
 import { getFieldByNameKey } from './PetitionForm';
 
 const { assert } = chai;
 
-describe('TrustForm', () => {
-  context('FIELDS_SUPPORTING', () => {
+describe('TrustSupportForm', () => {
+  context('FIELDS', () => {
     it('is 7 fields in length', () => {
-      const actual = FIELDS_SUPPORTING.length;
+      const actual = FIELDS.length;
       const expected = 7;
 
       assert.equal(actual, expected);
     });
 
     describe('`petitionId` field', () => {
-      const field = getFieldByNameKey('petitionId', FIELDS_SUPPORTING);
+      const field = getFieldByNameKey('petitionId', FIELDS);
 
       it('is present', () => {
         const actual = field.name;
@@ -45,7 +45,7 @@ describe('TrustForm', () => {
     });
 
     describe('`user.mobile` field', () => {
-      const field = getFieldByNameKey('user.mobile', FIELDS_SUPPORTING);
+      const field = getFieldByNameKey('user.mobile', FIELDS);
 
       it('is present', () => {
         const actual = field.name;
@@ -82,7 +82,7 @@ describe('TrustForm', () => {
       'user.zip'
     ].forEach(fieldName => {
       describe(`${fieldName} field`, () => {
-        const field = getFieldByNameKey(fieldName, FIELDS_SUPPORTING);
+        const field = getFieldByNameKey(fieldName, FIELDS);
 
         it('is present', () => {
           const actual = field.name;
@@ -112,7 +112,7 @@ describe('TrustForm', () => {
       'user.email'
     ].forEach(fieldName => {
       describe(`${fieldName} field`, () => {
-        const field = getFieldByNameKey(fieldName, FIELDS_SUPPORTING);
+        const field = getFieldByNameKey(fieldName, FIELDS);
 
         it('is present', () => {
           const actual = field.name;
@@ -138,7 +138,7 @@ describe('TrustForm', () => {
     });
 
     describe('`user.email` field', () => {
-      const field = getFieldByNameKey('user.email', FIELDS_SUPPORTING);
+      const field = getFieldByNameKey('user.email', FIELDS);
 
       it('has input type `email`', () => {
         const actual = field.html.type;
