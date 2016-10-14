@@ -17,7 +17,7 @@ const HomepagePetitions = ({ petitions, title, text, linkText }) => (
             <Link href='/petitions'>{linkText}</Link>
           </div>
         </BlockContainer>
-        <TeaserGrid petitions={petitions.latest} />
+        <TeaserGrid petitions={petitions.trending} />
       </Container>
     </Section>
   </section>
