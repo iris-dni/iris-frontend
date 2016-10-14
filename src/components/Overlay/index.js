@@ -33,7 +33,6 @@ const Overlay = React.createClass({
     return (
       <div
         tabIndex='-1'
-        data-a11y-dialog-hide
         className={this.props.active ? styles.active : styles.overlay}
         onClick={this.props.onClickHandler}
       ></div>
