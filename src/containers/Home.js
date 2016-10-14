@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { fetchGroupedPetitions } from 'actions/PetitionsActions';
 import Home from 'components/Home';
 import getPetitionsGroups from 'selectors/petitionsGroups';
-import isClientSideRouting from 'helpers/isClientSideRouting';
 import hasPetitionGroups from 'helpers/hasPetitionGroups';
 import getPetitionsGroupsList from 'helpers/getPetitionsGroupsList';
 
@@ -16,7 +15,7 @@ const HomeContainer = React.createClass({
   componentWillMount () {
     // If there are no petitions, or if the user arrived on the page by clicking
     // a client-side router link, then we fetch petitions client-side.
-    if (!hasPetitionGroups(this.props) || isClientSideRouting(this.props.location)) {
+    if (!hasPetitionGroups(this.props)) {
       this.props.fetchGroupedPetitions(this.props, PETITIONS_GROUPS);
     }
   },
