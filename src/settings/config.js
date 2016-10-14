@@ -64,6 +64,7 @@ export default {
     description: 'Description:',
     suggestedSolution: 'Suggested solution:',
     attachedLinks: 'Links attached to this petition:',
+    mentionsTitle: 'Links mentioning this petition:',
     supportButton: {
       text: 'Support Petition',
       supportedText: 'Supported',
