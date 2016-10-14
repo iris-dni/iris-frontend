@@ -10,7 +10,7 @@ import ButtonSet from 'components/ButtonSet';
 import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
 
-const TrustPublishForm = ({ fields, handleSubmit, submitting, petitionId }) => (
+const TrustPublishForm = ({ fields, handleSubmit, submitting, petition }) => (
   <form onSubmit={handleSubmit(supportPetition)}>
     <Fieldset>
       <FormFieldsIterator
@@ -21,11 +21,11 @@ const TrustPublishForm = ({ fields, handleSubmit, submitting, petitionId }) => (
     <Fieldset modifier={'actions'}>
       <ButtonSet>
         <ButtonLink
-          href={`/petitions/${petitionId}`}
-          text={'Back to petition'}
+          href={`/petitions/${petition.id}/edit`}
+          text={'Edit petition'}
         />
         <Button
-          text={'Go to verification'}
+          text={'Preview petition'}
           modifier={'accent'}
           disabled={submitting || !fields._meta.allValid}
         />

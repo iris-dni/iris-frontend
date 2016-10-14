@@ -68,9 +68,9 @@ export function resendVerification (trustData) {
 }
 
 export function supportPetition (trustData, dispatch) {
-  const { petitionId, user } = trustData;
+  const { petition, user } = trustData;
   // Set trust as submitting
-  dispatch(submittingTrust(petitionId));
+  dispatch(submittingTrust(petition.id));
   // Add submitted user data to me object for future
   dispatch(receiveWhoAmI(user));
   // Trigger support action
@@ -79,7 +79,7 @@ export function supportPetition (trustData, dispatch) {
       switch (response.status) {
         case 'ok':
           // Successful support
-          supportPetitionSuccess(petitionId, response.data, dispatch);
+          supportPetitionSuccess(petition.id, response.data, dispatch);
           break;
         case 'error':
           // Error given

@@ -2,6 +2,7 @@ import React from 'react';
 import { reduxForm } from 'redux-form';
 import { supportPetition } from 'actions/SupportActions';
 import trustSupportValidator from 'form/trustSupportValidator';
+import assignPetitionData from 'form/assignPetitionData';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
@@ -10,8 +11,10 @@ import ButtonSet from 'components/ButtonSet';
 import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
 
-const TrustSupportForm = ({ fields, handleSubmit, submitting, petitionId }) => (
-  <form onSubmit={handleSubmit(supportPetition)}>
+const TrustSupportForm = ({ fields, handleSubmit, submitting, petition }) => (
+  <form onSubmit={handleSubmit((values, dispatch) => supportPetition(
+    assignPetitionData(values, petition), dispatch)
+  )}>
     <Fieldset>
       <FormFieldsIterator
         reduxFormFields={fields}
@@ -21,7 +24,7 @@ const TrustSupportForm = ({ fields, handleSubmit, submitting, petitionId }) => (
     <Fieldset modifier={'actions'}>
       <ButtonSet>
         <ButtonLink
-          href={`/petitions/${petitionId}`}
+          href={`/petitions/${petition.id}`}
           text={'Back to petition'}
         />
         <Button

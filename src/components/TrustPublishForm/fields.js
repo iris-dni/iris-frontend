@@ -3,15 +3,7 @@ import settings from 'settings';
 export default [
   {
     element: 'input',
-    name: 'petitionId',
-    hidden: true,
-    html: {
-      type: 'hidden'
-    }
-  },
-  {
-    element: 'input',
-    name: 'user.firstname',
+    name: 'owner.firstname',
     label: settings.trustFields.firstname.label,
     hint: settings.trustFields.firstname.hint,
     html: {
@@ -21,7 +13,7 @@ export default [
   },
   {
     element: 'input',
-    name: 'user.lastname',
+    name: 'owner.lastname',
     label: settings.trustFields.lastname.label,
     hint: settings.trustFields.lastname.hint,
     html: {
@@ -31,7 +23,17 @@ export default [
   },
   {
     element: 'input',
-    name: 'user.zip',
+    name: 'owner.street',
+    label: settings.trustFields.street.label,
+    hint: settings.trustFields.street.hint,
+    html: {
+      placeholder: settings.trustFields.street.placeholder,
+      required: true
+    }
+  },
+  {
+    element: 'input',
+    name: 'owner.zip',
     label: settings.trustFields.zip.label,
     hint: settings.trustFields.zip.hint,
     html: {
@@ -41,7 +43,7 @@ export default [
   },
   {
     element: 'input',
-    name: 'user.town',
+    name: 'owner.town',
     label: settings.trustFields.town.label,
     hint: settings.trustFields.town.hint,
     html: {
@@ -50,7 +52,7 @@ export default [
   },
   {
     element: 'input',
-    name: 'user.email',
+    name: 'owner.email',
     label: settings.trustFields.email.label,
     hint: settings.trustFields.email.hint,
     html: {
@@ -60,7 +62,7 @@ export default [
   },
   {
     element: 'input',
-    name: 'user.mobile',
+    name: 'owner.mobile',
     label: settings.trustFields.mobile.label,
     hint: settings.trustFields.mobile.hint,
     html: {
