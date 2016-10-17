@@ -14,32 +14,30 @@ describe('TrustForm', () => {
     });
 
     describe('`petitionId` field', () => {
+      const field = getFieldByNameKey('petitionId', FIELDS_SUPPORTING);
+
       it('is present', () => {
-        const result = getFieldByNameKey('petitionId', FIELDS_SUPPORTING);
-        const actual = result.name;
+        const actual = field.name;
         const expected = 'petitionId';
 
         assert.equal(actual, expected);
       });
 
       it('is an input', () => {
-        const result = getFieldByNameKey('petitionId', FIELDS_SUPPORTING);
-        const actual = result.element;
+        const actual = field.element;
         const expected = 'input';
 
         assert.equal(actual, expected);
       });
 
       it('is hidden', () => {
-        const result = getFieldByNameKey('petitionId', FIELDS_SUPPORTING);
-        const actual = result.hidden;
+        const actual = field.hidden;
 
         assert.isTrue(actual);
       });
 
       it('has `hidden` html attr', () => {
-        const result = getFieldByNameKey('petitionId', FIELDS_SUPPORTING);
-        const actual = result.html.type;
+        const actual = field.html.type;
         const expected = 'hidden';
 
         assert.equal(actual, expected);
@@ -47,33 +45,31 @@ describe('TrustForm', () => {
     });
 
     describe('`user.mobile` field', () => {
+      const field = getFieldByNameKey('user.mobile', FIELDS_SUPPORTING);
+
       it('is present', () => {
-        const result = getFieldByNameKey('user.mobile', FIELDS_SUPPORTING);
-        const actual = result.name;
+        const actual = field.name;
         const expected = 'user.mobile';
 
         assert.equal(actual, expected);
       });
 
       it('is an input', () => {
-        const result = getFieldByNameKey('user.mobile', FIELDS_SUPPORTING);
-        const actual = result.element;
+        const actual = field.element;
         const expected = 'input';
 
         assert.equal(actual, expected);
       });
 
       it('is required', () => {
-        const result = getFieldByNameKey('user.mobile', FIELDS_SUPPORTING);
-        const actual = result.html.required;
+        const actual = field.html.required;
         const expected = true;
 
         assert.equal(actual, expected);
       });
 
       it('has input type `tel`', () => {
-        const result = getFieldByNameKey('user.mobile', FIELDS_SUPPORTING);
-        const actual = result.html.type;
+        const actual = field.html.type;
         const expected = 'tel';
 
         assert.equal(actual, expected);
@@ -86,25 +82,24 @@ describe('TrustForm', () => {
       'user.zip'
     ].forEach(fieldName => {
       describe(`${fieldName} field`, () => {
+        const field = getFieldByNameKey(fieldName, FIELDS_SUPPORTING);
+
         it('is present', () => {
-          const result = getFieldByNameKey(fieldName, FIELDS_SUPPORTING);
-          const actual = result.name;
+          const actual = field.name;
           const expected = fieldName;
 
           assert.equal(actual, expected);
         });
 
         it('is an input', () => {
-          const result = getFieldByNameKey(fieldName, FIELDS_SUPPORTING);
-          const actual = result.element;
+          const actual = field.element;
           const expected = 'input';
 
           assert.equal(actual, expected);
         });
 
         it('is required', () => {
-          const result = getFieldByNameKey(fieldName, FIELDS_SUPPORTING);
-          const actual = result.html.required;
+          const actual = field.html.required;
           const expected = true;
 
           assert.equal(actual, expected);
@@ -117,25 +112,24 @@ describe('TrustForm', () => {
       'user.email'
     ].forEach(fieldName => {
       describe(`${fieldName} field`, () => {
+        const field = getFieldByNameKey(fieldName, FIELDS_SUPPORTING);
+
         it('is present', () => {
-          const result = getFieldByNameKey(fieldName, FIELDS_SUPPORTING);
-          const actual = result.name;
+          const actual = field.name;
           const expected = fieldName;
 
           assert.equal(actual, expected);
         });
 
         it('is an input', () => {
-          const result = getFieldByNameKey(fieldName, FIELDS_SUPPORTING);
-          const actual = result.element;
+          const actual = field.element;
           const expected = 'input';
 
           assert.equal(actual, expected);
         });
 
         it('is optional', () => {
-          const result = getFieldByNameKey(fieldName, FIELDS_SUPPORTING);
-          const actual = !result.html.required;
+          const actual = !field.html.required;
           const expected = true;
 
           assert.equal(actual, expected);
@@ -144,9 +138,10 @@ describe('TrustForm', () => {
     });
 
     describe('`user.email` field', () => {
+      const field = getFieldByNameKey('user.email', FIELDS_SUPPORTING);
+
       it('has input type `email`', () => {
-        const result = getFieldByNameKey('user.email', FIELDS_SUPPORTING);
-        const actual = result.html.type;
+        const actual = field.html.type;
         const expected = 'email';
 
         assert.equal(actual, expected);

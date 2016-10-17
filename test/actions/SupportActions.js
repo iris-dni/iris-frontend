@@ -3,55 +3,283 @@ import sinon from 'sinon';
 import moxios from 'moxios';
 import mockPetition from '../mocks/petition';
 import mockUser from '../mocks/user';
+import mockSupportResponse from '../mocks/supportResponse';
+import mockSupportResponseUntrusted from '../mocks/supportResponseUntrusted';
+import mockSupportResponseInvalid from '../mocks/supportResponseInvalid';
 
 import {
-  submittingSupport,
   supportPetition,
-  supportedPetition
+  supportedPetition,
+  resendVerification
 } from 'actions/SupportActions';
 
-describe('SupportActions', () => {
-  describe('submittingSupport', () => {
-    it('returns SUBMITTING_SUPPORT action', () => {
-      const result = submittingSupport();
-      const actual = result.type;
-      const expected = 'SUBMITTING_SUPPORT';
+import {
+  submittingTrust,
+  userIsUntrusted,
+  userIsTrusted,
+  finishedTrust
+} from 'actions/TrustActions';
 
-      assert.equal(actual, expected);
+import {
+  receiveWhoAmI
+} from 'actions/AuthActions';
+
+import {
+  showFlashMessage
+} from 'actions/FlashActions';
+
+describe('SupportActions', () => {
+  describe('supportPetition', () => {
+    context('with a user', () => {
+      let dispatch;
+
+      const mockTrustData = {
+        petitionId: '1BV3l',
+        user: mockUser
+      };
+
+      beforeEach(() => {
+        dispatch = sinon.spy();
+        supportPetition(mockTrustData, dispatch);
+      });
+
+      it('dispatches submittingTrust() with petition id', () => {
+        assert(dispatch.calledWith(submittingTrust(mockTrustData.petitionId)));
+      });
+
+      it('dispatches receiveWhoAmI() with user', () => {
+        assert(dispatch.calledWith(receiveWhoAmI(mockUser)));
+      });
+    });
+
+    context('with a successful response', () => {
+      let dispatch;
+      let result;
+
+      const mockTrustData = {
+        petitionId: '1BV3l',
+        user: mockUser
+      };
+
+      beforeEach(() => {
+        dispatch = sinon.spy();
+
+        moxios.install();
+        moxios.stubRequest(/.*/, {
+          status: 200,
+          response: mockSupportResponse
+        });
+
+        result = supportPetition(mockTrustData, dispatch);
+      });
+
+      afterEach(() => {
+        moxios.uninstall();
+      });
+
+      it('dispatches userIsTrusted()', done => {
+        result.then(() => {
+          assert(dispatch.calledWith(userIsTrusted()));
+        }).then(done, done);
+      });
+
+      it('dispatches supportedPetition()', done => {
+        result.then(() => {
+          assert(dispatch.calledWith(supportedPetition(mockSupportResponse.data)));
+        }).then(done, done);
+      });
+
+      it('dispatches finishedTrust()', done => {
+        result.then(() => {
+          assert(dispatch.calledWith(finishedTrust()));
+        }).then(done, done);
+      });
+    });
+
+    context('with an untrusted user response', () => {
+      let dispatch;
+      let result;
+
+      const mockTrustData = {
+        petitionId: '1BV3l',
+        user: mockUser
+      };
+
+      beforeEach(() => {
+        dispatch = sinon.spy();
+
+        moxios.install();
+        moxios.stubRequest(/.*/, {
+          status: 200,
+          response: mockSupportResponseUntrusted
+        });
+
+        result = supportPetition(mockTrustData, dispatch);
+      });
+
+      afterEach(() => {
+        moxios.uninstall();
+      });
+
+      it('dispatches userIsUntrusted()', done => {
+        result.then(() => {
+          assert(dispatch.calledWith(userIsUntrusted()));
+        }).then(done, done);
+      });
+
+      it('dispatches finishedTrust()', done => {
+        result.then(() => {
+          assert(dispatch.calledWith(finishedTrust()));
+        }).then(done, done);
+      });
+    });
+
+    context('with an invalid verification response', () => {
+      let dispatch;
+      let result;
+
+      const mockTrustData = {
+        petitionId: '1BV3l',
+        user: mockUser
+      };
+
+      beforeEach(() => {
+        dispatch = sinon.spy();
+
+        moxios.install();
+        moxios.stubRequest(/.*/, {
+          status: 200,
+          response: mockSupportResponseInvalid
+        });
+
+        result = supportPetition(mockTrustData, dispatch);
+      });
+
+      afterEach(() => {
+        moxios.uninstall();
+      });
+
+      it('dispatches showFlashMessage() error', done => {
+        result.then(() => {
+          assert(dispatch.calledWith(showFlashMessage('Invalid verification code', 'error')));
+        }).then(done, done);
+      });
+
+      it('dispatches finishedTrust()', done => {
+        result.then(() => {
+          assert(dispatch.calledWith(finishedTrust()));
+        }).then(done, done);
+      });
+    });
+
+    context('with a random error', () => {
+      let dispatch;
+      let result;
+
+      const mockTrustData = {
+        petitionId: '1BV3l',
+        user: mockUser
+      };
+
+      beforeEach(() => {
+        dispatch = sinon.spy();
+
+        moxios.install();
+        moxios.stubRequest(/.*/, {
+          status: 200,
+          response: {
+            status: 'error',
+            reasons: ['random_error']
+          }
+        });
+
+        result = supportPetition(mockTrustData, dispatch);
+      });
+
+      afterEach(() => {
+        moxios.uninstall();
+      });
+
+      it('dispatches showFlashMessage() error', done => {
+        result.then(() => {
+          assert(dispatch.calledWith(showFlashMessage('Sadly something failed, please try again!', 'error')));
+        }).then(done, done);
+      });
+
+      it('dispatches finishedTrust()', done => {
+        result.then(() => {
+          assert(dispatch.calledWith(finishedTrust()));
+        }).then(done, done);
+      });
     });
   });
 
-  describe('supportPetition', () => {
-    let dispatch;
-    let result;
-    let mockTrustData;
+  describe('resendVerification', () => {
+    context('with an untrusted user response', () => {
+      let dispatch;
+      let result;
 
-    beforeEach(() => {
-      dispatch = sinon.spy();
+      const mockTrustData = {
+        petitionId: '1BV3l',
+        user: mockUser
+      };
 
-      moxios.install();
-      moxios.stubRequest(/.*/, {
-        status: 200,
-        response: mockPetition
+      beforeEach(() => {
+        dispatch = sinon.spy();
+
+        moxios.install();
+        moxios.stubRequest(/.*/, {
+          status: 200,
+          response: mockSupportResponseUntrusted
+        });
+
+        result = resendVerification(mockTrustData);
       });
 
-      mockTrustData = { petitionId: '1BV3l', user: mockUser };
+      afterEach(() => {
+        moxios.uninstall();
+      });
 
-      result = supportPetition(mockTrustData, dispatch);
+      it('dispatches showFlashMessage() success', done => {
+        result(dispatch).then(() => {
+          assert(dispatch.calledWith(showFlashMessage('Verification code has been re-sent', 'success')));
+        }).then(done, done);
+      });
     });
 
-    afterEach(() => {
-      moxios.uninstall();
-    });
+    context('with a random error', () => {
+      let dispatch;
+      let result;
 
-    it('dispatches submittingSupport()', () => {
-      assert(dispatch.calledWith(submittingSupport()));
-    });
+      const mockTrustData = {
+        petitionId: '1BV3l',
+        user: mockUser
+      };
 
-    it('returns function that returns a promise that dispatches supportedPetition() when done', done => {
-      result.then(() => {
-        assert(dispatch.calledWithMatch(supportedPetition({ id: mockTrustData.petitionId })));
-      }).then(done, done);
+      beforeEach(() => {
+        dispatch = sinon.spy();
+
+        moxios.install();
+        moxios.stubRequest(/.*/, {
+          status: 200,
+          response: {
+            status: 'error',
+            reasons: ['random_error']
+          }
+        });
+
+        result = resendVerification(mockTrustData);
+      });
+
+      afterEach(() => {
+        moxios.uninstall();
+      });
+
+      it('dispatches showFlashMessage() error', done => {
+        result(dispatch).then(() => {
+          assert(dispatch.calledWith(showFlashMessage('Sadly something failed, please try again!', 'error')));
+        }).then(done, done);
+      });
     });
   });
 

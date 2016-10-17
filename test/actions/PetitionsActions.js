@@ -6,7 +6,8 @@ import mockPetitions from '../mocks/petitions';
 import {
   fetchPetitions,
   requestPetitions,
-  receivePetitions
+  receivePetitions,
+  receiveGroupedPetitions
 } from 'actions/PetitionsActions';
 
 describe('PetitionsActions', () => {
@@ -81,6 +82,40 @@ describe('PetitionsActions', () => {
       const result = receivePetitions(mockPetitions, {}, 'hello=world&page=3');
       const actual = result.qs;
       const expected = 'hello=world&page=3';
+
+      assert.deepEqual(actual, expected);
+    });
+  });
+
+  describe('receiveGroupedPetitions', () => {
+    it('returns RECEIVE_GROUPED_PETITIONS action', () => {
+      const result = receiveGroupedPetitions();
+      const actual = result.type;
+      const expected = 'RECEIVE_GROUPED_PETITIONS';
+
+      assert.equal(actual, expected);
+    });
+
+    it('passes group name', () => {
+      const result = receiveGroupedPetitions(mockPetitions, {}, 'latest');
+      const actual = result.group;
+      const expected = 'latest';
+
+      assert.equal(actual, expected);
+    });
+
+    it('passes petitions', () => {
+      const result = receiveGroupedPetitions(mockPetitions, {}, '');
+      const actual = result.petitions;
+      const expected = mockPetitions;
+
+      assert.deepEqual(actual, expected);
+    });
+
+    it('passes query params', () => {
+      const result = receivePetitions(mockPetitions, { limit: 10 });
+      const actual = result.params;
+      const expected = { limit: 10 };
 
       assert.deepEqual(actual, expected);
     });

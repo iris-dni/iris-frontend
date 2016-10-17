@@ -5,9 +5,12 @@ import trustValidator from 'form/trustValidator';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
+import ButtonLink from 'components/ButtonLink';
+import ButtonSet from 'components/ButtonSet';
 import FIELDS_SUPPORTING from './fieldsForSupporting';
+import trustForm from 'selectors/trustForm';
 
-const TrustForm = ({ fields, handleSubmit, submitting }) => (
+const TrustForm = ({ fields, handleSubmit, submitting, petitionId }) => (
   <form onSubmit={handleSubmit(supportPetition)}>
     <Fieldset>
       <FormFieldsIterator
@@ -16,11 +19,17 @@ const TrustForm = ({ fields, handleSubmit, submitting }) => (
       />
     </Fieldset>
     <Fieldset modifier={'actions'}>
-      <Button
-        text={'Go to verification'}
-        modifier={'accent'}
-        disabled={submitting || !fields._meta.allValid}
-      />
+      <ButtonSet>
+        <ButtonLink
+          href={`/petitions/${petitionId}`}
+          text={'Back to petition'}
+        />
+        <Button
+          text={'Go to verification'}
+          modifier={'accent'}
+          disabled={submitting || !fields._meta.allValid}
+        />
+      </ButtonSet>
     </Fieldset>
   </form>
 );
@@ -31,12 +40,7 @@ TrustForm.propTypes = {
   submitting: React.PropTypes.bool.isRequired
 };
 
-export const mapStateToProps = ({ petition, me }) => ({
-  initialValues: {
-    petitionId: petition.id,
-    user: me || {}
-  }
-});
+export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, me, trust);
 
 export default reduxForm({
   form: 'trust',

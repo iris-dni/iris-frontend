@@ -6,7 +6,9 @@ import { fetchCity } from 'actions/CityActions';
 
 import {
   REQUEST_PETITIONS,
+  REQUEST_GROUPED_PETITIONS,
   RECEIVE_PETITIONS,
+  RECEIVE_GROUPED_PETITIONS,
   CLEAR_PETITIONS
 } from './actionTypes';
 
@@ -33,6 +35,26 @@ export function fetchPetitions ({ location, params }) {
   };
 }
 
+export function fetchGroupedPetitions (props = {}, groups = []) {
+  return (dispatch) => {
+    const groupDispatches = groups.map(group => {
+      dispatch(requestGroupedPetitions(group.group));
+
+      const query = Object.assign({}, props.location, group.query);
+      const queryParams = getPetitionsQueryParams({}, query);
+
+      return petitionRepository.all(queryParams)
+        .then(response => dispatch(receiveGroupedPetitions(
+        response,
+        queryParams,
+        group.group
+      )));
+    });
+
+    return Promise.all(groupDispatches);
+  };
+}
+
 export function fetchPetitionsAndCity ({ location, params }) {
   return (dispatch) => Promise.all([
     dispatch(fetchPetitions({ location, params })),
@@ -43,6 +65,22 @@ export function fetchPetitionsAndCity ({ location, params }) {
 export function requestPetitions () {
   return {
     type: REQUEST_PETITIONS
+  };
+}
+
+export function requestGroupedPetitions (group) {
+  return {
+    type: REQUEST_GROUPED_PETITIONS,
+    group: group
+  };
+}
+
+export function receiveGroupedPetitions (petitions, params, group) {
+  return {
+    type: RECEIVE_GROUPED_PETITIONS,
+    petitions,
+    params,
+    group
   };
 }
 
