@@ -107,41 +107,143 @@ describe('petition repository', () => {
   });
 
   describe('update', () => {
-    let examplePetition = { id: exampleId, title: exampleTitle };
-    let expectedPathArgument = `/petitions/${exampleId}`;
-    let expectedDataArgument = { data: { title: exampleTitle } };
-    let expectedMethodArgument = 'POST';
+    context('without city', () => {
+      let examplePetition = { id: exampleId, title: exampleTitle };
+      let expectedPathArgument = `/petitions/${exampleId}`;
+      let expectedDataArgument = {
+        data: {
+          title: exampleTitle
+        }
+      };
+      let expectedMethodArgument = 'POST';
 
-    it('calls the API client with proper arguments', () => {
-      petitionRepository.update(examplePetition);
+      it('calls the API client with proper arguments', () => {
+        petitionRepository.update(examplePetition);
 
-      assert(ApiClient.request.calledWith(
-        expectedPathArgument,
-        expectedDataArgument,
-        expectedMethodArgument
-      ));
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument,
+          expectedMethodArgument
+        ));
+      });
+    });
+
+    context('with city and city.data', () => {
+      let exampleCity = {
+        id: '12',
+        data: {
+          name: 'Aargau'
+        }
+      };
+      let examplePetition = {
+        id: exampleId,
+        title: exampleTitle,
+        city: exampleCity
+      };
+      let expectedPathArgument = `/petitions/${exampleId}`;
+      let expectedDataArgument = {
+        data: {
+          title: exampleTitle,
+          city: exampleCity
+        }
+      };
+      let expectedMethodArgument = 'POST';
+
+      it('calls the API client with proper arguments', () => {
+        petitionRepository.update(examplePetition);
+
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument,
+          expectedMethodArgument
+        ));
+      });
+    });
+
+    context('with city, without city.data', () => {
+      let exampleCity = {
+        id: '12',
+        data: null
+      };
+      let examplePetition = {
+        id: exampleId,
+        title: exampleTitle,
+        city: exampleCity
+      };
+      let expectedPathArgument = `/petitions/${exampleId}`;
+      let expectedDataArgument = {
+        data: {
+          title: exampleTitle,
+          city: {
+            id: '12'
+          }
+        }
+      };
+      let expectedMethodArgument = 'POST';
+
+      it('calls the API client with proper arguments', () => {
+        petitionRepository.update(examplePetition);
+
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument,
+          expectedMethodArgument
+        ));
+      });
     });
   });
 
   describe('publish', () => {
-    let examplePetition = { id: exampleId, title: exampleTitle };
-    let expectedPathArgument = `/petitions/${exampleId}/event/publish`;
-    let expectedDataArgument = null;
-    let expectedMethodArgument = 'POST';
+    context('without mobile_token', () => {
+      let examplePetition = {
+        petition: {
+          id: exampleId,
+          title: exampleTitle
+        }
+      };
+      let expectedPathArgument = `/petitions/${exampleId}/event/publish`;
+      let expectedDataArgument = { data: {} };
+      let expectedMethodArgument = 'POST';
+      it('calls the API client with proper arguments', () => {
+        petitionRepository.publish(examplePetition);
 
-    it('calls the API client with proper arguments', () => {
-      petitionRepository.publish(examplePetition);
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument,
+          expectedMethodArgument
+        ));
+      });
+    });
 
-      assert(ApiClient.request.calledWith(
-        expectedPathArgument,
-        expectedDataArgument,
-        expectedMethodArgument
-      ));
+    context('with mobile_token', () => {
+      let examplePetition = {
+        petition: {
+          id: exampleId,
+          title: exampleTitle
+        },
+        mobile_token: '12345'
+      };
+      let expectedPathArgument = `/petitions/${exampleId}/event/publish`;
+      let expectedDataArgument = { data: { mobile_token: '12345' } };
+      let expectedMethodArgument = 'POST';
+      it('calls the API client with proper arguments', () => {
+        petitionRepository.publish(examplePetition);
+
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument,
+          expectedMethodArgument
+        ));
+      });
     });
   });
 
   describe('support', () => {
-    let exampleTrustData = { petitionId: exampleId, user: {} };
+    let exampleTrustData = {
+      petition: {
+        id: exampleId
+      }
+    };
     let expectedPathArgument = `/petitions/${exampleId}/event/support`;
     let expectedDataArgument = { data: exampleTrustData };
     let expectedMethodArgument = 'POST';

@@ -37,27 +37,19 @@ export default {
     return ApiClient.request(requestPath, { data: petition }, 'POST');
   },
 
-  publish: (trustData) => {
-    const { petition, mobile_token } = trustData;
-    const payload = mobile_token ? { mobile_token } : {}; // eslint-disable-line camelcase
+  publish: ({ petition, mobile_token }) => {
     const requestPath = path.join('/petitions', petition.id.toString(), '/event/publish');
+    const payload = mobile_token ? { mobile_token } : {}; // eslint-disable-line camelcase
     return ApiClient.request(requestPath, { data: payload }, POST);
   },
 
-  support: (trustData) => {
-    const { petition } = trustData;
+  support: ({ petition }) => {
     const requestPath = path.join('/petitions', petition.id.toString(), '/event/support');
-    return ApiClient.request(requestPath, { data: trustData }, POST);
+    return ApiClient.request(requestPath, { data: { petition } }, POST);
   },
 
-  respond: (response) => {
-    const requestPath = path.join('/petitions', response.petitionId.toString(), 'event/setFeedback?resolve=city');
-    const requestPayload = {
-      data: {
-        answer: response.answer,
-        token: response.token
-      }
-    };
-    return ApiClient.request(requestPath, requestPayload, POST);
+  respond: ({ petitionId, answer, token }) => {
+    const requestPath = path.join('/petitions', petitionId.toString(), 'event/setFeedback?resolve=city');
+    return ApiClient.request(requestPath, { data: { answer, token } }, POST);
   }
 };

@@ -3,9 +3,9 @@ import sinon from 'sinon';
 import moxios from 'moxios';
 import mockPetition from '../mocks/petition';
 import mockUser from '../mocks/user';
-import mockSupportResponse from '../mocks/supportResponse';
-import mockSupportResponseUntrusted from '../mocks/supportResponseUntrusted';
-import mockSupportResponseInvalid from '../mocks/supportResponseInvalid';
+import mockTrustResponse from '../mocks/trustResponse';
+import mockTrustResponseUntrusted from '../mocks/trustResponseUntrusted';
+import mockTrustResponseInvalid from '../mocks/trustResponseInvalid';
 
 import {
   supportPetition,
@@ -67,7 +67,7 @@ describe('SupportActions', () => {
         moxios.install();
         moxios.stubRequest(/.*/, {
           status: 200,
-          response: mockSupportResponse
+          response: mockTrustResponse
         });
 
         result = supportPetition(mockTrustData, dispatch);
@@ -85,7 +85,7 @@ describe('SupportActions', () => {
 
       it('dispatches supportedPetition()', done => {
         result.then(() => {
-          assert(dispatch.calledWith(supportedPetition(mockSupportResponse.data)));
+          assert(dispatch.calledWith(supportedPetition(mockTrustResponse.data)));
         }).then(done, done);
       });
 
@@ -111,7 +111,7 @@ describe('SupportActions', () => {
         moxios.install();
         moxios.stubRequest(/.*/, {
           status: 200,
-          response: mockSupportResponseUntrusted
+          response: mockTrustResponseUntrusted
         });
 
         result = supportPetition(mockTrustData, dispatch);
@@ -149,7 +149,7 @@ describe('SupportActions', () => {
         moxios.install();
         moxios.stubRequest(/.*/, {
           status: 200,
-          response: mockSupportResponseInvalid
+          response: mockTrustResponseInvalid
         });
 
         result = supportPetition(mockTrustData, dispatch);
@@ -230,7 +230,7 @@ describe('SupportActions', () => {
         moxios.install();
         moxios.stubRequest(/.*/, {
           status: 200,
-          response: mockSupportResponseUntrusted
+          response: mockTrustResponseUntrusted
         });
 
         result = resendVerification(mockTrustData);
