@@ -125,10 +125,10 @@ export default {
     link: 'Let’s go explore'
   },
   petitionResponseTokenErrorPage: {
-    title: 'Sorry but looks like a wrong link, or it’s no longer working.',
+    title: 'Sorry but this link doesn’t exist or is no longer working.',
     hint: 'Please re-enter the link or contact our admins if you believe there is a mistake and you are unsure of how to proceed.',
     homeButton: {
-      text: 'Okay, take me home'
+      text: 'Back to the home page'
     }
   },
   homePage: {
