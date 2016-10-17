@@ -14,9 +14,16 @@ const App = React.createClass({
 
   componentDidMount () {
     const { ga } = settings;
+    const { pathname } = window.location;
+
+    /* For initial page load.
+       Subsequent pageviews are triggered with
+       react-router and use `logPageView` */
 
     if (ga.APIKey.length) {
       ReactGA.initialize(ga.APIKey, ga.initOptions);
+      ReactGA.set({ page: pathname });
+      ReactGA.pageview(pathname);
     }
   },
 
