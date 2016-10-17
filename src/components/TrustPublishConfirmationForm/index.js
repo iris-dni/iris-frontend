@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import { supportPetition } from 'actions/SupportActions';
-import trustSupportValidator from 'form/trustSupportValidator';
+import { publishPetition } from 'actions/PetitionActions';
+import trustConfirmationValidator from 'form/trustConfirmationValidator';
 import assignPetitionData from 'form/assignPetitionData';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
@@ -10,9 +10,17 @@ import ButtonLink from 'components/ButtonLink';
 import ButtonSet from 'components/ButtonSet';
 import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
+// import hasValidUserData from 'helpers/hasValidUserData';
 
-const TrustSupportForm = ({ fields, handleSubmit, submitting, petition }) => (
-  <form onSubmit={handleSubmit((values, dispatch) => supportPetition(
+const TrustPublishConfirmationForm = ({
+  fields,
+  handleSubmit,
+  publishPetition,
+  me,
+  petition,
+  submitting
+}) => (
+  <form onSubmit={handleSubmit((values, dispatch) => publishPetition(
     assignPetitionData(values, petition), dispatch)
   )}>
     <Fieldset>
@@ -24,11 +32,17 @@ const TrustSupportForm = ({ fields, handleSubmit, submitting, petition }) => (
     <Fieldset modifier={'actions'}>
       <ButtonSet>
         <ButtonLink
-          href={`/petitions/${petition.id}`}
-          text={'Back to petition'}
+          href={`/petitions/${petition.id}/preview`}
+          text={'Back to preview'}
         />
+        {/* <Button
+          onClick={() => resendVerification(petition, me)}
+          disabled={!hasValidUserData(me)}
+          type={'button'}
+          text={'Re-send SMS'}
+        /> */}
         <Button
-          text={'Go to verification'}
+          text={'Complete verification'}
           modifier={'accent'}
           disabled={submitting || !fields._meta.allValid}
         />
@@ -37,16 +51,26 @@ const TrustSupportForm = ({ fields, handleSubmit, submitting, petition }) => (
   </form>
 );
 
-TrustSupportForm.propTypes = {
+TrustPublishConfirmationForm.propTypes = {
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
+  publishPetition: React.PropTypes.func.isRequired,
+  me: React.PropTypes.object.isRequired,
+  petition: React.PropTypes.object.isRequired,
   submitting: React.PropTypes.bool.isRequired
 };
 
 export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, me, trust);
 
+export const mapDispatchToProps = (dispatch) => ({
+  publishPetition: (petition) => dispatch(publishPetition(petition))
+});
+
 export default reduxForm({
-  form: 'trustSupport',
+  form: 'trustPublishConfirmation',
   fields: FIELDS.map(field => field.name),
-  validate: trustSupportValidator
-}, mapStateToProps)(TrustSupportForm);
+  validate: trustConfirmationValidator
+},
+  mapStateToProps,
+  mapDispatchToProps
+)(TrustPublishConfirmationForm);

@@ -8,57 +8,46 @@ import { newTrustStep } from 'actions/TrustActions';
 import settings from 'settings';
 import Trust from 'components/Trust';
 import getPetitionPath from 'selectors/petitionPath';
-import getTrustPetition from 'selectors/trustPetition';
+import getPetitionForm from 'selectors/petitionForm';
 import trustSubmitted from 'helpers/trustSubmitted';
 
 const TrustContainer = withRouter(React.createClass({
   componentWillMount () {
-    this.props.newTrustStep();
-    // const { router, petition, showFlashMessage } = this.props;
+    // const { router, petition } = this.props;
+
     // If a petition is not supportable, redirect to petition page
-    // if (!petition.isSupportable) {
+    // if (!petition.supportable) {
     //   showFlashMessage(settings.flashMessages.noLongerSupportable, 'error');
     //   router.push(getPetitionPath(petition));
     // }
+  },
+
+  componentWillUpdate (nextProps) {
+    const {
+      router,
+      petition,
+      trustSubmitted,
+      isTrustedUser
+    } = nextProps;
+
+    if (trustSubmitted) {
+      // Go to petition path, or confirmation
+      router.push(isTrustedUser
+        ? getPetitionPath(petition)
+        : `/trust/support/${petition.id}/confirm`
+      );
+    }
   },
 
   componentWillUnmount () {
     this.props.newTrustStep();
   },
 
-  componentWillUpdate (nextProps) {
-    const {
-      router,
-      route,
-      petition,
-      trustSubmitted,
-      isTrustedUser
-    } = nextProps;
-
-    // If we've submitted the Trust form
-    if (trustSubmitted) {
-      // Check our action and act accordingly
-      switch (route.action) {
-        case 'support':
-          // Go to petition path, or confirmation
-          router.push(isTrustedUser
-            ? getPetitionPath(petition.id)
-            : `/trust/support/${petition.id}/confirm`
-          );
-          break;
-        case 'publish': {
-          // Go to petition preview
-          router.push(`/petitions/${petition.id}/preview`);
-        }
-      }
-    }
-  },
-
   render () {
     return (
       <div>
         <Helmet title={settings.trustPage.title} />
-        <Trust {...this.props} action={this.props.route.action} />
+        <Trust {...this.props} action={'support'} />
       </div>
     );
   }
@@ -69,7 +58,7 @@ TrustContainer.fetchData = ({ store, params }) => {
 };
 
 export const mapStateToProps = ({ petition, trust, me }) => ({
-  petition: getTrustPetition(petition),
+  petition: getPetitionForm(petition),
   trustSubmitted: trustSubmitted(petition, trust),
   isTrustedUser: trust.isTrustedUser,
   isLoggedIn: me && !!me.id,

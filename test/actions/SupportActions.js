@@ -34,7 +34,7 @@ describe('SupportActions', () => {
       let dispatch;
 
       const mockTrustData = {
-        petitionId: '1BV3l',
+        petition: { id: '1BV3l' },
         user: mockUser
       };
 
@@ -44,7 +44,7 @@ describe('SupportActions', () => {
       });
 
       it('dispatches submittingTrust() with petition id', () => {
-        assert(dispatch.calledWith(submittingTrust(mockTrustData.petitionId)));
+        assert(dispatch.calledWith(submittingTrust(mockTrustData.petition.id)));
       });
 
       it('dispatches receiveWhoAmI() with user', () => {
@@ -57,7 +57,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petitionId: '1BV3l',
+        petition: { id: '1BV3l' },
         user: mockUser
       };
 
@@ -101,7 +101,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petitionId: '1BV3l',
+        petition: { id: '1BV3l' },
         user: mockUser
       };
 
@@ -139,7 +139,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petitionId: '1BV3l',
+        petition: { id: '1BV3l' },
         user: mockUser
       };
 
@@ -177,7 +177,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petitionId: '1BV3l',
+        petition: { id: '1BV3l' },
         user: mockUser
       };
 
@@ -220,7 +220,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petitionId: '1BV3l',
+        petition: { id: '1BV3l' },
         user: mockUser
       };
 
@@ -252,7 +252,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petitionId: '1BV3l',
+        petition: { id: '1BV3l' },
         user: mockUser
       };
 

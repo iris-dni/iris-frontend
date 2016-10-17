@@ -37,9 +37,11 @@ export default {
     return ApiClient.request(requestPath, { data: petition }, 'POST');
   },
 
-  publish: (petition) => {
+  publish: (trustData) => {
+    const { petition, mobile_token } = trustData;
+    const payload = mobile_token ? { mobile_token } : {}; // eslint-disable-line camelcase
     const requestPath = path.join('/petitions', petition.id.toString(), '/event/publish');
-    return ApiClient.request(requestPath, null, POST);
+    return ApiClient.request(requestPath, { data: payload }, POST);
   },
 
   support: (trustData) => {

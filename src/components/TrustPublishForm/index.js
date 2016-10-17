@@ -1,7 +1,8 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import { supportPetition } from 'actions/SupportActions';
+import { updatePetition } from 'actions/PetitionActions';
 import trustPublishValidator from 'form/trustPublishValidator';
+import assignPetitionData from 'form/assignPetitionData';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
@@ -11,7 +12,9 @@ import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
 
 const TrustPublishForm = ({ fields, handleSubmit, submitting, petition }) => (
-  <form onSubmit={handleSubmit(supportPetition)}>
+  <form onSubmit={handleSubmit((values, dispatch) => updatePetition(
+    assignPetitionData(values, petition), dispatch)
+  )}>
     <Fieldset>
       <FormFieldsIterator
         reduxFormFields={fields}
@@ -43,7 +46,7 @@ TrustPublishForm.propTypes = {
 export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, me, trust);
 
 export default reduxForm({
-  form: 'trust',
+  form: 'trustPublish',
   fields: FIELDS.map(field => field.name),
   validate: trustPublishValidator
 }, mapStateToProps)(TrustPublishForm);

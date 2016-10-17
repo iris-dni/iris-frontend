@@ -11,6 +11,7 @@ import getPetitionForm from 'selectors/petitionForm';
 const NewPetitionContainer = withRouter(React.createClass({
   componentWillMount () {
     this.props.clearPetition();
+    this.props.clearSuggestionInputValue();
   },
 
   componentWillUpdate (nextProps) {

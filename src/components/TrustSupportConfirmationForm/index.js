@@ -12,7 +12,7 @@ import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
 import hasValidUserData from 'helpers/hasValidUserData';
 
-const TrustConfirmationForm = ({
+const TrustSupportConfirmationForm = ({
   fields,
   handleSubmit,
   resendVerification,
@@ -51,7 +51,7 @@ const TrustConfirmationForm = ({
   </form>
 );
 
-TrustConfirmationForm.propTypes = {
+TrustSupportConfirmationForm.propTypes = {
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
   resendVerification: React.PropTypes.func.isRequired,
@@ -67,10 +67,10 @@ export const mapDispatchToProps = (dispatch) => ({
 });
 
 export default reduxForm({
-  form: 'trustConfirmation',
+  form: 'trustSupportConfirmation',
   fields: FIELDS.map(field => field.name),
   validate: trustConfirmationValidator
 },
   mapStateToProps,
   mapDispatchToProps
-)(TrustConfirmationForm);
+)(TrustSupportConfirmationForm);

@@ -6,42 +6,11 @@ const { assert } = chai;
 
 describe('TrustSupportForm', () => {
   context('FIELDS', () => {
-    it('is 7 fields in length', () => {
+    it('is 6 fields in length', () => {
       const actual = FIELDS.length;
-      const expected = 7;
+      const expected = 6;
 
       assert.equal(actual, expected);
-    });
-
-    describe('`petitionId` field', () => {
-      const field = getFieldByNameKey('petitionId', FIELDS);
-
-      it('is present', () => {
-        const actual = field.name;
-        const expected = 'petitionId';
-
-        assert.equal(actual, expected);
-      });
-
-      it('is an input', () => {
-        const actual = field.element;
-        const expected = 'input';
-
-        assert.equal(actual, expected);
-      });
-
-      it('is hidden', () => {
-        const actual = field.hidden;
-
-        assert.isTrue(actual);
-      });
-
-      it('has `hidden` html attr', () => {
-        const actual = field.html.type;
-        const expected = 'hidden';
-
-        assert.equal(actual, expected);
-      });
     });
 
     describe('`user.mobile` field', () => {
