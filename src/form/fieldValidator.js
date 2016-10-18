@@ -20,15 +20,15 @@ export default (fields, values) => {
     if (isRequired && values && !value) {
       // test for required fields
       set(errors, key, settings.requiredText);
+    } else if (fieldType === 'tel' && value && !phoneValidation.test(value)) {
+      // test telephone format
+      set(errors, key, settings.phoneInvalidText);
     } else if (maxLength && value && value.length > maxLength) {
       // test against maxLength
       set(errors, key, settings.maxLengthText.replace('%x', maxLength));
     } else if (minLength && value && value.length < minLength) {
       // test against minLength
       set(errors, key, settings.minLengthText.replace('%x', minLength));
-    } else if (fieldType === 'tel' && value && !phoneValidation.test(value)) {
-      // test telephone format
-      set(errors, key, settings.phoneInvalidText);
     }
   });
 
