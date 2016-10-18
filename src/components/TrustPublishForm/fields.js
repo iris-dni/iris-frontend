@@ -47,7 +47,8 @@ export default [
     label: settings.trustFields.town.label,
     hint: settings.trustFields.town.hint,
     html: {
-      placeholder: settings.trustFields.town.placeholder
+      placeholder: settings.trustFields.town.placeholder,
+      required: true
     }
   },
   {
@@ -57,7 +58,8 @@ export default [
     hint: settings.trustFields.email.hint,
     html: {
       type: 'email',
-      placeholder: settings.trustFields.email.placeholder
+      placeholder: settings.trustFields.email.placeholder,
+      required: true
     }
   },
   {
