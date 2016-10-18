@@ -56,6 +56,7 @@ export const mapDispatchToProps = (dispatch) => ({
 
 TrustSupportConfirmationContainer.propTypes = {
   me: React.PropTypes.object.isRequired,
+  petition: React.PropTypes.object.isRequired,
   trustSubmitted: React.PropTypes.bool.isRequired,
   isTrustedUser: React.PropTypes.bool.isRequired,
   hasValidUserData: React.PropTypes.bool.isRequired

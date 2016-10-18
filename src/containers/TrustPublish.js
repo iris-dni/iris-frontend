@@ -48,11 +48,11 @@ TrustPublishContainer.fetchData = ({ store, params }) => {
 };
 
 export const mapStateToProps = ({ petition, trust, me }) => ({
+  me,
   petition: getPetitionForm(petition),
   trustSubmitted: trustSubmitted(petition, trust),
   isTrustedUser: trust.isTrustedUser,
-  isLoggedIn: me && !!me.id,
-  me
+  isLoggedIn: me && !!me.id
 });
 
 export const mapDispatchToProps = (dispatch) => ({
@@ -61,6 +61,7 @@ export const mapDispatchToProps = (dispatch) => ({
 });
 
 TrustPublishContainer.propTypes = {
+  me: React.PropTypes.object.isRequired,
   petition: React.PropTypes.object.isRequired,
   trustSubmitted: React.PropTypes.bool.isRequired,
   isTrustedUser: React.PropTypes.bool.isRequired,

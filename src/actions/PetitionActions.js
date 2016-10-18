@@ -81,9 +81,12 @@ export function createPetition (petition, dispatch) {
 
   petition.links = wrapPetitionLinks(petition.links);
 
+  console.log('create', petition);
+
   return petitionRepository.create(petition)
     .then((response) => {
       const resolvedPetition = solveResolvedObjects(petition, response.data);
+      console.log('created', resolvedPetition);
       dispatch(createdPetition(resolvedPetition));
     }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
@@ -91,6 +94,7 @@ export function createPetition (petition, dispatch) {
 }
 
 export function createdPetition (petition) {
+  console.log('created');
   return {
     type: CREATED_PETITION,
     petition
