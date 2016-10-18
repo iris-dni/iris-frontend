@@ -13,15 +13,15 @@ const App = React.createClass({
   },
 
   componentDidMount () {
-    const { ga } = settings;
+    const { googleAnalytics } = settings;
     const { pathname } = window.location;
 
     /* For initial page load.
        Subsequent pageviews are triggered with
        react-router and use `logPageView` */
 
-    if (ga.APIKey.length) {
-      ReactGA.initialize(ga.APIKey, ga.initOptions);
+    if (googleAnalytics.APIKey.length) {
+      ReactGA.initialize(googleAnalytics.APIKey, googleAnalytics.initOptions);
       ReactGA.set({ page: pathname });
       ReactGA.pageview(pathname);
     }

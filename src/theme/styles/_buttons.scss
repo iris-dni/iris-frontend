@@ -42,6 +42,18 @@ $button-accent-hover-defaults: (
 );
 
 /*
+ * Light button, white background
+ */
+$button-light-defaults: (
+  'color': color('secondary'),
+  'background-color': color('white')
+);
+
+$button-light-hover-defaults: (
+  'background-color': color('white')
+);
+
+/*
  * Disabled button
  */
 $button-disabled-defaults: (

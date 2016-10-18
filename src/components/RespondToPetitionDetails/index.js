@@ -8,14 +8,14 @@ import Link from 'components/Link';
 
 const RespondToPetitionDetails = ({ petition }) => (
   <div>
-    <Paragraph noMargin>
+    <Paragraph margin='no-margin'>
       <strong>{`${settings.respondToPetitionPage.details.for} `}</strong>
       <Link href={getPetitionPath(petition.id)}>{petition.title}</Link>
     </Paragraph>
-    <Paragraph noMargin>
+    <Paragraph margin='no-margin'>
       <strong>{`${settings.respondToPetitionPage.details.by}`}</strong> {`${getPetitionOwner(petition)}`}
     </Paragraph>
-    <Paragraph noMargin>
+    <Paragraph margin='no-margin'>
       <strong>{`${settings.respondToPetitionPage.details.in}`}</strong> {`${getPetitionCity(petition).name}`}
     </Paragraph>
     <Paragraph>

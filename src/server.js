@@ -2,6 +2,7 @@ import { Server } from 'hapi';
 import NunjucksHapi from 'nunjucks-hapi';
 import render from 'server/render';
 import api from 'server/api';
+import httpAuthValidate from 'server/httpAuth';
 
 /**
  * Start Hapi server on port 8000.
@@ -62,6 +63,21 @@ server.register([vision, good, inert, injectThen, h2o2, hapiRequireHttps], err =
 });
 
 /**
+ * Setup basic HTTP auth if enabled
+ */
+
+const HTTP_AUTH_ENABLED = process.env.HTTP_AUTH_ENABLED;
+if (HTTP_AUTH_ENABLED) {
+  server.register(require('hapi-auth-basic'), (err) => {
+    server.auth.strategy('simple', 'basic', {
+      validateFunc: httpAuthValidate }
+    );
+
+    if (err) throw err;
+  });
+}
+
+/**
  * Configure Nunjucks templating engine
  */
 server.views({
@@ -77,7 +93,10 @@ server.views({
 server.route({
   method: '*',
   path: '/{params*}',
-  handler: render
+  config: {
+    auth: HTTP_AUTH_ENABLED ? 'simple' : null,
+    handler: render
+  }
 });
 
 /**

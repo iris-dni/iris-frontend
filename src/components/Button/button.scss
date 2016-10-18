@@ -44,6 +44,20 @@
 }
 
 /*
+ * Light button, white background
+ */
+.light {
+  @include map-declarations($button-light-defaults, $button-light-custom);
+  composes: shared;
+}
+
+.light:hover,
+.light:active,
+.light:focus {
+  @include map-declarations($button-light-hover-defaults, $button-light-hover-custom);
+}
+
+/*
  * Disabled button
  */
 .is-disabled {

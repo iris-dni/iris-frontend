@@ -1,9 +1,12 @@
 export default (petition, me, trust) => ({
   initialValues: {
     petitionId: petition && petition.id,
-    user: me || {}
+    // For TrustSupportForm
+    user: me || {},
+    // For TrustPublishForm
+    owner: me || {}
   },
-  petitionId: petition && petition.id,
+  petition: petition || {},
   submitting: trust && trust.isSubmitting,
   me: me || {}
 });

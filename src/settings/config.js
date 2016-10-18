@@ -63,7 +63,8 @@ export default {
   petitionPage: {
     description: 'Description:',
     suggestedSolution: 'Suggested solution:',
-    attachedLinks: 'Links attached to this petition:',
+    attachedLinks: 'Further reading about petition:',
+    attachedMentions: 'Sites mentioning this petition:',
     supportButton: {
       text: 'Support Petition',
       supportedText: 'Supported',
@@ -95,6 +96,12 @@ export default {
         intro: 'To publish a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
       }
     }
+  },
+  createCTA: {
+    title: 'Create a new petition',
+    text: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.',
+    buttonText: 'Create Petition',
+    background: '/dist/assets/images/cta-bg.jpg'
   },
   editPetitionPage: {
     title: 'Edit Petition',
@@ -137,7 +144,7 @@ export default {
       title: 'Petitio is your platform enabling local change',
       missionTitle: 'Our mission',
       missionDescription: 'Petitio is operated by AZ Medien. Our wish is to empower people to make change in their local communities. We want to give you the chance to be heard, make your cause known, and to gather supporters. We promise to follow up any successful petitions with a letter to your local representative. And, on top of that, your petition might even be selected to be covered by any of our news outlets.',
-      background: 'http://placeholdit.imgix.net/~text?txtsize=83&txt=1000%C3%97600&w=1200&h=600'
+      background: '/dist/assets/images/hero-bg.jpg'
     }
   },
   trendingPetitions: {
@@ -167,11 +174,11 @@ export default {
       }
     }
   },
-  publishedPetitionPage: {
-    title: 'Your petition was successfully published',
-    intro: 'It can already be supported and will appear online within 48 hours. Until then, why not share it with others to start gaining support?',
-    preview: 'To see your petition, click the following link:',
-    previewButton: 'Preview your Petition'
+  publishedPetition: {
+    modal: {
+      title: 'Your petition published',
+      intro: 'It can already be supported and will appear online within 48 hours. Until then, why not share it with others to start gaining support?'
+    }
   },
   petitionFields: {
     city: {

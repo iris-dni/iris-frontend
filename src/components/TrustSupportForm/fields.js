@@ -3,14 +3,6 @@ import settings from 'settings';
 export default [
   {
     element: 'input',
-    name: 'petitionId',
-    hidden: true,
-    html: {
-      type: 'hidden'
-    }
-  },
-  {
-    element: 'input',
     name: 'user.firstname',
     label: settings.trustFields.firstname.label,
     hint: settings.trustFields.firstname.hint,

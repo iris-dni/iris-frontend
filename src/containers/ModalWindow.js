@@ -19,7 +19,7 @@ const ModalWindowContainer = React.createClass({
             ssoProviders={generateSsoProviders(ssoProviders, returnUrl)}
           />
         }
-        {type === 'supported' &&
+        {type === 'share' &&
           <ShareModal
             title={title}
             intro={intro}

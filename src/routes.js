@@ -1,21 +1,25 @@
 import React from 'react';
 import { Route, IndexRoute, Router } from 'react-router';
 
+import logPageview from 'helpers/logPageview';
+import getHistory from 'helpers/getHistory';
+
 import App from 'containers/App';
 import Home from 'containers/Home';
 import LoginPage from 'containers/Login';
 import Logout from 'containers/Logout';
-import TrustPage from 'containers/Trust';
-import TrustConfirmationPage from 'containers/TrustConfirmation';
 import Petition from 'containers/Petition';
 import Petitions from 'containers/Petitions';
 import NewPetition from 'containers/NewPetition';
 import EditPetition from 'containers/EditPetition';
 import PublishedPetition from 'containers/PublishedPetition';
+import PreviewPetition from 'containers/PreviewPetition';
 import RespondToPetition from 'containers/RespondToPetition';
 import Imprint from 'components/Imprint';
-import logPageview from 'helpers/logPageview';
-import getHistory from 'helpers/getHistory';
+import TrustSupport from 'containers/TrustSupport';
+import TrustSupportConfirmation from 'containers/TrustSupportConfirmation';
+import TrustPublish from 'containers/TrustPublish';
+import TrustPublishConfirmation from 'containers/TrustPublishConfirmation';
 
 export default (props = {}) => (
   <Router history={getHistory(props.store)} onUpdate={logPageview}>
@@ -24,8 +28,6 @@ export default (props = {}) => (
       <Route path='imprint' component={Imprint} />
       <Route path='auth/login' component={LoginPage} />
       <Route path='auth/logout' component={Logout} />
-      <Route path='trust/support/:id' component={TrustPage} />
-      <Route path='trust/support/:id/confirm' component={TrustConfirmationPage} />
       <Route path='petitions'>
         {/* Nest these 3 to support proper `activeClassName` behavior. */}
         <IndexRoute component={Petitions} />
@@ -35,8 +37,13 @@ export default (props = {}) => (
       <Route path='petitions/new' component={NewPetition} />
       <Route path='petitions/:id' component={Petition} />
       <Route path='petitions/:id/edit' component={EditPetition} />
+      <Route path='petitions/:id/preview' component={PreviewPetition} />
       <Route path='petitions/:id/published' component={PublishedPetition} />
       <Route path='respond/:token' component={RespondToPetition} />
+      <Route path='trust/support/:id' component={TrustSupport} />
+      <Route path='trust/support/:id/confirm' component={TrustSupportConfirmation} />
+      <Route path='trust/publish/:id' component={TrustPublish} />
+      <Route path='trust/publish/:id/confirm' component={TrustPublishConfirmation} />
     </Route>
   </Router>
 );

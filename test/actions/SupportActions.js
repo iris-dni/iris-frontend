@@ -3,9 +3,9 @@ import sinon from 'sinon';
 import moxios from 'moxios';
 import mockPetition from '../mocks/petition';
 import mockUser from '../mocks/user';
-import mockSupportResponse from '../mocks/supportResponse';
-import mockSupportResponseUntrusted from '../mocks/supportResponseUntrusted';
-import mockSupportResponseInvalid from '../mocks/supportResponseInvalid';
+import mockTrustResponse from '../mocks/trustResponse';
+import mockTrustResponseUntrusted from '../mocks/trustResponseUntrusted';
+import mockTrustResponseInvalid from '../mocks/trustResponseInvalid';
 
 import {
   supportPetition,
@@ -34,7 +34,7 @@ describe('SupportActions', () => {
       let dispatch;
 
       const mockTrustData = {
-        petitionId: '1BV3l',
+        petition: mockPetition.data,
         user: mockUser
       };
 
@@ -44,7 +44,7 @@ describe('SupportActions', () => {
       });
 
       it('dispatches submittingTrust() with petition id', () => {
-        assert(dispatch.calledWith(submittingTrust(mockTrustData.petitionId)));
+        assert(dispatch.calledWith(submittingTrust(mockTrustData.petition.id)));
       });
 
       it('dispatches receiveWhoAmI() with user', () => {
@@ -57,7 +57,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petitionId: '1BV3l',
+        petition: mockPetition.data,
         user: mockUser
       };
 
@@ -67,7 +67,7 @@ describe('SupportActions', () => {
         moxios.install();
         moxios.stubRequest(/.*/, {
           status: 200,
-          response: mockSupportResponse
+          response: mockTrustResponse
         });
 
         result = supportPetition(mockTrustData, dispatch);
@@ -85,7 +85,7 @@ describe('SupportActions', () => {
 
       it('dispatches supportedPetition()', done => {
         result.then(() => {
-          assert(dispatch.calledWith(supportedPetition(mockSupportResponse.data)));
+          assert(dispatch.calledWith(supportedPetition(mockTrustResponse.data)));
         }).then(done, done);
       });
 
@@ -101,7 +101,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petitionId: '1BV3l',
+        petition: mockPetition.data,
         user: mockUser
       };
 
@@ -111,7 +111,7 @@ describe('SupportActions', () => {
         moxios.install();
         moxios.stubRequest(/.*/, {
           status: 200,
-          response: mockSupportResponseUntrusted
+          response: mockTrustResponseUntrusted
         });
 
         result = supportPetition(mockTrustData, dispatch);
@@ -139,7 +139,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petitionId: '1BV3l',
+        petition: mockPetition.data,
         user: mockUser
       };
 
@@ -149,7 +149,7 @@ describe('SupportActions', () => {
         moxios.install();
         moxios.stubRequest(/.*/, {
           status: 200,
-          response: mockSupportResponseInvalid
+          response: mockTrustResponseInvalid
         });
 
         result = supportPetition(mockTrustData, dispatch);
@@ -177,7 +177,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petitionId: '1BV3l',
+        petition: mockPetition.data,
         user: mockUser
       };
 
@@ -220,7 +220,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petitionId: '1BV3l',
+        petition: mockPetition.data,
         user: mockUser
       };
 
@@ -230,7 +230,7 @@ describe('SupportActions', () => {
         moxios.install();
         moxios.stubRequest(/.*/, {
           status: 200,
-          response: mockSupportResponseUntrusted
+          response: mockTrustResponseUntrusted
         });
 
         result = resendVerification(mockTrustData);
@@ -252,7 +252,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petitionId: '1BV3l',
+        petition: mockPetition.data,
         user: mockUser
       };
 

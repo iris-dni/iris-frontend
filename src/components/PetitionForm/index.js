@@ -1,6 +1,6 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import { createPetition, updatePetition } from 'actions/PetitionActions';
+import { createPetition } from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
@@ -9,9 +9,7 @@ import settings from 'settings';
 import FIELDS from './fields';
 
 const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting }) => (
-  <form onSubmit={handleSubmit(petition.persisted
-    ? updatePetition
-    : createPetition)}>
+  <form onSubmit={handleSubmit(createPetition)}>
     <Fieldset>
       <FormFieldsIterator
         reduxFormFields={fields}
@@ -20,7 +18,7 @@ const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting })
     </Fieldset>
     <Fieldset modifier={'actions'}>
       <Button
-        text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton'].text}
+        text={settings.petitionForm.createButton.text}
         modifier={'accent'}
         disabled={openGraph.isLoading || submitting || !fields._meta.allValid}
       />
@@ -29,7 +27,6 @@ const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting })
 );
 
 PetitionForm.propTypes = {
-  petition: React.PropTypes.object.isRequired,
   openGraph: React.PropTypes.object.isRequired,
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,

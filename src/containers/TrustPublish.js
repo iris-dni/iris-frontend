@@ -8,56 +8,53 @@ import { newTrustStep } from 'actions/TrustActions';
 import settings from 'settings';
 import Trust from 'components/Trust';
 import getPetitionPath from 'selectors/petitionPath';
-import getTrustPetition from 'selectors/trustPetition';
+import getPetitionForm from 'selectors/petitionForm';
 import trustSubmitted from 'helpers/trustSubmitted';
 
-const TrustContainer = withRouter(React.createClass({
+const TrustPublishContainer = withRouter(React.createClass({
   componentWillMount () {
-    this.props.newTrustStep();
-    // const { router, petition, showFlashMessage } = this.props;
-    // If a petition is not supportable, redirect to petition page
-    // if (!petition.isSupportable) {
-    //   showFlashMessage(settings.flashMessages.noLongerSupportable, 'error');
-    //   router.push(getPetitionPath(petition));
-    // }
+    const { router, petition } = this.props;
+
+    // If petition is already published, redirect to petition
+    if (petition.published) {
+      router.push(getPetitionPath(petition));
+    }
+  },
+
+  componentWillUpdate (nextProps) {
+    const { router, petition } = nextProps;
+
+    // If we have owned and saved the petition, go to preview
+    if (petition.owned && petition.saved) {
+      // Go to preview
+      router.push(`/petitions/${petition.id}/preview`);
+    }
   },
 
   componentWillUnmount () {
     this.props.newTrustStep();
   },
 
-  componentWillUpdate (nextProps) {
-    const { router, petition, trustSubmitted, isTrustedUser } = nextProps;
-    // If we have submitted trust for the given petition
-    if (trustSubmitted) {
-      router.push(
-        isTrustedUser
-          ? getPetitionPath(petition)
-          : `/trust/support/${petition.id}/confirm`
-      );
-    }
-  },
-
   render () {
     return (
       <div>
         <Helmet title={settings.trustPage.title} />
-        <Trust {...this.props} />
+        <Trust {...this.props} action={'publish'} />
       </div>
     );
   }
 }));
 
-TrustContainer.fetchData = ({ store, params }) => {
+TrustPublishContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetition(params.id));
 };
 
 export const mapStateToProps = ({ petition, trust, me }) => ({
-  petition: getTrustPetition(petition),
+  me,
+  petition: getPetitionForm(petition),
   trustSubmitted: trustSubmitted(petition, trust),
   isTrustedUser: trust.isTrustedUser,
-  isLoggedIn: me && !!me.id,
-  me
+  isLoggedIn: me && !!me.id
 });
 
 export const mapDispatchToProps = (dispatch) => ({
@@ -65,7 +62,8 @@ export const mapDispatchToProps = (dispatch) => ({
   newTrustStep: () => dispatch(newTrustStep())
 });
 
-TrustContainer.propTypes = {
+TrustPublishContainer.propTypes = {
+  me: React.PropTypes.object.isRequired,
   petition: React.PropTypes.object.isRequired,
   trustSubmitted: React.PropTypes.bool.isRequired,
   isTrustedUser: React.PropTypes.bool.isRequired,
@@ -75,4 +73,4 @@ TrustContainer.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TrustContainer);
+)(TrustPublishContainer);

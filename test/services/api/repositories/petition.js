@@ -1,6 +1,8 @@
 import { assert } from 'chai';
 import sinon from 'sinon';
 import ApiClient from 'services/api/client';
+import mockPetition from '../../../mocks/petition';
+import mockUser from '../../../mocks/user';
 import petitionRepository from 'services/api/repositories/petition';
 
 describe('petition repository', () => {
@@ -61,8 +63,8 @@ describe('petition repository', () => {
       ));
     });
 
-    it('resolves owner, city and links', () => {
-      let expectedDataArgument = { resolve: 'city,owner,links' };
+    it('resolves owner, city, links and mentions', () => {
+      let expectedDataArgument = { resolve: 'city,owner,links,mentions' };
 
       petitionRepository.find(exampleId);
 
@@ -107,53 +109,180 @@ describe('petition repository', () => {
   });
 
   describe('update', () => {
-    let examplePetition = { id: exampleId, title: exampleTitle };
-    let expectedPathArgument = `/petitions/${exampleId}`;
-    let expectedDataArgument = { data: { title: exampleTitle } };
-    let expectedMethodArgument = 'POST';
+    context('without city', () => {
+      let examplePetition = { id: exampleId, title: exampleTitle };
+      let expectedPathArgument = `/petitions/${exampleId}`;
+      let expectedDataArgument = {
+        data: {
+          title: exampleTitle
+        }
+      };
+      let expectedMethodArgument = 'POST';
 
-    it('calls the API client with proper arguments', () => {
-      petitionRepository.update(examplePetition);
+      it('calls the API client with proper arguments', () => {
+        petitionRepository.update(examplePetition);
 
-      assert(ApiClient.request.calledWith(
-        expectedPathArgument,
-        expectedDataArgument,
-        expectedMethodArgument
-      ));
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument,
+          expectedMethodArgument
+        ));
+      });
+    });
+
+    context('with city and city.data', () => {
+      let exampleCity = {
+        id: '12',
+        data: {
+          name: 'Aargau'
+        }
+      };
+      let examplePetition = {
+        id: exampleId,
+        title: exampleTitle,
+        city: exampleCity
+      };
+      let expectedPathArgument = `/petitions/${exampleId}`;
+      let expectedDataArgument = {
+        data: {
+          title: exampleTitle,
+          city: exampleCity
+        }
+      };
+      let expectedMethodArgument = 'POST';
+
+      it('calls the API client with proper arguments', () => {
+        petitionRepository.update(examplePetition);
+
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument,
+          expectedMethodArgument
+        ));
+      });
+    });
+
+    context('with city, without city.data', () => {
+      let exampleCity = {
+        id: '12',
+        data: null
+      };
+      let examplePetition = {
+        id: exampleId,
+        title: exampleTitle,
+        city: exampleCity
+      };
+      let expectedPathArgument = `/petitions/${exampleId}`;
+      let expectedDataArgument = {
+        data: {
+          title: exampleTitle,
+          city: {
+            id: '12'
+          }
+        }
+      };
+      let expectedMethodArgument = 'POST';
+
+      it('calls the API client with proper arguments', () => {
+        petitionRepository.update(examplePetition);
+
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument,
+          expectedMethodArgument
+        ));
+      });
     });
   });
 
   describe('publish', () => {
-    let examplePetition = { id: exampleId, title: exampleTitle };
-    let expectedPathArgument = `/petitions/${exampleId}/event/publish`;
-    let expectedDataArgument = null;
-    let expectedMethodArgument = 'POST';
+    context('without mobile_token', () => {
+      let examplePetition = {
+        petition: mockPetition.data
+      };
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/publish`;
+      let expectedDataArgument = { data: {} };
+      let expectedMethodArgument = 'POST';
+      it('calls the API client with proper arguments', () => {
+        petitionRepository.publish(examplePetition);
 
-    it('calls the API client with proper arguments', () => {
-      petitionRepository.publish(examplePetition);
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument,
+          expectedMethodArgument
+        ));
+      });
+    });
 
-      assert(ApiClient.request.calledWith(
-        expectedPathArgument,
-        expectedDataArgument,
-        expectedMethodArgument
-      ));
+    context('with mobile_token', () => {
+      let examplePetition = {
+        petition: mockPetition.data,
+        mobile_token: '12345'
+      };
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/publish`;
+      let expectedDataArgument = { data: { mobile_token: '12345' } };
+      let expectedMethodArgument = 'POST';
+      it('calls the API client with proper arguments', () => {
+        petitionRepository.publish(examplePetition);
+
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument,
+          expectedMethodArgument
+        ));
+      });
     });
   });
 
   describe('support', () => {
-    let exampleTrustData = { petitionId: exampleId, user: {} };
-    let expectedPathArgument = `/petitions/${exampleId}/event/support`;
-    let expectedDataArgument = { data: exampleTrustData };
-    let expectedMethodArgument = 'POST';
+    context('without mobile_token', () => {
+      let exampleTrustData = {
+        petition: mockPetition.data,
+        user: mockUser
+      };
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support`;
+      let expectedDataArgument = {
+        data: {
+          user: mockUser
+        }
+      };
+      let expectedMethodArgument = 'POST';
 
-    it('calls the API client with proper arguments', () => {
-      petitionRepository.support(exampleTrustData);
+      it('calls the API client with proper arguments', () => {
+        petitionRepository.support(exampleTrustData);
 
-      assert(ApiClient.request.calledWith(
-        expectedPathArgument,
-        expectedDataArgument,
-        expectedMethodArgument
-      ));
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument,
+          expectedMethodArgument
+        ));
+      });
+    });
+
+    context('with mobile_token', () => {
+      let exampleTrustData = {
+        petition: mockPetition.data,
+        user: mockUser,
+        mobile_token: '12345'
+      };
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support`;
+      let expectedDataArgument = {
+        data: {
+          user: mockUser,
+          mobile_token: '12345'
+        }
+      };
+      let expectedMethodArgument = 'POST';
+
+      it('calls the API client with proper arguments', () => {
+        petitionRepository.support(exampleTrustData);
+
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument,
+          expectedMethodArgument
+        ));
+      });
     });
   });
 
