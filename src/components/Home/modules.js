@@ -1,5 +1,6 @@
 import settings from 'settings';
 import Hero from 'components/Hero';
+import CreateCTA from 'components/CreateCTA';
 import HomepagePetitions from 'containers/HomepagePetitions';
 
 export default [
@@ -10,5 +11,9 @@ export default [
   {
     component: HomepagePetitions,
     props: {...settings.trendingPetitions}
+  },
+  {
+    component: CreateCTA,
+    props: {...settings.createCTA}
   }
 ];

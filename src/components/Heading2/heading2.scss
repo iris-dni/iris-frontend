@@ -3,3 +3,8 @@
 .root {
   @include map-declarations($heading-2-defaults, $heading-2-custom);
 }
+
+.large {
+  font-size: 2em;
+  font-weight: 400;
+}
