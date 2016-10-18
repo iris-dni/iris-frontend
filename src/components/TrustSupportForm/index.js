@@ -11,7 +11,12 @@ import ButtonSet from 'components/ButtonSet';
 import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
 
-const TrustSupportForm = ({ fields, handleSubmit, submitting, petition }) => (
+const TrustSupportForm = ({
+  fields,
+  handleSubmit,
+  petition,
+  submitting
+}) => (
   <form onSubmit={handleSubmit((values, dispatch) => supportPetition(
     assignPetitionData(values, petition), dispatch)
   )}>
@@ -40,6 +45,7 @@ const TrustSupportForm = ({ fields, handleSubmit, submitting, petition }) => (
 TrustSupportForm.propTypes = {
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
+  petition: React.PropTypes.object.isRequired,
   submitting: React.PropTypes.bool.isRequired
 };
 

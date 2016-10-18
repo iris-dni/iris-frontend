@@ -6,12 +6,16 @@ import assignPetitionData from 'form/assignPetitionData';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
-import ButtonLink from 'components/ButtonLink';
 import ButtonSet from 'components/ButtonSet';
 import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
 
-const TrustPublishForm = ({ fields, handleSubmit, submitting, petition }) => (
+const TrustPublishForm = ({
+  fields,
+  handleSubmit,
+  submitting,
+  petition
+}) => (
   <form onSubmit={handleSubmit((values, dispatch) => updatePetition(
     assignPetitionData(values, petition), dispatch)
   )}>
@@ -23,10 +27,6 @@ const TrustPublishForm = ({ fields, handleSubmit, submitting, petition }) => (
     </Fieldset>
     <Fieldset modifier={'actions'}>
       <ButtonSet>
-        <ButtonLink
-          href={`/petitions/${petition.id}/edit`}
-          text={'Edit petition'}
-        />
         <Button
           text={'Preview petition'}
           modifier={'accent'}
