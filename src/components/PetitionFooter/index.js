@@ -1,27 +1,22 @@
 import React from 'react';
 import settings from 'settings';
-import Heading2 from 'components/Heading2';
-import TextCenter from 'components/TextCenter';
-import Grid from 'components/Grid';
-import GridItem from 'components/GridItem';
-import ExternalTeaser from 'components/ExternalTeaser';
+import ExternalTeaserBlock from 'components/ExternalTeaserBlock';
 import styles from './petition-footer.scss';
 
-const PetitionFooter = ({ links }) => (
+const PetitionFooter = ({ links, mentions }) => (
   <section className={styles.root}>
-    <header className={styles.header}>
-      <TextCenter>
-        <Heading2 text={settings.petitionPage.attachedLinks} />
-      </TextCenter>
-    </header>
-
-    <Grid modifier='centered'>
-      {links.map((link, index) => (
-        <GridItem key={index}>
-          <ExternalTeaser {...link} />
-        </GridItem>
-      ))}
-    </Grid>
+    {!!links.length &&
+      <ExternalTeaserBlock
+        title={settings.petitionPage.attachedLinks}
+        links={links}
+      />
+    }
+    {!!mentions.length &&
+      <ExternalTeaserBlock
+        title={settings.petitionPage.attachedMentions}
+        links={mentions}
+      />
+    }
   </section>
 );
 

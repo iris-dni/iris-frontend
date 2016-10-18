@@ -1,6 +1,7 @@
 import React from 'react';
 import Icon from 'components/Icon';
 import styles from './external-teaser.scss';
+import stripProtocolFromURL from 'helpers/stripProtocolFromURL';
 
 const getIcon = (type) => (
   (type === 'video')
@@ -13,7 +14,7 @@ const ExternalTeaser = ({ url, og }) => (
     <a
       target='_blank'
       rel='noopener noreferrer'
-      href={`//${url}`}
+      href={url}
       className={styles.link}
     >
       <div className={styles['image-wrap']}>
@@ -35,7 +36,7 @@ const ExternalTeaser = ({ url, og }) => (
               modifier={'invert'}
             />
           </span>
-          {url}
+          {stripProtocolFromURL(url)}
         </p>
       </div>
     </a>
