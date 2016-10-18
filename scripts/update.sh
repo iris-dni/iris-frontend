@@ -20,7 +20,7 @@ if [ "$HAS_CONFIGURED_UPSTREAM" ]; then
     git checkout master
     git rebase upstream/master
     git checkout develop
-    git rebase upstream/develop
+    git merge upstream/develop
   fi
 else
   echo "Nothing to do here."
