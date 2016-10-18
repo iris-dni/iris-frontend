@@ -14,10 +14,19 @@ export default (fields, values) => {
     const isRequired = field.html && field.html.required;
     const minLength = field.html && field.html.minLength;
     const maxLength = field.html && field.html.maxLength;
+    const fieldType = field.html && field.html.type;
+    const emailValidation = new RegExp(settings.emailRegex);
+    const phoneValidation = new RegExp(settings.telephoneRegex);
 
     if (isRequired && values && !value) {
       // test for required fields
       set(errors, key, settings.requiredText);
+    } else if (fieldType === 'email' && value && !emailValidation.test(value)) {
+      // test telephone format
+      set(errors, key, settings.emailInvalidText);
+    } else if (fieldType === 'tel' && value && !phoneValidation.test(value)) {
+      // test telephone format
+      set(errors, key, settings.phoneInvalidText);
     } else if (maxLength && value && value.length > maxLength) {
       // test against maxLength
       set(errors, key, settings.maxLengthText.replace('%x', maxLength));

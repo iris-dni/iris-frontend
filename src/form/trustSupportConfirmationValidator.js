@@ -1,4 +1,4 @@
-import FIELDS from 'components/TrustConfirmationForm/fields';
+import FIELDS from 'components/TrustSupportConfirmationForm/fields';
 import fieldValidator from 'form/fieldValidator';
 
 export default (values) => {

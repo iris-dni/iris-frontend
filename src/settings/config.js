@@ -1,3 +1,5 @@
+// import { escapeRegExp } from 'lodash/string';
+
 export default {
   locale: 'en-US',
   charset: 'utf-8',
@@ -21,9 +23,13 @@ export default {
   teaserDaysRemaining: 'days left',
   daysToVote: 30,
   optionalLabel: '(optional)',
+  emailRegex: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
+  telephoneRegex: /^(555|\+43|0043|\+49|0049|\+41|0041)[ 0-9]{4,}/i,
   requiredText: 'You must complete this field',
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',
+  emailInvalidText: 'Please enter a valid email address',
+  phoneInvalidText: 'Phone number format is invalid',
   petitionsPerPage: 12,
   /* FIXME: find better way to import colors
      without duplicating them
@@ -176,7 +182,7 @@ export default {
   },
   publishedPetition: {
     modal: {
-      title: 'Your petition published',
+      title: 'Your petition has been submitted for review',
       intro: 'It can already be supported and will appear online within 48 hours. Until then, why not share it with others to start gaining support?'
     }
   },
@@ -326,7 +332,8 @@ export default {
       label: 'Email address'
     },
     mobile: {
-      label: 'Mobile number'
+      label: 'Mobile number',
+      hint: 'Only region codes **+41** and **+43** are accepted. You must be a Swiss resident to contribute.'
     }
   },
   trustConfirmationFields: {

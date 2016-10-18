@@ -33,12 +33,7 @@ const PreviewPetitionContainer = withRouter(React.createClass({
   },
 
   componentWillUpdate (nextProps) {
-    const {
-      router,
-      petition,
-      trustSubmitted,
-      isTrustedUser
-    } = nextProps;
+    const { router, petition, trustSubmitted, isTrustedUser } = nextProps;
 
     if (trustSubmitted) {
       // Go to petition path, or confirmation

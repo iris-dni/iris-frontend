@@ -1,5 +1,6 @@
 import React from 'react';
 import settings from 'settings';
+import Markdown from 'react-markdown';
 import styles from './form-label.scss';
 
 export default ({ fieldId, label, hint, optional }) => (
@@ -10,7 +11,11 @@ export default ({ fieldId, label, hint, optional }) => (
       }
     </label>
     {hint &&
-      <em className={styles.hint}>{hint}</em>
+      <Markdown
+        className={styles.hint}
+        source={hint}
+        allowedTypes={['Text', 'Paragraph', 'Link', 'Emph', 'Strong']}
+      />
     }
   </div>
 );
