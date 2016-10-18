@@ -112,7 +112,6 @@ export function updatePetition (updateData, dispatch) {
   return petitionRepository.update(submittedPetition)
     .then((response) => {
       const resolvedPetition = solveResolvedObjects(submittedPetition, response.data);
-      console.log(resolvedPetition);
       dispatch(updatedPetition(resolvedPetition));
     }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')

@@ -34,7 +34,7 @@ describe('SupportActions', () => {
       let dispatch;
 
       const mockTrustData = {
-        petition: { id: '1BV3l' },
+        petition: mockPetition.data,
         user: mockUser
       };
 
@@ -57,7 +57,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petition: { id: '1BV3l' },
+        petition: mockPetition.data,
         user: mockUser
       };
 
@@ -101,7 +101,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petition: { id: '1BV3l' },
+        petition: mockPetition.data,
         user: mockUser
       };
 
@@ -139,7 +139,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petition: { id: '1BV3l' },
+        petition: mockPetition.data,
         user: mockUser
       };
 
@@ -177,7 +177,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petition: { id: '1BV3l' },
+        petition: mockPetition.data,
         user: mockUser
       };
 
@@ -220,7 +220,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petition: { id: '1BV3l' },
+        petition: mockPetition.data,
         user: mockUser
       };
 
@@ -252,7 +252,7 @@ describe('SupportActions', () => {
       let result;
 
       const mockTrustData = {
-        petition: { id: '1BV3l' },
+        petition: mockPetition.data,
         user: mockUser
       };
 
