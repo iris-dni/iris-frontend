@@ -105,7 +105,8 @@ export function updatePetition (updateData, dispatch) {
   dispatch(receiveWhoAmI(owner));
 
   const submittedPetition = {
-    ...petition, owner,
+    ...petition,
+    owner,
     links: wrapPetitionLinks(petition.links)
   };
 

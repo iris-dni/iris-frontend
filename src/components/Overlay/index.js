@@ -35,7 +35,7 @@ const Overlay = React.createClass({
         tabIndex='-1'
         className={this.props.active ? styles.active : styles.overlay}
         onClick={this.props.onClickHandler}
-      ></div>
+      />
     );
   }
 });
