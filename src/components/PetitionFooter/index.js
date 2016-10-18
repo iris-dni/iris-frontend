@@ -13,7 +13,7 @@ const PetitionFooter = ({ links, mentions }) => (
     }
     {!!mentions.length &&
       <ExternalTeaserBlock
-        title={settings.petitionPage.mentionsTitle}
+        title={settings.petitionPage.attachedMentions}
         links={mentions}
       />
     }
