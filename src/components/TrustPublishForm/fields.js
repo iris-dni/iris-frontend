@@ -69,6 +69,7 @@ export default [
     hint: settings.trustFields.mobile.hint,
     html: {
       type: 'tel',
+      minLength: 14,
       maxLength: 15,
       placeholder: settings.trustFields.mobile.placeholder,
       required: true

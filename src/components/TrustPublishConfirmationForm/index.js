@@ -1,6 +1,6 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import { publishPetition } from 'actions/PetitionActions';
+import { publishPetition, resendVerification } from 'actions/PetitionActions';
 import trustPublishConfirmationValidator from 'form/trustPublishConfirmationValidator';
 import assignPetitionData from 'form/assignPetitionData';
 import Fieldset from 'components/Fieldset';
@@ -10,11 +10,13 @@ import ButtonLink from 'components/ButtonLink';
 import ButtonSet from 'components/ButtonSet';
 import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
+import hasValidUserData from 'helpers/hasValidUserData';
 
 const TrustPublishConfirmationForm = ({
   fields,
   handleSubmit,
   publishPetition,
+  resendVerification,
   me,
   petition,
   submitting
@@ -35,6 +37,12 @@ const TrustPublishConfirmationForm = ({
           text={'Back to preview'}
         />
         <Button
+          onClick={() => resendVerification(petition)}
+          disabled={!hasValidUserData(!me.id ? petition.owner : me)}
+          type={'button'}
+          text={'Re-send SMS'}
+        />
+        <Button
           text={'Complete verification'}
           modifier={'accent'}
           disabled={submitting || !fields._meta.allValid}
@@ -48,6 +56,7 @@ TrustPublishConfirmationForm.propTypes = {
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
   publishPetition: React.PropTypes.func.isRequired,
+  resendVerification: React.PropTypes.func.isRequired,
   petition: React.PropTypes.object.isRequired,
   me: React.PropTypes.object.isRequired,
   submitting: React.PropTypes.bool.isRequired
@@ -56,7 +65,8 @@ TrustPublishConfirmationForm.propTypes = {
 export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, me, trust);
 
 export const mapDispatchToProps = (dispatch) => ({
-  publishPetition: (trustData) => dispatch(publishPetition(trustData))
+  publishPetition: (trustData) => dispatch(publishPetition(trustData)),
+  resendVerification: (petition) => dispatch(resendVerification({ petition }))
 });
 
 export default reduxForm({
