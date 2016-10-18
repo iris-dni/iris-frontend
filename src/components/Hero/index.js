@@ -1,5 +1,4 @@
 import React from 'react';
-import Heading1 from 'components/Heading1';
 import Container from 'components/Container';
 
 import styles from './hero.scss';
@@ -12,7 +11,7 @@ const Hero = ({ title, missionTitle, missionDescription, background }) => (
           <div
             style={{ backgroundImage: `url(${background})` }}
             className={styles.background} />
-          <Heading1 text={title} />
+          <h1>{title}</h1>
         </div>
       </Container>
     </div>

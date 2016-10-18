@@ -22,9 +22,8 @@
 }
 
 .inner {
-  margin: 0 auto;
-
-  @include media('>=768px') {
+  @include media('>768px') {
+    margin: 0 auto;
     max-width: 60%;
   }
 }
