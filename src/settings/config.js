@@ -176,7 +176,7 @@ export default {
   },
   publishedPetition: {
     modal: {
-      title: 'Your petition published',
+      title: 'Your petition has been submitted for review',
       intro: 'It can already be supported and will appear online within 48 hours. Until then, why not share it with others to start gaining support?'
     }
   },
