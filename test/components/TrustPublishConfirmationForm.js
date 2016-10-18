@@ -1,10 +1,10 @@
 import chai from 'chai';
-import FIELDS from 'components/TrustConfirmationForm/fields';
+import FIELDS from 'components/TrustPublishConfirmationForm/fields';
 import { getFieldByNameKey } from './PetitionForm';
 
 const { assert } = chai;
 
-describe('TrustConfirmationForm', () => {
+describe('TrustPublishConfirmationForm', () => {
   context('FIELDS', () => {
     it('is 1 field in length', () => {
       const actual = FIELDS.length;

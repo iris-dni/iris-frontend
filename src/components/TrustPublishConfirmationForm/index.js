@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import { publishPetition } from 'actions/PetitionActions';
-import trustConfirmationValidator from 'form/trustConfirmationValidator';
+import trustPublishConfirmationValidator from 'form/trustPublishConfirmationValidator';
 import assignPetitionData from 'form/assignPetitionData';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
@@ -62,7 +62,7 @@ export const mapDispatchToProps = (dispatch) => ({
 export default reduxForm({
   form: 'trustPublishConfirmation',
   fields: FIELDS.map(field => field.name),
-  validate: trustConfirmationValidator
+  validate: trustPublishConfirmationValidator
 },
   mapStateToProps,
   mapDispatchToProps
