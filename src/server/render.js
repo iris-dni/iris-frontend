@@ -11,6 +11,22 @@ import routes from 'routes';
 import stringifyHeadData from 'server/stringifyHeadData';
 import getBundles from 'server/getBundles';
 
+/*
+ * Note: this file contains server-side rendering logic, called from server.js.
+ *
+ * YOU SHOULD NOT NEED TO EDIT THIS FILE unless adding additional server logic /
+ * template variables. Data fetching can be handled in route handler containers.
+ *
+ * Get data on the server by adding a `fetchData` function to a container e.g.
+ *
+ * PetitionContainer.fetchData = ({ store, params }) => {
+ *   return store.dispatch(fetchPetition(params.id));
+ * };
+ *
+ * This function is run on the server before rendering, dispatching an action
+ * to pre-fill the Redux store with data for that route.
+ */
+
 export default (request, reply, next) => {
   match({ routes: routes(), location: { pathname: request.path, query: request.query } }, (error, redirectLocation, renderProps) => {
     if (redirectLocation) {
