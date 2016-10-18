@@ -5,15 +5,18 @@ import styles from './petition-footer.scss';
 
 const PetitionFooter = ({ links, mentions }) => (
   <section className={styles.root}>
-    {links.length ? <ExternalTeaserBlock
-      title={settings.petitionPage.attachedLinks}
-      links={links}
-    /> : null}
-
-    {mentions.length ? <ExternalTeaserBlock
-      title={settings.petitionPage.mentionsTitle}
-      links={mentions}
-    /> : null}
+    {!!links.length &&
+      <ExternalTeaserBlock
+        title={settings.petitionPage.attachedLinks}
+        links={links}
+      />
+    }
+    {!!mentions.length &&
+      <ExternalTeaserBlock
+        title={settings.petitionPage.mentionsTitle}
+        links={mentions}
+      />
+    }
   </section>
 );
 
