@@ -19,6 +19,7 @@ import {
   updatePetition,
   updatedPetition,
   publishPetition,
+  resendVerification,
   publishedPetition,
   petitionNotFound
 } from 'actions/PetitionActions';
@@ -436,6 +437,73 @@ describe('PetitionActions', () => {
       it('dispatches finishedTrust()', done => {
         result(dispatch).then(() => {
           assert(dispatch.calledWith(finishedTrust()));
+        }).then(done, done);
+      });
+    });
+  });
+
+  describe('resendVerification', () => {
+    context('with an untrusted user response', () => {
+      let dispatch;
+      let result;
+
+      const mockTrustData = {
+        petition: mockPetition.data
+      };
+
+      beforeEach(() => {
+        dispatch = sinon.spy();
+
+        moxios.install();
+        moxios.stubRequest(/.*/, {
+          status: 200,
+          response: mockTrustResponseUntrusted
+        });
+
+        result = resendVerification(mockTrustData);
+      });
+
+      afterEach(() => {
+        moxios.uninstall();
+      });
+
+      it('dispatches showFlashMessage() success', done => {
+        result(dispatch).then(() => {
+          assert(dispatch.calledWith(showFlashMessage('Verification code has been re-sent', 'success')));
+        }).then(done, done);
+      });
+    });
+
+    context('with a random error', () => {
+      let dispatch;
+      let result;
+
+      const mockTrustData = {
+        petition: mockPetition.data
+      };
+
+      beforeEach(() => {
+        dispatch = sinon.spy();
+
+        moxios.install();
+        moxios.stubRequest(/.*/, {
+          status: 200,
+          response: {
+            status: 'error',
+            reasons: ['random_error']
+          }
+        });
+
+        result = resendVerification(mockTrustData);
+      });
+
+      afterEach(() => {
+        moxios.uninstall();
+      });
+
+      it('dispatches showFlashMessage() error', done => {
+        result(dispatch).then(() => {
+          assert(dispatch.calledWith(showFlashMessage('Sadly something failed, please try again!', 'error')));
         }).then(done, done);
       });
     });
