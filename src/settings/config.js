@@ -1,3 +1,5 @@
+// import { escapeRegExp } from 'lodash/string';
+
 export default {
   locale: 'en-US',
   charset: 'utf-8',
@@ -11,6 +13,7 @@ export default {
   startDate: 'Started on %d',
   endDate: 'Ending on %d',
   runningTime: 'Petitions run for 30 days',
+  telephoneRegex: /^(555|\\+43|0043|\\+49|0049|\\+41|0041)[ 0-9]{4,}/,
   dateFormat: 'DD-MM-YYYY',
   authorLabel: 'by %a',
   supportersText: 'Supporters',
@@ -24,6 +27,7 @@ export default {
   requiredText: 'You must complete this field',
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',
+  phoneInvalidText: 'Phone number format is invalid',
   petitionsPerPage: 12,
   /* FIXME: find better way to import colors
      without duplicating them

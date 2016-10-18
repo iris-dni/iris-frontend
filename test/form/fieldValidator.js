@@ -126,6 +126,66 @@ describe('fieldValidator', () => {
     assert.deepEqual(actual, expected);
   });
 
+  context('with a telephone field', () => {
+    [
+      '004915759646962',
+      // '+4915759646962',
+      '004315759646962',
+      // '+4315759646962',
+      '004115759646962'
+      // '+4115759646962'
+    ].forEach(number => {
+      describe(`and number ${number}`, () => {
+        it('is valid', () => {
+          const actual = fieldValidator(
+            [
+              {
+                name: 'test',
+                html: {
+                  type: 'tel'
+                }
+              }
+            ],
+            { test: number }
+          );
+          const expected = {};
+
+          assert.deepEqual(actual, expected);
+        });
+      });
+    });
+
+    [
+      '004815759646962',
+      '+4815759646962',
+      '++4815759646962',
+      'abc1233456',
+      '015759646962',
+      '00115759646962'
+    ].forEach(number => {
+      describe(`and number ${number}`, () => {
+        it('is invalid', () => {
+          const actual = fieldValidator(
+            [
+              {
+                name: 'test',
+                html: {
+                  type: 'tel'
+                }
+              }
+            ],
+            { test: number }
+          );
+          const expected = {
+            test: 'Phone number format is invalid'
+          };
+
+          assert.deepEqual(actual, expected);
+        });
+      });
+    });
+  });
+
   it('fails silently', () => {
     const actual = fieldValidator();
     const expected = {};

@@ -14,6 +14,8 @@ export default (fields, values) => {
     const isRequired = field.html && field.html.required;
     const minLength = field.html && field.html.minLength;
     const maxLength = field.html && field.html.maxLength;
+    const fieldType = field.html && field.html.type;
+    const phoneValidation = new RegExp(settings.telephoneRegex);
 
     if (isRequired && values && !value) {
       // test for required fields
@@ -24,6 +26,9 @@ export default (fields, values) => {
     } else if (minLength && value && value.length < minLength) {
       // test against minLength
       set(errors, key, settings.minLengthText.replace('%x', minLength));
+    } else if (fieldType === 'tel' && value && !phoneValidation.test(value)) {
+      // test telephone format
+      set(errors, key, settings.phoneInvalidText);
     }
   });
 
