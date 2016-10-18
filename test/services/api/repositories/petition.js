@@ -1,6 +1,8 @@
 import { assert } from 'chai';
 import sinon from 'sinon';
 import ApiClient from 'services/api/client';
+import mockPetition from '../../../mocks/petition';
+import mockUser from '../../../mocks/user';
 import petitionRepository from 'services/api/repositories/petition';
 
 describe('petition repository', () => {
@@ -196,12 +198,9 @@ describe('petition repository', () => {
   describe('publish', () => {
     context('without mobile_token', () => {
       let examplePetition = {
-        petition: {
-          id: exampleId,
-          title: exampleTitle
-        }
+        petition: mockPetition.data
       };
-      let expectedPathArgument = `/petitions/${exampleId}/event/publish`;
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/publish`;
       let expectedDataArgument = { data: {} };
       let expectedMethodArgument = 'POST';
       it('calls the API client with proper arguments', () => {
@@ -217,13 +216,10 @@ describe('petition repository', () => {
 
     context('with mobile_token', () => {
       let examplePetition = {
-        petition: {
-          id: exampleId,
-          title: exampleTitle
-        },
+        petition: mockPetition.data,
         mobile_token: '12345'
       };
-      let expectedPathArgument = `/petitions/${exampleId}/event/publish`;
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/publish`;
       let expectedDataArgument = { data: { mobile_token: '12345' } };
       let expectedMethodArgument = 'POST';
       it('calls the API client with proper arguments', () => {
@@ -239,23 +235,54 @@ describe('petition repository', () => {
   });
 
   describe('support', () => {
-    let exampleTrustData = {
-      petition: {
-        id: exampleId
-      }
-    };
-    let expectedPathArgument = `/petitions/${exampleId}/event/support`;
-    let expectedDataArgument = { data: exampleTrustData };
-    let expectedMethodArgument = 'POST';
+    context('without mobile_token', () => {
+      let exampleTrustData = {
+        petition: mockPetition.data,
+        user: mockUser
+      };
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support`;
+      let expectedDataArgument = {
+        data: {
+          user: mockUser
+        }
+      };
+      let expectedMethodArgument = 'POST';
 
-    it('calls the API client with proper arguments', () => {
-      petitionRepository.support(exampleTrustData);
+      it('calls the API client with proper arguments', () => {
+        petitionRepository.support(exampleTrustData);
 
-      assert(ApiClient.request.calledWith(
-        expectedPathArgument,
-        expectedDataArgument,
-        expectedMethodArgument
-      ));
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument,
+          expectedMethodArgument
+        ));
+      });
+    });
+
+    context('with mobile_token', () => {
+      let exampleTrustData = {
+        petition: mockPetition.data,
+        user: mockUser,
+        mobile_token: '12345'
+      };
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support`;
+      let expectedDataArgument = {
+        data: {
+          user: mockUser,
+          mobile_token: '12345'
+        }
+      };
+      let expectedMethodArgument = 'POST';
+
+      it('calls the API client with proper arguments', () => {
+        petitionRepository.support(exampleTrustData);
+
+        assert(ApiClient.request.calledWith(
+          expectedPathArgument,
+          expectedDataArgument,
+          expectedMethodArgument
+        ));
+      });
     });
   });
 

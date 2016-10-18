@@ -20,6 +20,7 @@ import {
 } from 'actions/TrustActions';
 
 export function supportPetition (trustData, dispatch) {
+  console.log('support', trustData);
   const { petition, user } = trustData;
   // Set trust as submitting
   dispatch(submittingTrust(petition.id));
