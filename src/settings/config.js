@@ -332,7 +332,8 @@ export default {
       label: 'Email address'
     },
     mobile: {
-      label: 'Mobile number'
+      label: 'Mobile number',
+      hint: 'Only region codes **+41** and **+43** are accepted. You must be a Swiss resident to contribute.'
     }
   },
   trustConfirmationFields: {
