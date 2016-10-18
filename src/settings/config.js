@@ -343,7 +343,7 @@ export default {
   platformSupporters: [
     {
       name: 'Google',
-      imageUrl: '/dist/assets/images/lovely-systems.png'
+      imageUrl: '/dist/assets/images/dni.png'
     },
     {
       name: 'Lovely Systems',
@@ -351,7 +351,11 @@ export default {
     },
     {
       name: 'Edenspiekermann',
-      imageUrl: '/dist/assets/images/lovely-systems.png'
+      imageUrl: '/dist/assets/images/edenspiekermann.png'
+    },
+    {
+      name: 'AZ Medien',
+      imageUrl: '/dist/assets/images/az-medien.png'
     }
   ],
   flashMessages: {
