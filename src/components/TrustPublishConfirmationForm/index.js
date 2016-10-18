@@ -14,6 +14,7 @@ import trustForm from 'selectors/trustForm';
 const TrustPublishConfirmationForm = ({
   fields,
   handleSubmit,
+  publishPetition,
   me,
   petition,
   submitting
@@ -46,6 +47,7 @@ const TrustPublishConfirmationForm = ({
 TrustPublishConfirmationForm.propTypes = {
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
+  publishPetition: React.PropTypes.func.isRequired,
   petition: React.PropTypes.object.isRequired,
   me: React.PropTypes.object.isRequired,
   submitting: React.PropTypes.bool.isRequired
@@ -53,10 +55,15 @@ TrustPublishConfirmationForm.propTypes = {
 
 export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, me, trust);
 
+export const mapDispatchToProps = (dispatch) => ({
+  publishPetition: (trustData) => dispatch(publishPetition(trustData))
+});
+
 export default reduxForm({
   form: 'trustPublishConfirmation',
   fields: FIELDS.map(field => field.name),
   validate: trustConfirmationValidator
 },
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(TrustPublishConfirmationForm);
