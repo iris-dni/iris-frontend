@@ -43,6 +43,12 @@ describe('TrustSupportForm', () => {
 
         assert.equal(actual, expected);
       });
+
+      it('has maxLength <= 15', () => {
+        const actual = field.html.maxLength <= 15;
+
+        assert.isTrue(actual);
+      });
     });
 
     [
