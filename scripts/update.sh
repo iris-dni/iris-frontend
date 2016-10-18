@@ -19,6 +19,8 @@ if [ "$HAS_CONFIGURED_UPSTREAM" ]; then
     git fetch upstream
     git checkout master
     git rebase upstream/master
+    git checkout develop
+    git rebase upstream/develop
   fi
 else
   echo "Nothing to do here."
