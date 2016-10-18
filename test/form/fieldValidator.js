@@ -126,6 +126,65 @@ describe('fieldValidator', () => {
     assert.deepEqual(actual, expected);
   });
 
+  context('with an email field', () => {
+    [
+      'hi@hello.com',
+      'hi25@hello.com',
+      'hi.hello@world.com',
+      'hi.hello@world.co.uk',
+      'hi+hello@world.co.uk',
+      'hi+hello-ignore@world.de'
+    ].forEach(email => {
+      describe(`and email ${email}`, () => {
+        it('is valid', () => {
+          const actual = fieldValidator(
+            [
+              {
+                name: 'test',
+                html: {
+                  type: 'email'
+                }
+              }
+            ],
+            { test: email }
+          );
+          const expected = {};
+
+          assert.deepEqual(actual, expected);
+        });
+      });
+    });
+
+    [
+      'hello-world',
+      'hello@world',
+      'hello.world@.co',
+      'hello@world.1234',
+      'hello234.co.uk'
+    ].forEach(number => {
+      describe(`and number ${number}`, () => {
+        it('is invalid', () => {
+          const actual = fieldValidator(
+            [
+              {
+                name: 'test',
+                html: {
+                  type: 'email'
+                }
+              }
+            ],
+            { test: number }
+          );
+          const expected = {
+            test: 'Please enter a valid email address'
+          };
+
+          assert.deepEqual(actual, expected);
+        });
+      });
+    });
+  });
+
   context('with a telephone field', () => {
     [
       '004915759646962',
