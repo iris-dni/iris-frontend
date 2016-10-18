@@ -1,24 +1,31 @@
 import React from 'react';
 import Container from 'components/Container';
 import BlockContainer from 'components/BlockContainer';
-import Section from 'components/Section';
+import Header from 'components/Header';
+import PlatformSupporters from 'components/PlatformSupporters';
 
 const Imprint = () => (
-  <Section>
-    <Container>
+  <article>
+    <section>
+      <Container>
+        <Header padding>
+          <PlatformSupporters />
+        </Header>
+      </Container>
+    </section>
+    <section>
       <BlockContainer>
-        Supporters
+        Create
       </BlockContainer>
-    </Container>
-    <BlockContainer>
-      Create
-    </BlockContainer>
-    <Container>
-      <BlockContainer>
-        Imprint
-      </BlockContainer>
-    </Container>
-  </Section>
+    </section>
+    <section>
+      <Container>
+        <BlockContainer>
+          Imprint
+        </BlockContainer>
+      </Container>
+    </section>
+  </article>
 );
 
 export default Imprint;

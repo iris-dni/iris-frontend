@@ -327,6 +327,26 @@ export default {
       label: 'Verification code'
     }
   },
+  imprint: {
+    supporters: {
+      title: 'Platform supporters',
+      text: 'These are the companies that supported and participated in the creation of the IRIS platform. All companies are proud to be part of a project for local change.'
+    }
+  },
+  platformSupporters: [
+    {
+      name: 'Google',
+      imageUrl: '/dist/assets/images/lovely-systems.png'
+    },
+    {
+      name: 'Lovely Systems',
+      imageUrl: '/dist/assets/images/lovely-systems.png'
+    },
+    {
+      name: 'Edenspiekermann',
+      imageUrl: '/dist/assets/images/lovely-systems.png'
+    }
+  ],
   flashMessages: {
     genericError: 'Sadly something failed, please try again!',
     petitionCreated: 'Great, your petition was created!',
