@@ -14,6 +14,8 @@ import hasValidUserData from 'helpers/hasValidUserData';
 const TrustSupportConfirmationContainer = withRouter(React.createClass({
   componentWillMount () {
     // const { router, petition, hasValidUserData, showFlashMessage } = this.props;
+
+    // If there is no valid user data, redirect to support form
     // if (!hasValidUserData) {
     //   showFlashMessage(settings.flashMessages.invalidUserDataError, 'error');
     //   router.push(`/trust/support/${petition.id}`);
@@ -22,6 +24,7 @@ const TrustSupportConfirmationContainer = withRouter(React.createClass({
 
   componentWillUpdate (nextProps) {
     const { router, petition, trustSubmitted, isTrustedUser } = nextProps;
+
     // If we have submitted trust successfully
     if (trustSubmitted && isTrustedUser) {
       router.push(getPetitionPath(petition));

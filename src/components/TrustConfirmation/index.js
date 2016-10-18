@@ -22,4 +22,8 @@ const TrustConfirmation = ({
   </FormLayout>
 );
 
+TrustConfirmation.propTypes = {
+  action: React.PropTypes.oneOf(['support', 'publish'])
+};
+
 export default TrustConfirmation;

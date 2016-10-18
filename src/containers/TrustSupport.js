@@ -23,13 +23,9 @@ const TrustContainer = withRouter(React.createClass({
   },
 
   componentWillUpdate (nextProps) {
-    const {
-      router,
-      petition,
-      trustSubmitted,
-      isTrustedUser
-    } = nextProps;
+    const { router, petition, trustSubmitted, isTrustedUser } = nextProps;
 
+    // If we have submitted trust successfully
     if (trustSubmitted) {
       // Go to petition path, or confirmation
       router.push(isTrustedUser

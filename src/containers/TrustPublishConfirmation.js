@@ -15,10 +15,12 @@ const TrustPublishConfirmationContainer = withRouter(React.createClass({
   componentWillMount () {
     const { router, petition } = this.props;
 
+    // If petition is already published, redirect to petition
     if (petition.published) {
       router.push(getPetitionPath(petition));
     }
 
+    // If there is no valid user data, redirect to publish form
     // const { router, petition, hasValidUserData, showFlashMessage } = this.props;
     // if (!hasValidUserData) {
     //   showFlashMessage(settings.flashMessages.invalidUserDataError, 'error');

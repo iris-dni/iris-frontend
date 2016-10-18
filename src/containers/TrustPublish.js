@@ -15,6 +15,7 @@ const TrustPublishContainer = withRouter(React.createClass({
   componentWillMount () {
     const { router, petition } = this.props;
 
+    // If petition is already published, redirect to petition
     if (petition.published) {
       router.push(getPetitionPath(petition));
     }
@@ -23,6 +24,7 @@ const TrustPublishContainer = withRouter(React.createClass({
   componentWillUpdate (nextProps) {
     const { router, petition } = nextProps;
 
+    // If we have owned and saved the petition, go to preview
     if (petition.owned && petition.saved) {
       // Go to preview
       router.push(`/petitions/${petition.id}/preview`);

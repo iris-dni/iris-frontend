@@ -37,4 +37,8 @@ const Trust = ({
   </FormLayout>
 );
 
+Trust.propTypes = {
+  action: React.PropTypes.oneOf(['support', 'publish'])
+};
+
 export default Trust;
