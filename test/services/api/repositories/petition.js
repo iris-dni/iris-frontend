@@ -61,8 +61,8 @@ describe('petition repository', () => {
       ));
     });
 
-    it('resolves owner, city and links', () => {
-      let expectedDataArgument = { resolve: 'city,owner,links' };
+    it('resolves owner, city, links and mentions', () => {
+      let expectedDataArgument = { resolve: 'city,owner,links,mentions' };
 
       petitionRepository.find(exampleId);
 

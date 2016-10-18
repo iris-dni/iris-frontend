@@ -51,7 +51,9 @@ export function requestPetition () {
 }
 
 export function receivePetition (petition) {
+  // TODO: there might be a better place to transform link data
   petition.links = wrapPetitionLinks(petition.links);
+  petition.mentions = wrapPetitionLinks(petition.mentions);
 
   return {
     type: RECEIVE_PETITION,
