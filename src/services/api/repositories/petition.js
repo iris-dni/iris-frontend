@@ -43,7 +43,7 @@ export default {
     return ApiClient.request(requestPath, { data: payload }, POST);
   },
 
-  support: ({ petition, user, mobile_token }) => {
+  support: ({ petition, mobile_token, user }) => {
     const requestPath = path.join('/petitions', petition.id.toString(), '/event/support');
     const payload = mobile_token ? { mobile_token, user } : { user }; // eslint-disable-line camelcase
     return ApiClient.request(requestPath, { data: payload }, POST);
