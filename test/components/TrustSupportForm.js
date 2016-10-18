@@ -45,15 +45,17 @@ describe('TrustSupportForm', () => {
       });
 
       it('has minLength of 6', () => {
-        const actual = field.html.maxLength = 6;
+        const actual = field.html.minLength;
+        const expected = 6;
 
-        assert.isTrue(actual);
+        assert.equal(actual, expected);
       });
 
       it('has maxLength of 20', () => {
-        const actual = field.html.maxLength = 20;
+        const actual = field.html.maxLength;
+        const expected = 20;
 
-        assert.isTrue(actual);
+        assert.equal(actual, expected);
       });
     });
 
