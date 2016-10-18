@@ -7,9 +7,7 @@ const NewPetition = ({ petition }) => (
   <FormLayout
     title={settings.newPetitionPage.title}
     intro={settings.newPetitionPage.intro}>
-    <PetitionForm
-      petition={petition}
-    />
+    <PetitionForm />
   </FormLayout>
 );
 

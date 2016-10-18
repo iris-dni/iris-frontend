@@ -1,7 +1,8 @@
 import React from 'react';
 import settings from 'settings';
 import FormLayout from 'components/FormLayout';
-import TrustForm from 'components/TrustForm';
+import TrustSupportForm from 'components/TrustSupportForm';
+import TrustPublishForm from 'components/TrustPublishForm';
 import SsoProviders from 'components/SsoProviders';
 import generateSsoProviders from 'helpers/generateSsoProviders';
 import getReturnUrlFromLocation from 'helpers/getReturnUrlFromLocation';
@@ -9,20 +10,35 @@ import getReturnUrlFromLocation from 'helpers/getReturnUrlFromLocation';
 const Trust = ({
   isLoggedIn,
   petition,
-  location
+  location,
+  action
 }) => (
   <FormLayout
     title={settings.trustPage.title}
     intro={settings.trustPage.intro}>
-    <p>You are supporting {petition.title}</p>
     {!isLoggedIn &&
       <SsoProviders providers={generateSsoProviders(
         settings.ssoProviders,
         getReturnUrlFromLocation(location)
       )} />
     }
-    <TrustForm />
+    {action === 'support' &&
+      <div>
+        <p>You are supporting {petition.title}</p>
+        <TrustSupportForm />
+      </div>
+    }
+    {action === 'publish' &&
+      <div>
+        <p>Creating: {petition.title}</p>
+        <TrustPublishForm />
+      </div>
+    }
   </FormLayout>
 );
+
+Trust.propTypes = {
+  action: React.PropTypes.oneOf(['support', 'publish'])
+};
 
 export default Trust;

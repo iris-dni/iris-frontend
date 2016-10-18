@@ -4,10 +4,10 @@ import mockUser from '../mocks/user';
 import getTrustForm from 'selectors/trustForm';
 
 describe('trustForm selector', () => {
-  it('returns `petitionId` correctly', () => {
+  it('returns `petition` correctly', () => {
     const result = getTrustForm(mockPetition.data);
-    const actual = result.petitionId;
-    const expected = '7UV7m';
+    const actual = result.petition;
+    const expected = mockPetition.data;
 
     assert.equal(actual, expected);
   });
