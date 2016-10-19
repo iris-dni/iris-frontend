@@ -6,15 +6,19 @@ import CreateCTA from 'components/CreateCTA';
 import Header from 'components/Header';
 import PlatformSupporters from 'components/PlatformSupporters';
 
+import hasPlatformSupporters from 'helpers/hasPlatformSupporters';
+
 const Imprint = () => (
   <article>
-    <section>
-      <Container>
-        <Header padding>
-          <PlatformSupporters />
-        </Header>
-      </Container>
-    </section>
+    {hasPlatformSupporters(settings) &&
+      <section>
+        <Container>
+          <Header padding>
+            <PlatformSupporters />
+          </Header>
+        </Container>
+      </section>
+    }
     <section>
       <CreateCTA {...settings.createCTA} />
     </section>
