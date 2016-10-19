@@ -99,10 +99,10 @@ export function createPetition (petition, dispatch) {
   // Trigger create action
   return petitionRepository.create(petition)
     .then((response) => {
-      // Set petition as created
-      dispatch(createdPetition(response.data));
       // Change route to publish trust
       dispatch(push(`/trust/publish/${response.data.id}`));
+      // Set petition as created
+      dispatch(createdPetition(response.data));
     }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
@@ -116,8 +116,6 @@ export function updatePetition (updateData, dispatch) {
   // Trigger update action
   return petitionRepository.update({ ...petition, owner })
     .then((response) => {
-      // Set petition as updated
-      dispatch(updatedPetition(response.data));
       // If petition is owned
       if (hasValidPublishUserData(response.data.owner)) {
         // Change route to petition preview
@@ -126,6 +124,8 @@ export function updatePetition (updateData, dispatch) {
         // Change route to publish trust
         dispatch(push(`/trust/publish/${response.data.id}`));
       }
+      // Set petition as updated
+      dispatch(updatedPetition(response.data));
     }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
@@ -133,6 +133,9 @@ export function updatePetition (updateData, dispatch) {
 
 export function publishPetition (trustData) {
   const { petition } = trustData;
+
+  console.log('publish', trustData);
+
   return (dispatch, getState) => {
     // Set loading state
     dispatch(submittingPetition());
@@ -157,12 +160,12 @@ export function publishPetition (trustData) {
 }
 
 const publishPetitionSuccess = (id, data, dispatch) => {
+  // Change route to petition
+  dispatch(push(`/petitions/${id}`));
   // The user is trusted
   dispatch(userIsTrusted());
   // Set petition as published
   dispatch(publishedPetition(data));
-  // Change route to petition
-  dispatch(push(`/petitions/${id}`));
   // Dispatch modal confirmation
   dispatch(
     showModalWindow({
@@ -177,10 +180,10 @@ const publishPetitionSuccess = (id, data, dispatch) => {
 
 const publishPetitionErrors = (id, response, dispatch) => {
   if (isUntrustedUser(response)) {
-    // When the user is untrusted
-    dispatch(userIsUntrusted());
     // Change route to publish trust confirmation
     dispatch(push(`/trust/publish/${id}/confirm`));
+    // When the user is untrusted
+    dispatch(userIsUntrusted());
   } else if (isInvalidVerification(response)) {
     // When the verification code is invalid
     dispatch(showFlashMessage(settings.flashMessages.invalidVerificationError, 'error'));

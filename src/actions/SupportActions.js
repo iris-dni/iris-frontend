@@ -44,12 +44,12 @@ export function supportPetition (trustData, dispatch) {
 }
 
 const supportPetitionSuccess = (id, data, dispatch) => {
+  // Change route to petition
+  dispatch(push(`/petitions/${id}`));
   // The user is trusted
   dispatch(userIsTrusted());
   // Set petition as supported
   dispatch(supportedPetition(data));
-  // Change route to petition
-  dispatch(push(`/petitions/${id}`));
   // Dispatch modal confirmation
   dispatch(
     showModalWindow({
@@ -64,10 +64,10 @@ const supportPetitionSuccess = (id, data, dispatch) => {
 
 const supportPetitionErrors = (id, response, dispatch) => {
   if (isUntrustedUser(response)) {
-    // The user is untrusted
-    dispatch(userIsUntrusted());
     // Change route to support trust confirmation
     dispatch(push(`/trust/support/${id}/confirm`));
+    // The user is untrusted
+    dispatch(userIsUntrusted());
   } else if (isInvalidVerification(response)) {
     // When the verification code is invalid
     dispatch(showFlashMessage(settings.flashMessages.invalidVerificationError, 'error'));
