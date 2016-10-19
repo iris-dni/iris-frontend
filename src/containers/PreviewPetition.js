@@ -5,27 +5,10 @@ import { connect } from 'react-redux';
 import { fetchPetition, publishPetition } from 'actions/PetitionActions';
 import settings from 'settings';
 import PreviewPetition from 'components/PreviewPetition';
-import getPetitionPath from 'selectors/petitionPath';
 import getPetitionForm from 'selectors/petitionForm';
 import trustSubmitted from 'helpers/trustSubmitted';
 
 const PreviewPetitionContainer = withRouter(React.createClass({
-  componentWillUpdate (nextProps) {
-    const { router, petition, trustSubmitted, isTrustedUser } = nextProps;
-
-    if (trustSubmitted) {
-      // Go to petition path, or confirmation
-      router.push(isTrustedUser
-        ? getPetitionPath(petition.id)
-        : `/trust/publish/${petition.id}/confirm`
-      );
-    }
-
-    // if (nextProps.petition.hasPublished) {
-    //   this.props.router.push(`${getPetitionPath(nextProps.petition)}/published`);
-    // }
-  },
-
   render () {
     return (
       <div>

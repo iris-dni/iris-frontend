@@ -3,6 +3,7 @@ import petitionRepository from 'services/api/repositories/petition';
 import getPetitionURL from 'helpers/getPetitionURL';
 import isUntrustedUser from 'helpers/isUntrustedUser';
 import isInvalidVerification from 'helpers/isInvalidVerification';
+import { browserHistory } from 'react-router';
 
 import {
   CLEAR_PETITION,
@@ -98,6 +99,7 @@ export function createPetition (petition, dispatch) {
   return petitionRepository.create(petition)
     .then((response) => {
       dispatch(createdPetition(response.data));
+      browserHistory.push(`/trust/publish/${response.data.id}`);
     }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
@@ -111,6 +113,7 @@ export function updatePetition (updateData, dispatch) {
   return petitionRepository.update({ ...petition, owner })
     .then((response) => {
       dispatch(updatedPetition(response.data));
+      browserHistory.push(`/petitions/${response.data.id}/preview`);
     }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
@@ -133,7 +136,7 @@ export function publishPetition (trustData) {
             break;
           case 'error':
             // Error given
-            publishPetitionErrors(response, dispatch);
+            publishPetitionErrors(petition.id, response, dispatch);
         }
       }).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
@@ -146,6 +149,8 @@ const publishPetitionSuccess = (id, data, dispatch) => {
   dispatch(userIsTrusted());
   // Set petition as published
   dispatch(publishedPetition(data));
+  // Redirect to petition
+  browserHistory.push(`/petitions/${id}`);
   // Dispatch modal confirmation
   dispatch(
     showModalWindow({
@@ -158,10 +163,12 @@ const publishPetitionSuccess = (id, data, dispatch) => {
   dispatch(finishedTrust());
 };
 
-const publishPetitionErrors = (response, dispatch) => {
+const publishPetitionErrors = (id, response, dispatch) => {
   if (isUntrustedUser(response)) {
     // When the user is untrusted
     dispatch(userIsUntrusted());
+    // Redirect to trust confirmation
+    browserHistory.push(`/trust/publish/${id}/confirm`);
   } else if (isInvalidVerification(response)) {
     // When the verification code is invalid
     dispatch(showFlashMessage(settings.flashMessages.invalidVerificationError, 'error'));

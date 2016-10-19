@@ -21,16 +21,6 @@ const TrustPublishContainer = withRouter(React.createClass({
     }
   },
 
-  componentWillUpdate (nextProps) {
-    const { router, petition } = nextProps;
-
-    // If we have owned and saved the petition, go to preview
-    if (petition.owned && petition.saved) {
-      // Go to preview
-      router.push(`/petitions/${petition.id}/preview`);
-    }
-  },
-
   componentWillUnmount () {
     this.props.newTrustStep();
   },

@@ -14,15 +14,6 @@ const NewPetitionContainer = withRouter(React.createClass({
     this.props.clearSuggestionInputValue();
   },
 
-  componentWillUpdate (nextProps) {
-    const { petition, router } = nextProps;
-
-    // If petition has saved, go to the trust page
-    if (petition.persisted) {
-      router.push(`/trust/publish/${petition.id}`);
-    }
-  },
-
   render () {
     return (
       <div>

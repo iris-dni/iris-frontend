@@ -23,24 +23,13 @@ const EditPetitionContainer = withRouter(React.createClass({
     }
   },
 
-  componentWillUpdate (nextProps) {
-    const { router, petition } = nextProps;
-
-    // If we have saved, go to the publish page
-    if (nextProps.petition.saved) {
-      router.push(`/trust/publish/${petition.id}`);
-    }
-  },
-
   render () {
     const { petition } = this.props;
 
     return (
       <div>
         <Helmet title={settings.editPetitionPage.title} />
-        <EditPetition
-          petition={petition}
-        />
+        <EditPetition petition={petition} />
       </div>
     );
   }

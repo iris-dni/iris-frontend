@@ -33,8 +33,8 @@ const TrustPublishConfirmationForm = ({
     <Fieldset modifier={'actions'}>
       <ButtonSet>
         <ButtonLink
-          href={`/petitions/${petition.id}/preview`}
-          text={'Back to preview'}
+          href={`/trust/publish/${petition.id}`}
+          text={'Back to details'}
         />
         <Button
           onClick={() => resendVerification(petition)}
