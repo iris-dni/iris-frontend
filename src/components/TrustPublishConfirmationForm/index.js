@@ -12,6 +12,8 @@ import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
 import hasValidPublishUserData from 'helpers/hasValidPublishUserData';
 
+const x = x => console.log(x);
+
 const TrustPublishConfirmationForm = ({
   fields,
   handleSubmit,
@@ -19,7 +21,8 @@ const TrustPublishConfirmationForm = ({
   resendVerification,
   me,
   petition,
-  submitting
+  submitting,
+  canBePublished
 }) => (
   <form onSubmit={handleSubmit((values, dispatch) => publishPetition(
     assignPetitionData(values, petition), dispatch)
@@ -38,14 +41,15 @@ const TrustPublishConfirmationForm = ({
         />
         <Button
           onClick={() => resendVerification(petition)}
-          disabled={!hasValidPublishUserData(petition.owner)}
+          disabled={!canBePublished || petition.isLoading}
+          x={x(petition)}
           type={'button'}
           text={'Re-send SMS'}
         />
         <Button
           text={'Complete verification'}
           modifier={'accent'}
-          disabled={!hasValidPublishUserData(petition.owner) || submitting || !fields._meta.allValid}
+          disabled={!canBePublished || submitting || !fields._meta.allValid}
         />
       </ButtonSet>
     </Fieldset>
@@ -59,10 +63,14 @@ TrustPublishConfirmationForm.propTypes = {
   resendVerification: React.PropTypes.func.isRequired,
   petition: React.PropTypes.object.isRequired,
   me: React.PropTypes.object.isRequired,
-  submitting: React.PropTypes.bool.isRequired
+  submitting: React.PropTypes.bool.isRequired,
+  canBePublished: React.PropTypes.bool.isRequired
 };
 
-export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, me, trust);
+export const mapStateToProps = ({ petition, me, trust }) => ({
+  ...trustForm(petition, me, trust),
+  canBePublished: hasValidPublishUserData(petition.owner)
+});
 
 export const mapDispatchToProps = (dispatch) => ({
   publishPetition: (trustData) => dispatch(publishPetition(trustData)),

@@ -144,6 +144,8 @@ export function publishPetition (trustData) {
             // Error given
             publishPetitionErrors(petition.id, response, dispatch);
         }
+        // Set petition as published
+        dispatch(publishedPetition(response.data));
       }).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
       ));
@@ -155,8 +157,6 @@ const publishPetitionSuccess = (id, data, dispatch) => {
   dispatch(push(`/petitions/${id}`));
   // The user is trusted
   dispatch(userIsTrusted());
-  // Set petition as published
-  dispatch(publishedPetition(data));
   // Dispatch modal confirmation
   dispatch(
     showModalWindow({
@@ -188,6 +188,9 @@ const publishPetitionErrors = (id, response, dispatch) => {
 
 export function resendVerification (trustData) {
   return (dispatch, getState) => {
+    // Set loading state
+    dispatch(submittingPetition());
+    // Re-trigger publish event
     return petitionRepository.publish(trustData)
       .then((response) => {
         if (isUntrustedUser(response)) {
@@ -197,6 +200,8 @@ export function resendVerification (trustData) {
           // All other errors
           dispatch(showFlashMessage(settings.flashMessages.genericError, 'error'));
         }
+        // Set petition as published
+        dispatch(publishedPetition(response.data));
       }).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
       ));

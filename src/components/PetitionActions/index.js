@@ -17,6 +17,7 @@ const PetitionActions = ({ petition, actions }) => (
         modifier={'accent'}
         onClick={actions.publishPetition && (() => actions.publishPetition({ petition }))}
         text={settings.previewPetitionPage.publishButton.text}
+        disabled={petition.isLoading}
       />
     </ButtonSet>
   </div>
