@@ -1,3 +1,3 @@
-import hasValidUserData from 'helpers/hasValidUserData';
+import hasValidPublishUserData from 'helpers/hasValidPublishUserData';
 
-export default (petition = {}) => hasValidUserData(petition.owner);
+export default (petition = {}) => hasValidPublishUserData(petition.owner);

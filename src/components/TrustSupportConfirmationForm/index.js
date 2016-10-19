@@ -10,7 +10,7 @@ import ButtonLink from 'components/ButtonLink';
 import ButtonSet from 'components/ButtonSet';
 import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
-import hasValidUserData from 'helpers/hasValidUserData';
+import hasValidSupportUserData from 'helpers/hasValidSupportUserData';
 
 const TrustSupportConfirmationForm = ({
   fields,
@@ -37,14 +37,14 @@ const TrustSupportConfirmationForm = ({
         />
         <Button
           onClick={() => resendVerification(petition, me)}
-          disabled={!hasValidUserData(me)}
+          disabled={!hasValidSupportUserData(me)}
           type={'button'}
           text={'Re-send SMS'}
         />
         <Button
           text={'Complete verification'}
           modifier={'accent'}
-          disabled={!hasValidUserData(me) || submitting || !fields._meta.allValid}
+          disabled={!hasValidSupportUserData(me) || submitting || !fields._meta.allValid}
         />
       </ButtonSet>
     </Fieldset>

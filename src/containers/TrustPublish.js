@@ -3,8 +3,6 @@ import Helmet from 'react-helmet';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchPetition } from 'actions/PetitionActions';
-import { showFlashMessage } from 'actions/FlashActions';
-import { newTrustStep } from 'actions/TrustActions';
 import settings from 'settings';
 import Trust from 'components/Trust';
 import getPetitionPath from 'selectors/petitionPath';
@@ -19,10 +17,6 @@ const TrustPublishContainer = withRouter(React.createClass({
     if (petition.published) {
       router.push(getPetitionPath(petition));
     }
-  },
-
-  componentWillUnmount () {
-    this.props.newTrustStep();
   },
 
   render () {
@@ -40,30 +34,17 @@ TrustPublishContainer.fetchData = ({ store, params }) => {
 };
 
 export const mapStateToProps = ({ petition, trust, me }) => ({
-  me,
   petition: getPetitionForm(petition),
   trustSubmitted: trustSubmitted(petition, trust),
-  isTrustedUser: trust.isTrustedUser,
   isLoggedIn: me && !!me.id
 });
 
-export const mapDispatchToProps = (dispatch) => ({
-  showFlashMessage: (message, type) => dispatch(showFlashMessage(message, type)),
-  newTrustStep: () => dispatch(newTrustStep())
-});
-
 TrustPublishContainer.propTypes = {
-  me: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool
-  ]).isRequired,
   petition: React.PropTypes.object.isRequired,
   trustSubmitted: React.PropTypes.bool.isRequired,
-  isTrustedUser: React.PropTypes.bool.isRequired,
   isLoggedIn: React.PropTypes.bool.isRequired
 };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(TrustPublishContainer);

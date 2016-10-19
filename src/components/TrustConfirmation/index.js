@@ -5,7 +5,6 @@ import TrustSupportConfirmationForm from 'components/TrustSupportConfirmationFor
 import TrustPublishConfirmationForm from 'components/TrustPublishConfirmationForm';
 
 const TrustConfirmation = ({
-  isLoggedIn,
   me,
   action
 }) => (

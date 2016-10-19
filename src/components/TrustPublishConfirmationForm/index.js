@@ -10,7 +10,7 @@ import ButtonLink from 'components/ButtonLink';
 import ButtonSet from 'components/ButtonSet';
 import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
-import hasValidUserData from 'helpers/hasValidUserData';
+import hasValidPublishUserData from 'helpers/hasValidPublishUserData';
 
 const TrustPublishConfirmationForm = ({
   fields,
@@ -38,7 +38,7 @@ const TrustPublishConfirmationForm = ({
         />
         <Button
           onClick={() => resendVerification(petition)}
-          disabled={!hasValidUserData(!me.id ? petition.owner : me)}
+          disabled={!hasValidPublishUserData(!me.id ? petition.owner : me)}
           type={'button'}
           text={'Re-send SMS'}
         />

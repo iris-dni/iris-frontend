@@ -1,3 +1,4 @@
+import { push } from 'react-router-redux';
 import settings from 'settings';
 import petitionRepository from 'services/api/repositories/petition';
 import getPetitionURL from 'helpers/getPetitionURL';
@@ -35,7 +36,7 @@ export function supportPetition (trustData, dispatch) {
           break;
         case 'error':
           // Error given
-          supportPetitionErrors(response, dispatch);
+          supportPetitionErrors(petition.id, response, dispatch);
       }
     }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
@@ -47,6 +48,8 @@ const supportPetitionSuccess = (id, data, dispatch) => {
   dispatch(userIsTrusted());
   // Set petition as supported
   dispatch(supportedPetition(data));
+  // Change route to petition
+  dispatch(push(`/petitions/${id}`));
   // Dispatch modal confirmation
   dispatch(
     showModalWindow({
@@ -59,10 +62,12 @@ const supportPetitionSuccess = (id, data, dispatch) => {
   dispatch(finishedTrust());
 };
 
-const supportPetitionErrors = (response, dispatch) => {
+const supportPetitionErrors = (id, response, dispatch) => {
   if (isUntrustedUser(response)) {
     // The user is untrusted
     dispatch(userIsUntrusted());
+    // Change route to support trust confirmation
+    dispatch(push(`/trust/support/${id}/confirm`));
   } else if (isInvalidVerification(response)) {
     // When the verification code is invalid
     dispatch(showFlashMessage(settings.flashMessages.invalidVerificationError, 'error'));

@@ -1,9 +1,10 @@
+import { push } from 'react-router-redux';
 import settings from 'settings';
 import petitionRepository from 'services/api/repositories/petition';
 import getPetitionURL from 'helpers/getPetitionURL';
 import isUntrustedUser from 'helpers/isUntrustedUser';
 import isInvalidVerification from 'helpers/isInvalidVerification';
-import { browserHistory } from 'react-router';
+import hasValidPublishUserData from 'helpers/hasValidPublishUserData';
 
 import {
   CLEAR_PETITION,
@@ -98,8 +99,10 @@ export function createPetition (petition, dispatch) {
   // Trigger create action
   return petitionRepository.create(petition)
     .then((response) => {
+      // Set petition as created
       dispatch(createdPetition(response.data));
-      browserHistory.push(`/trust/publish/${response.data.id}`);
+      // Change route to publish trust
+      dispatch(push(`/trust/publish/${response.data.id}`));
     }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
@@ -109,12 +112,20 @@ export function updatePetition (updateData, dispatch) {
   const { petition, owner } = updateData;
 
   // Add submitted user data to me object for future
-  dispatch(receiveWhoAmI(owner || petition.owner || {}));
+  dispatch(receiveWhoAmI(owner || {}));
   // Trigger update action
   return petitionRepository.update({ ...petition, owner })
     .then((response) => {
+      // Set petition as updated
       dispatch(updatedPetition(response.data));
-      browserHistory.push(`/petitions/${response.data.id}/preview`);
+      // If petition is owned
+      if (hasValidPublishUserData(response.data.owner)) {
+        // Change route to petition preview
+        dispatch(push(`/petitions/${response.data.id}/preview`));
+      } else {
+        // Change route to publish trust
+        dispatch(push(`/trust/publish/${response.data.id}`));
+      }
     }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
@@ -150,8 +161,8 @@ const publishPetitionSuccess = (id, data, dispatch) => {
   dispatch(userIsTrusted());
   // Set petition as published
   dispatch(publishedPetition(data));
-  // Redirect to petition
-  browserHistory.push(`/petitions/${id}`);
+  // Change route to petition
+  dispatch(push(`/petitions/${id}`));
   // Dispatch modal confirmation
   dispatch(
     showModalWindow({
@@ -168,8 +179,8 @@ const publishPetitionErrors = (id, response, dispatch) => {
   if (isUntrustedUser(response)) {
     // When the user is untrusted
     dispatch(userIsUntrusted());
-    // Redirect to trust confirmation
-    browserHistory.push(`/trust/publish/${id}/confirm`);
+    // Change route to publish trust confirmation
+    dispatch(push(`/trust/publish/${id}/confirm`));
   } else if (isInvalidVerification(response)) {
     // When the verification code is invalid
     dispatch(showFlashMessage(settings.flashMessages.invalidVerificationError, 'error'));

@@ -10,7 +10,7 @@ import TrustConfirmation from 'components/TrustConfirmation';
 import getPetitionPath from 'selectors/petitionPath';
 import getPetitionForm from 'selectors/petitionForm';
 import trustSubmitted from 'helpers/trustSubmitted';
-import hasValidUserData from 'helpers/hasValidUserData';
+import hasValidPublishUserData from 'helpers/hasValidPublishUserData';
 
 const TrustPublishConfirmationContainer = withRouter(React.createClass({
   componentWillMount () {
@@ -24,8 +24,8 @@ const TrustPublishConfirmationContainer = withRouter(React.createClass({
     }
 
     // If there is no valid user data, redirect to publish form
-    // const { router, petition, hasValidUserData, showFlashMessage } = this.props;
-    // if (!hasValidUserData) {
+    // const { router, petition, hasValidPublishUserData, showFlashMessage } = this.props;
+    // if (!hasValidPublishUserData) {
     //   showFlashMessage(settings.flashMessages.invalidUserDataError, 'error');
     //   router.push(`/trust/publish/${petition.id}`);
     // }
@@ -50,7 +50,7 @@ export const mapStateToProps = ({ petition, trust, me }) => ({
   petition: getPetitionForm(petition),
   trustSubmitted: trustSubmitted(petition, trust),
   isTrustedUser: trust.isTrustedUser,
-  hasValidUserData: hasValidUserData(me)
+  hasValidPublishUserData: hasValidPublishUserData(me)
 });
 
 export const mapDispatchToProps = (dispatch) => ({
@@ -66,7 +66,7 @@ TrustPublishConfirmationContainer.propTypes = {
   petition: React.PropTypes.object.isRequired,
   trustSubmitted: React.PropTypes.bool.isRequired,
   isTrustedUser: React.PropTypes.bool.isRequired,
-  hasValidUserData: React.PropTypes.bool.isRequired
+  hasValidPublishUserData: React.PropTypes.bool.isRequired
 };
 
 export default connect(
