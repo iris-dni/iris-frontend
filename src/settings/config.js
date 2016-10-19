@@ -345,6 +345,23 @@ export default {
     supporters: {
       title: 'Platform supporters',
       text: 'These are the companies that supported and participated in the creation of the IRIS platform. All companies are proud to be part of a project for local change.'
+    },
+    detail: {
+      title: 'Platform imprint',
+      company: {
+        title: 'Company',
+        name: 'name',
+        address: 'address',
+        city: 'zip code and city'
+      },
+      contact: {
+        title: 'Contact',
+        name: 'name',
+        address: 'address',
+        city: 'zip code and city',
+        telephone: 'telephone',
+        email: 'email'
+      }
     }
   },
   platformSupporters: [

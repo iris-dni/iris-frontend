@@ -1,7 +1,6 @@
 import React from 'react';
 import settings from 'settings';
 import PageTitle from 'components/PageTitle';
-import Paragraph from 'components/Paragraph';
 import styles from './platform-supporters.scss';
 
 const PlatformSupporters = () => (
@@ -11,9 +10,9 @@ const PlatformSupporters = () => (
         title={settings.imprint.supporters.title}
         centered
       />
-      <Paragraph>
+      <p className={styles.text}>
         {settings.imprint.supporters.text}
-      </Paragraph>
+      </p>
     </div>
     <div className={styles.bottom}>
       {settings.platformSupporters.map(supporter =>

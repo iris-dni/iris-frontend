@@ -4,6 +4,7 @@ import Container from 'components/Container';
 import BlockContainer from 'components/BlockContainer';
 import CreateCTA from 'components/CreateCTA';
 import Header from 'components/Header';
+import ImprintDetails from 'components/ImprintDetails';
 import PlatformSupporters from 'components/PlatformSupporters';
 
 import hasPlatformSupporters from 'helpers/hasPlatformSupporters';
@@ -25,7 +26,7 @@ const Imprint = () => (
     <section>
       <Container>
         <BlockContainer>
-          Imprint
+          <ImprintDetails />
         </BlockContainer>
       </Container>
     </section>
