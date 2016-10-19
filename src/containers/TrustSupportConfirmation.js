@@ -16,7 +16,7 @@ TrustSupportConfirmationContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetition(params.id));
 };
 
-export const mapStateToProps = ({ petition, trust, me }) => ({ me });
+export const mapStateToProps = ({ me }) => ({ me });
 
 TrustSupportConfirmationContainer.propTypes = {
   me: React.PropTypes.oneOfType([

@@ -38,14 +38,14 @@ const TrustPublishConfirmationForm = ({
         />
         <Button
           onClick={() => resendVerification(petition)}
-          disabled={!hasValidPublishUserData(!me.id ? petition.owner : me)}
+          disabled={!hasValidPublishUserData(petition.owner)}
           type={'button'}
           text={'Re-send SMS'}
         />
         <Button
           text={'Complete verification'}
           modifier={'accent'}
-          disabled={submitting || !fields._meta.allValid}
+          disabled={!hasValidPublishUserData(petition.owner) || submitting || !fields._meta.allValid}
         />
       </ButtonSet>
     </Fieldset>

@@ -16,13 +16,12 @@ TrustPublishConfirmationContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetition(params.id));
 };
 
-export const mapStateToProps = ({ petition, trust, me }) => ({ me });
+export const mapStateToProps = ({ petition }) => ({
+  me: petition.owner
+});
 
 TrustPublishConfirmationContainer.propTypes = {
-  me: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool
-  ]).isRequired
+  me: React.PropTypes.object.isRequired
 };
 
 export default connect(

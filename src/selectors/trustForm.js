@@ -4,7 +4,7 @@ export default (petition, me, trust) => ({
     // For TrustSupportForm
     user: me || {},
     // For TrustPublishForm
-    owner: me || {}
+    owner: petition.owner || me || {}
   },
   petition: petition || {},
   submitting: trust && trust.isSubmitting,
