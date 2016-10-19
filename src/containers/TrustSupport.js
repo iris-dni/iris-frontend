@@ -7,14 +7,14 @@ import settings from 'settings';
 import Trust from 'components/Trust';
 import getPetitionForm from 'selectors/petitionForm';
 
-const TrustContainer = (props) => (
+const TrustSupportContainer = (props) => (
   <div>
     <Helmet title={settings.trustPage.title} />
     <Trust {...props} action={'support'} />
   </div>
 );
 
-TrustContainer.fetchData = ({ store, params }) => {
+TrustSupportContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetition(params.id));
 };
 
@@ -23,11 +23,11 @@ export const mapStateToProps = ({ petition, trust, me }) => ({
   isLoggedIn: me && !!me.id
 });
 
-TrustContainer.propTypes = {
+TrustSupportContainer.propTypes = {
   petition: React.PropTypes.object.isRequired,
   isLoggedIn: React.PropTypes.bool.isRequired
 };
 
 export default withRouter(connect(
   mapStateToProps
-)(TrustContainer));
+)(TrustSupportContainer));

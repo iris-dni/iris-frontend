@@ -38,7 +38,10 @@ const Trust = ({
 );
 
 Trust.propTypes = {
-  action: React.PropTypes.oneOf(['support', 'publish'])
+  action: React.PropTypes.oneOf([
+    'support',
+    'publish'
+  ])
 };
 
 export default Trust;
