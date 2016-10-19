@@ -22,7 +22,7 @@ export default (fields, values) => {
       // test for required fields
       set(errors, key, settings.requiredText);
     } else if (fieldType === 'email' && value && !emailValidation.test(value)) {
-      // test telephone format
+      // test email format
       set(errors, key, settings.emailInvalidText);
     } else if (fieldType === 'tel' && value && !phoneValidation.test(value)) {
       // test telephone format

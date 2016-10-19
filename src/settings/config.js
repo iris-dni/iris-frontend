@@ -24,7 +24,7 @@ export default {
   daysToVote: 30,
   optionalLabel: '(optional)',
   emailRegex: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
-  telephoneRegex: /^(555|\+43|0043|\+49|0049|\+41|0041)[ 0-9]{4,}/i,
+  telephoneRegex: /^(\+43|0043|\+49|0049|\+41|0041)[ 0-9]{4,}$/i,
   requiredText: 'You must complete this field',
   minLengthText: 'Must be %x characters or more',
   maxLengthText: 'Cannot be more than %x characters',

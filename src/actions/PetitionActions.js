@@ -181,6 +181,23 @@ const publishPetitionErrors = (response, dispatch) => {
   dispatch(finishedTrust());
 };
 
+export function resendVerification (trustData) {
+  return (dispatch, getState) => {
+    return petitionRepository.publish(trustData)
+      .then((response) => {
+        if (isUntrustedUser(response)) {
+          // We have re-sent & verified the code, show success
+          dispatch(showFlashMessage(settings.flashMessages.verificationResent, 'success'));
+        } else {
+          // All other errors
+          dispatch(showFlashMessage(settings.flashMessages.genericError, 'error'));
+        }
+      }).catch(() => dispatch(
+        showFlashMessage(settings.flashMessages.genericError, 'error')
+      ));
+  };
+}
+
 export function publishedPetition (petition) {
   return {
     type: PUBLISHED_PETITION,
