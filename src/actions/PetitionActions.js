@@ -12,7 +12,6 @@ import {
   RECEIVE_PETITION,
   SUBMITTING_PETITION,
   CREATED_PETITION,
-  UPDATING_PETITION,
   UPDATED_PETITION,
   PUBLISHED_PETITION,
   PETITION_NOT_FOUND
@@ -73,12 +72,6 @@ export function submittingPetition () {
   };
 }
 
-export function updatingPetition () {
-  return {
-    type: UPDATING_PETITION
-  };
-}
-
 export function createdPetition (petition) {
   return {
     type: CREATED_PETITION,
@@ -133,8 +126,6 @@ export function updatePetition (updateData, dispatch) {
 
 export function publishPetition (trustData) {
   const { petition } = trustData;
-
-  console.log('publish', trustData);
 
   return (dispatch, getState) => {
     // Set loading state

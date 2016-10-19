@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { fetchPetition, updatingPetition } from 'actions/PetitionActions';
+import { fetchPetition } from 'actions/PetitionActions';
 import { updateSuggestionInputValue } from 'actions/AutocompleteActions';
 import settings from 'settings';
 import citySuggestionFormatter from 'helpers/citySuggestionFormatter';
@@ -10,7 +10,6 @@ import getPetitionForm from 'selectors/petitionForm';
 
 const EditPetitionContainer = React.createClass({
   componentWillMount () {
-    this.props.updatingPetition();
     this.props.updateSuggestionInputValue(
       citySuggestionFormatter(this.props.petition.city)
     );
@@ -35,7 +34,6 @@ export const mapStateToProps = ({ petition }) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  updatingPetition: () => dispatch(updatingPetition()),
   updateSuggestionInputValue: (city) => dispatch(updateSuggestionInputValue(city))
 });
 
