@@ -28,9 +28,11 @@ export default {
 
   update: (petition) => {
     const requestPath = path.join('/petitions', `${petition.id.toString()}?resolve=city,links,owner`);
+
+    // API requires no id key when updating
     delete petition.id;
 
-    if (petition.city && !petition.city.data) {
+    if (petition.city && !petition.city.id) {
       // API requires this format without a city
       petition.city = { id: null };
     }

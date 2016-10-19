@@ -107,8 +107,9 @@ export function createPetition (petition, dispatch) {
 
 export function updatePetition (updateData, dispatch) {
   const { petition, owner } = updateData;
+
   // Add submitted user data to me object for future
-  dispatch(receiveWhoAmI(owner || {}));
+  dispatch(receiveWhoAmI(owner || petition.owner || {}));
   // Trigger update action
   return petitionRepository.update({ ...petition, owner })
     .then((response) => {
