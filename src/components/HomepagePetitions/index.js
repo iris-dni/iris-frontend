@@ -21,8 +21,8 @@ const HomepagePetitions = ({ groupedPetitions, title, text, linkText }) => (
           </div>
         </BlockContainer>
         <TeaserGrid
-          petitions={groupedPetitions.trending.data}
-          isLoading={groupedPetitions.trending.isLoading}
+          petitions={groupedPetitions.latest.data}
+          isLoading={groupedPetitions.latest.isLoading}
         />
       </Container>
     </Section>
