@@ -1,22 +1,17 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchPetition } from 'actions/PetitionActions';
 import settings from 'settings';
 import TrustConfirmation from 'components/TrustConfirmation';
 import getPetitionForm from 'selectors/petitionForm';
 
-const TrustSupportConfirmationContainer = withRouter(React.createClass({
-  render () {
-    return (
-      <div>
-        <Helmet title={settings.trustConfirmationPage.title} />
-        <TrustConfirmation {...this.props} action={'support'} />
-      </div>
-    );
-  }
-}));
+const TrustSupportConfirmationContainer = (props) => (
+  <div>
+    <Helmet title={settings.trustConfirmationPage.title} />
+    <TrustConfirmation {...props} action={'support'} />
+  </div>
+);
 
 TrustSupportConfirmationContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetition(params.id));

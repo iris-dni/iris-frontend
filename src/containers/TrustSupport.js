@@ -7,16 +7,12 @@ import settings from 'settings';
 import Trust from 'components/Trust';
 import getPetitionForm from 'selectors/petitionForm';
 
-const TrustContainer = withRouter(React.createClass({
-  render () {
-    return (
-      <div>
-        <Helmet title={settings.trustPage.title} />
-        <Trust {...this.props} action={'support'} />
-      </div>
-    );
-  }
-}));
+const TrustContainer = (props) => (
+  <div>
+    <Helmet title={settings.trustPage.title} />
+    <Trust {...props} action={'support'} />
+  </div>
+);
 
 TrustContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetition(params.id));
@@ -32,6 +28,6 @@ TrustContainer.propTypes = {
   isLoggedIn: React.PropTypes.bool.isRequired
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps
-)(TrustContainer);
+)(TrustContainer));
