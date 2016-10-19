@@ -30,7 +30,7 @@ const NewPetitionContainer = withRouter(React.createClass({
     return (
       <div>
         <Helmet title={settings.newPetitionPage.title} />
-        <NewPetition />
+        <NewPetition petition={this.props.petition} />
       </div>
     );
   }

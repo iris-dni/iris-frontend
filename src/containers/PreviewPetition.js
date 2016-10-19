@@ -61,6 +61,7 @@ const PreviewPetitionContainer = withRouter(React.createClass({
 PreviewPetitionContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetition(params.id));
 };
+
 export const mapStateToProps = ({ petition, trust, me }) => ({
   petition: getPetitionForm(petition),
   trustSubmitted: trustSubmitted(petition, trust),

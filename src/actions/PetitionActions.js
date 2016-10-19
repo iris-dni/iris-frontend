@@ -3,7 +3,7 @@ import petitionRepository from 'services/api/repositories/petition';
 import getPetitionURL from 'helpers/getPetitionURL';
 import isUntrustedUser from 'helpers/isUntrustedUser';
 import isInvalidVerification from 'helpers/isInvalidVerification';
-import solveResolvedObjects from 'helpers/solveResolvedObjects';
+// import solveResolvedObjects from 'helpers/solveResolvedObjects';
 import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
 
 import {
@@ -78,13 +78,9 @@ export function submittingPetition () {
 
 export function createPetition (petition, dispatch) {
   dispatch(submittingPetition());
-
-  petition.links = wrapPetitionLinks(petition.links);
-
   return petitionRepository.create(petition)
     .then((response) => {
-      const resolvedPetition = solveResolvedObjects(petition, response.data);
-      dispatch(createdPetition(resolvedPetition));
+      dispatch(createdPetition(response.data));
     }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
@@ -99,20 +95,11 @@ export function createdPetition (petition) {
 
 export function updatePetition (updateData, dispatch) {
   const { petition, owner } = updateData;
-
-  dispatch(submittingPetition());
   // Add submitted user data to me object for future
-  dispatch(receiveWhoAmI(owner));
-
-  const submittedPetition = {
-    ...petition, owner,
-    links: wrapPetitionLinks(petition.links)
-  };
-
-  return petitionRepository.update(submittedPetition)
+  dispatch(receiveWhoAmI(owner || {}));
+  return petitionRepository.update({ ...petition, owner })
     .then((response) => {
-      const resolvedPetition = solveResolvedObjects(submittedPetition, response.data);
-      dispatch(updatedPetition(resolvedPetition));
+      dispatch(updatedPetition(response.data));
     }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
