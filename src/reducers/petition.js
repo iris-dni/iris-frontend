@@ -3,6 +3,7 @@ import {
   CLEAR_PETITION,
   RECEIVE_PETITION,
   CREATED_PETITION,
+  UPDATING_PETITION,
   UPDATED_PETITION,
   RESPONDED_TO_PETITION,
   SUBMITTING_PETITION,
@@ -37,10 +38,17 @@ export default function petition (state = initialState, action) {
           saved: true
         }
       );
+    case UPDATING_PETITION:
+      return Object.assign({},
+        state, action.petition, {
+          saved: false
+        }
+      );
     case SUBMITTING_PETITION:
       return Object.assign({},
-        state, action.petition,
-        { isLoading: true }
+        state, {
+          isLoading: true
+        }
       );
     case PUBLISHED_PETITION:
       return Object.assign({},

@@ -31,7 +31,8 @@ export default {
     delete petition.id;
 
     if (petition.city && !petition.city.data) {
-      delete petition.city.data;
+      // API requires this format without a city
+      petition.city = { id: null };
     }
 
     return ApiClient.request(requestPath, { data: petition }, POST);

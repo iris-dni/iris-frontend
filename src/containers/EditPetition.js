@@ -2,35 +2,34 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { fetchPetition, publishPetition } from 'actions/PetitionActions';
+import { fetchPetition, publishPetition, updatingPetition } from 'actions/PetitionActions';
 import { updateSuggestionInputValue } from 'actions/AutocompleteActions';
 import citySuggestionFormatter from 'helpers/citySuggestionFormatter';
 import settings from 'settings';
-// import Loading from 'components/Loading';
 import EditPetition from 'components/EditPetition';
-// import PreviewPetition from 'components/PreviewPetition';
 import getPetitionPath from 'selectors/petitionPath';
 import getPetitionForm from 'selectors/petitionForm';
-// import petitionPublished from 'selectors/petitionPublished';
 
 const EditPetitionContainer = withRouter(React.createClass({
   componentWillMount () {
-    const { router, petition } = this.props;
+    const { router, petition, updatingPetition, updateSuggestionInputValue } = this.props;
 
     // If petition is already published, redirect to petition
     if (petition.published) {
       router.push(getPetitionPath(petition));
+    } else {
+      updatingPetition();
+      updateSuggestionInputValue(citySuggestionFormatter(petition.city));
     }
-
-    this.props.updateSuggestionInputValue(this.props.cityValue);
   },
 
   componentWillUpdate (nextProps) {
-    // console.log('update', nextProps.petition.links);
+    const { router, petition } = nextProps;
 
-    // if (nextProps.petition.hasPublished) {
-    //   this.props.router.push(`${getPetitionPath(nextProps.petition)}/published`);
-    // }
+    // If we have saved, go to the publish page
+    if (nextProps.petition.saved) {
+      router.push(`/trust/publish/${petition.id}`);
+    }
   },
 
   render () {
@@ -52,13 +51,13 @@ EditPetitionContainer.fetchData = ({ store, params }) => {
 };
 
 export const mapStateToProps = ({ petition }) => ({
-  petition: getPetitionForm(petition),
-  cityValue: citySuggestionFormatter(petition.city && petition.city.data || {})
+  petition: getPetitionForm(petition)
 });
 
 export const mapDispatchToProps = (dispatch) => ({
   fetchPetition: (id) => dispatch(fetchPetition(id)),
   publishPetition: (petition) => dispatch(publishPetition(petition)),
+  updatingPetition: () => dispatch(updatingPetition()),
   updateSuggestionInputValue: (city) => dispatch(updateSuggestionInputValue(city))
 });
 

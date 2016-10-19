@@ -3,8 +3,6 @@ import petitionRepository from 'services/api/repositories/petition';
 import getPetitionURL from 'helpers/getPetitionURL';
 import isUntrustedUser from 'helpers/isUntrustedUser';
 import isInvalidVerification from 'helpers/isInvalidVerification';
-// import solveResolvedObjects from 'helpers/solveResolvedObjects';
-import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
 
 import {
   CLEAR_PETITION,
@@ -12,6 +10,7 @@ import {
   RECEIVE_PETITION,
   SUBMITTING_PETITION,
   CREATED_PETITION,
+  UPDATING_PETITION,
   UPDATED_PETITION,
   PUBLISHED_PETITION,
   PETITION_NOT_FOUND
@@ -60,10 +59,6 @@ export function requestPetition () {
 }
 
 export function receivePetition (petition) {
-  // TODO: there might be a better place to transform link data
-  petition.links = wrapPetitionLinks(petition.links);
-  petition.mentions = wrapPetitionLinks(petition.mentions);
-
   return {
     type: RECEIVE_PETITION,
     petition
@@ -76,14 +71,10 @@ export function submittingPetition () {
   };
 }
 
-export function createPetition (petition, dispatch) {
-  dispatch(submittingPetition());
-  return petitionRepository.create(petition)
-    .then((response) => {
-      dispatch(createdPetition(response.data));
-    }).catch(() => dispatch(
-      showFlashMessage(settings.flashMessages.genericError, 'error')
-    ));
+export function updatingPetition () {
+  return {
+    type: UPDATING_PETITION
+  };
 }
 
 export function createdPetition (petition) {
@@ -93,10 +84,30 @@ export function createdPetition (petition) {
   };
 }
 
+export function updatedPetition (petition) {
+  return {
+    type: UPDATED_PETITION,
+    petition
+  };
+}
+
+export function createPetition (petition, dispatch) {
+  // Set loading state
+  dispatch(submittingPetition());
+  // Trigger create action
+  return petitionRepository.create(petition)
+    .then((response) => {
+      dispatch(createdPetition(response.data));
+    }).catch(() => dispatch(
+      showFlashMessage(settings.flashMessages.genericError, 'error')
+    ));
+}
+
 export function updatePetition (updateData, dispatch) {
   const { petition, owner } = updateData;
   // Add submitted user data to me object for future
   dispatch(receiveWhoAmI(owner || {}));
+  // Trigger update action
   return petitionRepository.update({ ...petition, owner })
     .then((response) => {
       dispatch(updatedPetition(response.data));
@@ -105,16 +116,11 @@ export function updatePetition (updateData, dispatch) {
     ));
 }
 
-export function updatedPetition (petition) {
-  return {
-    type: UPDATED_PETITION,
-    petition
-  };
-}
-
 export function publishPetition (trustData) {
   const { petition } = trustData;
   return (dispatch, getState) => {
+    // Set loading state
+    dispatch(submittingPetition());
     // Set trust as submitting
     dispatch(submittingTrust(petition.id));
     // Trigger publish action
