@@ -23,7 +23,11 @@ import TrustPublish from 'containers/TrustPublish';
 import TrustPublishConfirmation from 'containers/TrustPublishConfirmation';
 
 export default (props = {}) => (
-  <Router history={getHistory(props.store)} onUpdate={logPageview} render={applyRouterMiddleware(useScroll())}>
+  <Router
+    history={getHistory(props.store)}
+    onUpdate={logPageview}
+    render={applyRouterMiddleware(useScroll())}
+  >
     <Route path='/' component={App}>
       <IndexRoute component={Home} />
       <Route path='imprint' component={Imprint} />
