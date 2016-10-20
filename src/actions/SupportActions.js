@@ -82,6 +82,7 @@ export function resendVerification (trustData) {
   return (dispatch, getState) => {
     // Set loading state
     dispatch(submittingSupport());
+    // Trigger support event
     return petitionRepository.support(trustData)
       .then((response) => {
         if (isUntrustedUser(response)) {

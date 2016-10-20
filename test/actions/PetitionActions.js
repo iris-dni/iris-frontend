@@ -22,7 +22,7 @@ import {
   updatePetition,
   updatedPetition,
   publishPetition,
-  // resendVerification,
+  resendVerification,
   publishedPetition,
   petitionNotFound
 } from 'actions/PetitionActions';
@@ -510,72 +510,95 @@ describe('PetitionActions', () => {
     });
   });
 
-  // describe('resendVerification', () => {
-  //   context('with an untrusted user response', () => {
-  //     let dispatch;
-  //     let result;
+  describe('resendVerification', () => {
+    context('when triggered', () => {
+      let dispatch;
+      let result;
 
-  //     const mockTrustData = {
-  //       petition: mockPetition.data
-  //     };
+      const mockTrustData = {
+        petition: mockPetition.data,
+        user: mockUser
+      };
 
-  //     beforeEach(() => {
-  //       dispatch = sinon.spy();
+      beforeEach(() => {
+        dispatch = sinon.spy();
+        result = resendVerification(mockTrustData);
+      });
 
-  //       moxios.install();
-  //       moxios.stubRequest(/.*/, {
-  //         status: 200,
-  //         response: mockTrustResponseUntrusted
-  //       });
+      it('dispatches submittingPetition()', done => {
+        result(dispatch).then(() => {
+          assert(dispatch.calledWith(submittingPetition()));
+        }).then(done, done);
+      });
+    });
 
-  //       result = resendVerification(mockTrustData);
-  //     });
+    context('with an untrusted user response', () => {
+      let dispatch;
+      let result;
 
-  //     afterEach(() => {
-  //       moxios.uninstall();
-  //     });
+      const mockTrustData = {
+        petition: mockPetition.data,
+        user: mockUser
+      };
 
-  //     it('dispatches showFlashMessage() success', done => {
-  //       result(dispatch).then(() => {
-  //         assert(dispatch.calledWith(showFlashMessage('Verification code has been re-sent', 'success')));
-  //       }).then(done, done);
-  //     });
-  //   });
+      beforeEach(() => {
+        dispatch = sinon.spy();
 
-  //   context('with a random error', () => {
-  //     let dispatch;
-  //     let result;
+        moxios.install();
+        moxios.stubRequest(/.*/, {
+          status: 200,
+          response: mockTrustResponseUntrusted
+        });
 
-  //     const mockTrustData = {
-  //       petition: mockPetition.data
-  //     };
+        result = resendVerification(mockTrustData);
+      });
 
-  //     beforeEach(() => {
-  //       dispatch = sinon.spy();
+      afterEach(() => {
+        moxios.uninstall();
+      });
 
-  //       moxios.install();
-  //       moxios.stubRequest(/.*/, {
-  //         status: 200,
-  //         response: {
-  //           status: 'error',
-  //           reasons: ['random_error']
-  //         }
-  //       });
+      it('dispatches showFlashMessage() success', done => {
+        result(dispatch).then(() => {
+          assert(dispatch.calledWith(showFlashMessage('Verification code has been re-sent', 'success')));
+        }).then(done, done);
+      });
+    });
 
-  //       result = resendVerification(mockTrustData);
-  //     });
+    context('with a random error', () => {
+      let dispatch;
+      let result;
 
-  //     afterEach(() => {
-  //       moxios.uninstall();
-  //     });
+      const mockTrustData = {
+        petition: mockPetition.data,
+        user: mockUser
+      };
 
-  //     it('dispatches showFlashMessage() error', done => {
-  //       result(dispatch).then(() => {
-  //         assert(dispatch.calledWith(showFlashMessage('Sadly something failed, please try again!', 'error')));
-  //       }).then(done, done);
-  //     });
-  //   });
-  // });
+      beforeEach(() => {
+        dispatch = sinon.spy();
+
+        moxios.install();
+        moxios.stubRequest(/.*/, {
+          status: 200,
+          response: {
+            status: 'error',
+            reasons: ['random_error']
+          }
+        });
+
+        result = resendVerification(mockTrustData);
+      });
+
+      afterEach(() => {
+        moxios.uninstall();
+      });
+
+      it('dispatches showFlashMessage() error', done => {
+        result(dispatch).then(() => {
+          assert(dispatch.calledWith(showFlashMessage('Sadly something failed, please try again!', 'error')));
+        }).then(done, done);
+      });
+    });
+  });
 
   describe('publishedPetition', () => {
     it('returns PUBLISHED_PETITION action', () => {
