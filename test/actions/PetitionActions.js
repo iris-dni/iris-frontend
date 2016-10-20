@@ -25,13 +25,6 @@ import {
 } from 'actions/PetitionActions';
 
 import {
-  userIsTrusted,
-  userIsUntrusted,
-  submittingTrust,
-  finishedTrust
-} from 'actions/TrustActions';
-
-import {
   receiveWhoAmI
 } from 'actions/AuthActions';
 
@@ -264,25 +257,19 @@ describe('PetitionActions', () => {
   });
 
   describe('publishPetition', () => {
-    context('with a petition', () => {
-      let dispatch;
-      let result;
+    // context('with a petition', () => {
+    //   let dispatch;
+    //   let result;
 
-      const mockTrustData = {
-        petition: mockPetition.data
-      };
+    //   const mockTrustData = {
+    //     petition: mockPetition.data
+    //   };
 
-      beforeEach(() => {
-        dispatch = sinon.spy();
-        result = publishPetition(mockTrustData);
-      });
-
-      it('dispatches submittingTrust() with petition id', done => {
-        result(dispatch).then(() => {
-          assert(dispatch.calledWith(submittingTrust(mockTrustData.petition.id)));
-        }).then(done, done);
-      });
-    });
+    //   beforeEach(() => {
+    //     dispatch = sinon.spy();
+    //     result = publishPetition(mockTrustData);
+    //   });
+    // });
 
     context('with a successful response', () => {
       let dispatch;
@@ -308,61 +295,37 @@ describe('PetitionActions', () => {
         moxios.uninstall();
       });
 
-      it('dispatches userIsTrusted()', done => {
-        result(dispatch).then(() => {
-          assert(dispatch.calledWith(userIsTrusted()));
-        }).then(done, done);
-      });
-
       it('dispatches supportedPetition()', done => {
         result(dispatch).then(() => {
           assert(dispatch.calledWith(publishedPetition(mockTrustResponse.data)));
         }).then(done, done);
       });
-
-      it('dispatches finishedTrust()', done => {
-        result(dispatch).then(() => {
-          assert(dispatch.calledWith(finishedTrust()));
-        }).then(done, done);
-      });
     });
 
-    context('with an untrusted user response', () => {
-      let dispatch;
-      let result;
+    // context('with an untrusted user response', () => {
+    //   let dispatch;
+    //   let result;
 
-      const mockTrustData = {
-        petition: mockPetition.data
-      };
+    //   const mockTrustData = {
+    //     petition: mockPetition.data
+    //   };
 
-      beforeEach(() => {
-        dispatch = sinon.spy();
+    //   beforeEach(() => {
+    //     dispatch = sinon.spy();
 
-        moxios.install();
-        moxios.stubRequest(/.*/, {
-          status: 200,
-          response: mockTrustResponseUntrusted
-        });
+    //     moxios.install();
+    //     moxios.stubRequest(/.*/, {
+    //       status: 200,
+    //       response: mockTrustResponseUntrusted
+    //     });
 
-        result = publishPetition(mockTrustData);
-      });
+    //     result = publishPetition(mockTrustData);
+    //   });
 
-      afterEach(() => {
-        moxios.uninstall();
-      });
-
-      it('dispatches userIsUntrusted()', done => {
-        result(dispatch).then(() => {
-          assert(dispatch.calledWith(userIsUntrusted()));
-        }).then(done, done);
-      });
-
-      it('dispatches finishedTrust()', done => {
-        result(dispatch).then(() => {
-          assert(dispatch.calledWith(finishedTrust()));
-        }).then(done, done);
-      });
-    });
+    //   afterEach(() => {
+    //     moxios.uninstall();
+    //   });
+    // });
 
     context('with an invalid verification response', () => {
       let dispatch;
@@ -391,12 +354,6 @@ describe('PetitionActions', () => {
       it('dispatches showFlashMessage() error', done => {
         result(dispatch).then(() => {
           assert(dispatch.calledWith(showFlashMessage('Invalid verification code', 'error')));
-        }).then(done, done);
-      });
-
-      it('dispatches finishedTrust()', done => {
-        result(dispatch).then(() => {
-          assert(dispatch.calledWith(finishedTrust()));
         }).then(done, done);
       });
     });
@@ -431,12 +388,6 @@ describe('PetitionActions', () => {
       it('dispatches showFlashMessage() error', done => {
         result(dispatch).then(() => {
           assert(dispatch.calledWith(showFlashMessage('Sadly something failed, please try again!', 'error')));
-        }).then(done, done);
-      });
-
-      it('dispatches finishedTrust()', done => {
-        result(dispatch).then(() => {
-          assert(dispatch.calledWith(finishedTrust()));
         }).then(done, done);
       });
     });
