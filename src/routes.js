@@ -12,7 +12,7 @@ import Petition from 'containers/Petition';
 import Petitions from 'containers/Petitions';
 import NewPetition from 'containers/NewPetition';
 import EditPetition from 'containers/EditPetition';
-import PublishedPetition from 'containers/PublishedPetition';
+// import PublishedPetition from 'containers/PublishedPetition';
 import PreviewPetition from 'containers/PreviewPetition';
 import RespondToPetition from 'containers/RespondToPetition';
 import TrustSupport from 'containers/TrustSupport';
@@ -36,7 +36,9 @@ export default (props = {}) => (
       <Route path='petitions/:id' component={Petition} />
       <Route path='petitions/:id/edit' component={EditPetition} />
       <Route path='petitions/:id/preview' component={PreviewPetition} />
-      <Route path='petitions/:id/published' component={PublishedPetition} />
+      {/*
+        <Route path='petitions/:id/published' component={PublishedPetition} />
+      */}
       <Route path='respond/:token' component={RespondToPetition} />
       <Route path='trust/support/:id' component={TrustSupport} />
       <Route path='trust/support/:id/confirm' component={TrustSupportConfirmation} />
