@@ -42,8 +42,6 @@ export function supportPetition (trustData, dispatch) {
 const supportPetitionSuccess = (id, data, dispatch) => {
   // Change route to petition
   dispatch(push(`/petitions/${id}`));
-  // Set petition as supported
-  dispatch(supportedPetition(data));
   // Dispatch modal confirmation
   dispatch(
     showModalWindow({
