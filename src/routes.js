@@ -36,9 +36,6 @@ export default (props = {}) => (
       <Route path='petitions/:id' component={Petition} />
       <Route path='petitions/:id/edit' component={EditPetition} />
       <Route path='petitions/:id/preview' component={PreviewPetition} />
-      {/*
-        <Route path='petitions/:id/published' component={PublishedPetition} />
-      */}
       <Route path='respond/:token' component={RespondToPetition} />
       <Route path='trust/support/:id' component={TrustSupport} />
       <Route path='trust/support/:id/confirm' component={TrustSupportConfirmation} />
