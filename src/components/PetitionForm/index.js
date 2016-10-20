@@ -23,7 +23,7 @@ const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting })
       <Button
         text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton'].text}
         modifier={'accent'}
-        disabled={openGraph.isLoading || submitting || !fields._meta.allValid}
+        disabled={openGraph.isLoading || submitting || (__CLIENT__ && !fields._meta.allValid)}
       />
     </Fieldset>
   </form>

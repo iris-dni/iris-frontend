@@ -1,6 +1,7 @@
 import { assert } from 'chai';
 import mockPetition from '../mocks/petition';
-import mockUser from '../mocks/user';
+import mockPetitionOwned from '../mocks/petitionOwned';
+import mockUser from '../mocks/trustedUser';
 import getTrustForm from 'selectors/trustForm';
 
 describe('trustForm selector', () => {
@@ -9,19 +10,7 @@ describe('trustForm selector', () => {
     const actual = result.petition;
     const expected = mockPetition.data;
 
-    assert.equal(actual, expected);
-  });
-
-  it('returns `submitting` key from trust param', () => {
-    const result = getTrustForm(
-      mockPetition.data,
-      mockUser,
-      {
-        isSubmitting: true
-      }
-    );
-    const actual = result.submitting;
-    assert.isTrue(actual);
+    assert.deepEqual(actual, expected);
   });
 
   it('assigns me param to `me` key', () => {
@@ -36,27 +25,55 @@ describe('trustForm selector', () => {
     assert.deepEqual(actual, expected);
   });
 
-  it('assigns `petitionId` to `initialValues` key', () => {
-    const result = getTrustForm(
-      mockPetition.data,
-      mockUser,
-      {}
-    );
-    const actual = result.initialValues.petitionId;
-    const expected = mockPetition.data.id;
+  context('with petition', () => {
+    it('assigns me param as `user` to `initialValues` key', () => {
+      const result = getTrustForm(
+        mockPetition.data,
+        mockUser,
+        {}
+      );
+      const actual = result.initialValues.user;
+      const expected = mockUser;
 
-    assert.equal(actual, expected);
+      assert.deepEqual(actual, expected);
+    });
+
+    it('assigns me param as `owner` to `initialValues` key', () => {
+      const result = getTrustForm(
+        mockPetition.data,
+        mockUser,
+        {}
+      );
+      const actual = result.initialValues.owner;
+      const expected = mockUser;
+
+      assert.deepEqual(actual, expected);
+    });
   });
 
-  it('assigns `user` to `initialValues` key', () => {
-    const result = getTrustForm(
-      mockPetition.data,
-      mockUser,
-      {}
-    );
-    const actual = result.initialValues.user;
-    const expected = mockUser;
+  context('with owned petition', () => {
+    it('assigns me param as `user` to `initialValues` key', () => {
+      const result = getTrustForm(
+        mockPetitionOwned.data,
+        mockUser,
+        {}
+      );
+      const actual = result.initialValues.user;
+      const expected = mockUser;
 
-    assert.equal(actual, expected);
+      assert.deepEqual(actual, expected);
+    });
+
+    it('assigns petition owner as `owner` to `initialValues` key', () => {
+      const result = getTrustForm(
+        mockPetitionOwned.data,
+        mockUser,
+        {}
+      );
+      const actual = result.initialValues.owner;
+      const expected = mockPetitionOwned.data.owner;
+
+      assert.deepEqual(actual, expected);
+    });
   });
 });

@@ -60,7 +60,7 @@ TrustSupportConfirmationForm.propTypes = {
   submitting: React.PropTypes.bool.isRequired
 };
 
-export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, me, trust);
+export const mapStateToProps = ({ petition, me }) => trustForm(petition, me);
 
 export const mapDispatchToProps = (dispatch) => ({
   resendVerification: (petition, user) => dispatch(resendVerification({ petition, user }))

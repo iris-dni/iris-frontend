@@ -50,7 +50,7 @@ TrustSupportForm.propTypes = {
   submitting: React.PropTypes.bool.isRequired
 };
 
-export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, me, trust);
+export const mapStateToProps = ({ petition, me }) => trustForm(petition, me);
 
 export default reduxForm({
   form: 'trustSupport',

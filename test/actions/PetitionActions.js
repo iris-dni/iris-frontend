@@ -271,7 +271,16 @@ describe('PetitionActions', () => {
       let dispatch;
       let result;
       let mockInvalidOwner;
-      let mockPetitionOwnedInvalid = Object.assign({}, mockPetitionOwned);
+
+      const mockPetitionOwnedInvalid = {
+        data: {
+          ...mockPetitionOwned.data,
+          owner: {
+            ...mockPetitionOwned.data.owner,
+            mobile: null
+          }
+        }
+      };
 
       beforeEach(() => {
         dispatch = sinon.spy();
@@ -282,8 +291,6 @@ describe('PetitionActions', () => {
           petition: mockPetition.data,
           owner: mockInvalidOwner
         };
-
-        delete mockPetitionOwnedInvalid.data.owner.mobile;
 
         moxios.install();
         moxios.stubRequest(/.*/, {
