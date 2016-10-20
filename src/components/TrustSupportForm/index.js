@@ -35,7 +35,7 @@ const TrustSupportForm = ({
         <Button
           text={'Go to verification'}
           modifier={'accent'}
-          disabled={submitting || !fields._meta.allValid}
+          disabled={submitting || petition.isLoading || !fields._meta.allValid}
         />
       </ButtonSet>
     </Fieldset>
@@ -50,7 +50,7 @@ TrustSupportForm.propTypes = {
   submitting: React.PropTypes.bool.isRequired
 };
 
-export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, me, trust);
+export const mapStateToProps = ({ petition, me }) => trustForm(petition, me);
 
 export default reduxForm({
   form: 'trustSupport',

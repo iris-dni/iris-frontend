@@ -61,8 +61,7 @@ describe('TrustSupportForm', () => {
 
     [
       'user.firstname',
-      'user.lastname',
-      'user.zip'
+      'user.lastname'
     ].forEach(fieldName => {
       describe(`${fieldName} field`, () => {
         const field = getFieldByNameKey(fieldName, FIELDS);
@@ -92,6 +91,7 @@ describe('TrustSupportForm', () => {
 
     [
       'user.town',
+      'user.zip',
       'user.email'
     ].forEach(fieldName => {
       describe(`${fieldName} field`, () => {

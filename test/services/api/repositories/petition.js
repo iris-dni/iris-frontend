@@ -9,6 +9,7 @@ describe('petition repository', () => {
   let exampleId = '7UV7m';
   let exampleResponseToken = '1C9LQ';
   let exampleTitle = 'Example Petition';
+  let postResolves = 'city,links,owner';
 
   beforeEach(() => {
     sinon.stub(ApiClient, 'request');
@@ -93,7 +94,7 @@ describe('petition repository', () => {
 
   describe('create', () => {
     let examplePetition = { id: exampleId, title: exampleTitle };
-    let expectedPathArgument = '/petitions';
+    let expectedPathArgument = '/petitions?resolve=city,links,owner';
     let expectedDataArgument = { data: { id: exampleId, title: exampleTitle } };
     let expectedMethodArgument = 'POST';
 
@@ -111,7 +112,7 @@ describe('petition repository', () => {
   describe('update', () => {
     context('without city', () => {
       let examplePetition = { id: exampleId, title: exampleTitle };
-      let expectedPathArgument = `/petitions/${exampleId}`;
+      let expectedPathArgument = `/petitions/${exampleId}?resolve=${postResolves}`;
       let expectedDataArgument = {
         data: {
           title: exampleTitle
@@ -130,19 +131,16 @@ describe('petition repository', () => {
       });
     });
 
-    context('with city and city.data', () => {
+    context('with city and city.id', () => {
       let exampleCity = {
-        id: '12',
-        data: {
-          name: 'Aargau'
-        }
+        id: '12'
       };
       let examplePetition = {
         id: exampleId,
         title: exampleTitle,
         city: exampleCity
       };
-      let expectedPathArgument = `/petitions/${exampleId}`;
+      let expectedPathArgument = `/petitions/${exampleId}?resolve=${postResolves}`;
       let expectedDataArgument = {
         data: {
           title: exampleTitle,
@@ -162,23 +160,21 @@ describe('petition repository', () => {
       });
     });
 
-    context('with city, without city.data', () => {
+    context('with city, without city.id', () => {
       let exampleCity = {
-        id: '12',
-        data: null
+        id: '',
+        label: 'Foo'
       };
       let examplePetition = {
         id: exampleId,
         title: exampleTitle,
         city: exampleCity
       };
-      let expectedPathArgument = `/petitions/${exampleId}`;
+      let expectedPathArgument = `/petitions/${exampleId}?resolve=${postResolves}`;
       let expectedDataArgument = {
         data: {
           title: exampleTitle,
-          city: {
-            id: '12'
-          }
+          city: { id: null }
         }
       };
       let expectedMethodArgument = 'POST';
@@ -200,7 +196,7 @@ describe('petition repository', () => {
       let examplePetition = {
         petition: mockPetition.data
       };
-      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/publish`;
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/publish?resolve=${postResolves}`;
       let expectedDataArgument = { data: {} };
       let expectedMethodArgument = 'POST';
       it('calls the API client with proper arguments', () => {
@@ -219,7 +215,7 @@ describe('petition repository', () => {
         petition: mockPetition.data,
         mobile_token: '12345'
       };
-      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/publish`;
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/publish?resolve=${postResolves}`;
       let expectedDataArgument = { data: { mobile_token: '12345' } };
       let expectedMethodArgument = 'POST';
       it('calls the API client with proper arguments', () => {
@@ -240,7 +236,7 @@ describe('petition repository', () => {
         petition: mockPetition.data,
         user: mockUser
       };
-      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support`;
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support?resolve=${postResolves}`;
       let expectedDataArgument = {
         data: {
           user: mockUser
@@ -265,7 +261,7 @@ describe('petition repository', () => {
         user: mockUser,
         mobile_token: '12345'
       };
-      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support`;
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support?resolve=${postResolves}`;
       let expectedDataArgument = {
         data: {
           user: mockUser,
@@ -296,7 +292,7 @@ describe('petition repository', () => {
       token: exampleResponseToken
     };
 
-    let expectedPathArgument = `/petitions/${exampleId}/event/setFeedback`;
+    let expectedPathArgument = `/petitions/${exampleId}/event/setFeedback?resolve=city`;
     let expectedDataArgument = {
       data: {
         answer: exampleResponse.answer,

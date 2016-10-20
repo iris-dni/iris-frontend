@@ -27,8 +27,7 @@ export default [
     label: settings.trustFields.zip.label,
     hint: settings.trustFields.zip.hint,
     html: {
-      placeholder: settings.trustFields.zip.placeholder,
-      required: true
+      placeholder: settings.trustFields.zip.placeholder
     }
   },
   {

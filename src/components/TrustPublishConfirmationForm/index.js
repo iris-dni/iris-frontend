@@ -10,7 +10,7 @@ import ButtonLink from 'components/ButtonLink';
 import ButtonSet from 'components/ButtonSet';
 import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
-import hasValidUserData from 'helpers/hasValidUserData';
+import hasValidPublishUserData from 'helpers/hasValidPublishUserData';
 
 const TrustPublishConfirmationForm = ({
   fields,
@@ -19,7 +19,8 @@ const TrustPublishConfirmationForm = ({
   resendVerification,
   me,
   petition,
-  submitting
+  submitting,
+  canBePublished
 }) => (
   <form onSubmit={handleSubmit((values, dispatch) => publishPetition(
     assignPetitionData(values, petition), dispatch)
@@ -33,19 +34,19 @@ const TrustPublishConfirmationForm = ({
     <Fieldset modifier={'actions'}>
       <ButtonSet>
         <ButtonLink
-          href={`/petitions/${petition.id}/preview`}
-          text={'Back to preview'}
+          href={`/trust/publish/${petition.id}`}
+          text={'Back to details'}
         />
         <Button
           onClick={() => resendVerification(petition)}
-          disabled={!hasValidUserData(!me.id ? petition.owner : me)}
+          disabled={!canBePublished || petition.isLoading}
           type={'button'}
           text={'Re-send SMS'}
         />
         <Button
           text={'Complete verification'}
           modifier={'accent'}
-          disabled={submitting || !fields._meta.allValid}
+          disabled={!canBePublished || submitting || !fields._meta.allValid}
         />
       </ButtonSet>
     </Fieldset>
@@ -59,10 +60,14 @@ TrustPublishConfirmationForm.propTypes = {
   resendVerification: React.PropTypes.func.isRequired,
   petition: React.PropTypes.object.isRequired,
   me: React.PropTypes.object.isRequired,
-  submitting: React.PropTypes.bool.isRequired
+  submitting: React.PropTypes.bool.isRequired,
+  canBePublished: React.PropTypes.bool.isRequired
 };
 
-export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, me, trust);
+export const mapStateToProps = ({ petition, me }) => ({
+  ...trustForm(petition, me),
+  canBePublished: hasValidPublishUserData(petition.owner)
+});
 
 export const mapDispatchToProps = (dispatch) => ({
   publishPetition: (trustData) => dispatch(publishPetition(trustData)),

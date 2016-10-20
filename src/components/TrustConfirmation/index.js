@@ -5,7 +5,6 @@ import TrustSupportConfirmationForm from 'components/TrustSupportConfirmationFor
 import TrustPublishConfirmationForm from 'components/TrustPublishConfirmationForm';
 
 const TrustConfirmation = ({
-  isLoggedIn,
   me,
   action
 }) => (
@@ -23,7 +22,10 @@ const TrustConfirmation = ({
 );
 
 TrustConfirmation.propTypes = {
-  action: React.PropTypes.oneOf(['support', 'publish'])
+  action: React.PropTypes.oneOf([
+    'support',
+    'publish'
+  ])
 };
 
 export default TrustConfirmation;

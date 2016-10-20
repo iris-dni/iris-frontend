@@ -1,14 +1,13 @@
 import { assert } from 'chai';
-import hasValidUserData from 'helpers/hasValidUserData';
+import hasValidUserData from 'helpers/hasValidSupportUserData';
 
-describe('hasValidUserData', () => {
+describe('hasValidSupportUserData', () => {
   describe('passed object containing', () => {
-    context('mobile, firstname, lastname, zip', () => {
+    context('mobile, firstname, lastname', () => {
       const actual = hasValidUserData({
         mobile: '0000',
         firstname: 'Max',
-        lastname: 'Mustermann',
-        zip: '10119'
+        lastname: 'Mustermann'
       });
 
       it('is true', () => {
@@ -16,11 +15,10 @@ describe('hasValidUserData', () => {
       });
     });
 
-    context('firstname, lastname, zip', () => {
+    context('firstname, lastname', () => {
       const actual = hasValidUserData({
         firstname: 'Max',
-        lastname: 'Mustermann',
-        zip: '10119'
+        lastname: 'Mustermann'
       });
 
       it('is false', () => {
@@ -28,11 +26,10 @@ describe('hasValidUserData', () => {
       });
     });
 
-    context('mobile, lastname, zip', () => {
+    context('mobile, lastname', () => {
       const actual = hasValidUserData({
         mobile: '0000',
-        lastname: 'Mustermann',
-        zip: '10119'
+        lastname: 'Mustermann'
       });
 
       it('is false', () => {
@@ -40,11 +37,10 @@ describe('hasValidUserData', () => {
       });
     });
 
-    context('mobile, firstname, zip', () => {
+    context('mobile, firstname', () => {
       const actual = hasValidUserData({
         mobile: '0000',
-        firstname: 'Max',
-        zip: '10119'
+        firstname: 'Max'
       });
 
       it('is false', () => {
@@ -52,10 +48,9 @@ describe('hasValidUserData', () => {
       });
     });
 
-    context('mobile, zip', () => {
+    context('mobile', () => {
       const actual = hasValidUserData({
-        mobile: '0000',
-        zip: '10119'
+        mobile: '0000'
       });
 
       it('is false', () => {

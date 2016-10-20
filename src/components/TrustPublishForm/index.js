@@ -6,6 +6,8 @@ import assignPetitionData from 'form/assignPetitionData';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
+import ButtonLink from 'components/ButtonLink';
+import ButtonSet from 'components/ButtonSet';
 import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
 
@@ -25,11 +27,17 @@ const TrustPublishForm = ({
       />
     </Fieldset>
     <Fieldset modifier={'actions'}>
-      <Button
-        text={'Preview petition'}
-        modifier={'accent'}
-        disabled={submitting || !fields._meta.allValid}
-      />
+      <ButtonSet>
+        <ButtonLink
+          href={`/petitions/${petition.id}/edit`}
+          text={'Edit petition'}
+        />
+        <Button
+          text={'Preview petition'}
+          modifier={'accent'}
+          disabled={submitting || !fields._meta.allValid}
+        />
+      </ButtonSet>
     </Fieldset>
   </form>
 );
@@ -42,7 +50,7 @@ TrustPublishForm.propTypes = {
   submitting: React.PropTypes.bool.isRequired
 };
 
-export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, me, trust);
+export const mapStateToProps = ({ petition, me }) => trustForm(petition, me);
 
 export default reduxForm({
   form: 'trustPublish',

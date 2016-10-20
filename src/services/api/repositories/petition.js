@@ -22,29 +22,32 @@ export default {
   },
 
   create: (petition) => {
-    const requestPath = '/petitions';
-    return ApiClient.request(requestPath, { data: petition }, 'POST');
+    const requestPath = '/petitions?resolve=city,links,owner';
+    return ApiClient.request(requestPath, { data: petition }, POST);
   },
 
   update: (petition) => {
-    const requestPath = path.join('/petitions', petition.id.toString());
+    const requestPath = path.join('/petitions', `${petition.id.toString()}?resolve=city,links,owner`);
+
+    // API requires no id key when updating
     delete petition.id;
 
-    if (petition.city && !petition.city.data) {
-      delete petition.city.data;
+    if (petition.city && !petition.city.id) {
+      // API requires this format without a city
+      petition.city = { id: null };
     }
 
-    return ApiClient.request(requestPath, { data: petition }, 'POST');
+    return ApiClient.request(requestPath, { data: petition }, POST);
   },
 
   publish: ({ petition, mobile_token }) => {
-    const requestPath = path.join('/petitions', petition.id.toString(), '/event/publish');
+    const requestPath = path.join('/petitions', petition.id.toString(), '/event/publish?resolve=city,links,owner');
     const payload = mobile_token ? { mobile_token } : {}; // eslint-disable-line camelcase
     return ApiClient.request(requestPath, { data: payload }, POST);
   },
 
   support: ({ petition, mobile_token, user }) => {
-    const requestPath = path.join('/petitions', petition.id.toString(), '/event/support');
+    const requestPath = path.join('/petitions', petition.id.toString(), '/event/support?resolve=city,links,owner');
     const payload = mobile_token ? { mobile_token, user } : { user }; // eslint-disable-line camelcase
     return ApiClient.request(requestPath, { data: payload }, POST);
   },
