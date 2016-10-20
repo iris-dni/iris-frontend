@@ -33,26 +33,26 @@ const RespondToPetitionContainer = withRouter(React.createClass({
         <Helmet title={settings.respondToPetitionPage.title} />
         <Loading isLoading={isLoading} onServer={__SERVER__}>
           <div>
-          {petitionResponse.saved &&
-            <RespondedToPetition
-              petition={petition}
-              petitionResponse={petitionResponse}
-            />
-          }
+            {petitionResponse.saved &&
+              <RespondedToPetition
+                petition={petition}
+                petitionResponse={petitionResponse}
+              />
+            }
 
-          {!petition.saved && petition.found &&
-            <RespondToPetition
-              petition={petition}
-              petitionResponse={petitionResponse}
-            />
-          }
+            {!petition.saved && petition.found &&
+              <RespondToPetition
+                petition={petition}
+                petitionResponse={petitionResponse}
+              />
+            }
 
-          {!petition.saved && !petition.found &&
-            <PetitionResponseTokenError
-              petition={petition}
-              petitionResponse={petitionResponse}
-            />
-          }
+            {!petition.saved && !petition.found &&
+              <PetitionResponseTokenError
+                petition={petition}
+                petitionResponse={petitionResponse}
+              />
+            }
           </div>
         </Loading>
       </div>

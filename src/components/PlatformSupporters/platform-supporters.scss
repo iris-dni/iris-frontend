@@ -1,0 +1,26 @@
+@import 'globals';
+
+.top {
+  @include media('>=768px') {
+    margin: 0 auto;
+    max-width: 66.6%;
+  }
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.image {
+  max-height: 46px;
+  margin-right: 20px;
+  margin-bottom: 0.8em;
+}
+
+.text {
+  margin: 1.2em 0;
+}

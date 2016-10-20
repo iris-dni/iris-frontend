@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import settings from 'settings';
 import ReactGA from 'react-ga';
 import { fetchWhoAmI } from 'actions/AuthActions';
-import logPageview from 'helpers/logPageview';
 import Layout from 'views/Layout';
 
 const App = React.createClass({
@@ -18,12 +17,6 @@ const App = React.createClass({
 
     if (googleAnalytics.APIKey.length) {
       ReactGA.initialize(googleAnalytics.APIKey, googleAnalytics.initOptions);
-
-      /* For initial page load.
-         Subsequent pageviews are triggered with
-         react-router */
-
-      logPageview();
     }
   },
 

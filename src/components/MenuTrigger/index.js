@@ -27,9 +27,9 @@ const MenuTrigger = ({ opened, wasOpened, onClickHandler }) => (
       aria-role='presentational'
       className={styles['burger-icon']}
     >
-      <span></span>
-      <span></span>
-      <span></span>
+      <span />
+      <span />
+      <span />
     </span>
   </button>
 );

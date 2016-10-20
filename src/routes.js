@@ -15,6 +15,7 @@ import EditPetition from 'containers/EditPetition';
 // import PublishedPetition from 'containers/PublishedPetition';
 import PreviewPetition from 'containers/PreviewPetition';
 import RespondToPetition from 'containers/RespondToPetition';
+import Imprint from 'components/Imprint';
 import TrustSupport from 'containers/TrustSupport';
 import TrustSupportConfirmation from 'containers/TrustSupportConfirmation';
 import TrustPublish from 'containers/TrustPublish';
@@ -24,6 +25,7 @@ export default (props = {}) => (
   <Router history={getHistory(props.store)} onUpdate={logPageview}>
     <Route path='/' component={App}>
       <IndexRoute component={Home} />
+      <Route path='imprint' component={Imprint} />
       <Route path='auth/login' component={LoginPage} />
       <Route path='auth/logout' component={Logout} />
       <Route path='petitions'>
