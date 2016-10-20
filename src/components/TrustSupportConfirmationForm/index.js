@@ -37,7 +37,7 @@ const TrustSupportConfirmationForm = ({
         />
         <Button
           onClick={() => resendVerification(petition, me)}
-          disabled={!hasValidSupportUserData(me)}
+          disabled={!hasValidSupportUserData(me) || (petition.isLoading && !submitting)}
           type={'button'}
           text={'Re-send SMS'}
         />

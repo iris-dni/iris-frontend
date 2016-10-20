@@ -5,7 +5,6 @@ import autocompleteReducer from './autocomplete';
 import petitionReducer from './petition';
 import petitionsReducer from './petitions';
 import meReducer from './me';
-import trustReducer from './trust';
 import flashMessageReducer from './flashMessage';
 import modalWindowReducer from './modalWindow';
 import navigationReducer from './navigation';
@@ -18,7 +17,6 @@ export default combineReducers({
   petitions: petitionsReducer,
   form: formReducer,
   me: meReducer,
-  trust: trustReducer,
   flashMessage: flashMessageReducer,
   navigation: navigationReducer,
   modalWindow: modalWindowReducer,

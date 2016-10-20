@@ -12,8 +12,6 @@ import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
 import hasValidPublishUserData from 'helpers/hasValidPublishUserData';
 
-const x = x => console.log(x);
-
 const TrustPublishConfirmationForm = ({
   fields,
   handleSubmit,
@@ -42,7 +40,6 @@ const TrustPublishConfirmationForm = ({
         <Button
           onClick={() => resendVerification(petition)}
           disabled={!canBePublished || petition.isLoading}
-          x={x(petition)}
           type={'button'}
           text={'Re-send SMS'}
         />

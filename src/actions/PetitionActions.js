@@ -21,13 +21,6 @@ import { showFlashMessage } from './FlashActions';
 import { showModalWindow } from './ModalActions';
 import { receiveWhoAmI } from 'actions/AuthActions';
 
-import {
-  userIsTrusted,
-  userIsUntrusted,
-  submittingTrust,
-  finishedTrust
-} from 'actions/TrustActions';
-
 export function clearPetition () {
   return {
     type: CLEAR_PETITION
@@ -103,7 +96,6 @@ export function createPetition (petition, dispatch) {
 
 export function updatePetition (updateData, dispatch) {
   const { petition, owner } = updateData;
-
   // Add submitted user data to me object for future
   dispatch(receiveWhoAmI(owner || {}));
   // Trigger update action
@@ -130,8 +122,6 @@ export function publishPetition (trustData) {
   return (dispatch, getState) => {
     // Set loading state
     dispatch(submittingPetition());
-    // Set trust as submitting
-    dispatch(submittingTrust(petition.id));
     // Trigger publish action
     return petitionRepository.publish(trustData)
       .then((response) => {
@@ -155,8 +145,6 @@ export function publishPetition (trustData) {
 const publishPetitionSuccess = (id, data, dispatch) => {
   // Change route to petition
   dispatch(push(`/petitions/${id}`));
-  // The user is trusted
-  dispatch(userIsTrusted());
   // Dispatch modal confirmation
   dispatch(
     showModalWindow({
@@ -165,16 +153,12 @@ const publishPetitionSuccess = (id, data, dispatch) => {
       ...settings.publishedPetition.modal
     })
   );
-  // Trust step complete
-  dispatch(finishedTrust());
 };
 
 const publishPetitionErrors = (id, response, dispatch) => {
   if (isUntrustedUser(response)) {
     // Change route to publish trust confirmation
     dispatch(push(`/trust/publish/${id}/confirm`));
-    // When the user is untrusted
-    dispatch(userIsUntrusted());
   } else if (isInvalidVerification(response)) {
     // When the verification code is invalid
     dispatch(showFlashMessage(settings.flashMessages.invalidVerificationError, 'error'));
@@ -182,8 +166,6 @@ const publishPetitionErrors = (id, response, dispatch) => {
     // All other errors
     dispatch(showFlashMessage(settings.flashMessages.genericError, 'error'));
   }
-  // Trust step complete
-  dispatch(finishedTrust());
 };
 
 export function resendVerification (trustData) {

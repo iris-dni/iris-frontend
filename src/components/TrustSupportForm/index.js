@@ -35,7 +35,7 @@ const TrustSupportForm = ({
         <Button
           text={'Go to verification'}
           modifier={'accent'}
-          disabled={submitting || !fields._meta.allValid}
+          disabled={submitting || petition.isLoading || !fields._meta.allValid}
         />
       </ButtonSet>
     </Fieldset>

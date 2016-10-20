@@ -7,6 +7,7 @@ import {
   RESPONDED_TO_PETITION,
   SUBMITTING_PETITION,
   PUBLISHED_PETITION,
+  SUBMITTING_SUPPORT,
   SUPPORTED_PETITION,
   PETITION_NOT_FOUND
 } from 'actions/actionTypes';
@@ -17,6 +18,7 @@ export default function petition (state = initialState, action) {
   switch (action.type) {
     case REQUEST_PETITION:
     case SUBMITTING_PETITION:
+    case SUBMITTING_SUPPORT:
       return Object.assign({},
         state, {
           isLoading: true
