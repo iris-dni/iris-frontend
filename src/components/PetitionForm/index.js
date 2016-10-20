@@ -2,7 +2,7 @@ import React from 'react';
 import { reduxForm } from 'redux-form';
 import { createPetition, updatePetition } from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
-import assignPetitionValues from 'form/assignPetitionValues';
+import assignPetitionAndId from 'form/assignPetitionAndId';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
@@ -11,7 +11,7 @@ import FIELDS from './fields';
 
 const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting }) => (
   <form onSubmit={handleSubmit((values, dispatch) => petition.persisted
-    ? updatePetition(assignPetitionValues(values, petition), dispatch)
+    ? updatePetition(assignPetitionAndId(values, petition), dispatch)
     : createPetition(values, dispatch))}>
     <Fieldset>
       <FormFieldsIterator

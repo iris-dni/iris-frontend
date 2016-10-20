@@ -131,12 +131,9 @@ describe('petition repository', () => {
       });
     });
 
-    context('with city and city.data', () => {
+    context('with city and city.id', () => {
       let exampleCity = {
-        id: '12',
-        data: {
-          name: 'Aargau'
-        }
+        id: '12'
       };
       let examplePetition = {
         id: exampleId,
@@ -163,10 +160,10 @@ describe('petition repository', () => {
       });
     });
 
-    context('with city, without city.data', () => {
+    context('with city, without city.id', () => {
       let exampleCity = {
-        id: '12',
-        data: null
+        id: '',
+        label: 'Foo'
       };
       let examplePetition = {
         id: exampleId,
@@ -177,9 +174,7 @@ describe('petition repository', () => {
       let expectedDataArgument = {
         data: {
           title: exampleTitle,
-          city: {
-            id: '12'
-          }
+          city: { id: null }
         }
       };
       let expectedMethodArgument = 'POST';
