@@ -204,8 +204,6 @@ describe('SupportActions', () => {
         result(dispatch).then(() => {
           assert(dispatch.calledWith(submittingSupport()));
         }).then(done, done);
-
-        assert(dispatch.calledWith(submittingSupport()));
       });
     });
 

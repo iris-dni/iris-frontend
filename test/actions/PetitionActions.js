@@ -7,7 +7,7 @@ import mockPetitionOwned from '../mocks/petitionOwned';
 import mockPetitionUnowned from '../mocks/petitionUnowned';
 import mockUser from '../mocks/user';
 import mockTrustResponse from '../mocks/trustResponse';
-// import mockTrustResponseUntrusted from '../mocks/trustResponseUntrusted';
+import mockTrustResponseUntrusted from '../mocks/trustResponseUntrusted';
 import mockTrustResponseInvalid from '../mocks/trustResponseInvalid';
 
 import {
@@ -359,19 +359,25 @@ describe('PetitionActions', () => {
   });
 
   describe('publishPetition', () => {
-    // context('with a petition', () => {
-    //   let dispatch;
-    //   let result;
+    context('when triggered', () => {
+      let dispatch;
+      let result;
 
-    //   const mockTrustData = {
-    //     petition: mockPetition.data
-    //   };
+      const mockTrustData = {
+        petition: mockPetition.data
+      };
 
-    //   beforeEach(() => {
-    //     dispatch = sinon.spy();
-    //     result = publishPetition(mockTrustData);
-    //   });
-    // });
+      beforeEach(() => {
+        dispatch = sinon.spy();
+        result = publishPetition(mockTrustData);
+      });
+
+      it('dispatches submittingPetition()', done => {
+        result(dispatch).then(() => {
+          assert(dispatch.calledWith(submittingPetition()));
+        }).then(done, done);
+      });
+    });
 
     context('with a successful response', () => {
       let dispatch;
@@ -397,37 +403,43 @@ describe('PetitionActions', () => {
         moxios.uninstall();
       });
 
-      it('dispatches supportedPetition()', done => {
+      it('dispatches push to petition page', done => {
         result(dispatch).then(() => {
-          assert(dispatch.calledWith(publishedPetition(mockTrustResponse.data)));
+          assert(dispatch.calledWith(push(`/petitions/${mockPetition.data.id}`)));
         }).then(done, done);
       });
     });
 
-    // context('with an untrusted user response', () => {
-    //   let dispatch;
-    //   let result;
+    context('with an untrusted user response', () => {
+      let dispatch;
+      let result;
 
-    //   const mockTrustData = {
-    //     petition: mockPetition.data
-    //   };
+      const mockTrustData = {
+        petition: mockPetition.data
+      };
 
-    //   beforeEach(() => {
-    //     dispatch = sinon.spy();
+      beforeEach(() => {
+        dispatch = sinon.spy();
 
-    //     moxios.install();
-    //     moxios.stubRequest(/.*/, {
-    //       status: 200,
-    //       response: mockTrustResponseUntrusted
-    //     });
+        moxios.install();
+        moxios.stubRequest(/.*/, {
+          status: 200,
+          response: mockTrustResponseUntrusted
+        });
 
-    //     result = publishPetition(mockTrustData);
-    //   });
+        result = publishPetition(mockTrustData);
+      });
 
-    //   afterEach(() => {
-    //     moxios.uninstall();
-    //   });
-    // });
+      afterEach(() => {
+        moxios.uninstall();
+      });
+
+      it('dispatches push to confirmation page', done => {
+        result(dispatch).then(() => {
+          assert(dispatch.calledWith(push(`/trust/publish/${mockPetition.data.id}/confirm`)));
+        }).then(done, done);
+      });
+    });
 
     context('with an invalid verification response', () => {
       let dispatch;
@@ -458,6 +470,9 @@ describe('PetitionActions', () => {
           assert(dispatch.calledWith(showFlashMessage('Invalid verification code', 'error')));
         }).then(done, done);
       });
+    });
+
+    context('with a random error', () => {
     });
 
     context('with a random error', () => {
