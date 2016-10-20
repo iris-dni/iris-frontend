@@ -5,7 +5,7 @@ import mockPetitionSchema from '../mocks/petitionSchema';
 
 const { assert } = chai;
 
-describe('getPetitionSchema', () => {
+describe('petitionSchema selector', () => {
   it('returns correct schema', () => {
     const actual = getPetitionSchema(mockPetition.data);
     const expected = mockPetitionSchema;

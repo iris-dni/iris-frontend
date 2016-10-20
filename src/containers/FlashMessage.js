@@ -3,13 +3,9 @@ import { connect } from 'react-redux';
 import FlashMessage from 'components/FlashMessage';
 import { hideFlashMessage } from 'actions/FlashActions';
 
-const FlashMessageContainer = React.createClass({
-  render () {
-    return (
-      <FlashMessage {...this.props} />
-    );
-  }
-});
+const FlashMessageContainer = (props) => (
+  <FlashMessage {...props} />
+);
 
 FlashMessageContainer.propTypes = {
   text: React.PropTypes.string,

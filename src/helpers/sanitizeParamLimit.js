@@ -1,3 +1,5 @@
+import settings from 'settings';
+
 export default (limit) => {
-  return limit && limit > 0 ? limit : 12;
+  return Math.min((limit && limit > 0 ? limit : settings.petitionsPerPage), 50);
 };

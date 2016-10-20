@@ -2,14 +2,22 @@ import React from 'react';
 import styles from './icon-bullet.scss';
 import Icon from 'components/Icon';
 
-export default ({ id, modifier }) => (
-  <div className={styles[modifier || 'root']} aria-role={'presentation'}>
-    <div className={styles.icon}>
+const getClassname = (size, modifier, inline) => {
+  return [
+    styles[size || 'small'],
+    styles[modifier || 'default'],
+    styles[inline ? 'inline' : 'inline-block']
+  ].join(' ');
+};
+
+export default ({ id, modifier, iconModifier, size }) => (
+  <span className={getClassname(size, modifier)} aria-hidden aria-role={'presentation'}>
+    <span className={styles.icon}>
       <Icon
         id={id}
-        modifier={'invert'}
-        size={'small'}
+        modifier={iconModifier || 'invert'}
+        size={size || 'small'}
       />
-    </div>
-  </div>
+    </span>
+  </span>
 );

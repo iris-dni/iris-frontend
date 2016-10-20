@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import { logout } from 'actions/AuthActions';
 import { authSettings } from 'settings';
 
-const Logout = withRouter(React.createClass({
+const LogoutContainer = withRouter(React.createClass({
   componentWillMount () {
     if (__CLIENT__) {
       this.props.logout();
@@ -26,4 +26,4 @@ export const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Logout);
+)(LogoutContainer);

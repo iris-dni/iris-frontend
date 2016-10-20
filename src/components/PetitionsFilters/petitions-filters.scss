@@ -1,0 +1,53 @@
+@import 'globals';
+
+$spacing: map-get($spacing, 'grid');
+
+.root {
+  margin-top: 30px;
+
+  @include media('<=800px') {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.grid {
+  @include clearfix;
+  margin-bottom: -$spacing;
+  margin-left: -$spacing;
+}
+
+.item {
+  float: left;
+  padding-left: $spacing;
+  margin-bottom: $spacing;
+}
+
+.full-item {
+  composes: item;
+
+  @include media('<=800px') {
+    width: 100%;
+  }
+
+  @include media('>800px') {
+    width: 33.33%;
+  }
+}
+
+.half-item {
+  composes: item;
+
+  @include media('<=480px') {
+    width: 100%;
+  }
+
+  @include media('>480px', '<=800px') {
+    width: 50%;
+  }
+
+  @include media('>800px') {
+    width: 33.33%;
+  }
+}

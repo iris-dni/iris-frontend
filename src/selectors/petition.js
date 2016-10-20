@@ -1,4 +1,5 @@
 import getPetitionSchema from './petitionSchema';
+import getPetitionSupporters from './petitionSupporters';
 
 export default (petition = {}) => {
   if (!petition || !petition.id) {
@@ -6,8 +7,9 @@ export default (petition = {}) => {
   }
 
   return {
-    id: petition.id,
+    ...petition,
     browserTitle: petition.title,
-    schema: getPetitionSchema(petition)
+    schema: getPetitionSchema(petition),
+    supporters: getPetitionSupporters(petition)
   };
 };

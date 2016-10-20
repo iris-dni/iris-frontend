@@ -7,8 +7,11 @@ var autoprefixer = require('autoprefixer');
 var envVars = [
   'PORT',
   'THEME_PATH',
+  'SITE_NAME',
   'API_URL',
-  'BASE_URL'
+  'BASE_URL',
+  'SSO_PROVIDER_TEXT',
+  'SSO_PROVIDER_URL'
 ];
 
 var modulesDirs = [

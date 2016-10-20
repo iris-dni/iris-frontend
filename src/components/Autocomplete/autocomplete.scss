@@ -1,0 +1,104 @@
+@import 'globals';
+
+$default-border-radius: map-get($form-fields-defaults, 'border-radius');
+$suggestion-border: 1px solid color('grey-lite');
+$thin-field-padding: 8px;
+
+/**
+ * 1. Positioning context for optional icon on the input.
+ */
+.root,
+.open {
+  position: relative; /* 1 */
+}
+
+.input {
+  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  display: block;
+  width: 100%;
+}
+
+.thin {
+  composes: input;
+  padding: $thin-field-padding 40px $thin-field-padding $thin-field-padding;
+}
+
+.open .input {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.valid {
+  border-color: color('grey');
+}
+
+.valid:focus {
+  border-color: color('dimmed');
+}
+
+.invalid {
+  border-color: color('error');
+}
+
+.list {
+  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 3;
+  list-style: none;
+  padding: 0;
+  border-color: color('dimmed');
+  background-color: color('white');
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Keep here due to sass re-ordering on prod */
+.list {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top: 0;
+}
+
+.suggestion {
+  border-top: $suggestion-border;
+  border-bottom: $suggestion-border;
+  color: color('dimmed');
+  cursor: pointer;
+  transition: background-color 150ms;
+
+  &:first-child {
+    border-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.suggestion-regular {
+  composes: suggestion;
+  padding: map-get($form-fields-defaults, 'padding');
+}
+
+.suggestion-thin {
+  composes: suggestion;
+  padding: 10px $thin-field-padding;
+}
+
+.focused,
+.suggestion:hover {
+  background-color: color('primary');
+  border-color: color('primary');
+  color: color('white');
+}
+
+.icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  pointer-events: none;
+}

@@ -18,9 +18,16 @@ describe('sanitizeParamLimit', () => {
     assert.equal(actual, expected);
   });
 
-  it('returns fallback when empty', () => {
+  it('returns default for negative numbers', () => {
     const actual = sanitizeParamLimit(-10);
     const expected = 12;
+
+    assert.equal(actual, expected);
+  });
+
+  it('returns max limit of 50', () => {
+    const actual = sanitizeParamLimit(1000);
+    const expected = 50;
 
     assert.equal(actual, expected);
   });

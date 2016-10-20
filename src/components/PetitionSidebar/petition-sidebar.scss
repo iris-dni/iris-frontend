@@ -5,7 +5,21 @@
 }
 
 .counter {
-  @include media('>petition-header') {
+  @include media('>sidebar') {
+    margin-bottom: 20px;
     font-size: 18px;
   }
+}
+
+.specifics {
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+
+.support-button {
+  text-align: center;
+}
+
+.share {
+  margin-top: 20px;
 }

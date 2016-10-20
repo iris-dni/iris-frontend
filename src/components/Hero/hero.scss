@@ -1,0 +1,51 @@
+@import 'globals';
+
+.top {
+  position: relative;
+  min-width: 100%;
+}
+
+.top h1 {
+  color: color('white');
+  margin: 0 auto;
+  font-weight: 700;
+  line-height: 1.25em;
+
+  @include media('<=768px') {
+    font-size: 42px;
+  }
+
+  @include media('>768px') {
+    font-size: 48px;
+    max-width: 80%;
+  }
+}
+
+.inner {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0.1;
+  }
+}

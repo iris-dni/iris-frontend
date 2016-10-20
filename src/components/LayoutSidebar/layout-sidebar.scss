@@ -2,9 +2,10 @@
 
 .root {
   @include media('>sidebar') {
-    padding-left: 40px;
-    width: 40%;
-    max-width: 260px;
     margin-left: auto;
+    margin-right: 0;
+    width: 40%;
+    max-width: 280px;
+    padding-left: 40px;
   }
 }

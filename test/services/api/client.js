@@ -3,7 +3,7 @@ import moxios from 'moxios';
 import ApiClient from 'services/api/client';
 
 describe('API client', () => {
-  let exampleData = { a: 1, b: '2' };
+  let exampleData = { a: 1, b: '2', c: ['c1', 'c2'] };
 
   beforeEach(() => {
     moxios.install();
@@ -40,7 +40,7 @@ describe('API client', () => {
     });
 
     it('transforms data object to query string on GET requests', (done) => {
-      let expectedUrl = /\/test\?a=1&b=2$/;
+      let expectedUrl = /\/test\?a=1&b=2&c\[\]=c1&c\[\]=c2$/;
       let expectedData = '{}';
 
       ApiClient.request('/test', exampleData, 'GET').then((response) => {
@@ -54,9 +54,9 @@ describe('API client', () => {
       });
     });
 
-    it('wraps data on POST requests', (done) => {
+    it('sends payload on POST requests', (done) => {
       let expectedUrl = /\/test$/;
-      let expectedData = JSON.stringify({ data: exampleData });
+      let expectedData = JSON.stringify(exampleData);
 
       ApiClient.request('/test', exampleData, 'POST').then((response) => {
         let request = moxios.requests.mostRecent();

@@ -5,7 +5,7 @@ import {
 
 const initialState = {};
 
-export default function petitions (state = initialState, action) {
+export default function flashMessage (state = initialState, action) {
   switch (action.type) {
     case SHOW_FLASH_MESSAGE:
       return Object.assign({}, state, {
@@ -13,10 +13,7 @@ export default function petitions (state = initialState, action) {
         modifier: action.modifier
       });
     case HIDE_FLASH_MESSAGE:
-      return Object.assign({}, state, {
-        text: '',
-        modifier: ''
-      });
+      return {};
     default:
       return state;
   }

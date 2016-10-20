@@ -7,7 +7,20 @@ import mockPetitions from './mocks/petitions';
 const { assert } = chai;
 
 describe('GET /', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
   it('responds with 200', done => {
+    moxios.stubRequest(/.*/, {
+      status: 200,
+      response: mockPetitions
+    });
+
     server.injectThen('/')
       .then(response => {
         const actual = response.statusCode;
@@ -77,6 +90,32 @@ describe('GET a not defined route', () => {
       .then(response => {
         const actual = response.statusCode;
         const expected = 404;
+
+        assert.equal(actual, expected);
+        done();
+      });
+  });
+});
+
+describe('GET /trust/support/:id', () => {
+  it('responds with 200', done => {
+    server.injectThen('/trust/support/1BV3l')
+      .then(response => {
+        const actual = response.statusCode;
+        const expected = 200;
+
+        assert.equal(actual, expected);
+        done();
+      });
+  });
+});
+
+describe('GET /trust/support/:id/confirmation', () => {
+  it('responds with 200', done => {
+    server.injectThen('/trust/support/1BV3l/confirm')
+      .then(response => {
+        const actual = response.statusCode;
+        const expected = 200;
 
         assert.equal(actual, expected);
         done();

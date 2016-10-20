@@ -1,0 +1,96 @@
+@import 'globals';
+
+.list {
+  width: 260px;
+  height: 100%;
+  position: absolute;
+  left: 100%;
+  right: 0;
+  padding: 20px;
+  background: color('white');
+  list-style: none;
+  z-index: 3;
+  transition: transform 500ms;
+
+  @include media('>navigation-menu') {
+    display: inline;
+    width: auto;
+    height: auto;
+    position: static;
+    padding: 0;
+  }
+}
+
+.list.opened {
+  transform: translateX(-100%);
+}
+
+/**
+ * 1. Allows the border of the active element and the create petition button
+ *    to overlap the nav‘s grey border.
+ */
+.element {
+  @include media('>navigation-menu') {
+    display: inline-block;
+    padding: 0 1em;
+    margin-bottom: -1px; /* 1 */
+    vertical-align: top;
+  }
+}
+
+.element:last-of-type {
+  width: 100%;
+  background-color: color('primary');
+  color: color('white');
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 250ms;
+  padding: 0;
+
+  @include media('>navigation-menu') {
+    float: right;
+    width: auto;
+  }
+
+  &:hover {
+    @include map-declarations($button-accent-hover-defaults);
+  }
+}
+
+$link-border-height: 6px;
+$link-padding: 16px;
+
+/**
+ * 1. We set a transparent border at the bottom, that will become green when
+ *    the link is active. We do that so that we reserve space for the border
+ *    and it doesn‘t move the whole content.
+ * 2. We remove that border height from the padding so that the link isn‘t
+ *    taller than it should be.
+ */
+.link {
+  display: inline-block;
+  border-bottom: $link-border-height solid transparent; /* 1 */
+  padding-top: $link-padding;
+  padding-bottom: $link-padding - $link-border-height; /* 2 */
+  color: inherit;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.element:last-of-type .link {
+  padding-right: $link-padding;
+  padding-left: $link-padding;
+}
+
+.element:not(:last-of-type) .link {
+  @include media('<=navigation-menu') {
+    margin-bottom: 1em;
+  }
+}
+
+.element:not(:last-of-type) .link:hover,
+.element:not(:last-of-type) .active {
+  border-color: color('primary');
+}
+

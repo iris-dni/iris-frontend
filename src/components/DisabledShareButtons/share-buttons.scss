@@ -1,0 +1,29 @@
+@import 'globals';
+
+.root {
+  text-align: center;
+}
+
+.list {
+  list-style: none;
+  text-align: left;
+
+  @include media('>550px', '<=sidebar') {
+    @include clearfix;
+    margin-left: -15px;
+  }
+}
+
+.item {
+  margin-bottom: 10px;
+
+  @include media('>550px', '<=sidebar') {
+    width: 50%;
+    float: left;
+    padding-left: 15px;
+  }
+
+  button {
+    text-align: left;
+  }
+}

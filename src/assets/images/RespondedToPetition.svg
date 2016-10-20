@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="510" height="480" viewBox="0 0 510 480" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <filter id="c" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox">
+      <feOffset in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur stdDeviation="12.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" in="shadowBlurOuter1" result="shadowMatrixOuter1"/>
+      <feMerge>
+        <feMergeNode in="shadowMatrixOuter1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <rect id="a" width="460" height="430"/>
+    <mask id="d" width="460" height="430" x="0" y="0" fill="white">
+      <use xlink:href="#a"/>
+    </mask>
+    <rect id="b" width="251" height="178"/>
+    <mask id="e" width="251" height="178" x="0" y="0" fill="white">
+      <use xlink:href="#b"/>
+    </mask>
+  </defs>
+  <g fill="none" fill-rule="evenodd" filter="url(#c)" transform="translate(25 25)">
+    <use fill="#FFFFFF" stroke="#F1F1F1" stroke-width="2" mask="url(#d)" xlink:href="#a"/>
+    <g transform="translate(30 230)">
+      <use fill="#FFFFFF" stroke="#387FD1" stroke-width="4" mask="url(#e)" stroke-dasharray="8 4" xlink:href="#b"/>
+      <rect width="180" height="6" x="35" y="46" fill="#CCCCCC" rx="3"/>
+      <rect width="180" height="6" x="35" y="62" fill="#CCCCCC" rx="3"/>
+      <rect width="180" height="6" x="35" y="78" fill="#CCCCCC" rx="3"/>
+      <rect width="180" height="6" x="35" y="94" fill="#CCCCCC" rx="3"/>
+      <rect width="180" height="6" x="35" y="110" fill="#CCCCCC" rx="3"/>
+      <rect width="180" height="6" x="35" y="126" fill="#CCCCCC" rx="3"/>
+      <rect width="102" height="6" x="35" y="142" fill="#CCCCCC" rx="3"/>
+      <rect width="180" height="6" x="35" y="30" fill="#CCCCCC" rx="3"/>
+    </g>
+    <rect width="460" height="30" fill="#CCCCCC"/>
+    <rect width="251" height="12" x="30" y="50" fill="#CCCCCC" rx="6"/>
+    <rect width="161" height="12" x="30" y="73" fill="#CCCCCC" rx="6"/>
+    <rect width="251" height="120" x="31" y="95" fill="#CCCCCC"/>
+    <rect width="110" height="30" x="320" y="184" fill="#E5E5E5" rx="4"/>
+    <rect width="110" height="30" x="320" y="224" fill="#E5E5E5" rx="4"/>
+    <rect width="110" height="120" x="320" y="50" fill="#E5E5E5"/>
+  </g>
+</svg>

@@ -1,0 +1,15 @@
+@import 'globals';
+
+.root {
+  position: relative;
+  padding-left: 30px;
+  display: inline-block;
+}
+
+.icon {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -2px;
+  transform: translateY(-50%);
+}

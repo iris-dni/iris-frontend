@@ -1,0 +1,16 @@
+@import 'globals';
+
+.root {
+  animation-duration: 0.2s;
+  animation-timing-function: ease;
+  animation-name: fadeIn;
+  margin-bottom: 30px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+
+  to {
+    opacity: 1; }
+}

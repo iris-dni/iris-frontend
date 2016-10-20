@@ -1,31 +1,36 @@
-import petitionRepository from 'services/api/repositories/petition';
 import settings from 'settings';
+import petitionRepository from 'services/api/repositories/petition';
+import getPetitionURL from 'helpers/getPetitionURL';
+import isUntrustedUser from 'helpers/isUntrustedUser';
+import isInvalidVerification from 'helpers/isInvalidVerification';
+import solveResolvedObjects from 'helpers/solveResolvedObjects';
+import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
+
 import {
+  CLEAR_PETITION,
   REQUEST_PETITION,
   RECEIVE_PETITION,
-  REQUEST_PETITIONS,
-  RECEIVE_PETITIONS,
-  SUBMIT_PETITION,
+  SUBMITTING_PETITION,
   CREATED_PETITION,
   UPDATED_PETITION,
-  PUBLISHED_PETITION
+  PUBLISHED_PETITION,
+  PETITION_NOT_FOUND
 } from './actionTypes';
 
+import { showFlashMessage } from './FlashActions';
+import { showModalWindow } from './ModalActions';
+import { receiveWhoAmI } from 'actions/AuthActions';
+
 import {
-  showFlashMessage,
-  hideFlashMessage
-} from './FlashActions';
+  userIsTrusted,
+  userIsUntrusted,
+  submittingTrust,
+  finishedTrust
+} from 'actions/TrustActions';
 
-export function requestPetition () {
+export function clearPetition () {
   return {
-    type: REQUEST_PETITION
-  };
-}
-
-export function receivePetition (petition) {
-  return {
-    type: RECEIVE_PETITION,
-    petition
+    type: CLEAR_PETITION
   };
 }
 
@@ -39,56 +44,48 @@ export function fetchPetition (id) {
   };
 }
 
-export function requestPetitions () {
-  return {
-    type: REQUEST_PETITIONS
-  };
-}
-
-export function receivePetitions (petitions) {
-  return {
-    type: RECEIVE_PETITIONS,
-    petitions
-  };
-}
-
-export function fetchPetitions ({ petitions, location, perPage, currentPage }) {
-  const page = parseInt(location.query.page || currentPage || 1);
-  const limit = parseInt(location.query.limit || perPage || 12);
-
+export function refreshPetition (id) {
   return (dispatch, getState) => {
-    dispatch(requestPetitions());
-
-    if (!petitions || !petitions.length || page !== currentPage) {
-      const options = { page, limit };
-
-      return petitionRepository.all(options)
-        .then(response => {
-          const pagedResponse = Object.assign({}, response, {
-            currentPage: options.page,
-            perPage: options.limit
-          });
-
-          return dispatch(receivePetitions(pagedResponse));
-        });
-    }
+    return petitionRepository.find(id)
+      .then(response => dispatch(
+        receivePetition(response.data)
+      ));
   };
 }
 
-export function submitPetition () {
+export function requestPetition () {
   return {
-    type: SUBMIT_PETITION
+    type: REQUEST_PETITION
   };
 }
 
-export function createPetition (data, dispatch) {
-  dispatch(submitPetition());
-  return petitionRepository.create(data)
-    .then((response) => dispatch(
-      createdPetition(response.data),
-    )).then(() => dispatch(
-      showFlashMessage(settings.flashMessages.petitionCreated, 'success')
-    )).catch(() => dispatch(
+export function receivePetition (petition) {
+  // TODO: there might be a better place to transform link data
+  petition.links = wrapPetitionLinks(petition.links);
+  petition.mentions = wrapPetitionLinks(petition.mentions);
+
+  return {
+    type: RECEIVE_PETITION,
+    petition
+  };
+}
+
+export function submittingPetition () {
+  return {
+    type: SUBMITTING_PETITION
+  };
+}
+
+export function createPetition (petition, dispatch) {
+  dispatch(submittingPetition());
+
+  petition.links = wrapPetitionLinks(petition.links);
+
+  return petitionRepository.create(petition)
+    .then((response) => {
+      const resolvedPetition = solveResolvedObjects(petition, response.data);
+      dispatch(createdPetition(resolvedPetition));
+    }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
 }
@@ -100,14 +97,24 @@ export function createdPetition (petition) {
   };
 }
 
-export function updatePetition (data, dispatch) {
-  dispatch(submitPetition());
-  return petitionRepository.update(data)
-    .then((response) => dispatch(
-      updatedPetition(response.data),
-    )).then(() => dispatch(
-      showFlashMessage(settings.flashMessages.petitionUpdated, 'success')
-    )).catch(() => dispatch(
+export function updatePetition (updateData, dispatch) {
+  const { petition, owner } = updateData;
+
+  dispatch(submittingPetition());
+  // Add submitted user data to me object for future
+  dispatch(receiveWhoAmI(owner));
+
+  const submittedPetition = {
+    ...petition,
+    owner,
+    links: wrapPetitionLinks(petition.links)
+  };
+
+  return petitionRepository.update(submittedPetition)
+    .then((response) => {
+      const resolvedPetition = solveResolvedObjects(submittedPetition, response.data);
+      dispatch(updatedPetition(resolvedPetition));
+    }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
 }
@@ -119,15 +126,73 @@ export function updatedPetition (petition) {
   };
 }
 
-export function publishPetition (petition, dispatch) {
+export function publishPetition (trustData) {
+  const { petition } = trustData;
   return (dispatch, getState) => {
-    dispatch(submitPetition());
-    return petitionRepository.publish(petition)
-      .then((response) => dispatch(
-        publishedPetition(response.data),
-      )).then(() => dispatch(
-        hideFlashMessage()
-      )).catch(() => dispatch(
+    // Set trust as submitting
+    dispatch(submittingTrust(petition.id));
+    // Trigger publish action
+    return petitionRepository.publish(trustData)
+      .then((response) => {
+        switch (response.status) {
+          case 'ok':
+            // Successful support
+            publishPetitionSuccess(petition.id, response.data, dispatch);
+            break;
+          case 'error':
+            // Error given
+            publishPetitionErrors(response, dispatch);
+        }
+      }).catch(() => dispatch(
+        showFlashMessage(settings.flashMessages.genericError, 'error')
+      ));
+  };
+}
+
+const publishPetitionSuccess = (id, data, dispatch) => {
+  // The user is trusted
+  dispatch(userIsTrusted());
+  // Set petition as published
+  dispatch(publishedPetition(data));
+  // Dispatch modal confirmation
+  dispatch(
+    showModalWindow({
+      type: 'share',
+      link: getPetitionURL(id),
+      ...settings.publishedPetition.modal
+    })
+  );
+  // Trust step complete
+  dispatch(finishedTrust());
+};
+
+const publishPetitionErrors = (response, dispatch) => {
+  if (isUntrustedUser(response)) {
+    // When the user is untrusted
+    dispatch(userIsUntrusted());
+  } else if (isInvalidVerification(response)) {
+    // When the verification code is invalid
+    dispatch(showFlashMessage(settings.flashMessages.invalidVerificationError, 'error'));
+  } else {
+    // All other errors
+    dispatch(showFlashMessage(settings.flashMessages.genericError, 'error'));
+  }
+  // Trust step complete
+  dispatch(finishedTrust());
+};
+
+export function resendVerification (trustData) {
+  return (dispatch, getState) => {
+    return petitionRepository.publish(trustData)
+      .then((response) => {
+        if (isUntrustedUser(response)) {
+          // We have re-sent & verified the code, show success
+          dispatch(showFlashMessage(settings.flashMessages.verificationResent, 'success'));
+        } else {
+          // All other errors
+          dispatch(showFlashMessage(settings.flashMessages.genericError, 'error'));
+        }
+      }).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
       ));
   };
@@ -136,6 +201,13 @@ export function publishPetition (petition, dispatch) {
 export function publishedPetition (petition) {
   return {
     type: PUBLISHED_PETITION,
+    petition
+  };
+}
+
+export function petitionNotFound (petition = {}) {
+  return {
+    type: PETITION_NOT_FOUND,
     petition
   };
 }

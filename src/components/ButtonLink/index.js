@@ -1,10 +1,12 @@
 import React from 'react';
-import styles from '../Button/button.scss';
+import Link from 'components/Link';
+import { getClassname } from 'components/Button';
 
-const ButtonLink = ({ children, text, href, modifier }) => (
-  <a href={href || '#'} className={styles[modifier || 'default']}>
-    {children || text}
-  </a>
+const ButtonLink = (props) => (
+  <Link
+    className={getClassname(props)}
+    {...props}
+  />
 );
 
 export default ButtonLink;

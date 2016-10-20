@@ -1,12 +1,5 @@
 @import 'globals';
 
-.root {
-  max-width: map-get($widths, 'fieldset-max');
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .actions {
-  composes: root;
   text-align: right;
 }

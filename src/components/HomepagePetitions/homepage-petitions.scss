@@ -1,0 +1,30 @@
+@import 'globals';
+
+.head {
+  @include media('>768px') {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.left {
+  @include media('<=768px') {
+    margin-bottom: 0.8em;
+  }
+
+  @include media('>768px') {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0;
+  }
+}
+
+.text {
+  @include media('>768px') {
+    display: inline-block;
+    margin-top: 0.25em;
+    margin-left: 1em;
+  }
+}

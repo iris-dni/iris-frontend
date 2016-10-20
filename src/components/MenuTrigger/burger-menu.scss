@@ -1,0 +1,80 @@
+@import 'globals';
+@import './animations';
+
+$padding-value: 30px;
+
+.menu-trigger-wrapper {
+  @include media('<=navigation-menu') {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -$padding-value;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    padding-right: (2 * $padding-value);
+    padding-left: $padding-value;
+  }
+
+  @include media('>navigation-menu') {
+    @include visuallyhidden;
+  }
+}
+
+.burger-icon {
+  position: absolute;
+  right: $padding-value;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+}
+
+.burger-icon span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: color('black');
+
+  &:first-child {
+    top: 0;
+  }
+
+  &:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &:last-child {
+    bottom: 0;
+  }
+}
+
+.menu-trigger-wrapper.opened .burger-icon span {
+  &:first-child {
+    animation: top-line 500ms forwards;
+  }
+
+  &:nth-child(2) {
+    animation: fade-out 250ms forwards;
+  }
+
+  &:last-child {
+    animation: bottom-line 500ms forwards;
+  }
+}
+
+.menu-trigger-wrapper.closed .burger-icon span {
+  &:first-child {
+    animation: top-line-copy 500ms reverse;
+  }
+
+  &:nth-child(2) {
+    animation: fade-out-copy 250ms reverse;
+  }
+
+  &:last-child {
+    animation: bottom-line-copy 500ms reverse;
+  }
+}

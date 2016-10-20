@@ -1,34 +1,49 @@
 import React from 'react';
-import { Route, Router, IndexRoute, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { Route, IndexRoute, Router } from 'react-router';
+
+import logPageview from 'helpers/logPageview';
+import getHistory from 'helpers/getHistory';
 
 import App from 'containers/App';
-import Home from 'views/Home';
+import Home from 'containers/Home';
 import LoginPage from 'containers/Login';
 import Logout from 'containers/Logout';
 import Petition from 'containers/Petition';
 import Petitions from 'containers/Petitions';
-import CreatePetition from 'containers/CreatePetition';
-import Restricted from 'containers/Restricted';
+import NewPetition from 'containers/NewPetition';
+import EditPetition from 'containers/EditPetition';
+import PublishedPetition from 'containers/PublishedPetition';
+import PreviewPetition from 'containers/PreviewPetition';
+import RespondToPetition from 'containers/RespondToPetition';
+import Imprint from 'components/Imprint';
+import TrustSupport from 'containers/TrustSupport';
+import TrustSupportConfirmation from 'containers/TrustSupportConfirmation';
+import TrustPublish from 'containers/TrustPublish';
+import TrustPublishConfirmation from 'containers/TrustPublishConfirmation';
 
-export default function (props = {}) {
-  let history = browserHistory;
-
-  if (props.store) {
-    history = syncHistoryWithStore(browserHistory, props.store);
-  }
-
-  return (
-    <Router history={history}>
-      <Route path='/' component={App}>
-        <IndexRoute component={Home} />
-        <Route path='home' component={Home} />
-        <Route path='auth/login' component={LoginPage} />
-        <Route path='auth/logout' component={Logout} />
-        <Route path='petitions' component={Petitions} />
-        <Route path='petitions/new' component={Restricted(CreatePetition)} />
-        <Route path='petitions/:id' component={Petition} />
+export default (props = {}) => (
+  <Router history={getHistory(props.store)} onUpdate={logPageview}>
+    <Route path='/' component={App}>
+      <IndexRoute component={Home} />
+      <Route path='imprint' component={Imprint} />
+      <Route path='auth/login' component={LoginPage} />
+      <Route path='auth/logout' component={Logout} />
+      <Route path='petitions'>
+        {/* Nest these 3 to support proper `activeClassName` behavior. */}
+        <IndexRoute component={Petitions} />
+        <Route path=':cityName-:city(/page(/:page))' component={Petitions} />
+        <Route path='page/:page' component={Petitions} />
       </Route>
-    </Router>
-  );
-}
+      <Route path='petitions/new' component={NewPetition} />
+      <Route path='petitions/:id' component={Petition} />
+      <Route path='petitions/:id/edit' component={EditPetition} />
+      <Route path='petitions/:id/preview' component={PreviewPetition} />
+      <Route path='petitions/:id/published' component={PublishedPetition} />
+      <Route path='respond/:token' component={RespondToPetition} />
+      <Route path='trust/support/:id' component={TrustSupport} />
+      <Route path='trust/support/:id/confirm' component={TrustSupportConfirmation} />
+      <Route path='trust/publish/:id' component={TrustPublish} />
+      <Route path='trust/publish/:id/confirm' component={TrustPublishConfirmation} />
+    </Route>
+  </Router>
+);

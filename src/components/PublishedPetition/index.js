@@ -2,29 +2,29 @@ import React from 'react';
 import settings from 'settings';
 import Container from 'components/Container';
 import Header from 'components/Header';
-import PageTitle from 'components/PageTitle';
-import ButtonLink from 'components/ButtonLink';
 import Paragraph from 'components/Paragraph';
+import PageTitle from 'components/PageTitle';
+import PetitionLink from 'components/PetitionLink';
 import TextCenter from 'components/TextCenter';
+import Notice from 'components/Notice';
 
-const PublishedPetition = ({ petition }) => (
+const PublishedPetition = ({ id }) => (
   <Container>
-    <Header>
+    <Header padding>
       <PageTitle
-        title={settings.publishedPetitionPageTitle}
+        title={settings.publishedPetitionPage.title}
         centered
       />
     </Header>
-    <TextCenter>
-      <Paragraph text={settings.publishedPetition.copy1} />
-      <Paragraph>
-        <ButtonLink
-          href={`/petitions/${petition.id}`}
-          text={'Preview your Petition'}
-          modifier={'accent'}
-        />
-      </Paragraph>
-    </TextCenter>
+    <Notice>
+      <TextCenter>
+        <Paragraph>{settings.publishedPetitionPage.intro}</Paragraph>
+        <Paragraph>{settings.publishedPetitionPage.preview}</Paragraph>
+        <Paragraph>
+          <PetitionLink id={id} />
+        </Paragraph>
+      </TextCenter>
+    </Notice>
   </Container>
 );
 

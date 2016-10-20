@@ -1,0 +1,16 @@
+@import 'globals';
+
+.root:link,
+.root:visited {
+  padding-bottom: 1px;
+  text-decoration: none;
+  color: color('tertiary');
+  border-bottom: 1px solid color('tertiary');
+}
+
+.root:hover,
+.root:active,
+.root:focus {
+  color: color('primary');
+  border-bottom-color: color('primary');
+}

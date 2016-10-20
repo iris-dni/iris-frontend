@@ -8,6 +8,7 @@
 ///
 $spacing: (
   'gutter': 20px,
+  'field-m-bottom': 30px,
   'm-bottom': 20px,
   'grid': 20px,
   'teaser-padding': 10px
@@ -22,10 +23,19 @@ $spacing: (
 /// @prop {Map} value - Width value
 ///
 $widths: (
-  'container-max': 1000px,
-  'container-min': 330px,
-  'header-max': 800px,
+  'container-max': 1080px,
+  'notice-max': 750px,
+  'container-min': 320px,
+  'autocomplete-max': 420px,
+  'header-max': 750px,
   'teaser-max': 320px,
-  'fieldset-max': 650px
+  'fieldset-max': 620px,
+  'close-button': 46px,
+  'modal': 530px,
+  'sidebar-progress': 230px
 ) !default;
 
+$heights: (
+  'site-header': 60px,
+  'site-footer': 66px
+) !default;

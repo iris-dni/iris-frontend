@@ -1,10 +1,10 @@
 import chai from 'chai';
 import getPetitionMetrics from 'selectors/petitionMetrics';
-import { data as petition } from '../mocks/runningPetition';
+import { data as petition } from '../mocks/currentPetition';
 
 const { assert } = chai;
 
-describe('get petiton metrics', () => {
+describe('petitonMetrics selector', () => {
   const metrics = getPetitionMetrics(petition);
 
   describe('time metric', () => {

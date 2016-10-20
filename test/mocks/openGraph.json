@@ -1,0 +1,18 @@
+{
+  "status": "ok",
+  "data": {
+    "site_name": "Example Web Page",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+    "title": "Lorem ipsum dolor sit amet",
+    "locale": "en_US",
+    "image": {
+      "url": "http://www.example.com/image.png",
+      "width": "1200",
+      "height": "630"
+    },
+    "ts": 1474626982183,
+    "favicon": "http://www.example.com/favicon.ico",
+    "url": "http://www.example.com/article.html",
+    "type": "article"
+  }
+}

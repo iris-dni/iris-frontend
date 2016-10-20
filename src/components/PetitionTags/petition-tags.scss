@@ -1,0 +1,35 @@
+@import 'globals';
+
+.item {
+  color: white;
+  font-size: 14px;
+  display: inline-block;
+  margin-right: 5px;
+  white-space: nowrap;
+}
+
+.item--small {
+  composes: item;
+  font-size: 12px;
+}
+
+.winner,
+.response {
+  padding: 2px 6px;
+}
+
+.winner {
+  background-color: color('primary');
+
+}
+
+.response {
+  background-color: color('secondary');
+}
+
+.icon {
+  display: inline-block;
+  margin-right: 0.3em;
+  vertical-align: middle;
+  margin-top: -1px;
+}

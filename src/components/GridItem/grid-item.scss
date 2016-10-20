@@ -3,8 +3,7 @@
 .root {
   display: flex;
   flex-direction: column;
-  float: left;
-  margin-bottom: map-get($spacing, 'grid');
+  margin-bottom: 30px;
   padding-left: map-get($spacing, 'grid');
 
   @include media('<=grid-2-cols') {

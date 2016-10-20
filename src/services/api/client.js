@@ -1,6 +1,6 @@
 import axios from 'axios';
 import createApiUrl from 'helpers/createApiUrl';
-import queryParams from 'query-params';
+import encodeParams from 'helpers/encodeParams';
 
 const apiUrl = (requestPath) => {
   const prefix = process.env.API_URL;
@@ -12,21 +12,24 @@ const apiUrl = (requestPath) => {
   return createApiUrl(prefix, requestPath);
 };
 
+export const GET = 'GET';
+export const POST = 'POST';
+
 export default {
-  request: (requestPath = '', data = {}, method = 'GET') => {
+  request: (requestPath = '', data = {}, method = GET) => {
     let payload = {};
 
     switch (method) {
-      case 'GET':
-        const requestParams = queryParams.encode(data);
+      case GET:
+        const requestParams = encodeParams(data);
 
         if (requestParams.length > 0) {
           requestPath += `?${requestParams}`;
         }
         break;
-      case 'POST':
+      case POST:
         if (data !== {}) {
-          payload = { data: data };
+          payload = data;
         }
         break;
     }

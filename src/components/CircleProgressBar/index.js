@@ -15,10 +15,25 @@ const CircleProgressBar = React.createClass({
     aria: {}
   }),
 
+  restart () {
+    this.spinPercentage += 0.5;
+
+    this.progressBar.animate(this.spinPercentage);
+  },
+
+  infiniteSpin () {
+    this.progressBar.animate(this.spinPercentage, null, this.restart);
+  },
+
   componentDidMount () {
     this.initProgressBar();
     if (this.props.percentage > 0) {
       this.updateProgressBar(this.props.percentage);
+    }
+
+    if (this.props.isSpinner) {
+      this.spinPercentage = 0.25;
+      this.interval = setInterval(this.infiniteSpin, 1000);
     }
   },
 
@@ -30,11 +45,15 @@ const CircleProgressBar = React.createClass({
 
   componentWillUnmount () {
     this.progressBar.destroy();
+
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
   },
 
   initProgressBar () {
     const canvasElement = ReactDOM.findDOMNode(this.refs.canvas);
-    const strokeWidth = this.props.size === 'small' ? 14 : 7;
+    const strokeWidth = this.props.size === 'small' ? 14 : 8;
 
     this.progressBar = new ProgressBar.Circle(canvasElement, {
       strokeWidth: strokeWidth,
@@ -63,7 +82,7 @@ const CircleProgressBar = React.createClass({
 
   render () {
     return (
-      <div className={styles.root}>
+      <div className={styles[this.props.size || 'box']}>
         <div
           className={styles[this.props.size]}
           ref='canvas'
@@ -81,4 +100,3 @@ const CircleProgressBar = React.createClass({
 });
 
 export default CircleProgressBar;
-

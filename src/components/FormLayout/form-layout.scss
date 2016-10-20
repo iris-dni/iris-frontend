@@ -1,0 +1,11 @@
+@import 'globals';
+
+.form-title-wrapper {
+  max-width: map-get($widths, 'fieldset-max');
+  margin: 0 auto;
+}
+
+.form {
+  margin-top: 20px;
+  margin-bottom: 5%;
+}

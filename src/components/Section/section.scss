@@ -1,0 +1,17 @@
+@import 'globals';
+
+.grey {
+  background-color: color('grey-lighter');
+
+  @include media('<=sidebar') {
+    margin-bottom: 30px;
+  }
+
+  @include media('>sidebar') {
+    margin-bottom: 40px;
+  }
+}
+
+.grey-lightest {
+  background-color: color('grey-lightest');
+}

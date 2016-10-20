@@ -1,0 +1,62 @@
+@import 'globals';
+
+:export {
+  menuBreakpoint: map-get($breakpoints, 'navigation-menu');
+}
+
+.overlay-wrapper {
+  position: absolute;
+  top: map-get($heights, 'site-header');
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.overlay-wrapper.opened {
+  pointer-events: all;
+}
+
+/**
+ * 1. Allows the border of the active element and the create petition button
+ *    to overlap the nav‘s grey border.
+ */
+.element {
+  @include media('>navigation-menu') {
+    display: inline-block;
+    padding: 0 1em;
+    margin-bottom: -1px; /* 1 */
+    vertical-align: top;
+  }
+}
+
+/**
+ * 1. Positioning context for burger-menu.
+ */
+.visible-elements-wrapper {
+  composes: element;
+  position: relative; /* 1 */
+
+  padding: 0;
+  padding-right: 1em;
+}
+
+$link-border-height: 6px;
+$link-padding: 16px;
+
+/**
+ * 1. We set a transparent border at the bottom, that will become green when
+ *    the link is active. We do that so that we reserve space for the border
+ *    and it doesn‘t move the whole content.
+ * 2. We remove that border height from the padding so that the link isn‘t
+ *    taller than it should be.
+ */
+.link {
+  display: inline-block;
+  border-bottom: $link-border-height solid transparent; /* 1 */
+  padding-top: $link-padding;
+  padding-bottom: $link-padding - $link-border-height; /* 2 */
+  color: inherit;
+  font-size: 20px;
+  text-decoration: none;
+}

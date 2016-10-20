@@ -1,5 +1,6 @@
 $colors-defaults: (
   'black': #222,
+  'blue': #213872,
   'white': #fff,
   'primary': #2fcd0c,
   'secondary': #387fd1,
@@ -7,6 +8,8 @@ $colors-defaults: (
   'dimmed': #999,
   'grey': #ccc,
   'grey-lite': #e5e5e5,
+  'grey-lighter': #f8f8f8,
+  'grey-lightest': #f1f1f1,
   'error': #f14b4f,
   'success': #2fcd0c
 ) !default;

@@ -1,115 +1,46 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import {
-  createPetition,
-  updatePetition,
-  publishPetition
-} from 'actions/PetitionActions';
+import { createPetition } from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
 import Fieldset from 'components/Fieldset';
-import TextField from 'components/TextField';
+import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
-import ButtonSet from 'components/ButtonSet';
 import settings from 'settings';
-import getPetitionForm from 'selectors/petitionForm';
+import FIELDS from './fields';
 
-export const FIELDS = [
-  {
-    name: 'id',
-    element: 'input',
-    hidden: true,
-    html: {
-      type: 'hidden'
-    }
-  },
-  {
-    name: 'description',
-    element: 'textarea',
-    label: settings.petitionFields.description.label,
-    hint: settings.petitionFields.description.hint,
-    html: {
-      placeholder: settings.petitionFields.description.placeholder,
-      required: true,
-      minLength: 50,
-      maxLength: 500
-    }
-  },
-  {
-    name: 'suggested_solution',
-    element: 'textarea',
-    label: settings.petitionFields.suggested_solution.label,
-    hint: settings.petitionFields.suggested_solution.hint,
-    html: {
-      placeholder: settings.petitionFields.suggested_solution.placeholder,
-      minLength: 50,
-      maxLength: 500
-    }
-  },
-  {
-    name: 'title',
-    element: 'input',
-    label: settings.petitionFields.title.label,
-    hint: settings.petitionFields.title.hint,
-    html: {
-      type: 'text',
-      placeholder: settings.petitionFields.title.placeholder,
-      required: true,
-      minLength: 15,
-      maxLength: 80
-    }
-  }
-];
-
-const PetitionForm = ({ petition, fields, handleSubmit, submitting, pristine, publishPetition }) => (
-  <form onSubmit={handleSubmit(petition.persisted ? updatePetition : createPetition)}>
+const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting }) => (
+  <form onSubmit={handleSubmit(createPetition)}>
     <Fieldset>
-      {FIELDS.map(field => (
-        <TextField
-          key={field.name}
-          config={field}
-          helper={fields[field.name]}
-        />
-      ))}
+      <FormFieldsIterator
+        reduxFormFields={fields}
+        fieldsArray={FIELDS}
+      />
     </Fieldset>
     <Fieldset modifier={'actions'}>
-      <ButtonSet>
-        <Button
-          disabled={submitting || !fields._meta.allValid || pristine}
-          modifier={petition.persisted && pristine ? 'default' : 'accent'}
-          text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton']}
-        />
-        {petition.persisted && !petition.published &&
-          <Button
-            type={'button'}
-            disabled={submitting || !pristine}
-            modifier={'accent'}
-            text={settings.petitionForm.publishButton}
-            onClick={() => publishPetition(petition)}
-          />
-        }
-      </ButtonSet>
+      <Button
+        text={settings.petitionForm.createButton.text}
+        modifier={'accent'}
+        disabled={openGraph.isLoading || submitting || !fields._meta.allValid}
+      />
     </Fieldset>
   </form>
 );
 
 PetitionForm.propTypes = {
+  openGraph: React.PropTypes.object.isRequired,
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
-  resetForm: React.PropTypes.func.isRequired,
   submitting: React.PropTypes.bool.isRequired
 };
 
-export const mapStateToProps = ({ petition }) => ({
-  initialValues: petition,
-  petition: getPetitionForm(petition)
-});
-
-export const mapDispatchToProps = (dispatch) => ({
-  publishPetition: (petition) => dispatch(publishPetition(petition))
+export const mapStateToProps = ({ openGraph }) => ({
+  openGraph
 });
 
 export default reduxForm({
-  form: 'simple',
+  form: 'petition',
   fields: FIELDS.map(field => field.name),
-  validate: petitionValidator
-}, mapStateToProps, mapDispatchToProps)(PetitionForm);
+  validate: petitionValidator,
+  // Initialize links field as an array so that we can push values into it later
+  initialValues: { links: [] }
+}, mapStateToProps)(PetitionForm);

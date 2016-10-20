@@ -49,3 +49,5 @@ $ npm start
 
 - `lint:js` - lint staged JS files against [semistandard](https://github.com/Flet/semistandard)
 - `lint:scss` - lint staged Scss / CSS files against [scss-lint](https://github.com/brigade/scss-lint)
+
+### [Theming](https://github.com/iris-dni/iris-frontend/wiki/Theming-a-%22private-fork%22)

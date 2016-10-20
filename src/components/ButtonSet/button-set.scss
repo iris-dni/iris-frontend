@@ -7,7 +7,7 @@
 .button {
   margin-bottom: 15px;
 
-  @include media('>500px') {
+  @include media('>text-boost') {
     display: inline-block;
     margin-left: 15px;
   }
@@ -18,7 +18,7 @@
 }
 
 .button > * {
-  @include media('<=500px') {
+  @include media('<=text-boost') {
     display: block;
     width: 100%;
   }

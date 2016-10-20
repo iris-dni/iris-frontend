@@ -1,7 +1,6 @@
 @import 'globals';
 
 .default {
-  @include responsive-font(5vw, 30px, 48px);
   max-width: map-get($widths, 'header-max');
 }
 
@@ -12,7 +11,16 @@
   margin-right: auto;
 }
 
+.title {
+  @include responsive-font(5vw, 30px, 48px);
+}
+
 .intro {
-  @include responsive-font(3vw, 18px, 23px);
+  @include responsive-font(3vw, 18px, 20px);
   margin-top: 22px;
+}
+
+.lower {
+  @include responsive-font(3vw, 18px, 22px);
+  padding-top: 5%;
 }

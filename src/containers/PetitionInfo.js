@@ -7,13 +7,12 @@ const PetitionInfoContainer = (props) => (
   <PetitionInfo {...props} />
 );
 
-const mapStateToProps = ({ petition }) => {
-  return getPetitionInfo(petition);
-};
+const mapStateToProps = ({ petition }) => getPetitionInfo(petition);
 
 PetitionInfoContainer.propTypes = {
-  city: React.PropTypes.string,
-  dateRange: React.PropTypes.string
+  owner: React.PropTypes.string,
+  city: React.PropTypes.object,
+  ending: React.PropTypes.string
 };
 
 export default connect(

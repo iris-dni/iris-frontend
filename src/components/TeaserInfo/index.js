@@ -18,7 +18,7 @@ const TeaserInfo = ({ owner, city }) => (
         <IconAndInfo
           icon='Pin'
           size='small'
-          info={city}
+          info={city.label}
         />
       </li>
     }

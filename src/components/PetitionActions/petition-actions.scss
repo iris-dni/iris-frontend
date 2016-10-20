@@ -1,0 +1,10 @@
+@import 'globals';
+
+.root {
+  text-align: center;
+
+  @include media('>text-boost') {
+    padding-top: 10px;
+    padding-bottom: 5px;
+  }
+}

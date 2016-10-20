@@ -1,21 +1,32 @@
 import React from 'react';
 import styles from './petition-info.scss';
 import IconAndInfo from 'components/IconAndInfo';
+import Link from 'components/Link';
+import { petitionsPath } from 'helpers/petitionUrls';
 
-const PetitionInfo = ({ city, dateRange }) => (
+const PetitionInfo = ({ owner, city, ending }) => (
   <ul className={styles.root}>
-    {city &&
+    {owner &&
       <li className={styles.item}>
         <IconAndInfo
-          icon='Pin'
-          info={city}
+          icon='User'
+          info={owner}
         />
       </li>
     }
-    <li className={styles.item}>
+    {city && city.label &&
+      <li className={styles.item}>
+        <IconAndInfo icon='Pin'>
+          <Link href={petitionsPath({ city })}>
+            {city.label}
+          </Link>
+        </IconAndInfo>
+      </li>
+    }
+    <li className={styles['last-item']}>
       <IconAndInfo
         icon='Clock'
-        info={dateRange}
+        info={ending}
       />
     </li>
   </ul>

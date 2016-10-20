@@ -1,11 +1,18 @@
-import ApiClient from 'services/api/client';
+import ApiClient, { POST } from 'services/api/client';
 import getRequestParams from 'helpers/getPetitionsRequestParams';
 import path from 'path';
 
 export default {
   find: (id) => {
     const requestPath = path.join('/petitions', id.toString());
-    return ApiClient.request(requestPath);
+    const requestParams = { resolve: 'city,owner,links,mentions', extend: 'supporting' };
+    return ApiClient.request(requestPath, requestParams);
+  },
+
+  findByResponseToken: (responseToken) => {
+    const requestPath = path.join('/token/', responseToken, '/petitions');
+    const requestParams = { resolve: 'city,owner' };
+    return ApiClient.request(requestPath, requestParams);
   },
 
   all: (options = {}) => {
@@ -16,17 +23,34 @@ export default {
 
   create: (petition) => {
     const requestPath = '/petitions';
-    return ApiClient.request(requestPath, petition, 'POST');
+    return ApiClient.request(requestPath, { data: petition }, 'POST');
   },
 
   update: (petition) => {
     const requestPath = path.join('/petitions', petition.id.toString());
     delete petition.id;
-    return ApiClient.request(requestPath, petition, 'POST');
+
+    if (petition.city && !petition.city.data) {
+      delete petition.city.data;
+    }
+
+    return ApiClient.request(requestPath, { data: petition }, 'POST');
   },
 
-  publish: (petition) => {
+  publish: ({ petition, mobile_token }) => {
     const requestPath = path.join('/petitions', petition.id.toString(), '/event/publish');
-    return ApiClient.request(requestPath, null, 'POST');
+    const payload = mobile_token ? { mobile_token } : {}; // eslint-disable-line camelcase
+    return ApiClient.request(requestPath, { data: payload }, POST);
+  },
+
+  support: ({ petition, mobile_token, user }) => {
+    const requestPath = path.join('/petitions', petition.id.toString(), '/event/support');
+    const payload = mobile_token ? { mobile_token, user } : { user }; // eslint-disable-line camelcase
+    return ApiClient.request(requestPath, { data: payload }, POST);
+  },
+
+  respond: ({ petitionId, answer, token }) => {
+    const requestPath = path.join('/petitions', petitionId.toString(), 'event/setFeedback?resolve=city');
+    return ApiClient.request(requestPath, { data: { answer, token } }, POST);
   }
 };

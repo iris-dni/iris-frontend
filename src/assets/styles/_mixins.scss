@@ -91,3 +91,29 @@
     }
   }
 }
+
+/// Helper to hide component from view but keep it enabled for screenreaders
+/// From http://stackoverflow.com/a/17980063
+/// @access public
+@mixin visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}

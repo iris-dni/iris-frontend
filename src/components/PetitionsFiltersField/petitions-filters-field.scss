@@ -1,0 +1,13 @@
+@import 'globals';
+
+.label {
+  color: color('black');
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.input-wrapper {
+  margin-top: 0.5em;
+  font-weight: normal;
+  color: color('black');
+}

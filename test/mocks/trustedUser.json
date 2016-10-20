@@ -1,0 +1,12 @@
+{
+  "email": "test@test.com",
+  "email_trusted": true,
+  "firstname": "Max",
+  "id": "164bh",
+  "lastname": "Mustermann",
+  "mobile": "00417934319532",
+  "mobile_trusted": true,
+  "street": "Frankfurter Allee",
+  "town": "Berlin",
+  "zip": "10115"
+}

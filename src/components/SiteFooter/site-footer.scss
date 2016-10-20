@@ -1,0 +1,12 @@
+@import 'globals';
+
+.root {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 25px;
+  line-height: 1;
+  background-color: color('grey-lighter');
+  text-align: center;
+}
