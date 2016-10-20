@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, IndexRoute, Router } from 'react-router';
+import { Route, IndexRoute, Router, applyRouterMiddleware } from 'react-router';
+import { useScroll } from 'react-router-scroll';
 
 import logPageview from 'helpers/logPageview';
 import getHistory from 'helpers/getHistory';
@@ -22,7 +23,7 @@ import TrustPublish from 'containers/TrustPublish';
 import TrustPublishConfirmation from 'containers/TrustPublishConfirmation';
 
 export default (props = {}) => (
-  <Router history={getHistory(props.store)} onUpdate={logPageview}>
+  <Router history={getHistory(props.store)} onUpdate={logPageview} render={applyRouterMiddleware(useScroll())}>
     <Route path='/' component={App}>
       <IndexRoute component={Home} />
       <Route path='imprint' component={Imprint} />
