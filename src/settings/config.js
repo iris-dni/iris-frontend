@@ -303,8 +303,18 @@ export default {
     intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   },
   trustPage: {
-    title: 'Thanks for your support',
-    intro: 'In order to sign this petition, please sign in'
+    supportTitle: 'Support petition',
+    supportIntro: 'In order to support this petition, please sign in below',
+    publishTitle: 'Support petition',
+    introPublish: 'In order to support this petition, please sign in below',
+    trustedTitle: 'Confirm account info',
+    trustedIntro: '',
+    supportFormTitle: 'Or, enter your details to proceed without sign in:',
+    backButton: 'Back to petition',
+    supportNextButton: 'Send verification',
+    publishNextButton: 'Send verification',
+    supportNextButtonTrusted: 'Support petition',
+    publishNextButtonTrusted: 'Preview petition'
   },
   trustConfirmationPage: {
     title: 'Confirm your identity',
@@ -312,29 +322,34 @@ export default {
   },
   trustFields: {
     firstname: {
-      label: 'First name'
+      label: 'First name',
+      placeholder: 'First name'
     },
     lastname: {
-      label: 'Last name'
+      label: 'Last name',
+      placeholder: 'Last name'
     },
     street: {
-      label: 'Street address'
-    },
-    housenumber: {
-      label: 'House number'
+      label: 'Street address',
+      placeholder: 'Street address'
     },
     zip: {
-      label: 'Zip code'
+      label: 'Zip code',
+      placeholder: 'e.g. 5504'
     },
     town: {
-      label: 'Town / city'
+      label: 'Town / city',
+      placeholder: 'Town / city'
     },
     email: {
-      label: 'Email address'
+      label: 'Email address',
+      placeholder: 'Email address',
+      hint: 'Enter your email if you want to receive email notifications about this petition'
     },
     mobile: {
       label: 'Mobile number',
-      hint: 'Only region codes **+41** and **+43** are accepted. You must be a Swiss resident to contribute.'
+      placeholder: '+41 / +43',
+      hint: 'Only country codes **+41** and **+43** are accepted. You must be a Swiss resident to support or publish a petition.'
     }
   },
   trustConfirmationFields: {

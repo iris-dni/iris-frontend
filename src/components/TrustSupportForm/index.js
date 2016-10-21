@@ -1,4 +1,5 @@
 import React from 'react';
+import settings from 'settings';
 import { reduxForm } from 'redux-form';
 import { supportPetition } from 'actions/SupportActions';
 import trustSupportValidator from 'form/trustSupportValidator';
@@ -15,6 +16,7 @@ const TrustSupportForm = ({
   fields,
   handleSubmit,
   petition,
+  mobileConfirmed,
   submitting
 }) => (
   <form onSubmit={handleSubmit((values, dispatch) => supportPetition(
@@ -30,10 +32,10 @@ const TrustSupportForm = ({
       <ButtonSet>
         <ButtonLink
           href={`/petitions/${petition.id}`}
-          text={'Back to petition'}
+          text={settings.trustPage.backButton}
         />
         <Button
-          text={'Go to verification'}
+          text={settings.trustPage[mobileConfirmed ? 'supportNextButtonTrusted' : 'supportNextButton']}
           modifier={'accent'}
           disabled={submitting || petition.isLoading || !fields._meta.allValid}
         />
@@ -47,6 +49,7 @@ TrustSupportForm.propTypes = {
   handleSubmit: React.PropTypes.func.isRequired,
   petition: React.PropTypes.object.isRequired,
   me: React.PropTypes.object.isRequired,
+  mobileConfirmed: React.PropTypes.bool.isRequired,
   submitting: React.PropTypes.bool.isRequired
 };
 

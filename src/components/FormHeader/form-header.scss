@@ -4,4 +4,13 @@
   max-width: map-get($widths, 'fieldset-max');
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
+
+  @include media('<=text-boost') {
+    padding-top: 35px;
+  }
+
+  @include media('>text-boost') {
+    padding-top: 8%;
+  }
 }

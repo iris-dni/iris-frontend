@@ -4,14 +4,15 @@ import FormWrapper from 'components/FormWrapper';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 
-const FormHeader = ({ title, intro }) => (
-  <FormWrapper header>
+const FormHeader = ({ title, intro, children }) => (
+  <FormWrapper>
     <Header>
       <div className={styles.title}>
         <PageTitle
           title={title}
           intro={intro}
         />
+        {children || null}
       </div>
     </Header>
   </FormWrapper>
