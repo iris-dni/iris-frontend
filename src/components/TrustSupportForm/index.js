@@ -11,6 +11,7 @@ import ButtonLink from 'components/ButtonLink';
 import ButtonSet from 'components/ButtonSet';
 import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
+import getPetitionPath from 'helpers/getPetitionPath';
 
 const TrustSupportForm = ({
   fields,
@@ -31,7 +32,7 @@ const TrustSupportForm = ({
     <Fieldset modifier={'actions'}>
       <ButtonSet>
         <ButtonLink
-          href={`/petitions/${petition.id}`}
+          href={getPetitionPath(petition.id)}
           text={settings.trustPage.support.backButton}
         />
         <Button
