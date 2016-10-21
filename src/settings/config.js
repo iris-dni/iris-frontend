@@ -77,11 +77,7 @@ export default {
       supportedText: 'Supported',
       unsupportableText: 'Not Supportable',
       endedText: 'Petition Ended',
-      closedText: 'Petition Closed',
-      modal: {
-        title: 'Please log in',
-        intro: 'In order to sign the Petition, we need you to log in using one of the services below..'
-      }
+      closedText: 'Petition Closed'
     },
     cityResponse: 'Official response:',
     tags: {
@@ -90,29 +86,23 @@ export default {
     }
   },
   newPetitionPage: {
-    title: 'Create a new Petition',
+    title: 'Create a new petition',
+    intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
+  },
+  editPetitionPage: {
+    title: 'Edit petition',
     intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
   },
   previewPetitionPage: {
-    editButton: {
-      text: 'Edit Petition'
-    },
-    publishButton: {
-      text: 'Publish Petition',
-      modal: {
-        intro: 'To publish a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
-      }
-    }
+    title: 'Preview petition',
+    editButton: 'Edit petition',
+    publishButton: 'Publish petition'
   },
   createCTA: {
     title: 'Create a new petition',
     text: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.',
     buttonText: 'Create Petition',
     background: '/dist/assets/images/cta-bg.jpg'
-  },
-  editPetitionPage: {
-    title: 'Edit Petition',
-    intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
   },
   respondToPetitionPage: {
     title: 'Response Form',
@@ -146,7 +136,7 @@ export default {
     }
   },
   homePage: {
-    title: 'Home Page Title -- Replace with your own!',
+    title: 'Welcome to Petitio',
     hero: {
       title: 'Petitio is your platform enabling local change',
       missionTitle: 'Our mission',
@@ -160,25 +150,12 @@ export default {
     linkText: 'View all trending petitions'
   },
   petitionForm: {
-    createButton: {
-      text: 'Create Petition'
-    },
-    publishButton: {
-      text: 'Publish Petition',
-      modal: {
-        intro: 'To publish a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
-      }
-    },
-    saveButton: {
-      text: 'Preview Petition'
-    }
+    createButton: 'Create Petition',
+    saveButton: 'Preview Petition'
   },
   respondToPetitionForm: {
     publishButton: {
-      text: 'Submit response',
-      modal: {
-        intro: 'To publish a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
-      }
+      text: 'Submit response'
     }
   },
   publishedPetition: {
@@ -303,18 +280,23 @@ export default {
     intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   },
   trustPage: {
-    supportTitle: 'Support petition',
-    supportIntro: 'In order to support this petition, please sign in below',
-    publishTitle: 'Support petition',
-    introPublish: 'In order to support this petition, please sign in below',
-    trustedTitle: 'Confirm account info',
-    trustedIntro: '',
-    supportFormTitle: 'Or, enter your details to proceed without sign in:',
-    backButton: 'Back to petition',
-    supportNextButton: 'Send verification',
-    publishNextButton: 'Send verification',
-    supportNextButtonTrusted: 'Support petition',
-    publishNextButtonTrusted: 'Preview petition'
+    support: {
+      title: 'Support petition',
+      intro: 'In order to support this petition, please sign in below',
+      trustedIntro: 'Please confirm your details below before continuing',
+      formTitle: 'Or, enter your details to proceed without sign in:',
+      backButton: 'Back to petition',
+      nextButton: 'Send verification',
+      trustedNextButtonTrusted: 'Support petition'
+    },
+    publish: {
+      title: 'Create petition',
+      intro: 'In order to create your petition, please sign in below',
+      trustedIntro: 'Please confirm your details below before continuing',
+      formTitle: 'Or, enter your details to proceed without sign in:',
+      backButton: 'Edit petition',
+      nextButton: 'Preview petition'
+    }
   },
   trustConfirmationPage: {
     title: 'Confirm your identity',

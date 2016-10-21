@@ -14,9 +14,9 @@ import SsoProviders from 'components/SsoProviders';
 import generateSsoProviders from 'helpers/generateSsoProviders';
 import getReturnUrlFromLocation from 'helpers/getReturnUrlFromLocation';
 
-const getPageIntro = (loggedIn) => ({
-  title: settings.trustPage[loggedIn ? 'trustedTitle' : 'supportTitle'],
-  intro: settings.trustPage[loggedIn ? 'trustedIntro' : 'supportIntro']
+const getPageIntro = (loggedIn, action) => ({
+  title: settings.trustPage[action].title,
+  intro: settings.trustPage[action][loggedIn ? 'trustedIntro' : 'intro']
 });
 
 const Trust = ({
@@ -28,7 +28,7 @@ const Trust = ({
   <div>
     <Container>
       <TextCenter>
-        <FormHeader {...getPageIntro(isLoggedIn)}>
+        <FormHeader {...getPageIntro(isLoggedIn, action)}>
           <div className={styles.sso}>
             {!isLoggedIn &&
               <SsoProviders providers={generateSsoProviders(
@@ -44,13 +44,13 @@ const Trust = ({
       <Container>
         <div className={styles.form}>
           <FormWrapper>
+            {!isLoggedIn &&
+              <div className={styles['form-title']}>
+                <Heading2 text={settings.trustPage[action].formTitle} />
+              </div>
+            }
             {action === 'support' &&
               <div>
-                {!isLoggedIn &&
-                  <div className={styles['form-title']}>
-                    <Heading2 text={settings.trustPage.supportFormTitle} />
-                  </div>
-                }
                 {/* <p>You are supporting {petition.title}</p> */}
                 <TrustSupportForm />
               </div>

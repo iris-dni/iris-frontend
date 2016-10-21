@@ -32,10 +32,10 @@ const TrustSupportForm = ({
       <ButtonSet>
         <ButtonLink
           href={`/petitions/${petition.id}`}
-          text={settings.trustPage.backButton}
+          text={settings.trustPage.support.backButton}
         />
         <Button
-          text={settings.trustPage[mobileConfirmed ? 'supportNextButtonTrusted' : 'supportNextButton']}
+          text={settings.trustPage.support[mobileConfirmed ? 'trustedNextButton' : 'nextButton']}
           modifier={'accent'}
           disabled={submitting || petition.isLoading || !fields._meta.allValid}
         />
