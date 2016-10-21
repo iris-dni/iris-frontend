@@ -13,7 +13,6 @@ import Petition from 'containers/Petition';
 import Petitions from 'containers/Petitions';
 import NewPetition from 'containers/NewPetition';
 import EditPetition from 'containers/EditPetition';
-// import PublishedPetition from 'containers/PublishedPetition';
 import PreviewPetition from 'containers/PreviewPetition';
 import RespondToPetition from 'containers/RespondToPetition';
 import Imprint from 'components/Imprint';
@@ -21,6 +20,7 @@ import TrustSupport from 'containers/TrustSupport';
 import TrustSupportConfirmation from 'containers/TrustSupportConfirmation';
 import TrustPublish from 'containers/TrustPublish';
 import TrustPublishConfirmation from 'containers/TrustPublishConfirmation';
+import RedirectIfPublished from 'containers/RedirectIfPublished';
 
 export default (props = {}) => (
   <Router
@@ -41,13 +41,13 @@ export default (props = {}) => (
       </Route>
       <Route path='petitions/new' component={NewPetition} />
       <Route path='petitions/:id' component={Petition} />
-      <Route path='petitions/:id/edit' component={EditPetition} />
-      <Route path='petitions/:id/preview' component={PreviewPetition} />
+      <Route path='petitions/:id/edit' component={RedirectIfPublished(EditPetition)} />
+      <Route path='petitions/:id/preview' component={RedirectIfPublished(PreviewPetition)} />
       <Route path='respond/:token' component={RespondToPetition} />
       <Route path='trust/support/:id' component={TrustSupport} />
       <Route path='trust/support/:id/confirm' component={TrustSupportConfirmation} />
-      <Route path='trust/publish/:id' component={TrustPublish} />
-      <Route path='trust/publish/:id/confirm' component={TrustPublishConfirmation} />
+      <Route path='trust/publish/:id' component={RedirectIfPublished(TrustPublish)} />
+      <Route path='trust/publish/:id/confirm' component={RedirectIfPublished(TrustPublishConfirmation)} />
     </Route>
   </Router>
 );
