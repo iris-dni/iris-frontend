@@ -5,7 +5,7 @@ export default (petition = {}) => {
   const lastname = get(petition, 'owner.lastname') || get(petition, 'owner.data.lastname');
 
   if (petition.owner && (firstname || lastname)) {
-    return [firstname, lastname].join(' ');
+    return [firstname, lastname].join(' ').trim();
   }
 
   return '';
