@@ -1,7 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { fetchPetition } from 'actions/PetitionActions';
 import settings from 'settings';
 import TrustConfirmation from 'components/TrustConfirmation';
 
@@ -11,10 +10,6 @@ const TrustPublishConfirmationContainer = (props) => (
     <TrustConfirmation {...props} action={'publish'} />
   </div>
 );
-
-TrustPublishConfirmationContainer.fetchData = ({ store, params }) => {
-  return store.dispatch(fetchPetition(params.id));
-};
 
 export const mapStateToProps = ({ petition }) => ({
   me: petition.owner

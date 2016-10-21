@@ -20,7 +20,9 @@ import TrustSupport from 'containers/TrustSupport';
 import TrustSupportConfirmation from 'containers/TrustSupportConfirmation';
 import TrustPublish from 'containers/TrustPublish';
 import TrustPublishConfirmation from 'containers/TrustPublishConfirmation';
+// Restrictive higher-order components
 import RedirectIfPublished from 'containers/RedirectIfPublished';
+import RedirectIfUnsupportable from 'containers/RedirectIfUnsupportable';
 
 export default (props = {}) => (
   <Router
@@ -44,8 +46,8 @@ export default (props = {}) => (
       <Route path='petitions/:id/edit' component={RedirectIfPublished(EditPetition)} />
       <Route path='petitions/:id/preview' component={RedirectIfPublished(PreviewPetition)} />
       <Route path='respond/:token' component={RespondToPetition} />
-      <Route path='trust/support/:id' component={TrustSupport} />
-      <Route path='trust/support/:id/confirm' component={TrustSupportConfirmation} />
+      <Route path='trust/support/:id' component={RedirectIfUnsupportable(TrustSupport)} />
+      <Route path='trust/support/:id/confirm' component={RedirectIfUnsupportable(TrustSupportConfirmation)} />
       <Route path='trust/publish/:id' component={RedirectIfPublished(TrustPublish)} />
       <Route path='trust/publish/:id/confirm' component={RedirectIfPublished(TrustPublishConfirmation)} />
     </Route>
