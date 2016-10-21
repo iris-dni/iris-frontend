@@ -63,8 +63,6 @@ export const mapStateToProps = ({ petition }) => ({
   petition: getPetition(petition)
 });
 
-// Add dispatchers to the component props,
-// for fetching the data _client side_
 export const mapDispatchToProps = (dispatch) => ({
   fetchPetition: (id) => dispatch(fetchPetition(id)),
   refreshPetition: (id) => dispatch(refreshPetition(id)),

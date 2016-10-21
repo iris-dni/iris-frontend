@@ -7,15 +7,15 @@ import getHistory from 'helpers/getHistory';
 
 import App from 'containers/App';
 import Home from 'containers/Home';
+import Imprint from 'components/Imprint';
 import LoginPage from 'containers/Login';
 import Logout from 'containers/Logout';
-import Petition from 'containers/Petition';
 import Petitions from 'containers/Petitions';
 import NewPetition from 'containers/NewPetition';
+import Petition from 'containers/Petition';
 import EditPetition from 'containers/EditPetition';
 import PreviewPetition from 'containers/PreviewPetition';
 import RespondToPetition from 'containers/RespondToPetition';
-import Imprint from 'components/Imprint';
 import TrustSupport from 'containers/TrustSupport';
 import TrustSupportConfirmation from 'containers/TrustSupportConfirmation';
 import TrustPublish from 'containers/TrustPublish';
