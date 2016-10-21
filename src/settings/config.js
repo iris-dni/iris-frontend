@@ -303,8 +303,8 @@ export default {
     intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   },
   trustPage: {
-    title: 'Fill out your details',
-    intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
+    title: 'Thanks for your support',
+    intro: 'In order to sign this petition, please sign in'
   },
   trustConfirmationPage: {
     title: 'Confirm your identity',

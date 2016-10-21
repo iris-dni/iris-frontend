@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './form-wrapper.scss';
 
-const FormWrapper = ({ children }) => (
-  <div className={styles.root}>
+const FormWrapper = ({ header, children }) => (
+  <div className={header ? styles.first : styles.root}>
     {children}
   </div>
 );

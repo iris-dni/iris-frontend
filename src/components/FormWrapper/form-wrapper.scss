@@ -4,6 +4,10 @@
   max-width: map-get($widths, 'fieldset-max');
   margin-left: auto;
   margin-right: auto;
+}
+
+.first {
+  composes: root;
 
   @include media('<=text-boost') {
     padding-top: 35px;
