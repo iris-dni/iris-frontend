@@ -1,13 +1,14 @@
 @import 'globals';
 
-.root {
+.shared {
   max-width: map-get($widths, 'fieldset-max');
   margin-left: auto;
   margin-right: auto;
 }
 
 .first {
-  composes: root;
+  composes: shared;
+  margin-bottom: 20px;
 
   @include media('<=text-boost') {
     padding-top: 35px;
@@ -17,3 +18,9 @@
     padding-top: 8%;
   }
 }
+
+.root {
+  composes: shared;
+  margin-bottom: 5%;
+}
+
