@@ -4,29 +4,6 @@ import fieldIsValid from 'form/fieldIsValid';
 const { assert } = chai;
 
 describe('fieldIsValid', () => {
-  it('returns false when field is not touched', () => {
-    const actual = fieldIsValid({
-      touched: false,
-      error: '',
-      value: 'Hello'
-    });
-    const expected = false;
-
-    assert.equal(actual, expected);
-  });
-
-  it('returns false when field is pristine', () => {
-    const actual = fieldIsValid({
-      touched: true,
-      pristine: true,
-      error: '',
-      value: 'Hello'
-    });
-    const expected = false;
-
-    assert.equal(actual, expected);
-  });
-
   it('returns false when field has no value', () => {
     const actual = fieldIsValid({
       touched: true,
