@@ -34,7 +34,7 @@ const TrustPublishForm = ({
           text={settings.trustPage.publish.backButton}
         />
         <Button
-          text={'Preview petition'}
+          text={settings.trustPage.publish.nextButton}
           modifier={'accent'}
           disabled={submitting || !fields._meta.allValid}
         />

@@ -19,7 +19,7 @@ const RespondToPetitionForm = ({ petition, petitionResponse, fields, handleSubmi
       </Fieldset>
       <Fieldset modifier={'actions'}>
         <Button
-          text={settings.respondToPetitionForm.publishButton.text}
+          text={settings.respondToPetitionForm.publishButton}
           modifier={'accent'}
           disabled={submitting || !fields._meta.allValid}
         />

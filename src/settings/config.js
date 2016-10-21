@@ -154,9 +154,7 @@ export default {
     saveButton: 'Preview Petition'
   },
   respondToPetitionForm: {
-    publishButton: {
-      text: 'Submit response'
-    }
+    publishButton: 'Submit response'
   },
   publishedPetition: {
     modal: {
