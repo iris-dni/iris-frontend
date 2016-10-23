@@ -1,13 +1,10 @@
-import defaultConfig from './config';
+import config from './getThemeConfig';
+import translations from './getTranslations';
 import mergeSettings from './merge';
 
-const needsCustomThemePath = process.env.THEME_PATH && !process.env.TEST_ENV;
-
-const customConfig = needsCustomThemePath
-  ? require('../../' + process.env.THEME_PATH + '/config')
-  : require('theme/config');
-
-const mergedSettings = mergeSettings(defaultConfig, customConfig);
+// FIXME: until we have time to split out settings and translations
+// in the different components they are merged into settings
+const mergedSettings = mergeSettings(config, translations);
 
 export default mergedSettings;
 export const ssoProviders = mergedSettings.ssoProviders;

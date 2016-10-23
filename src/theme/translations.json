@@ -78,7 +78,7 @@
   "createCTA": {
     "title": "Create a new petition",
     "text": "This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.",
-    "buttonText": "Create Petition",
+    "buttonText": "Create Petition"
   },
   "editPetitionPage": {
     "title": "Edit Petition",
@@ -335,7 +335,6 @@
     "noLongerSupportable": "This petition is no longer supportable"
   },
   "logo": "IRIS",
-  ],
   "footer": {
     "copyright": "Copyright © 2016 Iris"
   }
