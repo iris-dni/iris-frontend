@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="{{ lang or 'en' }}">
+  <head>
+    <meta charset="{{ charset or 'utf-8' }}">
+    {{ head.title | safe }}
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, height=device-height">
+    {{ head.meta | safe }}
+    {{ head.link | safe }}
+    {% include 'theme/includes/webfonts.html' %}
+    {% for stylesheet in bundles.stylesheets %}
+      <link rel="stylesheet" href="{{ stylesheet }}"/>
+    {% endfor %}
+    {{ head.script | safe }}
+    {{ head.style | safe }}
+    {% include 'assets/includes/head.html' %}
+    {% include 'theme/includes/head.html' %}
+  </head>
+  <body>
+    <h1>Petition title</h1>
+    <div id="app" class="app-wrapper">{{ reactMarkup | safe }}</div>
+  </body>
+  <script>window.__INITIAL_STATE__={{ initialState | safe }}</script>
+  {% for script in bundles.javascripts %}
+    <script src="{{ script }}"></script>
+  {% endfor %}
+  {% include 'assets/includes/scripts.html' %}
+  {% include 'theme/includes/scripts.html' %}
+</html>

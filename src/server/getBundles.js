@@ -1,10 +1,10 @@
 import getIncludedAssetPath from 'helpers/getIncludedAssetPath';
 
-export default () => {
+export default (jsFile = 'client.js') => {
   const stylesheets = [];
 
   const javascripts = [
-    getIncludedAssetPath('client.js')
+    getIncludedAssetPath(jsFile)
   ];
 
   if (process.env.NODE_ENV === 'production') {
