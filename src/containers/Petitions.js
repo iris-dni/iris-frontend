@@ -15,7 +15,7 @@ import { clearSuggestionInputValue } from 'actions/AutocompleteActions';
 import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';
 
-const PetitionsContainer = withRouter(React.createClass({
+const PetitionsContainer = React.createClass({
   componentWillMount () {
     // If there are no petitions, or if the user arrived on the page by clicking
     // a client-side router link, then we fetch petitions client-side.
@@ -46,7 +46,6 @@ const PetitionsContainer = withRouter(React.createClass({
   },
 
   render () {
-    console.log(this.props.isLoading, this.props.currentCity);
     return (
       <div>
         <Helmet title={this.props.title} />
@@ -54,7 +53,7 @@ const PetitionsContainer = withRouter(React.createClass({
       </div>
     );
   }
-}));
+});
 
 PetitionsContainer.fetchData = ({ store, location, params }) => {
   return store.dispatch(fetchPetitionsAndCity({ location, params }));
@@ -84,7 +83,7 @@ export const mapDispatchToProps = (dispatch) => ({
   updateCurrentCity: (city) => dispatch(updateCurrentCity(city))
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(PetitionsContainer);
+)(PetitionsContainer));
