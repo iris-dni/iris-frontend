@@ -15,6 +15,7 @@ export default {
   runningTime: 'Petitions run for 30 days',
   dateFormat: 'DD-MM-YYYY',
   authorLabel: 'by %a',
+  adZoneLabel: 'Sponsored Content',
   supportersText: 'Supporters',
   milestoneText: 'Target',
   daysRemaining: 'Days left',
