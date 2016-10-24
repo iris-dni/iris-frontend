@@ -3,14 +3,7 @@
     /* Fire off an event to your own tracking
        service to log a pageview from here
        console.log('PAGE VIEW HAPPENED'); */
-
-    /* Dispatch ad reload when route
-       changes client-side */
-    loadAds();
   };
 
-  var loadAds = function () {};
-
   window.addEventListener('{{ siteName | trim }}_pageview', onClientSideRouteChange);
-  document.addEventListener('DOMContentLoaded', loadAds);
 </script>
