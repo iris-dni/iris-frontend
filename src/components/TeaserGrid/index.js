@@ -6,7 +6,7 @@ import Teaser from 'components/Teaser';
 import Loading from 'components/Loading';
 
 const TeaserGrid = ({ petitions, isLoading }) => (
-  <Loading isLoading={isLoading} onServer={__SERVER__}>
+  <Loading isLoading={isLoading}>
     <div className={styles.root}>
       <div className={styles.grid}>
         <Grid>

@@ -2,12 +2,26 @@
 
 .root {
   @include clearfix;
-  margin-left: -20px;
+
+  @include media('<=form-switch') {
+    margin-left: -20px;
+  }
+
+  @include media('>form-switch') {
+    margin-left: -55px;
+  }
 }
 
 .shared {
   float: left;
-  padding-left: 20px;
+
+  @include media('<=form-switch') {
+    padding-left: 20px;
+  }
+
+  @include media('>form-switch') {
+    padding-left: 55px;
+  }
 }
 
 .field {

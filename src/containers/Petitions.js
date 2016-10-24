@@ -32,14 +32,11 @@ const PetitionsContainer = withRouter(React.createClass({
     // selected the suggestion.
     if (!isEqual(this.props.params, nextProps.params) ||
         !isEqual(this.props.location.query, nextProps.location.query)) {
-      // Handles edge case of clicking on the logo, which doesn’t trigger a PUSH
-      // or a component unmount.
-      if (nextProps.location.action === 'REPLACE') {
+      if (isClientSideRouting(this.props.location)) {
         this.props.clearSuggestionInputValue();
         this.props.updateCurrentCity({});
+        this.props.fetchPetitions(nextProps);
       }
-
-      this.props.fetchPetitions(nextProps);
     }
   },
 
@@ -49,6 +46,7 @@ const PetitionsContainer = withRouter(React.createClass({
   },
 
   render () {
+    console.log(this.props.isLoading, this.props.currentCity);
     return (
       <div>
         <Helmet title={this.props.title} />
