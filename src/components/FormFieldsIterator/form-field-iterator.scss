@@ -1,0 +1,28 @@
+@import 'globals';
+
+.root {
+  @include clearfix;
+  margin-left: -20px;
+}
+
+.shared {
+  float: left;
+  padding-left: 20px;
+}
+
+.field {
+  composes: shared;
+  width: 100%;
+}
+
+.field-half {
+  composes: shared;
+
+  @include media('<=text-boost') {
+    width: 100%;
+  }
+
+  @include media('>text-boost') {
+    width: 50%;
+  }
+}
