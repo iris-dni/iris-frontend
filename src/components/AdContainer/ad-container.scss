@@ -1,0 +1,29 @@
+@import 'globals';
+
+.root {
+  max-width: 100%;
+  position: relative;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.root * {
+  max-width: 100%;
+}
+
+.wideboard {
+  display: table;
+  margin: 2.5em auto;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.rectangle {
+  margin-bottom: 1.25em;
+
+  &:empty {
+    display: none;
+  }
+}
