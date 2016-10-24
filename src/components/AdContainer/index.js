@@ -1,12 +1,10 @@
 import React from 'react';
 import settings from 'settings';
-import getClassNames from 'helpers/getClassNames';
-import styles from './ad-container.scss';
 
 const AdContainer = ({currentCity = {}, type}) => (
   <div
     id={`ad-slot--${type}`}
-    className={getClassNames(styles, ['root', type])}
+    className={`ad-slot ad-slot--${type}`}
     data-city-tags={`${currentCity && currentCity.tags && currentCity.tags.join(',') || ''}`}
     data-label={settings.adZoneLabel}
     /* The idea here is to have your ad service use the `data-label`
