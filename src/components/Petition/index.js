@@ -5,6 +5,7 @@ import LayoutContent from 'components/LayoutContent';
 import LayoutSidebar from 'components/LayoutSidebar';
 import Container from 'components/Container';
 import Section from 'components/Section';
+import AdContainer from 'components/AdContainer';
 
 import PetitionHeader from 'containers/PetitionHeader';
 import PetitionBody from 'containers/PetitionBody';
@@ -14,13 +15,17 @@ import ShowWhen from 'components/ShowWhen';
 import PetitionShareButtons from 'components/PetitionShareButtons';
 import PetitionFooter from 'containers/PetitionFooter';
 
-const Petition = ({ preview }) => (
+const Petition = ({ preview, city }) => (
   <article>
     <Section theme={'grey'}>
       <Container>
         <PetitionHeader />
       </Container>
     </Section>
+    <AdContainer
+      currentCity={city.data}
+      type='wideboard'
+    />
     <Container>
       <LayoutWrap>
         <LayoutContent>
