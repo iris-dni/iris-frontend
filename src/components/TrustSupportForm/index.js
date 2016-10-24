@@ -30,7 +30,7 @@ const TrustSupportForm = ({
       />
     </Fieldset>
     <Fieldset modifier={'actions'}>
-      <ButtonSet>
+      <ButtonSet equal>
         <ButtonLink
           href={getPetitionPath(petition.id)}
           text={settings.trustPage.support.backButton}

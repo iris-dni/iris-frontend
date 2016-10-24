@@ -28,7 +28,7 @@ const TrustPublishForm = ({
       />
     </Fieldset>
     <Fieldset modifier={'actions'}>
-      <ButtonSet>
+      <ButtonSet equal>
         <ButtonLink
           href={`/petitions/${petition.id}/edit`}
           text={settings.trustPage.publish.backButton}

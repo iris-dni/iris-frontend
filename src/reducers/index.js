@@ -15,7 +15,14 @@ export default combineReducers({
   autocomplete: autocompleteReducer,
   petition: petitionReducer,
   petitions: petitionsReducer,
-  form: formReducer,
+  form: formReducer.normalize({
+    trustSupport: {
+      'user.mobile': value => value && value.trim()
+    },
+    trustPublish: {
+      'owner.mobile': value => value && value.trim()
+    }
+  }),
   me: meReducer,
   flashMessage: flashMessageReducer,
   navigation: navigationReducer,

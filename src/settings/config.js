@@ -150,17 +150,15 @@ export default {
     linkText: 'View all trending petitions'
   },
   petitionForm: {
-    createButton: 'Create Petition',
-    saveButton: 'Preview Petition'
+    createButton: 'Create petition',
+    saveButton: 'Preview petition'
+  },
+  trustConfirmationForm: {
+    backButton: 'Edit your details',
+    saveButton: 'Finish verification'
   },
   respondToPetitionForm: {
     publishButton: 'Submit response'
-  },
-  publishedPetition: {
-    modal: {
-      title: 'Your petition has been submitted for review',
-      intro: 'It can already be supported and will appear online within 48 hours. Until then, why not share it with others to start gaining support?'
-    }
   },
   petitionFields: {
     city: {
@@ -194,16 +192,10 @@ export default {
       invalidSimilarLink: 'You can only add unique links'
     }
   },
-  respondToPetitionFields: {
-    response: {
-      label: 'Write your response',
-      placeholder: 'Tell the petitioner and supporters what you plan to do…',
-      hint: 'To write a good response, you should clearly communicate why you care about this cause, how it impacts the local community and what steps you plan to take.'
-    },
-    name: {
-      label: 'Include your name and department',
-      hint: 'This appears below your response',
-      placeholder: 'Max Mustermann, Mayor'
+  publishedPetition: {
+    modal: {
+      title: 'Your petition has been submitted for review',
+      intro: 'It can already be supported and will appear online within 48 hours. Until then, why not share it with others to start gaining support?'
     }
   },
   supportPetition: {
@@ -218,6 +210,18 @@ export default {
         title: 'Got it!',
         intro: 'You\'ve already supported this petition, but go ahead and share the link to anyone you know.'
       }
+    }
+  },
+  respondToPetitionFields: {
+    response: {
+      label: 'Write your response',
+      placeholder: 'Tell the petitioner and supporters what you plan to do…',
+      hint: 'To write a good response, you should clearly communicate why you care about this cause, how it impacts the local community and what steps you plan to take.'
+    },
+    name: {
+      label: 'Include your name and department',
+      hint: 'This appears below your response',
+      placeholder: 'Max Mustermann, Mayor'
     }
   },
   petitionResponseStatus: {
@@ -288,7 +292,7 @@ export default {
       trustedNextButtonTrusted: 'Support petition'
     },
     publish: {
-      title: 'Create petition',
+      title: 'One last step',
       intro: 'In order to create your petition, please sign in below',
       trustedIntro: 'Please confirm your details below before continuing',
       formTitle: 'Or, enter your details to proceed without sign in:',
@@ -297,8 +301,10 @@ export default {
     }
   },
   trustConfirmationPage: {
-    title: 'Confirm your identity',
-    intro: 'Please verify your phone number'
+    title: 'Enter verification code',
+    intro: 'Thanks %u, we sent a verification code to **%n**.',
+    resendLink: 'Re-send verification code',
+    instructions: 'To complete your phone number verification, please enter the 5-digit activation code.'
   },
   trustFields: {
     firstname: {
@@ -334,7 +340,8 @@ export default {
   },
   trustConfirmationFields: {
     mobile_token: {
-      label: 'Verification code'
+      label: 'Verification code',
+      placeholder: '-----'
     }
   },
   imprint: {
