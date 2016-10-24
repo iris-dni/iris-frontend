@@ -1,7 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { fetchPetition } from 'actions/PetitionActions';
 import { updateSuggestionInputValue } from 'actions/AutocompleteActions';
 import settings from 'settings';
 import citySuggestionFormatter from 'helpers/citySuggestionFormatter';
@@ -24,10 +23,6 @@ const EditPetitionContainer = React.createClass({
     );
   }
 });
-
-EditPetitionContainer.fetchData = ({ store, params }) => {
-  return store.dispatch(fetchPetition(params.id));
-};
 
 export const mapStateToProps = ({ petition }) => ({
   petition: getPetitionForm(petition)
