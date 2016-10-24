@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { fetchPetition, publishPetition } from 'actions/PetitionActions';
+import { publishPetition } from 'actions/PetitionActions';
 import settings from 'settings';
 import PreviewPetition from 'components/PreviewPetition';
 import getPetitionForm from 'selectors/petitionForm';
@@ -17,10 +17,6 @@ const PreviewPetitionContainer = withRouter(React.createClass({
     );
   }
 }));
-
-PreviewPetitionContainer.fetchData = ({ store, params }) => {
-  return store.dispatch(fetchPetition(params.id));
-};
 
 export const mapStateToProps = ({ petition }) => ({
   petition: getPetitionForm(petition)
