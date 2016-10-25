@@ -43,6 +43,10 @@ config.entry.client.unshift(
   'webpack-dev-server/client?http://localhost:8080',
   'webpack/hot/only-dev-server'
 );
+config.entry.widget.unshift(
+  'webpack-dev-server/client?http://localhost:8080',
+  'webpack/hot/only-dev-server'
+);
 config.output.publicPath = 'http://localhost:8080/dist/';
 config.output.hotUpdateMainFilename = 'update/[hash]/update.json';
 config.output.hotUpdateChunkFilename = 'update/[hash]/[id].update.js';

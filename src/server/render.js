@@ -6,12 +6,19 @@ import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
 import reducers from 'reducers';
-import routes from 'routes';
+
+import mainRouter from 'routes';
+import widgetRouter from 'widgets/routes';
 
 import stringifyHeadData from 'server/stringifyHeadData';
 import baseAssetPath from 'server/baseAssetPath';
 
 import { PAGEVIEW_EVENT_NAME } from 'helpers/logPageview';
+
+const routerForView = {
+  index: mainRouter(),
+  widget: widgetRouter()
+};
 
 /*
  * Note: this file contains server-side rendering logic, called from server.js.
@@ -29,8 +36,14 @@ import { PAGEVIEW_EVENT_NAME } from 'helpers/logPageview';
  * to pre-fill the Redux store with data for that route.
  */
 
-export default (request, reply, next) => {
-  match({ routes: routes(), location: { pathname: request.path, query: request.query } }, (error, redirectLocation, renderProps) => {
+export default (request, reply, viewName) => {
+  match({
+    routes: routerForView[viewName],
+    location: {
+      pathname: request.path,
+      query: request.query
+    }
+  }, (error, redirectLocation, renderProps) => {
     if (redirectLocation) {
       reply.redirect(redirectLocation.pathname + redirectLocation.search).code(301);
     } else if (error) {
@@ -73,7 +86,7 @@ export default (request, reply, next) => {
           const initialState = store.getState();
 
           // Render Nunjucks view with required data
-          return reply.view('index', Object.assign({}, {
+          return reply.view(viewName, Object.assign({}, {
             reactMarkup: reactString,
             initialState: JSON.stringify(initialState),
             head: stringifyHeadData(headData),

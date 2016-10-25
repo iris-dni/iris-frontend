@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import settings from 'settings';
 import ReactGA from 'react-ga';
-import WidgetLayout from 'views/WidgetLayout';
+import WidgetLayout from 'views/Widget';
 
 const App = React.createClass({
 
