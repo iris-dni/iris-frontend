@@ -1,7 +1,7 @@
 import React from 'react';
 import settings from 'settings';
 
-const AdContainer = ({currentCity = {}, type}) => (
+const AdSlot = ({currentCity = {}, type}) => (
   <div
     id={`ad-slot--${type}`}
     className={`ad-slot ad-slot--${type}`}
@@ -14,4 +14,4 @@ const AdContainer = ({currentCity = {}, type}) => (
   />
 );
 
-export default AdContainer;
+export default AdSlot;

@@ -6,14 +6,14 @@ import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import PetitionsFilters from 'components/PetitionsFilters';
 import NoResults from 'components/NoResults';
-import AdContainer from 'components/AdContainer';
+import AdSlot from 'components/AdSlot';
 import Pagination from 'containers/Pagination';
 
 const Petitions = (props) => (
   <Container>
     <section>
       <div className={styles['header-wrapper']}>
-        <AdContainer
+        <AdSlot
           currentCity={props.currentCity}
           type='wideboard'
         />
