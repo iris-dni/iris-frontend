@@ -12,13 +12,13 @@ const HomepagePetitions = ({ groupedPetitions, title, text, linkText }) => (
     <Section>
       <Container>
         <BlockContainer>
-          <div className={styles.head}>
+          <header className={styles.head}>
             <div className={styles.left}>
               <Heading2 text={title} />
               <span className={styles.text}>{text}</span>
             </div>
             <Link href='/petitions'>{linkText}</Link>
-          </div>
+          </header>
         </BlockContainer>
         <TeaserGrid
           petitions={groupedPetitions.latest.data}

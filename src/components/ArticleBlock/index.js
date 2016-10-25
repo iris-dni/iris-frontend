@@ -9,7 +9,7 @@ const ArticleBlock = ({ title, icon, children }) => {
       <header className={styles.top}>
         {icon &&
           <span className={styles.icon}>
-            <Icon id={icon} size='small' />
+            <Icon id={icon} />
           </span>
         }
         <Heading2 text={title} />

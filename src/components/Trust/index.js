@@ -13,6 +13,7 @@ import TrustPublishForm from 'components/TrustPublishForm';
 import SsoProviders from 'components/SsoProviders';
 import generateSsoProviders from 'helpers/generateSsoProviders';
 import getReturnUrlFromLocation from 'helpers/getReturnUrlFromLocation';
+import TrustFlow from 'components/TrustFlow';
 
 const getPageIntro = (loggedIn, action) => ({
   title: settings.trustPage[action].title,
@@ -50,21 +51,20 @@ const Trust = ({
               </div>
             }
             {action === 'support' &&
-              <div>
-                {/* <p>You are supporting {petition.title}</p> */}
-                <TrustSupportForm />
-              </div>
+              <TrustSupportForm />
             }
             {action === 'publish' &&
-              <div>
-                {/* <p>Creating: {petition.title}</p> */}
-                <TrustPublishForm />
-              </div>
+              <TrustPublishForm />
             }
           </FormWrapper>
         </div>
       </Container>
     </Section>
+    <Container>
+      <FormWrapper>
+        <TrustFlow action={action} />
+      </FormWrapper>
+    </Container>
   </div>
 );
 

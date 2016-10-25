@@ -11,6 +11,7 @@ import FormWrapper from 'components/FormWrapper';
 import FormHeader from 'components/FormHeader';
 import TrustSupportConfirmationForm from 'components/TrustSupportConfirmationForm';
 import TrustPublishConfirmationForm from 'components/TrustPublishConfirmationForm';
+import TrustFlow from 'components/TrustFlow';
 
 const generateIntroText = (me) => {
   return settings.trustConfirmationPage.intro
@@ -55,6 +56,11 @@ const TrustConfirmation = ({
         </div>
       </Container>
     </Section>
+    <Container>
+      <FormWrapper>
+        <TrustFlow action={action} />
+      </FormWrapper>
+    </Container>
   </div>
   );
 

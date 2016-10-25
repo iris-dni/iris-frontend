@@ -136,11 +136,11 @@ export default {
     }
   },
   homePage: {
-    title: 'Welcome to Petitio',
+    title: 'Welcome to IRIS',
     hero: {
-      title: 'Petitio is your platform enabling local change',
+      title: 'Your platform enabling local change',
       missionTitle: 'Our mission',
-      missionDescription: 'Petitio is operated by AZ Medien. Our wish is to empower people to make change in their local communities. We want to give you the chance to be heard, make your cause known, and to gather supporters. We promise to follow up any successful petitions with a letter to your local representative. And, on top of that, your petition might even be selected to be covered by any of our news outlets.',
+      missionDescription: 'Empower people to make change in their local communities. We want to give you the chance to be heard, make your cause known, and to gather supporters. We promise to follow up any successful petitions with a letter to your local representative. And, on top of that, your petition might even be selected to be covered by any of our news outlets.',
       background: '/dist/assets/images/hero-bg.jpg'
     }
   },
@@ -156,6 +156,28 @@ export default {
   trustConfirmationForm: {
     backButton: 'Edit your details',
     saveButton: 'Finish verification'
+  },
+  trustFlow: {
+    step1: {
+      support: {
+        title: 'Sign in to support',
+        text: 'You can either log in with one of the services above, or just fill out your contact details. We won′t display your information online or contact you without your explicit okay.'
+      },
+      publish: {
+        title: 'Sign in to publish',
+        text: 'You can either log in with one of the services above, or just fill out your contact details. We won′t display your information online or contact you without your explicit okay.'
+      }
+    },
+    step2: {
+      support: {
+        title: 'Verify via phone',
+        text: 'Once you′ve signed in or entered your contact details, you will recieve a text message verification code to confirm your identity. Enter the code to proceed, and you′re done!'
+      },
+      publish: {
+        title: 'Verify via phone',
+        text: 'Once you′ve signed in or entered your contact details, you will recieve a text message verification code to confirm your identity. Enter the code to proceed, and you′re done!'
+      }
+    }
   },
   respondToPetitionForm: {
     publishButton: 'Submit response'
