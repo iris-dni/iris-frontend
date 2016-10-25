@@ -10,7 +10,7 @@ import routes from 'routes';
 
 import stringifyHeadData from 'server/stringifyHeadData';
 import getBundles from 'server/getBundles';
-import { pageViewEvent } from 'helpers/logPageview';
+import { PAGEVIEW_EVENT_NAME } from 'helpers/logPageview';
 /*
  * Note: this file contains server-side rendering logic, called from server.js.
  *
@@ -76,7 +76,7 @@ export default (request, reply, next) => {
             initialState: JSON.stringify(initialState),
             head: stringifyHeadData(headData),
             bundles: getBundles(),
-            pageViewEvent: pageViewEvent
+            pageViewEvent: PAGEVIEW_EVENT_NAME
           }));
         })
         .catch((err) => {
