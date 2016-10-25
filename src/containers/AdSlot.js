@@ -8,12 +8,12 @@ const AdSlotContainer = (props) => (
 );
 
 export const mapStateToProps = (state, ownProps) => ({
-  currentCity: getCityDataForRoute(state),
+  tags: getCityDataForRoute(state),
   type: ownProps.type
 });
 
 AdSlotContainer.propTypes = {
-  currentCity: React.PropTypes.object.isRequired,
+  tags: React.PropTypes.array,
   type: React.PropTypes.string.isRequired
 };
 

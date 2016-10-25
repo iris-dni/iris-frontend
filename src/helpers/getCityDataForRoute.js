@@ -2,13 +2,15 @@ export default ({ routing, petitions, petition }) => {
   const hasRoute = routing.locationBeforeTransitions &&
     routing.locationBeforeTransitions.pathname;
 
-  if (hasRoute && hasRoute.indexOf('/petitions') > -1) {
-    return petitions.currentCity;
+  // Only match filtered city on /petitions list page.
+  // Those always contain a `:`
+  if (hasRoute && hasRoute.indexOf(':') > -1) {
+    return petitions.currentCity.tags;
   }
 
-  if (petition.city) {
-    return petition.city.data;
+  if (petition.city && petition.city.data.tags) {
+    return petition.city.data.tags;
   }
 
-  return {};
+  return [];
 };
