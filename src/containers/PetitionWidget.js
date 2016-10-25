@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { fetchPetition, refreshPetition } from 'actions/PetitionActions';
+import { fetchPetition } from 'actions/PetitionActions';
 import PetitionWidget from 'components/PetitionWidget';
 import getPetition from 'selectors/petition';
 import getPetitionMetaData from 'helpers/getPetitionMetaData';
@@ -28,17 +28,10 @@ export const mapStateToProps = ({ petition }) => ({
   petition: getPetition(petition)
 });
 
-export const mapDispatchToProps = (dispatch) => ({
-  fetchPetition: (id) => dispatch(fetchPetition(id)),
-  refreshPetition: (id) => dispatch(refreshPetition(id))
-});
-
 PetitionWidgetContainer.propTypes = {
-  petition: React.PropTypes.object,
-  fetchPetition: React.PropTypes.func
+  petition: React.PropTypes.object
 };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(PetitionWidgetContainer);

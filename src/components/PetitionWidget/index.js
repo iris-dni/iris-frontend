@@ -6,7 +6,7 @@ import Section from 'components/Section';
 import PetitionHeader from 'containers/PetitionHeader';
 import PetitionFooter from 'containers/PetitionFooter';
 
-const PetitionWidget = ({ preview }) => (
+const PetitionWidget = () => (
   <article className={styles.root}>
     <Section theme={'grey'}>
       <Container>
