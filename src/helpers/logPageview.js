@@ -8,7 +8,7 @@ export default () => {
     const { googleAnalytics } = settings;
 
     const pageviewEventName = [
-      process.env.SITE_NAME,
+      process.env.SITE_NAME || 'iris',
       '_pageview'
     ].join('').trim();
 

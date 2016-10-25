@@ -76,7 +76,7 @@ export default (request, reply, next) => {
             initialState: JSON.stringify(initialState),
             head: stringifyHeadData(headData),
             bundles: getBundles(),
-            siteName: process.env.SITE_NAME // analytics & tracking
+            siteName: process.env.SITE_NAME || 'iris' // analytics & tracking
           }));
         })
         .catch((err) => {
