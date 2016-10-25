@@ -13,7 +13,8 @@ config.plugins = config.plugins.concat([
   new webpack.EnvironmentPlugin(config.envVars),
   new webpack.DefinePlugin({
     'process.env': {
-      'TEST_ENV': JSON.stringify('true')
+      'TEST_ENV': JSON.stringify('true'),
+      'SITE_NAME': 'iris'
     }
   })
 ]);

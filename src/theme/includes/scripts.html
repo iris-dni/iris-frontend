@@ -1,4 +1,4 @@
-{{ if pageViewEvent }}
+{% if pageViewEvent %}
 <script>
   var onClientSideRouteChange = function () {
     /* Fire off an event to your own tracking
@@ -8,4 +8,4 @@
 
   window.addEventListener('{{ pageViewEvent | trim }}', onClientSideRouteChange);
 </script>
-{{ endif }}
+{% endif %}
