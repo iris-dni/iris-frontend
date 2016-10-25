@@ -5,5 +5,8 @@
        console.log('PAGE VIEW HAPPENED'); */
   };
 
-  window.addEventListener('{{ siteName | trim }}_pageview', onClientSideRouteChange);
+  window.addEventListener(
+    '{{ siteName | trim }}_pageview',
+    onClientSideRouteChange
+  );
 </script>
