@@ -1,3 +1,4 @@
+{% if pageViewEvent %}
 <script>
   var onClientSideRouteChange = function () {
     /* Fire off an event to your own tracking
@@ -5,5 +6,6 @@
        console.log('PAGE VIEW HAPPENED'); */
   };
 
-  window.addEventListener('{{ siteName | trim }}_pageview', onClientSideRouteChange);
+  window.addEventListener('{{ pageViewEvent | trim }}', onClientSideRouteChange);
 </script>
+{% endif %}
