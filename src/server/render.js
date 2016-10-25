@@ -7,8 +7,8 @@ import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
 import reducers from 'reducers';
 
-import mainRouter from 'routes';
-import widgetRouter from 'widgets/routes';
+import clientRouter from 'routers/client';
+import widgetRouter from 'routers/widget';
 
 import stringifyHeadData from 'server/stringifyHeadData';
 import baseAssetPath from 'server/baseAssetPath';
@@ -16,7 +16,7 @@ import baseAssetPath from 'server/baseAssetPath';
 import { PAGEVIEW_EVENT_NAME } from 'helpers/logPageview';
 
 const routerForView = {
-  index: mainRouter(),
+  index: clientRouter(),
   widget: widgetRouter()
 };
 

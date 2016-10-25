@@ -13,7 +13,6 @@
     {% endif %}
     {{ head.script | safe }}
     {{ head.style | safe }}
-    {% include 'assets/includes/head.html' %}
     {% include 'theme/includes/head.html' %}
   </head>
   <body>
@@ -21,6 +20,5 @@
   </body>
   <script>window.__INITIAL_STATE__={{ initialState | safe }}</script>
   <script src="{{ baseAssetPath }}/client.js"></script>
-  {% include 'assets/includes/scripts.html' %}
   {% include 'theme/includes/scripts.html' %}
 </html>

@@ -13,7 +13,7 @@ import { browserHistory } from 'react-router';
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import thunkMiddleware from 'redux-thunk';
 import reducers from 'reducers';
-import Routes from './routes';
+import Routes from 'routers/client';
 
 const initialState = window.__INITIAL_STATE__ || {};
 
