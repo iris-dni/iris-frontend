@@ -9,8 +9,10 @@ import reducers from 'reducers';
 import routes from 'routes';
 
 import stringifyHeadData from 'server/stringifyHeadData';
-import getBundles from 'server/getBundles';
+import baseAssetPath from 'server/baseAssetPath';
+
 import { PAGEVIEW_EVENT_NAME } from 'helpers/logPageview';
+
 /*
  * Note: this file contains server-side rendering logic, called from server.js.
  *
@@ -75,7 +77,8 @@ export default (request, reply, next) => {
             reactMarkup: reactString,
             initialState: JSON.stringify(initialState),
             head: stringifyHeadData(headData),
-            bundles: getBundles(),
+            baseAssetPath: baseAssetPath,
+            isProduction: process.env.NODE_ENV === 'production',
             pageViewEvent: PAGEVIEW_EVENT_NAME
           }));
         })

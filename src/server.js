@@ -1,7 +1,6 @@
 import { Server } from 'hapi';
 import NunjucksHapi from 'nunjucks-hapi';
 import render from 'server/render';
-import renderWidget from 'server/render-widget';
 import api from 'server/api';
 import httpAuthValidate from 'server/httpAuth';
 
@@ -86,18 +85,6 @@ server.views({
     html: NunjucksHapi
   },
   path: 'static/dist/'
-});
-
-/**
- * Serve all widget routes via react-router render method
- */
-server.route({
-  method: '*',
-  path: '/embed/{params*}',
-  config: {
-    auth: HTTP_AUTH_ENABLED ? 'simple' : null,
-    handler: renderWidget
-  }
 });
 
 /**

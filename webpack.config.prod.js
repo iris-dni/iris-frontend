@@ -80,8 +80,7 @@ var plugins = [
 
 module.exports = {
   entry: {
-    client: ['./src/client'],
-    widget: ['./src/widget']
+    client: ['./src/client']
   },
   cache: false,
   context: __dirname,
