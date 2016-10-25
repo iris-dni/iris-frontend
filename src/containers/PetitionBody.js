@@ -11,12 +11,14 @@ const mapStateToProps = ({ petition }) => ({
   description: petition.description,
   suggestedSolution: petition.suggested_solution,
   cityResponse: getCityResponse(petition),
-  links: petition.links || []
+  links: petition.links || [],
+  city: petition.city.data
 });
 
 PetitionBodyContainer.propTypes = {
   description: React.PropTypes.string,
   suggestedSolution: React.PropTypes.string,
+  city: React.PropTypes.object,
   cityResponse: React.PropTypes.object,
   links: React.PropTypes.arrayOf(React.PropTypes.object)
 };
