@@ -7,6 +7,7 @@ export default (petition, me) => ({
     // For TrustPublishForm
     owner: petitionOwned(petition) ? petition.owner : me || {}
   },
+  mobileConfirmed: me && me.mobile_trusted,
   petition: petition || {},
   me: me || {}
 });

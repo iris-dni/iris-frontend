@@ -7,7 +7,7 @@ export default ({ fieldId, label, hint, optional }) => (
   <div className={styles.root}>
     <label htmlFor={fieldId} className={styles.label}>
       {label} {optional &&
-        <span className={styles.optionalLabel}>{settings.optionalLabel}</span>
+        <span className={styles['optional-label']}>{settings.optionalLabel}</span>
       }
     </label>
     {hint &&

@@ -1,0 +1,23 @@
+@import 'globals';
+
+.root {
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  ul, ol {
+    margin: 1em 1.2em;
+  }
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  position: relative;
+}
+
+.icon {
+  margin-right: 10px;
+  margin-top: 0.2em;
+}

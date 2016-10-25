@@ -5,6 +5,7 @@ import getPetitionURL from 'helpers/getPetitionURL';
 import isUntrustedUser from 'helpers/isUntrustedUser';
 import isInvalidVerification from 'helpers/isInvalidVerification';
 import hasValidPublishUserData from 'helpers/hasValidPublishUserData';
+import getPetitionPath from 'helpers/getPetitionPath';
 
 import {
   CLEAR_PETITION,
@@ -144,7 +145,7 @@ export function publishPetition (trustData) {
 
 const publishPetitionSuccess = (id, data, dispatch) => {
   // Change route to petition
-  dispatch(push(`/petitions/${id}`));
+  dispatch(push(getPetitionPath(id)));
   // Dispatch modal confirmation
   dispatch(
     showModalWindow({

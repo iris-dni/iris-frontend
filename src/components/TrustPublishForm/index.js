@@ -1,5 +1,6 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
+import settings from 'settings';
 import { updatePetition } from 'actions/PetitionActions';
 import trustPublishValidator from 'form/trustPublishValidator';
 import assignPetitionData from 'form/assignPetitionData';
@@ -27,13 +28,13 @@ const TrustPublishForm = ({
       />
     </Fieldset>
     <Fieldset modifier={'actions'}>
-      <ButtonSet>
+      <ButtonSet equal>
         <ButtonLink
           href={`/petitions/${petition.id}/edit`}
-          text={'Edit petition'}
+          text={settings.trustPage.publish.backButton}
         />
         <Button
-          text={'Preview petition'}
+          text={settings.trustPage.publish.nextButton}
           modifier={'accent'}
           disabled={submitting || !fields._meta.allValid}
         />

@@ -15,11 +15,12 @@ const Petitions = (props) => (
       <div className={styles['header-wrapper']}>
         <AdSlot type='wideboard' />
         <Header padding>
-          <PageTitle
-            title={props.title}
-            centered
-          />
-
+          <div className={props.isLoading ? styles.loading : styles.wrap}>
+            <PageTitle
+              title={props.title}
+              centered
+            />
+          </div>
           <PetitionsFilters {...props} />
         </Header>
       </div>

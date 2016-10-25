@@ -1,9 +1,3 @@
-export default ({ groupedPetitions }) => {
-  Object.keys(groupedPetitions).forEach((group) => {
-    if (groupedPetitions[group].length) {
-      return true;
-    }
-  });
+import { every } from 'lodash/collection';
 
-  return false;
-};
+export default ({ groupedPetitions }) => every(groupedPetitions, item => item.data.length);

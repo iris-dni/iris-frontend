@@ -1,6 +1,7 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import { supportPetition, resendVerification } from 'actions/SupportActions';
+import settings from 'settings';
+import { supportPetition } from 'actions/SupportActions';
 import trustSupportConfirmationValidator from 'form/trustSupportConfirmationValidator';
 import assignUserAndPetitionData from 'form/assignUserAndPetitionData';
 import Fieldset from 'components/Fieldset';
@@ -15,7 +16,7 @@ import hasValidSupportUserData from 'helpers/hasValidSupportUserData';
 const TrustSupportConfirmationForm = ({
   fields,
   handleSubmit,
-  resendVerification,
+  supportPetition,
   me,
   petition,
   submitting
@@ -30,19 +31,13 @@ const TrustSupportConfirmationForm = ({
       />
     </Fieldset>
     <Fieldset modifier={'actions'}>
-      <ButtonSet>
+      <ButtonSet equal>
         <ButtonLink
           href={`/trust/support/${petition.id}`}
-          text={'Back to details'}
+          text={settings.trustConfirmationForm.backButton}
         />
         <Button
-          onClick={() => resendVerification(petition, me)}
-          disabled={!hasValidSupportUserData(me) || (petition.isLoading && !submitting)}
-          type={'button'}
-          text={'Re-send SMS'}
-        />
-        <Button
-          text={'Complete verification'}
+          text={settings.trustConfirmationForm.saveButton}
           modifier={'accent'}
           disabled={!hasValidSupportUserData(me) || submitting || !fields._meta.allValid}
         />
@@ -54,7 +49,7 @@ const TrustSupportConfirmationForm = ({
 TrustSupportConfirmationForm.propTypes = {
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
-  resendVerification: React.PropTypes.func.isRequired,
+  supportPetition: React.PropTypes.func.isRequired,
   petition: React.PropTypes.object.isRequired,
   me: React.PropTypes.object.isRequired,
   submitting: React.PropTypes.bool.isRequired
@@ -63,7 +58,7 @@ TrustSupportConfirmationForm.propTypes = {
 export const mapStateToProps = ({ petition, me }) => trustForm(petition, me);
 
 export const mapDispatchToProps = (dispatch) => ({
-  resendVerification: (petition, user) => dispatch(resendVerification({ petition, user }))
+  supportPetition: (trustData) => dispatch(supportPetition(trustData))
 });
 
 export default reduxForm({

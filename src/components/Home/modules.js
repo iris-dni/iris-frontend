@@ -7,7 +7,7 @@ import HomepagePetitions from 'containers/HomepagePetitions';
 export default [
   {
     component: Hero,
-    props: {...settings.homePage.hero}
+    props: settings.homePage.hero
   },
   {
     component: AdSlot,
@@ -17,10 +17,10 @@ export default [
   },
   {
     component: HomepagePetitions,
-    props: {...settings.trendingPetitions}
+    props: settings.trendingPetitions
   },
   {
     component: CreateCTA,
-    props: {...settings.createCTA}
+    props: settings.createCTA
   }
 ];

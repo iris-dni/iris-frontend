@@ -8,7 +8,7 @@ import getPetitionForm from 'selectors/petitionForm';
 
 const TrustPublishContainer = (props) => (
   <div>
-    <Helmet title={settings.trustPage.title} />
+    <Helmet title={settings.trustPage.publish.title} />
     <Trust {...props} action={'publish'} />
   </div>
 );

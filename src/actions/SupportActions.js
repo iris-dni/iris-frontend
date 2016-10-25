@@ -4,6 +4,7 @@ import petitionRepository from 'services/api/repositories/petition';
 import getPetitionURL from 'helpers/getPetitionURL';
 import isUntrustedUser from 'helpers/isUntrustedUser';
 import isInvalidVerification from 'helpers/isInvalidVerification';
+import getPetitionPath from 'helpers/getPetitionPath';
 
 import {
   SUBMITTING_SUPPORT,
@@ -41,7 +42,7 @@ export function supportPetition (trustData, dispatch) {
 
 const supportPetitionSuccess = (id, data, dispatch) => {
   // Change route to petition
-  dispatch(push(`/petitions/${id}`));
+  dispatch(push(getPetitionPath(id)));
   // Dispatch modal confirmation
   dispatch(
     showModalWindow({
