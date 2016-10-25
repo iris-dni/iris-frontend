@@ -12,7 +12,7 @@ import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import thunkMiddleware from 'redux-thunk';
-import reducers from 'reducers';
+import reducers from 'reducers/client';
 import Routes from 'routers/client';
 
 const initialState = window.__INITIAL_STATE__ || {};

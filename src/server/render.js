@@ -5,19 +5,30 @@ import { match, RouterContext } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
-import reducers from 'reducers';
-
-import clientRouter from 'routers/client';
-import widgetRouter from 'routers/widget';
 
 import stringifyHeadData from 'server/stringifyHeadData';
 import baseAssetPath from 'server/baseAssetPath';
 
 import { PAGEVIEW_EVENT_NAME } from 'helpers/logPageview';
 
+/*
+ * Define routing and reducers for each of our
+ * entry points (main site, and widget for now)
+ */
+import clientReducer from 'reducers/client';
+import clientRouter from 'routers/client';
+
+import widgetReducer from 'reducers/widget';
+import widgetRouter from 'routers/widget';
+
 const routerForView = {
   index: clientRouter(),
   widget: widgetRouter()
+};
+
+const reducerForView = {
+  index: clientReducer,
+  widget: widgetReducer
 };
 
 /*
@@ -56,7 +67,7 @@ export default (request, reply, viewName) => {
 
       // Create our store
       const store = createStore(
-        reducers,
+        reducerForView[viewName],
         initialState,
         applyMiddleware(thunkMiddleware)
       );
