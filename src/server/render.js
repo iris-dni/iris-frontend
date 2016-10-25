@@ -5,12 +5,32 @@ import { match, RouterContext } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
-import reducers from 'reducers';
-import routes from 'routes';
 
 import stringifyHeadData from 'server/stringifyHeadData';
-import getBundles from 'server/getBundles';
+import baseAssetPath from 'server/baseAssetPath';
+
 import { PAGEVIEW_EVENT_NAME } from 'helpers/logPageview';
+
+/*
+ * Define routing and reducers for each of our
+ * entry points (main site, and widget for now)
+ */
+import clientReducer from 'reducers/client';
+import clientRouter from 'routers/client';
+
+import widgetReducer from 'reducers/widget';
+import widgetRouter from 'routers/widget';
+
+const routerForView = {
+  index: clientRouter(),
+  widget: widgetRouter()
+};
+
+const reducerForView = {
+  index: clientReducer,
+  widget: widgetReducer
+};
+
 /*
  * Note: this file contains server-side rendering logic, called from server.js.
  *
@@ -27,8 +47,14 @@ import { PAGEVIEW_EVENT_NAME } from 'helpers/logPageview';
  * to pre-fill the Redux store with data for that route.
  */
 
-export default (request, reply, next) => {
-  match({ routes: routes(), location: { pathname: request.path, query: request.query } }, (error, redirectLocation, renderProps) => {
+export default (request, reply, viewName) => {
+  match({
+    routes: routerForView[viewName],
+    location: {
+      pathname: request.path,
+      query: request.query
+    }
+  }, (error, redirectLocation, renderProps) => {
     if (redirectLocation) {
       reply.redirect(redirectLocation.pathname + redirectLocation.search).code(301);
     } else if (error) {
@@ -41,7 +67,7 @@ export default (request, reply, next) => {
 
       // Create our store
       const store = createStore(
-        reducers,
+        reducerForView[viewName],
         initialState,
         applyMiddleware(thunkMiddleware)
       );
@@ -71,11 +97,12 @@ export default (request, reply, next) => {
           const initialState = store.getState();
 
           // Render Nunjucks view with required data
-          return reply.view('index', Object.assign({}, {
+          return reply.view(viewName, Object.assign({}, {
             reactMarkup: reactString,
             initialState: JSON.stringify(initialState),
             head: stringifyHeadData(headData),
-            bundles: getBundles(),
+            baseAssetPath: baseAssetPath,
+            isProduction: process.env.NODE_ENV === 'production',
             pageViewEvent: PAGEVIEW_EVENT_NAME
           }));
         })

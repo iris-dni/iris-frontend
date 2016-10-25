@@ -92,10 +92,19 @@ server.views({
  */
 server.route({
   method: '*',
+  path: '/embed/{params*}',
+  config: {
+    auth: HTTP_AUTH_ENABLED ? 'simple' : null,
+    handler: (req, res, next) => render(req, res, 'widget')
+  }
+});
+
+server.route({
+  method: '*',
   path: '/{params*}',
   config: {
     auth: HTTP_AUTH_ENABLED ? 'simple' : null,
-    handler: render
+    handler: (req, res, next) => render(req, res, 'index')
   }
 });
 

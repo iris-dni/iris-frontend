@@ -9,24 +9,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router';
-import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import thunkMiddleware from 'redux-thunk';
-import reducers from 'reducers/client';
-import Routes from 'routers/client';
+import reducers from 'reducers/widget';
+import Routes from 'routers/widget';
 
 const initialState = window.__INITIAL_STATE__ || {};
 
 const store = createStore(
   reducers,
   initialState,
-  applyMiddleware(
-    routerMiddleware(browserHistory),
-    thunkMiddleware
-  )
+  applyMiddleware(thunkMiddleware)
 );
-
-syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render((
   <Provider store={store}>

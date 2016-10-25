@@ -9,16 +9,16 @@
     {{ head.link | safe }}
     {% include 'theme/includes/webfonts.html' %}
     {% if isProduction %}
-      <link rel="stylesheet" href="{{ baseAssetPath }}/client.css"/>
+      <link rel="stylesheet" href="{{ baseAssetPath }}/widget.css"/>
     {% endif %}
     {{ head.script | safe }}
     {{ head.style | safe }}
-    {% include 'theme/includes/head.html' %}
+    {% include 'theme/includes/widget/head.html' %}
   </head>
   <body>
     <div id="app" class="app-wrapper">{{ reactMarkup | safe }}</div>
   </body>
   <script>window.__INITIAL_STATE__={{ initialState | safe }}</script>
-  <script src="{{ baseAssetPath }}/client.js"></script>
-  {% include 'theme/includes/scripts.html' %}
+  <script src="{{ baseAssetPath }}/widget.js"></script>
+  {% include 'theme/includes/widget/scripts.html' %}
 </html>
