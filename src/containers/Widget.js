@@ -5,7 +5,6 @@ import ReactGA from 'react-ga';
 import WidgetLayout from 'views/Widget';
 
 const App = React.createClass({
-
   componentDidMount () {
     const { googleAnalytics } = settings;
 
