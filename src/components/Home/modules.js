@@ -1,7 +1,7 @@
 import settings from 'settings';
 import Hero from 'components/Hero';
 import CreateCTA from 'components/CreateCTA';
-import AdSlot from 'components/AdSlot';
+import AdSlot from 'containers/AdSlot';
 import HomepagePetitions from 'containers/HomepagePetitions';
 
 export default [
@@ -12,10 +12,8 @@ export default [
   {
     component: AdSlot,
     props: {
-      type: 'wideboard',
-      currentCity: {}
+      type: 'wideboard'
     }
-
   },
   {
     component: HomepagePetitions,

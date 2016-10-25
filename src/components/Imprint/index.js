@@ -6,15 +6,13 @@ import CreateCTA from 'components/CreateCTA';
 import Header from 'components/Header';
 import ImprintDetails from 'components/ImprintDetails';
 import PlatformSupporters from 'components/PlatformSupporters';
-import AdSlot from 'components/AdSlot';
+import AdSlot from 'containers/AdSlot';
 
 import hasPlatformSupporters from 'helpers/hasPlatformSupporters';
 
 const Imprint = () => (
   <article>
-    <AdSlot
-      type='wideboard'
-    />
+    <AdSlot type='wideboard' />
     {hasPlatformSupporters(settings) &&
       <section>
         <Container>
