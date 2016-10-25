@@ -26,6 +26,7 @@ export default [
     name: 'user.zip',
     label: settings.trustFields.zip.label,
     hint: settings.trustFields.zip.hint,
+    half: true,
     html: {
       placeholder: settings.trustFields.zip.placeholder
     }
@@ -35,6 +36,7 @@ export default [
     name: 'user.town',
     label: settings.trustFields.town.label,
     hint: settings.trustFields.town.hint,
+    half: true,
     html: {
       placeholder: settings.trustFields.town.placeholder
     }

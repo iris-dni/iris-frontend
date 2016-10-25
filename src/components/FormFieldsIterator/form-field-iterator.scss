@@ -1,0 +1,42 @@
+@import 'globals';
+
+.root {
+  @include clearfix;
+
+  @include media('<=form-switch') {
+    margin-left: -20px;
+  }
+
+  @include media('>form-switch') {
+    margin-left: -55px;
+  }
+}
+
+.shared {
+  float: left;
+
+  @include media('<=form-switch') {
+    padding-left: 20px;
+  }
+
+  @include media('>form-switch') {
+    padding-left: 55px;
+  }
+}
+
+.field {
+  composes: shared;
+  width: 100%;
+}
+
+.field-half {
+  composes: shared;
+
+  @include media('<=text-boost') {
+    width: 100%;
+  }
+
+  @include media('>text-boost') {
+    width: 50%;
+  }
+}

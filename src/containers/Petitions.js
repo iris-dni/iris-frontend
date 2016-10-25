@@ -15,7 +15,7 @@ import { clearSuggestionInputValue } from 'actions/AutocompleteActions';
 import Petitions from 'components/Petitions';
 import getPetitions from 'selectors/petitions';
 
-const PetitionsContainer = withRouter(React.createClass({
+const PetitionsContainer = React.createClass({
   componentWillMount () {
     // If there are no petitions, or if the user arrived on the page by clicking
     // a client-side router link, then we fetch petitions client-side.
@@ -32,14 +32,11 @@ const PetitionsContainer = withRouter(React.createClass({
     // selected the suggestion.
     if (!isEqual(this.props.params, nextProps.params) ||
         !isEqual(this.props.location.query, nextProps.location.query)) {
-      // Handles edge case of clicking on the logo, which doesn’t trigger a PUSH
-      // or a component unmount.
-      if (nextProps.location.action === 'REPLACE') {
+      if (isClientSideRouting(this.props.location)) {
         this.props.clearSuggestionInputValue();
         this.props.updateCurrentCity({});
+        this.props.fetchPetitions(nextProps);
       }
-
-      this.props.fetchPetitions(nextProps);
     }
   },
 
@@ -56,7 +53,7 @@ const PetitionsContainer = withRouter(React.createClass({
       </div>
     );
   }
-}));
+});
 
 PetitionsContainer.fetchData = ({ store, location, params }) => {
   return store.dispatch(fetchPetitionsAndCity({ location, params }));
@@ -86,7 +83,7 @@ export const mapDispatchToProps = (dispatch) => ({
   updateCurrentCity: (city) => dispatch(updateCurrentCity(city))
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(PetitionsContainer);
+)(PetitionsContainer));

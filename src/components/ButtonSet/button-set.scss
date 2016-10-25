@@ -4,8 +4,13 @@
   display: block;
 }
 
+.equalise {
+  @include clearfix;
+}
+
 .button {
   margin-bottom: 15px;
+  text-align: center;
 
   @include media('>text-boost') {
     display: inline-block;
@@ -15,6 +20,12 @@
 
 .button:first-child {
   margin-left: 0;
+}
+
+.equalise .button:first-child {
+  @include media('>text-boost') {
+    float: left;
+  }
 }
 
 .button > * {

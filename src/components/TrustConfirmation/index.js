@@ -1,25 +1,68 @@
 import React from 'react';
+import styles from './trust-confirmation.scss';
 import settings from 'settings';
-import FormLayout from 'components/FormLayout';
+import Container from 'components/Container';
+import Link from 'components/Link';
+import Section from 'components/Section';
+import Paragraph from 'components/Paragraph';
+import MarkdownParagraph from 'components/MarkdownParagraph';
+import TextCenter from 'components/TextCenter';
+import FormWrapper from 'components/FormWrapper';
+import FormHeader from 'components/FormHeader';
 import TrustSupportConfirmationForm from 'components/TrustSupportConfirmationForm';
 import TrustPublishConfirmationForm from 'components/TrustPublishConfirmationForm';
+import TrustFlow from 'components/TrustFlow';
+
+const generateIntroText = (me) => {
+  return settings.trustConfirmationPage.intro
+    .replace('%u', me.firstname)
+    .replace('%n', me.mobile);
+};
 
 const TrustConfirmation = ({
+  petition,
   me,
-  action
+  resendVerification,
+  action,
+  introText
 }) => (
-  <FormLayout
-    title={settings.trustConfirmationPage.title}
-    intro={settings.trustConfirmationPage.intro}>
-    <p>Thanks {me.firstname}, we sent an SMS verification code to <b>{me.mobile}</b></p>
-    {action === 'support' &&
-      <TrustSupportConfirmationForm />
-    }
-    {action === 'publish' &&
-      <TrustPublishConfirmationForm />
-    }
-  </FormLayout>
-);
+  <div>
+    <Container>
+      <TextCenter>
+        <FormHeader title={settings.trustConfirmationPage.title} />
+      </TextCenter>
+    </Container>
+    <Section theme={'grey'}>
+      <Container>
+        <div className={styles.form}>
+          <FormWrapper>
+            <MarkdownParagraph
+              text={generateIntroText(me)}
+              margin='no-margin'
+            />
+            <Paragraph>
+              <Link onClick={() => resendVerification(petition, me)}>{settings.trustConfirmationPage.resendLink}</Link>
+            </Paragraph>
+            <MarkdownParagraph
+              text={settings.trustConfirmationPage.instructions}
+            />
+            {action === 'support' &&
+              <TrustSupportConfirmationForm />
+            }
+            {action === 'publish' &&
+              <TrustPublishConfirmationForm />
+            }
+          </FormWrapper>
+        </div>
+      </Container>
+    </Section>
+    <Container>
+      <FormWrapper>
+        <TrustFlow action={action} />
+      </FormWrapper>
+    </Container>
+  </div>
+  );
 
 TrustConfirmation.propTypes = {
   action: React.PropTypes.oneOf([

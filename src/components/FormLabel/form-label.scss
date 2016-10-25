@@ -19,10 +19,19 @@
 
 .hint {
   @include map-declarations($form-hint-defaults, $form-hint-custom);
-  margin-top: 2px;
+  margin-top: 3px;
+  font-size: 15px;
   display: block;
 
   @include media('<=text-boost') {
     font-size: 14px;
   }
+}
+
+.optional-label {
+  font-size: 15px;
+  color: color('dimmed');
+  margin-left: 5px;
+  display: inline-block;
+  vertical-align: middle;
 }

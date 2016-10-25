@@ -11,7 +11,7 @@ const PreviewPetitionContainer = withRouter(React.createClass({
   render () {
     return (
       <div>
-        <Helmet title={settings.editPetitionPage.title} />
+        <Helmet title={settings.previewPetitionPage.title} />
         <PreviewPetition {...this.props} />
       </div>
     );

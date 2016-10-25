@@ -10,13 +10,13 @@ const PetitionActions = ({ petition, actions }) => (
     <ButtonSet>
       <ButtonLink
         href={`/petitions/${petition.id}/edit`}
-        text={'Edit petition'}
+        text={settings.previewPetitionPage.editButton}
       />
       <Button
         type={'button'}
         modifier={'accent'}
         onClick={actions.publishPetition && (() => actions.publishPetition({ petition }))}
-        text={settings.previewPetitionPage.publishButton.text}
+        text={settings.previewPetitionPage.publishButton}
         disabled={petition.isLoading}
       />
     </ButtonSet>

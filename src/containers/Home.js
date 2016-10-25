@@ -11,7 +11,6 @@ import getPetitionsGroupsList from 'helpers/getPetitionsGroupsList';
 const PETITIONS_GROUPS = getPetitionsGroupsList();
 
 const HomeContainer = React.createClass({
-
   componentWillMount () {
     // If there are no petitions, or if the user arrived on the page by clicking
     // a client-side router link, then we fetch petitions client-side.
@@ -30,10 +29,8 @@ const HomeContainer = React.createClass({
   }
 });
 
-HomeContainer.fetchData = (props) => {
-  const { store } = props;
-
-  return store.dispatch(fetchGroupedPetitions(props, PETITIONS_GROUPS));
+HomeContainer.fetchData = ({ store }) => {
+  return store.dispatch(fetchGroupedPetitions(store, PETITIONS_GROUPS));
 };
 
 HomeContainer.propTypes = {

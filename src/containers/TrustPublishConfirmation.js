@@ -1,6 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import { resendVerification } from 'actions/PetitionActions';
 import settings from 'settings';
 import TrustConfirmation from 'components/TrustConfirmation';
 
@@ -12,13 +13,20 @@ const TrustPublishConfirmationContainer = (props) => (
 );
 
 export const mapStateToProps = ({ petition }) => ({
+  petition,
   me: petition.owner
 });
 
+export const mapDispatchToProps = (dispatch) => ({
+  resendVerification: (petition, user) => dispatch(resendVerification({ petition, user }))
+});
+
 TrustPublishConfirmationContainer.propTypes = {
+  petition: React.PropTypes.object.isRequired,
   me: React.PropTypes.object.isRequired
 };
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(TrustPublishConfirmationContainer);
