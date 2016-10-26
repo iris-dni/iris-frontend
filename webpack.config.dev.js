@@ -21,8 +21,7 @@ var loaders = [
   },
   {
     test: /\.s?css/,
-    loaders: ['style', cssloader, 'postcss', 'sass'],
-    exclude: /node_modules/
+    loaders: ['style', cssloader, 'postcss', 'sass']
   }
 ];
 
@@ -41,18 +40,14 @@ config.cache = true;
 config.devtool = 'eval';
 config.pathinfo = true;
 config.devServer = devServer;
-config.entry.unshift(
+config.entry.client.unshift(
   'webpack-dev-server/client?http://localhost:8080',
   'webpack/hot/only-dev-server'
 );
-// config.entry.client.unshift(
-//   'webpack-dev-server/client?http://localhost:8080',
-//   'webpack/hot/only-dev-server'
-// );
-// config.entry.widget.unshift(
-//   'webpack-dev-server/client?http://localhost:8080',
-//   'webpack/hot/only-dev-server'
-// );
+config.entry.widget.unshift(
+  'webpack-dev-server/client?http://localhost:8080',
+  'webpack/hot/only-dev-server'
+);
 config.output.publicPath = 'http://localhost:8080/dist/';
 config.output.hotUpdateMainFilename = 'update/[hash]/update.json';
 config.output.hotUpdateChunkFilename = 'update/[hash]/[id].update.js';

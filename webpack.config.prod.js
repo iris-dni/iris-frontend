@@ -75,23 +75,20 @@ var plugins = [
   }),
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.OccurenceOrderPlugin(),
-  // new ExtractTextPlugin('[name].css')
-  new ExtractTextPlugin('client.css')
+  new ExtractTextPlugin('[name].css')
 ];
 
 module.exports = {
-  entry: ['./src/client'],
-  // entry: {
-  //   client: ['./src/client'],
-  //   widget: ['./src/widget']
-  // },
+  entry: {
+    client: ['./src/client'],
+    widget: ['./src/widget']
+  },
   cache: false,
   context: __dirname,
   devtool: false,
   output: {
     path: path.join(__dirname, 'static/dist'),
-    // filename: '[name].js',
-    filename: 'client.js',
+    filename: '[name].js',
     chunkFilename: '[name]-[id].js',
     publicPath: 'dist/'
   },
