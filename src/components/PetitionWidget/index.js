@@ -2,18 +2,19 @@ import React from 'react';
 import styles from './petition-widget.scss';
 import Container from 'components/Container';
 import Section from 'components/Section';
-
-import PetitionHeader from 'containers/PetitionHeader';
+import WidgetSupportButton from 'containers/widget/WidgetSupportButton';
+import PetitionWidgetHeader from 'containers/widget/PetitionWidgetHeader';
 import PetitionFooter from 'containers/PetitionFooter';
 
 const PetitionWidget = () => (
   <article className={styles.root}>
-    <Section theme={'grey'}>
+    <Section>
       <Container>
-        <PetitionHeader />
+        <PetitionWidgetHeader />
+        <WidgetSupportButton />
       </Container>
     </Section>
-    <Section theme={'grey-lightest'}>
+    <Section>
       <Container>
         <PetitionFooter />
       </Container>
