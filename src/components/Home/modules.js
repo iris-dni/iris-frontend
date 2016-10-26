@@ -11,6 +11,7 @@ export default [
   {
     component: AdSlot,
     props: {
+      context: 'home',
       type: 'wideboard'
     }
   },

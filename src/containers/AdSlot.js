@@ -1,19 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AdSlot from 'components/AdSlot';
-import getCityDataForRoute from 'helpers/getCityDataForRoute';
+import getTagsForContext from 'helpers/getTagsForContext';
 
 const AdSlotContainer = (props) => (
   <AdSlot {...props} />
 );
 
-export const mapStateToProps = (state, ownProps) => ({
-  tags: getCityDataForRoute(state),
-  type: ownProps.type
+export const mapStateToProps = (state, props) => ({
+  tags: getTagsForContext(state, props.context),
+  type: props.type
 });
 
 AdSlotContainer.propTypes = {
-  tags: React.PropTypes.array,
+  tags: React.PropTypes.string,
   type: React.PropTypes.string.isRequired
 };
 

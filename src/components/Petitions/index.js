@@ -13,7 +13,7 @@ const Petitions = (props) => (
   <Container>
     <section>
       <div className={styles['header-wrapper']}>
-        <AdSlot type='wideboard' />
+        <AdSlot context={'petitions'} type='wideboard' />
         <Header padding>
           <div className={props.isLoading ? styles.loading : styles.wrap}>
             <PageTitle

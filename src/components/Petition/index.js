@@ -22,7 +22,7 @@ const Petition = ({ preview, city }) => (
         <PetitionHeader />
       </Container>
     </Section>
-    <AdSlot type='wideboard' />
+    <AdSlot context={'petition'} type={'wideboard'} />
     <Container>
       <LayoutWrap>
         <LayoutContent>
