@@ -66,6 +66,7 @@
     "nunjucks-hapi": "^2.1.0",
     "piping": "^0.3.2",
     "postcss-loader": "^0.9.1",
+    "postmate": "^1.1.4",
     "progressbar.js": "^1.0.1",
     "react": "^15.2.0",
     "react-autosuggest": "^6.0.2",
