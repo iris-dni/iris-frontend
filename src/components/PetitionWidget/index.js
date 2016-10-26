@@ -8,13 +8,13 @@ import PetitionFooter from 'containers/PetitionFooter';
 
 const PetitionWidget = () => (
   <article className={styles.root}>
-    <Section theme={'grey'}>
+    <Section>
       <Container>
         <PetitionWidgetHeader />
         <WidgetSupportButton />
       </Container>
     </Section>
-    <Section theme={'grey-lightest'}>
+    <Section>
       <Container>
         <PetitionFooter />
       </Container>
