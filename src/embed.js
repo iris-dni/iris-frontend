@@ -1,6 +1,10 @@
 import Postmate from 'postmate';
 import baseUrl from 'helpers/baseUrl';
 
+const container = document.getElementById('petition-widget');
+const id = container.dataset.petitionId;
+const url = `${baseUrl()}/embed/${id}`;
+
 const setIframeAttributes = (child) => {
   child.frame.setAttribute('width', '100%');
   child.frame.setAttribute('frameborder', 0);
@@ -18,8 +22,8 @@ const fetchHeight = (child) => {
 
 // Kick off the handshake with the iFrame
 const handshake = new Postmate({
-  container: document.getElementById('petition-widget'), // Element to inject frame into
-  url: `${baseUrl()}/embed/7k3vv` // Page to load, must have postmate.js. This will also be the origin used for communication.
+  container, // Element to inject frame into
+  url // Page to load, must have postmate.js. This will also be the origin used for communication.
 });
 
 // When parent <-> child handshake is complete, data may be requested from the child
