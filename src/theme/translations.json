@@ -73,8 +73,7 @@
   "createCTA": {
     "title": "Create a new petition",
     "text": "This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.",
-    "buttonText": "Create Petition",
-    "background": "/dist/assets/images/cta-bg.jpg"
+    "buttonText": "Create Petition"
   },
   "respondToPetitionPage": {
     "title": "Response Form",
@@ -112,8 +111,7 @@
     "hero": {
       "title": "Your platform enabling local change",
       "missionTitle": "Our mission",
-      "missionDescription": "Empower people to make change in their local communities. We want to give you the chance to be heard, make your cause known, and to gather supporters. We promise to follow up any successful petitions with a letter to your local representative. And, on top of that, your petition might even be selected to be covered by any of our news outlets.",
-      "background": "/dist/assets/images/hero-bg.jpg"
+      "missionDescription": "Empower people to make change in their local communities. We want to give you the chance to be heard, make your cause known, and to gather supporters. We promise to follow up any successful petitions with a letter to your local representative. And, on top of that, your petition might even be selected to be covered by any of our news outlets."
     }
   },
   "trendingPetitions": {
@@ -254,10 +252,6 @@
   },
   "modalWindow": {
     "closeButton": "Close this dialog window"
-  },
-  "auth": {
-    "afterLoginPath": "/",
-    "afterLogoutPath": "/"
   },
   "loginPage": {
     "title": "Please log in",
