@@ -7,12 +7,12 @@ import PetitionInfo from 'containers/PetitionInfo';
 import PetitionProgress from 'containers/PetitionProgress';
 import PetitionStats from 'containers/PetitionStats';
 
-const PetitionHeader = ({ title }) => (
+const PetitionHeader = ({ title, isWidget }) => (
   <Header padding>
     <div className={styles.tags}>
       <PetitionTags />
     </div>
-    <PageTitle title={title} />
+    <PageTitle title={title} isWidget={isWidget} />
     <div className={styles.info}>
       <PetitionInfo />
       <PetitionProgress />
