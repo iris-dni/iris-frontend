@@ -33,5 +33,5 @@ handshake.then(child => {
   fetchHeight(child);
 
   // Listen to a particular event from the child
-  child.on('resize', data => console.log(data)); // Logs "Hello, World!"
+  child.on('resize', () => fetchHeight(child));
 });
