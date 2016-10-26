@@ -1,7 +1,6 @@
 import Postmate from 'postmate';
 
 export default (widget) => {
-  console.log(widget.scrollHeight);
   const handshake = new Postmate.Model({
     height: () => widget.scrollHeight
   });

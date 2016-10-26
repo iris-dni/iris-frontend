@@ -1,9 +1,9 @@
 import Postmate from 'postmate';
-import baseUrl from 'helpers/baseUrl';
+import getPetitionEmbedUrl from 'helpers/getPetitionEmbedUrl';
 
 const container = document.getElementById('petition-widget');
 const id = container.dataset.petitionId;
-const url = `${baseUrl()}/embed/${id}`;
+const url = getPetitionEmbedUrl(id);
 
 const setIframeAttributes = (child) => {
   child.frame.setAttribute('width', '100%');
@@ -14,7 +14,8 @@ const setIframeAttributes = (child) => {
 };
 
 const fetchHeight = (child) => {
-  child.get('height')
+  child
+    .get('height')
     .then(height =>
       (child.frame.style.height = `${height}px`)
     );
