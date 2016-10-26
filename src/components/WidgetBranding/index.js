@@ -6,7 +6,7 @@ import styles from './widget-branding.scss';
 
 const WidgetBranding = () => (
   <div className={styles.root}>
-    <span className={styles.text}>This petition is shared via </span>
+    <span className={styles.text}>{settings.widgetLink.text} </span>
     <span className={styles.link}>
       <Link
         href={baseUrl()}

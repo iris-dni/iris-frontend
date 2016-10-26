@@ -433,5 +433,8 @@ export default {
   ],
   footer: {
     copyright: 'Copyright \u00A9 2016 Iris'
+  },
+  widgetLink: {
+    text: 'This petition is shared via'
   }
 };
