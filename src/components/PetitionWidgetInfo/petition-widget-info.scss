@@ -11,6 +11,7 @@
 .shared {
   margin-bottom: 6px;
 
+  // TODO Set this using className modifier when iframe knows width.
   @include media('>petition-header') {
     display: inline-block;
   }
@@ -19,6 +20,7 @@
 .item {
   composes: shared;
 
+  // TODO Set this using className modifier when iframe knows width.
   @include media('>petition-header') {
     margin-right: 80px;
   }
