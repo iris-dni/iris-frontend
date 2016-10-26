@@ -13,6 +13,7 @@ const WidgetSupportButton = ({ petition }) => (
         text={settings.petitionPage.supportButton.text}
         block
         external
+        newTab
         modifier={'accent'}
       />
     </TextCenter>

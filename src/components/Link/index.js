@@ -7,7 +7,9 @@ const createAttrs = (props) => ({
   className: (props.className || styles.root),
   onClick: props.onClick
       ? (e) => { e.preventDefault(); props.onClick(e); }
-      : () => {}
+      : () => {},
+  target: props.newTab && props.external ? '_blank' : null,
+  rel: props.newTab && props.external ? 'noopener' : null
 });
 
 const Link = (props) => (
