@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Router, browserHistory } from 'react-router';
 import logPageview from 'helpers/logPageview';
-import WidgetApp from 'containers/Widget';
-import PetitionWidget from 'containers/PetitionWidget';
+import WidgetApp from 'containers/widget/WidgetApp';
+import PetitionWidget from 'containers/widget/PetitionWidget';
 
 export default (props = {}) => (
   <Router history={browserHistory} onUpdate={logPageview}>

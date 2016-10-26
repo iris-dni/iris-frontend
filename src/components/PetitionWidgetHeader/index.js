@@ -1,18 +1,18 @@
 import React from 'react';
-import styles from './petition-header.scss';
+import styles from './petition-widget-header.scss';
 import Header from 'components/Header';
-import PageTitle from 'components/PageTitle';
+import WidgetTitle from 'components/WidgetTitle';
 import PetitionTags from 'containers/PetitionTags';
 import PetitionInfo from 'containers/PetitionInfo';
 import PetitionProgress from 'containers/PetitionProgress';
 import PetitionStats from 'containers/PetitionStats';
 
-const PetitionHeader = ({ title }) => (
+const PetitionWidgetHeader = ({ title }) => (
   <Header padding>
     <div className={styles.tags}>
       <PetitionTags />
     </div>
-    <PageTitle title={title} />
+    <WidgetTitle title={title} />
     <div className={styles.info}>
       <PetitionInfo />
       <PetitionProgress />
@@ -21,4 +21,4 @@ const PetitionHeader = ({ title }) => (
   </Header>
 );
 
-export default PetitionHeader;
+export default PetitionWidgetHeader;
