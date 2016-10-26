@@ -1,10 +1,10 @@
 import settings from 'settings';
 import isLink from 'helpers/isLink';
 
-export default function (currentValue, links) {
+export default (currentValue, links, config) => {
   let error = '';
   const LINKS_SETTINGS = settings.petitionFields.links;
-  const MAX_LINKS = LINKS_SETTINGS.maxLinks;
+  const MAX_LINKS = config.maxItems;
 
   if (!isLink(currentValue)) {
     error = LINKS_SETTINGS.invalidLinkFormat;
@@ -15,4 +15,4 @@ export default function (currentValue, links) {
   }
 
   return error;
-}
+};

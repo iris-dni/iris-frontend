@@ -206,15 +206,13 @@ export default {
       removeLinkLabel: 'Remove link',
       placeholder: 'http://',
       hint: 'Include up to 3 links that support your petition.',
-      maxLinks: 3,
       invalidLinkFormat: 'This is not a valid link',
       invalidLinkCount: 'You can’t add more than %x links',
       invalidSimilarLink: 'You can only add unique links'
     },
     image: {
       label: 'Image',
-      hint: 'Add an image to your petition',
-      accept: 'image/*'
+      hint: 'Add an image to your petition'
     }
   },
   publishedPetition: {

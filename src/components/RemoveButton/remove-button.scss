@@ -1,0 +1,21 @@
+@import 'globals';
+
+.root {
+  padding: 9px;
+  background-color: color('black');
+  border-radius: 50%;
+  z-index: 10;
+  outline: none;
+  transition: background-color 250ms;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: color('error');
+  }
+}
+
+.label {
+  @include visuallyhidden;
+}
+

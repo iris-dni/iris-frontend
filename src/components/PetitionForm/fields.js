@@ -56,7 +56,7 @@ export default [
     name: 'links',
     label: settings.petitionFields.links.label,
     hint: settings.petitionFields.links.hint,
-    maxLinks: 3,
+    maxItems: 3,
     hideValidationIcon: true,
     html: {
       type: 'text',
@@ -64,13 +64,17 @@ export default [
     }
   },
   {
-    element: 'PetitionImageField',
+    element: 'ImageField',
     name: 'image',
     label: settings.petitionFields.image.label,
     hint: settings.petitionFields.image.hint,
-    html: {
-      accept: settings.petitionFields.image.accept
-    }
+    maxItems: 1,
+    acceptedTypes: [
+      'image/png',
+      'image/jpeg',
+      'image/gif'
+    ],
+    html: {}
   },
   {
     element: 'input',

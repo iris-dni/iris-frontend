@@ -24,7 +24,6 @@ const Petitions = (props) => (
           <PetitionsFilters {...props} />
         </Header>
       </div>
-
       {props.petitions.length || props.isLoading
         ? <TeaserGrid
           petitions={props.petitions}
