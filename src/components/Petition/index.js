@@ -5,7 +5,7 @@ import LayoutContent from 'components/LayoutContent';
 import LayoutSidebar from 'components/LayoutSidebar';
 import Container from 'components/Container';
 import Section from 'components/Section';
-import AdContainer from 'components/AdContainer';
+import AdSlot from 'containers/AdSlot';
 
 import PetitionHeader from 'containers/PetitionHeader';
 import PetitionBody from 'containers/PetitionBody';
@@ -22,10 +22,7 @@ const Petition = ({ preview, city }) => (
         <PetitionHeader />
       </Container>
     </Section>
-    <AdContainer
-      currentCity={city.data}
-      type='wideboard'
-    />
+    <AdSlot type='wideboard' />
     <Container>
       <LayoutWrap>
         <LayoutContent>
