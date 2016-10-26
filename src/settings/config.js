@@ -210,6 +210,11 @@ export default {
       invalidLinkFormat: 'This is not a valid link',
       invalidLinkCount: 'You can’t add more than %x links',
       invalidSimilarLink: 'You can only add unique links'
+    },
+    image: {
+      label: 'Image',
+      hint: 'Add an image to your petition',
+      accept: 'image/*'
     }
   },
   publishedPetition: {

@@ -4,6 +4,7 @@ import fieldIsInvalid from 'form/fieldIsInvalid';
 import styles from './form-field.scss';
 import Autocomplete from 'containers/Autocomplete';
 import PetitionLinksField from 'containers/PetitionLinksField';
+import PetitionImageField from 'containers/PetitionImageField';
 import FormFieldWrapper from 'components/FormFieldWrapper';
 
 const getClassname = (element, error) => {
@@ -31,6 +32,14 @@ const FormField = React.createClass({
       case 'PetitionLinksField':
         Field = (
           <PetitionLinksField
+            helper={helper}
+            config={config}
+          />
+        );
+        break;
+      case 'PetitionImageField':
+        Field = (
+          <PetitionImageField
             helper={helper}
             config={config}
           />

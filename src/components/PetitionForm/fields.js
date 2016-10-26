@@ -64,6 +64,15 @@ export default [
     }
   },
   {
+    element: 'PetitionImageField',
+    name: 'image',
+    label: settings.petitionFields.image.label,
+    hint: settings.petitionFields.image.hint,
+    html: {
+      accept: settings.petitionFields.image.accept
+    }
+  },
+  {
     element: 'input',
     name: 'title',
     label: settings.petitionFields.title.label,
