@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './petition-widget.scss';
 import Container from 'components/Container';
 import Section from 'components/Section';
+import WidgetBranding from 'components/WidgetBranding';
 import WidgetSupportButton from 'containers/widget/WidgetSupportButton';
 import PetitionWidgetHeader from 'containers/widget/PetitionWidgetHeader';
-import PetitionFooter from 'containers/PetitionFooter';
 
 const PetitionWidget = () => (
   <article className={styles.root}>
@@ -12,11 +12,7 @@ const PetitionWidget = () => (
       <Container>
         <PetitionWidgetHeader />
         <WidgetSupportButton />
-      </Container>
-    </Section>
-    <Section>
-      <Container>
-        <PetitionFooter />
+        <WidgetBranding />
       </Container>
     </Section>
   </article>

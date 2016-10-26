@@ -1,0 +1,15 @@
+@import 'globals';
+
+.root {
+  margin-top: 1em;
+}
+
+.link a:link,
+.link a:visited {
+  font-weight: bold;
+  border-bottom: 0;
+}
+
+.text {
+  color: color('dimmed');
+}
