@@ -10,7 +10,7 @@
     "preinstall": "npm run nodecheckversion",
     "postinstall": "npm run build",
     "server": "NODE_PATH=\"./src\" node ./babel.server",
-    "server:dev": "webpack-dev-server --config webpack.config.dev.",
+    "server:dev": "webpack-dev-server --config webpack.config.dev.js",
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "semistandard --verbose | snazzy",
     "lint:scss": "scss-lint",
