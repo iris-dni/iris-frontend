@@ -239,33 +239,33 @@ describe('PetitionForm', () => {
       assert.equal(actual, expected);
     });
 
-    it('`image` field is an ImageField', () => {
-      const result = getFieldByNameKey('image');
+    it('`images` field is an ImageField', () => {
+      const result = getFieldByNameKey('images');
       const actual = result.element;
       const expected = 'ImageField';
 
       assert.equal(actual, expected);
     });
 
-    it('`image` field is optional', () => {
-      const result = getFieldByNameKey('image');
+    it('`images` field is optional', () => {
+      const result = getFieldByNameKey('images');
       const actual = !result.html.required;
       const expected = true;
 
       assert.equal(actual, expected);
     });
 
-    it('`image` field has a `maxItems` of 1', () => {
-      const result = getFieldByNameKey('image');
+    it('`images` field has a `maxItems` of 1', () => {
+      const result = getFieldByNameKey('images');
       const actual = result.maxItems;
       const expected = 1;
 
       assert.equal(actual, expected);
     });
 
-    it('`image` field has an array of accepted types', () => {
+    it('`images` field has an array of accepted types', () => {
       const result = getFieldByNameKey('image');
-      const actual = result.acceptedTypes.length > 0;
+      const actual = result.acceptedTypes.images > 0;
 
       assert.isTrue(actual);
     });

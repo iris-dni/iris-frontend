@@ -21,6 +21,8 @@ export default (fields, values) => {
     if (isRequired && values && !value) {
       // test for required fields
       set(errors, key, settings.requiredText);
+    } else if (fieldType === 'file') {
+      console.log(key, value, field, values);
     } else if (fieldType === 'email' && value && !emailValidation.test(value)) {
       // test email format
       set(errors, key, settings.emailInvalidText);

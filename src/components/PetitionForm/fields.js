@@ -53,7 +53,7 @@ export default [
   },
   {
     element: 'ImageField',
-    name: 'image',
+    name: 'images',
     label: settings.petitionFields.image.label,
     hint: settings.petitionFields.image.hint,
     maxItems: 1,
@@ -63,7 +63,9 @@ export default [
       'image/jpeg',
       'image/gif'
     ],
+    maxSize: 2 * 1024 * 1024,
     html: {
+      type: 'file',
       placeholder: settings.petitionFields.image.placeholder
     }
   },

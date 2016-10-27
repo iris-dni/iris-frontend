@@ -1,11 +1,22 @@
 import React from 'react';
+import settings from 'settings';
 import Dropzone from 'react-dropzone';
 import ImageFieldPreview from 'components/ImageFieldPreview';
 import IconAndInfo from 'components/IconAndInfo';
 import styles from './image-field.scss';
 
 const handleDrop = (accepted, rejected, field) => {
-  field.onChange(accepted);
+  if (accepted.length) {
+    field.onChange(accepted);
+  }
+  if (rejected.length) {
+    field.error = settings.petitionFields.image.invalidFileError;
+    if (!field.value) {
+      field.onChange(accepted);
+    } else {
+      field.onBlur();
+    }
+  }
 };
 
 const showInputField = (value, maxItems) => !value || value.length < maxItems;
@@ -21,6 +32,7 @@ const ImageField = ({ config, helper }) => (
     {showInputField(helper.value, config.maxItems) &&
       <Dropzone
         multiple={config.maxItems > 1}
+        maxSize={config.maxSize}
         style={{}}
         accept={config.acceptedTypes.join(',')}
         onDrop={(accepted, rejected) => handleDrop(accepted, rejected, helper)}>
