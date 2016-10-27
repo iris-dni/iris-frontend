@@ -41,6 +41,7 @@
     "babel-register": "^6.9.0",
     "bcrypt": "^0.8.7",
     "classlist-polyfill": "^1.0.3",
+    "crypto": "0.0.3",
     "css-loader": "^0.23.1",
     "css-modules-require-hook": "^4.0.1",
     "custom-event-polyfill": "^0.3.0",
