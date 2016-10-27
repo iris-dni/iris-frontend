@@ -3,7 +3,7 @@ import encodeParams from 'helpers/encodeParams';
 import { omit } from 'lodash/object';
 
 export default (request, reply) => {
-  const hmac = crypto.createHmac('sha1', process.env.IMAGE_PROXY_KEY);
+  const hmac = crypto.createHmac('sha1', process.env.IMAGE_PROXY_KEY || 'irisImageProxy');
   const { query } = request;
   const domain = query.domain;
 
@@ -12,7 +12,7 @@ export default (request, reply) => {
   const encodedQueryString = encodeParams(queryString);
 
   // Return 404 if if no domain or url params are given
-  if (!query.domain || query.url) {
+  if (!query.domain || !query.url) {
     return reply('Image not found: please specify domain and url as params').code(404);
   }
 
