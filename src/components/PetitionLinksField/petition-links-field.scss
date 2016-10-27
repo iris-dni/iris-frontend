@@ -1,23 +1,5 @@
 @import 'globals';
 
-.teasers-preview-wrapper {
-  max-width: map-get($widths, 'teaser-max');
-}
-
-/**
- * 1. Positioning context for remove link button
- */
-.teaser-wrapper {
-  position: relative; /* 1 */
-  margin-bottom: 0.5em;
-}
-
-.remove {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
 .input {
   @include map-declarations($form-fields-defaults, $form-fields-custom);
   display: block;
@@ -36,4 +18,14 @@
 
 .invalid {
   border-color: color('error');
+}
+
+.items {
+  max-width: map-get($widths, 'teaser-max');
+  list-style: none;
+}
+
+.item + .item {
+  margin-top: 0.5em;
+
 }

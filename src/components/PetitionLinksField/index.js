@@ -4,7 +4,7 @@ import fieldIsInvalid from 'form/fieldIsInvalid';
 import getLinkInputErrors from 'form/getLinkInputErrors';
 import stripProtocolFromURL from 'helpers/stripProtocolFromURL';
 import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
-import RemoveButton from 'components/RemoveButton';
+import RemovableItem from 'components/RemovableItem';
 import ExternalTeaser from 'components/ExternalTeaser';
 import styles from './petition-links-field.scss';
 
@@ -85,16 +85,15 @@ const PetitionLinksField = React.createClass({
 
     return (
       <div>
-        <div className={styles['teasers-preview-wrapper']}>
+        <ul className={styles.items}>
           {links.length > 0 && links.map((link, index) => (
-            <div key={index} className={styles['teaser-wrapper']}>
-              <ExternalTeaser {...link} />
-              <div className={styles.remove}>
-                <RemoveButton onClick={() => this.handleLinkRemoved(index, link.url)} />
-              </div>
-            </div>
+            <li key={index} className={styles.item}>
+              <RemovableItem action={() => this.handleLinkRemoved(index, link.url)}>
+                <ExternalTeaser {...link} />
+              </RemovableItem>
+            </li>
           ))}
-        </div>
+        </ul>
 
         {links.length < config.maxItems &&
           <input

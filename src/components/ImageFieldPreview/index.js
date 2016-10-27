@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './image-field-preview.scss';
 import Image from 'components/Image';
-import RemoveButton from 'components/RemoveButton';
+import RemovableItem from 'components/RemovableItem';
 
 const removeImageFromArray = (images, target) => images.filter(image => image.preview !== target);
 
@@ -13,10 +13,9 @@ const PetitionImageFieldPreview = ({ field, images }) => (
   <ul className={styles.root}>
     {images.map(image => (
       <li className={styles.item} key={image.name}>
-        <Image src={image.preview} alt={image.name} />
-        <div className={styles.remove}>
-          <RemoveButton onClick={() => handleRemove(field, image.preview)} />
-        </div>
+        <RemovableItem action={() => handleRemove(field, image.preview)}>
+          <Image src={image.preview} alt={image.name} />
+        </RemovableItem>
       </li>
     ))}
   </ul>
