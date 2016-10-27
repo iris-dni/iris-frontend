@@ -211,8 +211,8 @@ export default {
       invalidSimilarLink: 'You can only add unique links'
     },
     image: {
-      label: 'Image',
-      hint: 'Add an image to your petition',
+      label: 'Cover image',
+      hint: 'Add an image to make your petition more appealing. Landscape images are recommended and your image must a JPEG, GIF or PNG, maximum 2MB. ',
       placeholder: 'Upload image'
     }
   },
