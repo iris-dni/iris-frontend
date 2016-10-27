@@ -1,13 +1,14 @@
 import React from 'react';
 import ButtonLink from 'components/ButtonLink';
 import TextCenter from 'components/TextCenter';
-import baseUrl from 'helpers/baseUrl';
+import getPetitionURL from 'helpers/getPetitionURL';
 import settings from 'settings';
 
 const WidgetSupportButton = ({ petition }) => (
   <TextCenter>
     <ButtonLink
-      href={`${baseUrl()}/petitions/${petition.id}`}
+      size={'slim'}
+      href={getPetitionURL(petition.id)}
       text={settings.petitionPage.supportButton.text}
       block
       external

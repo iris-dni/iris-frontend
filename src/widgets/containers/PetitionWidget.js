@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchPetition } from 'actions/PetitionActions';
-import PetitionWidget from 'components/PetitionWidget';
+import PetitionWidget from 'widgets/components/PetitionWidget';
 import getPetition from 'selectors/petition';
 import getPetitionMetaData from 'helpers/getPetitionMetaData';
 

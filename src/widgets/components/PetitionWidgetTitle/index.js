@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './widget-title.scss';
+import styles from './petition-widget-title.scss';
 import Heading1 from 'components/Heading1';
 
 const WidgetTitle = ({ title }) => (

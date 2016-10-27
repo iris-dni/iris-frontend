@@ -2,14 +2,21 @@
 
 .root {
   list-style: none;
-  font-size: 1em;
   letter-spacing: $letter-spacing;
-  margin-bottom: map-get($spacing, 'm-bottom');
+  margin-bottom: 12px;
   color: color('dimmed');
+
+  @include media('<=text-boost') {
+    font-size: 13px;
+  }
+
+  @include media('>text-boost') {
+    font-size: 15px;
+  }
 }
 
 .shared {
-  margin-bottom: 6px;
+  margin-bottom: 2px;
 
   // TODO Set this using className modifier when iframe knows width.
   @include media('>petition-header') {

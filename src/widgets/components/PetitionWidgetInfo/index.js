@@ -8,15 +8,18 @@ const PetitionWidgetInfo = ({ owner, city }) => (
       <li className={styles.item}>
         <IconAndInfo
           icon='User'
+          size={'small'}
           info={owner}
         />
       </li>
     }
     {city && city.label &&
       <li className={styles.item}>
-        <IconAndInfo icon='Pin'>
-          {city.label}
-        </IconAndInfo>
+        <IconAndInfo
+          icon='Pin'
+          size={'small'}
+          info={city.label}
+        />
       </li>
     }
   </ul>

@@ -1,0 +1,16 @@
+@import 'globals';
+
+.root {
+  background-color: color('white');
+  min-width: 280px;
+  max-width: 700px;
+  border: 1px solid color('grey');
+
+  @include media('<=text-boost') {
+    padding: 10px;
+  }
+
+  @include media('>text-boost') {
+    padding: 15px;
+  }
+}

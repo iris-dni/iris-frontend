@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import settings from 'settings';
 import ReactGA from 'react-ga';
-import WidgetLayout from 'views/Widget';
+import Widget from 'views/Widget';
 
 const App = React.createClass({
   componentDidMount () {
@@ -14,7 +14,7 @@ const App = React.createClass({
   },
 
   render () {
-    return <WidgetLayout {...this.props} />;
+    return <Widget {...this.props} />;
   }
 });
 

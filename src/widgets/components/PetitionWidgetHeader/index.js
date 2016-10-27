@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './petition-widget-header.scss';
 import Header from 'components/Header';
-import WidgetTitle from 'components/WidgetTitle';
 import PetitionTags from 'containers/PetitionTags';
-import PetitionWidgetInfo from 'containers/widget/PetitionWidgetInfo';
 import PetitionProgress from 'containers/PetitionProgress';
 import PetitionStats from 'containers/PetitionStats';
+import WidgetTitle from 'widgets/components/PetitionWidgetTitle';
+import PetitionWidgetInfo from 'widgets/containers/PetitionWidgetInfo';
 
 const PetitionWidgetHeader = ({ title }) => (
   <Header>

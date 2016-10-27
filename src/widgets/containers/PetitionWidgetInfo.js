@@ -1,15 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PetitionWidgetInfo from 'components/PetitionWidgetInfo';
+import PetitionWidgetInfo from 'widgets/components/PetitionWidgetInfo';
 import getPetitionInfo from 'selectors/petitionInfo';
-
-const PetitionWidgetInfoContainer = (props) => (
-  <PetitionWidgetInfo {...props} />
-);
 
 const mapStateToProps = ({ petition }) => getPetitionInfo(petition);
 
-PetitionWidgetInfoContainer.propTypes = {
+PetitionWidgetInfo.propTypes = {
   owner: React.PropTypes.string,
   city: React.PropTypes.object,
   ending: React.PropTypes.string
@@ -17,4 +13,4 @@ PetitionWidgetInfoContainer.propTypes = {
 
 export default connect(
   mapStateToProps
-)(PetitionWidgetInfoContainer);
+)(PetitionWidgetInfo);
