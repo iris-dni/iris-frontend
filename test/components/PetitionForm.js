@@ -265,7 +265,7 @@ describe('PetitionForm', () => {
 
     it('`images` field has an array of accepted types', () => {
       const result = getFieldByNameKey('images');
-      const actual = result.acceptedTypes.images > 0;
+      const actual = result.acceptedTypes.length > 0;
 
       assert.isTrue(actual);
     });
