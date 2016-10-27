@@ -8,17 +8,19 @@ import WidgetTitle from 'widgets/components/PetitionWidgetTitle';
 import PetitionWidgetInfo from 'widgets/containers/PetitionWidgetInfo';
 
 const PetitionWidgetHeader = ({ title }) => (
-  <Header>
-    <div className={styles.tags}>
-      <PetitionTags />
-    </div>
-    <WidgetTitle title={title} />
-    <div className={styles.info}>
-      <PetitionWidgetInfo />
-      <PetitionProgress />
-      <PetitionStats />
-    </div>
-  </Header>
+  <div className={styles.root}>
+    <Header>
+      <div className={styles.tags}>
+        <PetitionTags />
+      </div>
+      <WidgetTitle title={title} />
+      <div className={styles.info}>
+        <PetitionWidgetInfo />
+        <PetitionProgress />
+        <PetitionStats />
+      </div>
+    </Header>
+  </div>
 );
 
 export default PetitionWidgetHeader;
