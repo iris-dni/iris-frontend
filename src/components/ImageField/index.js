@@ -1,7 +1,7 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import ImageFieldPreview from 'components/ImageFieldPreview';
-import fieldIsInvalid from 'form/fieldIsInvalid';
+import IconAndInfo from 'components/IconAndInfo';
 import styles from './image-field.scss';
 
 const handleDrop = (accepted, rejected, field) => {
@@ -19,15 +19,17 @@ const ImageField = ({ config, helper }) => (
       />
     }
     {showInputField(helper.value, config.maxItems) &&
-      <div className={styles[fieldIsInvalid(helper) ? 'invalid' : 'valid']}>
-        <Dropzone
-          multiple={config.maxItems > 1}
-          style={{}}
-          accept={config.acceptedTypes.join(',')}
-          onDrop={(accepted, rejected) => handleDrop(accepted, rejected, helper)}>
-          Click here to add
-        </Dropzone>
-      </div>
+      <Dropzone
+        multiple={config.maxItems > 1}
+        style={{}}
+        accept={config.acceptedTypes.join(',')}
+        onDrop={(accepted, rejected) => handleDrop(accepted, rejected, helper)}>
+        <div className={styles.field}>
+          <span className={styles.label}>
+            <IconAndInfo info={config.html.placeholder} icon={'Photo'} />
+          </span>
+        </div>
+      </Dropzone>
     }
   </div>
 );

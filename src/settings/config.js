@@ -212,7 +212,8 @@ export default {
     },
     image: {
       label: 'Image',
-      hint: 'Add an image to your petition'
+      hint: 'Add an image to your petition',
+      placeholder: 'Upload image'
     }
   },
   publishedPetition: {

@@ -1,23 +1,27 @@
 @import 'globals';
 
-.shared {
+.field {
   @include map-declarations($form-fields-defaults, $form-fields-custom);
+  border-color: color('grey');
   display: block;
   width: 100%;
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
 
-.valid {
-  composes: shared;
-  border-color: color('grey');
-}
-
-.valid:focus {
+.field:hover {
+  cursor: pointer;
   border-color: color('dimmed');
 }
 
-.invalid {
-  composes: shared;
-  border-color: color('error');
+.label {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  color: color('dimmed');
+
+  svg {
+    margin-right: 5px;
+  }
 }

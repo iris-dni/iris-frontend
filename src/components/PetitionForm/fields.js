@@ -52,6 +52,22 @@ export default [
     }
   },
   {
+    element: 'ImageField',
+    name: 'image',
+    label: settings.petitionFields.image.label,
+    hint: settings.petitionFields.image.hint,
+    maxItems: 1,
+    hideValidationIcon: true,
+    acceptedTypes: [
+      'image/png',
+      'image/jpeg',
+      'image/gif'
+    ],
+    html: {
+      placeholder: settings.petitionFields.image.placeholder
+    }
+  },
+  {
     element: 'PetitionLinksField',
     name: 'links',
     label: settings.petitionFields.links.label,
@@ -62,19 +78,6 @@ export default [
       type: 'text',
       placeholder: settings.petitionFields.links.placeholder
     }
-  },
-  {
-    element: 'ImageField',
-    name: 'image',
-    label: settings.petitionFields.image.label,
-    hint: settings.petitionFields.image.hint,
-    maxItems: 1,
-    acceptedTypes: [
-      'image/png',
-      'image/jpeg',
-      'image/gif'
-    ],
-    html: {}
   },
   {
     element: 'input',
