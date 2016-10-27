@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './petition-stats.scss';
 import settings from 'settings';
 
-const PetitionStats = ({ total, required, daysLeft }) => (
+const PetitionStats = ({ total, required, daysLeft, responsive }) => (
   <ul className={styles.root}>
     <li className={styles.item}>
       <span className={styles.figure}>{total}</span>
@@ -14,7 +14,7 @@ const PetitionStats = ({ total, required, daysLeft }) => (
         <span className={styles.label}>{settings.milestoneText}</span>
       </li>
     }
-    <li className={styles['days-item']}>
+    <li className={styles[responsive ? 'days-item' : 'item']}>
       <span className={styles.figure}>{daysLeft}</span>
       <span className={styles.label}>{settings.daysRemaining}</span>
     </li>
