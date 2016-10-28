@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './petition-widget.scss';
 import WidgetBranding from 'widgets/components/WidgetBranding';
+import PetitionWidgetImage from 'widgets/components/PetitionWidgetImage';
+import PetitionWidgetByline from 'widgets/components/PetitionWidgetByline';
 import PetitionWidgetTitle from 'widgets/components/PetitionWidgetTitle';
-import PetitionWidgetInfo from 'widgets/components/PetitionWidgetInfo';
 import PetitionWidgetProgress from 'widgets/components/PetitionWidgetProgress';
 import PetitionWidgetStats from 'widgets/components/PetitionWidgetStats';
 import PetitionWidgetSupportButton from 'widgets/components/PetitionWidgetSupportButton';
@@ -10,26 +11,31 @@ import PetitionWidgetSupportButton from 'widgets/components/PetitionWidgetSuppor
 const PetitionWidget = ({
   id,
   title,
+  link,
+  byline,
   info,
   stats,
   progress
 }) => (
   <article className={styles.root}>
     <div className={styles.upper}>
-      <img className={styles.image} src={'https://placeimg.com/800/400/arch'} />
+      <PetitionWidgetImage
+        alt={title}
+        link={link}
+        src={'http://placehold.it/800x450'}
+      />
     </div>
     <div className={styles.content}>
-      <PetitionWidgetTitle title={title} />
+      <PetitionWidgetByline text={byline} />
+      <PetitionWidgetTitle
+        title={title}
+        link={link}
+      />
       <div className={styles.info}>
-        <PetitionWidgetInfo {...info} />
         <PetitionWidgetProgress {...progress} />
-        <PetitionWidgetStats
-          total={stats.supportersMetric.figure}
-          required={stats.supportersMetric.total}
-          daysLeft={stats.timeMetric.figure}
-        />
+        <PetitionWidgetStats {...stats} />
       </div>
-      <PetitionWidgetSupportButton petition={{ id: id }} />
+      <PetitionWidgetSupportButton link={link} />
       <WidgetBranding />
     </div>
   </article>

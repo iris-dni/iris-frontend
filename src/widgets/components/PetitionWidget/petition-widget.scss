@@ -9,21 +9,21 @@
 }
 
 .upper {
+  position: relative;
   max-height: 250px;
   overflow: hidden;
 }
 
-.image {
-  display: block;
-  max-width: 100%;
+.info {
+  margin-top: 1em;
 }
 
 .content {
-  @include media('<=300px') {
+  @include media('<=350px') {
     font-size: 12px;
   }
 
-  @include media('>300px', '<=500px') {
+  @include media('>350px', '<=500px') {
     font-size: 13px;
   }
 

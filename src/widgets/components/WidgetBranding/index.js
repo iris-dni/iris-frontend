@@ -6,7 +6,7 @@ import styles from './widget-branding.scss';
 
 const WidgetBranding = () => (
   <p className={styles.root}>
-    <span className={styles.text}>{settings.widgetLink.text} </span>
+    <span className={styles.text}>{settings.widgets.branding} </span>
     <span className={styles.link}>
       <Link
         href={baseUrl()}
