@@ -14,7 +14,7 @@ const PetitionImageFieldPreview = ({ field, images }) => (
     {images.map(image => (
       <li className={styles.item} key={image.name}>
         <RemovableItem action={() => handleRemove(field, image.preview)}>
-          <Image src={image.preview} alt={image.name} />
+          <Image src={image.original_url} alt={image.name} />
         </RemovableItem>
       </li>
     ))}
