@@ -9,6 +9,7 @@ const ProgressBar = React.createClass({
   getDefaultProps: () => ({
     percentage: 0,
     animated: false,
+    size: 'regular',
     color: settings.colors.primary,
     trailColor: settings.colors.greyLite,
     aria: {}
@@ -62,7 +63,7 @@ const ProgressBar = React.createClass({
   render () {
     return (
       <div
-        className={styles.root}
+        className={styles[this.props.size]}
         ref='canvas'
         role='progressbar'
         aria-valuenow={this.props.aria.value}

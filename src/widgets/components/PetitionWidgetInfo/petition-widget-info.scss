@@ -1,38 +1,16 @@
 @import 'globals';
 
 .root {
-  list-style: none;
-  letter-spacing: $letter-spacing;
-  margin-bottom: 12px;
+  margin-top: 1em;
+  margin-bottom: 1em;
   color: color('dimmed');
-
-  @include media('<=text-boost') {
-    font-size: 13px;
-  }
-
-  @include media('>text-boost') {
-    font-size: 15px;
-  }
-}
-
-.shared {
-  margin-bottom: 2px;
-
-  // TODO Set this using className modifier when iframe knows width.
-  @include media('>petition-header') {
-    display: inline-block;
-  }
 }
 
 .item {
-  composes: shared;
+  margin-top: 2px;
 
-  // TODO Set this using className modifier when iframe knows width.
-  @include media('>petition-header') {
-    margin-right: 80px;
+  @include media('>500px') {
+    display: inline-block;
+    margin-right: 20px;
   }
-}
-
-.last-item {
-  composes: shared;
 }

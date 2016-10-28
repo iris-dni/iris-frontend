@@ -1,7 +1,7 @@
 @import 'globals';
 
 .title {
-  @include responsive-font(5vw, 22px, 28px);
   margin: 0;
   padding: 0;
+  font-size: 1.25em;
 }

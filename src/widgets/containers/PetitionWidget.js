@@ -3,20 +3,14 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchPetition } from 'actions/PetitionActions';
 import PetitionWidget from 'widgets/components/PetitionWidget';
-import getPetition from 'selectors/petition';
-import getPetitionMetaData from 'helpers/getPetitionMetaData';
+import getPetitionMetrics from 'selectors/petitionMetrics';
+import getPetitionInfo from 'selectors/petitionInfo';
+import getPetitionProgress from 'selectors/petitionProgress';
 
-const PetitionWidgetContainer = ({ petition }) => (
+const PetitionWidgetContainer = (props) => (
   <div>
-    <Helmet
-      title={petition.browserTitle}
-      meta={getPetitionMetaData(petition)}
-      script={[{
-        'type': 'application/ld+json',
-        'innerHTML': JSON.stringify(petition.schema || {})
-      }]}
-    />
-    <PetitionWidget {...petition} />
+    <Helmet title={props.title} />
+    <PetitionWidget{...props} />
   </div>
 );
 
@@ -25,11 +19,18 @@ PetitionWidgetContainer.fetchData = ({ store, params }) => {
 };
 
 export const mapStateToProps = ({ petition }) => ({
-  petition: getPetition(petition)
+  id: petition.id,
+  title: petition.title,
+  info: getPetitionInfo(petition),
+  stats: getPetitionMetrics(petition),
+  progress: getPetitionProgress(petition)
 });
 
 PetitionWidgetContainer.propTypes = {
-  petition: React.PropTypes.object
+  id: React.PropTypes.string.isRequired,
+  title: React.PropTypes.string.isRequired,
+  stats: React.PropTypes.object.isRequired,
+  progress: React.PropTypes.object.isRequired
 };
 
 export default connect(

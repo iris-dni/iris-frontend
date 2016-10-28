@@ -5,7 +5,7 @@ import Link from 'components/Link';
 import styles from './widget-branding.scss';
 
 const WidgetBranding = () => (
-  <div className={styles.root}>
+  <p className={styles.root}>
     <span className={styles.text}>{settings.widgetLink.text} </span>
     <span className={styles.link}>
       <Link
@@ -15,7 +15,7 @@ const WidgetBranding = () => (
         newTab
       />
     </span>
-  </div>
+  </p>
 );
 
 export default WidgetBranding;

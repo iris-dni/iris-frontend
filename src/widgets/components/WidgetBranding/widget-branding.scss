@@ -2,14 +2,6 @@
 
 .root {
   margin-top: 12px;
-
-  @include media('<=text-boost') {
-    font-size: 13px;
-  }
-
-  @include media('>text-boost') {
-    font-size: 15px;
-  }
 }
 
 .link a:link,

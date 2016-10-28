@@ -8,7 +8,7 @@ export default ({ routing, petitions, petition }) => {
     return petitions.currentCity.tags;
   }
 
-  if (petition.city && petition.city.data.tags) {
+  if (petition.city && petition.city.data) {
     return petition.city.data.tags;
   }
 

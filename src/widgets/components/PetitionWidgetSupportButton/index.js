@@ -1,21 +1,21 @@
 import React from 'react';
+import styles from './petition-widget-support-button.scss';
 import ButtonLink from 'components/ButtonLink';
-import TextCenter from 'components/TextCenter';
 import getPetitionURL from 'helpers/getPetitionURL';
 import settings from 'settings';
 
-const WidgetSupportButton = ({ petition }) => (
-  <TextCenter>
+const PetitionWidgetSupportButton = ({ petition }) => (
+  <div className={styles.root}>
     <ButtonLink
-      size={'slim'}
-      href={getPetitionURL(petition.id)}
+      size={'compact'}
+      href={getPetitionURL(petition && petition.id)}
       text={settings.petitionPage.supportButton.text}
       block
       external
       newTab
       modifier={'accent'}
     />
-  </TextCenter>
+  </div>
 );
 
-export default WidgetSupportButton;
+export default PetitionWidgetSupportButton;
