@@ -9,10 +9,10 @@ import PetitionWidgetInfo from 'widgets/containers/PetitionWidgetInfo';
 
 const PetitionWidgetHeader = ({ title }) => (
   <div className={styles.root}>
+    <div className={styles.tags}>
+      <PetitionTags isTeaser />
+    </div>
     <Header>
-      <div className={styles.tags}>
-        <PetitionTags />
-      </div>
       <WidgetTitle title={title} />
       <div className={styles.info}>
         <PetitionWidgetInfo />
