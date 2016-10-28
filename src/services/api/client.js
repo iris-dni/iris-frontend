@@ -37,7 +37,9 @@ export default {
         break;
       case POST:
         if (data instanceof FormData) {
-          options.headers = data.getHeaders();
+          options.headers = {
+            'Content-Type': 'multipart/form-data'
+          };
         }
 
         options.data = data;

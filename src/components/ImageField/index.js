@@ -4,11 +4,18 @@ import Dropzone from 'react-dropzone';
 import ImageFieldPreview from 'components/ImageFieldPreview';
 import IconAndInfo from 'components/IconAndInfo';
 import styles from './image-field.scss';
+import fileRepository from 'services/api/repositories/file';
 
 const handleDrop = (accepted, rejected, field) => {
   if (accepted.length) {
-    field.onChange(accepted);
+    accepted.map((image, index) => {
+      fileRepository.create(image).then(res => {
+        accepted[index].id = res.data.id;
+        field.onChange(accepted);
+      });
+    });
   }
+
   if (rejected.length) {
     field.error = settings.petitionFields.image.invalidFileError;
     if (!field.value) {
