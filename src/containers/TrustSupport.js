@@ -1,6 +1,5 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import settings from 'settings';
 import Trust from 'components/Trust';
@@ -13,16 +12,18 @@ const TrustSupportContainer = (props) => (
   </div>
 );
 
-export const mapStateToProps = ({ petition, trust, me }) => ({
+export const mapStateToProps = ({ petition, trust, me }, ownProps) => ({
   petition: getPetitionForm(petition),
-  isLoggedIn: me && !!me.id
+  isLoggedIn: me && !!me.id,
+  x: ownProps
 });
 
 TrustSupportContainer.propTypes = {
+  location: React.PropTypes.object.isRequired,
   petition: React.PropTypes.object.isRequired,
   isLoggedIn: React.PropTypes.bool.isRequired
 };
 
-export default withRouter(connect(
+export default connect(
   mapStateToProps
-)(TrustSupportContainer));
+)(TrustSupportContainer);

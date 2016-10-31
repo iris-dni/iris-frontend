@@ -24,7 +24,7 @@ const RedirectIfPublishedWrapper = (WrappedComponent) => {
 
     render () {
       return (
-        <WrappedComponent petition={this.props.petition} />
+        <WrappedComponent {...this.props} />
       );
     }
   });

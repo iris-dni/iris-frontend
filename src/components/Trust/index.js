@@ -22,7 +22,6 @@ const getPageIntro = (loggedIn, action) => ({
 
 const Trust = ({
   isLoggedIn,
-  petition,
   location,
   action
 }) => (
@@ -69,6 +68,7 @@ const Trust = ({
 );
 
 Trust.propTypes = {
+  location: React.PropTypes.object.isRequired,
   action: React.PropTypes.oneOf([
     'support',
     'publish'
