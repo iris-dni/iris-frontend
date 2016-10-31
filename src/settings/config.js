@@ -279,6 +279,9 @@ export default {
     link: {
       label: 'Share by URL',
       copiedLabel: 'Link copied'
+    },
+    embed: {
+      label: 'Embed petition'
     }
   },
   /**
