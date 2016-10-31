@@ -1,6 +1,7 @@
 import { Server } from 'hapi';
 import NunjucksHapi from 'nunjucks-hapi';
 import render from 'server/render';
+import renderWidget from 'server/renderWidget';
 import imageProxy from 'server/imageProxy';
 import api from 'server/api';
 import httpAuthValidate from 'server/httpAuth';
@@ -96,7 +97,7 @@ server.route({
   path: '/embed/{params*}',
   config: {
     auth: HTTP_AUTH_ENABLED ? 'simple' : null,
-    handler: (req, res, next) => render(req, res, 'widget')
+    handler: (req, res, next) => renderWidget(req, res)
   }
 });
 

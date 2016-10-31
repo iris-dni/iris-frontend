@@ -1,4 +1,7 @@
 import baseUrl from 'helpers/baseUrl';
 
-export default (id) =>
-  `${baseUrl()}/embed/${id}`;
+export default (id) => {
+  const referrer = window.location.href;
+
+  return `${baseUrl()}/embed/${id}?ref=${referrer}`;
+};
