@@ -1,14 +1,16 @@
+// patches for IE
 require('es6-object-assign').polyfill();
 require('es6-promise').polyfill();
+// Begin embed code
 import Postmate from 'postmate';
 import getPetitionEmbedUrl from 'helpers/getPetitionEmbedUrl';
 
-const setIframeAttributes = (child) => {
-  child.frame.setAttribute('width', '100%');
-  child.frame.setAttribute('frameborder', 0);
-  child.frame.setAttribute('scrolling', 'no');
-  child.frame.setAttribute('horizontalscrolling', 'no');
-  child.frame.setAttribute('verticalscrolling', 'no');
+const setIframeAttributes = (iframeElement) => {
+  iframeElement.setAttribute('width', '100%');
+  iframeElement.setAttribute('frameborder', 0);
+  iframeElement.setAttribute('scrolling', 'no');
+  iframeElement.setAttribute('horizontalscrolling', 'no');
+  iframeElement.setAttribute('verticalscrolling', 'no');
 };
 
 const fetchHeight = (child) => {
@@ -30,7 +32,7 @@ const createWidget = (container) => {
 
   // When parent <-> child handshake is complete, data may be requested from the child
   handshake.then(child => {
-    setIframeAttributes(child);
+    setIframeAttributes(child.frame);
     fetchHeight(child);
 
     // Listen to a particular event from the child
