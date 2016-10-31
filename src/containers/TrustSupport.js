@@ -12,10 +12,9 @@ const TrustSupportContainer = (props) => (
   </div>
 );
 
-export const mapStateToProps = ({ petition, trust, me }, ownProps) => ({
+export const mapStateToProps = ({ petition, trust, me }) => ({
   petition: getPetitionForm(petition),
-  isLoggedIn: me && !!me.id,
-  x: ownProps
+  isLoggedIn: me && !!me.id
 });
 
 TrustSupportContainer.propTypes = {

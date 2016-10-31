@@ -24,5 +24,5 @@ TrustPublishContainer.propTypes = {
 };
 
 export default connect(
-  mapStateToProps,
+  mapStateToProps
 )(TrustPublishContainer);
