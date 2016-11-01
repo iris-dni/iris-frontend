@@ -5,7 +5,7 @@ import ButtonIcon from 'components/ButtonIcon';
 
 const EmbedPetitionLink = ({ showModalWindow }) => (
   <Button type={'button'} block
-    onClick={() => showModalWindow('embed', {})}
+    onClick={() => showModalWindow(settings.shareButtons.embed.modal)}
     size={'compact'}
     brand={'email'}>
     <ButtonIcon id={'Link'}>

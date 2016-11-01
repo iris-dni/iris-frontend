@@ -1,14 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { showModalWindow } from 'actions/ModalActions';
+import { showModalWindow, hideModalWindow } from 'actions/ModalActions';
 import EmbedPetitionLink from 'components/EmbedPetitionLink';
 
-const EmbedPetitionLinkContainer = (props) => (
-  <EmbedPetitionLink {...props} />
-);
+const EmbedPetitionLinkContainer = React.createClass({
+  componentWillUnmount () {
+    this.props.hideModalWindow({});
+  },
+
+  render () {
+    return (
+      <EmbedPetitionLink {...this.props} />
+    );
+  }
+});
 
 export const mapDispatchToProps = (dispatch) => ({
-  showModalWindow: (modal, location) => dispatch(showModalWindow(modal, location))
+  showModalWindow: (modal, location) => dispatch(showModalWindow(modal, location)),
+  hideModalWindow: () => dispatch(hideModalWindow())
 });
 
 export default connect(

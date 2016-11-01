@@ -1,5 +1,3 @@
-// import { escapeRegExp } from 'lodash/string';
-
 export default {
   locale: 'en-US',
   charset: 'utf-8',
@@ -281,7 +279,16 @@ export default {
       copiedLabel: 'Link copied'
     },
     embed: {
-      label: 'Embed petition'
+      label: 'Embed petition',
+      modal: {
+        type: 'embed',
+        title: 'Embed this',
+        intro: 'To gather support and spread the word, add this petition as widget to your own site',
+        button: {
+          copyLabel: 'Copy embed code',
+          copiedLabel: 'Embed code copied'
+        }
+      }
     }
   },
   /**
