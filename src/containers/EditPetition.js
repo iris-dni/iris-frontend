@@ -1,6 +1,8 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import { fetchPetition } from 'actions/PetitionActions';
 import { updateSuggestionInputValue } from 'actions/AutocompleteActions';
 import settings from 'settings';
 import citySuggestionFormatter from 'helpers/citySuggestionFormatter';
@@ -9,9 +11,20 @@ import getPetitionForm from 'selectors/petitionForm';
 
 const EditPetitionContainer = React.createClass({
   componentWillMount () {
-    this.props.updateSuggestionInputValue(
-      citySuggestionFormatter(this.props.petition.city)
-    );
+    const { petition, params, fetchPetition, updateSuggestionInputValue } = this.props;
+
+    if (!petition.id) {
+      fetchPetition(params.id)
+        .then(({ petition }) => {
+          updateSuggestionInputValue(
+            citySuggestionFormatter(petition.city.data)
+          );
+        });
+    } else {
+      updateSuggestionInputValue(
+        citySuggestionFormatter(this.props.petition.city)
+      );
+    }
   },
 
   render () {
@@ -29,10 +42,11 @@ export const mapStateToProps = ({ petition }) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
+  fetchPetition: (id) => dispatch(fetchPetition(id)),
   updateSuggestionInputValue: (city) => dispatch(updateSuggestionInputValue(city))
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(EditPetitionContainer);
+)(EditPetitionContainer));
