@@ -11,12 +11,17 @@ const ImageField = React.createClass({
   }),
 
   handleAccepted (accepted, uploadImage, helper) {
-    accepted.map((image, index) =>
-      uploadImage(image, index).then(({ file }) => {
-        Object.assign(accepted[index], file);
-        helper.onChange(accepted);
-      })
-    );
+    this.setState({ loading: true }, () => {
+      accepted.map((image, index) =>
+        uploadImage(image, index).then(({ file }) => {
+          Object.assign(accepted[index], file);
+          helper.onChange(accepted);
+          if (index === accepted.length - 1) {
+            this.setState({ loading: false });
+          }
+        })
+      );
+    });
   },
 
   handleRejected (accepted, helper) {
@@ -64,7 +69,12 @@ const ImageField = React.createClass({
             onDrop={this.handleDrop}>
             <div className={styles.field}>
               <span className={styles.label}>
-                <IconAndInfo info={config.html.placeholder} icon={'Photo'} />
+                {this.state.loading &&
+                  <span>Loading...</span>
+                }
+                {!this.state.loading &&
+                  <IconAndInfo info={config.html.placeholder} icon={'Photo'} />
+                }
               </span>
             </div>
           </Dropzone>
