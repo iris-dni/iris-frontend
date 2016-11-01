@@ -5,6 +5,12 @@
   margin-top: 10px;
 }
 
+.item {
+  min-width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
 .item + .item {
   margin-top: 10px;
 }

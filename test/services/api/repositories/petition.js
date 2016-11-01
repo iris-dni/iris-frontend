@@ -9,7 +9,9 @@ describe('petition repository', () => {
   let exampleId = '7UV7m';
   let exampleResponseToken = '1C9LQ';
   let exampleTitle = 'Example Petition';
-  let postResolves = 'city,links,owner';
+
+  let allResolves = 'city,owner,images,links,mentions';
+  let postResolves = 'city,owner,images,links';
 
   beforeEach(() => {
     sinon.stub(ApiClient, 'request');
@@ -64,8 +66,8 @@ describe('petition repository', () => {
       ));
     });
 
-    it('resolves owner, city, links and mentions', () => {
-      let expectedDataArgument = { resolve: 'city,owner,links,mentions' };
+    it('resolves city, links, mentions, owner, images ', () => {
+      let expectedDataArgument = { resolve: allResolves };
 
       petitionRepository.find(exampleId);
 
@@ -78,9 +80,7 @@ describe('petition repository', () => {
 
   describe('findByResponseToken', () => {
     let expectedPathArgument = `/token/${exampleResponseToken}/petitions`;
-    let expectedDataArgument = {
-      resolve: 'city,owner'
-    };
+    let expectedDataArgument = { resolve: 'city,owner' };
 
     it('calls the API client with proper arguments', () => {
       petitionRepository.findByResponseToken(exampleResponseToken);
@@ -94,7 +94,7 @@ describe('petition repository', () => {
 
   describe('create', () => {
     let examplePetition = { id: exampleId, title: exampleTitle };
-    let expectedPathArgument = '/petitions?resolve=city,links,owner';
+    let expectedPathArgument = `/petitions?resolve=${postResolves}`;
     let expectedDataArgument = { data: { id: exampleId, title: exampleTitle } };
     let expectedMethodArgument = 'POST';
 
@@ -236,7 +236,7 @@ describe('petition repository', () => {
         petition: mockPetition.data,
         user: mockUser
       };
-      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support?resolve=${postResolves}`;
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support?resolve=${allResolves}`;
       let expectedDataArgument = {
         data: {
           user: mockUser
@@ -261,7 +261,7 @@ describe('petition repository', () => {
         user: mockUser,
         mobile_token: '12345'
       };
-      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support?resolve=${postResolves}`;
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support?resolve=${allResolves}`;
       let expectedDataArgument = {
         data: {
           user: mockUser,

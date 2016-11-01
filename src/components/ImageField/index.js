@@ -6,12 +6,23 @@ import IconAndInfo from 'components/IconAndInfo';
 import styles from './image-field.scss';
 
 const ImageField = React.createClass({
+
   getInitialState: () => ({
     loading: false
   }),
 
-  handleAccepted (accepted, uploadImage, helper) {
-    this.setState({ loading: true }, () => {
+  showFieldPreview (value) {
+    return value && value.length > 0;
+  },
+
+  showInputField (value, maxItems) {
+    return !value || value.length < maxItems;
+  },
+
+  acceptFiles (accepted, uploadImage, helper) {
+    this.setState({
+      loading: true
+    }, () => {
       accepted.map((image, index) =>
         uploadImage(image, index).then(({ file }) => {
           Object.assign(accepted[index], file);
@@ -24,7 +35,7 @@ const ImageField = React.createClass({
     });
   },
 
-  handleRejected (accepted, helper) {
+  rejectFiles (accepted, helper) {
     helper.error = settings.petitionFields.image.invalidFileError;
     if (!helper.value) {
       helper.onChange(accepted);
@@ -37,16 +48,12 @@ const ImageField = React.createClass({
     const { helper, uploadImage } = this.props;
 
     if (accepted.length) {
-      this.handleAccepted(accepted, uploadImage, helper);
+      this.acceptFiles(accepted, uploadImage, helper);
     }
 
     if (rejected.length) {
-      this.handleRejected(accepted, helper);
+      this.rejectFiles(accepted, helper);
     }
-  },
-
-  showInputField (value, maxItems) {
-    return !value || value.length < maxItems;
   },
 
   render () {
@@ -54,7 +61,7 @@ const ImageField = React.createClass({
 
     return (
       <div className={styles.root}>
-        {helper.value && helper.value.length > 0 &&
+        {this.showFieldPreview(helper.value) &&
           <ImageFieldPreview
             field={helper}
             images={helper.value}
@@ -70,7 +77,7 @@ const ImageField = React.createClass({
             <div className={styles.field}>
               <span className={styles.label}>
                 {this.state.loading &&
-                  <span>Loading...</span>
+                  <span>{settings.petitionFields.image.loading}</span>
                 }
                 {!this.state.loading &&
                   <IconAndInfo info={config.html.placeholder} icon={'Photo'} />
