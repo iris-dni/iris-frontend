@@ -282,7 +282,7 @@ export default {
       label: 'Embed petition',
       modal: {
         type: 'embed',
-        title: 'Embed this',
+        title: 'Embed this petition',
         intro: 'To gather support and spread the word, add this petition as widget to your own site',
         button: {
           copyLabel: 'Copy embed code',

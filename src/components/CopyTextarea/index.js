@@ -10,16 +10,18 @@ const CopyTextarea = React.createClass({
   }),
 
   handleCopy () {
-    this.refs.inputBox.select();
+    this.refs.textarea.select();
     this.setState({ copied: true });
   },
 
   render () {
     return (
       <div>
-        <textarea className={styles.textarea} ref={'inputBox'}>
-          {this.props.text}
-        </textarea>
+        <textarea
+          className={styles.textarea}
+          ref={'textarea'}
+          defaultValue={this.props.text}
+        />
         <CopyToClipboard text={this.props.text} onCopy={this.handleCopy}>
           <div>
             {this.state.copied &&
