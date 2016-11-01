@@ -35,7 +35,7 @@ const CopyTextarea = React.createClass({
               <Button type={'button'} block
                 size={'compact'}
                 brand={'email'}>
-                <ButtonIcon id={'Link'}>
+                <ButtonIcon id={'Embed'}>
                   {this.props.copyLabel}
                 </ButtonIcon>
               </Button>

@@ -2,17 +2,11 @@ import React from 'react';
 import ModalIntro from 'components/ModalIntro';
 import CopyTextarea from 'components/CopyTextarea';
 
-const ShareModal = ({ title, intro, button }) => (
+const EmbedModal = ({ title, intro, button, embedCode }) => (
   <div>
-    <ModalIntro
-      title={title}
-      intro={intro}
-    />
-    <CopyTextarea
-      {...button}
-      text={'<script></script>'}
-    />
+    <ModalIntro title={title} intro={intro} />
+    <CopyTextarea {...button} text={embedCode} />
   </div>
 );
 
-export default ShareModal;
+export default EmbedModal;
