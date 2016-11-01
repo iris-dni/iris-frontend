@@ -3,7 +3,7 @@ import styles from './petition-stats.scss';
 import settings from 'settings';
 import Statistic from 'components/Statistic';
 
-const PetitionStats = ({ total, required, daysLeft, responsive }) => (
+const PetitionStats = ({ total, required, daysLeft }) => (
   <ul className={styles.root}>
     <li className={styles.item}>
       <Statistic
@@ -19,7 +19,7 @@ const PetitionStats = ({ total, required, daysLeft, responsive }) => (
         />
       </li>
     }
-    <li className={styles[responsive ? 'days-item' : 'item']}>
+    <li className={styles['days-item']}>
       <Statistic
         figure={daysLeft}
         label={settings.daysRemaining}

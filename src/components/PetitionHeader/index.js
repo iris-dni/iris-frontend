@@ -16,7 +16,7 @@ const PetitionHeader = ({ title }) => (
     <div className={styles.info}>
       <PetitionInfo />
       <PetitionProgress />
-      <PetitionStats responsive />
+      <PetitionStats />
     </div>
   </Header>
 );
