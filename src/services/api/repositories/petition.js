@@ -5,7 +5,7 @@ import path from 'path';
 export default {
   find: (id) => {
     const requestPath = path.join('/petitions', id.toString());
-    const requestParams = { resolve: 'city,owner,links,mentions', extend: 'supporting' };
+    const requestParams = { resolve: 'city,owner,images,links,mentions', extend: 'supporting' };
     return ApiClient.request(requestPath, requestParams);
   },
 
@@ -22,12 +22,12 @@ export default {
   },
 
   create: (petition) => {
-    const requestPath = '/petitions?resolve=city,links,owner';
+    const requestPath = '/petitions?resolve=city,owner,images,links';
     return ApiClient.request(requestPath, { data: petition }, POST);
   },
 
   update: (petition) => {
-    const requestPath = path.join('/petitions', `${petition.id.toString()}?resolve=city,links,owner`);
+    const requestPath = path.join('/petitions', `${petition.id.toString()}?resolve=city,owner,images,links`);
 
     // API requires no id key when updating
     delete petition.id;
@@ -41,13 +41,13 @@ export default {
   },
 
   publish: ({ petition, mobile_token }) => {
-    const requestPath = path.join('/petitions', petition.id.toString(), '/event/publish?resolve=city,links,owner');
+    const requestPath = path.join('/petitions', petition.id.toString(), '/event/publish?resolve=city,owner,images,links');
     const payload = mobile_token ? { mobile_token } : {}; // eslint-disable-line camelcase
     return ApiClient.request(requestPath, { data: payload }, POST);
   },
 
   support: ({ petition, mobile_token, user }) => {
-    const requestPath = path.join('/petitions', petition.id.toString(), '/event/support?resolve=city,links,owner');
+    const requestPath = path.join('/petitions', petition.id.toString(), '/event/support?resolve=city,owner,images,links,mentions');
     const payload = mobile_token ? { mobile_token, user } : { user }; // eslint-disable-line camelcase
     return ApiClient.request(requestPath, { data: payload }, POST);
   },

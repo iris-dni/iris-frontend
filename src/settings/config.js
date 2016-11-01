@@ -206,10 +206,16 @@ export default {
       removeLinkLabel: 'Remove link',
       placeholder: 'http://',
       hint: 'Include up to 3 links that support your petition.',
-      maxLinks: 3,
       invalidLinkFormat: 'This is not a valid link',
       invalidLinkCount: 'You can’t add more than %x links',
       invalidSimilarLink: 'You can only add unique links'
+    },
+    image: {
+      label: 'Add a cover image',
+      hint: 'Add an image to make your petition more appealing. Landscape images are recommended and your image must a JPEG, GIF or PNG, maximum 2MB. ',
+      placeholder: 'Upload image',
+      loading: 'Loading...',
+      invalidFileError: 'One or more files were invalid and could not be uploaded'
     }
   },
   publishedPetition: {

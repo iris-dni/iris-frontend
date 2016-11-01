@@ -10,9 +10,9 @@ export const getFieldByNameKey = (name, fields = FIELDS) => {
 
 describe('PetitionForm', () => {
   describe('FIELDS', () => {
-    it('is 6 fields in length', () => {
+    it('is 7 fields in length', () => {
       const actual = FIELDS.length;
-      const expected = 6;
+      const expected = 7;
 
       assert.equal(actual, expected);
     });
@@ -231,12 +231,43 @@ describe('PetitionForm', () => {
       assert.equal(actual, expected);
     });
 
-    it('`city` field has a `maxLinks` of 3', () => {
+    it('`city` field has a `maxItems` of 3', () => {
       const result = getFieldByNameKey('links');
-      const actual = result.maxLinks;
+      const actual = result.maxItems;
       const expected = 3;
 
       assert.equal(actual, expected);
+    });
+
+    it('`images` field is an ImageField', () => {
+      const result = getFieldByNameKey('images');
+      const actual = result.element;
+      const expected = 'ImageField';
+
+      assert.equal(actual, expected);
+    });
+
+    it('`images` field is optional', () => {
+      const result = getFieldByNameKey('images');
+      const actual = !result.html.required;
+      const expected = true;
+
+      assert.equal(actual, expected);
+    });
+
+    it('`images` field has a `maxItems` of 1', () => {
+      const result = getFieldByNameKey('images');
+      const actual = result.maxItems;
+      const expected = 1;
+
+      assert.equal(actual, expected);
+    });
+
+    it('`images` field has an array of accepted types', () => {
+      const result = getFieldByNameKey('images');
+      const actual = result.acceptedTypes.length > 0;
+
+      assert.isTrue(actual);
     });
   });
 });

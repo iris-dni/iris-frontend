@@ -37,7 +37,8 @@ var plugins = [
 
 config.cache = true;
 // config.debug = true;
-config.devtool = 'inline-eval-cheap-source-map';
+config.devtool = 'eval';
+config.pathinfo = true;
 config.devServer = devServer;
 config.entry.client.unshift(
   'webpack-dev-server/client?http://localhost:8080',

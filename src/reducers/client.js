@@ -10,6 +10,7 @@ import modalWindowReducer from './modalWindow';
 import navigationReducer from './navigation';
 import openGraphReducer from './openGraph';
 import petitionResponseReducer from './petitionResponse';
+import imagesReducer from './images';
 
 export default combineReducers({
   autocomplete: autocompleteReducer,
@@ -29,5 +30,6 @@ export default combineReducers({
   modalWindow: modalWindowReducer,
   routing: routerReducer,
   openGraph: openGraphReducer,
-  petitionResponse: petitionResponseReducer
+  petitionResponse: petitionResponseReducer,
+  images: imagesReducer
 });

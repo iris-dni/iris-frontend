@@ -9,7 +9,7 @@ import Button from 'components/Button';
 import settings from 'settings';
 import FIELDS from './fields';
 
-const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting }) => (
+const PetitionForm = ({ petition, openGraph, images, fields, handleSubmit, submitting }) => (
   <form onSubmit={handleSubmit((values, dispatch) => petition.persisted
     ? updatePetition(assignPetitionAndId(values, petition), dispatch)
     : createPetition(values, dispatch))}>
@@ -23,7 +23,7 @@ const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting })
       <Button
         text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton']}
         modifier={'accent'}
-        disabled={openGraph.isLoading || submitting || !fields._meta.allValid}
+        disabled={openGraph.isLoading || images.isLoading || submitting || !fields._meta.allValid}
       />
     </Fieldset>
   </form>
@@ -32,12 +32,13 @@ const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting })
 PetitionForm.propTypes = {
   petition: React.PropTypes.object.isRequired,
   openGraph: React.PropTypes.object.isRequired,
+  images: React.PropTypes.object.isRequired,
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
   submitting: React.PropTypes.bool.isRequired
 };
 
-export const mapStateToProps = ({ openGraph }) => ({ openGraph });
+export const mapStateToProps = ({ openGraph, images }) => ({ openGraph, images });
 
 export default reduxForm({
   form: 'petition',
