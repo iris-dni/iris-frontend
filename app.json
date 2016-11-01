@@ -6,6 +6,9 @@
     "API_URL": {
       "required": true
     },
+    "API_KEY": {
+      "required": true
+    },
     "IMAGE_PROXY_KEY": {
       "required": true
     },
