@@ -16,7 +16,7 @@ import getReturnUrlFromLocation from 'helpers/getReturnUrlFromLocation';
 import TrustFlow from 'components/TrustFlow';
 
 const getPageIntro = (loggedIn, action) => ({
-  title: settings.trustPage[action].title,
+  title: settings.trustPage[action][loggedIn ? 'trustedTitle' : 'title'],
   intro: settings.trustPage[action][loggedIn ? 'trustedIntro' : 'intro']
 });
 

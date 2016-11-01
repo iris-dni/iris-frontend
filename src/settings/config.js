@@ -322,6 +322,7 @@ export default {
   trustPage: {
     support: {
       title: 'Support petition',
+      trustedTitle: 'Support petition',
       intro: 'In order to support this petition, please sign in below',
       trustedIntro: 'Please confirm your details below before continuing',
       formTitle: 'Or, enter your details to proceed without sign in:',
@@ -330,7 +331,8 @@ export default {
       trustedNextButtonTrusted: 'Support petition'
     },
     publish: {
-      title: 'One last step',
+      title: 'Create petition',
+      trustedTitle: 'Create petition',
       intro: 'In order to create your petition, please sign in below',
       trustedIntro: 'Please confirm your details below before continuing',
       formTitle: 'Or, enter your details to proceed without sign in:',
