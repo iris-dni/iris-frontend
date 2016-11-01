@@ -1,5 +1,5 @@
 import render from './render';
-import {track} from './mentions';
+import {track} from 'services/api/repositories/mentions';
 
 // Middleware for tracking widget views
 
