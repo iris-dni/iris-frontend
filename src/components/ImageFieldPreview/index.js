@@ -17,7 +17,7 @@ const PetitionImageFieldPreview = ({ field, images }) => (
   <ul className={styles.root}>
     {images.map((image, index) => (
       <li className={styles.item} key={index}>
-        <RemovableItem
+        <RemovableItem inlineBlock
           action={() => handleRemove(field, image)}>
           <Image
             src={getImageSource(image)}
