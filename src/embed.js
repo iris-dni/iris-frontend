@@ -3,7 +3,7 @@ require('es6-object-assign').polyfill();
 require('es6-promise').polyfill();
 // Begin embed code
 import Postmate from 'postmate';
-import getPetitionEmbedUrl from 'helpers/getPetitionEmbedUrl';
+import getPetitionEmbedUrl from 'widgets/helpers/getPetitionEmbedUrl';
 
 const setIframeAttributes = (iframeElement) => {
   iframeElement.setAttribute('width', '100%');
