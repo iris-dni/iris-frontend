@@ -2,10 +2,10 @@ import { assert } from 'chai';
 import getPetitionsRequestParams from 'helpers/getPetitionsRequestParams';
 
 describe('getPetitionsRequestParams', () => {
-  it('always returns resolved city and owner', () => {
+  it('always returns resolved city, owner and images', () => {
     const result = getPetitionsRequestParams({});
     const actual = result.resolve;
-    const expected = 'city,owner';
+    const expected = 'city,owner,images';
 
     assert.equal(actual, expected);
   });
