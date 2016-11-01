@@ -4,11 +4,11 @@ export default ({ routing, petitions, petition }) => {
 
   // Only match filtered city on /petitions list page.
   // Those always contain a `:`
-  if (hasRoute && hasRoute.indexOf(':') > -1) {
+  if (hasRoute && hasRoute.indexOf(':') > -1 && petitions.currentCity) {
     return petitions.currentCity.tags;
   }
 
-  if (petition.city && petition.city.data.tags) {
+  if (petition.city && petition.city.data) {
     return petition.city.data.tags;
   }
 

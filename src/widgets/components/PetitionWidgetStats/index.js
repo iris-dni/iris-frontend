@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './petition-stats.scss';
+import styles from './petition-widget-stats.scss';
 import settings from 'settings';
 import Statistic from 'components/Statistic';
 
-const PetitionStats = ({ total, required, daysLeft }) => (
+const PetitionWidgetStats = ({ total, required, daysLeft }) => (
   <ul className={styles.root}>
     <li className={styles.item}>
       <Statistic
@@ -19,7 +19,7 @@ const PetitionStats = ({ total, required, daysLeft }) => (
         />
       </li>
     }
-    <li className={styles['days-item']}>
+    <li className={styles.item}>
       <Statistic
         figure={daysLeft}
         label={settings.daysRemaining}
@@ -28,4 +28,4 @@ const PetitionStats = ({ total, required, daysLeft }) => (
   </ul>
 );
 
-export default PetitionStats;
+export default PetitionWidgetStats;

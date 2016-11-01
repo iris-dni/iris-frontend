@@ -1,0 +1,23 @@
+@import 'globals';
+
+.title {
+  margin: 0;
+  padding: 0;
+
+  @include media('<500px') {
+    font-size: 1.5em;
+  }
+
+  @include media('>=500px') {
+    font-size: 1.75em;
+  }
+
+  h1 {
+    line-height: 1.2;
+  }
+}
+
+.link {
+  color: color('black');
+  text-decoration: none;
+}

@@ -1,0 +1,38 @@
+@import 'globals';
+
+.root {
+  background-color: color('white');
+  position: relative;
+  min-width: 280px;
+  max-width: 700px;
+  border: 1px solid color('grey');
+}
+
+.upper {
+  position: relative;
+  max-height: 250px;
+  overflow: hidden;
+}
+
+.info {
+  margin-top: 1em;
+}
+
+.content {
+  @include media('<=350px') {
+    font-size: 12px;
+  }
+
+  @include media('>350px', '<=500px') {
+    font-size: 13px;
+  }
+
+  @include media('<=500px') {
+    padding: 12px;
+  }
+
+  @include media('>500px') {
+    font-size: 14px;
+    padding: 15px;
+  }
+}

@@ -433,5 +433,12 @@ export default {
   ],
   footer: {
     copyright: 'Copyright \u00A9 2016 Iris'
+  },
+  widgets: {
+    branding: 'Petitions by',
+    petition: {
+      byline: 'A petition in %c by %a',
+      link: 'View Petition'
+    }
   }
 };

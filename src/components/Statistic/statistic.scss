@@ -1,0 +1,24 @@
+@import 'globals';
+
+.root {
+  line-height: 1.35;
+}
+
+.figure {
+  display: block;
+  color: color('primary');
+  font-weight: normal;
+
+  @include media('<=text-boost') {
+    font-size: 1.25em;
+  }
+
+  @include media('>text-boost') {
+    font-size: 1.375em;
+  }
+}
+
+.label {
+  color: color('black');
+  display: block;
+}

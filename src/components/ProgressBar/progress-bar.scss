@@ -1,7 +1,16 @@
 @import 'globals';
 
-.root {
+.shared {
   display: block;
-  height: 12px;
   width: 100%;
+}
+
+.regular {
+  composes: shared;
+  height: 12px;
+}
+
+.small {
+  composes: shared;
+  height: 10px;
 }

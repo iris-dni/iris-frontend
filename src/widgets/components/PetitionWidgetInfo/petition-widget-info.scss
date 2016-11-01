@@ -1,0 +1,16 @@
+@import 'globals';
+
+.root {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  color: color('dimmed');
+}
+
+.item {
+  margin-top: 2px;
+
+  @include media('>500px') {
+    display: inline-block;
+    margin-right: 20px;
+  }
+}
