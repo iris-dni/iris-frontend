@@ -5,13 +5,13 @@ import path from 'path';
 export default {
   find: (id) => {
     const requestPath = path.join('/petitions', id.toString());
-    const requestParams = { resolve: 'city,owner,links,mentions', extend: 'supporting' };
+    const requestParams = { resolve: 'city,owner,links,mentions,images', extend: 'supporting' };
     return ApiClient.request(requestPath, requestParams);
   },
 
   findByResponseToken: (responseToken) => {
     const requestPath = path.join('/token/', responseToken, '/petitions');
-    const requestParams = { resolve: 'city,owner' };
+    const requestParams = { resolve: 'city,owner,images' };
     return ApiClient.request(requestPath, requestParams);
   },
 
@@ -22,12 +22,12 @@ export default {
   },
 
   create: (petition) => {
-    const requestPath = '/petitions?resolve=city,links,owner';
+    const requestPath = '/petitions?resolve=city,links,owner,images';
     return ApiClient.request(requestPath, { data: petition }, POST);
   },
 
   update: (petition) => {
-    const requestPath = path.join('/petitions', `${petition.id.toString()}?resolve=city,links,owner`);
+    const requestPath = path.join('/petitions', `${petition.id.toString()}?resolve=city,links,owner,images`);
 
     // API requires no id key when updating
     delete petition.id;

@@ -6,25 +6,37 @@ import IconAndInfo from 'components/IconAndInfo';
 import styles from './image-field.scss';
 
 const ImageField = React.createClass({
+  getInitialState: () => ({
+    loading: false
+  }),
+
+  handleAccepted (accepted, uploadImage, helper) {
+    accepted.map((image, index) =>
+      uploadImage(image, index).then(({ file }) => {
+        Object.assign(accepted[index], file);
+        helper.onChange(accepted);
+      })
+    );
+  },
+
+  handleRejected (accepted, helper) {
+    helper.error = settings.petitionFields.image.invalidFileError;
+    if (!helper.value) {
+      helper.onChange(accepted);
+    } else {
+      helper.onBlur();
+    }
+  },
+
   handleDrop (accepted, rejected, field) {
     const { helper, uploadImage } = this.props;
 
     if (accepted.length) {
-      accepted.map((image, index) => {
-        uploadImage(image, index).then(({ file }) => {
-          Object.assign(accepted[index], file);
-          helper.onChange(accepted);
-        });
-      });
+      this.handleAccepted(accepted, uploadImage, helper);
     }
 
     if (rejected.length) {
-      helper.error = settings.petitionFields.image.invalidFileError;
-      if (!helper.value) {
-        helper.onChange(accepted);
-      } else {
-        helper.onBlur();
-      }
+      this.handleRejected(accepted, helper);
     }
   },
 
