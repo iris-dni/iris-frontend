@@ -5,27 +5,24 @@ import { hideModalWindow } from 'actions/ModalActions';
 import ModalWindow from 'components/ModalWindow';
 import LoginModal from 'components/LoginModal';
 import ShareModal from 'components/ShareModal';
+import EmbedModal from 'components/EmbedModal';
 import generateSsoProviders from 'helpers/generateSsoProviders';
 
 const ModalWindowContainer = React.createClass({
   render () {
-    const { type, title, intro, link, href, active, returnUrl, hideModalWindow } = this.props;
+    const { type, active, returnUrl, hideModalWindow } = this.props;
     return (
       <ModalWindow active={active} hideModalWindow={hideModalWindow}>
         {type === 'auth' &&
-          <LoginModal
-            title={title}
-            intro={intro}
+          <LoginModal {...this.props}
             ssoProviders={generateSsoProviders(ssoProviders, returnUrl)}
           />
         }
         {type === 'share' &&
-          <ShareModal
-            title={title}
-            intro={intro}
-            href={href}
-            link={link}
-          />
+          <ShareModal {...this.props} />
+        }
+        {type === 'embed' &&
+          <EmbedModal {...this.props} />
         }
       </ModalWindow>
     );

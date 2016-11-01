@@ -3,9 +3,16 @@ import styles from './share-buttons.scss';
 import ButtonLink from 'components/ButtonLink';
 import ButtonIcon from 'components/ButtonIcon';
 import CopyPetitionLink from 'components/CopyPetitionLink';
-import EmbedPetitionLink from 'containers/EmbedPetitionLink';
 
 const ShareButtons = React.createClass({
+  getInitialState: () => ({
+    copied: false
+  }),
+
+  handleCopy () {
+    this.setState({ copied: true });
+  },
+
   render () {
     const { openPopup, petitionURL, buttons = [] } = this.props;
     return (
@@ -26,11 +33,8 @@ const ShareButtons = React.createClass({
             </ButtonLink>
           </li>
         ))}
-        <li className={styles.item}>
+        <li className={styles.item} key={'link'}>
           <CopyPetitionLink url={petitionURL} />
-        </li>
-        <li className={styles.item}>
-          <EmbedPetitionLink />
         </li>
       </ul>
     );
