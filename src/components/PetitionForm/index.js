@@ -21,7 +21,7 @@ const PetitionForm = ({ petition, openGraph, images, fields, handleSubmit, submi
     </Fieldset>
     <Fieldset modifier={'actions'}>
       <Button
-        text={settings.petitionForm[petition.persisted ? 'saveButton' : 'createButton']}
+        text={settings.petitionForm[petition.persisted && petition.owned ? 'saveButton' : 'createButton']}
         modifier={'accent'}
         disabled={openGraph.isLoading || images.isLoading || submitting || !fields._meta.allValid}
       />

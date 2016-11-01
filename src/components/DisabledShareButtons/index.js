@@ -22,7 +22,7 @@ const buttons = [
     label: settings.shareButtons.link.label
   },
   {
-    id: 'Link',
+    id: 'Embed',
     label: settings.shareButtons.embed.label
   }
 ];
