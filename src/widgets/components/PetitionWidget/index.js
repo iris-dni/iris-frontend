@@ -9,6 +9,7 @@ import PetitionWidgetTitle from 'widgets/components/PetitionWidgetTitle';
 import PetitionWidgetProgress from 'widgets/components/PetitionWidgetProgress';
 import PetitionWidgetStats from 'widgets/components/PetitionWidgetStats';
 import PetitionWidgetSupportButton from 'widgets/components/PetitionWidgetSupportButton';
+import getWidgetHeight from 'widgets/helpers/getWidgetHeight';
 
 const PetitionWidget = React.createClass({
 
@@ -20,7 +21,7 @@ const PetitionWidget = React.createClass({
 
   componentDidMount () {
     const handshake = new Postmate.Model({
-      height: () => this._widget.scrollHeight
+      height: () => getWidgetHeight(this._widget)
     });
 
     this.emitWidgetSizeRef = debounce(
@@ -37,40 +38,29 @@ const PetitionWidget = React.createClass({
   },
 
   render () {
-    const {
-      id,
-      title,
-      link,
-      byline,
-      image,
-      info,
-      stats,
-      progress
-    } = this.props;
-
     return (
       <article
         ref={(c) => (this._widget = c)}
         className={styles.root}>
-        {image &&
+        {this.props.image &&
           <div className={styles.upper}>
             <ImageContainer
-              {...image}
+              {...this.props.image}
               attrs={{ w: 800, h: 400 }}
             />
           </div>
         }
         <div className={styles.content}>
-          <PetitionWidgetByline text={byline} />
+          <PetitionWidgetByline text={this.props.byline} />
           <PetitionWidgetTitle
-            title={title}
-            link={link}
+            title={this.props.title}
+            link={this.props.link}
           />
           <div className={styles.info}>
-            <PetitionWidgetProgress {...progress} />
-            <PetitionWidgetStats {...stats} />
+            <PetitionWidgetProgress {...this.props.progress} />
+            <PetitionWidgetStats {...this.props.stats} />
           </div>
-          <PetitionWidgetSupportButton link={link} />
+          <PetitionWidgetSupportButton link={this.props.link} />
           <WidgetBranding />
         </div>
       </article>
