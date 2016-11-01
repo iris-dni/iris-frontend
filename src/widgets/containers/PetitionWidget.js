@@ -23,6 +23,7 @@ PetitionWidgetContainer.propTypes = {
   title: React.PropTypes.string.isRequired,
   link: React.PropTypes.string.isRequired,
   byline: React.PropTypes.string.isRequired,
+  image: React.PropTypes.object,
   stats: React.PropTypes.object.isRequired,
   progress: React.PropTypes.object.isRequired
 };

@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import styles from './teaser.scss';
 import TeaserFooter from 'components/TeaserFooter';
 import PetitionTags from 'components/PetitionTags';
+import ImageContainer from 'components/ImageContainer';
 
 const Teaser = (props) => (
   <article className={styles.root}>
@@ -10,6 +11,14 @@ const Teaser = (props) => (
       <div className={styles.tags}>
         <PetitionTags isTeaser {...props.tags} />
       </div>
+      {props.image &&
+        <div className={styles.image}>
+          <ImageContainer
+            {...props.image}
+            attrs={{ w: 400, h: 200 }}
+          />
+        </div>
+      }
       <h2 className={styles.title}>
         {props.title}
       </h2>

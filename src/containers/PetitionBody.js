@@ -14,7 +14,7 @@ const mapStateToProps = ({ petition }) => ({
 });
 
 PetitionBodyContainer.propTypes = {
-  image: React.PropTypes.objct,
+  image: React.PropTypes.object,
   description: React.PropTypes.string.isRequired,
   suggestedSolution: React.PropTypes.string
 };
