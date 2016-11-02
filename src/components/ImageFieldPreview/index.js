@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './image-field-preview.scss';
 import Image from 'components/Image';
 import RemovableItem from 'components/RemovableItem';
-import getImageUrl from 'selectors/imageUrl';
+import getImageUrl from 'helpers/getImageUrl';
+import isPortraitImage from 'helpers/isPortraitImage';
 
 const getImageSource = (image) => getImageUrl(image) || image.preview;
 
@@ -29,6 +30,7 @@ const PetitionImageFieldPreview = ({ field, images }) => (
           {!image.preview &&
             <Image
               src={getImageSource(image)}
+              isPortrait={isPortraitImage(image)}
               attrs={{ op: 'noop' }}
               alt={image.name}
             />

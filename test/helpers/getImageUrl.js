@@ -1,10 +1,10 @@
 import chai from 'chai';
-import getImageUrl from 'selectors/imageUrl';
+import getImageUrl from 'helpers/getImageUrl';
 import mockImage from '../mocks/image';
 
 const { assert } = chai;
 
-describe('imageUrl selector', () => {
+describe('getImageUrl', () => {
   it('returns source', () => {
     const actual = getImageUrl(mockImage);
     const expected = 'https://imageproxy-iris-dev.lovelysystems.com/?url=/85a4ba248ea04d7480fd30334484d0da';
