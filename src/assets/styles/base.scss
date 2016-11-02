@@ -38,10 +38,13 @@ textarea {
   resize: vertical;
 }
 
+
 /*
  * 1. Positioning context for overlay and mobile menu
  * 2. Minimum 100vh height to mimic html element
  * 3. Hides overflow and stop scrolling when modal active
+ * 4. Strange bug when placeholder won't disappear after
+ *    programatically setting input field value
  */
 :global {
   .wrapper {
@@ -57,5 +60,9 @@ textarea {
 
   .disabled-scroll .app-wrapper {
     overflow-y: scroll;
+  }
+
+  [value]::-webkit-input-placeholder {
+    color: transparent; /* 4 */
   }
 }

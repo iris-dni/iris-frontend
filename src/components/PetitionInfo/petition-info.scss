@@ -5,6 +5,7 @@
   font-size: 1em;
   letter-spacing: $letter-spacing;
   margin-bottom: map-get($spacing, 'm-bottom');
+  white-space: nowrap;
 }
 
 .shared {

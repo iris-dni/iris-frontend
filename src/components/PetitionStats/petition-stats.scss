@@ -2,10 +2,10 @@
 
 .root {
   list-style: none;
-  font-size: 1em;
   letter-spacing: $letter-spacing;
-  align-items: stretch;
+  align-items: center;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 
   @include media('<=text-boost') {
@@ -15,9 +15,16 @@
 
 .item {
   margin-top: 10px;
+  flex: 0 1 auto;
 
   @include media('<=text-boost') {
     word-wrap: break-word;
+  }
+}
+
+.item:first-child {
+  @include media('>sidebar') {
+    margin-right: auto;
   }
 }
 
