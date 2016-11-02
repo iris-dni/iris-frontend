@@ -7,10 +7,24 @@
 
 .regular {
   composes: shared;
-  height: 12px;
+
+  @include media('<=text-boost') {
+    height: 10px;
+  }
+
+  @include media('>text-boost') {
+    height: 12px;
+  }
 }
 
 .small {
   composes: shared;
-  height: 10px;
+
+  @include media('<=text-boost') {
+    height: 8px;
+  }
+
+  @include media('>text-boost') {
+    height: 10px;
+  }
 }

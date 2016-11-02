@@ -1,4 +1,6 @@
 import getPetitionByline from 'widgets/helpers/getPetitionByline';
+import getPetitionWinning from 'selectors/petitionWinning';
+import getPetitionResponse from 'selectors/petitionResponse';
 import getPetitionMetrics from 'selectors/petitionMetrics';
 import getPetitionProgress from 'selectors/petitionProgress';
 import getPetitionImage from 'selectors/petitionImage';
@@ -17,6 +19,10 @@ export default (petition) => {
       required: metrics.supportersMetric.total,
       daysLeft: metrics.timeMetric.figure
     },
-    progress: getPetitionProgress(petition)
+    progress: getPetitionProgress(petition),
+    tags: {
+      winner: getPetitionWinning(petition),
+      response: getPetitionResponse(petition)
+    }
   };
 };

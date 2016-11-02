@@ -18,6 +18,10 @@
   margin-top: 1em;
 }
 
+.tags ul {
+  margin-bottom: 8px;
+}
+
 .content {
   @include media('<=350px') {
     font-size: 12px;

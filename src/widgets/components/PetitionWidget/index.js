@@ -4,6 +4,7 @@ import { debounce } from 'lodash/function';
 import styles from './petition-widget.scss';
 import WidgetBranding from 'widgets/components/WidgetBranding';
 import ImageContainer from 'components/ImageContainer';
+import PetitionTags from 'components/PetitionTags';
 import PetitionWidgetByline from 'widgets/components/PetitionWidgetByline';
 import PetitionWidgetTitle from 'widgets/components/PetitionWidgetTitle';
 import PetitionWidgetProgress from 'widgets/components/PetitionWidgetProgress';
@@ -51,6 +52,9 @@ const PetitionWidget = React.createClass({
           </div>
         }
         <div className={styles.content}>
+          <div className={styles.tags}>
+            <PetitionTags {...this.props.tags} isTeaser />
+          </div>
           <PetitionWidgetByline text={this.props.byline} />
           <PetitionWidgetTitle
             title={this.props.title}

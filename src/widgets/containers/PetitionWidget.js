@@ -25,7 +25,8 @@ PetitionWidgetContainer.propTypes = {
   byline: React.PropTypes.string.isRequired,
   image: React.PropTypes.object,
   stats: React.PropTypes.object.isRequired,
-  progress: React.PropTypes.object.isRequired
+  progress: React.PropTypes.object.isRequired,
+  tags: React.PropTypes.object.isRequired
 };
 
 export default connect(
