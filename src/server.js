@@ -94,7 +94,7 @@ server.views({
  */
 server.route({
   method: '*',
-  path: '/embed/{params*}',
+  path: '/embed/{id}',
   config: {
     auth: HTTP_AUTH_ENABLED ? 'simple' : null,
     handler: (req, res, next) => renderWidget(req, res)
