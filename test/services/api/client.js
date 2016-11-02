@@ -39,6 +39,20 @@ describe('API client', () => {
       });
     });
 
+    it('respects the headers argument', (done) => {
+      let headers = { 'X-IRIS-APIKEY': 'abcd1234' };
+
+      ApiClient.request('/test', exampleData, 'POST', headers).then((response) => {
+        let request = moxios.requests.mostRecent();
+        let actualHeaders = request.config.headers;
+        let expectedProperty = 'X-IRIS-APIKEY';
+        let expectedValue = 'abcd1234';
+
+        assert.propertyVal(actualHeaders, expectedProperty, expectedValue);
+        done();
+      });
+    });
+
     it('transforms data object to query string on GET requests', (done) => {
       let expectedUrl = /\/test\?a=1&b=2&c\[\]=c1&c\[\]=c2$/;
       let expectedData = '{}';
