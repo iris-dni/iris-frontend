@@ -9,7 +9,15 @@ import getPetitionMetaData from 'helpers/getPetitionMetaData';
 
 const PetitionContainer = React.createClass({
   componentWillMount () {
-    refreshPetition(this.props.petition.id);
+    const { petition, params, fetchPetition, refreshPetition } = this.props;
+    // fetchPetition if `id` changes, refreshPetition if not.
+    // refreshPetition used as `me` data is used for support button logic,
+    // and is only available from the API client-side
+    if (petition.id !== params.id) {
+      fetchPetition(params.id);
+    } else {
+      refreshPetition(petition.id);
+    }
   },
 
   render () {
@@ -42,6 +50,7 @@ export const mapStateToProps = ({ petition }) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
+  fetchPetition: (id) => dispatch(fetchPetition(id)),
   refreshPetition: (id) => dispatch(refreshPetition(id))
 });
 
