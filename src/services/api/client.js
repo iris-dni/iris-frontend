@@ -17,10 +17,11 @@ export const GET = 'GET';
 export const POST = 'POST';
 
 export default {
-  request: (requestPath = '', data = {}, method = GET) => {
+  request: (requestPath = '', data = {}, method = GET, headers = {}) => {
     let options = {
       url: apiUrl(requestPath),
       method,
+      headers,
       withCredentials: true
     };
 
@@ -37,9 +38,9 @@ export default {
         break;
       case POST:
         if (data instanceof FormData) {
-          options.headers = {
+          options.headers = Object.assign(options.headers, {
             'Content-Type': 'multipart/form-data'
-          };
+          });
         }
 
         options.data = data;
