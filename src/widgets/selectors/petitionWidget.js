@@ -9,7 +9,7 @@ export default (petition) => {
   return {
     id: petition.id,
     title: petition.title,
-    link: getPetitionURL(petition),
+    link: getPetitionURL(petition.id),
     byline: getPetitionByline(petition),
     image: getPetitionImage(petition),
     stats: {

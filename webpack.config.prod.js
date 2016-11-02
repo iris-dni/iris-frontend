@@ -81,7 +81,8 @@ var plugins = [
 module.exports = {
   entry: {
     client: ['./src/client'],
-    widget: ['./src/widget']
+    widget: ['./src/widget'],
+    embed: ['./src/embed']
   },
   cache: false,
   context: __dirname,
