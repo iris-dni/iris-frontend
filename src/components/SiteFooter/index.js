@@ -18,7 +18,7 @@ const showFooterCTA = (section) => {
 
 const SiteFooter = ({ section }) => (
   <footer className={styles.root}>
-    {showFooterCTA(section) &&
+    {showFooterCTA(section) === true &&
       <CreateCTA {...settings.createCTA} />
     }
     <div className={styles.copyright}>
