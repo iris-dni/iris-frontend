@@ -8,7 +8,7 @@ const PetitionBody = ({ description, suggestedSolution }) => (
   <div>
     <Heading2 text={settings.petitionPage.description} />
     <MarkdownParagraph text={description} />
-    <AdSlot type='rectangle' />
+    <AdSlot context={'petition'} type='rectangle' />
     {suggestedSolution &&
       <div>
         <Heading2 text={settings.petitionPage.suggestedSolution} />

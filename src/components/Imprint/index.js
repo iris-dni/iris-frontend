@@ -12,7 +12,7 @@ import hasPlatformSupporters from 'helpers/hasPlatformSupporters';
 
 const Imprint = () => (
   <article>
-    <AdSlot type='wideboard' />
+    <AdSlot context={'imprint'} type='wideboard' />
     {hasPlatformSupporters(settings) &&
       <section>
         <Container>
