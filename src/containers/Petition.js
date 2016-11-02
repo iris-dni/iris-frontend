@@ -11,8 +11,8 @@ const PetitionContainer = React.createClass({
   componentWillMount () {
     const { petition, params, fetchPetition, refreshPetition } = this.props;
     // fetchPetition if `id` changes, refreshPetition if not.
-    // refreshPetition used as `me` data is used for support button logic,
-    // and is only available from the API client-side
+    // refreshPetition used as `me` data is required for support
+    // button logic and is only available from client-side
     if (petition.id !== params.id) {
       fetchPetition(params.id);
     } else {
