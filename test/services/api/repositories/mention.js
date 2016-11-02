@@ -16,7 +16,7 @@ describe('mention repository', () => {
   });
 
   describe('track', () => {
-    const expectedPathArgument = `/petition/${exampleId}/mentions`;
+    const expectedPathArgument = `/petitions/${exampleId}/mentions`;
     const expectedDataArgument = { url: exampleUrl };
     const expectedMethodArgument = 'GET';
     const expectedHeadersArgument = { 'X-IRIS-APIKEY': process.env.API_KEY };
