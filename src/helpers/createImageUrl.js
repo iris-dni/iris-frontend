@@ -1,6 +1,6 @@
 import encodeParams from 'helpers/encodeParams';
 
-export default (baseUrl, params) => {
+export default (baseUrl = '', params) => {
   const splitUrl = baseUrl.split('?');
   const domain = splitUrl.shift();
   const query = splitUrl.pop();

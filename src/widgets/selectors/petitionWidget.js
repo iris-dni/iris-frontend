@@ -1,6 +1,7 @@
 import getPetitionByline from 'widgets/helpers/getPetitionByline';
 import getPetitionMetrics from 'selectors/petitionMetrics';
 import getPetitionProgress from 'selectors/petitionProgress';
+import getPetitionImage from 'selectors/petitionImage';
 import getPetitionURL from 'helpers/getPetitionURL';
 
 export default (petition) => {
@@ -10,6 +11,7 @@ export default (petition) => {
     title: petition.title,
     link: getPetitionURL(petition),
     byline: getPetitionByline(petition),
+    image: getPetitionImage(petition),
     stats: {
       total: metrics.supportersMetric.figure,
       required: metrics.supportersMetric.total,

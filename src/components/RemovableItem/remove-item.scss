@@ -1,7 +1,16 @@
 @import 'globals';
 
-.root {
+.shared {
   position: relative;
+}
+
+.block {
+  composes: shared;
+  display: block;
+}
+
+.inline-block {
+  composes: shared;
   display: inline-block;
 }
 

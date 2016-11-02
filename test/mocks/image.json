@@ -1,0 +1,15 @@
+{
+  "state": "visible",
+  "data": {
+    "info": {
+      "width": 467,
+      "height": 372
+    },
+    "image_proxy_base_url": "https://imageproxy-iris-dev.lovelysystems.com/?url=/85a4ba248ea04d7480fd30334484d0da",
+    "id": "85a4ba248ea04d7480fd30334484d0da",
+    "content_type": "image/png",
+    "original_url": "http://iris-files-dev.s3-website.eu-central-1.amazonaws.com/85a4ba248ea04d7480fd30334484d0da"
+  },
+  "id": "85a4ba248ea04d7480fd30334484d0da",
+  "class": "File"
+}
