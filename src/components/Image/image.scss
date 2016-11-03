@@ -1,15 +1,7 @@
 @import 'globals';
 
-.shared {
+.root {
   display: block;
   max-width: 100%;
-}
-
-.landscape {
-  composes: shared;
-}
-
-.portrait {
-  composes: shared;
   max-height: 500px;
 }
