@@ -56,7 +56,7 @@ export const petitionPath = (options = {}) => {
 };
 
 export const petitionUrl = (options = {}) => {
-  return [baseUrl(), petitionPath(options)].join('');
+  return baseUrl(petitionPath(options));
 };
 
 export const respondToPetitionPath = (options = {}) => {
@@ -68,5 +68,5 @@ export const respondToPetitionPath = (options = {}) => {
 };
 
 export const respondToPetitionUrl = (options = {}) => {
-  return [baseUrl(), respondToPetitionPath(options)].join('');
+  return baseUrl(respondToPetitionPath(options));
 };

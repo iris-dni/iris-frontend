@@ -6,12 +6,11 @@ import mockPetitionWithImage from '../mocks/petitionWithImage';
 const { assert } = chai;
 
 describe('imageUrl selector', () => {
-  it('returns undefined for petition with no image', () => {
-    const result = getPetitionImage(mockPetition.data);
-    const actual = typeof result;
-    const expected = 'undefined';
+  it('returns an empty object for petition with no image', () => {
+    const actual = getPetitionImage(mockPetition.data);
+    const expected = {};
 
-    assert.equal(actual, expected);
+    assert.deepEqual(actual, expected);
   });
 
   context('for petition with an image', () => {

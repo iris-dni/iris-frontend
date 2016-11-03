@@ -97,18 +97,15 @@
 .active {
   border-radius: 50%;
   border: 1px solid color('primary');
-  width: 30px;
-  height: 30px;
+  font-weight: bold;
+  width: 28px;
+  height: 28px;
   color: color('primary');
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 0.5em;
   margin-right: 0.5em;
-
-  @include media('>form-switch') {
-    width: 40px;
-    height: 40px;
-  }
 }
 
 .count {

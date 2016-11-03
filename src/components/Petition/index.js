@@ -8,6 +8,7 @@ import Section from 'components/Section';
 import AdSlot from 'containers/AdSlot';
 
 import PetitionHeader from 'containers/PetitionHeader';
+import PetitionImage from 'containers/PetitionImage';
 import PetitionBody from 'containers/PetitionBody';
 import PetitionResponse from 'containers/PetitionResponse';
 import PetitionSidebar from 'containers/PetitionSidebar';
@@ -26,6 +27,7 @@ const Petition = ({ preview, city }) => (
     <Container>
       <LayoutWrap>
         <LayoutContent>
+          <PetitionImage />
           <PetitionBody />
           <PetitionResponse />
           <ShowWhen when={'small'}>

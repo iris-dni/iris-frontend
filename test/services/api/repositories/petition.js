@@ -236,7 +236,7 @@ describe('petition repository', () => {
         petition: mockPetition.data,
         user: mockUser
       };
-      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support?resolve=${allResolves}`;
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support?resolve=owner`;
       let expectedDataArgument = {
         data: {
           user: mockUser
@@ -261,7 +261,7 @@ describe('petition repository', () => {
         user: mockUser,
         mobile_token: '12345'
       };
-      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support?resolve=${allResolves}`;
+      let expectedPathArgument = `/petitions/${mockPetition.data.id}/event/support?resolve=owner`;
       let expectedDataArgument = {
         data: {
           user: mockUser,
