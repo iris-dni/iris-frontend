@@ -19,20 +19,11 @@ const PetitionImageFieldPreview = ({ field, images }) => (
       <li className={styles.item} key={index}>
         <RemovableItem inlineBlock
           action={() => handleRemove(field, image)}>
-          {image.preview &&
-            <img
-              className={styles.preview}
-              src={getImageSource(image)}
-              alt={''}
-            />
-          }
-          {!image.preview &&
-            <Image
-              src={getImageSource(image)}
-              attrs={{ w: 800 }}
-              alt={image.name || ''}
-            />
-          }
+          <Image
+            src={getImageSource(image)}
+            attrs={image.preview ? null : { w: 800 }}
+            alt={image.name || ''}
+          />
         </RemovableItem>
       </li>
     ))}

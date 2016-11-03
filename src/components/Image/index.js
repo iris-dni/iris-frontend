@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './image.scss';
-import createImageUrl from 'helpers/createImageUrl';
+import createSignedImageUrl from 'helpers/createSignedImageUrl';
 
-const Image = ({ src, alt, attrs = {}, isPortrait }) => (
+const Image = ({ src, alt, attrs }) => (
   <img className={styles.root}
-    src={createImageUrl(src, attrs)}
+    src={attrs ? createSignedImageUrl(src, attrs) : src}
     alt={alt || ''}
   />
 );
