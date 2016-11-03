@@ -7,7 +7,7 @@ describe('createSignedImageUrl', () => {
   context('for an image without params', () => {
     it('returns correctly formed url with noop', () => {
       const actual = createSignedImageUrl(baseUrl);
-      const expected = '/images?domain=https://test.com/&url=/4891e30ddceb44008b252cb5ff9ac6bc&op=noop';
+      const expected = 'http://localhost:8000/images?domain=https://test.com/&url=/4891e30ddceb44008b252cb5ff9ac6bc&op=noop';
 
       assert.equal(actual, expected);
     });
@@ -19,7 +19,7 @@ describe('createSignedImageUrl', () => {
         w: 1000,
         h: 500
       });
-      const expected = '/images?domain=https://test.com/&url=/4891e30ddceb44008b252cb5ff9ac6bc&w=1000&h=500';
+      const expected = 'http://localhost:8000/images?domain=https://test.com/&url=/4891e30ddceb44008b252cb5ff9ac6bc&w=1000&h=500';
 
       assert.equal(actual, expected);
     });

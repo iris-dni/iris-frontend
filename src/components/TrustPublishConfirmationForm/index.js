@@ -22,9 +22,9 @@ const TrustPublishConfirmationForm = ({
   submitting,
   canBePublished
 }) => (
-  <form onSubmit={handleSubmit((values, dispatch) => publishPetition(
-    assignPetitionData(values, petition), dispatch)
-  )}>
+  <form onSubmit={handleSubmit((values) => publishPetition(
+    assignPetitionData(values, petition)
+  ))}>
     <Fieldset>
       <FormFieldsIterator
         reduxFormFields={fields}

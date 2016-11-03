@@ -16,7 +16,6 @@ import hasValidSupportUserData from 'helpers/hasValidSupportUserData';
 const TrustSupportConfirmationForm = ({
   fields,
   handleSubmit,
-  supportPetition,
   me,
   petition,
   submitting
@@ -57,15 +56,8 @@ TrustSupportConfirmationForm.propTypes = {
 
 export const mapStateToProps = ({ petition, me }) => trustForm(petition, me);
 
-export const mapDispatchToProps = (dispatch) => ({
-  supportPetition: (trustData) => dispatch(supportPetition(trustData))
-});
-
 export default reduxForm({
   form: 'trustSupportConfirmation',
   fields: FIELDS.map(field => field.name),
   validate: trustSupportConfirmationValidator
-},
-  mapStateToProps,
-  mapDispatchToProps
-)(TrustSupportConfirmationForm);
+}, mapStateToProps)(TrustSupportConfirmationForm);

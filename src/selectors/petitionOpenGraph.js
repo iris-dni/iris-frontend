@@ -1,8 +1,8 @@
 import getPetitionOwner from 'selectors/petitionOwner';
 import getPetitionCity from 'selectors/petitionCity';
 import getPetitionImage from 'selectors/petitionImage';
-import getPetitionURL from 'helpers/getPetitionURL';
 import createSignedImageUrl from 'helpers/createSignedImageUrl';
+import getPetitionURL from 'helpers/getPetitionURL';
 import getPetitionStartDate from 'selectors/petitionStartDate';
 
 export default (petition = {}) => {
@@ -20,7 +20,9 @@ export default (petition = {}) => {
     },
     {
       property: 'og:image',
-      content: createSignedImageUrl(petitionImageSrc, { w: 1200, h: 630 })
+      content: createSignedImageUrl(
+        petitionImageSrc, { w: 1200, h: 630 }
+      )
     },
     {
       property: 'og:url',

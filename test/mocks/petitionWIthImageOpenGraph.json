@@ -9,7 +9,7 @@
   },
   {
     "property": "og:image",
-    "content": "/images?domain=https://imageproxy-iris-dev.lovelysystems.com/&url=/85a4ba248ea04d7480fd30334484d0da&w=1200&h=630"
+    "content": "http://localhost:8000/images?domain=https://imageproxy-iris-dev.lovelysystems.com/&url=/85a4ba248ea04d7480fd30334484d0da&w=1200&h=630"
   },
   {
     "property": "og:url",

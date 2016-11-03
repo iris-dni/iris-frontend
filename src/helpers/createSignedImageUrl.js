@@ -1,18 +1,19 @@
+import baseUrl from 'helpers/baseUrl';
 import encodeParams from 'helpers/encodeParams';
 
-export default (baseUrl, params = { op: 'noop' }) => {
-  if (!baseUrl) {
+export default (basePath, params = { op: 'noop' }) => {
+  if (!basePath) {
     return '';
   }
 
-  const splitUrl = baseUrl.split('?');
-  const domain = splitUrl.shift();
-  const query = splitUrl.pop();
+  const splitPath = basePath.split('?');
+  const domain = splitPath.shift();
+  const query = splitPath.pop();
   const encodedParams = encodeParams(params);
   const queryString = query + `${encodedParams ? '&' + encodedParams : ''}`;
-  return [
-    '/images',
+  return baseUrl([
+    'images',
     `?domain=${domain}`,
     `&${queryString}`
-  ].join('');
+  ].join(''));
 };
