@@ -17,8 +17,8 @@
   </head>
   <body>
     <div id="app" class="app-wrapper">{{ reactMarkup | safe }}</div>
+    <script>window.__INITIAL_STATE__={{ initialState | safe }}</script>
+    <script src="{{ baseAssetPath }}/widget.js"></script>
+    {% include 'theme/includes/widget/scripts.html' %}
   </body>
-  <script>window.__INITIAL_STATE__={{ initialState | safe }}</script>
-  <script src="{{ baseAssetPath }}/widget.js"></script>
-  {% include 'theme/includes/widget/scripts.html' %}
 </html>

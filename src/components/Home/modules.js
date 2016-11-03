@@ -17,6 +17,6 @@ export default [
   },
   {
     component: HomepagePetitions,
-    props: settings.trendingPetitions
+    props: {}
   }
 ];

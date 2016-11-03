@@ -2,20 +2,36 @@ import React from 'react';
 import { connect } from 'react-redux';
 import HomepagePetitions from 'components/HomepagePetitions';
 import getPetitionsGroups from 'selectors/petitionsGroups';
-import getPetitionsGroupsList from 'helpers/getPetitionsGroupsList';
 
-const PETITIONS_GROUPS = getPetitionsGroupsList();
+export const PETITION_GROUPS = [
+  {
+    group: 'trending',
+    query: {
+      state: 'current',
+      limit: 6,
+      sort: 'trending'
+    }
+  },
+  {
+    group: 'latest',
+    query: {
+      state: 'current',
+      limit: 3,
+      sort: 'created'
+    }
+  }
+];
 
 const HomepagePetitionsContainer = (props) => (
   <HomepagePetitions {...props} />
 );
 
 HomepagePetitionsContainer.propTypes = {
-  groupedPetitions: React.PropTypes.object
+  petitionGroups: React.PropTypes.object
 };
 
 export const mapStateToProps = ({ petitions }) => ({
-  groupedPetitions: getPetitionsGroups(petitions, PETITIONS_GROUPS)
+  petitionGroups: getPetitionsGroups(petitions, PETITION_GROUPS)
 });
 
 export default connect(

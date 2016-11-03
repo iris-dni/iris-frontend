@@ -8,14 +8,12 @@ import getPetitionsGroups from 'selectors/petitionsGroups';
 import hasPetitionGroups from 'helpers/hasPetitionGroups';
 import getPetitionsGroupsList from 'helpers/getPetitionsGroupsList';
 
-const PETITIONS_GROUPS = getPetitionsGroupsList();
-
 const HomeContainer = React.createClass({
   componentWillMount () {
     // If there are no petitions, or if the user arrived on the page by clicking
     // a client-side router link, then we fetch petitions client-side.
     if (!hasPetitionGroups(this.props)) {
-      this.props.fetchGroupedPetitions(this.props, PETITIONS_GROUPS);
+      this.props.fetchGroupedPetitions(this.props, getPetitionsGroupsList);
     }
   },
 
@@ -30,7 +28,7 @@ const HomeContainer = React.createClass({
 });
 
 HomeContainer.fetchData = ({ store }) => {
-  return store.dispatch(fetchGroupedPetitions(store, PETITIONS_GROUPS));
+  return store.dispatch(fetchGroupedPetitions(store, getPetitionsGroupsList));
 };
 
 HomeContainer.propTypes = {
@@ -39,11 +37,11 @@ HomeContainer.propTypes = {
 };
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchGroupedPetitions: (options) => dispatch(fetchGroupedPetitions(options, PETITIONS_GROUPS))
+  fetchGroupedPetitions: (options) => dispatch(fetchGroupedPetitions(options, getPetitionsGroupsList))
 });
 
 export const mapStateToProps = ({ petitions }) => ({
-  groupedPetitions: getPetitionsGroups(petitions, PETITIONS_GROUPS),
+  groupedPetitions: getPetitionsGroups(petitions, getPetitionsGroupsList),
   title: settings.homePage.title
 });
 

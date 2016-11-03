@@ -16,21 +16,18 @@ const getClassname = (isOpened, wasOpened) => {
 
 const MenuTrigger = ({ opened, wasOpened, onClickHandler }) => (
   <button
-    aria-label='Menu'
+    aria-label={opened ? 'Close navigation menu' : 'Open navigation menu'}
     aria-controls='navigation'
     className={getClassname(opened, wasOpened)}
     onClick={onClickHandler}
   >
     Menu
 
-    <span
-      aria-role='presentational'
-      className={styles['burger-icon']}
-    >
+    <div aria-role='presentational' className={styles['burger-icon']}>
       <span />
       <span />
       <span />
-    </span>
+    </div>
   </button>
 );
 
