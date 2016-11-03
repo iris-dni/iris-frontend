@@ -62,7 +62,7 @@ textarea {
     overflow-y: scroll;
   }
 
-  [value]::-webkit-input-placeholder {
+  [value]:not([value=''])::-webkit-input-placeholder {
     color: transparent; /* 4 */
   }
 }
