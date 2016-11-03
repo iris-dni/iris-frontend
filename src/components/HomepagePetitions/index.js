@@ -8,7 +8,7 @@ import Heading2 from 'components/Heading2';
 import styles from './homepage-petitions.scss';
 import Link from 'components/Link';
 
-const HomepagePetitions = ({ groups, petitionGroups }) => (
+const HomepagePetitions = ({ groups = [], petitionGroups = [] }) => (
   <section>
     {groups.map(group => (
       <Section key={group}>

@@ -17,6 +17,8 @@ export default [
   },
   {
     component: HomepagePetitions,
-    props: {}
+    props: {
+      groups: ['trending', 'latest']
+    }
   }
 ];
