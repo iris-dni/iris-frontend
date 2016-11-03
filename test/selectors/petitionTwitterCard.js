@@ -1,16 +1,29 @@
 import chai from 'chai';
 import getPetitionTwitterCard from 'selectors/petitionTwitterCard';
 import mockPetition from '../mocks/petition';
+import mockPetitionWithImage from '../mocks/petitionWithImage';
 import mockPetitionTwitterCard from '../mocks/petitionTwitterCard';
+import mockPetitionWithImageTwitterCard from '../mocks/petitionWithImageTwitterCard';
 
 const { assert } = chai;
 
 describe('petitionTwitterCard selector', () => {
-  it('returns correct twitter card data', () => {
-    const actual = getPetitionTwitterCard(mockPetition.data);
-    const expected = mockPetitionTwitterCard;
+  context('without an image', () => {
+    it('returns correct twitter card data', () => {
+      const actual = getPetitionTwitterCard(mockPetition.data);
+      const expected = mockPetitionTwitterCard;
 
-    assert.deepEqual(actual, expected);
+      assert.deepEqual(actual, expected);
+    });
+  });
+
+  context('with an image', () => {
+    it('returns correct twitter card data', () => {
+      const actual = getPetitionTwitterCard(mockPetitionWithImage.data);
+      const expected = mockPetitionWithImageTwitterCard;
+
+      assert.deepEqual(actual, expected);
+    });
   });
 
   it('fails silently', () => {

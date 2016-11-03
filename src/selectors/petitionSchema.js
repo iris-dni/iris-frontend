@@ -25,8 +25,10 @@ export default (petition = {}) => {
       'author': getPetitionOwner(petition)
     }
   }, petitionImageSrc ? {
-    '@type': 'ImageObject',
-    'url': createSignedImageUrl(petitionImageSrc, { w: 800 }),
-    ...imageDimensionsForWidth(petitionImageObject, 800)
+    image: {
+      '@type': 'ImageObject',
+      'url': createSignedImageUrl(petitionImageSrc, { w: 800 }),
+      ...imageDimensionsForWidth(petitionImageObject, 800)
+    }
   } : {});
 };

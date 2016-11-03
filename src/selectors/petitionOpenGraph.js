@@ -8,6 +8,7 @@ import getPetitionStartDate from 'selectors/petitionStartDate';
 export default (petition = {}) => {
   const petitionImage = getPetitionImage(petition);
   const petitionImageSrc = petitionImage ? petitionImage.src : '';
+
   return [
     {
       property: 'og:title',
@@ -20,9 +21,7 @@ export default (petition = {}) => {
     },
     {
       property: 'og:image',
-      content: createSignedImageUrl(
-        petitionImageSrc, { w: 1200, h: 630 }
-      )
+      content: createSignedImageUrl(petitionImageSrc, { w: 1200, h: 630 })
     },
     {
       property: 'og:url',
