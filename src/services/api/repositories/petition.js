@@ -47,7 +47,7 @@ export default {
   },
 
   support: ({ petition, mobile_token, user }) => {
-    const requestPath = path.join('/petitions', petition.id.toString(), '/event/support?resolve=city,owner,images,links,mentions');
+    const requestPath = path.join('/petitions', petition.id.toString(), '/event/support?resolve=owner');
     const payload = mobile_token ? { mobile_token, user } : { user }; // eslint-disable-line camelcase
     return ApiClient.request(requestPath, { data: payload }, POST);
   },

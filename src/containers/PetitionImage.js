@@ -10,8 +10,8 @@ const PetitionImageContainer = (props) => (
 const mapStateToProps = ({ petition }) => getPetitionImage(petition);
 
 PetitionImageContainer.propTypes = {
-  alt: React.PropTypes.string.isRequired,
-  src: React.PropTypes.string.isRequired
+  alt: React.PropTypes.string,
+  src: React.PropTypes.string
 };
 
 export default connect(

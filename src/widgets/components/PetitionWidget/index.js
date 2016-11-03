@@ -43,7 +43,7 @@ const PetitionWidget = React.createClass({
       <article
         ref={(c) => (this._widget = c)}
         className={styles.root}>
-        {this.props.image &&
+        {this.props.image && this.props.image.src &&
           <div className={styles.upper}>
             <ImageContainer
               {...this.props.image}

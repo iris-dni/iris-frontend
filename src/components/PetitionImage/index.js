@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './petition-image.scss';
 import Image from 'components/Image';
 
-const PetitionImage = (image) => (
-  image && image.src
+const PetitionImage = ({ src, alt }) => (
+  src
   ? <div className={styles.root}>
-    <Image {...image} attrs={{ w: 800 }} />
+    <Image src={src} alt={alt} attrs={{ w: 800 }} />
   </div>
   : null
 );

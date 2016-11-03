@@ -6,7 +6,7 @@ import mockPetitionWithImage from '../mocks/petitionWithImage';
 const { assert } = chai;
 
 describe('imageUrl selector', () => {
-  it('returns empty object for petition with no image', () => {
+  it('returns an empty object for petition with no image', () => {
     const actual = getPetitionImage(mockPetition.data);
     const expected = {};
 

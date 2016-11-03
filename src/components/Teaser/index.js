@@ -11,7 +11,7 @@ const Teaser = (props) => (
       <div className={styles.tags}>
         <PetitionTags isTeaser {...props.tags} />
       </div>
-      {props.image &&
+      {props.image && props.image.src &&
         <div className={styles.image}>
           <ImageContainer
             {...props.image}
