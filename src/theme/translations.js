@@ -38,7 +38,8 @@ export default {
       "past": "Past petitions",
       "all": "All petitions",
       "date": "Most recent",
-      "supportersAmount": "Most supported"
+      "supportersAmount": "Most supported",
+      "trending": "Trending"
     }
   },
   "petitionPage": {
@@ -183,6 +184,13 @@ export default {
       "invalidLinkFormat": "This is not a valid link",
       "invalidLinkCount": "You can’t add more than %x links",
       "invalidSimilarLink": "You can only add unique links"
+    },
+    "image": {
+      "label": "Add a cover image",
+      "hint": "Add an image to make your petition more appealing. Landscape images are recommended and your image must a JPEG, GIF or PNG, maximum 2MB. ",
+      "placeholder": "Upload image",
+      "loading": "Loading...",
+      "invalidFileError": "One or more files were invalid and could not be uploaded"
     }
   },
   "publishedPetition": {
@@ -250,6 +258,18 @@ export default {
     "link": {
       "label": "Share by URL",
       "copiedLabel": "Link copied"
+    },
+    "embed": {
+      "label": "Embed petition",
+      "modal": {
+        "type": "embed",
+        "title": "Embed this petition",
+        "intro": "To gather support and spread the word, add this petition as widget to your own site",
+        "button": {
+          "copyLabel": "Copy embed code",
+          "copiedLabel": "Embed code copied"
+        }
+      }
     }
   },
   "modalWindow": {
@@ -262,6 +282,7 @@ export default {
   "trustPage": {
     "support": {
       "title": "Support petition",
+      "trustedTitle": "Support petition",
       "intro": "In order to support this petition, please sign in below",
       "trustedIntro": "Please confirm your details below before continuing",
       "formTitle": "Or, enter your details to proceed without sign in:",
@@ -270,7 +291,8 @@ export default {
       "trustedNextButtonTrusted": "Support petition"
     },
     "publish": {
-      "title": "One last step",
+      "title": "Create petition",
+      "trustedTitle": "Create petition",
       "intro": "In order to create your petition, please sign in below",
       "trustedIntro": "Please confirm your details below before continuing",
       "formTitle": "Or, enter your details to proceed without sign in:",
@@ -359,5 +381,12 @@ export default {
   "logo": "IRIS",
   "footer": {
     "copyright": "Copyright © 2016 Iris"
+  },
+  "widgets": {
+    "branding": "Petitions by",
+    "petition": {
+      "byline": "A petition in %c by %a",
+      "link": "View Petition"
+    }
   }
 };
