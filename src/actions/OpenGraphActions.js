@@ -7,7 +7,7 @@ import {
 } from './actionTypes';
 
 export function fetchOpenGraph (url) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(requestOpenGraph());
     return openGraphRepository.check(url)
       .then(response => dispatch(

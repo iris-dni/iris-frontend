@@ -38,14 +38,13 @@ describe('petitions reducer', () => {
       group: 'latest',
       params: {}
     });
-    const expected = Object.assign({},
-      {
-        latest: mockPetitions
-      },
-      { params: {} }
-    );
-
-    expected.latest.isLoading = false;
+    const expected = {
+      latest: {
+        ...mockPetitions,
+        isLoading: false,
+        params: {}
+      }
+    };
 
     assert.deepEqual(actual, expected);
   });
