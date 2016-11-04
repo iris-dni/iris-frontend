@@ -1,20 +1,19 @@
 import React from 'react';
-import styles from './share-modal.scss';
+import settings from 'settings';
 import ModalIntro from 'components/ModalIntro';
-import CopyPetitionLink from 'components/CopyPetitionLink';
-import TextCenter from 'components/TextCenter';
+import openShareWindow from 'helpers/sharing/openShareWindow';
+import ShareModalButtons from 'components/ShareModalButtons';
 
-const ShareModal = ({ title, intro, link, href }) => (
+const ShareModal = ({ title, intro, buttons }) => (
   <div>
     <ModalIntro
       title={title}
       intro={intro}
     />
-    <TextCenter>
-      <span className={styles.link}>
-        <CopyPetitionLink url={link} />
-      </span>
-    </TextCenter>
+    <ShareModalButtons
+      openPopup={(url, event) => openShareWindow(url, event, settings.shareButtons.popupTitle)}
+      buttons={buttons}
+    />
   </div>
 );
 

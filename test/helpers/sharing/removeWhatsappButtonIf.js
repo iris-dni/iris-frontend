@@ -1,5 +1,5 @@
 import chai from 'chai';
-import filterButtonsForTouch from 'helpers/sharing/filterButtonsForTouch';
+import filterShareButtonsForTouch from 'helpers/sharing/filterShareButtonsForTouch';
 
 const { assert } = chai;
 
@@ -15,9 +15,9 @@ const buttons = [
   }
 ];
 
-describe('filterButtonsForTouch', () => {
+describe('filterShareButtonsForTouch', () => {
   it('returns all when touch arg passed as true', () => {
-    const result = filterButtonsForTouch(buttons, true);
+    const result = filterShareButtonsForTouch(buttons, true);
     const actual = result.length;
     const expected = 3;
 
@@ -25,7 +25,7 @@ describe('filterButtonsForTouch', () => {
   });
 
   it('removes whatsapp when touch arg passed as false', () => {
-    const result = filterButtonsForTouch(buttons, false);
+    const result = filterShareButtonsForTouch(buttons, false);
     const actual = result.filter(button => button.brand === 'whatsapp').length;
     const expected = 0;
 
