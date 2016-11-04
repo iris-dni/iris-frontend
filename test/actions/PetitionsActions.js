@@ -7,7 +7,9 @@ import {
   fetchPetitions,
   requestPetitions,
   receivePetitions,
-  receiveGroupedPetitions
+  requestGroupedPetitions,
+  receiveGroupedPetitions,
+  clearPetitions
 } from 'actions/PetitionsActions';
 
 describe('PetitionsActions', () => {
@@ -48,6 +50,24 @@ describe('PetitionsActions', () => {
       const result = requestPetitions();
       const actual = result.type;
       const expected = 'REQUEST_PETITIONS';
+
+      assert.equal(actual, expected);
+    });
+  });
+
+  describe('requestGroupedPetitions', () => {
+    it('returns REQUEST_GROUPED_PETITIONS action', () => {
+      const result = requestGroupedPetitions();
+      const actual = result.type;
+      const expected = 'REQUEST_GROUPED_PETITIONS';
+
+      assert.equal(actual, expected);
+    });
+
+    it('passes group name', () => {
+      const result = requestGroupedPetitions('latest');
+      const actual = result.group;
+      const expected = 'latest';
 
       assert.equal(actual, expected);
     });
@@ -118,6 +138,16 @@ describe('PetitionsActions', () => {
       const expected = { limit: 10 };
 
       assert.deepEqual(actual, expected);
+    });
+  });
+
+  describe('clearPetitions', () => {
+    it('returns CLEAR_PETITIONS action', () => {
+      const result = clearPetitions();
+      const actual = result.type;
+      const expected = 'CLEAR_PETITIONS';
+
+      assert.equal(actual, expected);
     });
   });
 });
