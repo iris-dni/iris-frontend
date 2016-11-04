@@ -35,16 +35,7 @@ export function fetchPetitions ({ location, params }) {
   };
 }
 
-export function fetchPetitionsAndCity ({ location, params }) {
-  return (dispatch) => Promise.all([
-    dispatch(fetchPetitions({ location, params })),
-    dispatch(fetchCity({ params }))
-  ]);
-}
-
-export function fetchPetitionGroup (type = {}) {
-  const { query, group } = type;
-
+export function fetchPetitionGroup ({ query, group }) {
   // Construct our query params, based on query string
   const queryParams = getPetitionsQueryParams({}, query);
 
@@ -57,6 +48,13 @@ export function fetchPetitionGroup (type = {}) {
         group
       )));
   };
+}
+
+export function fetchPetitionsAndCity ({ location, params }) {
+  return (dispatch) => Promise.all([
+    dispatch(fetchPetitions({ location, params })),
+    dispatch(fetchCity({ params }))
+  ]);
 }
 
 export function fetchPetitionGroups (groups = []) {

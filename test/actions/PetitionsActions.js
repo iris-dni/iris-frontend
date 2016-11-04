@@ -5,6 +5,7 @@ import mockPetitions from '../mocks/petitions';
 
 import {
   fetchPetitions,
+  fetchPetitionGroup,
   requestPetitions,
   receivePetitions,
   requestGroupedPetitions,
@@ -41,6 +42,41 @@ describe('PetitionsActions', () => {
     it('returns a function that returns a promise that dispatches receivePetitions()', done => {
       result(dispatch).then(() => {
         assert(dispatch.calledWithMatch(receivePetitions({data: mockPetitions}, {}, {})));
+      }).then(done, done);
+    });
+  });
+
+  describe('fetchPetitionGroup', () => {
+    let dispatch;
+    let result;
+
+    beforeEach(() => {
+      dispatch = sinon.spy();
+
+      moxios.install();
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: { data: mockPetitions }
+      });
+
+      result = fetchPetitionGroup({
+        group: 'latest',
+        query: {}
+      });
+    });
+
+    afterEach(() => {
+      moxios.uninstall();
+    });
+
+    it('returns a function that dispatches requestPetitions()', () => {
+      result(dispatch);
+      assert(dispatch.calledWith(requestGroupedPetitions('latest')));
+    });
+
+    it('returns a function that returns a promise that dispatches receiveGroupedPetitions()', done => {
+      result(dispatch).then(() => {
+        assert(dispatch.calledWithMatch(receiveGroupedPetitions({ data: mockPetitions }, {}, 'latest')));
       }).then(done, done);
     });
   });
