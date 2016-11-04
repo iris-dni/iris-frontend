@@ -1,5 +1,5 @@
 import render from './render';
-import mentions from 'services/api/repositories/mentions';
+import mentionRepository from 'services/api/repositories/mention';
 
 // Middleware for tracking widget views
 
@@ -9,7 +9,7 @@ export default (request, reply) => {
 
   // track the page view
   if (petitionId && referrer) {
-    mentions.track(petitionId, referrer);
+    mentionRepository.track(petitionId, referrer);
   }
 
   // pass rendering of the widget on to the default render handler
