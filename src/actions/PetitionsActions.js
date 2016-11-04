@@ -24,7 +24,7 @@ export function fetchPetitions ({ location, params }) {
   // picking the relavent props for filering
   const queryString = getPetitionsQueryString(query);
 
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(requestPetitions());
     return petitionRepository.all(queryParams)
       .then(response => dispatch(receivePetitions(
@@ -35,26 +35,6 @@ export function fetchPetitions ({ location, params }) {
   };
 }
 
-export function fetchGroupedPetitions (props = {}, groups = []) {
-  return (dispatch) => {
-    const groupDispatches = groups.map(group => {
-      dispatch(requestGroupedPetitions(group.group));
-
-      const query = Object.assign({}, props.location, group.query);
-      const queryParams = getPetitionsQueryParams({}, query);
-
-      return petitionRepository.all(queryParams)
-        .then(response => dispatch(receiveGroupedPetitions(
-        response,
-        queryParams,
-        group.group
-      )));
-    });
-
-    return Promise.all(groupDispatches);
-  };
-}
-
 export function fetchPetitionsAndCity ({ location, params }) {
   return (dispatch) => Promise.all([
     dispatch(fetchPetitions({ location, params })),
@@ -62,9 +42,41 @@ export function fetchPetitionsAndCity ({ location, params }) {
   ]);
 }
 
+export function fetchPetitionGroup (type = {}) {
+  const { query, group } = type;
+
+  // Construct our query params, based on query string
+  const queryParams = getPetitionsQueryParams({}, query);
+
+  return (dispatch) => {
+    dispatch(requestGroupedPetitions(group));
+    return petitionRepository.all(queryParams)
+      .then(response => dispatch(receiveGroupedPetitions(
+        response,
+        queryParams,
+        group
+      )));
+  };
+}
+
+export function fetchPetitionGroups (groups = []) {
+  return (dispatch) => Promise.all(
+    groups.map(group => dispatch(fetchPetitionGroup(group)))
+  );
+}
+
 export function requestPetitions () {
   return {
     type: REQUEST_PETITIONS
+  };
+}
+
+export function receivePetitions (petitions, params, qs) {
+  return {
+    type: RECEIVE_PETITIONS,
+    petitions,
+    params,
+    qs
   };
 }
 
@@ -81,15 +93,6 @@ export function receiveGroupedPetitions (petitions, params, group) {
     petitions,
     params,
     group
-  };
-}
-
-export function receivePetitions (petitions, params, qs) {
-  return {
-    type: RECEIVE_PETITIONS,
-    petitions,
-    params,
-    qs
   };
 }
 

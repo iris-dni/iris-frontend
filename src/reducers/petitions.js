@@ -12,15 +12,9 @@ const initialState = {};
 export default function petitions (state = initialState, action) {
   switch (action.type) {
     case REQUEST_PETITIONS:
-      return Object.assign({},
-        state,
-        { isLoading: true }
-      );
-    case REQUEST_GROUPED_PETITIONS:
-      return Object.assign({},
-        state,
-        {[action.group]: { isLoading: true }}
-      );
+      return Object.assign({}, state, {
+        isLoading: true
+      });
     case RECEIVE_PETITIONS:
       return Object.assign({}, state,
         action.petitions, {
@@ -29,17 +23,28 @@ export default function petitions (state = initialState, action) {
           qs: action.qs || ''
         }
       );
+    case REQUEST_GROUPED_PETITIONS:
+      if (!action.group) {
+        return state;
+      }
+
+      return Object.assign({}, state, {
+        [action.group]: {
+          isLoading: true
+        }
+      });
     case RECEIVE_GROUPED_PETITIONS:
-      const groupedPetitions = {
-        [action.group]: action.petitions
-      };
+      if (!action.group) {
+        return state;
+      }
 
-      groupedPetitions[action.group].isLoading = false;
-
-      return Object.assign({}, state,
-        groupedPetitions,
-        { params: action.params || '' }
-      );
+      return Object.assign({}, state, {
+        [action.group]: {
+          ...action.petitions,
+          params: action.params || {},
+          isLoading: false
+        }
+      });
     case CLEAR_PETITIONS:
       return Object.assign({}, state, {
         data: []

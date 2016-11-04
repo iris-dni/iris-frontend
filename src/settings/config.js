@@ -141,18 +141,20 @@ export default {
       missionTitle: 'Our mission',
       missionDescription: 'Empower people to make change in their local communities. We want to give you the chance to be heard, make your cause known, and to gather supporters. We promise to follow up any successful petitions with a letter to your local representative. And, on top of that, your petition might even be selected to be covered by any of our news outlets.',
       background: '/dist/assets/images/hero-bg.jpg'
+    }
+  },
+  petitionGroups: {
+    trending: {
+      title: 'Trending petitions',
+      text: 'Gathering momentum!',
+      linkText: 'View all trending petitions',
+      linkHref: '/petitions?sort=trending'
     },
-    petitionGroups: {
-      trending: {
-        title: 'Trending petitions',
-        text: 'Gathering momentum!',
-        linkText: 'View all trending petitions'
-      },
-      latest: {
-        title: 'Latest petitions',
-        text: 'Show your support!',
-        linkText: 'View all recent petitions'
-      }
+    latest: {
+      title: 'Latest petitions',
+      text: 'Show your support!',
+      linkText: 'View all recent petitions',
+      linkHref: '/petitions?sort=date'
     }
   },
   petitionForm: {

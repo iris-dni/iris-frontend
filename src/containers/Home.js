@@ -2,25 +2,44 @@ import React from 'react';
 import settings from 'settings';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { fetchGroupedPetitions } from 'actions/PetitionsActions';
+import { fetchPetitionGroups, fetchPetitionGroup } from 'actions/PetitionsActions';
 import Home from 'components/Home';
-import getPetitionsGroups from 'selectors/petitionsGroups';
-import hasPetitionGroups from 'helpers/hasPetitionGroups';
-import getPetitionsGroupsList from 'helpers/getPetitionsGroupsList';
+
+export const PETITION_GROUPS = [
+  {
+    group: 'trending',
+    query: {
+      state: 'current',
+      limit: 6,
+      sort: 'trending'
+    }
+  },
+  {
+    group: 'latest',
+    query: {
+      state: 'current',
+      limit: 3,
+      sort: 'created'
+    }
+  }
+];
 
 const HomeContainer = React.createClass({
   componentWillMount () {
-    // If there are no petitions, or if the user arrived on the page by clicking
-    // a client-side router link, then we fetch petitions client-side.
-    if (!hasPetitionGroups(this.props)) {
-      this.props.fetchGroupedPetitions(this.props, getPetitionsGroupsList);
-    }
+    const { petitions, fetchPetitionGroup } = this.props;
+
+    PETITION_GROUPS.forEach((type) => {
+      const groupData = petitions[type.group] || {};
+      if (!groupData.data || !groupData.data.length) {
+        fetchPetitionGroup(type);
+      }
+    });
   },
 
   render () {
     return (
       <div>
-        <Helmet title={this.props.title} />
+        <Helmet title={settings.homePage.title} />
         <Home />
       </div>
     );
@@ -28,22 +47,19 @@ const HomeContainer = React.createClass({
 });
 
 HomeContainer.fetchData = ({ store }) => {
-  return store.dispatch(fetchGroupedPetitions(store, getPetitionsGroupsList));
+  return store.dispatch(fetchPetitionGroups(PETITION_GROUPS));
 };
 
-HomeContainer.propTypes = {
-  groupedPetitions: React.PropTypes.object,
-  title: React.PropTypes.string
-};
+export const mapStateToProps = ({ petitions }) => ({ petitions });
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchGroupedPetitions: (options) => dispatch(fetchGroupedPetitions(options, getPetitionsGroupsList))
+  fetchPetitionGroup: (group) => dispatch(fetchPetitionGroup(group))
 });
 
-export const mapStateToProps = ({ petitions }) => ({
-  groupedPetitions: getPetitionsGroups(petitions, getPetitionsGroupsList),
-  title: settings.homePage.title
-});
+HomeContainer.propTypes = {
+  title: React.PropTypes.string,
+  petitions: React.PropTypes.object.isRequired
+};
 
 export default connect(
   mapStateToProps,
