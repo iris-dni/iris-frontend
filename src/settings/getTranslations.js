@@ -1,6 +1,8 @@
 import mergeSettings from './merge';
-import { useCustomTheme } from './getThemePath';
 import translations from 'theme/translations';
+
+const customThemePath = process.env.THEME_PATH || '';
+const useCustomTheme = customThemePath && !process.env.TEST_ENV;
 
 const themeTranslations = useCustomTheme
   ? require('../../' + process.env.THEME_PATH + '/translations')
