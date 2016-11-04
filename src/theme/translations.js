@@ -1,4 +1,6 @@
-{
+/* eslint-disable quotes */
+
+export default {
   "dateRange": "%s to %e",
   "startDate": "Started on %d",
   "endDate": "Ending on %d",
@@ -358,4 +360,4 @@
   "footer": {
     "copyright": "Copyright © 2016 Iris"
   }
-}
+};
