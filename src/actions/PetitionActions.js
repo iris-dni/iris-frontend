@@ -152,7 +152,7 @@ const publishPetitionSuccess = (petition, data, dispatch) => {
     showModalWindow({
       type: 'share',
       petitionURL: getPetitionURL(petition.id),
-      buttons: generateShareButtons(petition)
+      buttons: generateShareButtons(petition, 'published')
         .filter(button => button.brand !== 'whatsapp'),
       ...settings.publishedPetition.modal
     })

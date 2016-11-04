@@ -1,5 +1,4 @@
 import chai from 'chai';
-import settings from 'settings';
 import getPetitionTweetText from 'helpers/sharing/getPetitionTweetText';
 import mockPetition from '../../mocks/petition';
 import mockPetitionWithoutCity from '../../mocks/petitionWithoutCity';
@@ -9,9 +8,9 @@ const { assert } = chai;
 describe('getPetitionTweetText', () => {
   context('without a city', () => {
     const actual = getPetitionTweetText(mockPetitionWithoutCity.data);
-    const expected = settings.shareButtons.twitter.tweetText;
+    const expected = 'This petition needs your support:';
 
-    it('subject returned from settings', () => assert.equal(actual, expected));
+    it('text returned from settings', () => assert.equal(actual, expected));
   });
 
   context('with a city', () => {
@@ -28,5 +27,12 @@ describe('getPetitionTweetText', () => {
 
       assert.isTrue(actual);
     });
+  });
+
+  context('with a modal type', () => {
+    const actual = getPetitionTweetText(mockPetitionWithoutCity.data, 'published');
+    const expected = 'I just created a new petition!';
+
+    it('contextual text returned from settings', () => assert.equal(actual, expected));
   });
 });

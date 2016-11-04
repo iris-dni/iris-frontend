@@ -1,9 +1,9 @@
 import getPetitionCity from 'selectors/petitionCity';
 import settings from 'settings';
 
-export default (petition = {}) => {
+export default (petition = {}, modalType = 'share') => {
   const city = getPetitionCity(petition).label;
   return city
-    ? settings.shareButtons.email.localisedSubject.replace('%s', city)
-    : settings.shareButtons.email.subject;
+    ? settings.shareButtons.email[modalType].localisedSubject.replace('%s', city)
+    : settings.shareButtons.email[modalType].subject;
 };
