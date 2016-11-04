@@ -1,7 +1,7 @@
 {
-  "name": "iris",
-  "version": "0.0.1",
-  "description": "IRIS Framework",
+  "name": "iris-frontend",
+  "version": "0.4.0",
+  "description": "Front-end framework for the Iris petition platform",
   "main": "babel.server.js",
   "repository": "https://github.com/iris-dni/iris-frontend",
   "scripts": {
