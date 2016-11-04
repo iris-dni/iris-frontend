@@ -28,6 +28,7 @@
 .text {
   @include media('>768px') {
     display: inline-block;
+    color: color('dimmed');
     margin-top: 0.25em;
     margin-left: 1em;
   }

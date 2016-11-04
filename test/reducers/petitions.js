@@ -31,6 +31,20 @@ describe('petitions reducer', () => {
     assert.deepEqual(actual, expected);
   });
 
+  it('handles the REQUEST_GROUPED_PETITIONS action', () => {
+    const actual = petitions({}, {
+      type: 'REQUEST_GROUPED_PETITIONS',
+      group: 'latest'
+    });
+    const expected = {
+      latest: {
+        isLoading: true
+      }
+    };
+
+    assert.deepEqual(actual, expected);
+  });
+
   it('handles the RECEIVE_GROUPED_PETITIONS action', () => {
     const actual = petitions({}, {
       type: 'RECEIVE_GROUPED_PETITIONS',
@@ -38,14 +52,24 @@ describe('petitions reducer', () => {
       group: 'latest',
       params: {}
     });
-    const expected = Object.assign({},
-      {
-        latest: mockPetitions
-      },
-      { params: {} }
-    );
+    const expected = {
+      latest: {
+        ...mockPetitions,
+        isLoading: false,
+        params: {}
+      }
+    };
 
-    expected.latest.isLoading = false;
+    assert.deepEqual(actual, expected);
+  });
+
+  it('handles the CLEAR_PETITIONS action', () => {
+    const actual = petitions({ data: ['clearme'] }, {
+      type: 'CLEAR_PETITIONS'
+    });
+    const expected = {
+      data: []
+    };
 
     assert.deepEqual(actual, expected);
   });

@@ -10,7 +10,7 @@ const getClassname = (size, modifier, inline) => {
 };
 
 const Icon = ({ id, size, modifier, inline }) => {
-  const useEl = `<use class="${styles.use}"" xlink:href="/dist/assets/images/icons.svg#${id}" />`;
+  const useEl = `<use class="${styles.use}" xlink:href="/dist/assets/images/icons.svg#${id}" />`;
 
   return (
     <svg className={getClassname(size, modifier, inline)} dangerouslySetInnerHTML={{ __html: useEl }} />

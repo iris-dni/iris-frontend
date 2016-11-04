@@ -29,7 +29,7 @@ export function clearPetition () {
 }
 
 export function fetchPetition (id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(requestPetition());
     return petitionRepository.find(id)
       .then(response => dispatch(
@@ -39,7 +39,7 @@ export function fetchPetition (id) {
 }
 
 export function refreshPetition (id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     return petitionRepository.find(id)
       .then(response => dispatch(
         receivePetition(response.data)
@@ -120,7 +120,7 @@ export function updatePetition (updateData, dispatch) {
 export function publishPetition (trustData) {
   const { petition } = trustData;
 
-  return (dispatch, getState) => {
+  return (dispatch) => {
     // Set loading state
     dispatch(submittingPetition());
     // Trigger publish action
@@ -170,7 +170,7 @@ const publishPetitionErrors = (id, response, dispatch) => {
 };
 
 export function resendVerification (trustData) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     // Set loading state
     dispatch(submittingPetition());
     // Trigger publish event

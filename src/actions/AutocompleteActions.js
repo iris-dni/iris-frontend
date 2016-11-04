@@ -30,7 +30,7 @@ export function clearSuggestionInputValue () {
 }
 
 export function typeaheadSearch (endpoint, query, limit) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     const repository = Repositories[endpoint];
 
     if (repository) {

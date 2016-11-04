@@ -80,7 +80,7 @@ export function supportedPetition (petition) {
 }
 
 export function resendVerification (trustData) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     // Set loading state
     dispatch(submittingSupport());
     // Trigger support event

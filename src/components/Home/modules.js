@@ -1,7 +1,7 @@
 import settings from 'settings';
 import Hero from 'components/Hero';
 import AdSlot from 'containers/AdSlot';
-import HomepagePetitions from 'containers/HomepagePetitions';
+import PetitionGroup from 'containers/PetitionGroup';
 
 export default [
   {
@@ -16,7 +16,15 @@ export default [
     }
   },
   {
-    component: HomepagePetitions,
-    props: settings.trendingPetitions
+    component: PetitionGroup,
+    props: {
+      group: 'trending'
+    }
+  },
+  {
+    component: PetitionGroup,
+    props: {
+      group: 'latest'
+    }
   }
 ];

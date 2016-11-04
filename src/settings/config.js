@@ -62,7 +62,8 @@ export default {
       past: 'Past petitions',
       all: 'All petitions',
       date: 'Most recent',
-      supportersAmount: 'Most supported'
+      supportersAmount: 'Most supported',
+      trending: 'Trending'
     }
   },
   petitionPage: {
@@ -142,10 +143,19 @@ export default {
       background: '/dist/assets/images/hero-bg.jpg'
     }
   },
-  trendingPetitions: {
-    title: 'Trending petitions',
-    text: 'We need your vote!',
-    linkText: 'View all trending petitions'
+  petitionGroups: {
+    trending: {
+      title: 'Trending petitions',
+      text: 'Gathering momentum!',
+      linkText: 'View all trending petitions',
+      linkHref: '/petitions?sort=trending'
+    },
+    latest: {
+      title: 'Latest petitions',
+      text: 'Show your support!',
+      linkText: 'View all recent petitions',
+      linkHref: '/petitions?sort=date'
+    }
   },
   petitionForm: {
     createButton: 'Create petition',

@@ -17,7 +17,7 @@ import {
 } from './actionTypes';
 
 export function fetchPetitionByResponseToken (responseToken) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(requestPetition());
     return petitionRepository.findByResponseToken(responseToken)
       .then(response => dispatch(

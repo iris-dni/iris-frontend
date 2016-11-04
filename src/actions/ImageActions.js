@@ -6,7 +6,7 @@ import {
 } from './actionTypes';
 
 export function uploadImage (file, index) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(createImage());
     return fileRepository.create(file)
       .then(response => dispatch(
