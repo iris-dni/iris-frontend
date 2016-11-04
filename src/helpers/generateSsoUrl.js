@@ -2,7 +2,7 @@ import baseUrl from 'helpers/baseUrl';
 
 export default (ssoUrl, returnUrl) => {
   const delimiter = ssoUrl.indexOf('?') < 0 ? '?' : '&';
-  const irisRetUrl = encodeURIComponent([baseUrl(), returnUrl].join(''));
+  const irisRetUrl = encodeURIComponent(baseUrl(returnUrl));
 
   return [
     ssoUrl,

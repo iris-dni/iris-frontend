@@ -1,19 +1,30 @@
 import settings from 'settings';
 import Hero from 'components/Hero';
-import CreateCTA from 'components/CreateCTA';
-import HomepagePetitions from 'containers/HomepagePetitions';
+import AdSlot from 'containers/AdSlot';
+import PetitionGroup from 'containers/PetitionGroup';
 
 export default [
   {
     component: Hero,
-    props: {...settings.homePage.hero}
+    props: settings.homePage.hero
   },
   {
-    component: HomepagePetitions,
-    props: {...settings.trendingPetitions}
+    component: AdSlot,
+    props: {
+      context: 'home',
+      type: 'wideboard'
+    }
   },
   {
-    component: CreateCTA,
-    props: {...settings.createCTA}
+    component: PetitionGroup,
+    props: {
+      group: 'trending'
+    }
+  },
+  {
+    component: PetitionGroup,
+    props: {
+      group: 'latest'
+    }
   }
 ];

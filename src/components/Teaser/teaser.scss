@@ -1,14 +1,16 @@
 @import 'globals';
 
+/*
 .flex {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
   position: relative;
 }
+*/
 
 .root {
-  composes: flex;
+  position: relative;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -20,11 +22,16 @@
 
 .link {
   @include map-declarations($teaser-link-defaults, $teaser-link-custom);
-  composes: flex;
+  position: relative;
+  display: block;
   color: color('black');
   border: 1px solid color('grey-lite');
   padding: map-get($spacing, 'teaser-padding');
   transition: transform 0.3s ease;
+}
+
+.image {
+  margin: -10px -10px 12px;
 }
 
 .link:hover,
@@ -48,6 +55,5 @@
 .tags {
   position: absolute;
   bottom: 100%;
-  margin-bottom: 1px;
   left: -1px;
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchPetition, refreshPetition } from 'actions/PetitionActions';
-import { supportPetition } from 'actions/SupportActions';
 import Petition from 'components/Petition';
 import Loading from 'components/Loading';
 import getPetition from 'selectors/petition';
@@ -10,26 +9,13 @@ import getPetitionMetaData from 'helpers/getPetitionMetaData';
 
 const PetitionContainer = React.createClass({
   componentWillMount () {
-    const {
-      petition,
-      fetchPetition, refreshPetition, supportPetition,
-      params: { id },
-      location: { query: { intent } }
-    } = this.props;
-
-    // Boolean if we have supporting a petition intent
-    const isSupporting = __CLIENT__ && intent === 'support';
-
-    // When the component gets added to the DOM,
-    // fetch Petition if `id` changes (clientside),
-    // or if we need to support a petition
-    if (petition.id !== this.props.params.id || isSupporting) {
-      fetchPetition(id).then(({ petition }) => isSupporting
-        ? supportPetition(petition)
-        : () => {});
+    const { petition, params, fetchPetition, refreshPetition } = this.props;
+    // fetchPetition if `id` changes, refreshPetition if not.
+    // refreshPetition used as `me` data is required for support
+    // button logic and is only available from client-side
+    if (petition.id !== params.id) {
+      fetchPetition(params.id);
     } else {
-      // Otherwise, refresh the petition
-      // in the background, no loading states
       refreshPetition(petition.id);
     }
   },
@@ -63,18 +49,14 @@ export const mapStateToProps = ({ petition }) => ({
   petition: getPetition(petition)
 });
 
-// Add dispatchers to the component props,
-// for fetching the data _client side_
 export const mapDispatchToProps = (dispatch) => ({
   fetchPetition: (id) => dispatch(fetchPetition(id)),
-  refreshPetition: (id) => dispatch(refreshPetition(id)),
-  supportPetition: (petition) => dispatch(supportPetition(petition))
+  refreshPetition: (id) => dispatch(refreshPetition(id))
 });
 
 PetitionContainer.propTypes = {
   petition: React.PropTypes.object,
-  fetchPetition: React.PropTypes.func,
-  supportPetition: React.PropTypes.func
+  refreshPetition: React.PropTypes.func
 };
 
 export default connect(

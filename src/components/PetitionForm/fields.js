@@ -52,11 +52,29 @@ export default [
     }
   },
   {
+    element: 'ImageField',
+    name: 'images',
+    label: settings.petitionFields.image.label,
+    hint: settings.petitionFields.image.hint,
+    maxItems: 1,
+    hideValidationIcon: true,
+    acceptedTypes: [
+      'image/png',
+      'image/jpeg',
+      'image/gif'
+    ],
+    maxSize: 2 * 1024 * 1024,
+    html: {
+      type: 'file',
+      placeholder: settings.petitionFields.image.placeholder
+    }
+  },
+  {
     element: 'PetitionLinksField',
     name: 'links',
     label: settings.petitionFields.links.label,
     hint: settings.petitionFields.links.hint,
-    maxLinks: 3,
+    maxItems: 3,
     hideValidationIcon: true,
     html: {
       type: 'text',

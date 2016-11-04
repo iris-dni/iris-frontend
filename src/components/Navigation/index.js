@@ -50,7 +50,7 @@ const Navigation = React.createClass({
           />
         </div>
 
-        <nav>
+        <nav role='navigation' id='navigation'>
           <div className={styles['visible-elements-wrapper']}>
             <IndexLink
               to='/'

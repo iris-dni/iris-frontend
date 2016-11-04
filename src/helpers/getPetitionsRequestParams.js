@@ -7,7 +7,7 @@ export default ({ limit, page, city, sort, state }) => {
   const saneLimit = sanitizeParamLimit(limit);
 
   return {
-    resolve: 'city,owner',
+    resolve: 'city,owner,images',
     offset: calculateParamOffset(page, saneLimit),
     limit: saneLimit,
     city: city || '',

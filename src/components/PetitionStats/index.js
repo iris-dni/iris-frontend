@@ -1,22 +1,29 @@
 import React from 'react';
 import styles from './petition-stats.scss';
 import settings from 'settings';
+import Statistic from 'components/Statistic';
 
 const PetitionStats = ({ total, required, daysLeft }) => (
   <ul className={styles.root}>
     <li className={styles.item}>
-      <span className={styles.figure}>{total}</span>
-      <span className={styles.label}>{settings.supportersText}</span>
+      <Statistic
+        figure={total}
+        label={settings.supportersText}
+      />
     </li>
     {required > 0 &&
       <li className={styles.item}>
-        <span className={styles.figure}>{required}</span>
-        <span className={styles.label}>{settings.milestoneText}</span>
+        <Statistic
+          figure={required}
+          label={settings.milestoneText}
+        />
       </li>
     }
     <li className={styles['days-item']}>
-      <span className={styles.figure}>{daysLeft}</span>
-      <span className={styles.label}>{settings.daysRemaining}</span>
+      <Statistic
+        figure={daysLeft}
+        label={settings.daysRemaining}
+      />
     </li>
   </ul>
 );

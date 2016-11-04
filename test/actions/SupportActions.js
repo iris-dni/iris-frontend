@@ -1,4 +1,5 @@
 import { assert } from 'chai';
+import { push } from 'react-router-redux';
 import sinon from 'sinon';
 import moxios from 'moxios';
 import mockPetition from '../mocks/petition';
@@ -8,17 +9,11 @@ import mockTrustResponseUntrusted from '../mocks/trustResponseUntrusted';
 import mockTrustResponseInvalid from '../mocks/trustResponseInvalid';
 
 import {
+  submittingSupport,
   supportPetition,
   supportedPetition,
   resendVerification
 } from 'actions/SupportActions';
-
-import {
-  submittingTrust,
-  userIsUntrusted,
-  userIsTrusted,
-  finishedTrust
-} from 'actions/TrustActions';
 
 import {
   receiveWhoAmI
@@ -43,8 +38,8 @@ describe('SupportActions', () => {
         supportPetition(mockTrustData, dispatch);
       });
 
-      it('dispatches submittingTrust() with petition id', () => {
-        assert(dispatch.calledWith(submittingTrust(mockTrustData.petition.id)));
+      it('dispatches submittingSupport()', () => {
+        assert(dispatch.calledWith(submittingSupport()));
       });
 
       it('dispatches receiveWhoAmI() with user', () => {
@@ -77,21 +72,15 @@ describe('SupportActions', () => {
         moxios.uninstall();
       });
 
-      it('dispatches userIsTrusted()', done => {
+      it('dispatches push to success page', done => {
         result.then(() => {
-          assert(dispatch.calledWith(userIsTrusted()));
+          assert(dispatch.calledWith(push(`/petitions/${mockPetition.data.id}`)));
         }).then(done, done);
       });
 
       it('dispatches supportedPetition()', done => {
         result.then(() => {
           assert(dispatch.calledWith(supportedPetition(mockTrustResponse.data)));
-        }).then(done, done);
-      });
-
-      it('dispatches finishedTrust()', done => {
-        result.then(() => {
-          assert(dispatch.calledWith(finishedTrust()));
         }).then(done, done);
       });
     });
@@ -121,15 +110,9 @@ describe('SupportActions', () => {
         moxios.uninstall();
       });
 
-      it('dispatches userIsUntrusted()', done => {
+      it('dispatches push to confirmation page', done => {
         result.then(() => {
-          assert(dispatch.calledWith(userIsUntrusted()));
-        }).then(done, done);
-      });
-
-      it('dispatches finishedTrust()', done => {
-        result.then(() => {
-          assert(dispatch.calledWith(finishedTrust()));
+          assert(dispatch.calledWith(push(`/trust/support/${mockPetition.data.id}/confirm`)));
         }).then(done, done);
       });
     });
@@ -162,12 +145,6 @@ describe('SupportActions', () => {
       it('dispatches showFlashMessage() error', done => {
         result.then(() => {
           assert(dispatch.calledWith(showFlashMessage('Invalid verification code', 'error')));
-        }).then(done, done);
-      });
-
-      it('dispatches finishedTrust()', done => {
-        result.then(() => {
-          assert(dispatch.calledWith(finishedTrust()));
         }).then(done, done);
       });
     });
@@ -205,16 +182,31 @@ describe('SupportActions', () => {
           assert(dispatch.calledWith(showFlashMessage('Sadly something failed, please try again!', 'error')));
         }).then(done, done);
       });
-
-      it('dispatches finishedTrust()', done => {
-        result.then(() => {
-          assert(dispatch.calledWith(finishedTrust()));
-        }).then(done, done);
-      });
     });
   });
 
   describe('resendVerification', () => {
+    context('when triggered', () => {
+      let dispatch;
+      let result;
+
+      const mockTrustData = {
+        petition: mockPetition.data,
+        user: mockUser
+      };
+
+      beforeEach(() => {
+        dispatch = sinon.spy();
+        result = resendVerification(mockTrustData);
+      });
+
+      it('dispatches submittingSupport()', done => {
+        result(dispatch).then(() => {
+          assert(dispatch.calledWith(submittingSupport()));
+        }).then(done, done);
+      });
+    });
+
     context('with an untrusted user response', () => {
       let dispatch;
       let result;
@@ -280,6 +272,16 @@ describe('SupportActions', () => {
           assert(dispatch.calledWith(showFlashMessage('Sadly something failed, please try again!', 'error')));
         }).then(done, done);
       });
+    });
+  });
+
+  describe('submittingSupport', () => {
+    it('returns SUBMITTING_SUPPORT action', () => {
+      const result = submittingSupport();
+      const actual = result.type;
+      const expected = 'SUBMITTING_SUPPORT';
+
+      assert.equal(actual, expected);
     });
   });
 

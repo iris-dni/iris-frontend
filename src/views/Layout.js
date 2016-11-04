@@ -25,10 +25,10 @@ export default ({ children, flashMessage, modalWindow }) => (
       {children}
     </main>
 
+    <SiteFooter section={children.type.WrappedComponent.displayName} />
+
     {modalWindow && modalWindow.active &&
       <ModalWindow {...modalWindow} />
     }
-
-    <SiteFooter />
   </div>
 );

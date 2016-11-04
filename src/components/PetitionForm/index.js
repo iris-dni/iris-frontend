@@ -1,15 +1,18 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import { createPetition } from 'actions/PetitionActions';
+import { createPetition, updatePetition } from 'actions/PetitionActions';
 import petitionValidator from 'form/petitionValidator';
+import assignPetitionAndId from 'form/assignPetitionAndId';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
 import settings from 'settings';
 import FIELDS from './fields';
 
-const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting }) => (
-  <form onSubmit={handleSubmit(createPetition)}>
+const PetitionForm = ({ petition, openGraph, images, fields, handleSubmit, submitting }) => (
+  <form onSubmit={handleSubmit((values, dispatch) => petition.persisted
+    ? updatePetition(assignPetitionAndId(values, petition), dispatch)
+    : createPetition(values, dispatch))}>
     <Fieldset>
       <FormFieldsIterator
         reduxFormFields={fields}
@@ -18,24 +21,24 @@ const PetitionForm = ({ petition, openGraph, fields, handleSubmit, submitting })
     </Fieldset>
     <Fieldset modifier={'actions'}>
       <Button
-        text={settings.petitionForm.createButton.text}
+        text={settings.petitionForm[petition.persisted && petition.owned ? 'saveButton' : 'createButton']}
         modifier={'accent'}
-        disabled={openGraph.isLoading || submitting || !fields._meta.allValid}
+        disabled={openGraph.isLoading || images.isLoading || submitting || !fields._meta.allValid}
       />
     </Fieldset>
   </form>
 );
 
 PetitionForm.propTypes = {
+  petition: React.PropTypes.object.isRequired,
   openGraph: React.PropTypes.object.isRequired,
+  images: React.PropTypes.object.isRequired,
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
   submitting: React.PropTypes.bool.isRequired
 };
 
-export const mapStateToProps = ({ openGraph }) => ({
-  openGraph
-});
+export const mapStateToProps = ({ openGraph, images }) => ({ openGraph, images });
 
 export default reduxForm({
   form: 'petition',

@@ -1,4 +1,5 @@
 import React from 'react';
+import settings from 'settings';
 import styles from './petition-sidebar.scss';
 import Countdown from 'components/Countdown';
 import PetitionResponseStatus from 'containers/PetitionResponseStatus';
@@ -23,6 +24,14 @@ const PetitionSidebar = ({
       <ShowWhen when={'medium'}>
         <div className={styles.counter}>
           <Countdown timeMetric={timeMetric} />
+        </div>
+      </ShowWhen>
+    }
+
+    {preview &&
+      <ShowWhen when={'medium'}>
+        <div className={styles.counter}>
+          <Countdown timeMetric={{ percentage: '0', figure: settings.daysToVote }} />
         </div>
       </ShowWhen>
     }

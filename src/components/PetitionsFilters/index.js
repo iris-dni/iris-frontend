@@ -36,6 +36,10 @@ const SORT_INPUT_OPTIONS = [
     label: settings.petitionsPage.filters.date
   },
   {
+    value: 'trending',
+    label: settings.petitionsPage.filters.trending
+  },
+  {
     value: 'supporters',
     label: settings.petitionsPage.filters.supportersAmount
   }

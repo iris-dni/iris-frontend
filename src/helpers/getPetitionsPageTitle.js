@@ -1,6 +1,6 @@
 import settings from 'settings';
 
-const getState = (state) => {
+const getFilterState = (state) => {
   switch (state) {
     case 'winning':
       return settings.petitionsPage.winning;
@@ -15,7 +15,7 @@ const getState = (state) => {
 };
 
 export default ({ currentCity, params }) => {
-  const state = params && getState(params.state);
+  const state = params && getFilterState(params.state);
   const city = currentCity && currentCity.name;
   let title = settings.petitionsPage.title;
 

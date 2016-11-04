@@ -1,0 +1,18 @@
+@import 'globals';
+
+.root {
+  list-style: none;
+  letter-spacing: $letter-spacing;
+  align-items: stretch;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5em;
+}
+
+.item {
+  margin-top: 6px;
+
+  @include media('<=text-boost') {
+    word-wrap: break-word;
+  }
+}

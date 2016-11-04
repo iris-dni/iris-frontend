@@ -7,6 +7,7 @@ import {
   RESPONDED_TO_PETITION,
   SUBMITTING_PETITION,
   PUBLISHED_PETITION,
+  SUBMITTING_SUPPORT,
   SUPPORTED_PETITION,
   PETITION_NOT_FOUND
 } from 'actions/actionTypes';
@@ -16,43 +17,28 @@ const initialState = {};
 export default function petition (state = initialState, action) {
   switch (action.type) {
     case REQUEST_PETITION:
+    case SUBMITTING_PETITION:
+    case SUBMITTING_SUPPORT:
       return Object.assign({},
-        state,
-        { isLoading: true }
-      );
-    case RECEIVE_PETITION:
-      return Object.assign({},
-        state, action.petition, {
-          isLoading: false,
-          saved: false,
-          found: true
+        state, {
+          isLoading: true
         }
       );
     case CREATED_PETITION:
     case UPDATED_PETITION:
     case RESPONDED_TO_PETITION:
-      return Object.assign({},
-        state, action.petition, {
-          isLoading: false,
-          saved: true
-        }
-      );
-    case SUBMITTING_PETITION:
-      return Object.assign({},
-        state, action.petition,
-        { isLoading: true }
-      );
     case PUBLISHED_PETITION:
-      return Object.assign({},
-        state, action.petition, {
-          hasPublished: true,
-          isLoading: false
-        }
-      );
     case SUPPORTED_PETITION:
       return Object.assign({},
         state, action.petition, {
-          hasSupported: true
+          isLoading: false
+        }
+      );
+    case RECEIVE_PETITION:
+      return Object.assign({},
+        state, action.petition, {
+          isLoading: false,
+          found: true
         }
       );
     case PETITION_NOT_FOUND:

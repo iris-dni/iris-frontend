@@ -3,13 +3,7 @@ import Icon from 'components/Icon';
 import styles from './external-teaser.scss';
 import stripProtocolFromURL from 'helpers/stripProtocolFromURL';
 
-const getIcon = (type) => (
-  (type === 'video')
-  ? 'Video'
-  : 'Link'
-);
-
-const ExternalTeaser = ({ url, og }) => (
+const ExternalTeaser = ({ url = '', og }) => (
   <article className={styles.root}>
     <a
       target='_blank'
@@ -25,14 +19,17 @@ const ExternalTeaser = ({ url, og }) => (
 
       <div className={styles['content-wrap']}>
         {og && og.title &&
-          <h1 className={styles.title}>{og.title}</h1>
+          <h3 className={styles.title}>{og.title}</h3>
         }
 
         <p className={styles.url}>
           <span className={styles['link-icon']}>
             <Icon
               size={'small'}
-              id={getIcon(og && og.type)}
+              id={og && og.type === 'video'
+                ? 'Video'
+                : 'Link'
+              }
               modifier={'invert'}
             />
           </span>

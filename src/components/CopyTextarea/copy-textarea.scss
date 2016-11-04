@@ -1,0 +1,14 @@
+@import 'globals';
+
+.textarea {
+  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  border-color: color('grey');
+  display: block;
+  width: 100%;
+  outline: 0;
+  font-family: Monospace;
+  height: 100px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  padding: 10px;
+}

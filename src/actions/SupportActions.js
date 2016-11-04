@@ -1,10 +1,13 @@
+import { push } from 'react-router-redux';
 import settings from 'settings';
 import petitionRepository from 'services/api/repositories/petition';
 import getPetitionURL from 'helpers/getPetitionURL';
 import isUntrustedUser from 'helpers/isUntrustedUser';
 import isInvalidVerification from 'helpers/isInvalidVerification';
+import getPetitionPath from 'helpers/getPetitionPath';
 
 import {
+  SUBMITTING_SUPPORT,
   SUPPORTED_PETITION
 } from './actionTypes';
 
@@ -12,17 +15,10 @@ import { showFlashMessage } from './FlashActions';
 import { showModalWindow } from './ModalActions';
 import { receiveWhoAmI } from 'actions/AuthActions';
 
-import {
-  userIsTrusted,
-  userIsUntrusted,
-  submittingTrust,
-  finishedTrust
-} from 'actions/TrustActions';
-
 export function supportPetition (trustData, dispatch) {
   const { petition, user } = trustData;
-  // Set trust as submitting
-  dispatch(submittingTrust(petition.id));
+  // Set loading state
+  dispatch(submittingSupport());
   // Add submitted user data to me object for future
   dispatch(receiveWhoAmI(user));
   // Trigger support action
@@ -35,18 +31,18 @@ export function supportPetition (trustData, dispatch) {
           break;
         case 'error':
           // Error given
-          supportPetitionErrors(response, dispatch);
+          supportPetitionErrors(petition.id, response, dispatch);
       }
+      // Set loading state
+      dispatch(supportedPetition(response.data));
     }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
 }
 
 const supportPetitionSuccess = (id, data, dispatch) => {
-  // The user is trusted
-  dispatch(userIsTrusted());
-  // Set petition as supported
-  dispatch(supportedPetition(data));
+  // Change route to petition
+  dispatch(push(getPetitionPath(id)));
   // Dispatch modal confirmation
   dispatch(
     showModalWindow({
@@ -55,14 +51,12 @@ const supportPetitionSuccess = (id, data, dispatch) => {
       ...settings.supportPetition.newlySupported.modal
     })
   );
-  // Trust step complete
-  dispatch(finishedTrust());
 };
 
-const supportPetitionErrors = (response, dispatch) => {
+const supportPetitionErrors = (id, response, dispatch) => {
   if (isUntrustedUser(response)) {
-    // The user is untrusted
-    dispatch(userIsUntrusted());
+    // Change route to support trust confirmation
+    dispatch(push(`/trust/support/${id}/confirm`));
   } else if (isInvalidVerification(response)) {
     // When the verification code is invalid
     dispatch(showFlashMessage(settings.flashMessages.invalidVerificationError, 'error'));
@@ -70,9 +64,13 @@ const supportPetitionErrors = (response, dispatch) => {
     // All other errors
     dispatch(showFlashMessage(settings.flashMessages.genericError, 'error'));
   }
-  // Trust step complete
-  dispatch(finishedTrust());
 };
+
+export function submittingSupport () {
+  return {
+    type: SUBMITTING_SUPPORT
+  };
+}
 
 export function supportedPetition (petition) {
   return {
@@ -82,7 +80,10 @@ export function supportedPetition (petition) {
 }
 
 export function resendVerification (trustData) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
+    // Set loading state
+    dispatch(submittingSupport());
+    // Trigger support event
     return petitionRepository.support(trustData)
       .then((response) => {
         if (isUntrustedUser(response)) {
@@ -92,6 +93,8 @@ export function resendVerification (trustData) {
           // All other errors
           dispatch(showFlashMessage(settings.flashMessages.genericError, 'error'));
         }
+        // Set loading state
+        dispatch(supportedPetition(trustData.petition));
       }).catch(() => dispatch(
         showFlashMessage(settings.flashMessages.genericError, 'error')
       ));

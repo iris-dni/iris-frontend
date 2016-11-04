@@ -20,6 +20,10 @@ const buttons = [
   {
     id: 'Link',
     label: settings.shareButtons.link.label
+  },
+  {
+    id: 'Embed',
+    label: settings.shareButtons.embed.label
   }
 ];
 

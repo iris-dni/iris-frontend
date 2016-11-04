@@ -1,12 +1,13 @@
-export default (petition, me, trust) => ({
+import petitionOwned from './petitionOwned';
+
+export default (petition, me) => ({
   initialValues: {
-    petitionId: petition && petition.id,
     // For TrustSupportForm
     user: me || {},
     // For TrustPublishForm
-    owner: me || {}
+    owner: petitionOwned(petition) ? petition.owner : me || {}
   },
+  mobileConfirmed: (me && me.mobile_trusted) || false,
   petition: petition || {},
-  submitting: trust && trust.isSubmitting,
   me: me || {}
 });

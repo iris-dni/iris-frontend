@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PetitionFooter from 'components/PetitionFooter';
+import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
 
 const PetitionFooterContainer = ({ links, mentions }) => (
   links.length || mentions.length
@@ -9,8 +10,8 @@ const PetitionFooterContainer = ({ links, mentions }) => (
 );
 
 const mapStateToProps = ({ petition }) => ({
-  links: petition.links || [],
-  mentions: petition.mentions || []
+  links: wrapPetitionLinks(petition.links || []),
+  mentions: wrapPetitionLinks(petition.mentions || [])
 });
 
 PetitionFooterContainer.propTypes = {

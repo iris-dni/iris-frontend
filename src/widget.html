@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="{{ lang or 'en' }}">
+  <head>
+    <meta charset="{{ charset or 'utf-8' }}">
+    {{ head.title | safe }}
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, height=device-height">
+    {{ head.meta | safe }}
+    {{ head.link | safe }}
+    {% include 'theme/includes/webfonts.html' %}
+    {% if isProduction %}
+      <link rel="stylesheet" href="{{ baseAssetPath }}/widget.css"/>
+    {% endif %}
+    {{ head.script | safe }}
+    {{ head.style | safe }}
+    {% include 'theme/includes/widget/head.html' %}
+  </head>
+  <body>
+    <div id="app" class="app-wrapper">{{ reactMarkup | safe }}</div>
+    <script>window.__INITIAL_STATE__={{ initialState | safe }}</script>
+    <script src="{{ baseAssetPath }}/widget.js"></script>
+    {% include 'theme/includes/widget/scripts.html' %}
+  </body>
+</html>

@@ -1,5 +1,3 @@
-// import { escapeRegExp } from 'lodash/string';
-
 export default {
   locale: 'en-US',
   charset: 'utf-8',
@@ -15,6 +13,7 @@ export default {
   runningTime: 'Petitions run for 30 days',
   dateFormat: 'DD-MM-YYYY',
   authorLabel: 'by %a',
+  adZoneLabel: 'Sponsored Content',
   supportersText: 'Supporters',
   milestoneText: 'Target',
   daysRemaining: 'Days left',
@@ -63,7 +62,8 @@ export default {
       past: 'Past petitions',
       all: 'All petitions',
       date: 'Most recent',
-      supportersAmount: 'Most supported'
+      supportersAmount: 'Most supported',
+      trending: 'Trending'
     }
   },
   petitionPage: {
@@ -76,11 +76,7 @@ export default {
       supportedText: 'Supported',
       unsupportableText: 'Not Supportable',
       endedText: 'Petition Ended',
-      closedText: 'Petition Closed',
-      modal: {
-        title: 'Please log in',
-        intro: 'In order to sign the Petition, we need you to log in using one of the services below..'
-      }
+      closedText: 'Petition Closed'
     },
     cityResponse: 'Official response:',
     tags: {
@@ -89,29 +85,23 @@ export default {
     }
   },
   newPetitionPage: {
-    title: 'Create a new Petition',
+    title: 'Create a new petition',
+    intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
+  },
+  editPetitionPage: {
+    title: 'Edit petition',
     intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
   },
   previewPetitionPage: {
-    editButton: {
-      text: 'Edit Petition'
-    },
-    publishButton: {
-      text: 'Publish Petition',
-      modal: {
-        intro: 'To publish a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
-      }
-    }
+    title: 'Preview petition',
+    editButton: 'Edit petition',
+    publishButton: 'Publish petition'
   },
   createCTA: {
     title: 'Create a new petition',
     text: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.',
     buttonText: 'Create Petition',
     background: '/dist/assets/images/cta-bg.jpg'
-  },
-  editPetitionPage: {
-    title: 'Edit Petition',
-    intro: 'This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.'
   },
   respondToPetitionPage: {
     title: 'Response Form',
@@ -145,46 +135,60 @@ export default {
     }
   },
   homePage: {
-    title: 'Home Page Title -- Replace with your own!',
+    title: 'Welcome to IRIS',
     hero: {
-      title: 'Petitio is your platform enabling local change',
+      title: 'Your platform enabling local change',
       missionTitle: 'Our mission',
-      missionDescription: 'Petitio is operated by AZ Medien. Our wish is to empower people to make change in their local communities. We want to give you the chance to be heard, make your cause known, and to gather supporters. We promise to follow up any successful petitions with a letter to your local representative. And, on top of that, your petition might even be selected to be covered by any of our news outlets.',
+      missionDescription: 'Empower people to make change in their local communities. We want to give you the chance to be heard, make your cause known, and to gather supporters. We promise to follow up any successful petitions with a letter to your local representative. And, on top of that, your petition might even be selected to be covered by any of our news outlets.',
       background: '/dist/assets/images/hero-bg.jpg'
     }
   },
-  trendingPetitions: {
-    title: 'Trending petitions',
-    text: 'We need your vote!',
-    linkText: 'View all trending petitions'
+  petitionGroups: {
+    trending: {
+      title: 'Trending petitions',
+      text: 'Gathering momentum!',
+      linkText: 'View all trending petitions',
+      linkHref: '/petitions?sort=trending'
+    },
+    latest: {
+      title: 'Latest petitions',
+      text: 'Show your support!',
+      linkText: 'View all recent petitions',
+      linkHref: '/petitions?sort=date'
+    }
   },
   petitionForm: {
-    createButton: {
-      text: 'Create Petition'
-    },
-    publishButton: {
-      text: 'Publish Petition',
-      modal: {
-        intro: 'To publish a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
+    createButton: 'Create petition',
+    saveButton: 'Preview petition'
+  },
+  trustConfirmationForm: {
+    backButton: 'Edit your details',
+    saveButton: 'Finish verification'
+  },
+  trustFlow: {
+    step1: {
+      support: {
+        title: 'Sign in to support',
+        text: 'You can either log in with one of the services above, or just fill out your contact details. We won′t display your information online or contact you without your explicit okay.'
+      },
+      publish: {
+        title: 'Sign in to publish',
+        text: 'You can either log in with one of the services above, or just fill out your contact details. We won′t display your information online or contact you without your explicit okay.'
       }
     },
-    saveButton: {
-      text: 'Preview Petition'
+    step2: {
+      support: {
+        title: 'Verify via phone',
+        text: 'Once you′ve signed in or entered your contact details, you will recieve a text message verification code to confirm your identity. Enter the code to proceed, and you′re done!'
+      },
+      publish: {
+        title: 'Verify via phone',
+        text: 'Once you′ve signed in or entered your contact details, you will recieve a text message verification code to confirm your identity. Enter the code to proceed, and you′re done!'
+      }
     }
   },
   respondToPetitionForm: {
-    publishButton: {
-      text: 'Submit response',
-      modal: {
-        intro: 'To publish a Petition please sign in using one of the services below. Afterwards, you woni\'t be required to enter any contact information.'
-      }
-    }
-  },
-  publishedPetition: {
-    modal: {
-      title: 'Your petition has been submitted for review',
-      intro: 'It can already be supported and will appear online within 48 hours. Until then, why not share it with others to start gaining support?'
-    }
+    publishButton: 'Submit response'
   },
   petitionFields: {
     city: {
@@ -212,22 +216,22 @@ export default {
       removeLinkLabel: 'Remove link',
       placeholder: 'http://',
       hint: 'Include up to 3 links that support your petition.',
-      maxLinks: 3,
       invalidLinkFormat: 'This is not a valid link',
       invalidLinkCount: 'You can’t add more than %x links',
       invalidSimilarLink: 'You can only add unique links'
+    },
+    image: {
+      label: 'Add a cover image',
+      hint: 'Add an image to make your petition more appealing. Landscape images are recommended and your image must a JPEG, GIF or PNG, maximum 2MB. ',
+      placeholder: 'Upload image',
+      loading: 'Loading...',
+      invalidFileError: 'One or more files were invalid and could not be uploaded'
     }
   },
-  respondToPetitionFields: {
-    response: {
-      label: 'Write your response',
-      placeholder: 'Tell the petitioner and supporters what you plan to do…',
-      hint: 'To write a good response, you should clearly communicate why you care about this cause, how it impacts the local community and what steps you plan to take.'
-    },
-    name: {
-      label: 'Include your name and department',
-      hint: 'This appears below your response',
-      placeholder: 'Max Mustermann, Mayor'
+  publishedPetition: {
+    modal: {
+      title: 'Your petition has been submitted for review',
+      intro: 'It can already be supported and will appear online within 48 hours. Until then, why not share it with others to start gaining support?'
     }
   },
   supportPetition: {
@@ -242,6 +246,18 @@ export default {
         title: 'Got it!',
         intro: 'You\'ve already supported this petition, but go ahead and share the link to anyone you know.'
       }
+    }
+  },
+  respondToPetitionFields: {
+    response: {
+      label: 'Write your response',
+      placeholder: 'Tell the petitioner and supporters what you plan to do…',
+      hint: 'To write a good response, you should clearly communicate why you care about this cause, how it impacts the local community and what steps you plan to take.'
+    },
+    name: {
+      label: 'Include your name and department',
+      hint: 'This appears below your response',
+      placeholder: 'Max Mustermann, Mayor'
     }
   },
   petitionResponseStatus: {
@@ -277,6 +293,18 @@ export default {
     link: {
       label: 'Share by URL',
       copiedLabel: 'Link copied'
+    },
+    embed: {
+      label: 'Embed petition',
+      modal: {
+        type: 'embed',
+        title: 'Embed this petition',
+        intro: 'To gather support and spread the word, add this petition as widget to your own site',
+        button: {
+          copyLabel: 'Copy embed code',
+          copiedLabel: 'Embed code copied'
+        }
+      }
     }
   },
   /**
@@ -302,43 +330,68 @@ export default {
     intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
   },
   trustPage: {
-    title: 'Fill out your details',
-    intro: 'To begin creating your Petition please log in using one of the services below. Afterwards, you won\'t be required to enter any contact information.'
+    support: {
+      title: 'Support petition',
+      trustedTitle: 'Support petition',
+      intro: 'In order to support this petition, please sign in below',
+      trustedIntro: 'Please confirm your details below before continuing',
+      formTitle: 'Or, enter your details to proceed without sign in:',
+      backButton: 'Back to petition',
+      nextButton: 'Send verification',
+      trustedNextButtonTrusted: 'Support petition'
+    },
+    publish: {
+      title: 'Create petition',
+      trustedTitle: 'Create petition',
+      intro: 'In order to create your petition, please sign in below',
+      trustedIntro: 'Please confirm your details below before continuing',
+      formTitle: 'Or, enter your details to proceed without sign in:',
+      backButton: 'Edit petition',
+      nextButton: 'Preview petition'
+    }
   },
   trustConfirmationPage: {
-    title: 'Confirm your identity',
-    intro: 'Please verify your phone number'
+    title: 'Enter verification code',
+    intro: 'Thanks %u, we sent a verification code to **%n**.',
+    resendLink: 'Re-send verification code',
+    instructions: 'To complete your phone number verification, please enter the 5-digit activation code.'
   },
   trustFields: {
     firstname: {
-      label: 'First name'
+      label: 'First name',
+      placeholder: 'First name'
     },
     lastname: {
-      label: 'Last name'
+      label: 'Last name',
+      placeholder: 'Last name'
     },
     street: {
-      label: 'Street address'
-    },
-    housenumber: {
-      label: 'House number'
+      label: 'Street address',
+      placeholder: 'Street address'
     },
     zip: {
-      label: 'Zip code'
+      label: 'Zip code',
+      placeholder: 'e.g. 5504'
     },
     town: {
-      label: 'Town / city'
+      label: 'Town / city',
+      placeholder: 'Town / city'
     },
     email: {
-      label: 'Email address'
+      label: 'Email address',
+      placeholder: 'Email address',
+      hint: 'Enter your email if you want to receive email notifications about this petition'
     },
     mobile: {
       label: 'Mobile number',
-      hint: 'Only region codes **+41** and **+43** are accepted. You must be a Swiss resident to contribute.'
+      placeholder: '+41 / +43',
+      hint: 'Only country codes **+41** and **+43** are accepted. You must be a Swiss resident to support or publish a petition.'
     }
   },
   trustConfirmationFields: {
     mobile_token: {
-      label: 'Verification code'
+      label: 'Verification code',
+      placeholder: '-----'
     }
   },
   imprint: {
@@ -398,5 +451,12 @@ export default {
   ],
   footer: {
     copyright: 'Copyright \u00A9 2016 Iris'
+  },
+  widgets: {
+    branding: 'Petitions by',
+    petition: {
+      byline: 'A petition in %c by %a',
+      link: 'View Petition'
+    }
   }
 };

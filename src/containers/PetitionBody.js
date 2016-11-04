@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import getCityResponse from 'selectors/petitionResponse';
 import PetitionBody from 'components/PetitionBody';
 
 const PetitionBodyContainer = (props) => (
@@ -9,16 +8,12 @@ const PetitionBodyContainer = (props) => (
 
 const mapStateToProps = ({ petition }) => ({
   description: petition.description,
-  suggestedSolution: petition.suggested_solution,
-  cityResponse: getCityResponse(petition),
-  links: petition.links || []
+  suggestedSolution: petition.suggested_solution
 });
 
 PetitionBodyContainer.propTypes = {
-  description: React.PropTypes.string,
-  suggestedSolution: React.PropTypes.string,
-  cityResponse: React.PropTypes.object,
-  links: React.PropTypes.arrayOf(React.PropTypes.object)
+  description: React.PropTypes.string.isRequired,
+  suggestedSolution: React.PropTypes.string
 };
 
 export default connect(

@@ -1,4 +1,5 @@
 import React from 'react';
+import settings from 'settings';
 import { reduxForm } from 'redux-form';
 import { supportPetition } from 'actions/SupportActions';
 import trustSupportValidator from 'form/trustSupportValidator';
@@ -10,11 +11,13 @@ import ButtonLink from 'components/ButtonLink';
 import ButtonSet from 'components/ButtonSet';
 import FIELDS from './fields';
 import trustForm from 'selectors/trustForm';
+import getPetitionPath from 'helpers/getPetitionPath';
 
 const TrustSupportForm = ({
   fields,
   handleSubmit,
   petition,
+  mobileConfirmed,
   submitting
 }) => (
   <form onSubmit={handleSubmit((values, dispatch) => supportPetition(
@@ -27,15 +30,15 @@ const TrustSupportForm = ({
       />
     </Fieldset>
     <Fieldset modifier={'actions'}>
-      <ButtonSet>
+      <ButtonSet equal>
         <ButtonLink
-          href={`/petitions/${petition.id}`}
-          text={'Back to petition'}
+          href={getPetitionPath(petition.id)}
+          text={settings.trustPage.support.backButton}
         />
         <Button
-          text={'Go to verification'}
+          text={settings.trustPage.support[mobileConfirmed ? 'trustedNextButton' : 'nextButton']}
           modifier={'accent'}
-          disabled={submitting || !fields._meta.allValid}
+          disabled={submitting || petition.isLoading || !fields._meta.allValid}
         />
       </ButtonSet>
     </Fieldset>
@@ -47,10 +50,11 @@ TrustSupportForm.propTypes = {
   handleSubmit: React.PropTypes.func.isRequired,
   petition: React.PropTypes.object.isRequired,
   me: React.PropTypes.object.isRequired,
+  mobileConfirmed: React.PropTypes.bool.isRequired,
   submitting: React.PropTypes.bool.isRequired
 };
 
-export const mapStateToProps = ({ petition, me, trust }) => trustForm(petition, me, trust);
+export const mapStateToProps = ({ petition, me }) => trustForm(petition, me);
 
 export default reduxForm({
   form: 'trustSupport',

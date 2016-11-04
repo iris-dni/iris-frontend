@@ -1,21 +1,21 @@
 import React from 'react';
-import settings from 'settings';
 import domOnlyProps from 'form/domOnlyProps';
 import fieldIsInvalid from 'form/fieldIsInvalid';
 import getLinkInputErrors from 'form/getLinkInputErrors';
 import stripProtocolFromURL from 'helpers/stripProtocolFromURL';
 import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
-import Icon from 'components/Icon';
+import RemovableItem from 'components/RemovableItem';
 import ExternalTeaser from 'components/ExternalTeaser';
 import styles from './petition-links-field.scss';
 
+const getClassname = (element, error) => {
+  return [
+    styles[element || 'input'],
+    styles[error ? 'invalid' : 'valid']
+  ].join(' ');
+};
+
 const PetitionLinksField = React.createClass({
-  getClassname (element, error) {
-    return [
-      styles[element || 'input'],
-      styles[error ? 'invalid' : 'valid']
-    ].join(' ');
-  },
 
   getInitialState: () => ({ value: '' }),
 
@@ -85,33 +85,19 @@ const PetitionLinksField = React.createClass({
 
     return (
       <div>
-        <div className={styles['teasers-preview-wrapper']}>
+        <ul className={styles.items}>
           {links.length > 0 && links.map((link, index) => (
-            <div key={index} className={styles['teaser-wrapper']}>
-              <ExternalTeaser {...link} />
-
-              <button
-                className={styles['remove-link-button']}
-                type='button'
-                onClick={() => this.handleLinkRemoved(index, link.url)}
-              >
-                <Icon
-                  size={'smaller'}
-                  id={'Close'}
-                  modifier={'invert'}
-                />
-
-                <span className={styles.hidden}>
-                  {settings.petitionFields.links.removeLinkLabel}
-                </span>
-              </button>
-            </div>
+            <li key={index} className={styles.item}>
+              <RemovableItem action={() => this.handleLinkRemoved(index, link.url)}>
+                <ExternalTeaser {...link} />
+              </RemovableItem>
+            </li>
           ))}
-        </div>
+        </ul>
 
-        {links.length < settings.petitionFields.links.maxLinks &&
+        {links.length < config.maxItems &&
           <input
-            className={this.getClassname('input', fieldIsInvalid(helper))}
+            className={getClassname('input', fieldIsInvalid(helper))}
             id={config.name}
             {...config.html}
             {...domOnlyProps(helper)}

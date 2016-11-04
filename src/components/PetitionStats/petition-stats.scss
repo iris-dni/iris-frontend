@@ -2,18 +2,29 @@
 
 .root {
   list-style: none;
-  font-size: 1em;
   letter-spacing: $letter-spacing;
-  align-items: stretch;
+  align-items: center;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+
+  @include media('<=text-boost') {
+    font-size: 13px;
+  }
 }
 
 .item {
   margin-top: 10px;
+  flex: 0 1 auto;
 
   @include media('<=text-boost') {
     word-wrap: break-word;
+  }
+}
+
+.item:first-child {
+  @include media('>sidebar') {
+    margin-right: auto;
   }
 }
 
@@ -25,25 +36,3 @@
   }
 }
 
-.figure {
-  display: block;
-  color: color('primary');
-
-  @include media('<=text-boost') {
-    font-size: 18px;
-  }
-
-  @include media('>text-boost') {
-    font-size: 24px;
-  }
-}
-
-.label {
-  color: color('black');
-  display: block;
-
-  @include media('<=text-boost') {
-    font-size: 13px;
-    line-height: 1.2;
-  }
-}

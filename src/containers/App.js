@@ -25,9 +25,7 @@ const App = React.createClass({
   }
 });
 
-const mapStateToProps = (state) => {
-  return state;
-};
+const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
   fetchWhoAmI: () => dispatch(fetchWhoAmI())

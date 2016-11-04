@@ -2,61 +2,40 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { fetchPetition, publishPetition } from 'actions/PetitionActions';
+import { fetchPetition } from 'actions/PetitionActions';
+import { updateSuggestionInputValue } from 'actions/AutocompleteActions';
 import settings from 'settings';
-import Loading from 'components/Loading';
+import citySuggestionFormatter from 'helpers/citySuggestionFormatter';
 import EditPetition from 'components/EditPetition';
-import PreviewPetition from 'components/PreviewPetition';
-import getPetitionPath from 'selectors/petitionPath';
 import getPetitionForm from 'selectors/petitionForm';
-import petitionPublished from 'selectors/petitionPublished';
 
-const EditPetitionContainer = withRouter(React.createClass({
+const EditPetitionContainer = React.createClass({
   componentWillMount () {
-    const {
-      fetchPetition,
-      publishPetition,
-      params: { id },
-      location: { query: { intent } }
-    } = this.props;
+    const { petition, params, fetchPetition, updateSuggestionInputValue } = this.props;
 
-    fetchPetition(id).then(({ petition }) => {
-      if (petitionPublished(petition)) {
-        this.props.router.push(getPetitionPath(petition));
-      }
-
-      if (__CLIENT__ && intent === 'publish') {
-        publishPetition(petition);
-      }
-    });
-  },
-
-  componentWillUpdate (nextProps) {
-    if (nextProps.petition.hasPublished) {
-      this.props.router.push(`${getPetitionPath(nextProps.petition)}/published`);
+    if (!petition.id) {
+      fetchPetition(params.id)
+        .then(({ petition }) => {
+          updateSuggestionInputValue(
+            citySuggestionFormatter(petition.city.data)
+          );
+        });
+    } else {
+      updateSuggestionInputValue(
+        citySuggestionFormatter(this.props.petition.city)
+      );
     }
   },
 
   render () {
-    const { petition, fetchPetition, publishPetition } = this.props;
-
     return (
       <div>
         <Helmet title={settings.editPetitionPage.title} />
-        <Loading isLoading={petition.isLoading} onServer={__SERVER__}>
-          {petition.saved || petition.published
-            ? <PreviewPetition
-              petition={petition}
-              fetchPetition={fetchPetition}
-              publishPetition={publishPetition}
-              />
-            : <EditPetition petition={petition} />
-          }
-        </Loading>
+        <EditPetition petition={this.props.petition} />
       </div>
     );
   }
-}));
+});
 
 export const mapStateToProps = ({ petition }) => ({
   petition: getPetitionForm(petition)
@@ -64,10 +43,10 @@ export const mapStateToProps = ({ petition }) => ({
 
 export const mapDispatchToProps = (dispatch) => ({
   fetchPetition: (id) => dispatch(fetchPetition(id)),
-  publishPetition: (petition) => dispatch(publishPetition(petition))
+  updateSuggestionInputValue: (city) => dispatch(updateSuggestionInputValue(city))
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(EditPetitionContainer);
+)(EditPetitionContainer));

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import FormData from 'form-data';
 import createApiUrl from 'helpers/createApiUrl';
 import encodeParams from 'helpers/encodeParams';
 
@@ -16,29 +17,37 @@ export const GET = 'GET';
 export const POST = 'POST';
 
 export default {
-  request: (requestPath = '', data = {}, method = GET) => {
-    let payload = {};
+  request: (requestPath = '', data = {}, method = GET, headers = {}) => {
+    let options = {
+      url: apiUrl(requestPath),
+      method,
+      headers,
+      withCredentials: true
+    };
 
     switch (method) {
       case GET:
         const requestParams = encodeParams(data);
 
         if (requestParams.length > 0) {
-          requestPath += `?${requestParams}`;
+          options.url += `?${requestParams}`;
         }
+
+        options.data = {};
+
         break;
       case POST:
-        if (data !== {}) {
-          payload = data;
+        if (data instanceof FormData) {
+          options.headers = Object.assign(options.headers, {
+            'Content-Type': 'multipart/form-data'
+          });
         }
+
+        options.data = data;
+
         break;
     }
 
-    return axios({
-      method: method,
-      url: apiUrl(requestPath),
-      data: payload,
-      withCredentials: true
-    }).then(response => response.data);
+    return axios(options).then(response => response.data);
   }
 };

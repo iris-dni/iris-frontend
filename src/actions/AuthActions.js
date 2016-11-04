@@ -20,7 +20,7 @@ export function receiveWhoAmI (me) {
 }
 
 export function fetchWhoAmI () {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(requestWhoAmI());
     return authRepository.whoAmI().then(response => dispatch(receiveWhoAmI(
       response.status === 'ok' ? response.data : false
@@ -41,7 +41,7 @@ export function receiveLogout () {
 }
 
 export function logout () {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(requestLogout());
     return authRepository.logout().then(() => dispatch(receiveLogout()));
   };
