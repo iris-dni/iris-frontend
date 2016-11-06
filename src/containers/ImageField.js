@@ -7,15 +7,16 @@ const ImageFieldContainer = (props) => (
   <ImageField {...props} />
 );
 
-const mapStateToProps = () => ({
-});
-
 const mapDispatchToProps = (dispatch) => ({
   uploadImage: (file, index) => dispatch(uploadImage(file, index))
 });
 
+ImageFieldContainer.propTypes = {
+  uploadImage: React.PropTypes.func
+};
+
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
   null,
   // redux-form “onChange”, manually adding errors to a field or removing a

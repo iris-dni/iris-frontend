@@ -2,7 +2,6 @@ import React from 'react';
 import domOnlyProps from 'form/domOnlyProps';
 import fieldIsInvalid from 'form/fieldIsInvalid';
 import getLinkInputErrors from 'form/getLinkInputErrors';
-import stripProtocolFromURL from 'helpers/stripProtocolFromURL';
 import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
 import RemovableItem from 'components/RemovableItem';
 import ExternalTeaser from 'components/ExternalTeaser';
@@ -61,11 +60,8 @@ const PetitionLinksField = React.createClass({
       e.preventDefault();
 
       if (value) {
-        // Remove any protocol from the URL for testing validation
-        const protocolFreeURL = stripProtocolFromURL(value);
-
         // Specific validation for the link field.
-        const error = getLinkInputErrors(protocolFreeURL, links, config);
+        const error = getLinkInputErrors(value, links, config);
 
         if (error) {
           // Blur the field
@@ -78,9 +74,7 @@ const PetitionLinksField = React.createClass({
           // Clear input value
           this.setState({ value: '' });
           // Push the link to the array
-          links.push({ url: protocolFreeURL });
-          // Blur the field
-          helper.onBlur();
+          links.push({ url: value });
           // Fetch open graph data for the last link
           this.props.fetchOpenGraph(value).then(({ openGraph }) => {
             // Add OG data to array item
@@ -94,8 +88,6 @@ const PetitionLinksField = React.createClass({
             if (links.length === config.maxItems) {
               const nextField = document.querySelector('input#title');
               nextField.focus();
-            } else {
-              this.refs.input.focus();
             }
           });
         }
