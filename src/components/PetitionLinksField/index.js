@@ -31,6 +31,9 @@ const PetitionLinksField = React.createClass({
     const { helper, config, formId, revalidateForm } = this.props;
     const { name } = config;
 
+    // Clearer naming
+    const fieldId = name;
+
     // Get field value and sanitise
     const value = this.state.value.trim();
 
@@ -53,11 +56,15 @@ const PetitionLinksField = React.createClass({
         const error = getLinkInputErrors(protocolFreeURL, links, config);
 
         if (error) {
+          // Blur the field
           helper.onBlur();
+          // Set error if given
           revalidateForm(formId, {
-            [name]: error
+            [fieldId]: error
           });
         } else {
+          // Clear input value
+          this.setState({ value: '' });
           // Push the link to the array
           links.push({ url: protocolFreeURL });
           // Fetch open graph data for the last link
@@ -69,12 +76,10 @@ const PetitionLinksField = React.createClass({
             };
             // Change form field
             helper.onChange(links);
-            // Clear input value
-            this.setState({ value: '' });
           });
         }
       } else {
-        revalidateForm(formId, {});
+        revalidateForm(formId, { [fieldId]: false });
       }
     }
   },
