@@ -1,4 +1,5 @@
 import React from 'react';
+import { stopSubmit } from 'redux-form';
 import { connect } from 'react-redux';
 import { fetchOpenGraph, removeOpenGraph } from 'actions/OpenGraphActions';
 import PetitionLinksField from 'components/PetitionLinksField';
@@ -7,16 +8,14 @@ const PetitionLinksFieldContainer = (props) => (
   <PetitionLinksField {...props} />
 );
 
-const mapStateToProps = () => ({
-});
-
 const mapDispatchToProps = (dispatch) => ({
+  revalidateForm: (form, errors) => dispatch(stopSubmit(form, errors)),
   fetchOpenGraph: (url) => dispatch(fetchOpenGraph(url)),
   removeOpenGraph: (url) => dispatch(removeOpenGraph(url))
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
   null,
   // redux-form “onChange”, manually adding errors to a field or removing a

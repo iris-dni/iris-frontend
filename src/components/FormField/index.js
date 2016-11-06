@@ -16,7 +16,7 @@ const getClassname = (element, error) => {
 
 const FormField = React.createClass({
   render () {
-    const { config, helper } = this.props;
+    const { config, helper, formId } = this.props;
 
     let Field;
 
@@ -32,6 +32,7 @@ const FormField = React.createClass({
       case 'PetitionLinksField':
         Field = (
           <PetitionLinksField
+            formId={formId}
             helper={helper}
             config={config}
           />

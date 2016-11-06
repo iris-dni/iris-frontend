@@ -30,7 +30,6 @@ const PetitionLinksField = React.createClass({
   handleLinkAdded (e) {
     const { helper, config } = this.props;
     helper.touched = true;
-    helper.onBlur();
 
     if (e.key === 'Enter' || e.type === 'blur') {
       // Disable form submitting when pressing ENTER
@@ -49,24 +48,29 @@ const PetitionLinksField = React.createClass({
         const error = getLinkInputErrors(protocolFreeURL, links, config);
 
         if (error) {
-          helper.error = error;
-          return;
+          helper.onBlur();
+          this.props.revalidateForm('petition', {
+            links: error
+          });
+        } else {
+          helper.error = false;
+
+          links.push({ url: protocolFreeURL });
+          helper.onChange(links); // Update redux-form value
+          this.setState({ value: '' }); // Clear input value
+
+          // Fetch open graph data for the last link
+          this.props.fetchOpenGraph(protocolFreeURL).then(({ openGraph }) => {
+            const newValue = { url: protocolFreeURL, og: openGraph };
+            const lastLinkIndex = links.length - 1;
+
+            links[lastLinkIndex] = newValue;
+            helper.onChange(links);
+            helper.onBlur();
+          });
         }
-
-        helper.error = false;
-
-        links.push({ url: protocolFreeURL });
-        helper.onChange(links); // Update redux-form value
-        this.setState({ value: '' }); // Clear input value
-
-        // Fetch open graph data for the last link
-        this.props.fetchOpenGraph(protocolFreeURL).then(({ openGraph }) => {
-          const newValue = { url: protocolFreeURL, og: openGraph };
-          const lastLinkIndex = links.length - 1;
-
-          links[lastLinkIndex] = newValue;
-          helper.onChange(links);
-        });
+      } else {
+        this.props.revalidateForm('petition', { links: '' });
       }
     }
   },
