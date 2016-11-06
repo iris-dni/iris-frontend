@@ -25,7 +25,16 @@ const PetitionLinksField = React.createClass({
     helper.onChange(links);
   },
 
-  handleChange (e) { this.setState({ value: e.target.value }); },
+  handleChange (e) {
+    const { config, formId, revalidateForm } = this.props;
+
+    this.setState({ value: e.target.value });
+
+    // Remove error if field is empty
+    if (!e.target.value) {
+      revalidateForm(formId, { [config.name]: false });
+    }
+  },
 
   handleLinkAdded (e) {
     const {
@@ -70,6 +79,8 @@ const PetitionLinksField = React.createClass({
           this.setState({ value: '' });
           // Push the link to the array
           links.push({ url: protocolFreeURL });
+          // Blur the field
+          helper.onBlur();
           // Fetch open graph data for the last link
           this.props.fetchOpenGraph(value).then(({ openGraph }) => {
             // Add OG data to array item
@@ -79,6 +90,13 @@ const PetitionLinksField = React.createClass({
             };
             // Change form field
             helper.onChange(links);
+            // Focus next field if maxLength reached
+            if (links.length === config.maxItems) {
+              const nextField = document.querySelector('input#title');
+              nextField.focus();
+            } else {
+              this.refs.input.focus();
+            }
           });
         }
       } else {
@@ -113,6 +131,7 @@ const PetitionLinksField = React.createClass({
 
         {links.length < config.maxItems &&
           <input
+            ref={'input'}
             className={getClassname('input', fieldIsInvalid(helper))}
             id={config.name}
             {...config.html}

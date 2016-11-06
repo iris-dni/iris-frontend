@@ -15,6 +15,13 @@ const mapDispatchToProps = (dispatch) => ({
   removeOpenGraph: (url) => dispatch(removeOpenGraph(url))
 });
 
+PetitionLinksFieldContainer.propTypes = {
+  revalidateForm: React.PropTypes.func,
+  touchField: React.PropTypes.func,
+  fetchOpenGraph: React.PropTypes.func,
+  removeOpenGraph: React.PropTypes.func
+};
+
 export default connect(
   null,
   mapDispatchToProps,
