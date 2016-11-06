@@ -28,20 +28,25 @@ const PetitionLinksField = React.createClass({
   handleChange (e) { this.setState({ value: e.target.value }); },
 
   handleLinkAdded (e) {
-    const { helper, config } = this.props;
+    const { helper, config, formId, revalidateForm } = this.props;
+    const { name } = config;
+
+    // Get field value and sanitise
+    const value = this.state.value.trim();
+
+    // Get links array
+    const links = helper.value;
+
+    // Set field as 'touched'
     helper.touched = true;
 
+    // Key-presses we are interested in for validation
     if (e.key === 'Enter' || e.type === 'blur') {
       // Disable form submitting when pressing ENTER
       e.preventDefault();
 
-      const value = this.state.value.trim();
-      let links = helper.value;
-
       if (value) {
-        // Remove any protocol from the URL. In the teaser, the URL will be
-        // displayed without the protocol, and the link to it will be a relative
-        // protocol URL.
+        // Remove any protocol from the URL for testing validation
         const protocolFreeURL = stripProtocolFromURL(value);
 
         // Specific validation for the link field.
@@ -49,28 +54,27 @@ const PetitionLinksField = React.createClass({
 
         if (error) {
           helper.onBlur();
-          this.props.revalidateForm('petition', {
-            links: error
+          revalidateForm(formId, {
+            [name]: error
           });
         } else {
-          helper.error = false;
-
+          // Push the link to the array
           links.push({ url: protocolFreeURL });
-          helper.onChange(links); // Update redux-form value
-          this.setState({ value: '' }); // Clear input value
-
           // Fetch open graph data for the last link
-          this.props.fetchOpenGraph(protocolFreeURL).then(({ openGraph }) => {
-            const newValue = { url: protocolFreeURL, og: openGraph };
-            const lastLinkIndex = links.length - 1;
-
-            links[lastLinkIndex] = newValue;
+          this.props.fetchOpenGraph(value).then(({ openGraph }) => {
+            // Add OG data to array item
+            links[links.length - 1] = {
+              url: value,
+              og: openGraph
+            };
+            // Change form field
             helper.onChange(links);
-            helper.onBlur();
+            // Clear input value
+            this.setState({ value: '' });
           });
         }
       } else {
-        this.props.revalidateForm('petition', { links: '' });
+        revalidateForm(formId, {});
       }
     }
   },

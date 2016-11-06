@@ -15,7 +15,6 @@ const PetitionForm = ({ petition, openGraph, images, fields, handleSubmit, submi
     : createPetition(values, dispatch))}>
     <Fieldset>
       <FormFieldsIterator
-        formId={'petition'}
         reduxFormFields={fields}
         fieldsArray={FIELDS}
       />
