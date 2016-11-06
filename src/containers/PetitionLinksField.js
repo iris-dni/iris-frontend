@@ -1,5 +1,5 @@
 import React from 'react';
-import { stopSubmit } from 'redux-form';
+import { stopSubmit, touch } from 'redux-form';
 import { connect } from 'react-redux';
 import { fetchOpenGraph, removeOpenGraph } from 'actions/OpenGraphActions';
 import PetitionLinksField from 'components/PetitionLinksField';
@@ -10,6 +10,7 @@ const PetitionLinksFieldContainer = (props) => (
 
 const mapDispatchToProps = (dispatch) => ({
   revalidateForm: (form, errors) => dispatch(stopSubmit(form, errors)),
+  touchField: (form, fields) => dispatch(touch(form, fields)),
   fetchOpenGraph: (url) => dispatch(fetchOpenGraph(url)),
   removeOpenGraph: (url) => dispatch(removeOpenGraph(url))
 });

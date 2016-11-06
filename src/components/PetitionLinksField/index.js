@@ -28,7 +28,10 @@ const PetitionLinksField = React.createClass({
   handleChange (e) { this.setState({ value: e.target.value }); },
 
   handleLinkAdded (e) {
-    const { helper, config, formId, revalidateForm } = this.props;
+    const {
+      helper, config, formId,
+      touchField, revalidateForm
+    } = this.props;
     const { name } = config;
 
     // Clearer naming
@@ -41,7 +44,7 @@ const PetitionLinksField = React.createClass({
     const links = helper.value;
 
     // Set field as 'touched'
-    helper.touched = true;
+    touchField(formId, fieldId);
 
     // Key-presses we are interested in for validation
     if (e.key === 'Enter' || e.type === 'blur') {
