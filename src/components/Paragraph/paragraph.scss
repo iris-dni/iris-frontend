@@ -1,7 +1,9 @@
 @import 'globals';
 
 .root {
-  @include map-declarations($paragraph-defaults, $paragraph-custom);
+  font-size: 20px;
+  line-height: $line-height;
+  margin-bottom: 25px;
 }
 
 .no-margin {

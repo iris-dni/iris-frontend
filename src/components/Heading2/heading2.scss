@@ -1,7 +1,9 @@
 @import 'globals';
 
 .root {
-  @include map-declarations($heading-2-defaults, $heading-2-custom);
+  font-size: 20px;
+  line-height: $line-height;
+  margin-bottom: 12px;
 }
 
 .large {

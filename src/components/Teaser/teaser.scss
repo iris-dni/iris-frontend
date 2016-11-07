@@ -21,7 +21,8 @@
 }
 
 .link {
-  @include map-declarations($teaser-link-defaults, $teaser-link-custom);
+  line-height: 1.2;
+  text-decoration: none;
   position: relative;
   display: block;
   color: color('black');

@@ -1,5 +1,6 @@
 @import 'globals';
 
 .root {
-  @include map-declarations($intro-paragraph-defaults, $intro-paragraph-custom);
+  font-size: 1em;
+  line-height: $line-height;
 }
