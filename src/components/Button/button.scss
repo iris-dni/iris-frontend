@@ -73,7 +73,8 @@
  */
 .is-disabled {
   composes: shared;
-  composes: default;
+  border-color: color('grey');
+  background-color: transparent;
   color: color('dimmed');
   cursor: normal;
 }
