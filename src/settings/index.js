@@ -7,8 +7,8 @@ const settings = mergeSettings(config, translations);
 
 export default settings;
 
-export const setting = (key) => get(config, key, '');
-export const translation = (key) => get(translations, key, '');
+export const setting = (key) => get(config, key, key);
+export const translation = (key) => get(translations, key, key);
 
 export const ssoProviders = setting('ssoProviders');
 export const authSettings = setting('auth');
