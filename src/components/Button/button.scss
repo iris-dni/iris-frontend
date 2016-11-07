@@ -13,14 +13,6 @@
   font-size: 1em;
 }
 
-.shared:hover,
-.shared:active,
-.shared:focus {
-  svg {
-    fill: white;
-  }
-}
-
 /*
  * Regular (default) button, bordered
  */
@@ -36,6 +28,10 @@
 .default:focus {
   color: color('white');
   background-color: color('grey');
+
+  svg {
+    fill: white;
+  }
 }
 
 /*
@@ -51,6 +47,10 @@
 .accent:active,
 .accent:focus {
   background-color: darken(desaturate(adjust-hue(color('primary'), 10.8808), 16.5997), 5.6863);
+
+  svg {
+    fill: white;
+  }
 }
 
 /*
@@ -73,6 +73,7 @@
  */
 .is-disabled {
   composes: shared;
+  composes: default;
   color: color('dimmed');
   cursor: normal;
 }
@@ -80,6 +81,7 @@
 .is-disabled:hover,
 .is-disabled:active,
 .is-disabled:focus {
+  color: color('dimmed');
   background-color: inherit;
 }
 

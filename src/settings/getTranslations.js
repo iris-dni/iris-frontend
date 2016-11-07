@@ -1,5 +1,5 @@
 import mergeSettings from './merge';
-import translations from 'theme/translations';
+import translations from './translations';
 
 const customThemePath = process.env.THEME_PATH || '';
 const useCustomTheme = customThemePath && !process.env.TEST_ENV;

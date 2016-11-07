@@ -5,6 +5,7 @@ import { match, RouterContext } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
+import { setting } from 'settings';
 
 import stringifyHeadData from 'server/stringifyHeadData';
 import baseAssetPath from 'server/baseAssetPath';
@@ -98,6 +99,7 @@ export default (request, reply, viewName) => {
 
           // Render Nunjucks view with required data
           return reply.view(viewName, Object.assign({}, {
+            lang: setting('locale'),
             reactMarkup: reactString,
             initialState: JSON.stringify(initialState),
             head: stringifyHeadData(headData),

@@ -1,4 +1,4 @@
-import { merge } from 'lodash/object';
+import { defaultsDeep } from 'lodash/object';
 
 export default (defaultConfig = {}, customConfig = {}) =>
-  merge(defaultConfig, (customConfig.default || customConfig));
+  defaultsDeep((customConfig.default || customConfig), defaultConfig);
