@@ -2,7 +2,7 @@
 
 .root {
   list-style: none;
-  letter-spacing: $letter-spacing;
+  letter-spacing: typography('letter-spacing');
   align-items: center;
   display: flex;
   flex-direction: row;

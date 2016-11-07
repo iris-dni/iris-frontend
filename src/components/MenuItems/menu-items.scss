@@ -39,7 +39,6 @@
 }
 
 .element:last-of-type {
-  width: 100%;
   background-color: color('primary');
   color: color('white');
   font-weight: bold;
@@ -48,13 +47,19 @@
   transition: all 250ms;
   padding: 0;
 
+  @include media('<=navigation-menu') {
+    width: 100%;
+  }
+
   @include media('>navigation-menu') {
     float: right;
     width: auto;
   }
 
-  &:hover {
-    @include map-declarations($button-accent-hover-defaults);
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: darken(desaturate(adjust-hue(color('primary'), 10.8808), 16.5997), 5.6863);
   }
 }
 

@@ -1,5 +1,6 @@
-$fonts-primary: 'Open Sans', 'Arial', 'sans-serif' !default;
-
-$line-height: 1.4 !default;
-
-$letter-spacing: 0.3px !default;
+$typography-defaults: (
+  'font-family': ('Open Sans', 'Arial', 'sans-serif'),
+  'line-height': 1.4,
+  'line-height-slim': 1.25,
+  'letter-spacing': 0.3px
+);

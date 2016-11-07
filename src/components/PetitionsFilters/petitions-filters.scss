@@ -1,7 +1,5 @@
 @import 'globals';
 
-$spacing: map-get($spacing, 'grid');
-
 .root {
   margin-top: 30px;
 
@@ -14,14 +12,14 @@ $spacing: map-get($spacing, 'grid');
 
 .grid {
   @include clearfix;
-  margin-bottom: -$spacing;
-  margin-left: -$spacing;
+  margin-bottom: -20px;
+  margin-left: -20px;
 }
 
 .item {
   float: left;
-  padding-left: $spacing;
-  margin-bottom: $spacing;
+  padding-left: 20px;
+  margin-bottom: 20px;
 }
 
 .full-item {

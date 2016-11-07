@@ -1,5 +1,7 @@
 @import 'globals';
 
+$field-height: 24px;
+
 .field {
   @include map-declarations($form-fields-defaults, $form-fields-custom);
   border-color: color('grey');
@@ -18,7 +20,7 @@
   display: block;
   padding-top: 5px;
   padding-bottom: 5px;
-  line-height: 24px;
+  line-height: $field-height;
   text-align: center;
   color: color('dimmed');
 

@@ -3,7 +3,7 @@
 .root {
   list-style: none;
   font-size: 1em;
-  letter-spacing: $letter-spacing;
+  letter-spacing: typography('letter-spacing');
   align-items: stretch;
   display: flex;
   justify-content: space-between;

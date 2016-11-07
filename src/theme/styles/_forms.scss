@@ -8,13 +8,3 @@ $form-fields-defaults: (
   'line-height': normal,
   'outline': 0
 );
-
-$form-hint-defaults: (
-  'font-style': normal,
-  'color': color('dimmed')
-);
-
-$form-regular-hover-defaults: (
-  'color': color('white'),
-  'background-color': color('grey')
-);

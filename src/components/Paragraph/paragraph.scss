@@ -2,7 +2,7 @@
 
 .root {
   font-size: 20px;
-  line-height: $line-height;
+  line-height: typography('line-height');
   margin-bottom: 25px;
 }
 
