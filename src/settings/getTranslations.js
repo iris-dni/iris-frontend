@@ -6,7 +6,7 @@ const useCustomTheme = customThemePath && !process.env.TEST_ENV;
 
 const themeTranslations = useCustomTheme
   ? require('../../' + process.env.THEME_PATH + '/translations')
-  : {};
+  : require('theme/translations');
 
 const mergedTranslations = mergeSettings(translations, themeTranslations);
 
