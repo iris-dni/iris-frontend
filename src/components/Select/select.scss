@@ -30,7 +30,7 @@
   }
 
   .select {
-    @include map-declarations($form-fields-defaults, $form-fields-custom);
+    @include map-declarations($form-fields-defaults);
     appearance: none;
     padding: 8px 40px 8px 8px;
     background-color: color('white');

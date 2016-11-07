@@ -1,7 +1,7 @@
 @import 'globals';
 
 .input {
-  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  @include map-declarations($form-fields-defaults);
   display: block;
   width: 100%;
   margin-top: 1em;

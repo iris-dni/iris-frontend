@@ -13,7 +13,7 @@ $thin-field-padding: 8px;
 }
 
 .input {
-  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  @include map-declarations($form-fields-defaults);
   display: block;
   width: 100%;
 }
@@ -41,7 +41,7 @@ $thin-field-padding: 8px;
 }
 
 .list {
-  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  @include map-declarations($form-fields-defaults);
   position: absolute;
   left: 0;
   right: 0;
