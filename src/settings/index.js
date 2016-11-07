@@ -1,9 +1,9 @@
 import { get } from 'lodash/object';
 import config from './getConfig';
 import translations from './getTranslations';
-import mergeSettings from './merge';
+import mergeObjects from 'helpers/mergeObjects';
 
-const settings = mergeSettings(config, translations);
+const settings = mergeObjects(config, translations);
 
 export default settings;
 

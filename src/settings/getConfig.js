@@ -1,4 +1,4 @@
-import mergeSettings from './merge';
+import mergeObjects from 'helpers/mergeObjects';
 import themeConfig from 'theme/config';
 
 const customThemePath = process.env.THEME_PATH || '';
@@ -8,6 +8,6 @@ const customThemeConfig = useCustomTheme
   ? require('../../' + process.env.THEME_PATH + '/config')
   : {};
 
-const mergedConfig = mergeSettings(themeConfig, customThemeConfig);
+const mergedConfig = mergeObjects(themeConfig, customThemeConfig);
 
-module.exports = mergedConfig;
+export default mergedConfig;
