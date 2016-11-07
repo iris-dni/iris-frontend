@@ -4,14 +4,20 @@
  * Shared button styles
  */
 .shared {
-  @include map-declarations($button-shared-defaults, $button-shared-custom);
+  font-family: typography('font-family');
+  line-height: normal;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  text-decoration: none;
+  outline: 0;
+  font-size: 1em;
 }
 
 .shared:hover,
 .shared:active,
 .shared:focus {
   svg {
-    @include map-declarations($button-shared-hover-icon-defaults, $button-shared-hover-icon-custom);
+    fill: white;
   }
 }
 
@@ -19,67 +25,55 @@
  * Regular (default) button, bordered
  */
 .default {
-  @include map-declarations($button-regular-defaults, $button-regular-custom);
   composes: shared;
+  border-color: color('grey');
+  color: color('black');
+  background-color: transparent;
 }
 
 .default:hover,
 .default:active,
 .default:focus {
-  @include map-declarations($button-regular-hover-defaults, $button-regular-hover-custom);
+  color: color('white');
+  background-color: color('grey');
 }
 
 /*
  * Accent button, primary background
  */
 .accent {
-  @include map-declarations($button-accent-defaults, $button-accent-custom);
   composes: shared;
+  color: color('white');
+  background-color: color('primary');
 }
 
 .accent:hover,
 .accent:active,
 .accent:focus {
-  @include map-declarations($button-accent-hover-defaults, $button-accent-hover-custom);
+  background-color: darken(desaturate(adjust-hue(color('primary'), 10.8808), 16.5997), 5.6863);
 }
 
 /*
  * Light button, white background
  */
 .light {
-  @include map-declarations($button-light-defaults, $button-light-custom);
   composes: shared;
+  color: color('secondary');
+  background-color: color('white');
 }
 
 .light:hover,
 .light:active,
 .light:focus {
-  @include map-declarations($button-light-hover-defaults, $button-light-hover-custom);
+  background-color: color('white');
 }
 
 /*
  * Disabled button
  */
 .is-disabled {
-  @include map-declarations($button-shared-defaults, $button-regular-custom);
-  @include map-declarations($button-regular-defaults, $button-regular-custom);
-  @include map-declarations($button-disabled-defaults, $button-disabled-custom);
-  cursor: normal;
-}
-
-.is-disabled:hover,
-.is-disabled:active,
-.is-disabled:focus {
-  background-color: inherit;
-}
-
-/*
- * Disabled button
- */
-.is-disabled {
-  @include map-declarations($button-shared-defaults, $button-regular-custom);
-  @include map-declarations($button-regular-defaults, $button-regular-custom);
-  @include map-declarations($button-disabled-defaults, $button-disabled-custom);
+  composes: shared;
+  color: color('dimmed');
   cursor: normal;
 }
 

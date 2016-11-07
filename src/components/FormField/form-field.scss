@@ -1,7 +1,7 @@
 @import 'globals';
 
 .field {
-  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  @include map-declarations($form-fields-defaults);
   display: block;
   width: 100%;
 }

@@ -9,7 +9,7 @@
   color: color('white');
   margin: 0 auto;
   font-weight: 700;
-  line-height: 1.25em;
+  line-height: typography('line-height-slim');
 
   @include media('<=768px') {
     font-size: 42px;

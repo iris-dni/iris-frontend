@@ -18,13 +18,17 @@
 }
 
 .hint {
-  @include map-declarations($form-hint-defaults, $form-hint-custom);
+  font-style: normal;
+  color: color('dimmed');
   margin-top: 3px;
-  font-size: 15px;
   display: block;
 
   @include media('<=text-boost') {
     font-size: 14px;
+  }
+
+  @include media('>text-boost') {
+    font-size: 15px;
   }
 }
 

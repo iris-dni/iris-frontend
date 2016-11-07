@@ -12,10 +12,10 @@ html {
 }
 
 body {
-  font-family: $fonts-primary;
+  font-family: typography('font-family');
   color: color('black');
-  line-height: $line-height;
-  letter-spacing: $letter-spacing;
+  line-height: typography('line-height');
+  letter-spacing: typography('letter-spacing');
   min-height: 100%;
   height: 100%;
 }

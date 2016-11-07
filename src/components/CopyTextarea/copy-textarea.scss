@@ -1,7 +1,7 @@
 @import 'globals';
 
 .textarea {
-  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  @include map-declarations($form-fields-defaults);
   border-color: color('grey');
   display: block;
   width: 100%;

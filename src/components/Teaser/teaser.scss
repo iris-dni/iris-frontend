@@ -21,12 +21,13 @@
 }
 
 .link {
-  @include map-declarations($teaser-link-defaults, $teaser-link-custom);
+  line-height: typography('line-height-slim');
+  text-decoration: none;
   position: relative;
   display: block;
   color: color('black');
   border: 1px solid color('grey-lite');
-  padding: map-get($spacing, 'teaser-padding');
+  padding: 10px;
   transition: transform 0.3s ease;
 }
 

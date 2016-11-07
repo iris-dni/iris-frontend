@@ -1,47 +1,6 @@
-$fonts-primary: 'Open Sans', 'Arial', 'sans-serif' !default;
-
-$line-height: 1.4 !default;
-
-$letter-spacing: 0.3px !default;
-
-$heading-1-defaults: (
-  'font-size': 1em,
-  'font-weight': normal,
-  'line-height': 1.125,
-  'letter-spacing': 0.9px
-) !default;
-
-$heading-2-defaults: (
-  'font-size': 20px,
-  'line-height': $line-height,
-  'margin-bottom': 12px
-) !default;
-
-$paragraph-defaults: (
-  'font-size': 20px,
-  'line-height': $line-height,
-  'margin-bottom': 25px
-) !default;
-
-$intro-paragraph-defaults: (
-  'font-size': 1em,
-  'line-height': $line-height,
-) !default;
-
-$supporting-copy-defaults: (
-  'font-size': 16px,
-  'line-height': $line-height,
-  'margin-bottom': 20px
-) !default;
-
-$info-copy-defaults: (
-  'font-size': 1em,
-  'font-weight': normal,
-  'line-height': 1.125,
-  'letter-spacing': 0.9px
-) !default;
-
-$teaser-link-defaults: (
-  'line-height': 1.2,
-  'text-decoration': none
-) !default;
+$typography-defaults: (
+  'font-family': ('Open Sans', 'Arial', 'sans-serif'),
+  'line-height': 1.4,
+  'line-height-slim': 1.25,
+  'letter-spacing': 0.3px
+);

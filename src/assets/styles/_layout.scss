@@ -1,20 +1,4 @@
 ///
-/// Application-wide spacing map
-///
-/// @type Map
-///
-/// @prop {String} key - Name of the spacing
-/// @prop {Map} value - Spacing value
-///
-$spacing: (
-  'gutter': 20px,
-  'field-m-bottom': 30px,
-  'm-bottom': 20px,
-  'grid': 20px,
-  'teaser-padding': 10px
-) !default;
-
-///
 /// Application-wide widths map
 ///
 /// @type Map
@@ -35,7 +19,14 @@ $widths: (
   'sidebar-progress': 230px
 ) !default;
 
+///
+/// Application-wide heights map
+///
+/// @type Map
+///
+/// @prop {String} key - Type of the height
+/// @prop {Map} value - Height value
+///
 $heights: (
-  'site-header': 60px,
-  'site-footer': 66px
+  'site-header': 60px
 ) !default;

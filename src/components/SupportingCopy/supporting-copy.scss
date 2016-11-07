@@ -1,5 +1,7 @@
 @import 'globals';
 
 .root {
-  @include map-declarations($supporting-copy-defaults, $supporting-copy-custom);
+  font-size: 16px;
+  line-height: typography('line-height');
+  margin-bottom: 20px;
 }

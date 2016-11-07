@@ -1,12 +1,10 @@
 @import 'globals';
 
-$spacing: map-get($spacing, 'grid');
-
 .root {
   display: flex;
   flex-wrap: wrap;
-  margin-left: -$spacing;
-  margin-bottom: -$spacing;
+  margin-left: -20px;
+  margin-bottom: -20px;
 }
 
 .centered {
