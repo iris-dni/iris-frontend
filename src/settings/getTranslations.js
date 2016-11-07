@@ -1,13 +1,13 @@
 import mergeSettings from './merge';
-import translations from './translations';
+import themeTranslations from 'theme/translations';
 
 const customThemePath = process.env.THEME_PATH || '';
 const useCustomTheme = customThemePath && !process.env.TEST_ENV;
 
-const themeTranslations = useCustomTheme
+const customThemeTranslations = useCustomTheme
   ? require('../../' + process.env.THEME_PATH + '/translations')
-  : require('theme/translations');
+  : {};
 
-const mergedTranslations = mergeSettings(translations, themeTranslations);
+const mergedTranslations = mergeSettings(themeTranslations, customThemeTranslations);
 
 module.exports = mergedTranslations;
