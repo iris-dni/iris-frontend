@@ -5,8 +5,6 @@ $field-height: 24px;
 .field {
   @include map-declarations($form-fields-defaults);
   border-color: color('grey');
-  display: block;
-  width: 100%;
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
