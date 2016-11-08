@@ -1,5 +1,4 @@
-@import 'breakpoints';
-@import 'colors';
+@import 'vars/breakpoints';
 
 :export {
   sidebarBreakpoint: map-get($breakpoints, 'sidebar');
