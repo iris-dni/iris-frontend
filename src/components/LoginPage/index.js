@@ -1,5 +1,6 @@
 import React from 'react';
-import settings from 'settings';
+import { setting } from 'settings';
+import { translation } from 'translations';
 import Container from 'components/Container';
 import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
@@ -11,13 +12,13 @@ const LoginPage = ({ location }) => (
   <Container>
     <Header padding>
       <PageTitle
-        title={settings.loginPage.title}
-        intro={settings.loginPage.intro}
+        title={translation('loginPage.title')}
+        intro={translation('loginPage.intro')}
         centered
       />
     </Header>
     <SsoProviders providers={generateSsoProviders(
-      settings.ssoProviders,
+      setting('ssoProviders', []),
       getReturnUrlFromLocation(location)
     )} />
   </Container>

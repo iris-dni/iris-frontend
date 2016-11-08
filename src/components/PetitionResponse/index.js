@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './petition-response.scss';
-import settings from 'settings';
+import { translation } from 'translations';
 import ArticleBlock from 'components/ArticleBlock';
 import Paragraph from 'components/Paragraph';
 import MarkdownParagraph from 'components/MarkdownParagraph';
@@ -13,7 +13,7 @@ const PetitionResponse = ({ cityResponse }) => {
   return (
     <div className={styles.root} id='response'>
       <ArticleBlock
-        title={settings.petitionPage.cityResponse}
+        title={translation('petitionPage.cityResponse')}
         icon={'Note'}>
         <MarkdownParagraph text={cityResponse.text} />
         <Paragraph text={cityResponse.name} />

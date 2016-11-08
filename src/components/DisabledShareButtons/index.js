@@ -1,5 +1,5 @@
 import React from 'react';
-import settings from 'settings';
+import { translation } from 'translations';
 import styles from 'components/ShareButtons/share-buttons.scss';
 import FakeButton from 'components/FakeButton';
 import ButtonIcon from 'components/ButtonIcon';
@@ -7,23 +7,23 @@ import ButtonIcon from 'components/ButtonIcon';
 const buttons = [
   {
     id: 'Facebook',
-    label: settings.shareButtons.facebook.label
+    label: translation('shareButtons.facebook.label')
   },
   {
     id: 'Twitter',
-    label: settings.shareButtons.twitter.label
+    label: translation('shareButtons.twitter.label')
   },
   {
     id: 'Email',
-    label: settings.shareButtons.email.label
+    label: translation('shareButtons.email.label')
   },
   {
     id: 'Link',
-    label: settings.shareButtons.link.label
+    label: translation('shareButtons.link.label')
   },
   {
     id: 'Embed',
-    label: settings.shareButtons.embed.label
+    label: translation('shareButtons.embed.label')
   }
 ];
 

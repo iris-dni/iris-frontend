@@ -1,4 +1,6 @@
-import settings from 'settings';
+import mergeObjects from 'helpers/mergeObjects';
+import { setting } from 'settings';
+import { translation } from 'translations';
 import Hero from 'components/Hero';
 import AdSlot from 'containers/AdSlot';
 import PetitionGroup from 'containers/PetitionGroup';
@@ -6,7 +8,7 @@ import PetitionGroup from 'containers/PetitionGroup';
 export default [
   {
     component: Hero,
-    props: settings.homePage.hero
+    props: mergeObjects(setting('homePage.hero'), translation('homePage.hero'))
   },
   {
     component: AdSlot,

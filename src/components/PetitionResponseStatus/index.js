@@ -1,6 +1,6 @@
 import React from 'react';
 import Markdown from 'react-markdown';
-import settings from 'settings';
+import { translation } from 'translations';
 import styles from './petition-response-status.scss';
 import getPetitionResponseStatusTitle from 'helpers/getPetitionResponseStatusTitle';
 import getPetitionResponseStatusText from 'helpers/getPetitionResponseStatusText';
@@ -21,7 +21,7 @@ const PetitionResponseStatus = (props) => (
     {props.closed &&
       <p className={styles.anchor}>
         <Link external href={'#response'}>
-          {settings.petitionResponseStatus.link}
+          {translation('petitionResponseStatus.link')}
         </Link>
       </p>
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import settings from 'settings';
+import { translation } from 'translations';
 import { petitionsPath } from 'helpers/petitionUrls';
 import citySuggestionFormatter from 'helpers/citySuggestionFormatter';
 import PetitionsFiltersField from 'components/PetitionsFiltersField';
@@ -13,19 +13,19 @@ const FILTER_INPUT_NAME = 'filter-by';
 const FILTER_INPUT_OPTIONS = [
   {
     value: 'current',
-    label: settings.petitionsPage.filters.current
+    label: translation('petitionsPage.filters.current')
   },
   {
     value: 'winning',
-    label: settings.petitionsPage.filters.winning
+    label: translation('petitionsPage.filters.winning')
   },
   {
     value: 'past',
-    label: settings.petitionsPage.filters.past
+    label: translation('petitionsPage.filters.past')
   },
   {
     value: 'all',
-    label: settings.petitionsPage.filters.all
+    label: translation('petitionsPage.filters.all')
   }
 ];
 
@@ -33,15 +33,15 @@ const SORT_INPUT_NAME = 'sort-by';
 const SORT_INPUT_OPTIONS = [
   {
     value: 'date',
-    label: settings.petitionsPage.filters.date
+    label: translation('petitionsPage.filters.date')
   },
   {
     value: 'trending',
-    label: settings.petitionsPage.filters.trending
+    label: translation('petitionsPage.filters.trending')
   },
   {
     value: 'supporters',
-    label: settings.petitionsPage.filters.supportersAmount
+    label: translation('petitionsPage.filters.supportersAmount')
   }
 ];
 
@@ -80,7 +80,7 @@ const PetitionsFilters = React.createClass({
         }));
       }
     },
-    html: { placeholder: settings.petitionsPage.filters.city.placeholder }
+    html: { placeholder: translation('petitionsPage.filters.city.placeholder') }
   }),
 
   getSelectValue (key, defaultValue) {
@@ -95,7 +95,7 @@ const PetitionsFilters = React.createClass({
           <div className={styles['full-item']}>
             <PetitionsFiltersField
               name={CITY_FILTER_NAME}
-              label={settings.petitionsPage.filters.city.label}
+              label={translation('petitionsPage.filters.city.label')}
             >
               <Autocomplete
                 {...this.getAutocompleteProps(this.props)}
@@ -111,7 +111,7 @@ const PetitionsFilters = React.createClass({
           <div className={styles['half-item']}>
             <PetitionsFiltersField
               name={FILTER_INPUT_NAME}
-              label={settings.petitionsPage.filterBy}
+              label={translation('petitionsPage.filterBy')}
             >
               <Select
                 name={FILTER_INPUT_NAME}
@@ -124,7 +124,7 @@ const PetitionsFilters = React.createClass({
           <div className={styles['half-item']}>
             <PetitionsFiltersField
               name={SORT_INPUT_NAME}
-              label={settings.petitionsPage.orderBy}
+              label={translation('petitionsPage.orderBy')}
             >
               <Select
                 name={SORT_INPUT_NAME}

@@ -1,12 +1,12 @@
 import React from 'react';
-import settings from 'settings';
+import { translation } from 'translations';
 import FormLayout from 'components/FormLayout';
 import PetitionForm from 'components/PetitionForm';
 
 const EditPetition = ({ petition }) => (
   <FormLayout
-    title={settings.editPetitionPage.title}
-    intro={settings.editPetitionPage.intro}>
+    title={translation('editPetitionPage.title')}
+    intro={translation('editPetitionPage.intro')}>
     <PetitionForm
       initialValues={petition}
       petition={petition}

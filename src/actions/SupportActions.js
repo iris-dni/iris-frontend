@@ -1,5 +1,5 @@
 import { push } from 'react-router-redux';
-import settings from 'settings';
+import { translation } from 'translations';
 import petitionRepository from 'services/api/repositories/petition';
 import getPetitionURL from 'helpers/getPetitionURL';
 import isUntrustedUser from 'helpers/isUntrustedUser';
@@ -36,7 +36,7 @@ export function supportPetition (trustData, dispatch) {
       // Set loading state
       dispatch(supportedPetition(response.data));
     }).catch(() => dispatch(
-      showFlashMessage(settings.flashMessages.genericError, 'error')
+      showFlashMessage(translation('flashMessages.genericError'), 'error')
     ));
 }
 
@@ -48,7 +48,7 @@ const supportPetitionSuccess = (id, data, dispatch) => {
     showModalWindow({
       type: 'share',
       link: getPetitionURL(id),
-      ...settings.supportPetition.newlySupported.modal
+      ...translation('supportPetition.newlySupported.modal', {})
     })
   );
 };
@@ -59,10 +59,10 @@ const supportPetitionErrors = (id, response, dispatch) => {
     dispatch(push(`/trust/support/${id}/confirm`));
   } else if (isInvalidVerification(response)) {
     // When the verification code is invalid
-    dispatch(showFlashMessage(settings.flashMessages.invalidVerificationError, 'error'));
+    dispatch(showFlashMessage(translation('flashMessages.invalidVerificationError'), 'error'));
   } else {
     // All other errors
-    dispatch(showFlashMessage(settings.flashMessages.genericError, 'error'));
+    dispatch(showFlashMessage(translation('flashMessages.genericError'), 'error'));
   }
 };
 
@@ -88,15 +88,15 @@ export function resendVerification (trustData) {
       .then((response) => {
         if (isUntrustedUser(response)) {
           // We have re-sent & verified the code, show success
-          dispatch(showFlashMessage(settings.flashMessages.verificationResent, 'success'));
+          dispatch(showFlashMessage(translation('flashMessages.verificationResent'), 'success'));
         } else {
           // All other errors
-          dispatch(showFlashMessage(settings.flashMessages.genericError, 'error'));
+          dispatch(showFlashMessage(translation('flashMessages.genericError'), 'error'));
         }
         // Set loading state
         dispatch(supportedPetition(trustData.petition));
       }).catch(() => dispatch(
-        showFlashMessage(settings.flashMessages.genericError, 'error')
+        showFlashMessage(translation('flashMessages.genericError'), 'error')
       ));
   };
 }

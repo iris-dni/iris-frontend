@@ -1,5 +1,5 @@
 import React from 'react';
-import settings from 'settings';
+import { translation } from 'translations';
 import styles from './petition-not-found-by-response-token.scss';
 import ButtonLink from 'components/ButtonLink';
 import Container from 'components/Container';
@@ -14,7 +14,7 @@ const PetitionResponseTokenError = ({ petition, petitionResponse, router }) => (
   <Container>
     <Header padding>
       <PageTitle
-        title={settings.petitionResponseTokenErrorPage.title}
+        title={translation('petitionResponseTokenErrorPage.title')}
         centered
       />
     </Header>
@@ -22,12 +22,12 @@ const PetitionResponseTokenError = ({ petition, petitionResponse, router }) => (
       <TextCenter>
         <img src={'/dist/assets/images/Error.svg'} alt='Error illustration' />
         <div className={styles.notice}>
-          <Paragraph>{settings.petitionResponseTokenErrorPage.intro}</Paragraph>
-          <Paragraph>{settings.petitionResponseTokenErrorPage.hint}</Paragraph>
+          <Paragraph>{translation('petitionResponseTokenErrorPage.intro')}</Paragraph>
+          <Paragraph>{translation('petitionResponseTokenErrorPage.hint')}</Paragraph>
           <Paragraph>
             <ButtonLink
               href={petitionsPath()}
-              text={settings.petitionResponseTokenErrorPage.homeButton.text}
+              text={translation('petitionResponseTokenErrorPage.homeButton.text')}
             />
           </Paragraph>
         </div>

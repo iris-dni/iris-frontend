@@ -1,5 +1,5 @@
 import React from 'react';
-import settings from 'settings';
+import { translation } from 'translations';
 import ExternalTeaserBlock from 'components/ExternalTeaserBlock';
 import styles from './petition-footer.scss';
 
@@ -7,13 +7,13 @@ const PetitionFooter = ({ links, mentions }) => (
   <section className={styles.root}>
     {!!links.length &&
       <ExternalTeaserBlock
-        title={settings.petitionPage.attachedLinks}
+        title={translation('petitionPage.attachedLinks')}
         links={links}
       />
     }
     {!!mentions.length &&
       <ExternalTeaserBlock
-        title={settings.petitionPage.attachedMentions}
+        title={translation('petitionPage.attachedMentions')}
         links={mentions}
       />
     }

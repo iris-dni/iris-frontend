@@ -1,5 +1,5 @@
 import React from 'react';
-import settings from 'settings';
+import { translation } from 'translations';
 import Dropzone from 'react-dropzone';
 import ImageFieldPreview from 'components/ImageFieldPreview';
 import IconAndInfo from 'components/IconAndInfo';
@@ -36,7 +36,7 @@ const ImageField = React.createClass({
   },
 
   rejectFiles (accepted, helper) {
-    helper.error = settings.petitionFields.image.invalidFileError;
+    helper.error = translation('petitionFields.image.invalidFileError');
     if (!helper.value) {
       helper.onChange(accepted);
     } else {
@@ -77,7 +77,7 @@ const ImageField = React.createClass({
             <div className={styles.field}>
               <span className={styles.label}>
                 {this.state.loading &&
-                  <span>{settings.petitionFields.image.loading}</span>
+                  <span>{translation('petitionFields.image.loading')}</span>
                 }
                 {!this.state.loading &&
                   <IconAndInfo info={config.html.placeholder} icon={'Photo'} />

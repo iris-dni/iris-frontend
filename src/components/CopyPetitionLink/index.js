@@ -1,5 +1,5 @@
 import React from 'react';
-import settings from 'settings';
+import { translation } from 'translations';
 import Button from 'components/Button';
 import ButtonIcon from 'components/ButtonIcon';
 import CopyToClipboard from 'react-copy-to-clipboard';
@@ -22,7 +22,7 @@ const CopyPetitionLink = React.createClass({
               size={'compact'}
               brand={'link-copied'}>
               <ButtonIcon id={'Checkmark'} modifier={'success'}>
-                {settings.shareButtons.link.copiedLabel}
+                {translation('shareButtons.link.copiedLabel')}
               </ButtonIcon>
             </Button>
           }
@@ -31,7 +31,7 @@ const CopyPetitionLink = React.createClass({
               size={'compact'}
               brand={'email'}>
               <ButtonIcon id={'Link'}>
-                {settings.shareButtons.link.label}
+                {translation('shareButtons.link.label')}
               </ButtonIcon>
             </Button>
           }

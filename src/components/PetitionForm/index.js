@@ -6,7 +6,7 @@ import assignPetitionAndId from 'form/assignPetitionAndId';
 import Fieldset from 'components/Fieldset';
 import FormFieldsIterator from 'components/FormFieldsIterator';
 import Button from 'components/Button';
-import settings from 'settings';
+import { translation } from 'translations';
 import FIELDS from './fields';
 
 const PetitionForm = ({ petition, openGraph, images, fields, handleSubmit, submitting }) => (
@@ -21,7 +21,7 @@ const PetitionForm = ({ petition, openGraph, images, fields, handleSubmit, submi
     </Fieldset>
     <Fieldset modifier={'actions'}>
       <Button
-        text={settings.petitionForm[petition.persisted && petition.owned ? 'saveButton' : 'createButton']}
+        text={translation(`petitionForm.${petition.persisted && petition.owned ? 'saveButton' : 'createButton'}`)}
         modifier={'accent'}
         disabled={openGraph.isLoading || images.isLoading || submitting || !fields._meta.allValid}
       />

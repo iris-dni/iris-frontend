@@ -2,6 +2,7 @@ export default {
   locale: 'en-US',
   charset: 'utf-8',
   title: 'iris-frontend',
+  logo: 'IRIS',
   twitterAccount: 'azmedien',
   googleAnalytics: {
     APIKey: '',

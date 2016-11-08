@@ -1,13 +1,13 @@
 import React from 'react';
-import settings from 'settings';
+import { translation } from 'translations';
 import SsoProviders from 'components/SsoProviders';
 import ModalIntro from 'components/ModalIntro';
 
 const LoginModal = ({ title, intro, ssoProviders }) => (
   <div>
     <ModalIntro
-      title={title || settings.loginPage.title}
-      intro={intro || settings.loginPage.intro}
+      title={title || translation('loginPage.title')}
+      intro={intro || translation('loginPage.intro')}
     />
     <SsoProviders providers={ssoProviders} />
   </div>

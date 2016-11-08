@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './petition-actions.scss';
-import settings from 'settings';
+import { translation } from 'translations';
 import Button from 'components/Button';
 import ButtonLink from 'components/ButtonLink';
 import ButtonSet from 'components/ButtonSet';
@@ -10,13 +10,13 @@ const PetitionActions = ({ petition, actions }) => (
     <ButtonSet>
       <ButtonLink
         href={`/petitions/${petition.id}/edit`}
-        text={settings.previewPetitionPage.editButton}
+        text={translation('previewPetitionPage.editButton')}
       />
       <Button
         type={'button'}
         modifier={'accent'}
         onClick={actions.publishPetition && (() => actions.publishPetition({ petition }))}
-        text={settings.previewPetitionPage.publishButton}
+        text={translation('previewPetitionPage.publishButton')}
         disabled={petition.isLoading}
       />
     </ButtonSet>

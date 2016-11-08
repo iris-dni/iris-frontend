@@ -1,5 +1,5 @@
 import petitionRepository from 'services/api/repositories/petition';
-import settings from 'settings';
+import { translation } from 'translations';
 
 import {
   requestPetition,
@@ -37,7 +37,7 @@ export function respondToPetition (petitionResponse, dispatch) {
     .then((response) => {
       dispatch(respondedToPetition(response.data));
     }).catch(() => dispatch(
-      showFlashMessage(settings.flashMessages.genericError, 'error')
+      showFlashMessage(translation('flashMessages.genericError'), 'error')
     ));
 }
 

@@ -385,7 +385,6 @@ export default {
     "invalidUserDataError": "Complete your details to support this petition",
     "noLongerSupportable": "This petition is no longer supportable"
   },
-  "logo": "IRIS",
   "footer": {
     "copyright": "Copyright © 2016 Iris"
   },

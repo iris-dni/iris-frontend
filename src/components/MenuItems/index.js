@@ -1,5 +1,5 @@
 import React from 'react';
-import settings from 'settings';
+import { setting } from 'settings';
 import { Link } from 'react-router';
 import styles from './menu-items.scss';
 
@@ -17,7 +17,7 @@ const MenuItems = React.createClass({
   render () {
     return (
       <ul className={this.getClassName(styles.list)}>
-        {settings.navigationLinks.map((link, key) => (
+        {setting('navigationLinks', []).map((link, key) => (
           <li className={styles.element} key={key}>
             <Link
               to={link.path}

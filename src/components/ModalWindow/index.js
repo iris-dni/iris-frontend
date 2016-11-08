@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './modal-window.scss';
-import settings from 'settings';
+import { translation } from 'translations';
 import Overlay from 'components/Overlay';
 import CloseButton from 'components/CloseButton';
 
@@ -14,9 +14,9 @@ const Modal = ({ active, title, children, hideModalWindow }) => (
       <div className={styles.close}>
         <CloseButton
           onClick={hideModalWindow}
-          text={settings.modalWindow.closeButton}
+          text={translation('modalWindow.closeButton')}
           attrs={{
-            'aria-label': settings.modalWindow.closeButton
+            'aria-label': translation('modalWindow.closeButton')
           }}
         />
       </div>

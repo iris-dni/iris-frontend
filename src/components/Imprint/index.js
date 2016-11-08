@@ -1,5 +1,7 @@
 import React from 'react';
-import settings from 'settings';
+import mergeObjects from 'helpers/mergeObjects';
+import settings, { setting } from 'settings';
+import { translation } from 'translations';
 import Container from 'components/Container';
 import BlockContainer from 'components/BlockContainer';
 import CreateCTA from 'components/CreateCTA';
@@ -23,7 +25,10 @@ const Imprint = () => (
       </section>
     }
     <section>
-      <CreateCTA {...settings.createCTA} />
+      <CreateCTA {...mergeObjects(
+        setting('createCTA'),
+        translation('createCTA')
+      )} />
     </section>
     <section>
       <Container>
