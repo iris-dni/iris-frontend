@@ -1,6 +1,6 @@
 import settings from 'settings';
 import Hero from 'components/Hero';
-import AdSlot from 'containers/AdSlot';
+// import AdSlot from 'containers/AdSlot';
 import PetitionGroup from 'containers/PetitionGroup';
 
 export default [
@@ -8,13 +8,13 @@ export default [
     component: Hero,
     props: settings.homePage.hero
   },
-  {
-    component: AdSlot,
-    props: {
-      context: 'home',
-      type: 'wideboard'
-    }
-  },
+  // {
+  //   component: AdSlot,
+  //   props: {
+  //     context: 'home',
+  //     type: 'wideboard'
+  //   }
+  // },
   {
     component: PetitionGroup,
     props: {
