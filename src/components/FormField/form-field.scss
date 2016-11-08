@@ -2,8 +2,6 @@
 
 .field {
   @include map-declarations($form-fields-defaults);
-  display: block;
-  width: 100%;
 }
 
 .input {

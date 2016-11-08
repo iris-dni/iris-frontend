@@ -30,9 +30,10 @@
   }
 
   .select {
-    @include map-declarations($form-fields-defaults);
+    @include map-declarations($form-fields-defaults, (
+      'padding': 8px 40px 8px 8px
+    ));
     appearance: none;
-    padding: 8px 40px 8px 8px;
     background-color: color('white');
     border-color: color('grey');
     color: color('black');
