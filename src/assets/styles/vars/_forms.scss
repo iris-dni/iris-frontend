@@ -1,0 +1,19 @@
+///
+/// Default form field style map: use with @map-declarations
+/// function to loop properties and values
+///
+/// @type Map
+///
+/// @prop {String} key - Form field property
+/// @prop {Map} value - Declaration value
+///
+$form-fields-defaults: (
+  'padding': 15px,
+  'border-width': 2px,
+  'border-style': solid,
+  'border-radius': 4px,
+  'line-height': normal,
+  'outline': 0,
+  'display': block,
+  'width': 100%
+);

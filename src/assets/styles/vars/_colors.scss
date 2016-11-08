@@ -1,3 +1,11 @@
+///
+/// Default colours map
+///
+/// @type Map
+///
+/// @prop {String} key - Colour reference
+/// @prop {Map} value - Colour value
+///
 $colors-defaults: (
   'black': #222,
   'blue': #213872,

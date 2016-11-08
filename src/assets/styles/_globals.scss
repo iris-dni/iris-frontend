@@ -3,12 +3,14 @@
 // and only import variables, mixins, functions etc.
 // as this file is included in _every_ component
 //
-@import 'mixins';
-@import 'functions';
-@import 'breakpoints';
+@import 'vars/mixins';
+@import 'vars/functions';
+@import 'vars/breakpoints';
+@import 'vars/layout';
+@import 'vars/colors';
+@import 'vars/forms';
+@import 'vars/typography';
 @import 'vendor/include-media';
-@import 'layout';
-@import 'colors';
-@import 'forms';
-@import 'typography';
-@import 'overrides';
+
+// Theme settings
+@import 'config';
