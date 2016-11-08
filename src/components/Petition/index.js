@@ -5,8 +5,6 @@ import LayoutContent from 'components/LayoutContent';
 import LayoutSidebar from 'components/LayoutSidebar';
 import Container from 'components/Container';
 import Section from 'components/Section';
-// import AdSlot from 'containers/AdSlot';
-
 import PetitionHeader from 'containers/PetitionHeader';
 import PetitionImage from 'containers/PetitionImage';
 import PetitionBody from 'containers/PetitionBody';
@@ -23,7 +21,6 @@ const Petition = ({ preview, city }) => (
         <PetitionHeader />
       </Container>
     </Section>
-    {/* <AdSlot context={'petition'} type={'wideboard'} /> */}
     <Container>
       <LayoutWrap>
         <LayoutContent>
