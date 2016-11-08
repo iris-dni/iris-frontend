@@ -1,5 +1,5 @@
 import React from 'react';
-import settings from 'settings';
+import { translation } from 'translations';
 import getPetitionOwner from 'selectors/petitionOwner';
 import getPetitionCity from 'selectors/petitionCity';
 import getPetitionPath from 'helpers/getPetitionPath';
@@ -9,17 +9,17 @@ import Link from 'components/Link';
 const RespondToPetitionDetails = ({ petition }) => (
   <div>
     <Paragraph margin='no-margin'>
-      <strong>{`${settings.respondToPetitionPage.details.for} `}</strong>
+      <strong>{`${translation('respondToPetitionPage.details.for')} `}</strong>
       <Link href={getPetitionPath(petition.id)}>{petition.title}</Link>
     </Paragraph>
     <Paragraph margin='no-margin'>
-      <strong>{`${settings.respondToPetitionPage.details.by}`}</strong> {`${getPetitionOwner(petition)}`}
+      <strong>{`${translation('respondToPetitionPage.details.by')}`}</strong> {`${getPetitionOwner(petition)}`}
     </Paragraph>
     <Paragraph margin='no-margin'>
-      <strong>{`${settings.respondToPetitionPage.details.in}`}</strong> {`${getPetitionCity(petition).name}`}
+      <strong>{`${translation('respondToPetitionPage.details.in')}`}</strong> {`${getPetitionCity(petition).name}`}
     </Paragraph>
     <Paragraph>
-      <strong>{`${settings.respondToPetitionPage.details.collected}`}</strong> {`${petition.supporters.amount} ${settings.respondToPetitionPage.details.supporters}`}
+      <strong>{`${translation('respondToPetitionPage.details.collected')}`}</strong> {`${petition.supporters.amount} ${translation('respondToPetitionPage.details.supporters')}`}
     </Paragraph>
   </div>
 );

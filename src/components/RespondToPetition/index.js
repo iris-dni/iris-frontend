@@ -1,5 +1,5 @@
 import React from 'react';
-import settings from 'settings';
+import { translation } from 'translations';
 import FormLayout from 'components/FormLayout';
 import RespondToPetitionForm from 'components/RespondToPetitionForm';
 import RespondToPetitionDetails from 'components/RespondToPetitionDetails';
@@ -8,9 +8,9 @@ import Paragraph from 'components/Paragraph';
 
 const RespondToPetition = ({ petition, petitionResponse, router }) => (
   <FormLayout
-    title={settings.respondToPetitionPage.title}>
+    title={translation('respondToPetitionPage.title')}>
     <RespondToPetitionDetails petition={petition} />
-    <Paragraph>{settings.respondToPetitionPage.intro}</Paragraph>
+    <Paragraph>{translation('respondToPetitionPage.intro')}</Paragraph>
     <RespondToPetitionHints petition={petition} />
     <RespondToPetitionForm
       initialValues={petitionResponse}

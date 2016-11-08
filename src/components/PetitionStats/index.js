@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './petition-stats.scss';
-import settings from 'settings';
+import { translation } from 'translations';
 import Statistic from 'components/Statistic';
 
 const PetitionStats = ({ total, required, daysLeft }) => (
@@ -8,21 +8,21 @@ const PetitionStats = ({ total, required, daysLeft }) => (
     <li className={styles.item}>
       <Statistic
         figure={total}
-        label={settings.supportersText}
+        label={translation('supportersText')}
       />
     </li>
     {required > 0 &&
       <li className={styles.item}>
         <Statistic
           figure={required}
-          label={settings.milestoneText}
+          label={translation('milestoneText')}
         />
       </li>
     }
     <li className={styles['days-item']}>
       <Statistic
         figure={daysLeft}
-        label={settings.daysRemaining}
+        label={translation('daysRemaining')}
       />
     </li>
   </ul>

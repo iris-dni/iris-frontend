@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styles from './progress-bar.scss';
-import settings from 'settings';
+import { setting } from 'settings';
 import ProgressBarJS from 'progressbar.js';
 
 const ProgressBar = React.createClass({
@@ -10,8 +10,8 @@ const ProgressBar = React.createClass({
     percentage: 0,
     animated: false,
     size: 'regular',
-    color: settings.colors.primary,
-    trailColor: settings.colors.greyLite,
+    color: setting('colors.primary'),
+    trailColor: setting('colors.greyLite'),
     aria: {}
   }),
 

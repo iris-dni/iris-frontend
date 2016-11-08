@@ -2,7 +2,7 @@ import React from 'react';
 import ButtonIcon from 'components/ButtonIcon';
 import FakeButton from 'components/FakeButton';
 import SupportButton from 'containers/SupportButton';
-import settings from 'settings';
+import { translation } from 'translations';
 
 const PetitionSupportButton = ({
   isSupportable,
@@ -15,7 +15,7 @@ const PetitionSupportButton = ({
   <div>
     {preview &&
       <FakeButton disabled block>
-        {settings.petitionPage.supportButton.text}
+        {translation('petitionPage.supportButton.text')}
       </FakeButton>
     }
 
@@ -26,26 +26,26 @@ const PetitionSupportButton = ({
     {(isSupportable && userHasSupported) &&
       <FakeButton disabled block>
         <ButtonIcon id={'Checkmark'} modifier={'dimmed'}>
-          {settings.petitionPage.supportButton.supportedText}
+          {translation('petitionPage.supportButton.supportedText')}
         </ButtonIcon>
       </FakeButton>
     }
 
     {/* TEMPORARY FOR SANITY */(!preview && !isSupportable && !winning && !closed) &&
       <FakeButton disabled block>
-        {settings.petitionPage.supportButton.unsupportableText}
+        {translation('petitionPage.supportButton.unsupportableText')}
       </FakeButton>
     }
 
     {(winning || processing) && !closed &&
       <FakeButton disabled block>
-        {settings.petitionPage.supportButton.endedText}
+        {translation('petitionPage.supportButton.endedText')}
       </FakeButton>
     }
 
     {closed &&
       <FakeButton disabled block>
-        {settings.petitionPage.supportButton.closedText}
+        {translation('petitionPage.supportButton.closedText')}
       </FakeButton>
     }
   </div>

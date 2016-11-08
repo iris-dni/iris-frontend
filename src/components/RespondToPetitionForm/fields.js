@@ -1,4 +1,4 @@
-import settings from 'settings';
+import { translation } from 'translations';
 
 export default [
   {
@@ -20,10 +20,10 @@ export default [
   {
     element: 'textarea',
     name: 'answer.text',
-    label: settings.respondToPetitionFields.response.label,
-    hint: settings.respondToPetitionFields.response.hint,
+    label: translation('respondToPetitionFields.response.label'),
+    hint: translation('respondToPetitionFields.response.hint'),
     html: {
-      placeholder: settings.respondToPetitionFields.response.placeholder,
+      placeholder: translation('respondToPetitionFields.response.placeholder'),
       required: true,
       minLength: 50,
       maxLength: 500
@@ -32,11 +32,11 @@ export default [
   {
     element: 'input',
     name: 'answer.name',
-    label: settings.respondToPetitionFields.name.label,
-    hint: settings.respondToPetitionFields.name.hint,
+    label: translation('respondToPetitionFields.name.label'),
+    hint: translation('respondToPetitionFields.name.hint'),
     html: {
       type: 'text',
-      placeholder: settings.respondToPetitionFields.name.placeholder,
+      placeholder: translation('respondToPetitionFields.name.placeholder'),
       required: true,
       minLength: 15,
       maxLength: 80

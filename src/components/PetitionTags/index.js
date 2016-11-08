@@ -1,5 +1,5 @@
 import React from 'react';
-import settings from 'settings';
+import { translation } from 'translations';
 import styles from './petition-tags.scss';
 import Icon from 'components/Icon';
 
@@ -19,7 +19,7 @@ const PetitionTags = ({ winner, response, isTeaser }) => {
             <span className={styles.icon}>
               <Icon id='Flag' size='tiny' modifier='invert' />
             </span>
-            <span>{settings.petitionPage.tags.winner}</span>
+            <span>{translation('petitionPage.tags.winner')}</span>
           </div>
         </li>
       }
@@ -29,7 +29,7 @@ const PetitionTags = ({ winner, response, isTeaser }) => {
             <span className={styles.icon}>
               <Icon id='Note' size='tiny' modifier='invert' />
             </span>
-            <span>{settings.petitionPage.tags.response}</span>
+            <span>{translation('petitionPage.tags.response')}</span>
           </div>
         </li>
       }

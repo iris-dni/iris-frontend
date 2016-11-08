@@ -1,5 +1,5 @@
 import React from 'react';
-import settings from 'settings';
+import { translation } from 'translations';
 import Icon from 'components/Icon';
 import styles from './remove-button.scss';
 
@@ -16,7 +16,7 @@ const RemoveButton = ({ onClick }) => (
     />
 
     <span className={styles.label}>
-      {settings.petitionFields.links.removeLinkLabel}
+      {translation('petitionFields.links.removeLinkLabel')}
     </span>
   </button>
 );
