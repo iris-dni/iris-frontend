@@ -1,10 +1,16 @@
 import React from 'react';
-import MODULES from './modules';
+import Hero from 'components/Hero';
+import PetitionGroup from 'containers/PetitionGroup';
 
-const Home = () => (
+const components = {
+  Hero: Hero,
+  PetitionGroup: PetitionGroup
+};
+
+const Home = ({ modules = [] }) => (
   <article>
-    {MODULES.map((block, index) =>
-      React.createElement(block.component, Object.assign({}, block.props,
+    {modules.map((block, index) =>
+      React.createElement(components[block.component], Object.assign({}, block.props,
         { key: index }
       ))
     )}

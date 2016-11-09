@@ -72,6 +72,10 @@ export default {
       path: '/petitions'
     },
     {
+      label: 'About',
+      path: '/about'
+    },
+    {
       label: 'Create petition',
       path: '/petitions/new'
     }

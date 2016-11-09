@@ -7,7 +7,8 @@ import getHistory from 'helpers/getHistory';
 
 import App from 'containers/App';
 import Home from 'containers/Home';
-import Imprint from 'components/Imprint';
+import Imprint from 'containers/Imprint';
+import About from 'containers/About';
 import LoginPage from 'containers/Login';
 import Logout from 'containers/Logout';
 import Petitions from 'containers/Petitions';
@@ -33,6 +34,7 @@ export default (props = {}) => (
     <Route path='/' component={App}>
       <IndexRoute component={Home} />
       <Route path='imprint' component={Imprint} />
+      <Route path='about' component={About} />
       <Route path='auth/login' component={LoginPage} />
       <Route path='auth/logout' component={Logout} />
       <Route path='petitions'>
@@ -45,11 +47,11 @@ export default (props = {}) => (
       <Route path='petitions/:id' component={Petition} />
       <Route path='petitions/:id/edit' component={RedirectIfPublished(EditPetition)} />
       <Route path='petitions/:id/preview' component={RedirectIfPublished(PreviewPetition)} />
-      <Route path='respond/:token' component={RespondToPetition} />
       <Route path='trust/support/:id' component={RedirectIfUnsupportable(TrustSupport)} />
       <Route path='trust/support/:id/confirm' component={RedirectIfUnsupportable(TrustSupportConfirmation)} />
       <Route path='trust/publish/:id' component={RedirectIfPublished(TrustPublish)} />
       <Route path='trust/publish/:id/confirm' component={RedirectIfPublished(TrustPublishConfirmation)} />
+      <Route path='respond/:token' component={RespondToPetition} />
     </Route>
   </Router>
 );

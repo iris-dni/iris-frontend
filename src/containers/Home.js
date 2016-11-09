@@ -5,7 +5,28 @@ import { connect } from 'react-redux';
 import { fetchPetitionGroups, fetchPetitionGroup } from 'actions/PetitionsActions';
 import Home from 'components/Home';
 
-export const PETITION_GROUPS = [
+const MODULES = [
+  {
+    component: 'Hero',
+    props: {
+      ...settings.homePage.hero
+    }
+  },
+  {
+    component: 'PetitionGroup',
+    props: {
+      group: 'trending'
+    }
+  },
+  {
+    component: 'PetitionGroup',
+    props: {
+      group: 'latest'
+    }
+  }
+];
+
+const PETITION_GROUPS = [
   {
     group: 'trending',
     query: {
@@ -40,7 +61,7 @@ const HomeContainer = React.createClass({
     return (
       <div>
         <Helmet title={settings.homePage.title} />
-        <Home />
+        <Home modules={MODULES} />
       </div>
     );
   }

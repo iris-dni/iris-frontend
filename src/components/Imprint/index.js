@@ -1,17 +1,16 @@
 import React from 'react';
-import settings from 'settings';
+// import settings from 'settings';
 import Container from 'components/Container';
 import BlockContainer from 'components/BlockContainer';
-import CreateCTA from 'components/CreateCTA';
-import Header from 'components/Header';
 import ImprintDetails from 'components/ImprintDetails';
-import PlatformSupporters from 'components/PlatformSupporters';
-
-import hasPlatformSupporters from 'helpers/hasPlatformSupporters';
+// import CreateCTA from 'components/CreateCTA';
+// import Header from 'components/Header';
+// import PlatformSupporters from 'components/PlatformSupporters';
+// import hasPlatformSupporters from 'helpers/hasPlatformSupporters';
 
 const Imprint = () => (
   <article>
-    {hasPlatformSupporters(settings) &&
+    {/* hasPlatformSupporters(settings) &&
       <section>
         <Container>
           <Header padding>
@@ -19,10 +18,10 @@ const Imprint = () => (
           </Header>
         </Container>
       </section>
-    }
-    <section>
+    */}
+    {/* <section>
       <CreateCTA {...settings.createCTA} />
-    </section>
+    </section> */}
     <section>
       <Container>
         <BlockContainer>

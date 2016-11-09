@@ -6,7 +6,8 @@ import styles from './site-footer.scss';
 
 const showFooterCTA = (section) => {
   switch (section) {
-    case 'Imprint':
+    case 'AboutContainer':
+    case 'ImprintContainer':
     case 'HomeContainer':
     case 'PetitionsContainer':
     case 'PetitionContainer':
