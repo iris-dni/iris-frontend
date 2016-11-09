@@ -1,9 +1,8 @@
 import React from 'react';
 import styles from './heading2.scss';
-import getClassnames from 'helpers/getClassNames';
 
 const Heading2 = ({ children, text, size }) => (
-  <h2 className={getClassnames(styles, ['root', size])}>
+  <h2 className={styles[size || 'root']}>
     {children || text}
   </h2>
 );

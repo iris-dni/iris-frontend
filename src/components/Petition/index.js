@@ -38,7 +38,7 @@ const Petition = ({ preview, city }) => (
         </LayoutSidebar>
       </LayoutWrap>
     </Container>
-    <Section theme={'grey-lightest'}>
+    <Section theme={'light'}>
       <Container>
         <PetitionFooter />
       </Container>

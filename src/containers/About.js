@@ -8,7 +8,7 @@ const MODULES = [
   {
     component: 'Hero',
     props: {
-      ...settings.homePage.hero
+      ...settings.aboutPage.hero
     }
   }
 ];

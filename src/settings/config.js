@@ -33,6 +33,11 @@ export default {
       background: '/dist/assets/images/hero-bg.jpg'
     }
   },
+  aboutPage: {
+    hero: {
+      background: '/dist/assets/images/hero-bg.jpg'
+    }
+  },
   petitionGroups: {
     trending: {
       linkHref: '/petitions?sort=trending'

@@ -8,5 +8,7 @@
 
 .large {
   font-size: 2em;
+  line-height: typography('line-height');
   font-weight: 400;
+  margin-bottom: 18px;
 }
