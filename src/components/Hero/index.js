@@ -11,7 +11,7 @@ const Hero = ({ title, missionTitle, missionDescription, background }) => (
           <div
             style={{ backgroundImage: `url(${background})` }}
             className={styles.background} />
-          <h1>{title}</h1>
+          <h1 className={styles.headline}>{title}</h1>
         </div>
       </Container>
     </div>

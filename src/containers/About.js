@@ -1,10 +1,28 @@
 import React from 'react';
+import settings from 'settings';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import About from 'components/Imprint';
+import PageBuilder from 'components/PageBuilder';
 
-const AboutContainer = (props) => (
-  <About {...props} />
-);
+const MODULES = [
+  {
+    component: 'Hero',
+    props: {
+      ...settings.homePage.hero
+    }
+  }
+];
+
+const AboutContainer = React.createClass({
+  render () {
+    return (
+      <div>
+        <Helmet title={settings.aboutPage.title} />
+        <PageBuilder modules={MODULES} />
+      </div>
+    );
+  }
+});
 
 export default connect(
   null,

@@ -108,14 +108,6 @@ export default {
       "text": "Back to the home page"
     }
   },
-  "homePage": {
-    "title": "Welcome to IRIS",
-    "hero": {
-      "title": "Your platform enabling local change",
-      "missionTitle": "Our mission",
-      "missionDescription": "Empower people to make change in their local communities. We want to give you the chance to be heard, make your cause known, and to gather supporters. We promise to follow up any successful petitions with a letter to your local representative. And, on top of that, your petition might even be selected to be covered by any of our news outlets."
-    }
-  },
   "petitionGroups": {
     "trending": {
       "title": "Trending petitions",
@@ -350,7 +342,22 @@ export default {
       "placeholder": "-----"
     }
   },
-  "imprint": {
+  "homePage": {
+    "title": "Welcome to IRIS",
+    "hero": {
+      "title": "Your platform for enabling local change"
+    }
+  },
+  "aboutPage": {
+    "title": "About IRIS",
+    "hero": {
+      "title": "Your platform for enabling local change",
+      "missionTitle": "Our mission",
+      "missionDescription": "Empower people to make change in their local communities. We want to give you the chance to be heard, make your cause known, and to gather supporters. We promise to follow up any successful petitions with a letter to your local representative. And, on top of that, your petition might even be selected to be covered by any of our news outlets."
+    }
+  },
+  "imprintPage": {
+    'title': "Imprint",
     "supporters": {
       "title": "Platform supporters",
       "text": "These are the companies that supported and participated in the creation of the IRIS platform. All companies are proud to be part of a project for local change."
