@@ -2,16 +2,13 @@
 
 .grey {
   background-color: color('grey-lighter');
-
-  @include media('<=sidebar') {
-    margin-bottom: 30px;
-  }
-
-  @include media('>sidebar') {
-    margin-bottom: 40px;
-  }
 }
 
 .light {
   background-color: color('grey-lightest');
+}
+
+.padded {
+  padding-top: 40px;
+  padding-bottom: 40px;
 }

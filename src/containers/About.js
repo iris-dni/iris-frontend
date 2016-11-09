@@ -14,33 +14,14 @@ const MODULES = [
   {
     component: 'ThreeUp',
     props: {
-      title: 'How it works',
-      columns: [
-        {
-          title: 'Create your petition',
-          text: 'Anyone can create petitions, you do not need to be part of an organisation. All you need to do is have a valid mobile number to verify your identity.',
-          image: {
-            src: 'http://placehold.it/300x100',
-            alt: 'Create graphic'
-          }
-        },
-        {
-          title: 'Create your petition',
-          text: 'Anyone can create petitions, you do not need to be part of an organisation. All you need to do is have a valid mobile number to verify your identity.',
-          image: {
-            src: 'http://placehold.it/300x100',
-            alt: 'Create graphic'
-          }
-        },
-        {
-          title: 'Create your petition',
-          text: 'Anyone can create petitions, you do not need to be part of an organisation. All you need to do is have a valid mobile number to verify your identity.',
-          image: {
-            src: 'http://placehold.it/300x100',
-            alt: 'Create graphic'
-          }
-        }
-      ]
+      ...settings.aboutPage.threeUp
+    }
+  },
+  {
+    component: 'TwoUp',
+    props: {
+      ...settings.aboutPage.twoUp,
+      theme: 'grey'
     }
   }
 ];

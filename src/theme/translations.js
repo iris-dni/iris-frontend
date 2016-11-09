@@ -354,6 +354,58 @@ export default {
       "title": "Your platform for enabling local change",
       "missionTitle": "Our mission",
       "missionDescription": "Empower people to make change in their local communities. We want to give you the chance to be heard, make your cause known, and to gather supporters. We promise to follow up any successful petitions with a letter to your local representative. And, on top of that, your petition might even be selected to be covered by any of our news outlets."
+    },
+    "threeUp": {
+      title: 'How the platform works',
+      columns: [
+        {
+          title: '1. Create your petition',
+          text: 'Anyone can create petition for their region, you do not need to be part of an organisation. All you need to do is have a valid mobile number to verify who you are.',
+          image: {
+            centered: true,
+            src: '/dist/assets/images/petition-graphic.svg',
+            alt: 'Petition graphic'
+          }
+        },
+        {
+          title: '2. Share and get support',
+          text: 'Once created, share the petition with other people to create awareness about your cause. Each petition runs for 30 days.',
+          image: {
+            centered: true,
+            src: '/dist/assets/images/signature-graphic.svg',
+            alt: 'Signature graphic'
+          }
+        },
+        {
+          title: '3. Letter sent to council',
+          text: 'If your petition reaches the target for that city, we will start an official process by sending a letter to the relevant city council member.',
+          image: {
+            centered: true,
+            src: '/dist/assets/images/email-graphic.svg',
+            alt: 'Email graphic'
+          }
+        }
+      ]
+    },
+    "twoUp": {
+      columns: [
+        {
+          image: {
+            centered: true,
+            src: '/dist/assets/images/support-graphic.svg',
+            alt: 'Support graphic'
+          }
+        },
+        {
+          title: 'Supporting a petition',
+          text: 'If you find a cause in your area you want to support, click the support button in the sidebar of the petition page. Quickly fill in your details to recieve a mobile SMS verification code confirming who you are, and then your support will be added!',
+          button: {
+            modifier: 'accent',
+            text: 'Browse petitions',
+            href: '/petitions'
+          }
+        }
+      ]
     }
   },
   "imprintPage": {

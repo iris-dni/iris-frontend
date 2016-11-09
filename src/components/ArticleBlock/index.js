@@ -8,18 +8,20 @@ const ArticleBlock = ({ title, icon, children, image }) => {
   return (
     <article className={styles.root} id='response'>
       {image &&
-        <div className={styles.image}>
+        <div className={styles[image.centered ? 'image-centered' : 'image']}>
           <Image {...image} />
         </div>
       }
-      <header className={styles.top}>
-        {icon &&
-          <span className={styles.icon}>
-            <Icon id={icon} />
-          </span>
-        }
-        <Heading2 text={title} />
-      </header>
+      {title &&
+        <header className={styles.header}>
+          {icon &&
+            <span className={styles.icon}>
+              <Icon id={icon} />
+            </span>
+          }
+          <Heading2 text={title} />
+        </header>
+      }
       {children}
     </article>
   );
