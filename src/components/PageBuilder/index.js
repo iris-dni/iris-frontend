@@ -7,7 +7,7 @@ const components = {
   PetitionGroup: PetitionGroup
 };
 
-const Home = ({ modules = [] }) => (
+const PageBuilder = ({ modules = [] }) => (
   <article>
     {modules.map((block, index) =>
       React.createElement(components[block.component], Object.assign({}, block.props,
@@ -17,4 +17,4 @@ const Home = ({ modules = [] }) => (
   </article>
 );
 
-export default Home;
+export default PageBuilder;

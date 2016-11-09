@@ -3,7 +3,7 @@ import settings from 'settings';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchPetitionGroups, fetchPetitionGroup } from 'actions/PetitionsActions';
-import Home from 'components/Home';
+import PageBuilder from 'components/PageBuilder';
 
 const MODULES = [
   {
@@ -61,7 +61,7 @@ const HomeContainer = React.createClass({
     return (
       <div>
         <Helmet title={settings.homePage.title} />
-        <Home modules={MODULES} />
+        <PageBuilder modules={MODULES} />
       </div>
     );
   }
