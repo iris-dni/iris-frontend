@@ -1,17 +1,15 @@
 import React from 'react';
+import styles from './hero.scss';
 import Container from 'components/Container';
 import Panel from 'components/Panel';
-
-import styles from './hero.scss';
+import Background from 'components/Background';
 
 const Hero = ({ title, background, missionTitle, missionDescription }) => (
   <section>
     <div className={styles.top}>
       <Container>
         <div className={styles.inner}>
-          <div
-            style={background ? { backgroundImage: `url(${background})` } : {}}
-            className={styles[background ? 'background-image' : 'background-color']} />
+          <Background image={background} />
           <h1 className={styles.headline}>{title}</h1>
         </div>
       </Container>

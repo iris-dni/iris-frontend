@@ -27,43 +27,12 @@
   text-align: center;
 }
 
-.background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-}
-
-.background-color {
-  composes: background;
-  background-color: color('tertiary');
-}
-
-.background-image {
-  composes: background;
-  background-size: cover;
-  background-position: center;
-}
-
-.background-image::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: black;
-  opacity: 0.15;
-}
-
 .mission {
-  max-width: 720px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 
-  @include media('>800px') {
+  @include media('>840px') {
     position: relative;
     top: -50px;
     margin-bottom: -50px;
