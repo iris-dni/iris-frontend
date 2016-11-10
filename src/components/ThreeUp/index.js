@@ -12,7 +12,10 @@ import Heading2 from 'components/Heading2';
 import ButtonLink from 'components/ButtonLink';
 
 const ThreeUp = ({ theme, title, columns = [] }) => (
-  <Section padded={theme || false} theme={theme}>
+  <Section
+    padding={theme || false}
+    margin={!theme || false}
+    theme={theme}>
     <Container>
       {title &&
         <BlockContainer>

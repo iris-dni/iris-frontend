@@ -10,7 +10,7 @@
   }
 }
 
-.top {
+.header {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -29,7 +29,7 @@
 .image-centered {
   composes: image;
   width: 80%;
-  max-width: 310px;
+  max-width: 300px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;

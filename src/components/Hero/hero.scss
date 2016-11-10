@@ -1,5 +1,15 @@
 @import 'globals';
 
+.root {
+  @include media('<=#{sidebar}') {
+    margin-bottom: 20px;
+  }
+
+  @include media('>#{sidebar}') {
+    margin-bottom: 50px;
+  }
+}
+
 .top {
   position: relative;
 }
@@ -32,7 +42,7 @@
   margin-left: auto;
   margin-right: auto;
 
-  @include media('>840px') {
+  @include media('>#{sidebar}') {
     position: relative;
     top: -50px;
     margin-bottom: -50px;

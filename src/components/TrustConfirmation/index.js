@@ -32,9 +32,9 @@ const TrustConfirmation = ({
         <FormHeader title={settings.trustConfirmationPage.title} />
       </TextCenter>
     </Container>
-    <Section theme={'grey'}>
-      <Container>
-        <div className={styles.form}>
+    <div className={styles.form}>
+      <Section theme={'light'} padding margin>
+        <Container>
           <FormWrapper>
             <MarkdownParagraph
               text={generateIntroText(me)}
@@ -53,9 +53,9 @@ const TrustConfirmation = ({
               <TrustPublishConfirmationForm />
             }
           </FormWrapper>
-        </div>
-      </Container>
-    </Section>
+        </Container>
+      </Section>
+    </div>
     <Container>
       <FormWrapper>
         <TrustFlow action={action} />

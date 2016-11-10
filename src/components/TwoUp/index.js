@@ -9,7 +9,10 @@ import Paragraph from 'components/Paragraph';
 import ButtonLink from 'components/ButtonLink';
 
 const Two = ({ theme, columns = [] }) => (
-  <Section padded={theme || false} theme={theme}>
+  <Section
+    padding={theme || false}
+    margin={!theme || false}
+    theme={theme}>
     <Container>
       <div className={styles.grid}>
         <Grid>

@@ -40,9 +40,9 @@ const Trust = ({
         </FormHeader>
       </TextCenter>
     </Container>
-    <Section theme={'grey'}>
-      <Container>
-        <div className={styles.form}>
+    <div className={styles.form}>
+      <Section theme={'light'} padding margin>
+        <Container>
           <FormWrapper>
             {!isLoggedIn &&
               <div className={styles['form-title']}>
@@ -56,9 +56,9 @@ const Trust = ({
               <TrustPublishForm />
             }
           </FormWrapper>
-        </div>
-      </Container>
-    </Section>
+        </Container>
+      </Section>
+    </div>
     <Container>
       <FormWrapper>
         <TrustFlow action={action} />

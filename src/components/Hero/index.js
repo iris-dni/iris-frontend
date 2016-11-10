@@ -5,7 +5,7 @@ import Panel from 'components/Panel';
 import Background from 'components/Background';
 
 const Hero = ({ title, background, missionTitle, missionDescription }) => (
-  <section>
+  <section className={styles.root}>
     <div className={styles.top}>
       <Container>
         <div className={styles.inner}>

@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
-  <g fill="none" fill-rule="evenodd">
-    <rect width="100" height="100"/>
-    <path fill="#1000C5" d="M39,25 L100,25 L100,77 L39,77 L39,25 Z M41,27 L98,27 L98,75 L41,75 L41,27 Z"/>
-    <polygon fill="#1000C5" points="100 25 69.5 52 39 25 39 28 69.5 55 100 28"/>
-    <polygon fill="#1000C5" points="100 50.992 72.312 75.503 69.5 72.992 66.696 75.509 39 50.992 39 53.992 64.965 76.977 69.5 75.992 74.009 77 100 53.992" transform="matrix(1 0 0 -1 0 127.992)"/>
-    <path fill="#1000C5" d="M8,60 L35,60 L35,62 L8,62 L8,60 Z M8,40 L35,40 L35,42 L8,42 L8,40 Z M0,50 L27,50 L27,52 L0,52 L0,50 Z"/>
-  </g>
-</svg>

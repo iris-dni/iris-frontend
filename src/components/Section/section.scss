@@ -1,5 +1,19 @@
 @import 'globals';
 
+.default {
+  margin-bottom: 0;
+}
+
+.margin {
+  @include media('<=#{sidebar}') {
+    margin-bottom: 20px;
+  }
+
+  @include media('>#{sidebar}') {
+    margin-bottom: 50px;
+  }
+}
+
 .grey {
   background-color: color('grey-lighter');
 }
@@ -8,7 +22,7 @@
   background-color: color('grey-lightest');
 }
 
-.padded {
+.padding {
   padding-top: 40px;
   padding-bottom: 40px;
 }
