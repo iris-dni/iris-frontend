@@ -7,16 +7,16 @@ import getPetitionTweetText from 'helpers/sharing/getPetitionTweetText';
 import getPetitionEmailSubject from 'helpers/sharing/getPetitionEmailSubject';
 import getPetitionEmailBody from 'helpers/sharing/getPetitionEmailBody';
 
-export default (petition = {}) => ([
+export default (petition = {}, modalType = 'share') => ([
   facebookShare(getPetitionURL(petition.id)),
   twitterShare({
     url: getPetitionURL(petition.id),
-    text: getPetitionTweetText(petition)
+    text: getPetitionTweetText(petition, modalType)
   }),
   whatsappShare(getPetitionURL(petition.id)),
   emailShare({
     url: getPetitionURL(petition.id),
-    subject: getPetitionEmailSubject(petition),
-    body: getPetitionEmailBody(petition)
+    subject: getPetitionEmailSubject(petition, modalType),
+    body: getPetitionEmailBody(petition, modalType)
   })
 ]);
