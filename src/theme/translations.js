@@ -241,63 +241,63 @@ export default {
     },
     "link": "View official response"
   },
-  shareButtons: {
-    popupTitle: 'Share this petition',
-    facebook: {
-      label: 'Share on Facebook'
+  "shareButtons": {
+    "popupTitle": "Share this petition",
+    "facebook": {
+      "label": "Share on Facebook"
     },
-    twitter: {
-      label: 'Share on Twitter',
-      share: {
-        tweetText: 'This petition needs your support:',
-        localisedTweetText: 'This petition in %s needs your support:'
+    "twitter": {
+      "label": "Share on Twitter",
+      "share": {
+        "tweetText": "This petition needs your support:",
+        "localisedTweetText": "This petition in %s needs your support:"
       },
-      supported: {
-        tweetText: 'I just supported the following petition:',
-        localisedTweetText: 'I just supported this petition in %s:'
+      "supported": {
+        "tweetText": "I just supported the following petition:",
+        "localisedTweetText": "I just supported this petition in %s:"
       },
-      published: {
-        tweetText: 'I just created a new petition!',
-        localisedTweetText: 'I just created a new petition in %s!'
+      "published": {
+        "tweetText": "I just created a new petition!",
+        "localisedTweetText": "I just created a new petition in %s!"
       }
     },
-    whatsapp: {
-      label: 'Send via Whatsapp'
+    "whatsapp": {
+      "label": "Send via Whatsapp"
     },
-    email: {
-      label: 'Send via Email',
-      share: {
-        subject: 'This petition needs your support',
-        localisedSubject: 'This petition in %s needs your support',
-        body: 'Get informed and support the following petition:',
-        localisedBody: 'Get informed and support the following petition in %s:'
+    "email": {
+      "label": "Send via Email",
+      "share": {
+        "subject": "This petition needs your support",
+        "localisedSubject": "This petition in %s needs your support",
+        "body": "Get informed and support the following petition:",
+        "localisedBody": "Get informed and support the following petition in %s:"
       },
-      supported: {
-        subject: 'I just supported the following petition',
-        localisedSubject: 'I just supported this petition in %s',
-        body: 'Check out the petition and show your support:',
-        localisedBody: 'Check out the petition in %s and show your support:'
+      "supported": {
+        "subject": "I just supported the following petition",
+        "localisedSubject": "I just supported this petition in %s",
+        "body": "Check out the petition and show your support:",
+        "localisedBody": "Check out the petition in %s and show your support:"
       },
-      published: {
-        subject: 'I just created a new petition!',
-        localisedSubject: 'I just created a new petition in %s!',
-        body: 'Check out the petition and show your support:',
-        localisedBody: 'Check out the petition in %s and show your support:'
+      "published": {
+        "subject": "I just created a new petition!",
+        "localisedSubject": "I just created a new petition in %s!",
+        "body": "Check out the petition and show your support:",
+        "localisedBody": "Check out the petition in %s and show your support:"
       }
     },
-    link: {
-      label: 'Share by URL',
-      copiedLabel: 'Link copied'
+    "link": {
+      "label": "Share by URL",
+      "copiedLabel": "Link copied"
     },
-    embed: {
-      label: 'Embed petition',
-      modal: {
-        type: 'embed',
-        title: 'Embed this petition',
-        intro: 'To gather support and spread the word, add this petition as widget to your own site',
-        button: {
-          copyLabel: 'Copy embed code',
-          copiedLabel: 'Embed code copied'
+    "embed": {
+      "label": "Embed petition",
+      "modal": {
+        "type": "embed",
+        "title": "Embed this petition",
+        "intro": "To gather support and spread the word, add this petition as widget to your own site",
+        "button": {
+          "copyLabel": "Copy embed code",
+          "copiedLabel": "Embed code copied"
         }
       }
     }
