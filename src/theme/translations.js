@@ -477,7 +477,10 @@ export default {
   },
   "logo": "IRIS",
   "footer": {
-    "copyright": "Copyright © 2016 Iris"
+    "copyright": "Copyright © 2016 IRIS",
+    "ossLink": "Platform powered by IRIS",
+    "imprintLink": "Imprint",
+    "termsLink": "Terms"
   },
   "widgets": {
     "branding": "Petitions by",
