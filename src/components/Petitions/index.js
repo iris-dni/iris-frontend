@@ -8,6 +8,7 @@ import PageTitle from 'components/PageTitle';
 import PetitionsFilters from 'components/PetitionsFilters';
 import NoResults from 'components/NoResults';
 import Pagination from 'containers/Pagination';
+import Loading from 'components/Loading';
 
 const Petitions = (props) => (
   <Section margin>
@@ -22,15 +23,16 @@ const Petitions = (props) => (
         </Header>
       </div>
       {props.petitions.length || props.isLoading
-        ? <TeaserGrid
-          petitions={props.petitions}
-          isLoading={props.isLoading}
-          />
-        : <NoResults />
-      }
-
-      {props.petitions.length > 0 &&
-        <Pagination />
+        ? (
+          <Loading isLoading={props.isLoading}>
+            <div>
+              <TeaserGrid petitions={props.petitions} />
+              {props.petitions.length > 0 &&
+                <Pagination />
+              }
+            </div>
+          </Loading>
+        ) : <NoResults />
       }
     </Container>
   </Section>
