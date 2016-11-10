@@ -17,8 +17,10 @@ body {
   color: color('black');
   line-height: typography('line-height');
   letter-spacing: typography('letter-spacing');
-  min-height: 100%;
-  height: 100%;
+}
+
+main {
+  flex: 1;
 }
 
 svg {
@@ -43,8 +45,9 @@ textarea {
 /*
  * 1. Positioning context for overlay and mobile menu
  * 2. Minimum 100vh height to mimic html element
- * 3. Hides overflow and stop scrolling when modal active
- * 4. Strange bug when placeholder won't disappear after
+ * 3. Sticky footer
+ * 4. Hides overflow and stop scrolling when modal active
+ * 5. Strange bug when placeholder won't disappear after
  *    programatically setting input field value
  */
 :global {
@@ -52,11 +55,13 @@ textarea {
     position: relative; /* 1 */
     min-height: 100vh; /* 2 */
     overflow: hidden;
+    display: flex; /* 3 */
+    flex-direction: column; /* 3 */
   }
 
   .disabled-scroll,
   .disabled-scroll body {
-    overflow: hidden; /* 3 */
+    overflow: hidden; /* 4 */
   }
 
   .disabled-scroll .app-wrapper {
@@ -64,6 +69,6 @@ textarea {
   }
 
   [value]:not([value=''])::-webkit-input-placeholder {
-    color: transparent; /* 4 */
+    color: transparent; /* 5 */
   }
 }

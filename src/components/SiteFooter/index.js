@@ -1,8 +1,8 @@
 import React from 'react';
+import styles from './site-footer.scss';
 import settings from 'settings';
 import CallToAction from 'components/CallToAction';
-import Container from 'components/Container';
-import styles from './site-footer.scss';
+import SiteCopyright from 'components/SiteCopyright';
 
 const showFooterCTA = (section) => {
   switch (section) {
@@ -21,11 +21,7 @@ const SiteFooter = ({ section }) => (
     {showFooterCTA(section) === true &&
       <CallToAction theme={'secondary'} {...settings.createCTA} />
     }
-    <div className={styles.copyright}>
-      <Container>
-        <span>{settings.footer.copyright}</span>
-      </Container>
-    </div>
+    <SiteCopyright />
   </footer>
 );
 
