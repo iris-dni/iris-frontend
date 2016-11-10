@@ -3,9 +3,43 @@ import settings from 'settings';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchPetitionGroups, fetchPetitionGroup } from 'actions/PetitionsActions';
-import Home from 'components/Home';
+import PageBuilder from 'components/PageBuilder';
 
-export const PETITION_GROUPS = [
+const MODULES = [
+  {
+    component: 'Hero',
+    props: {
+      ...settings.homePage.hero
+    }
+  },
+  {
+    component: 'PetitionGroup',
+    props: {
+      group: 'trending'
+    }
+  },
+  {
+    component: 'PetitionGroup',
+    props: {
+      group: 'latest'
+    }
+  },
+  {
+    component: 'CallToAction',
+    props: {
+      ...settings.createCTA,
+      theme: 'secondary'
+    }
+  },
+  {
+    component: 'CallToAction',
+    props: {
+      ...settings.aboutCTA
+    }
+  }
+];
+
+const PETITION_GROUPS = [
   {
     group: 'trending',
     query: {
@@ -40,7 +74,7 @@ const HomeContainer = React.createClass({
     return (
       <div>
         <Helmet title={settings.homePage.title} />
-        <Home />
+        <PageBuilder modules={MODULES} />
       </div>
     );
   }

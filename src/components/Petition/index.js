@@ -16,29 +16,31 @@ import PetitionFooter from 'containers/PetitionFooter';
 
 const Petition = ({ preview, city }) => (
   <article>
-    <Section theme={'grey'}>
+    <Section theme={'grey'} element={'div'} margin>
       <Container>
         <PetitionHeader />
       </Container>
     </Section>
     <Container>
-      <LayoutWrap>
-        <LayoutContent>
-          <PetitionImage />
-          <PetitionBody />
-          <PetitionResponse />
-          <ShowWhen when={'small'}>
-            <div className={styles.share}>
-              <PetitionShareButtons preview={preview} />
-            </div>
-          </ShowWhen>
-        </LayoutContent>
-        <LayoutSidebar>
-          <PetitionSidebar preview={preview} />
-        </LayoutSidebar>
-      </LayoutWrap>
+      <Section element={'div'} margin>
+        <LayoutWrap>
+          <LayoutContent>
+            <PetitionImage />
+            <PetitionBody />
+            <PetitionResponse />
+            <ShowWhen when={'small'}>
+              <div className={styles.share}>
+                <PetitionShareButtons preview={preview} />
+              </div>
+            </ShowWhen>
+          </LayoutContent>
+          <LayoutSidebar>
+            <PetitionSidebar preview={preview} />
+          </LayoutSidebar>
+        </LayoutWrap>
+      </Section>
     </Container>
-    <Section theme={'grey-lightest'}>
+    <Section theme={'light'} padding>
       <Container>
         <PetitionFooter />
       </Container>

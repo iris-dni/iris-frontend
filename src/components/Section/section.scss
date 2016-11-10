@@ -1,17 +1,28 @@
 @import 'globals';
 
-.grey {
-  background-color: color('grey-lighter');
+.default {
+  margin-bottom: 0;
+}
 
-  @include media('<=sidebar') {
-    margin-bottom: 30px;
+.margin {
+  @include media('<=#{sidebar}') {
+    margin-bottom: 20px;
   }
 
-  @include media('>sidebar') {
-    margin-bottom: 40px;
+  @include media('>#{sidebar}') {
+    margin-bottom: 50px;
   }
 }
 
-.grey-lightest {
+.grey {
+  background-color: color('grey-lighter');
+}
+
+.light {
   background-color: color('grey-lightest');
+}
+
+.padding {
+  padding-top: 40px;
+  padding-bottom: 40px;
 }

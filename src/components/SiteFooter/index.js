@@ -1,13 +1,13 @@
 import React from 'react';
 import settings from 'settings';
-import CreateCTA from 'components/CreateCTA';
+import CallToAction from 'components/CallToAction';
 import Container from 'components/Container';
 import styles from './site-footer.scss';
 
 const showFooterCTA = (section) => {
   switch (section) {
-    case 'Imprint':
-    case 'HomeContainer':
+    case 'AboutContainer':
+    case 'ImprintContainer':
     case 'PetitionsContainer':
     case 'PetitionContainer':
       return true;
@@ -19,7 +19,7 @@ const showFooterCTA = (section) => {
 const SiteFooter = ({ section }) => (
   <footer className={styles.root}>
     {showFooterCTA(section) === true &&
-      <CreateCTA {...settings.createCTA} />
+      <CallToAction theme={'secondary'} {...settings.createCTA} />
     }
     <div className={styles.copyright}>
       <Container>

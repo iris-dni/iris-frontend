@@ -1,27 +1,20 @@
 import React from 'react';
-import settings from 'settings';
+// import settings from 'settings';
 import Container from 'components/Container';
 import BlockContainer from 'components/BlockContainer';
-import CreateCTA from 'components/CreateCTA';
-import Header from 'components/Header';
 import ImprintDetails from 'components/ImprintDetails';
+import Header from 'components/Header';
 import PlatformSupporters from 'components/PlatformSupporters';
-
-import hasPlatformSupporters from 'helpers/hasPlatformSupporters';
+// import hasPlatformSupporters from 'helpers/hasPlatformSupporters';
 
 const Imprint = () => (
   <article>
-    {hasPlatformSupporters(settings) &&
-      <section>
-        <Container>
-          <Header padding>
-            <PlatformSupporters />
-          </Header>
-        </Container>
-      </section>
-    }
     <section>
-      <CreateCTA {...settings.createCTA} />
+      <Container>
+        <Header padding>
+          <PlatformSupporters />
+        </Header>
+      </Container>
     </section>
     <section>
       <Container>

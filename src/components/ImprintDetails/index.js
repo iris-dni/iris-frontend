@@ -8,20 +8,20 @@ const ImprintDetails = () => (
   <div>
     <TextCenter>
       <Heading2 size='large'>
-        {settings.imprint.detail.title}
+        {settings.imprintPage.detail.title}
       </Heading2>
     </TextCenter>
     <div className={styles.bottom}>
       <div className={styles.block}>
-        <h3>{settings.imprint.detail.company.title}</h3>
-        {Object.keys(settings.imprint.detail.company).slice(1).map(item =>
-          <div key={item}>{settings.imprint.detail.company[item]}</div>
+        <h3>{settings.imprintPage.detail.company.title}</h3>
+        {Object.keys(settings.imprintPage.detail.company).slice(1).map(item =>
+          <div key={item}>{settings.imprintPage.detail.company[item]}</div>
         )}
       </div>
       <div className={styles.block}>
-        <h3>{settings.imprint.detail.contact.title}</h3>
-        {Object.keys(settings.imprint.detail.contact).slice(1).map(item =>
-          <div key={item}>{settings.imprint.detail.contact[item]}</div>
+        <h3>{settings.imprintPage.detail.contact.title}</h3>
+        {Object.keys(settings.imprintPage.detail.contact).slice(1).map(item =>
+          <div key={item}>{settings.imprintPage.detail.contact[item]}</div>
         )}
       </div>
     </div>

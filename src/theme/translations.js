@@ -75,7 +75,14 @@ export default {
   "createCTA": {
     "title": "Create a new petition",
     "text": "This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.",
-    "buttonText": "Create Petition"
+    "buttonText": "Create petition",
+    "buttonLink": "/petitions/new"
+  },
+  "aboutCTA": {
+    "title": "Learn how it works",
+    "text": "Find out how the IRIS platform works, what our mission is and about the process of supporting or creating a petition in your local area.",
+    "buttonText": "Learn about IRIS",
+    "buttonLink": "/about"
   },
   "respondToPetitionPage": {
     "title": "Response Form",
@@ -106,14 +113,6 @@ export default {
     "hint": "Please re-enter the link or contact our admins if you believe there is a mistake and you are unsure of how to proceed.",
     "homeButton": {
       "text": "Back to the home page"
-    }
-  },
-  "homePage": {
-    "title": "Welcome to IRIS",
-    "hero": {
-      "title": "Your platform enabling local change",
-      "missionTitle": "Our mission",
-      "missionDescription": "Empower people to make change in their local communities. We want to give you the chance to be heard, make your cause known, and to gather supporters. We promise to follow up any successful petitions with a letter to your local representative. And, on top of that, your petition might even be selected to be covered by any of our news outlets."
     }
   },
   "petitionGroups": {
@@ -350,7 +349,74 @@ export default {
       "placeholder": "-----"
     }
   },
-  "imprint": {
+  "homePage": {
+    "title": "Welcome to IRIS",
+    "hero": {
+      "title": "Your platform for enabling local change"
+    }
+  },
+  "aboutPage": {
+    "title": "About IRIS",
+    "hero": {
+      "title": "Your platform for enabling local change",
+      "missionTitle": "Our mission",
+      "missionDescription": "Empower people to make change in their local communities. We want to give you the chance to be heard, make your cause known, and to gather supporters. We promise to follow up any successful petitions with a letter to your local representative. And, on top of that, your petition might even be selected to be covered by any of our news outlets."
+    },
+    "threeUp": {
+      title: 'How the platform works',
+      columns: [
+        {
+          title: '1. Create your petition',
+          text: 'Anyone can create petition for their region, you do not need to be part of an organisation. All you need to do is have a valid mobile number to verify who you are.',
+          image: {
+            centered: true,
+            src: '/dist/assets/images/petition-graphic.svg',
+            alt: 'Petition graphic'
+          }
+        },
+        {
+          title: '2. Share and get support',
+          text: 'Once created, share the petition with other people to create awareness about your cause. Each petition runs for 30 days.',
+          image: {
+            centered: true,
+            src: '/dist/assets/images/signature-graphic.svg',
+            alt: 'Signature graphic'
+          }
+        },
+        {
+          title: '3. Letter sent to council',
+          text: 'If your petition reaches the target for that city, we will start an official process by sending a letter to the relevant city council member.',
+          image: {
+            centered: true,
+            src: '/dist/assets/images/email-graphic.svg',
+            alt: 'Email graphic'
+          }
+        }
+      ]
+    },
+    "twoUp": {
+      columns: [
+        {
+          image: {
+            centered: true,
+            src: '/dist/assets/images/support-graphic.svg',
+            alt: 'Support graphic'
+          }
+        },
+        {
+          title: 'Supporting a petition',
+          text: 'If you find a cause in your area you want to support, click the support button in the sidebar of the petition page. Quickly fill in your details to recieve a mobile SMS verification code confirming who you are, and then your support will be added!',
+          button: {
+            modifier: 'accent',
+            text: 'Browse petitions',
+            href: '/petitions'
+          }
+        }
+      ]
+    }
+  },
+  "imprintPage": {
+    'title': "Imprint",
     "supporters": {
       "title": "Platform supporters",
       "text": "These are the companies that supported and participated in the creation of the IRIS platform. All companies are proud to be part of a project for local change."

@@ -29,5 +29,12 @@ export const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  null,
+  // For activeClassname to work in react-router so we can highlight
+  // the current section in the navigation. See comment here:
+  // https://github.com/ReactTraining/react-router/issues/3286#issuecomment-219488281
+  // Also “My views aren’t updating when something changes outside of Redux”:
+  // https://github.com/reactjs/react-redux/blob/master/docs/troubleshooting.md
+  { pure: false }
 )(NavigationContainer);

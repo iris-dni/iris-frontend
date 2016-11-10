@@ -1,12 +1,13 @@
 import React from 'react';
 import settings from 'settings';
+import Section from 'components/Section';
 import ArticleBlock from 'components/ArticleBlock';
 import Paragraph from 'components/Paragraph';
 import Grid from 'components/Grid';
 import GridItem from 'components/GridItem';
 
 const TrustFlow = ({ action }) => (
-  <section>
+  <Section margin>
     <Grid>
       <GridItem cols={2}>
         <ArticleBlock
@@ -29,7 +30,7 @@ const TrustFlow = ({ action }) => (
         </ArticleBlock>
       </GridItem>
     </Grid>
-  </section>
+  </Section>
 );
 
 export default TrustFlow;

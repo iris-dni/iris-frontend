@@ -7,11 +7,11 @@ const PlatformSupporters = () => (
   <div>
     <div className={styles.top}>
       <PageTitle
-        title={settings.imprint.supporters.title}
+        title={settings.imprintPage.supporters.title}
         centered
       />
       <p className={styles.text}>
-        {settings.imprint.supporters.text}
+        {settings.imprintPage.supporters.text}
       </p>
     </div>
     <div className={styles.bottom}>

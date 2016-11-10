@@ -1,20 +1,24 @@
 import React from 'react';
-import Container from 'components/Container';
-
 import styles from './hero.scss';
+import Container from 'components/Container';
+import Panel from 'components/Panel';
+import Background from 'components/Background';
 
-const Hero = ({ title, missionTitle, missionDescription, background }) => (
-  <section>
+const Hero = ({ title, background, missionTitle, missionDescription }) => (
+  <section className={styles.root}>
     <div className={styles.top}>
       <Container>
         <div className={styles.inner}>
-          <div
-            style={{ backgroundImage: `url(${background})` }}
-            className={styles.background} />
-          <h1>{title}</h1>
+          <Background image={background} />
+          <h1 className={styles.headline}>{title}</h1>
         </div>
       </Container>
     </div>
+    {(missionTitle || missionDescription) &&
+      <div className={styles.mission}>
+        <Panel title={missionTitle} text={missionDescription} />
+      </div>
+    }
   </section>
 );
 

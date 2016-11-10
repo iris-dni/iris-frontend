@@ -1,7 +1,7 @@
 @import 'globals';
 
 $default-border-radius: map-get($form-fields-defaults, 'border-radius');
-$suggestion-border: 1px solid color('grey-lite');
+$suggestion-border: 1px solid color('grey-light');
 $thin-field-padding: 8px;
 
 /**

@@ -8,7 +8,7 @@ import styles from './petition-group.scss';
 import Link from 'components/Link';
 
 const PetitionGroup = ({ petitions, isLoading, title, text, linkText, linkHref }) => (
-  <Section>
+  <Section margin>
     <Container>
       <BlockContainer>
         <header className={styles.head}>
