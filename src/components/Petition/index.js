@@ -40,11 +40,7 @@ const Petition = ({ preview, city }) => (
         </LayoutWrap>
       </Section>
     </Container>
-    <Section theme={'light'} padding>
-      <Container>
-        <PetitionFooter />
-      </Container>
-    </Section>
+    <PetitionFooter />
   </article>
 );
 
