@@ -3,12 +3,14 @@ import Hero from 'components/Hero';
 import ThreeUp from 'components/ThreeUp';
 import TwoUp from 'components/TwoUp';
 import PetitionGroup from 'containers/PetitionGroup';
+import CallToAction from 'components/CallToAction';
 
 const components = {
   Hero: Hero,
   ThreeUp: ThreeUp,
   TwoUp: TwoUp,
-  PetitionGroup: PetitionGroup
+  PetitionGroup: PetitionGroup,
+  CallToAction: CallToAction
 };
 
 const PageBuilder = ({ modules = [] }) => (

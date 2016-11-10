@@ -75,7 +75,14 @@ export default {
   "createCTA": {
     "title": "Create a new petition",
     "text": "This is your chance to make a difference. Write about an idea or problem you have in your local area, then publish your petition to gain supporters.",
-    "buttonText": "Create Petition"
+    "buttonText": "Create petition",
+    "buttonLink": "/petitions/new"
+  },
+  "aboutCTA": {
+    "title": "Learn how it works",
+    "text": "Find out how the IRIS platform works, what our mission is and about the process of supporting or creating a petition in your local area.",
+    "buttonText": "Learn about IRIS",
+    "buttonLink": "/about"
   },
   "respondToPetitionPage": {
     "title": "Response Form",

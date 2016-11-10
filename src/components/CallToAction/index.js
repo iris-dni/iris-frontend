@@ -1,31 +1,32 @@
 import React from 'react';
+import styles from './call-to-action.scss';
+import Section from 'components/Section';
 import Heading2 from 'components/Heading2';
 import TextCenter from 'components/TextCenter';
 import Container from 'components/Container';
 import Paragraph from 'components/Paragraph';
-import BlockContainer from 'components/BlockContainer';
 import ButtonLink from 'components/ButtonLink';
+import Background from 'components/Background';
 
-import styles from './create-cta.scss';
-
-const CreateCTA = ({ title, text, buttonText, background }) => (
-  <div className={styles.root} style={{ backgroundImage: `url(${background})` }}>
-    <Container>
-      <BlockContainer>
+const CallToAction = ({ title, text, buttonText, buttonLink, theme, background }) => (
+  <div className={styles[theme || 'root']}>
+    <Section padding>
+      <Background image={background} color={theme} />
+      <Container>
         <div className={styles.inner}>
           <TextCenter>
             <Heading2 text={title} size='large' />
             <Paragraph size='small'>{text}</Paragraph>
             <ButtonLink
               text={buttonText}
-              modifier='light'
-              href='/petitions/new'
+              modifier={theme ? 'light' : 'accent'}
+              href={buttonLink}
             />
           </TextCenter>
         </div>
-      </BlockContainer>
-    </Container>
+      </Container>
+    </Section>
   </div>
 );
 
-export default CreateCTA;
+export default CallToAction;

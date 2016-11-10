@@ -23,6 +23,19 @@ const MODULES = [
     props: {
       group: 'latest'
     }
+  },
+  {
+    component: 'CallToAction',
+    props: {
+      ...settings.createCTA,
+      theme: 'secondary'
+    }
+  },
+  {
+    component: 'CallToAction',
+    props: {
+      ...settings.aboutCTA
+    }
   }
 ];
 

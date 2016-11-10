@@ -11,6 +11,17 @@
 
 .background-color {
   composes: background;
+}
+
+.background-color.primary {
+  background-color: color('primary');
+}
+
+.background-color.secondary {
+  background-color: color('secondary');
+}
+
+.background-color.tertiary {
   background-color: color('tertiary');
 }
 
@@ -27,6 +38,24 @@
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.background-image.default::after {
   background-color: black;
   opacity: 0.15;
+}
+
+.background-image.primary::after {
+  background-color: color('primary');
+  opacity: 0.8;
+}
+
+.background-image.secondary::after {
+  background-color: color('secondary');
+  opacity: 0.8;
+}
+
+.background-image.tertiary::after {
+  background-color: color('tertiary');
+  opacity: 0.8;
 }
