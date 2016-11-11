@@ -9,7 +9,7 @@ import ButtonLink from 'components/ButtonLink';
 import Background from 'components/Background';
 
 const CallToAction = ({ title, text, buttonText, buttonLink, theme, background }) => (
-  <div className={styles[theme || 'root']}>
+  <div className={styles[theme || 'default']}>
     <Section padding>
       <Background image={background} color={theme} />
       <Container>

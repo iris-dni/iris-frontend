@@ -6,6 +6,7 @@
 
 .default {
   composes: shared;
+  background-color: color('grey-lightest');
 }
 
 .primary,
