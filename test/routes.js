@@ -45,6 +45,19 @@ describe('GET /about', () => {
   });
 });
 
+describe('GET /terms', () => {
+  it('responds with 200', done => {
+    server.injectThen('/terms')
+      .then(response => {
+        const actual = response.statusCode;
+        const expected = 200;
+
+        assert.equal(actual, expected);
+        done();
+      });
+  });
+});
+
 describe('GET /petitions', () => {
   beforeEach(() => {
     moxios.install();

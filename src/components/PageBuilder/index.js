@@ -1,14 +1,18 @@
 import React from 'react';
+import PageHeader from 'components/PageHeader';
+import LogosGrid from 'components/LogosGrid';
 import Hero from 'components/Hero';
-import ThreeUp from 'components/ThreeUp';
-import TwoUp from 'components/TwoUp';
+import ContentGrid from 'components/ContentGrid';
+import ContentBlock from 'components/ContentBlock';
 import PetitionGroup from 'containers/PetitionGroup';
 import CallToAction from 'components/CallToAction';
 
 const components = {
+  PageHeader: PageHeader,
   Hero: Hero,
-  ThreeUp: ThreeUp,
-  TwoUp: TwoUp,
+  ContentGrid: ContentGrid,
+  ContentBlock: ContentBlock,
+  LogosGrid: LogosGrid,
   PetitionGroup: PetitionGroup,
   CallToAction: CallToAction
 };

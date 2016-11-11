@@ -7,7 +7,16 @@ const MarkdownParagraph = ({ text, margin, size }) => (
   text
   ? <Markdown
     className={getClassNames(styles, ['root', margin, size])}
-    disallowedTypes={['HtmlBlock', 'Image', 'Table']}
+    disallowedTypes={[
+      'HtmlInline',
+      'HtmlBlock',
+      'Image',
+      'Table',
+      'BlockQuote',
+      'Code',
+      'CodeBlock',
+      'ThematicBreak'
+    ]}
     source={text} />
   : null
 );
