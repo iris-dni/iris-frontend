@@ -5,7 +5,7 @@ import Container from 'components/Container';
 import Grid from 'components/Grid';
 import GridItem from 'components/GridItem';
 import ArticleBlock from 'components/ArticleBlock';
-import Paragraph from 'components/Paragraph';
+import MarkdownParagraph from 'components/MarkdownParagraph';
 import ButtonLink from 'components/ButtonLink';
 
 const Two = ({ theme, columns = [] }) => (
@@ -21,7 +21,7 @@ const Two = ({ theme, columns = [] }) => (
               <ArticleBlock
                 title={column.title}
                 image={column.image}>
-                <Paragraph
+                <MarkdownParagraph
                   size={'small'}
                   text={column.text}
                 />

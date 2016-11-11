@@ -5,7 +5,7 @@ import Container from 'components/Container';
 import Grid from 'components/Grid';
 import GridItem from 'components/GridItem';
 import ArticleBlock from 'components/ArticleBlock';
-import Paragraph from 'components/Paragraph';
+import MarkdownParagraph from 'components/MarkdownParagraph';
 import TextCenter from 'components/TextCenter';
 import BlockContainer from 'components/BlockContainer';
 import Heading2 from 'components/Heading2';
@@ -31,7 +31,7 @@ const ThreeUp = ({ theme, title, columns = [] }) => (
               <ArticleBlock
                 title={column.title}
                 image={column.image}>
-                <Paragraph
+                <MarkdownParagraph
                   size={'small'}
                   text={column.text}
                 />
