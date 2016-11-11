@@ -64,11 +64,23 @@ export default {
   platformSupporters: [
     {
       name: 'Google',
-      imageUrl: ''
+      link: 'https://www.digitalnewsinitiative.com/',
+      image: '/dist/assets/images/supporters/dni.png'
+    },
+    {
+      name: 'Edenspiekermann',
+      link: 'https://www.edenspiekermann.com/',
+      image: '/dist/assets/images/supporters/edenspiekermann.png'
+    },
+    {
+      name: 'AZ Medien',
+      link: 'http://www.azmedien.ch/',
+      image: '/dist/assets/images/supporters/az-medien.png'
     },
     {
       name: 'Lovely Systems',
-      imageUrl: ''
+      link: 'http://www.lovelysystems.com/',
+      image: '/dist/assets/images/supporters/lovely-systems.png'
     }
   ],
   navigationLinks: [

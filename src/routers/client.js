@@ -9,6 +9,7 @@ import App from 'containers/App';
 import Home from 'containers/Home';
 import Imprint from 'containers/Imprint';
 import About from 'containers/About';
+import Terms from 'containers/Terms';
 import LoginPage from 'containers/Login';
 import Logout from 'containers/Logout';
 import Petitions from 'containers/Petitions';
@@ -35,6 +36,7 @@ export default (props = {}) => (
       <IndexRoute component={Home} />
       <Route path='imprint' component={Imprint} />
       <Route path='about' component={About} />
+      <Route path='terms' component={Terms} />
       <Route path='auth/login' component={LoginPage} />
       <Route path='auth/logout' component={Logout} />
       <Route path='petitions'>

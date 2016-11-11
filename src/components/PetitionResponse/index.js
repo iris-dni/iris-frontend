@@ -15,8 +15,8 @@ const PetitionResponse = ({ cityResponse }) => {
       <ArticleBlock
         title={settings.petitionPage.cityResponse}
         icon={'Note'}>
-        <MarkdownParagraph text={cityResponse.text} />
-        <Paragraph text={cityResponse.name} />
+        <MarkdownParagraph size={'small'} text={cityResponse.text} />
+        <Paragraph size={'small'} text={cityResponse.name} />
       </ArticleBlock>
     </div>
   );

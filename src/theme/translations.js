@@ -387,81 +387,88 @@ export default {
       "missionTitle": "Our mission",
       "missionDescription": "Empower people to make change in their local communities. We want to give you the chance to be heard, make your cause known, and to gather supporters. We promise to follow up any successful petitions with a letter to your local representative. And, on top of that, your petition might even be selected to be covered by any of our news outlets."
     },
-    "threeUp": {
-      title: 'How the platform works',
+    "stepsInfo": {
+      title: "How the platform works",
       columns: [
         {
-          title: '1. Create your petition',
-          text: 'Anyone can create petition for their region, you do not need to be part of an organisation. All you need to do is have a valid mobile number to verify who you are.',
+          title: "1. Create your petition",
+          text: "Anyone can create petition for their region, you do not need to be part of an organisation. All you need to do is have a valid mobile number to verify who you are.",
           image: {
             centered: true,
-            src: '/dist/assets/images/petition-graphic.svg',
-            alt: 'Petition graphic'
+            src: "/dist/assets/images/petition-graphic.svg",
+            alt: "Petition graphic"
           }
         },
         {
-          title: '2. Share and get support',
-          text: 'Once created, share the petition with other people to create awareness about your cause. Each petition runs for 30 days.',
+          title: "2. Share and get support",
+          text: "Once created, share the petition with other people to create awareness about your cause. Each petition runs for 30 days.",
           image: {
             centered: true,
-            src: '/dist/assets/images/signature-graphic.svg',
-            alt: 'Signature graphic'
+            src: "/dist/assets/images/signature-graphic.svg",
+            alt: "Signature graphic"
           }
         },
         {
-          title: '3. Letter sent to council',
-          text: 'If your petition reaches the target for that city, we will start an official process by sending a letter to the relevant city council member.',
+          title: "3. Letter sent to council",
+          text: "If your petition reaches the target for that city, we will start an official process by sending a letter to the relevant city council member.",
           image: {
             centered: true,
-            src: '/dist/assets/images/email-graphic.svg',
-            alt: 'Email graphic'
+            src: "/dist/assets/images/email-graphic.svg",
+            alt: "Email graphic"
           }
         }
       ]
     },
-    "twoUp": {
+    "supportInfo": {
       columns: [
         {
           image: {
             centered: true,
-            src: '/dist/assets/images/support-graphic.svg',
-            alt: 'Support graphic'
+            src: "/dist/assets/images/support-graphic.svg",
+            alt: "Support graphic"
           }
         },
         {
-          title: 'Supporting a petition',
-          text: 'If you find a cause in your area you want to support, click the support button in the sidebar of the petition page. Quickly fill in your details to recieve a mobile SMS verification code confirming who you are, and then your support will be added!',
+          title: "Supporting a petition",
+          text: "If you find a cause in your area you want to support, click the support button in the sidebar of the petition page. Quickly fill in your details to recieve a mobile SMS verification code confirming who you are, and then your support will be added!",
           button: {
-            modifier: 'accent',
-            text: 'Browse petitions',
-            href: '/petitions'
+            modifier: "accent",
+            text: "Browse petitions",
+            href: "/petitions"
           }
         }
       ]
     }
   },
   "imprintPage": {
-    'title': "Imprint",
-    "supporters": {
+    "title": "Imprint",
+    "supportersHeader": {
       "title": "Platform supporters",
-      "text": "These are the companies that supported and participated in the creation of the IRIS platform. All companies are proud to be part of a project for local change."
+      "intro": "These are the organisations that participated in the creation of the IRIS platform, proud to support a project for local change."
     },
-    "detail": {
-      "title": "Platform imprint",
-      "company": {
-        "title": "Company",
-        "name": "name",
-        "address": "address",
-        "city": "zip code and city"
-      },
-      "contact": {
-        "title": "Contact",
-        "name": "name",
-        "address": "address",
-        "city": "zip code and city",
-        "telephone": "telephone",
-        "email": "email"
-      }
+    "contactHeader": {
+      "title": "Imprint"
+    },
+    "contactInfo": {
+      columns: [
+        {
+          title: "Company details",
+          text: "Write a short summary about the company behind the running the platform, the people involved, etc."
+        },
+        {
+          title: "Contact details",
+          text: "Name\n\nStreet Address\n\nZip Code\n\nCity\n\nCountry"
+        }
+      ]
+    }
+  },
+  "termsPage": {
+    "title": "Terms & conditions",
+    "header": {
+      "title": "Terms & conditions"
+    },
+    "terms": {
+      "content": "## Markdown preview\n\nThis note demonstrates some of what Markdown is capable of doing.\n\n*Note: Feel free to play with this page. Unlike regular notes, this doesn't automatically save itself.*\n\n## Basic formatting\n\nParagraphs can be written like so. A paragraph is the basic block of Markdown. A paragraph is what text will turn into when there is no reason it should become anything else.\n\nParagraphs must be separated by a blank line. Basic formatting of *italics* and **bold** is supported. This *can be **nested** like* so.\n\n## Lists\n\n### Ordered list\n\n1. Item 1\n2. A second item\n3. Number 3\n4.IV\n\n\nNote: the next list will be unordered.\n\n### Unordered list\n\n* An item\n* Another item\n* Yet another item\n* And there's more...\n\n\n---\n\n## Headings\n\nThere are six levels of headings. They correspond with the six levels of HTML headings. You've probably noticed them already in the page. Each level down uses one more hash character.\n\n### Headings *can* also contain **formatting**\n\n### They can even contain `inline code`\n\nOf course, demonstrating what headings look like messes up the structure of the page.\n\nI don't recommend using more than three or four levels of headings here, because, when you're smallest heading isn't too small, and you're largest heading isn't too big, and you want each size up to look noticeably larger and more important, there there are only so many sizes that you can use.\n\n--\n\n## URLs\n\nURLs can be made in a handful of ways:\n\n* A named link to [MarkItDown][3]. The easiest way to do these is to select what you want to make a link and hit `Ctrl+L`.\n* Another named link to [MarkItDown](http://www.markitdown.net/)\n* Sometimes you just want a URL like <http://www.markitdown.net/>."
     }
   },
   "flashMessages": {

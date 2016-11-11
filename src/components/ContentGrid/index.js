@@ -1,17 +1,16 @@
 import React from 'react';
-import styles from './three-up.scss';
 import Section from 'components/Section';
 import Container from 'components/Container';
 import Grid from 'components/Grid';
 import GridItem from 'components/GridItem';
 import ArticleBlock from 'components/ArticleBlock';
-import Paragraph from 'components/Paragraph';
+import MarkdownParagraph from 'components/MarkdownParagraph';
 import TextCenter from 'components/TextCenter';
 import BlockContainer from 'components/BlockContainer';
 import Heading2 from 'components/Heading2';
 import ButtonLink from 'components/ButtonLink';
 
-const ThreeUp = ({ theme, title, columns = [] }) => (
+const ContentGrid = ({ theme, title, columnCount = 2, columns = [] }) => (
   <Section
     padding={theme || false}
     margin={!theme || false}
@@ -24,27 +23,25 @@ const ThreeUp = ({ theme, title, columns = [] }) => (
           </TextCenter>
         </BlockContainer>
       }
-      <div className={styles.grid}>
-        <Grid>
-          {columns.map((column, index) => (
-            <GridItem key={index}>
-              <ArticleBlock
-                title={column.title}
-                image={column.image}>
-                <Paragraph
-                  size={'small'}
-                  text={column.text}
-                />
-                {column.button &&
-                  <ButtonLink {...column.button} />
-                }
-              </ArticleBlock>
-            </GridItem>
-          ))}
-        </Grid>
-      </div>
+      <Grid>
+        {columns.map((column, index) => (
+          <GridItem cols={columnCount} key={index}>
+            <ArticleBlock
+              title={column.title}
+              image={column.image}>
+              <MarkdownParagraph
+                size={'small'}
+                text={column.text}
+              />
+              {column.button &&
+                <ButtonLink {...column.button} />
+              }
+            </ArticleBlock>
+          </GridItem>
+        ))}
+      </Grid>
     </Container>
   </Section>
 );
 
-export default ThreeUp;
+export default ContentGrid;

@@ -6,33 +6,26 @@ import PageBuilder from 'components/PageBuilder';
 
 const MODULES = [
   {
-    component: 'Hero',
+    component: 'PageHeader',
     props: {
-      ...settings.aboutPage.hero
+      ...settings.termsPage.header
     }
   },
   {
-    component: 'ContentGrid',
+    component: 'ContentBlock',
     props: {
-      columnCount: 3,
-      ...settings.aboutPage.stepsInfo
-    }
-  },
-  {
-    component: 'ContentGrid',
-    props: {
-      ...settings.aboutPage.supportInfo,
-      columnCount: 2,
-      theme: 'grey'
+      ...settings.termsPage.terms,
+      markdown: true,
+      size: 'small'
     }
   }
 ];
 
-const AboutContainer = React.createClass({
+const TermsContainer = React.createClass({
   render () {
     return (
       <div>
-        <Helmet title={settings.aboutPage.title} />
+        <Helmet title={settings.termsPage.title} />
         <PageBuilder modules={MODULES} />
       </div>
     );
@@ -42,4 +35,4 @@ const AboutContainer = React.createClass({
 export default connect(
   null,
   null
-)(AboutContainer);
+)(TermsContainer);
