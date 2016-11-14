@@ -27,9 +27,9 @@ export default (request, reply) => {
   const imageSignature = hmac.read().hexSlice();
 
   // Join query string with signature
-  const newQuery = Object.assign({}, queryString, { sig: imageSignature });
-
+  queryString.sig = imageSignature;
   // Create full signed image url and redirect
-  const signedImage = [domain, encodeParams(newQuery)].join('?');
+  const signedImage = [domain, encodeParams(queryString)].join('?');
+
   reply.redirect(signedImage).code(301);
 };
