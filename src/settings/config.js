@@ -68,14 +68,14 @@ export default {
       image: '/dist/assets/images/supporters/dni.png'
     },
     {
-      name: 'Edenspiekermann',
-      link: 'https://www.edenspiekermann.com/',
-      image: '/dist/assets/images/supporters/edenspiekermann.png'
-    },
-    {
       name: 'AZ Medien',
       link: 'http://www.azmedien.ch/',
       image: '/dist/assets/images/supporters/az-medien.png'
+    },
+    {
+      name: 'Edenspiekermann',
+      link: 'https://www.edenspiekermann.com/',
+      image: '/dist/assets/images/supporters/edenspiekermann.png'
     },
     {
       name: 'Lovely Systems',
