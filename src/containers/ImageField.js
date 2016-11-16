@@ -1,4 +1,5 @@
 import React from 'react';
+import { stopSubmit, touch } from 'redux-form';
 import { connect } from 'react-redux';
 import { uploadImage } from 'actions/ImageActions';
 import ImageField from 'components/ImageField';
@@ -7,15 +8,20 @@ const ImageFieldContainer = (props) => (
   <ImageField {...props} />
 );
 
-const mapStateToProps = () => ({
-});
-
 const mapDispatchToProps = (dispatch) => ({
+  revalidateForm: (form, errors) => dispatch(stopSubmit(form, errors)),
+  touchField: (form, fields) => dispatch(touch(form, fields)),
   uploadImage: (file, index) => dispatch(uploadImage(file, index))
 });
 
+ImageFieldContainer.propTypes = {
+  revalidateForm: React.PropTypes.func,
+  touchField: React.PropTypes.func,
+  uploadImage: React.PropTypes.func
+};
+
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
   null,
   // redux-form “onChange”, manually adding errors to a field or removing a

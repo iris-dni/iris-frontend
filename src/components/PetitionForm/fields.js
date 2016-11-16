@@ -57,13 +57,13 @@ export default [
     label: settings.petitionFields.image.label,
     hint: settings.petitionFields.image.hint,
     maxItems: 1,
-    hideValidationIcon: true,
+    nestedValidation: true,
     acceptedTypes: [
       'image/png',
       'image/jpeg',
       'image/gif'
     ],
-    maxSize: 2 * 1024 * 1024,
+    maxSize: 10 * 1024 * 1024,
     html: {
       type: 'file',
       placeholder: settings.petitionFields.image.placeholder
@@ -75,8 +75,9 @@ export default [
     label: settings.petitionFields.links.label,
     hint: settings.petitionFields.links.hint,
     maxItems: 3,
-    hideValidationIcon: true,
+    nestedValidation: true,
     html: {
+      autoComplete: false,
       type: 'text',
       placeholder: settings.petitionFields.links.placeholder
     }

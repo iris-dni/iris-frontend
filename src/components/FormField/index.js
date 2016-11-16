@@ -1,18 +1,12 @@
 import React from 'react';
 import domOnlyProps from 'form/domOnlyProps';
 import fieldIsInvalid from 'form/fieldIsInvalid';
+import getFieldClassname from 'form/getFieldClassname';
 import styles from './form-field.scss';
 import Autocomplete from 'containers/Autocomplete';
 import PetitionLinksField from 'containers/PetitionLinksField';
 import ImageField from 'containers/ImageField';
 import FormFieldWrapper from 'components/FormFieldWrapper';
-
-const getClassname = (element, error) => {
-  return [
-    styles[element || 'input'],
-    styles[error ? 'invalid' : 'valid']
-  ].join(' ');
-};
 
 const FormField = React.createClass({
   render () {
@@ -32,6 +26,10 @@ const FormField = React.createClass({
       case 'PetitionLinksField':
         Field = (
           <PetitionLinksField
+            // for re-validation function, we only use
+            // this field in the petition form right now
+            // TODO: make variable
+            formId={'petition'}
             helper={helper}
             config={config}
           />
@@ -40,6 +38,10 @@ const FormField = React.createClass({
       case 'ImageField':
         Field = (
           <ImageField
+            // for re-validation function, we only use
+            // this field in the petition form right now
+            // TODO: make variable
+            formId={'petition'}
             helper={helper}
             config={config}
           />
@@ -48,7 +50,7 @@ const FormField = React.createClass({
       default:
         Field = (
           <config.element
-            className={getClassname(config.element, fieldIsInvalid(helper))}
+            className={getFieldClassname(styles, config.element, fieldIsInvalid(helper))}
             id={config.name}
             // pass props from config e.g. type, placeholder, maxlength
             {...config.html}

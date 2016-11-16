@@ -5,11 +5,11 @@
 }
 
 .margin {
-  @include media('<=#{sidebar}') {
+  @include media('<=sidebar') {
     margin-bottom: 20px;
   }
 
-  @include media('>#{sidebar}') {
+  @include media('>sidebar') {
     margin-bottom: 40px;
   }
 }

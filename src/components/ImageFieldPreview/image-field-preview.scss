@@ -3,6 +3,10 @@
 .root {
   list-style: none;
   margin-top: 10px;
+
+  @include media('<=form-switch') {
+    margin-right: 40px;
+  }
 }
 
 .item {
