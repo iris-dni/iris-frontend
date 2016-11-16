@@ -2,6 +2,7 @@ import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import domOnlyProps from 'form/domOnlyProps';
 import fieldIsInvalid from 'form/fieldIsInvalid';
+import getFieldClassname from 'form/getFieldClassname';
 import Icon from 'components/Icon';
 import styles from './autocomplete.scss';
 
@@ -10,13 +11,6 @@ const MIN_QUERY_LENGTH = 2;
 const NULL_VALUE = {};
 
 const Autocomplete = React.createClass({
-  getClassname (element, error) {
-    return [
-      styles[element || 'input'],
-      styles[error ? 'invalid' : 'valid']
-    ].join(' ');
-  },
-
   handleFetchRequest (e) {
     // We handle the query length validation here as we don‘t want to do it in
     // the (throttled) typeahead search. If we did, the first input after
@@ -94,7 +88,7 @@ const Autocomplete = React.createClass({
         <Autosuggest
           theme={{
             containerOpen: styles.open,
-            input: this.getClassname(inputClass, fieldIsInvalid(this.props.helper)),
+            input: getFieldClassname(styles, inputClass, fieldIsInvalid(this.props.helper)),
             suggestionsList: styles.list,
             suggestion: suggestionStyles,
             suggestionFocused: styles.focused
