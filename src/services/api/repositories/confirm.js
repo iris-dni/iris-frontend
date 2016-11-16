@@ -15,8 +15,6 @@ export default {
       'x-iris-api-key': API_KEY
     };
 
-    console.log(requestPath, requestHeader);
-
     return ApiClient.request(requestPath, requestParams, GET, requestHeader);
   }
 };
