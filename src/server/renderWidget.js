@@ -2,7 +2,6 @@ import render from './render';
 import mentionRepository from 'services/api/repositories/mention';
 
 // Middleware for tracking widget views
-
 export default (request, reply) => {
   const petitionId = request.params.id;
   const referrer = request.query.ref;

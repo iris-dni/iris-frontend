@@ -3,6 +3,7 @@ import NunjucksHapi from 'nunjucks-hapi';
 import render from 'server/render';
 import renderWidget from 'server/renderWidget';
 import imageProxy from 'server/imageProxy';
+import emailConfirmation from 'server/emailConfirmation';
 import api from 'server/api';
 import httpAuthValidate from 'server/httpAuth';
 
@@ -111,7 +112,7 @@ server.route({
 });
 
 /**
- * Serve image prozy
+ * Serve image proxy
  */
 server.route({
   method: 'GET',
@@ -119,6 +120,18 @@ server.route({
   config: {
     auth: HTTP_AUTH_ENABLED ? 'simple' : null,
     handler: imageProxy
+  }
+});
+
+/**
+ * Email address validation
+ */
+server.route({
+  method: 'GET',
+  path: '/confirm/email/{action}/{params*}',
+  config: {
+    auth: HTTP_AUTH_ENABLED ? 'simple' : null,
+    handler: emailConfirmation
   }
 });
 

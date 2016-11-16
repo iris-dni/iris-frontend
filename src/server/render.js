@@ -47,7 +47,7 @@ const reducerForView = {
  * to pre-fill the Redux store with data for that route.
  */
 
-export default (request, reply, viewName) => {
+export default (request, reply, viewName = 'index') => {
   match({
     routes: routerForView[viewName],
     location: {

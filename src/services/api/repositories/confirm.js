@@ -1,4 +1,4 @@
-// Service for tracking widget embeds on the server
+// Service for validating email addresses by key on the server
 // Note: this should not be part of any frontend bundle
 // to not to expose the API key
 
@@ -8,12 +8,14 @@ import path from 'path';
 const API_KEY = process.env.API_KEY;
 
 export default {
-  track: (id, url) => {
-    const requestPath = path.join('/petitions', id.toString(), 'mentions');
-    const requestParams = { url: url };
+  validate: (key) => {
+    const requestPath = path.join('/confirmations', key.toString(), 'confirm');
+    const requestParams = { token: key };
     const requestHeader = {
-      'X-IRIS-APIKEY': API_KEY
+      'x-iris-api-key': API_KEY
     };
+
+    console.log(requestPath, requestHeader);
 
     return ApiClient.request(requestPath, requestParams, GET, requestHeader);
   }

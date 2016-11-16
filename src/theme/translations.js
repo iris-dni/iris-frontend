@@ -192,7 +192,7 @@ export default {
     },
     "image": {
       "label": "Add a cover image",
-      "hint": "Add an image to make your petition more appealing. Landscape images are recommended and your image must a JPEG, GIF or PNG, maximum 2MB. ",
+      "hint": "Add an image to make your petition more appealing. Landscape images are recommended and your image must a JPEG, GIF or PNG, maximum 10MB. ",
       "placeholder": "Upload image",
       "loading": "Loading...",
       "invalidFileError": "One or more files were invalid and could not be uploaded"
