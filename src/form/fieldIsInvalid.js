@@ -1,3 +1,1 @@
-export default (helper = {}) => {
-  return helper.touched && helper.error;
-};
+export default (helper = {}) => helper.touched && helper.error;

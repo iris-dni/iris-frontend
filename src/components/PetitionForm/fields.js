@@ -63,7 +63,7 @@ export default [
       'image/jpeg',
       'image/gif'
     ],
-    maxSize: 2 * 1024 * 1024,
+    maxSize: 1 * 1024 * 1024,
     html: {
       type: 'file',
       placeholder: settings.petitionFields.image.placeholder
@@ -77,6 +77,7 @@ export default [
     maxItems: 3,
     hideValidationIcon: true,
     html: {
+      autoComplete: false,
       type: 'text',
       placeholder: settings.petitionFields.links.placeholder
     }

@@ -32,6 +32,9 @@ const FormField = React.createClass({
       case 'PetitionLinksField':
         Field = (
           <PetitionLinksField
+            // for re-validation function, we only use
+            // this field in the petition form right now
+            // TODO: make variable
             formId={'petition'}
             helper={helper}
             config={config}
@@ -41,6 +44,10 @@ const FormField = React.createClass({
       case 'ImageField':
         Field = (
           <ImageField
+            // for re-validation function, we only use
+            // this field in the petition form right now
+            // TODO: make variable
+            formId={'petition'}
             helper={helper}
             config={config}
           />

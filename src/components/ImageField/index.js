@@ -2,10 +2,16 @@ import React from 'react';
 import settings from 'settings';
 import Dropzone from 'react-dropzone';
 import ImageFieldPreview from 'components/ImageFieldPreview';
+import fieldIsInvalid from 'form/fieldIsInvalid';
+import getFieldClassname from 'form/getFieldClassname';
 import IconAndInfo from 'components/IconAndInfo';
 import styles from './image-field.scss';
 
+const ERROR_FLASH_TIMEOUT = 3000;
+
 const ImageField = React.createClass({
+
+  errorTimeout: null,
 
   getInitialState: () => ({
     loading: false
@@ -19,7 +25,25 @@ const ImageField = React.createClass({
     return !value || value.length < maxItems;
   },
 
-  acceptFiles (accepted, uploadImage, helper) {
+  handleError (fieldId, errorMessage) {
+    const { formId, revalidateForm } = this.props;
+
+    // Set error if given
+    revalidateForm(formId, {
+      [fieldId]: errorMessage || settings.flashMessages.genericError
+    });
+    // Clear validation after 3 seconds as field is not required
+    this.errorTimeout = setTimeout(() => revalidateForm(formId, { [fieldId]: false }), ERROR_FLASH_TIMEOUT);
+  },
+
+  acceptFiles (accepted) {
+    const { helper, config, formId, uploadImage, touchField } = this.props;
+    // Clearer naming
+    const fieldId = config.name;
+    // Set field as 'touched'
+    touchField(formId, fieldId);
+
+    // Set loading state and begin upload
     this.setState({
       loading: true
     }, () => {
@@ -30,29 +54,37 @@ const ImageField = React.createClass({
           if (index === accepted.length - 1) {
             this.setState({ loading: false });
           }
-        })
+        }).catch(() => this.handleError(fieldId))
       );
     });
   },
 
-  rejectFiles (accepted, helper) {
-    helper.error = settings.petitionFields.image.invalidFileError;
-    if (!helper.value) {
-      helper.onChange(accepted);
-    } else {
-      helper.onBlur();
-    }
+  rejectFiles (rejected) {
+    const { config } = this.props;
+    // Clearer naming
+    const fieldId = config.name;
+
+    const errorMessage = settings.petitionFields.image.invalidFileError;
+
+    this.handleError(fieldId, errorMessage);
   },
 
-  handleDrop (accepted, rejected, field) {
-    const { helper, uploadImage } = this.props;
+  handleDrop (accepted, rejected) {
+    const { config, formId, touchField } = this.props;
+    // Clearer naming
+    const fieldId = config.name;
+    // Remove error flash timeout
+    clearTimeout(this.errorTimeout);
+
+    // Set field as 'touched'
+    touchField(formId, fieldId);
 
     if (accepted.length) {
-      this.acceptFiles(accepted, uploadImage, helper);
+      this.acceptFiles(accepted);
     }
 
     if (rejected.length) {
-      this.rejectFiles(accepted, helper);
+      this.rejectFiles(rejected);
     }
   },
 
@@ -74,7 +106,7 @@ const ImageField = React.createClass({
             style={{}}
             accept={config.acceptedTypes.join(',')}
             onDrop={this.handleDrop}>
-            <div className={styles.field}>
+            <div className={getFieldClassname(styles, 'field', fieldIsInvalid(helper))}>
               <span className={styles.label}>
                 {this.state.loading &&
                   <span>{settings.petitionFields.image.loading}</span>

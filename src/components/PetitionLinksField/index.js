@@ -2,17 +2,11 @@ import React from 'react';
 import domOnlyProps from 'form/domOnlyProps';
 import fieldIsInvalid from 'form/fieldIsInvalid';
 import getLinkInputErrors from 'form/getLinkInputErrors';
+import getFieldClassname from 'form/getFieldClassname';
 import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
 import RemovableItem from 'components/RemovableItem';
 import ExternalTeaser from 'components/ExternalTeaser';
 import styles from './petition-links-field.scss';
-
-const getClassname = (element, error) => {
-  return [
-    styles[element || 'input'],
-    styles[error ? 'invalid' : 'valid']
-  ].join(' ');
-};
 
 const PetitionLinksField = React.createClass({
 
@@ -40,10 +34,9 @@ const PetitionLinksField = React.createClass({
       helper, config, formId,
       touchField, revalidateForm
     } = this.props;
-    const { name } = config;
 
     // Clearer naming
-    const fieldId = name;
+    const fieldId = config.name;
 
     // Get field value and sanitise
     const value = this.state.value.trim();
@@ -105,7 +98,7 @@ const PetitionLinksField = React.createClass({
   },
 
   render () {
-    const { value } = this.state;
+    const { value, loading } = this.state;
     const { config, helper } = this.props;
     const links = helper.value || [];
 
@@ -124,7 +117,9 @@ const PetitionLinksField = React.createClass({
         {links.length < config.maxItems &&
           <input
             ref={'input'}
-            className={getClassname('input', fieldIsInvalid(helper))}
+            className={getFieldClassname(
+              styles, 'input', loading ? false : fieldIsInvalid(helper)
+            )}
             id={config.name}
             {...config.html}
             {...domOnlyProps(helper)}

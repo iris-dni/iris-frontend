@@ -7,8 +7,6 @@ export default (currentValue, links, config) => {
   const LINKS_SETTINGS = settings.petitionFields.links;
   const MAX_LINKS = config.maxItems;
 
-  console.log(currentValue, isLink(currentValue));
-
   if (!isLink(currentValue)) {
     error = LINKS_SETTINGS.invalidLinkFormat;
   } else if (links.length >= MAX_LINKS) {

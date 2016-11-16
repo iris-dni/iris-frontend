@@ -11,7 +11,20 @@ $field-height: 24px;
 
 .field:hover {
   cursor: pointer;
+}
+
+.valid {
+  border-color: color('grey');
+}
+
+.valid:hover,
+.valid:focus {
   border-color: color('dimmed');
+  color: color('black');
+}
+
+.invalid {
+  border-color: color('error');
 }
 
 .label {
@@ -25,4 +38,9 @@ $field-height: 24px;
   svg {
     margin-right: 5px;
   }
+}
+
+.error {
+  color: color('error');
+  font-size: 14px;
 }
