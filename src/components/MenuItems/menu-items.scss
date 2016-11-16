@@ -1,23 +1,23 @@
 @import 'globals';
 
 .list {
-  width: 260px;
-  height: 100%;
-  position: absolute;
   left: 100%;
   right: 0;
-  padding: 20px;
   background: color('white');
   list-style: none;
   z-index: 3;
   transition: transform 500ms;
 
+  @include media('<=navigation-menu') {
+    position: absolute;
+    width: 260px;
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
   @include media('>navigation-menu') {
     display: inline;
-    width: auto;
-    height: auto;
-    position: static;
-    padding: 0;
   }
 }
 
@@ -47,13 +47,8 @@
   transition: all 250ms;
   padding: 0;
 
-  @include media('<=navigation-menu') {
-    width: 100%;
-  }
-
   @include media('>navigation-menu') {
     float: right;
-    width: auto;
   }
 
   &:hover,
@@ -75,23 +70,35 @@ $link-padding: 16px;
  */
 .link {
   display: inline-block;
-  border-bottom: $link-border-height solid transparent; /* 1 */
   padding-top: $link-padding;
-  padding-bottom: $link-padding - $link-border-height; /* 2 */
   color: inherit;
   font-size: 20px;
   text-decoration: none;
+
+  @include media('<=navigation-menu') {
+    padding-left: 20px;
+    padding-right: 20px;
+    border-left: $link-border-height solid transparent; /* 1 */
+    padding-bottom: $link-padding;
+  }
+
+  @include media('>navigation-menu') {
+    border-bottom: $link-border-height solid transparent; /* 1 */
+    padding-bottom: $link-padding - $link-border-height; /* 2 */
+  }
+}
+
+.element:last-of-type {
+  @include media('<=navigation-menu') {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+  }
 }
 
 .element:last-of-type .link {
-  padding-right: $link-padding;
-  padding-left: $link-padding;
-}
-
-.element:not(:last-of-type) .link {
-  @include media('<=navigation-menu') {
-    margin-bottom: 1em;
-  }
+  padding: $link-padding;
+  border: 0;
 }
 
 .element:not(:last-of-type) .link:hover,
