@@ -2,6 +2,10 @@
 
 $field-height: 24px;
 
+.wrapper {
+  position: relative;
+}
+
 .field {
   @include map-declarations($form-fields-defaults);
   border-color: color('grey');

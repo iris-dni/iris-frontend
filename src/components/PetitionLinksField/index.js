@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './petition-links-field.scss';
 import domOnlyProps from 'form/domOnlyProps';
 import fieldIsInvalid from 'form/fieldIsInvalid';
 import getLinkInputErrors from 'form/getLinkInputErrors';
@@ -6,7 +7,7 @@ import getFieldClassname from 'form/getFieldClassname';
 import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
 import RemovableItem from 'components/RemovableItem';
 import ExternalTeaser from 'components/ExternalTeaser';
-import styles from './petition-links-field.scss';
+import FormValidation from 'components/FormValidation';
 
 const PetitionLinksField = React.createClass({
 
@@ -115,19 +116,24 @@ const PetitionLinksField = React.createClass({
         </ul>
 
         {links.length < config.maxItems &&
-          <input
-            ref={'input'}
-            className={getFieldClassname(
-              styles, 'input', loading ? false : fieldIsInvalid(helper)
-            )}
-            id={config.name}
-            {...config.html}
-            {...domOnlyProps(helper)}
-            value={value}
-            onChange={this.handleChange}
-            onKeyPress={this.handleLinkAdded}
-            onBlur={this.handleLinkAdded}
-          />
+          <div className={styles.wrapper}>
+            <input
+              ref={'input'}
+              className={getFieldClassname(
+                styles, 'input', loading ? false : fieldIsInvalid(helper)
+              )}
+              id={config.name}
+              {...config.html}
+              {...domOnlyProps(helper)}
+              value={value}
+              onChange={this.handleChange}
+              onKeyPress={this.handleLinkAdded}
+              onBlur={this.handleLinkAdded}
+            />
+            {fieldIsInvalid(helper) &&
+              <FormValidation config={config} helper={helper} />
+            }
+          </div>
         }
       </div>
     );

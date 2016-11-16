@@ -1,11 +1,12 @@
 import React from 'react';
 import settings from 'settings';
+import styles from './image-field.scss';
 import Dropzone from 'react-dropzone';
 import ImageFieldPreview from 'components/ImageFieldPreview';
 import fieldIsInvalid from 'form/fieldIsInvalid';
 import getFieldClassname from 'form/getFieldClassname';
 import IconAndInfo from 'components/IconAndInfo';
-import styles from './image-field.scss';
+import FormValidation from 'components/FormValidation';
 
 const ERROR_FLASH_TIMEOUT = 3000;
 
@@ -102,23 +103,28 @@ const ImageField = React.createClass({
           />
         }
         {this.showInputField(helper.value, config.maxItems) &&
-          <Dropzone
-            multiple={config.maxItems > 1}
-            maxSize={config.maxSize}
-            style={{}}
-            accept={config.acceptedTypes.join(',')}
-            onDrop={this.handleDrop}>
-            <div className={getFieldClassname(styles, 'field', fieldIsInvalid(helper))}>
-              <span className={styles.label}>
-                {this.state.loading &&
-                  <span>{settings.petitionFields.image.loading}</span>
-                }
-                {!this.state.loading &&
-                  <IconAndInfo info={config.html.placeholder} icon={'Photo'} />
-                }
-              </span>
-            </div>
-          </Dropzone>
+          <div className={styles.wrapper}>
+            <Dropzone
+              multiple={config.maxItems > 1}
+              maxSize={config.maxSize}
+              style={{}}
+              accept={config.acceptedTypes.join(',')}
+              onDrop={this.handleDrop}>
+              <div className={getFieldClassname(styles, 'field', fieldIsInvalid(helper))}>
+                <span className={styles.label}>
+                  {this.state.loading &&
+                    <span>{settings.petitionFields.image.loading}</span>
+                  }
+                  {!this.state.loading &&
+                    <IconAndInfo info={config.html.placeholder} icon={'Photo'} />
+                  }
+                </span>
+              </div>
+            </Dropzone>
+            {fieldIsInvalid(helper) &&
+              <FormValidation config={config} helper={helper} />
+            }
+          </div>
         }
       </div>
     );
