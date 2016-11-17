@@ -8,7 +8,7 @@ import path from 'path';
 const API_KEY = process.env.API_KEY;
 
 export default {
-  validate: (key) => {
+  validate: (key = '') => {
     const requestPath = path.join('/confirmations', key.toString(), 'confirm');
     const requestParams = { token: key };
     const requestHeader = {
