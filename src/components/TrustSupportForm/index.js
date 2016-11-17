@@ -18,6 +18,7 @@ const TrustSupportForm = ({
   handleSubmit,
   petition,
   mobileConfirmed,
+  trustedFields,
   submitting
 }) => (
   <form onSubmit={handleSubmit((values, dispatch) => supportPetition(
@@ -25,6 +26,7 @@ const TrustSupportForm = ({
   )}>
     <Fieldset>
       <FormFieldsIterator
+        trustedFields={trustedFields}
         reduxFormFields={fields}
         fieldsArray={FIELDS}
       />

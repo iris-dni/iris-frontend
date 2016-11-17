@@ -6,7 +6,7 @@ export default ({ error, valid, message }) => (
     {(error || valid) &&
       <FormMessage
         text={message}
-        modifier={error ? 'error' : 'default'}
+        modifier={error ? 'error' : (valid ? 'valid' : 'default')}
       />
     }
   </div>

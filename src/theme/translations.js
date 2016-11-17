@@ -15,6 +15,7 @@ export default {
   "teaserDaysRemaining": "days left",
   "optionalLabel": "(optional)",
   "requiredText": "You must complete this field",
+  "validatedText": "This %f has been previously verified",
   "minLengthText": "Must be %x characters or more",
   "maxLengthText": "Cannot be more than %x characters",
   "emailInvalidText": "Please enter a valid email address",
