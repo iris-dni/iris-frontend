@@ -15,6 +15,7 @@ import trustForm from 'selectors/trustForm';
 const TrustPublishForm = ({
   fields,
   handleSubmit,
+  trustedFields,
   petition,
   submitting
 }) => (
@@ -23,6 +24,7 @@ const TrustPublishForm = ({
   )}>
     <Fieldset>
       <FormFieldsIterator
+        trustedFields={trustedFields}
         reduxFormFields={fields}
         fieldsArray={FIELDS}
       />
@@ -48,6 +50,7 @@ TrustPublishForm.propTypes = {
   handleSubmit: React.PropTypes.func.isRequired,
   petition: React.PropTypes.object.isRequired,
   me: React.PropTypes.object.isRequired,
+  trustedFields: React.PropTypes.object.isRequired,
   submitting: React.PropTypes.bool.isRequired
 };
 

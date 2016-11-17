@@ -76,4 +76,39 @@ describe('trustForm selector', () => {
       assert.deepEqual(actual, expected);
     });
   });
+
+  context('`trustedFields` object', () => {
+    const result = getTrustForm(
+      mockPetition.data,
+      mockUser,
+      {}
+    );
+
+    it('exists', () => {
+      const actual = typeof result.trustedFields;
+      const expected = 'object';
+
+      assert.deepEqual(actual, expected);
+    });
+
+    it('has `user.email` property', () => {
+      const actual = result.trustedFields.hasOwnProperty('user.email');
+      assert.isTrue(actual);
+    });
+
+    it('has `user.mobile` property', () => {
+      const actual = result.trustedFields.hasOwnProperty('user.mobile');
+      assert.isTrue(actual);
+    });
+
+    it('has `owner.email` property', () => {
+      const actual = result.trustedFields.hasOwnProperty('owner.email');
+      assert.isTrue(actual);
+    });
+
+    it('has `owner.mobile` property', () => {
+      const actual = result.trustedFields.hasOwnProperty('owner.mobile');
+      assert.isTrue(actual);
+    });
+  });
 });

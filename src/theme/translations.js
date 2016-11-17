@@ -15,6 +15,7 @@ export default {
   "teaserDaysRemaining": "days left",
   "optionalLabel": "(optional)",
   "requiredText": "You must complete this field",
+  "validatedText": "This %f has been previously verified",
   "minLengthText": "Must be %x characters or more",
   "maxLengthText": "Cannot be more than %x characters",
   "emailInvalidText": "Please enter a valid email address",
@@ -104,16 +105,19 @@ export default {
     }
   },
   "respondedToPetitionPage": {
-    "title": "Congratulations, your response has been succesfully submitted.",
-    "hint": "Your response will be reviewed within one working day.",
-    "link": "Let’s go explore"
+    "title": "Your petition response has been succesfully submitted.",
+    "hint": "It will be reviewed by an administrator within one working day and then displayed on the petition page.",
+    "link": "View further petitions"
   },
   "petitionResponseTokenErrorPage": {
     "title": "Sorry but this link doesn’t exist or is no longer working.",
-    "hint": "Please re-enter the link or contact our admins if you believe there is a mistake and you are unsure of how to proceed.",
-    "homeButton": {
-      "text": "Back to the home page"
-    }
+    "hint": "Please re-enter the link or contact our admins if you believe there is a mistake or are unsure of how to proceed.",
+    "link": "Go back home"
+  },
+  "emailConfirmationPage": {
+    "title": "Email address confirmed",
+    "hint": "Thank you for confirming your email address. You will now recieve important petition updates via email.",
+    "link": "Browse petitions"
   },
   "petitionGroups": {
     "trending": {
@@ -192,7 +196,7 @@ export default {
     },
     "image": {
       "label": "Add a cover image",
-      "hint": "Add an image to make your petition more appealing. Landscape images are recommended and your image must a JPEG, GIF or PNG, maximum 2MB. ",
+      "hint": "Add an image to make your petition more appealing. Landscape images are recommended and your image must a JPEG, GIF or PNG, maximum 10MB. ",
       "placeholder": "Upload image",
       "loading": "Loading...",
       "invalidFileError": "One or more files were invalid and could not be uploaded"

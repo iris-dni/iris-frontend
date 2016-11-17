@@ -3,5 +3,15 @@
 .root {
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 50px;
   max-width: map-get($widths, 'notice-max');
+  color: color('dimmed');
+
+  img {
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: 100%;
+  }
 }

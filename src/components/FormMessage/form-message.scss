@@ -15,3 +15,8 @@
   composes: shared;
   color: color('error');
 }
+
+.valid {
+  composes: shared;
+  color: color('success');
+}

@@ -17,7 +17,7 @@ const getFieldClassname = (config) => {
   ].join(' ');
 };
 
-const FormFieldWrapper = (WrappedComponent) => ({ config, helper }) => (
+const FormFieldWrapper = (WrappedComponent) => ({ config, helper, isTrusted }) => (
   <div
     className={getRootClassname(config)}
     aria-hidden={config.hidden}>
@@ -29,14 +29,17 @@ const FormFieldWrapper = (WrappedComponent) => ({ config, helper }) => (
         optional={!config.html.required}
       />
     }
-
     <div className={getFieldClassname(config)}>
       <WrappedComponent
         config={config}
         helper={helper}
       />
       {(!config.hidden && !config.nestedValidation) &&
-        <FormValidation config={config} helper={helper} />
+        <FormValidation
+          isTrusted={isTrusted}
+          config={config}
+          helper={helper}
+        />
       }
     </div>
   </div>

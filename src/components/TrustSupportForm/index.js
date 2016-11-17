@@ -18,6 +18,7 @@ const TrustSupportForm = ({
   handleSubmit,
   petition,
   mobileConfirmed,
+  trustedFields,
   submitting
 }) => (
   <form onSubmit={handleSubmit((values, dispatch) => supportPetition(
@@ -25,6 +26,7 @@ const TrustSupportForm = ({
   )}>
     <Fieldset>
       <FormFieldsIterator
+        trustedFields={trustedFields}
         reduxFormFields={fields}
         fieldsArray={FIELDS}
       />
@@ -51,6 +53,7 @@ TrustSupportForm.propTypes = {
   petition: React.PropTypes.object.isRequired,
   me: React.PropTypes.object.isRequired,
   mobileConfirmed: React.PropTypes.bool.isRequired,
+  trustedFields: React.PropTypes.object.isRequired,
   submitting: React.PropTypes.bool.isRequired
 };
 
