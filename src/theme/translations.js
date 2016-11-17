@@ -104,16 +104,19 @@ export default {
     }
   },
   "respondedToPetitionPage": {
-    "title": "Congratulations, your response has been succesfully submitted.",
-    "hint": "Your response will be reviewed within one working day.",
-    "link": "Let’s go explore"
+    "title": "Your petition response has been succesfully submitted.",
+    "hint": "It will be reviewed by an administrator within one working day and then displayed on the petition page.",
+    "link": "View further petitions"
   },
   "petitionResponseTokenErrorPage": {
     "title": "Sorry but this link doesn’t exist or is no longer working.",
-    "hint": "Please re-enter the link or contact our admins if you believe there is a mistake and you are unsure of how to proceed.",
-    "homeButton": {
-      "text": "Back to the home page"
-    }
+    "hint": "Please re-enter the link or contact our admins if you believe there is a mistake or are unsure of how to proceed.",
+    "link": "Go back home"
+  },
+  "emailConfirmationPage": {
+    "title": "Email address confirmed",
+    "hint": "Thank you for confirming your email address. You will now recieve important petition updates via email.",
+    "link": "Browse petitions"
   },
   "petitionGroups": {
     "trending": {

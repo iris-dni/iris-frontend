@@ -6,24 +6,27 @@ import Header from 'components/Header';
 import PageTitle from 'components/PageTitle';
 import Notice from 'components/Notice';
 import Paragraph from 'components/Paragraph';
+import IconBullet from 'components/IconBullet';
 
-const PetitionResponseTokenError = ({ petition, petitionResponse, router }) => (
+const RespondedToPetition = ({ petition }) => (
   <Container>
     <Header padding>
       <PageTitle
-        title={settings.petitionResponseTokenErrorPage.title}
+        title={settings.emailConfirmationPage.title}
         centered
       />
     </Header>
     <Notice>
-      <img src={'/dist/assets/images/error-graphic.svg'} alt={''} />
-      <Paragraph>{settings.petitionResponseTokenErrorPage.hint}</Paragraph>
+      <Paragraph>
+        <IconBullet size={'huge'} id={'Checkmark'} modifier={'success'} />
+      </Paragraph>
+      <Paragraph>{settings.emailConfirmationPage.hint}</Paragraph>
       <ButtonLink
-        href={'/'}
-        text={settings.petitionResponseTokenErrorPage.link}
+        href={'/petitions'}
+        text={settings.emailConfirmationPage.link}
       />
     </Notice>
   </Container>
 );
 
-export default PetitionResponseTokenError;
+export default RespondedToPetition;
