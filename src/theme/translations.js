@@ -368,8 +368,8 @@ export default {
     },
     "mobile": {
       "label": "Mobile number",
-      "placeholder": "+41 / +43",
-      "hint": "Only country codes **+41** and **+43** are accepted. You must be a Swiss resident to support or publish a petition."
+      "placeholder": "+41 / +43 / +49",
+      "hint": "Only country codes **+41**, **+43** and **+49** are accepted."
     }
   },
   "trustConfirmationFields": {

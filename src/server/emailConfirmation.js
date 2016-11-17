@@ -6,7 +6,7 @@ export default (request, reply) => {
   const { action } = params;
   const { key } = query;
 
-  if (action === 'support' || action === 'publish') {
+  if (action === 'support' || action === 'petition') {
     confirmRepository.validate(key)
       .then((response) => render(request, reply, 'index'))
       .catch(() => reply('Invalid key').code(500));
