@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import EmailConfirmation from 'components/EmailConfirmation';
 
-const ImprintContainer = React.createClass({
+const EmailConfirmationContainer = React.createClass({
   render () {
     return (
       <div>
@@ -18,4 +18,4 @@ const ImprintContainer = React.createClass({
 export default connect(
   null,
   null
-)(ImprintContainer);
+)(EmailConfirmationContainer);
