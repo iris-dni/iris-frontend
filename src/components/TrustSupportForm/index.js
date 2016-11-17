@@ -53,6 +53,7 @@ TrustSupportForm.propTypes = {
   petition: React.PropTypes.object.isRequired,
   me: React.PropTypes.object.isRequired,
   mobileConfirmed: React.PropTypes.bool.isRequired,
+  trustedFields: React.PropTypes.object.isRequired,
   submitting: React.PropTypes.bool.isRequired
 };
 
