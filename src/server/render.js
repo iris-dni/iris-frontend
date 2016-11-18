@@ -22,8 +22,8 @@ import widgetReducer from 'reducers/widget';
 import widgetRouter from 'routers/widget';
 
 const routerForView = {
-  index: clientRouter(),
-  widget: widgetRouter()
+  index: clientRouter,
+  widget: widgetRouter
 };
 
 const reducerForView = {

@@ -1,9 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute, Router, applyRouterMiddleware } from 'react-router';
-import { useScroll } from 'react-router-scroll';
-
-import logPageview from 'helpers/logPageview';
-import getHistory from 'helpers/getHistory';
+import { Route, IndexRoute } from 'react-router';
 
 import App from 'containers/App';
 import Home from 'containers/Home';
@@ -26,36 +22,32 @@ import EmailConfirmationContainer from 'containers/EmailConfirmationContainer';
 // Restrictive higher-order components
 import RedirectIfPublished from 'containers/RedirectIfPublished';
 import RedirectIfUnsupportable from 'containers/RedirectIfUnsupportable';
+// Redirect handlers
+import ProtectPetition from 'server/redirects/ProtectPetition';
 
-export default (props = {}) => (
-  <Router
-    history={getHistory(props.store)}
-    onUpdate={logPageview}
-    render={applyRouterMiddleware(useScroll())}
-  >
-    <Route path='/' component={App}>
-      <IndexRoute component={Home} />
-      <Route path='imprint' component={Imprint} />
-      <Route path='about' component={About} />
-      <Route path='terms' component={Terms} />
-      <Route path='auth/login' component={LoginPage} />
-      <Route path='auth/logout' component={Logout} />
-      <Route path='petitions'>
-        {/* Nest these 3 to support proper `activeClassName` behavior. */}
-        <IndexRoute component={Petitions} />
-        <Route path=':cityName-:city(/page(/:page))' component={Petitions} />
-        <Route path='page/:page' component={Petitions} />
-      </Route>
-      <Route path='petitions/new' component={NewPetition} />
-      <Route path='petitions/:id' component={Petition} />
-      <Route path='petitions/:id/edit' component={RedirectIfPublished(EditPetition)} />
-      <Route path='petitions/:id/preview' component={RedirectIfPublished(PreviewPetition)} />
-      <Route path='trust/support/:id' component={RedirectIfUnsupportable(TrustSupport)} />
-      <Route path='trust/support/:id/confirm' component={RedirectIfUnsupportable(TrustSupportConfirmation)} />
-      <Route path='trust/publish/:id' component={RedirectIfPublished(TrustPublish)} />
-      <Route path='trust/publish/:id/confirm' component={RedirectIfPublished(TrustPublishConfirmation)} />
-      <Route path='respond/:token' component={RespondToPetition} />
-      <Route path='confirm/email/:action' component={EmailConfirmationContainer} />
+export default (
+  <Route path='/' component={App}>
+    <IndexRoute component={Home} />
+    <Route path='imprint' component={Imprint} />
+    <Route path='about' component={About} />
+    <Route path='terms' component={Terms} />
+    <Route path='auth/login' component={LoginPage} />
+    <Route path='auth/logout' component={Logout} />
+    <Route path='petitions'>
+      {/* Nest these 3 to support proper `activeClassName` behavior. */}
+      <IndexRoute component={Petitions} />
+      <Route path=':cityName-:city(/page(/:page))' component={Petitions} />
+      <Route path='page/:page' component={Petitions} />
     </Route>
-  </Router>
+    <Route path='petitions/new' component={NewPetition} />
+    <Route path='petitions/:id' component={Petition} onEnter={ProtectPetition} />
+    <Route path='petitions/:id/edit' component={RedirectIfPublished(EditPetition)} />
+    <Route path='petitions/:id/preview' component={RedirectIfPublished(PreviewPetition)} />
+    <Route path='trust/support/:id' component={RedirectIfUnsupportable(TrustSupport)} />
+    <Route path='trust/support/:id/confirm' component={RedirectIfUnsupportable(TrustSupportConfirmation)} />
+    <Route path='trust/publish/:id' component={RedirectIfPublished(TrustPublish)} />
+    <Route path='trust/publish/:id/confirm' component={RedirectIfPublished(TrustPublishConfirmation)} />
+    <Route path='respond/:token' component={RespondToPetition} />
+    <Route path='confirm/email/:action' component={EmailConfirmationContainer} />
+  </Route>
 );
