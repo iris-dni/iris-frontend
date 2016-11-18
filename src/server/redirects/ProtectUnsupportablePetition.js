@@ -1,12 +1,13 @@
 import petitionRepository from 'services/api/repositories/petition';
-import petitionRejected from 'selectors/petitionRejected';
+import petitionSupportable from 'selectors/petitionSupportable';
+import petitionPath from 'selectors/petitionPath';
 
 export default (nextState, replace, callback) => {
   const { params } = nextState || {};
   petitionRepository.find(params.id)
     .then(response => {
-      if (petitionRejected(response.data)) {
-        replace({ pathname: '/petitions' });
+      if (!petitionSupportable(response.data)) {
+        replace(petitionPath(response.data));
       }
       callback();
     }).catch(() => {

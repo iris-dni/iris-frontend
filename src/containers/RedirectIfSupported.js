@@ -3,17 +3,12 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { fetchPetition, refreshPetition } from 'actions/PetitionActions';
 import getPetition from 'selectors/petition';
-import petitionSupportable from 'selectors/petitionSupportable';
 import petitionUserSupport from 'selectors/petitionUserSupport';
 import petitionPath from 'selectors/petitionPath';
 
-const RedirectIfPublishedWrapper = (WrappedComponent) => {
-  const RedirectIfPublished = React.createClass({
+const RedirectIfSupportedWrapper = (WrappedComponent) => {
+  const RedirectIfSupported = React.createClass({
     componentWillMount () {
-      if (!petitionSupportable(this.props.petition)) {
-        this.props.push(petitionPath(this.props.petition));
-      }
-
       this.props.refreshPetition(this.props.petition.id)
         .then(({ petition }) => {
           if (petitionUserSupport(petition)) {
@@ -29,7 +24,7 @@ const RedirectIfPublishedWrapper = (WrappedComponent) => {
     }
   });
 
-  RedirectIfPublished.fetchData = ({ store, params }) => {
+  RedirectIfSupported.fetchData = ({ store, params }) => {
     return store.dispatch(fetchPetition(params.id));
   };
 
@@ -45,7 +40,7 @@ const RedirectIfPublishedWrapper = (WrappedComponent) => {
   return connect(
     mapStateToProps,
     mapDispatchToProps
-  )(RedirectIfPublished);
+  )(RedirectIfSupported);
 };
 
-export default RedirectIfPublishedWrapper;
+export default RedirectIfSupportedWrapper;

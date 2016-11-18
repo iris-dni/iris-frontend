@@ -1,7 +1,20 @@
 const PETITIONS_STATES = {
-  current: ['supportable.active', 'supportable.winner'],
-  winning: ['supportable.winner', 'processing.*', 'closed', 'closedWithoutResponse'],
-  past: ['processing.*', 'loser', 'closed', 'closedWithoutResponse'],
+  current: [
+    'supportable.active',
+    'supportable.winner'
+  ],
+  winning: [
+    'supportable.winner',
+    'processing.*',
+    'closed',
+    'closedWithoutResponse'
+  ],
+  past: [
+    'processing.*',
+    'loser',
+    'closed',
+    'closedWithoutResponse'
+  ],
   all: [
     'supportable.winner',
     'supportable.active',

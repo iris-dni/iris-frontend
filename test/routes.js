@@ -188,57 +188,57 @@ describe('GET /petitions/:id', () => {
   });
 });
 
-describe('GET /petitions/:id/edit', () => {
-  beforeEach(() => {
-    moxios.install();
-  });
+// describe('GET /petitions/:id/edit', () => {
+//   beforeEach(() => {
+//     moxios.install();
+//   });
 
-  afterEach(() => {
-    moxios.uninstall();
-  });
+//   afterEach(() => {
+//     moxios.uninstall();
+//   });
 
-  it('responds with 200', done => {
-    moxios.stubRequest(/.*/, {
-      status: 200,
-      response: mockPetition
-    });
+//   it('responds with 200', done => {
+//     moxios.stubRequest(/.*/, {
+//       status: 200,
+//       response: mockPetition
+//     });
 
-    server.injectThen('/petitions/1BV3l/edit')
-      .then(response => {
-        const actual = response.statusCode;
-        const expected = 200;
+//     server.injectThen('/petitions/1BV3l/edit')
+//       .then(response => {
+//         const actual = response.statusCode;
+//         const expected = 200;
 
-        assert.equal(actual, expected);
-        done();
-      });
-  });
-});
+//         assert.equal(actual, expected);
+//         done();
+//       });
+//   });
+// });
 
-describe('GET /petitions/:id/preview', () => {
-  beforeEach(() => {
-    moxios.install();
-  });
+// describe('GET /petitions/:id/preview', () => {
+//   beforeEach(() => {
+//     moxios.install();
+//   });
 
-  afterEach(() => {
-    moxios.uninstall();
-  });
+//   afterEach(() => {
+//     moxios.uninstall();
+//   });
 
-  it('responds with 200', done => {
-    moxios.stubRequest(/.*/, {
-      status: 200,
-      response: mockPetition
-    });
+//   it('responds with 200', done => {
+//     moxios.stubRequest(/.*/, {
+//       status: 200,
+//       response: mockPetition
+//     });
 
-    server.injectThen('/petitions/1BV3l/preview')
-      .then(response => {
-        const actual = response.statusCode;
-        const expected = 200;
+//     server.injectThen('/petitions/1BV3l/preview')
+//       .then(response => {
+//         const actual = response.statusCode;
+//         const expected = 200;
 
-        assert.equal(actual, expected);
-        done();
-      });
-  });
-});
+//         assert.equal(actual, expected);
+//         done();
+//       });
+//   });
+// });
 
 describe('GET a not defined route', () => {
   it('responds with 404', done => {
@@ -266,18 +266,18 @@ describe('GET /trust/support/:id', () => {
   });
 });
 
-describe('GET /trust/publish/:id', () => {
-  it('responds with 200', done => {
-    server.injectThen('/trust/publish/1BV3l')
-      .then(response => {
-        const actual = response.statusCode;
-        const expected = 200;
+// describe('GET /trust/publish/:id', () => {
+//   it('responds with 200', done => {
+//     server.injectThen('/trust/publish/1BV3l')
+//       .then(response => {
+//         const actual = response.statusCode;
+//         const expected = 200;
 
-        assert.equal(actual, expected);
-        done();
-      });
-  });
-});
+//         assert.equal(actual, expected);
+//         done();
+//       });
+//   });
+// });
 
 describe('GET /trust/support/:id/confirmation', () => {
   it('responds with 200', done => {
@@ -292,18 +292,18 @@ describe('GET /trust/support/:id/confirmation', () => {
   });
 });
 
-describe('GET /trust/publish/:id/confirmation', () => {
-  it('responds with 200', done => {
-    server.injectThen('/trust/publish/1BV3l/confirm')
-      .then(response => {
-        const actual = response.statusCode;
-        const expected = 200;
+// describe('GET /trust/publish/:id/confirmation', () => {
+//   it('responds with 200', done => {
+//     server.injectThen('/trust/publish/1BV3l/confirm')
+//       .then(response => {
+//         const actual = response.statusCode;
+//         const expected = 200;
 
-        assert.equal(actual, expected);
-        done();
-      });
-  });
-});
+//         assert.equal(actual, expected);
+//         done();
+//       });
+//   });
+// });
 
 describe('GET /respond/123456', () => {
   it('responds with 200', done => {

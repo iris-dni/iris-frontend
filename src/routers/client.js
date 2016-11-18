@@ -19,11 +19,12 @@ import TrustSupportConfirmation from 'containers/TrustSupportConfirmation';
 import TrustPublish from 'containers/TrustPublish';
 import TrustPublishConfirmation from 'containers/TrustPublishConfirmation';
 import EmailConfirmationContainer from 'containers/EmailConfirmationContainer';
-// Restrictive higher-order components
-import RedirectIfPublished from 'containers/RedirectIfPublished';
-import RedirectIfUnsupportable from 'containers/RedirectIfUnsupportable';
-// Redirect handlers
-import ProtectPetition from 'server/redirects/ProtectPetition';
+// Redirect handlers for restricting routes
+import ProtectRejectedPetition from 'server/redirects/ProtectRejectedPetition';
+import ProtectUnsupportablePetition from 'server/redirects/ProtectUnsupportablePetition';
+import ProtectPublishedPetition from 'server/redirects/ProtectPublishedPetition';
+// Restrictive higher-order components (client-side)
+import RedirectIfSupported from 'containers/RedirectIfSupported';
 
 export default (
   <Route path='/' component={App}>
@@ -39,15 +40,52 @@ export default (
       <Route path=':cityName-:city(/page(/:page))' component={Petitions} />
       <Route path='page/:page' component={Petitions} />
     </Route>
-    <Route path='petitions/new' component={NewPetition} />
-    <Route path='petitions/:id' component={Petition} onEnter={ProtectPetition} />
-    <Route path='petitions/:id/edit' component={RedirectIfPublished(EditPetition)} />
-    <Route path='petitions/:id/preview' component={RedirectIfPublished(PreviewPetition)} />
-    <Route path='trust/support/:id' component={RedirectIfUnsupportable(TrustSupport)} />
-    <Route path='trust/support/:id/confirm' component={RedirectIfUnsupportable(TrustSupportConfirmation)} />
-    <Route path='trust/publish/:id' component={RedirectIfPublished(TrustPublish)} />
-    <Route path='trust/publish/:id/confirm' component={RedirectIfPublished(TrustPublishConfirmation)} />
-    <Route path='respond/:token' component={RespondToPetition} />
-    <Route path='confirm/email/:action' component={EmailConfirmationContainer} />
+    <Route
+      path='petitions/new'
+      component={NewPetition}
+    />
+    <Route
+      path='petitions/:id'
+      onEnter={ProtectRejectedPetition}
+      component={Petition}
+    />
+    <Route
+      path='petitions/:id/edit'
+      onEnter={ProtectPublishedPetition}
+      component={EditPetition}
+    />
+    <Route
+      path='petitions/:id/preview'
+      onEnter={ProtectPublishedPetition}
+      component={PreviewPetition}
+    />
+    <Route
+      path='trust/publish/:id'
+      onEnter={ProtectPublishedPetition}
+      component={TrustPublish}
+    />
+    <Route
+      path='trust/publish/:id/confirm'
+      onEnter={ProtectPublishedPetition}
+      component={TrustPublishConfirmation}
+    />
+    <Route
+      path='trust/support/:id'
+      onEnter={ProtectUnsupportablePetition}
+      component={RedirectIfSupported(TrustSupport)}
+    />
+    <Route
+      path='trust/support/:id/confirm'
+      onEnter={ProtectUnsupportablePetition}
+      component={RedirectIfSupported(TrustSupportConfirmation)}
+    />
+    <Route
+      path='respond/:token'
+      component={RespondToPetition}
+    />
+    <Route
+      path='confirm/email/:action'
+      component={EmailConfirmationContainer}
+    />
   </Route>
 );

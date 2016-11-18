@@ -1,8 +1,8 @@
 export default ({ state }) => {
   switch (!!state && state.name) {
-    case false:
     case 'rejected':
       return true;
+    case false:
     default:
       return false;
   }
