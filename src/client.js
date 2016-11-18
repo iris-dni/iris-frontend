@@ -1,3 +1,4 @@
+/* eslint-disable handle-callback-err */
 // Patches for IE
 require('svg4everybody');
 require('es6-object-assign').polyfill();
@@ -9,7 +10,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, browserHistory, applyRouterMiddleware } from 'react-router';
+import { match, Router, browserHistory, applyRouterMiddleware } from 'react-router';
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import { useScroll } from 'react-router-scroll';
 import thunkMiddleware from 'redux-thunk';
@@ -32,13 +33,24 @@ const store = createStore(
 
 syncHistoryWithStore(browserHistory, store);
 
-render((
-  <Provider store={store}>
-    <Router
-      history={getHistory(store)}
-      onUpdate={logPageview}
-      render={applyRouterMiddleware(useScroll())}
-      routes={routes}
-    />
-  </Provider>
-), document.getElementById('app'));
+// Async Routes:
+//
+// So we can do async fetches in onEnter for things like
+// authentication and redirecting rejected petitions
+//
+// https://github.com/ReactTraining/react-router/blob/v2.4.1/docs/guides/ServerRendering.md#async-routes
+//
+match({
+  history: getHistory(store),
+  routes
+}, (error, redirectLocation, renderProps) => {
+  render(
+    <Provider store={store}>
+      <Router
+        {...renderProps}
+        onUpdate={logPageview}
+        render={applyRouterMiddleware(useScroll())}
+      />
+    </Provider>
+  , document.getElementById('app'));
+});

@@ -8,12 +8,11 @@ require('custom-event-polyfill');
 import React from 'react';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
-import { Router, browserHistory } from 'react-router';
+import { Router } from 'react-router';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import reducers from 'reducers/widget';
 import routes from 'routers/widget';
-import logPageview from 'helpers/logPageview';
 
 const initialState = window.__INITIAL_STATE__ || {};
 
@@ -25,10 +24,6 @@ const store = createStore(
 
 render((
   <Provider store={store}>
-    <Router
-      history={browserHistory}
-      onUpdate={logPageview}
-      routes={routes}
-    />
+    <Router routes={routes} />
   </Provider>
 ), document.getElementById('app'));
