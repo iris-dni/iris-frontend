@@ -488,7 +488,7 @@ export default {
   },
   "logo": "IRIS",
   "footer": {
-    "copyright": "Copyright © 2016 IRIS",
+    "copyright": "Copyright © %y IRIS",
     "ossLink": "Platform powered by IRIS",
     "imprintLink": "Imprint",
     "termsLink": "Terms"

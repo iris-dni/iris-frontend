@@ -19,6 +19,12 @@ const MODULES = [
     }
   },
   {
+    component: 'CallToAction',
+    props: {
+      ...settings.aboutCTA
+    }
+  },
+  {
     component: 'PetitionGroup',
     props: {
       group: 'latest'
@@ -29,12 +35,6 @@ const MODULES = [
     props: {
       ...settings.createCTA,
       theme: 'secondary'
-    }
-  },
-  {
-    component: 'CallToAction',
-    props: {
-      ...settings.aboutCTA
     }
   }
 ];
