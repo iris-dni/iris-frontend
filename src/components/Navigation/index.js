@@ -1,4 +1,5 @@
 import React from 'react';
+import settings from 'settings';
 import { IndexLink } from 'react-router';
 import { debounce } from 'lodash';
 import Overlay from 'components/Overlay';
@@ -43,18 +44,18 @@ const Navigation = React.createClass({
   render () {
     return (
       <div>
-        <div className={this.getClassName(styles['overlay-wrapper'])}>
+        <div className={this.getClassName(styles.overlay)}>
           <Overlay
             active={this.props.opened}
             onClickHandler={this.props.closeMobileMenu}
           />
         </div>
 
-        <nav role='navigation' id='navigation'>
-          <div className={styles['visible-elements-wrapper']}>
+        <nav role='navigation' id='navigation' className={styles.navigation}>
+          <div className={styles.wrapper}>
             <IndexLink
               to='/'
-              className={styles.link}
+              className={styles[settings.logoPath ? 'logo-image' : 'logo-text']}
               onClick={this.props.closeMobileMenu}
             >
               <Logo />
@@ -67,11 +68,13 @@ const Navigation = React.createClass({
             />
           </div>
 
-          <MenuItems
-            opened={this.props.opened}
-            wasOpened={this.props.wasOpened}
-            onClickHandler={this.props.closeMobileMenu}
-          />
+          <div className={styles.menu}>
+            <MenuItems
+              opened={this.props.opened}
+              wasOpened={this.props.wasOpened}
+              onClickHandler={this.props.closeMobileMenu}
+            />
+          </div>
         </nav>
       </div>
     );
