@@ -18,7 +18,7 @@ const SiteCopyright = () => (
         </p>
         <ul className={styles.links}>
           <li className={styles.link}>
-            <small className={styles.small}>{settings.footer.copyright}</small>
+            <small className={styles.small}>{settings.footer.copyright.replace('%y', new Date().getFullYear())}</small>
           </li>
           <li className={styles.link}>
             <Link
