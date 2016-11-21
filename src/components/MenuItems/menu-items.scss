@@ -39,22 +39,10 @@
 }
 
 .element:last-of-type {
-  background-color: color('primary');
-  color: color('white');
-  font-weight: bold;
-  text-align: center;
-  text-transform: uppercase;
-  transition: all 250ms;
   padding: 0;
 
   @include media('>navigation-menu') {
     float: right;
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: darken(desaturate(adjust-hue(color('primary'), 10.8808), 16.5997), 5.6863);
   }
 }
 
@@ -98,7 +86,19 @@ $link-padding: 16px;
 
 .element:last-of-type .link {
   padding: $link-padding;
+  background-color: color('primary');
+  color: color('white');
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-color 250ms;
   border: 0;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: darken(desaturate(adjust-hue(color('primary'), 10.8808), 16.5997), 5.6863);
+  }
 }
 
 .element:not(:last-of-type) .link:hover,
