@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: 'http://dhcp133.de.edenspiekermann.com:8080/dist/',
+  publicPath: 'http://localhost:8080/dist/',
   contentBase: './static',
   hot: true,
   inline: true,
