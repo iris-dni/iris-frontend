@@ -1,3 +1,5 @@
+import { assign } from 'lodash/object';
+
 import {
   UPDATE_SUGGESTIONS,
   CLEAR_SUGGESTIONS,
@@ -12,15 +14,15 @@ const initialState = {
 export default function autocomplete (state = initialState, action) {
   switch (action.type) {
     case UPDATE_SUGGESTIONS:
-      return Object.assign({}, state, {
+      return assign({}, state, {
         suggestions: action.suggestions
       });
     case CLEAR_SUGGESTIONS:
-      return Object.assign({}, state, {
+      return assign({}, state, {
         suggestions: []
       });
     case UPDATE_SUGGESTION_INPUT_VALUE:
-      return Object.assign({}, state, {
+      return assign({}, state, {
         value: action.value
       });
     default:

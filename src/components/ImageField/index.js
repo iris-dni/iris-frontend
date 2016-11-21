@@ -1,4 +1,5 @@
 import React from 'react';
+import { assign } from 'lodash/object';
 import settings from 'settings';
 import styles from './image-field.scss';
 import Dropzone from 'react-dropzone';
@@ -50,7 +51,7 @@ const ImageField = React.createClass({
     }, () => {
       accepted.map((image, index) =>
         uploadImage(image, index).then(({ file }) => {
-          Object.assign(accepted[index], file);
+          assign(accepted[index], file);
           helper.onChange(accepted);
           if (index === accepted.length - 1) {
             this.setState({ loading: false });

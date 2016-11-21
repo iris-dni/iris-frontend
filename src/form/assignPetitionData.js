@@ -1,1 +1,3 @@
-export default (data, petition) => Object.assign({}, data, { petition });
+import { assign } from 'lodash/object';
+
+export default (data, petition) => assign({}, data, { petition });

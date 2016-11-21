@@ -1,3 +1,5 @@
+import { assign } from 'lodash/object';
+
 import {
   REQUEST_PETITION,
   RECEIVE_PETITION,
@@ -10,12 +12,12 @@ const initialState = {};
 export default function petitionResponse (state = initialState, action) {
   switch (action.type) {
     case REQUEST_PETITION:
-      return Object.assign({},
+      return assign({},
         state,
         { isLoading: true }
       );
     case RECEIVE_PETITION:
-      return Object.assign({},
+      return assign({},
         state, initialState, {
           petitionId: action.petition.id,
           answer: action.petition.city_answer,
@@ -25,7 +27,7 @@ export default function petitionResponse (state = initialState, action) {
         }
       );
     case PETITION_NOT_FOUND:
-      return Object.assign({},
+      return assign({},
         state, initialState, {
           token: action.petition.token,
           isLoading: false,
@@ -33,7 +35,7 @@ export default function petitionResponse (state = initialState, action) {
         }
       );
     case RESPONDED_TO_PETITION:
-      return Object.assign({},
+      return assign({},
         state, initialState, {
           petitionId: action.petition.id,
           answer: action.petition.city_answer,

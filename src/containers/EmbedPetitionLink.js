@@ -1,4 +1,5 @@
 import React from 'react';
+import { assign } from 'lodash/object';
 import settings from 'settings';
 import { connect } from 'react-redux';
 import { showModalWindow, hideModalWindow } from 'actions/ModalActions';
@@ -18,7 +19,7 @@ const EmbedPetitionLinkContainer = React.createClass({
 });
 
 export const mapStateToProps = ({ petition }) => ({
-  modal: Object.assign({}, settings.shareButtons.embed.modal, {
+  modal: assign({}, settings.shareButtons.embed.modal, {
     embedCode: petitionEmbedCode(petition)
   })
 });

@@ -1,3 +1,5 @@
+import { assign } from 'lodash/object';
+
 import {
   REQUEST_OPEN_GRAPH,
   RECEIVE_OPEN_GRAPH,
@@ -11,13 +13,13 @@ const initialState = {
 export default function openGraph (state = initialState, action) {
   switch (action.type) {
     case REQUEST_OPEN_GRAPH:
-      return Object.assign({},
+      return assign({},
         state,
         { isLoading: true }
       );
     case REMOVE_OPEN_GRAPH:
       const reducedLinks = state.links.filter(link => link.url !== action.url);
-      return Object.assign({},
+      return assign({},
         state,
         { links: reducedLinks }
       );
@@ -26,7 +28,7 @@ export default function openGraph (state = initialState, action) {
         url: action.openGraph.url,
         og: action.openGraph
       }]);
-      return Object.assign({},
+      return assign({},
         state,
         {
           links: appendedLinks,
