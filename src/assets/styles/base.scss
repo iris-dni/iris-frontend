@@ -52,16 +52,24 @@ textarea {
  */
 :global {
   .wrapper {
-    position: relative; /* 1 */
+    height: 100%; /* 2 */
     min-height: 100vh; /* 2 */
-    overflow: hidden;
     display: flex; /* 3 */
     flex-direction: column; /* 3 */
   }
 
+  .main-content {
+    flex: 1 0 auto;
+  }
+
   .disabled-scroll,
-  .disabled-scroll body {
+  .disabled-scroll body,
+  .disabled-scroll .wrapper {
     overflow: hidden; /* 4 */
+  }
+
+  .disabled-scroll .wrapper {
+    position: relative; /* 1 */
   }
 
   .disabled-scroll .app-wrapper {
