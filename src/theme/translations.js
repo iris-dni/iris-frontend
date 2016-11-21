@@ -116,7 +116,7 @@ export default {
   },
   "emailConfirmationPage": {
     "title": "Email address confirmed",
-    "hint": "Thank you for confirming your email address. You will now recieve important petition updates via email.",
+    "hint": "Thank you for confirming your email address. You will now receive important petition updates via email.",
     "link": "Browse petitions"
   },
   "petitionGroups": {
@@ -153,11 +153,11 @@ export default {
     "step2": {
       "support": {
         "title": "Verify via phone",
-        "text": "Once you′ve signed in or entered your contact details, you will recieve a text message verification code to confirm your identity. Enter the code to proceed, and you′re done!"
+        "text": "Once you′ve signed in or entered your contact details, you will receive a text message verification code to confirm your identity. Enter the code to proceed, and you′re done!"
       },
       "publish": {
         "title": "Verify via phone",
-        "text": "Once you′ve signed in or entered your contact details, you will recieve a text message verification code to confirm your identity. Enter the code to proceed, and you′re done!"
+        "text": "Once you′ve signed in or entered your contact details, you will receive a text message verification code to confirm your identity. Enter the code to proceed, and you′re done!"
       }
     }
   },
@@ -434,7 +434,7 @@ export default {
         },
         {
           "title": "Supporting a petition",
-          "text": "If you find a cause in your area you want to support, click the support button in the sidebar of the petition page. Quickly fill in your details to recieve a mobile SMS verification code confirming who you are, and then your support will be added!",
+          "text": "If you find a cause in your area you want to support, click the support button in the sidebar of the petition page. Quickly fill in your details to receive a mobile SMS verification code confirming who you are, and then your support will be added!",
           "button": {
             "modifier": "accent",
             "text": "Browse petitions",
