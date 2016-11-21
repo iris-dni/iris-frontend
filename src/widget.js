@@ -1,5 +1,4 @@
 // Patches for IE
-require('svg4everybody');
 require('es6-promise').polyfill();
 require('custom-event-polyfill');
 // Begin App code
