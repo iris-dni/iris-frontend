@@ -1,4 +1,5 @@
 import React from 'react';
+import { assign } from 'lodash/object';
 import PageHeader from 'components/PageHeader';
 import LogosGrid from 'components/LogosGrid';
 import Hero from 'components/Hero';
@@ -20,7 +21,7 @@ const components = {
 const PageBuilder = ({ modules = [] }) => (
   <article>
     {modules.map((block, index) =>
-      React.createElement(components[block.component], Object.assign({}, block.props,
+      React.createElement(components[block.component], assign({}, block.props,
         { key: index }
       ))
     )}

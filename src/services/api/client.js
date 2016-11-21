@@ -1,3 +1,4 @@
+import { assign } from 'lodash/object';
 import axios from 'axios';
 import FormData from 'form-data';
 import createApiUrl from 'helpers/createApiUrl';
@@ -38,7 +39,7 @@ export default {
         break;
       case POST:
         if (data instanceof FormData) {
-          options.headers = Object.assign(options.headers, {
+          options.headers = assign(options.headers, {
             'Content-Type': 'multipart/form-data'
           });
         }

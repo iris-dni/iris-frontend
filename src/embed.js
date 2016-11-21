@@ -1,5 +1,4 @@
 // patches for IE
-require('es6-object-assign').polyfill();
 require('es6-promise').polyfill();
 // Begin embed code
 import Postmate from 'postmate';

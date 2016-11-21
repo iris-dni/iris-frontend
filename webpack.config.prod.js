@@ -80,9 +80,9 @@ var plugins = [
 
 module.exports = {
   entry: {
-    client: ['./src/client'],
-    widget: ['./src/widget'],
-    embed: ['./src/embed']
+    client: ['babel-polyfill', './src/client'],
+    widget: ['babel-polyfill', './src/widget'],
+    embed: ['babel-polyfill', './src/embed']
   },
   cache: false,
   context: __dirname,

@@ -5,6 +5,7 @@ import { match, RouterContext } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
+import { assign } from 'lodash/object';
 
 import stringifyHeadData from 'server/stringifyHeadData';
 import baseAssetPath from 'server/baseAssetPath';
@@ -97,7 +98,7 @@ export default (request, reply, viewName = 'index') => {
           const initialState = store.getState();
 
           // Render Nunjucks view with required data
-          return reply.view(viewName, Object.assign({}, {
+          return reply.view(viewName, assign({}, {
             reactMarkup: reactString,
             initialState: JSON.stringify(initialState),
             head: stringifyHeadData(headData),

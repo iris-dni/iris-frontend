@@ -1,3 +1,5 @@
+import { assign } from 'lodash/object';
+
 import {
   REQUEST_PETITION,
   CLEAR_PETITION,
@@ -19,7 +21,7 @@ export default function petition (state = initialState, action) {
     case REQUEST_PETITION:
     case SUBMITTING_PETITION:
     case SUBMITTING_SUPPORT:
-      return Object.assign({},
+      return assign({},
         state, {
           isLoading: true
         }
@@ -29,27 +31,27 @@ export default function petition (state = initialState, action) {
     case RESPONDED_TO_PETITION:
     case PUBLISHED_PETITION:
     case SUPPORTED_PETITION:
-      return Object.assign({},
+      return assign({},
         state, action.petition, {
           isLoading: false
         }
       );
     case RECEIVE_PETITION:
-      return Object.assign({},
+      return assign({},
         state, action.petition, {
           isLoading: false,
           found: true
         }
       );
     case PETITION_NOT_FOUND:
-      return Object.assign({},
+      return assign({},
         state, initialState, {
           isLoading: false,
           found: false
         }
       );
     case CLEAR_PETITION:
-      return Object.assign({});
+      return assign({});
     default:
       return state;
   }

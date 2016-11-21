@@ -1,3 +1,5 @@
+import { assign } from 'lodash/object';
+
 import {
   SUBMITTING_IMAGE,
   CREATED_IMAGE
@@ -10,7 +12,7 @@ const initialState = {
 export default function images (state = initialState, action) {
   switch (action.type) {
     case SUBMITTING_IMAGE:
-      return Object.assign({},
+      return assign({},
         state, {
           isLoading: true
         }
@@ -19,7 +21,7 @@ export default function images (state = initialState, action) {
       const appendedImages = state.images.concat([
         action.file.id
       ]);
-      return Object.assign({},
+      return assign({},
         state,
         {
           images: appendedImages,
