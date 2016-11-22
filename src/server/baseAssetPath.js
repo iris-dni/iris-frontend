@@ -1,4 +1,6 @@
+const isProduction = process.env.NODE_ENV === 'production';
+
 export default [
-  process.env.NODE_ENV === 'production' ? '' : '//localhost:8080',
+  !isProduction ? '//localhost:8080' : '',
   'dist'
 ].join('/');
