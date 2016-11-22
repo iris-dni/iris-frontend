@@ -20,7 +20,7 @@ describe('image proxy', () => {
       server.injectThen('/images?domain=https://test.com&url=/4891e30ddceb44008b252cb5ff9ac6bc')
         .then(response => {
           const actual = response.headers.location;
-          const expected = 'https://test.com?url=/4891e30ddceb44008b252cb5ff9ac6bc&sig=e850e88f08d8783abf8f5403c30fdc4fa02ef536';
+          const expected = 'https://test.com?url=/4891e30ddceb44008b252cb5ff9ac6bc&deg=auto&op=rotate,resize&sig=82412667dc66ec3985e28189e7e3c84ffc78f8e1';
 
           assert.equal(actual, expected);
           done();
@@ -44,7 +44,7 @@ describe('image proxy', () => {
       server.injectThen('/images?domain=https://test.com&url=/4891e30ddceb44008b252cb5ff9ac6bc&w=1000&h=300')
         .then(response => {
           const actual = response.headers.location;
-          const expected = 'https://test.com?url=/4891e30ddceb44008b252cb5ff9ac6bc&w=1000&h=300&sig=112f36f972eb890175dd06424b583bb2f70ad7da';
+          const expected = 'https://test.com?url=/4891e30ddceb44008b252cb5ff9ac6bc&w=1000&h=300&deg=auto&op=rotate,resize&sig=33b2901eeed834c0d36a64a88b4007858d30cc36';
 
           assert.equal(actual, expected);
           done();
