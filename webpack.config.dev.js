@@ -41,14 +41,14 @@ config.devtool = 'eval';
 config.pathinfo = true;
 config.devServer = devServer;
 config.entry.client.unshift(
-  'webpack-dev-server/client?http://localhost:8080',
+  'webpack-dev-server/client?' + devServer.assetsUrl,
   'webpack/hot/only-dev-server'
 );
 config.entry.widget.unshift(
-  'webpack-dev-server/client?http://localhost:8080',
+  'webpack-dev-server/client?' + devServer.assetsUrl,
   'webpack/hot/only-dev-server'
 );
-config.output.publicPath = 'http://localhost:8080/dist/';
+config.output.publicPath = devServer.publicPath;
 config.output.hotUpdateMainFilename = 'update/[hash]/update.json';
 config.output.hotUpdateChunkFilename = 'update/[hash]/[id].update.js';
 

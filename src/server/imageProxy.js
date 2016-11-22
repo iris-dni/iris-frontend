@@ -9,6 +9,10 @@ export default (request, reply) => {
 
   // Create query string, removed path
   const queryString = omit(query, 'domain');
+  // Always respect image rotations
+  queryString.deg = 'auto';
+  queryString.op = 'rotate,resize';
+  // Encode query string for signature
   const encodedQueryString = encodeParams(queryString);
 
   // Return 404 if if no domain or url params are given

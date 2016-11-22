@@ -5,10 +5,10 @@ import server from 'server';
 const { assert } = chai;
 
 describe('email confirmation', () => {
-  context('/support route', () => {
+  context('/supporter route', () => {
     context('without a key', () => {
       it('responds with 500 status', done => {
-        server.injectThen('/confirm/email/support')
+        server.injectThen('/confirm/email/supporter')
           .then(response => {
             const actual = response.statusCode;
             const expected = 500;
@@ -34,7 +34,7 @@ describe('email confirmation', () => {
           response: { error: [] }
         });
 
-        server.injectThen('/confirm/email/support?key=1234')
+        server.injectThen('/confirm/email/supporter?key=1234')
           .then(response => {
             const actual = response.statusCode;
             const expected = 200;
@@ -47,7 +47,7 @@ describe('email confirmation', () => {
 
     context('with an invalid key', () => {
       it('responds with 500 status', done => {
-        server.injectThen('/confirm/email/support?key=invalid1334')
+        server.injectThen('/confirm/email/supporter?key=invalid1334')
           .then(response => {
             const actual = response.statusCode;
             const expected = 500;
