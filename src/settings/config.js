@@ -9,6 +9,7 @@ export default {
     initOptions: {}
   },
   daysToVote: 30,
+  daysForResponse: 40,
   emailRegex: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
   telephoneRegex: /^(\+43|0043|\+49|0049|\+41|0041)[ 0-9]{4,}$/i,
   petitionsPerPage: 12,

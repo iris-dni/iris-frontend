@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import getPetitionProcessing from 'selectors/petitionProcessing';
 import getPetitionSupporters from 'selectors/petitionSupporters';
 import getPetitionClosed from 'selectors/petitionClosed';
-import getPetitionResponseTimeMetrics from 'selectors/petitionResponseTimeMetrics';
+import getPetitionResponseDaysPending from 'helpers/getPetitionResponseDaysPending';
 import PetitionResponseStatus from 'components/PetitionResponseStatus';
 
 const PetitionResponseStatusContainer = (props) => (
@@ -12,10 +12,10 @@ const PetitionResponseStatusContainer = (props) => (
 
 const mapStateToProps = ({ petition, petitionResponse }) => ({
   ...getPetitionSupporters(petition),
-  ...getPetitionResponseTimeMetrics(petition),
+  daysPending: getPetitionResponseDaysPending(petition.dc),
+  name: petition.city_answer && petition.city_answer.name,
   pending: getPetitionProcessing(petition),
-  closed: getPetitionClosed(petition),
-  name: petition.city_answer && petition.city_answer.name
+  closed: getPetitionClosed(petition)
 });
 
 PetitionResponseStatusContainer.propTypes = {
