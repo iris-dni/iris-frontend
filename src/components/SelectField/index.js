@@ -3,10 +3,10 @@ import styles from './select-field.scss';
 import SelectWrapper from 'components/SelectWrapper';
 import domOnlyProps from 'form/domOnlyProps';
 
-const SelectField = ({ value, name, options, html, helper }) => (
+const SelectField = ({ value, id, name, options, html, helper }) => (
   <SelectWrapper>
     <select {...domOnlyProps(helper)}
-      id={name}
+      id={id || name}
       name={name}
       value={helper.value || ''}
       className={styles[helper.value ? 'select' : 'placeholder']}>

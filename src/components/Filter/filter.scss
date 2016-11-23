@@ -1,7 +1,9 @@
 @import 'globals';
 
 .select {
-  @include map-declarations($form-fields-defaults);
+  @include map-declarations($form-fields-defaults, (
+    'padding': 8px
+  ));
   appearance: none;
   background-color: color('white');
   border-color: color('grey');

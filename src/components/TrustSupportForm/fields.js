@@ -2,34 +2,6 @@ import settings from 'settings';
 
 export default [
   {
-    element: 'SelectField',
-    name: 'user.salutation',
-    label: settings.trustFields.salutation.label,
-    hint: settings.trustFields.salutation.hint,
-    half: true,
-    options: [
-      {
-        value: 'Miss',
-        label: 'Miss'
-      },
-      {
-        value: 'Mrs',
-        label: 'Mrs'
-      },
-      {
-        value: 'Mr',
-        label: 'Mr'
-      },
-      {
-        value: 'Other',
-        label: 'Other'
-      }
-    ],
-    html: {
-      placeholder: 'Please select'
-    }
-  },
-  {
     element: 'input',
     name: 'user.firstname',
     label: settings.trustFields.firstname.label,
