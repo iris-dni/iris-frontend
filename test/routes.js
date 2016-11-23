@@ -253,9 +253,9 @@ describe('GET a not defined route', () => {
   });
 });
 
-describe('GET /trust/support/:id', () => {
+describe('GET /respond/123456', () => {
   it('responds with 200', done => {
-    server.injectThen('/trust/support/1BV3l')
+    server.injectThen('/respond/123456')
       .then(response => {
         const actual = response.statusCode;
         const expected = 200;
@@ -265,6 +265,19 @@ describe('GET /trust/support/:id', () => {
       });
   });
 });
+
+// describe('GET /trust/support/:id', () => {
+//   it('responds with 200', done => {
+//     server.injectThen('/trust/support/1BV3l')
+//       .then(response => {
+//         const actual = response.statusCode;
+//         const expected = 200;
+
+//         assert.equal(actual, expected);
+//         done();
+//       });
+//   });
+// });
 
 // describe('GET /trust/publish/:id', () => {
 //   it('responds with 200', done => {
@@ -279,18 +292,18 @@ describe('GET /trust/support/:id', () => {
 //   });
 // });
 
-describe('GET /trust/support/:id/confirmation', () => {
-  it('responds with 200', done => {
-    server.injectThen('/trust/support/1BV3l/confirm')
-      .then(response => {
-        const actual = response.statusCode;
-        const expected = 200;
+// describe('GET /trust/support/:id/confirmation', () => {
+//   it('responds with 200', done => {
+//     server.injectThen('/trust/support/1BV3l/confirm')
+//       .then(response => {
+//         const actual = response.statusCode;
+//         const expected = 200;
 
-        assert.equal(actual, expected);
-        done();
-      });
-  });
-});
+//         assert.equal(actual, expected);
+//         done();
+//       });
+//   });
+// });
 
 // describe('GET /trust/publish/:id/confirmation', () => {
 //   it('responds with 200', done => {
@@ -304,16 +317,3 @@ describe('GET /trust/support/:id/confirmation', () => {
 //       });
 //   });
 // });
-
-describe('GET /respond/123456', () => {
-  it('responds with 200', done => {
-    server.injectThen('/respond/123456')
-      .then(response => {
-        const actual = response.statusCode;
-        const expected = 200;
-
-        assert.equal(actual, expected);
-        done();
-      });
-  });
-});

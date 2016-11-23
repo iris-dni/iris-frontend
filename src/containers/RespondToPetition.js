@@ -14,8 +14,7 @@ import getPetitionResponseForm from 'selectors/petitionResponseForm';
 const RespondToPetitionContainer = withRouter(React.createClass({
   componentWillMount () {
     const {
-      petitionResponse,
-      fetchPetitionByResponseToken,
+      petitionResponse, fetchPetitionByResponseToken,
       params: { token }
     } = this.props;
 
