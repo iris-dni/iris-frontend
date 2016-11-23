@@ -52,7 +52,7 @@
 }
 
 .hidden {
-  font-size: 0;
+  @include visuallyhidden;
 }
 
 .right {

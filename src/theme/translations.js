@@ -341,6 +341,9 @@ export default {
     "instructions": "To complete your phone number verification, please enter the 5-digit activation code."
   },
   "trustFields": {
+    "salutation": {
+      "label": "Gender"
+    },
     "firstname": {
       "label": "First name",
       "placeholder": "First name"
