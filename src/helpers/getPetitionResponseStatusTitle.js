@@ -1,7 +1,7 @@
 import settings from 'settings';
+import getPetitionProcessing from 'selectors/petitionProcessing';
 
-export default ({ pending, total, required, responseDaysPending }) => {
-  const key = pending ? 'pending' : 'arrived';
-
-  return settings.petitionResponseStatus[key].title;
+export default (petition = {}) => {
+  const petitionProcessing = getPetitionProcessing(petition);
+  return settings.petitionResponseStatus[petitionProcessing ? 'pending' : 'arrived'].title;
 };

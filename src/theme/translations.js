@@ -48,11 +48,11 @@ export default {
     "attachedLinks": "Further reading about petition:",
     "attachedMentions": "Sites mentioning this petition:",
     "supportButton": {
-      "text": "Support Petition",
+      "text": "Support petition",
       "supportedText": "Supported",
-      "unsupportableText": "Not Supportable",
-      "endedText": "Petition Ended",
-      "closedText": "Petition Closed"
+      "unsupportableText": "Not supportable",
+      "endedText": "Petition ended",
+      "closedText": "Petition closed"
     },
     "cityResponse": "Official response:",
     "tags": {
