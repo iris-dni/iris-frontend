@@ -23,7 +23,10 @@ export const mapDispatchToProps = (dispatch) => ({
 
 TrustPublishConfirmationContainer.propTypes = {
   petition: React.PropTypes.object.isRequired,
-  me: React.PropTypes.object.isRequired
+  me: React.PropTypes.oneOfType([
+    React.PropTypes.object,
+    React.PropTypes.bool
+  ]).isRequired
 };
 
 export default connect(
