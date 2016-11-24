@@ -42,6 +42,10 @@ export default {
       "trending": "Trending"
     }
   },
+  "noResults": {
+    "title": "No petitions found",
+    "text": "Please try a new search filter, [browse all petitions](/petitions) or why not [create a petition](/petitions/new) yourself?"
+  },
   "petitionPage": {
     "description": "Description:",
     "suggestedSolution": "Suggested solution:",

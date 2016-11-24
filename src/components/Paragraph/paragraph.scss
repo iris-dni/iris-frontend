@@ -6,6 +6,24 @@
   margin-bottom: 25px;
 }
 
+.root:last-child {
+  margin-bottom: 0;
+}
+
+.root a {
+  padding-bottom: 1px;
+  text-decoration: none;
+  color: color('secondary');
+  border-bottom: 1px solid color('secondary');
+}
+
+.root a:hover,
+.root a:active,
+.root a:focus {
+  color: color('primary');
+  border-bottom-color: color('primary');
+}
+
 .no-margin {
   margin-bottom: 0;
 }
