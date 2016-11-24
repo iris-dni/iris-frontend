@@ -7,6 +7,7 @@ import Autocomplete from 'containers/Autocomplete';
 import PetitionLinksField from 'containers/PetitionLinksField';
 import ImageField from 'containers/ImageField';
 import FormFieldWrapper from 'components/FormFieldWrapper';
+import SelectField from 'components/SelectField';
 
 const FormField = React.createClass({
   render () {
@@ -18,6 +19,14 @@ const FormField = React.createClass({
       case 'Autocomplete':
         Field = (
           <Autocomplete
+            helper={helper}
+            {...config}
+          />
+        );
+        break;
+      case 'SelectField':
+        Field = (
+          <SelectField
             helper={helper}
             {...config}
           />
