@@ -6,10 +6,18 @@
   margin-bottom: 25px;
 }
 
-.root:last-child {
+.small {
+  margin-bottom: 20px;
+  font-size: 1em;
+}
+
+.no-margin {
   margin-bottom: 0;
 }
 
+/*
+ * Markdown generated items
+ */
 .root a {
   padding-bottom: 1px;
   text-decoration: none;
@@ -24,10 +32,18 @@
   border-bottom-color: color('primary');
 }
 
-.no-margin {
-  margin-bottom: 0;
+.root {
+  p, ul, ol {
+    margin-bottom: 25px;
+  }
 }
 
 .small {
-  font-size: 1em;
+  p, ul, ol {
+    margin-bottom: 20px;
+  }
+}
+
+.root:last-child {
+  margin-bottom: 0;
 }

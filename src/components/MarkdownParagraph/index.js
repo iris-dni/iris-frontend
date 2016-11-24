@@ -17,6 +17,7 @@ const MarkdownParagraph = ({ text, margin, size }) => (
       'CodeBlock',
       'ThematicBreak'
     ]}
+    softBreak={'br'}
     source={text} />
   : null
 );
