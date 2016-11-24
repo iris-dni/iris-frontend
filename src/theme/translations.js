@@ -465,7 +465,7 @@ export default {
         },
         {
           "title": "Contact details",
-          "text": "Name\n\nStreet Address\n\nZip Code\n\nCity\n\nCountry"
+          "text": "Name\nStreet Address\nZip Code\nCity\nCountry"
         }
       ]
     }
