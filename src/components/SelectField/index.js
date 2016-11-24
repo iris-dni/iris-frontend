@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './select-field.scss';
 import SelectWrapper from 'components/SelectWrapper';
 import domOnlyProps from 'form/domOnlyProps';
+import fieldIsInvalid from 'form/fieldIsInvalid';
+import getFieldClassname from 'form/getFieldClassname';
 
 const SelectField = ({ value, id, name, options, html, helper }) => (
   <SelectWrapper>
@@ -9,7 +11,7 @@ const SelectField = ({ value, id, name, options, html, helper }) => (
       id={id || name}
       name={name}
       value={helper.value || ''}
-      className={styles[helper.value ? 'select' : 'placeholder']}>
+      className={getFieldClassname(styles, (helper.value ? 'select' : 'placeholder'), fieldIsInvalid(helper))}>
       {html.placeholder &&
         <option value=''>{html.placeholder}</option>
       }
