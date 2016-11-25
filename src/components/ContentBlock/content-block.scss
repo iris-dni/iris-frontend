@@ -1,5 +1,5 @@
 @import 'globals';
-@import '../paragraph/paragraph';
+@import '../Paragraph/paragraph';
 
 .content {
   @include markdown-content;
