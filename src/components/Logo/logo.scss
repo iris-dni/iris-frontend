@@ -2,12 +2,13 @@
 
 .image {
   display: block;
-  max-width: 100%;
-  max-height: 34px;
+  max-width: 150px;
+  max-height: 100%;
 }
 
 .text {
   font-size: inherit;
   font-weight: bold;
   color: color('tertiary');
+  text-decoration: none;
 }
