@@ -14,8 +14,7 @@ const MarkdownParagraph = ({ text, margin, size }) => (
       'Table',
       'BlockQuote',
       'Code',
-      'CodeBlock',
-      'ThematicBreak'
+      'CodeBlock'
     ]}
     softBreak={'br'}
     source={text} />
