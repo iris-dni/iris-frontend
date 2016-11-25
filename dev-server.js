@@ -1,4 +1,4 @@
-var assetsUrl = 'http://localhost:8080';
+var assetsUrl = process.env.DEV_ASSETS || 'http://localhost:8080';
 
 module.exports = {
   assetsUrl: assetsUrl,

@@ -1,13 +1,21 @@
 @import 'globals';
 
 .root {
-  margin-top: 12px;
+  margin-top: 15px;
 }
 
-.link a:link,
-.link a:visited {
-  font-weight: bold;
-  border-bottom: 0;
+.link-text {
+  text-decoration: none;
+}
+
+.link-image {
+  text-decoration: none;
+  display: inline-block;
+  height: 22px;
+  vertical-align: middle;
+  position: relative;
+  margin-left: 5px;
+  top: -1px;
 }
 
 .text {

@@ -27,15 +27,18 @@
   margin-top: 20px;
 }
 
-.image-centered {
-  composes: image;
-  width: 80%;
+.centered {
+  width: 70%;
   max-width: 300px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 }
 
-.image-centered img {
+.centered img {
   display: inline-block;
+}
+
+.slim {
+  max-width: 150px;
 }

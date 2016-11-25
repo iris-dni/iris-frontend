@@ -403,6 +403,7 @@ export default {
           "text": "Anyone can create petition for their region, you do not need to be part of an organisation. All you need to do is have a valid mobile number to verify who you are.",
           "image": {
             "centered": true,
+            "slim": true,
             "src": "/dist/assets/images/petition-graphic.svg",
             "alt": "Petition graphic"
           }
@@ -412,6 +413,7 @@ export default {
           "text": "Once created, share the petition with other people to create awareness about your cause. Each petition runs for 30 days.",
           "image": {
             "centered": true,
+            "slim": true,
             "src": "/dist/assets/images/signature-graphic.svg",
             "alt": "Signature graphic"
           }
@@ -421,6 +423,7 @@ export default {
           "text": "If your petition reaches the target for that city, we will start an official process by sending a letter to the relevant city council member.",
           "image": {
             "centered": true,
+            "slim": true,
             "src": "/dist/assets/images/email-graphic.svg",
             "alt": "Email graphic"
           }

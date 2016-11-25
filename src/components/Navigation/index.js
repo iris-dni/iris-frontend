@@ -8,6 +8,9 @@ import MenuItems from 'components/MenuItems';
 import MenuTrigger from 'components/MenuTrigger';
 import styles from './navigation.scss';
 
+const LOGO_TEXT = settings.logo;
+const LOGO_PATH = settings.logoPath;
+
 const Navigation = React.createClass({
   getClassName (defaultClass) {
     const opened = this.props.opened
@@ -55,10 +58,10 @@ const Navigation = React.createClass({
           <div className={styles.wrapper}>
             <IndexLink
               to='/'
-              className={styles[settings.logoPath ? 'logo-image' : 'logo-text']}
+              className={styles[LOGO_PATH ? 'logo-image' : 'logo-text']}
               onClick={this.props.closeMobileMenu}
             >
-              <Logo />
+              <Logo image={LOGO_PATH} text={LOGO_TEXT} />
             </IndexLink>
 
             <MenuTrigger
