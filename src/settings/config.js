@@ -4,10 +4,7 @@ export default {
   title: 'iris-frontend',
   logoPath: '',
   twitterAccount: 'azmedien',
-  googleAnalytics: {
-    APIKey: '',
-    initOptions: {}
-  },
+  googleAnalyticsID: 'UA-XXXXX-Y',
   daysToVote: 30,
   daysForResponse: 40,
   emailRegex: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
