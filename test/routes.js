@@ -530,3 +530,124 @@ describe('GET /respond/123456', () => {
       });
   });
 });
+
+describe('GET /confirm/email/supporter', () => {
+  context('with a valid key', done => {
+    beforeEach(() => {
+      moxios.install();
+    });
+
+    afterEach(() => {
+      moxios.uninstall();
+    });
+
+    it('responds with 200', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: { data: '' }
+      });
+
+      server.injectThen('/confirm/email/supporter?key=xxx')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 200;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+
+  context('with an invalid key', done => {
+    it('responds with 500', done => {
+      server.injectThen('/confirm/email/supporter?key=xxx')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 500;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+
+  context('without a key', done => {
+    it('responds with 200', done => {
+      server.injectThen('/confirm/email/supporter')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 500;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+});
+
+describe('GET /confirm/email/petition', () => {
+  context('with a valid key', done => {
+    beforeEach(() => {
+      moxios.install();
+    });
+
+    afterEach(() => {
+      moxios.uninstall();
+    });
+
+    it('responds with 200', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: { data: '' }
+      });
+
+      server.injectThen('/confirm/email/petition?key=xxx')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 200;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+
+  context('with an invalid key', done => {
+    it('responds with 500', done => {
+      server.injectThen('/confirm/email/petition')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 500;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+
+  context('without a key', done => {
+    it('responds with 500', done => {
+      server.injectThen('/confirm/email/petition')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 500;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+});
+
+describe('GET /confirm/email/invalid', () => {
+  it('responds with 404', done => {
+    server.injectThen('/confirm/email/invalid')
+      .then(response => {
+        const actual = response.statusCode;
+        const expected = 404;
+
+        assert.equal(actual, expected);
+        done();
+      });
+  });
+});
