@@ -4,5 +4,5 @@ export default (me) => !!me &&
   !!me.firstname &&
   !!me.lastname &&
   !!me.street &&
-  // !!me.town &&
+  !!me.town &&
   !!me.zip;
