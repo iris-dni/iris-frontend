@@ -1,9 +1,11 @@
+import petitionOwned from 'selectors/petitionOwned';
+
 export default (petition, me) => ({
   initialValues: {
     // For TrustSupportForm
     user: me || {},
     // For TrustPublishForm
-    owner: petition.owner || {}
+    owner: petitionOwned(petition) ? petition.owner : me || {}
   },
   mobileConfirmed: (me && me.mobile_trusted) || false,
   petition: petition || {},
