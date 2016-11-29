@@ -2,7 +2,9 @@
 
 .shared {
   display: block;
+  overflow: hidden;
   width: 100%;
+  background-color: color('grey-light');
 }
 
 .regular {
@@ -27,4 +29,20 @@
   @include media('>text-boost') {
     height: 10px;
   }
+}
+
+.bar {
+  display: block;
+  background-color: color('primary');
+  height: 100%;
+  animation-delay: 0.5s;
+  animation: slideAcross 1.5s ease-out;
+}
+
+@keyframes slideAcross {
+  from {
+    transform: translateX(-100%); }
+
+  to {
+    transform: translateX(0); }
 }
