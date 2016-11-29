@@ -7,13 +7,12 @@ require('custom-event-polyfill');
 // Begin App code
 import React from 'react';
 import { render } from 'react-dom';
-import { compose, createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { match, Router, browserHistory, applyRouterMiddleware } from 'react-router';
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import { useScroll } from 'react-router-scroll';
 import thunkMiddleware from 'redux-thunk';
-import persistState from 'redux-localstorage';
 import reducers from 'reducers/client';
 import routes from 'routers/client';
 
@@ -22,15 +21,14 @@ import getHistory from 'helpers/getHistory';
 
 const initialState = window.__INITIAL_STATE__ || {};
 
-const enhancer = compose(
+const store = createStore(
+  reducers,
+  initialState,
   applyMiddleware(
     routerMiddleware(browserHistory),
     thunkMiddleware
-  ),
-  persistState(['me', 'petition', 'form'], { key: 'iris' })
+  )
 );
-
-const store = createStore(reducers, initialState, enhancer);
 
 syncHistoryWithStore(browserHistory, store);
 
