@@ -1,6 +1,5 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchPetitionByResponseToken, respondToPetition } from 'actions/RespondActions';
 import settings from 'settings';
@@ -11,26 +10,14 @@ import RespondedToPetition from 'components/RespondedToPetition';
 import getPetitionForm from 'selectors/petitionForm';
 import getPetitionResponseForm from 'selectors/petitionResponseForm';
 
-const RespondToPetitionContainer = withRouter(React.createClass({
-  componentWillMount () {
-    const {
-      petitionResponse, fetchPetitionByResponseToken,
-      params: { token }
-    } = this.props;
-
-    if (!petitionResponse.saved) {
-      fetchPetitionByResponseToken(token);
-    }
-  },
-
+const RespondToPetitionContainer = React.createClass({
   render () {
     const { petition, petitionResponse } = this.props;
-    const isLoading = petition.isLoading && petitionResponse.isLoading;
 
     return (
       <div>
         <Helmet title={settings.respondToPetitionPage.title} />
-        <Loading isLoading={isLoading} onServer={__SERVER__}>
+        <Loading isLoading={petitionResponse.isLoading} onServer={__SERVER__}>
           <div>
             {petitionResponse.saved &&
               <RespondedToPetition
@@ -57,7 +44,7 @@ const RespondToPetitionContainer = withRouter(React.createClass({
       </div>
     );
   }
-}));
+});
 
 RespondToPetitionContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetitionByResponseToken(params.token));

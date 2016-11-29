@@ -4,14 +4,22 @@ import FormLayout from 'components/FormLayout';
 import RespondToPetitionForm from 'components/RespondToPetitionForm';
 import RespondToPetitionDetails from 'components/RespondToPetitionDetails';
 import RespondToPetitionHints from 'components/RespondToPetitionHints';
-import Paragraph from 'components/Paragraph';
+import getPetitionOwner from 'selectors/petitionOwner';
+import getPetitionCity from 'selectors/petitionCity';
+import getPetitionPath from 'helpers/getPetitionPath';
 
 const RespondToPetition = ({ petition, petitionResponse, router }) => (
   <FormLayout
-    title={settings.respondToPetitionPage.title}>
-    <RespondToPetitionDetails petition={petition} />
-    <Paragraph>{settings.respondToPetitionPage.intro}</Paragraph>
-    <RespondToPetitionHints petition={petition} />
+    title={settings.respondToPetitionPage.title}
+    intro={settings.respondToPetitionPage.intro}>
+    <RespondToPetitionDetails
+      title={petition.title}
+      link={getPetitionPath(petition.id)}
+      author={getPetitionOwner(petition)}
+      city={getPetitionCity(petition).name}
+      supporters={petition.supporters.amount}
+    />
+    <RespondToPetitionHints />
     <RespondToPetitionForm
       initialValues={petitionResponse}
       petition={petition}

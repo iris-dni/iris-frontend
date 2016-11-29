@@ -1,0 +1,35 @@
+{
+  "data": {
+    "city": null,
+    "city_answer": {
+      "name": "Jane Doe, Mayor",
+      "text": "Nam magnam labore nihil accusantium. Magnam deleniti dolorem illum rerum."
+    },
+    "description": "Consectetur numquam dicta numquam assumenda reiciendis. Alias nostrum velit harum. Delectus doloremque debitis eveniet dolores. Aliquid rem assumenda repudiandae aut neque.\nLabore at amet tempora inventore assumenda culpa. Numquam exercitationem quos quisquam. Placeat eum quam repudiandae magni. Quo veniam corrupti dolore incidunt quisquam quo.\nAnimi sequi expedita quaerat ipsa neque aliquid sint. Non dolore cum nam laboriosam. Tenetur tempore inventore alias cupiditate beatae unde. Similique at veniam natus assumenda aspernatur reiciendis.\nCorporis nostrum veniam sequi porro provident officia alias. Voluptatibus aliquam sit ab in nostrum eaque. Molestiae error ipsa vel veritatis dicta in. Voluptas eligendi numquam fugiat asperiores delectus tenetur.\nEx laudantium et sunt vero blanditiis error. Veniam sunt laboriosam corporis quam sed dignissimos. Nostrum quo et incidunt optio iste.",
+    "links": [],
+    "title": "Nemo nulla magni eaque iste.",
+    "suggested_solution": "Nam magnam labore nihil accusantium. Magnam deleniti dolorem illum rerum. Nesciunt fugiat officia sequi a eius dolorem cum.\nMagnam asperiores similique eaque architecto quisquam. Facere exercitationem placeat libero quasi omnis. Asperiores provident eos error eos. Doloremque iusto molestiae provident ab voluptatibus perspiciatis adipisci maxime.\nAsperiores aliquam quis officiis asperiores fugiat. Nisi dolores dolorum nam corrupti libero architecto. Doloribus corporis eos culpa porro dolore.",
+    "dc": {
+      "expires": null,
+      "modified": "2016-08-02T03:33:21",
+      "effective": null,
+      "created": "2016-08-02T03:33:21"
+    },
+    "owner": null,
+    "state": {
+      "name": "rejected"
+    },
+    "videos": [],
+    "images": [],
+    "response_token": null,
+    "type": "",
+    "id": 42,
+    "tags": [
+      "shop"
+    ],
+    "supporters": {
+      "amount": 19,
+      "required": 30
+    }
+  }
+}
