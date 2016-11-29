@@ -3,6 +3,8 @@ import chai from 'chai';
 import server from 'server';
 import mockPetition from './mocks/petition';
 import mockPetitionSupportable from './mocks/petitionSupportable';
+import mockPetitionProcessing from './mocks/petitionProcessing';
+import mockPetitionRejected from './mocks/petitionRejected';
 import mockPetitions from './mocks/petitions';
 
 const { assert } = chai;
@@ -172,20 +174,40 @@ describe('GET /petitions/:id', () => {
     moxios.uninstall();
   });
 
-  it('responds with 200', done => {
-    moxios.stubRequest(/.*/, {
-      status: 200,
-      response: mockPetition
-    });
-
-    server.injectThen('/petitions/1BV3l')
-      .then(response => {
-        const actual = response.statusCode;
-        const expected = 200;
-
-        assert.equal(actual, expected);
-        done();
+  context('for a regular petition', done => {
+    it('responds with 200', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetition
       });
+
+      server.injectThen('/petitions/1BV3l')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 200;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+
+  context('for a rejected petition', done => {
+    it('responds with 301', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetitionRejected
+      });
+
+      server.injectThen('/petitions/1BV3l')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 301;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
   });
 });
 
@@ -209,6 +231,24 @@ describe('GET /petitions/:id/edit', () => {
         .then(response => {
           const actual = response.statusCode;
           const expected = 301;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+
+  context('for a rejected petition', done => {
+    it('responds with 200', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetitionRejected
+      });
+
+      server.injectThen('/petitions/1BV3l/edit')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 200;
 
           assert.equal(actual, expected);
           done();
@@ -373,6 +413,98 @@ describe('GET /trust/publish/:id/confirm', () => {
   });
 });
 
+describe('GET /trust/support/:id', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
+  context('for an unsupportable petition', done => {
+    it('responds with 301', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetitionProcessing
+      });
+
+      server.injectThen('/trust/support/1BV3l')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 301;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+
+  context('for a supportable petition', done => {
+    it('responds with 200', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetitionSupportable
+      });
+
+      server.injectThen('/trust/support/1BV3l')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 200;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+});
+
+describe('GET /trust/support/:id/confirm', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
+  context('for an unsupportable petition', done => {
+    it('responds with 301', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetitionProcessing
+      });
+
+      server.injectThen('/trust/support/1BV3l/confirm')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 301;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+
+  context('for a supportable petition', done => {
+    it('responds with 200', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetitionSupportable
+      });
+
+      server.injectThen('/trust/support/1BV3l/confirm')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 200;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+});
+
 describe('GET a not defined route', () => {
   it('responds with 404', done => {
     server.injectThen('/not-defined')
@@ -398,55 +530,3 @@ describe('GET /respond/123456', () => {
       });
   });
 });
-
-// describe('GET /trust/support/:id', () => {
-//   it('responds with 200', done => {
-//     server.injectThen('/trust/support/1BV3l')
-//       .then(response => {
-//         const actual = response.statusCode;
-//         const expected = 200;
-
-//         assert.equal(actual, expected);
-//         done();
-//       });
-//   });
-// });
-
-// describe('GET /trust/publish/:id', () => {
-//   it('responds with 200', done => {
-//     server.injectThen('/trust/publish/1BV3l')
-//       .then(response => {
-//         const actual = response.statusCode;
-//         const expected = 200;
-
-//         assert.equal(actual, expected);
-//         done();
-//       });
-//   });
-// });
-
-// describe('GET /trust/support/:id/confirmation', () => {
-//   it('responds with 200', done => {
-//     server.injectThen('/trust/support/1BV3l/confirm')
-//       .then(response => {
-//         const actual = response.statusCode;
-//         const expected = 200;
-
-//         assert.equal(actual, expected);
-//         done();
-//       });
-//   });
-// });
-
-// describe('GET /trust/publish/:id/confirmation', () => {
-//   it('responds with 200', done => {
-//     server.injectThen('/trust/publish/1BV3l/confirm')
-//       .then(response => {
-//         const actual = response.statusCode;
-//         const expected = 200;
-
-//         assert.equal(actual, expected);
-//         done();
-//       });
-//   });
-// });
