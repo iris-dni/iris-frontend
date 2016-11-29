@@ -1,11 +1,8 @@
-{% if pageViewEvent %}
-<script>
-  var onClientSideRouteChange = function () {
-    /* Fire off an event to your own tracking
-       service to log a pageview from here
-       console.log('PAGE VIEW HAPPENED'); */
-  };
-
-  window.addEventListener('{{ pageViewEvent | trim }}', onClientSideRouteChange);
-</script>
+{% if googleAnalyticsID %}
+  <script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', '{{ googleAnalyticsID }}', 'auto');
+  ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
 {% endif %}

@@ -1,4 +1,5 @@
 import React from 'react';
+import settings from 'settings';
 import ReactDOMServer from 'react-dom/server';
 import Helmet from 'react-helmet';
 import { match, RouterContext } from 'react-router';
@@ -104,7 +105,8 @@ export default (request, reply, viewName = 'index') => {
             head: stringifyHeadData(headData),
             baseAssetPath: baseAssetPath,
             isProduction: process.env.NODE_ENV === 'production',
-            pageViewEvent: PAGEVIEW_EVENT_NAME
+            pageViewEvent: PAGEVIEW_EVENT_NAME,
+            googleAnalyticsID: settings.googleAnalyticsID
           }));
         })
         .catch((err) => {
