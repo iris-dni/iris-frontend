@@ -2,6 +2,7 @@ import moxios from 'moxios';
 import chai from 'chai';
 import server from 'server';
 import mockPetition from './mocks/petition';
+import mockPetitionSupportable from './mocks/petitionSupportable';
 import mockPetitions from './mocks/petitions';
 
 const { assert } = chai;
@@ -188,57 +189,189 @@ describe('GET /petitions/:id', () => {
   });
 });
 
-// describe('GET /petitions/:id/edit', () => {
-//   beforeEach(() => {
-//     moxios.install();
-//   });
+describe('GET /petitions/:id/edit', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
 
-//   afterEach(() => {
-//     moxios.uninstall();
-//   });
+  afterEach(() => {
+    moxios.uninstall();
+  });
 
-//   it('responds with 200', done => {
-//     moxios.stubRequest(/.*/, {
-//       status: 200,
-//       response: mockPetition
-//     });
+  context('for a supportable petition', done => {
+    it('responds with 301', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetitionSupportable
+      });
 
-//     server.injectThen('/petitions/1BV3l/edit')
-//       .then(response => {
-//         const actual = response.statusCode;
-//         const expected = 200;
+      server.injectThen('/petitions/1BV3l/edit')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 301;
 
-//         assert.equal(actual, expected);
-//         done();
-//       });
-//   });
-// });
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
 
-// describe('GET /petitions/:id/preview', () => {
-//   beforeEach(() => {
-//     moxios.install();
-//   });
+  context('for a draft petition', done => {
+    it('responds with 200', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetition
+      });
 
-//   afterEach(() => {
-//     moxios.uninstall();
-//   });
+      server.injectThen('/petitions/1BV3l/edit')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 200;
 
-//   it('responds with 200', done => {
-//     moxios.stubRequest(/.*/, {
-//       status: 200,
-//       response: mockPetition
-//     });
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+});
 
-//     server.injectThen('/petitions/1BV3l/preview')
-//       .then(response => {
-//         const actual = response.statusCode;
-//         const expected = 200;
+describe('GET /petitions/:id/preview', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
 
-//         assert.equal(actual, expected);
-//         done();
-//       });
-//   });
-// });
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
+  context('for a supportable petition', done => {
+    it('responds with 301', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetitionSupportable
+      });
+
+      server.injectThen('/petitions/1BV3l/preview')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 301;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+
+  context('for a draft petition', done => {
+    it('responds with 200', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetition
+      });
+
+      server.injectThen('/petitions/1BV3l/preview')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 200;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+});
+
+describe('GET /trust/publish/:id', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
+  context('for a supportable petition', done => {
+    it('responds with 301', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetitionSupportable
+      });
+
+      server.injectThen('/trust/publish/1BV3l')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 301;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+
+  context('for a draft petition', done => {
+    it('responds with 200', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetition
+      });
+
+      server.injectThen('/trust/publish/1BV3l')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 200;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+});
+
+describe('GET /trust/publish/:id/confirm', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
+  context('for a supportable petition', done => {
+    it('responds with 301', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetitionSupportable
+      });
+
+      server.injectThen('/trust/publish/1BV3l/confirm')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 301;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+
+  context('for a draft petition', done => {
+    it('responds with 200', done => {
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockPetition
+      });
+
+      server.injectThen('/trust/publish/1BV3l/confirm')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 200;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+});
 
 describe('GET a not defined route', () => {
   it('responds with 404', done => {

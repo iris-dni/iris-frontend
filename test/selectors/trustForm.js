@@ -38,14 +38,14 @@ describe('trustForm selector', () => {
       assert.deepEqual(actual, expected);
     });
 
-    it('assigns me param as `owner` to `initialValues` key', () => {
+    it('assigns petition owner `owner` to `initialValues` key', () => {
       const result = getTrustForm(
         mockPetition.data,
         mockUser,
         {}
       );
       const actual = result.initialValues.owner;
-      const expected = mockUser;
+      const expected = mockPetition.data.owner;
 
       assert.deepEqual(actual, expected);
     });

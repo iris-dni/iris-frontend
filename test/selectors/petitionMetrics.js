@@ -1,6 +1,6 @@
 import chai from 'chai';
 import getPetitionMetrics from 'selectors/petitionMetrics';
-import { data as petition } from '../mocks/currentPetition';
+import { data as petition } from '../mocks/petitionSupportable';
 
 const { assert } = chai;
 
