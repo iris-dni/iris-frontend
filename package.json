@@ -81,6 +81,7 @@
     "react-router-scroll": "^0.3.2",
     "redux": "^3.5.2",
     "redux-form": "^5.3.2",
+    "redux-localstorage": "^0.4.1",
     "redux-thunk": "^2.1.0",
     "rezponsive": "^0.3.0",
     "sass-loader": "^4.0.0",
