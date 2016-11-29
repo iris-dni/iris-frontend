@@ -1,3 +1,4 @@
+import { push } from 'react-router-redux';
 import petitionRepository from 'services/api/repositories/petition';
 import settings from 'settings';
 
@@ -23,11 +24,9 @@ export function fetchPetitionByResponseToken (responseToken) {
       .then(response => dispatch(
         receivePetition({ ...response.data, token: responseToken })
       ))
-      .catch(err => {
-        if (err.response && err.response.status === 404) {
-          dispatch(petitionNotFound({ token: responseToken }));
-        }
-      });
+      .catch(() => dispatch(
+        petitionNotFound({ token: responseToken })
+      ));
   };
 }
 
@@ -35,7 +34,7 @@ export function respondToPetition (petitionResponse, dispatch) {
   dispatch(submittingPetition());
   return petitionRepository.respond(petitionResponse)
     .then((response) => {
-      dispatch(respondedToPetition(response.data));
+      dispatch(push(`/respond/${petitionResponse.token}/confirm`));
     }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));

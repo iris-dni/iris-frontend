@@ -8,7 +8,7 @@ import getPetitionOwner from 'selectors/petitionOwner';
 import getPetitionCity from 'selectors/petitionCity';
 import getPetitionPath from 'helpers/getPetitionPath';
 
-const RespondToPetition = ({ petition, petitionResponse, router }) => (
+const RespondToPetition = ({ petition, petitionResponse }) => (
   <FormLayout
     title={settings.respondToPetitionPage.title}
     intro={settings.respondToPetitionPage.intro}>

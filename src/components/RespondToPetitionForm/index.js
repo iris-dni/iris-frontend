@@ -8,25 +8,23 @@ import Button from 'components/Button';
 import settings from 'settings';
 import FIELDS from './fields';
 
-const RespondToPetitionForm = ({ petition, petitionResponse, fields, handleSubmit, submitting }) => {
-  return (
-    <form onSubmit={handleSubmit(respondToPetition)}>
-      <Fieldset>
-        <FormFieldsIterator
-          reduxFormFields={fields}
-          fieldsArray={FIELDS}
-        />
-      </Fieldset>
-      <Fieldset modifier={'actions'}>
-        <Button
-          text={settings.respondToPetitionForm.publishButton}
-          modifier={'accent'}
-          disabled={submitting || !fields._meta.allValid}
-        />
-      </Fieldset>
-    </form>
-  );
-};
+const RespondToPetitionForm = ({ petition, petitionResponse, fields, handleSubmit, submitting }) => (
+  <form onSubmit={handleSubmit(respondToPetition)}>
+    <Fieldset>
+      <FormFieldsIterator
+        reduxFormFields={fields}
+        fieldsArray={FIELDS}
+      />
+    </Fieldset>
+    <Fieldset modifier={'actions'}>
+      <Button
+        text={settings.respondToPetitionForm.publishButton}
+        modifier={'accent'}
+        disabled={submitting || !fields._meta.allValid}
+      />
+    </Fieldset>
+  </form>
+);
 
 RespondToPetitionForm.propTypes = {
   petition: React.PropTypes.object.isRequired,

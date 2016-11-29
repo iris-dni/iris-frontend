@@ -3,10 +3,8 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchPetitionByResponseToken, respondToPetition } from 'actions/RespondActions';
 import settings from 'settings';
-import Loading from 'components/Loading';
 import RespondToPetition from 'components/RespondToPetition';
 import PetitionResponseTokenError from 'components/PetitionResponseTokenError';
-import RespondedToPetition from 'components/RespondedToPetition';
 import getPetitionForm from 'selectors/petitionForm';
 import getPetitionResponseForm from 'selectors/petitionResponseForm';
 
@@ -17,30 +15,18 @@ const RespondToPetitionContainer = React.createClass({
     return (
       <div>
         <Helmet title={settings.respondToPetitionPage.title} />
-        <Loading isLoading={petitionResponse.isLoading} onServer={__SERVER__}>
-          <div>
-            {petitionResponse.saved &&
-              <RespondedToPetition
-                petition={petition}
-                petitionResponse={petitionResponse}
-              />
-            }
-
-            {!petition.saved && petition.found &&
-              <RespondToPetition
-                petition={petition}
-                petitionResponse={petitionResponse}
-              />
-            }
-
-            {!petition.saved && !petition.found &&
-              <PetitionResponseTokenError
-                petition={petition}
-                petitionResponse={petitionResponse}
-              />
-            }
-          </div>
-        </Loading>
+        {!!petition.found &&
+          <RespondToPetition
+            petition={petition}
+            petitionResponse={petitionResponse}
+          />
+        }
+        {!petition.found &&
+          <PetitionResponseTokenError
+            petition={petition}
+            petitionResponse={petitionResponse}
+          />
+        }
       </div>
     );
   }
