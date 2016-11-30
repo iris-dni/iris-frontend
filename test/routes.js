@@ -10,9 +10,24 @@ import mockPetitions from './mocks/petitions';
 const { assert } = chai;
 
 describe('GET /', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
   it('responds with 200', done => {
+    moxios.stubRequest(/.*/, {
+      status: 200,
+      response: mockPetitions
+    });
+
     server.injectThen('/')
       .then(response => {
+        console.log(response);
+
         const actual = response.statusCode;
         const expected = 200;
 
