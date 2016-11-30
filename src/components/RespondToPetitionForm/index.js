@@ -20,7 +20,7 @@ const RespondToPetitionForm = ({ petition, petitionResponse, fields, handleSubmi
       <Button
         text={settings.respondToPetitionForm.publishButton}
         modifier={'accent'}
-        disabled={submitting || !fields._meta.allValid}
+        disabled={submitting || !fields._meta.allValid || petitionResponse.isLoading}
       />
     </Fieldset>
   </form>

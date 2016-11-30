@@ -18,7 +18,6 @@ import TrustSupportConfirmation from 'containers/TrustSupportConfirmation';
 import TrustPublish from 'containers/TrustPublish';
 import TrustPublishConfirmation from 'containers/TrustPublishConfirmation';
 import RespondToPetition from 'containers/RespondToPetition';
-import RespondToPetitionConfirmation from 'containers/RespondToPetitionConfirmation';
 import EmailConfirmationContainer from 'containers/EmailConfirmationContainer';
 // Redirect handlers for restricting routes
 import ProtectRejectedPetition from 'server/redirects/ProtectRejectedPetition';
@@ -83,10 +82,6 @@ export default (
     <Route
       path='respond/:token'
       component={RespondToPetition}
-    />
-    <Route
-      path='respond/:token/confirmation'
-      component={RespondToPetitionConfirmation}
     />
     <Route
       path='confirm/email/:action'

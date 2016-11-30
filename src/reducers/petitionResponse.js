@@ -4,7 +4,8 @@ import {
   REQUEST_PETITION,
   RECEIVE_PETITION,
   PETITION_NOT_FOUND,
-  RESPONDED_TO_PETITION
+  RESPONDED_TO_PETITION,
+  SUBMITTING_PETITION_RESPONSE
 } from 'actions/actionTypes';
 
 const initialState = {};
@@ -12,6 +13,7 @@ const initialState = {};
 export default function petitionResponse (state = initialState, action) {
   switch (action.type) {
     case REQUEST_PETITION:
+    case SUBMITTING_PETITION_RESPONSE:
       return assign({},
         state,
         { isLoading: true }

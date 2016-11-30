@@ -1,5 +1,4 @@
 import { assert } from 'chai';
-import { push } from 'react-router-redux';
 import sinon from 'sinon';
 import moxios from 'moxios';
 import mockPetition from '../mocks/petition';
@@ -7,14 +6,14 @@ import mockPetition from '../mocks/petition';
 import {
   requestPetition,
   receivePetition,
-  submittingPetition,
   petitionNotFound
 } from 'actions/PetitionActions';
 
 import {
   fetchPetitionByResponseToken,
   respondToPetition,
-  respondedToPetition
+  respondedToPetition,
+  submittingPetitionResponse
 } from 'actions/RespondActions';
 
 describe('RespondActions', () => {
@@ -84,6 +83,16 @@ describe('RespondActions', () => {
     });
   });
 
+  describe('submittingPetitionResponse', () => {
+    it('returns SUBMITTING_PETITION_RESPONSE action', () => {
+      const result = submittingPetitionResponse();
+      const actual = result.type;
+      const expected = 'SUBMITTING_PETITION_RESPONSE';
+
+      assert.equal(actual, expected);
+    });
+  });
+
   describe('respondToPetition', () => {
     let dispatch;
     let result;
@@ -113,15 +122,9 @@ describe('RespondActions', () => {
       result = respondToPetition(exampleResponse, dispatch);
     });
 
-    it('dispatches submittingPetition()', done => {
+    it('dispatches submittingPetitionResponse()', done => {
       result.then(() => {
-        assert(dispatch.calledWith(submittingPetition()));
-      }).then(done, done);
-    });
-
-    it('dispatches push to success page', done => {
-      result.then(() => {
-        assert(dispatch.calledWith(push(`/respond/${exampleResponseToken}/confirmation`)));
+        assert(dispatch.calledWith(submittingPetitionResponse()));
       }).then(done, done);
     });
 
