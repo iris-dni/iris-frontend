@@ -85,7 +85,7 @@ export default (
       component={RespondToPetition}
     />
     <Route
-      path='respond/:token/confirm'
+      path='respond/:token/confirmation'
       component={RespondToPetitionConfirmation}
     />
     <Route

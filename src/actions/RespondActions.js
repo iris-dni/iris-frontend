@@ -34,7 +34,8 @@ export function respondToPetition (petitionResponse, dispatch) {
   dispatch(submittingPetition());
   return petitionRepository.respond(petitionResponse)
     .then((response) => {
-      dispatch(push(`/respond/${petitionResponse.token}/confirm`));
+      dispatch(push(`/respond/${petitionResponse.token}/confirmation`));
+      dispatch(respondedToPetition(response.data));
     }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));

@@ -1,4 +1,5 @@
 import { assert } from 'chai';
+import { push } from 'react-router-redux';
 import sinon from 'sinon';
 import moxios from 'moxios';
 import mockPetition from '../mocks/petition';
@@ -84,6 +85,9 @@ describe('RespondActions', () => {
   });
 
   describe('respondToPetition', () => {
+    let dispatch;
+    let result;
+
     let exampleResponse = {
       answer: {
         text: 'Example answer',
@@ -92,26 +96,37 @@ describe('RespondActions', () => {
       petitionId: examplePetition.id,
       token: exampleResponseToken
     };
+
     let examplePetitionWithResponse = {
       ...examplePetition,
       city_answer: exampleResponse.answer
     };
 
     beforeEach(() => {
+      dispatch = sinon.spy();
+
       moxios.stubRequest(/.*/, {
         status: 200,
         response: { data: examplePetitionWithResponse }
       });
+
+      result = respondToPetition(exampleResponse, dispatch);
     });
 
     it('dispatches submittingPetition()', done => {
-      respondToPetition(exampleResponse, dispatch).then(() => {
+      result.then(() => {
         assert(dispatch.calledWith(submittingPetition()));
       }).then(done, done);
     });
 
+    it('dispatches push to success page', done => {
+      result.then(() => {
+        assert(dispatch.calledWith(push(`/respond/${exampleResponseToken}/confirmation`)));
+      }).then(done, done);
+    });
+
     it('returns a promise that dispatches respondedToPetition() when done', done => {
-      respondToPetition(exampleResponse, dispatch).then(() => {
+      result.then(() => {
         assert(dispatch.calledWithMatch(respondedToPetition(examplePetitionWithResponse)));
       }).then(done, done);
     });
