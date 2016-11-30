@@ -23,9 +23,11 @@ export function fetchPetitionByResponseToken (responseToken) {
       .then(response => dispatch(
         receivePetition({ ...response.data, token: responseToken })
       ))
-      .catch(() => dispatch(
-        petitionNotFound({ token: responseToken })
-      ));
+      .catch((error) => {
+        if (error.response && error.response.status === 404) {
+          dispatch(petitionNotFound({ token: responseToken }));
+        }
+      });
   };
 }
 
