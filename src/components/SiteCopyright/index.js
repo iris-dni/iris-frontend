@@ -11,7 +11,7 @@ const SiteCopyright = () => (
         <p className={styles.oss}>
           <Link
             modifier={'invert'}
-            href={'http://github.com/iris-frontend'}
+            href={'https://github.com/iris-dni/iris-frontend'}
             external>
             {settings.footer.ossLink}
           </Link>

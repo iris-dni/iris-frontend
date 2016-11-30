@@ -27,6 +27,7 @@
   }
 
   @include media('>700px') {
+    text-align: right;
     margin-left: auto;
   }
 }
