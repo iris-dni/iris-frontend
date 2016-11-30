@@ -65,6 +65,11 @@ textarea {
     min-height: 100vh; /* 2 */
     display: flex; /* 3 */
     flex-direction: column; /* 3 */
+
+    @include media('<=navigation-menu') {
+      position: relative;
+      overflow: hidden;
+    }
   }
 
   .main-content {
