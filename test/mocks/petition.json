@@ -48,7 +48,9 @@
       "class": "User"
     },
     "response_token": null,
-    "state": "draft",
+    "state": {
+      "name": "draft"
+    },
     "suggested_solution": "Fugiat quibusdam mollitia exercitationem possimus adipisci. Id natus beatae soluta fugiat. Mollitia quos architecto corrupti blanditiis. Nemo magni ratione illum dignissimos enim.\nAliquid saepe nesciunt possimus repudiandae. Itaque est odit dolore reprehenderit non corporis aperiam expedita. Animi doloribus quaerat laborum nostrum similique alias. Ipsum quibusdam modi blanditiis.\nVoluptate labore tempore ullam reiciendis possimus occaecati ab. Quaerat non sapiente consequatur nam. Eum omnis quo porro magnam veniam tempore libero.",
     "supporters": {
       "amount": 13,

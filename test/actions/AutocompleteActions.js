@@ -1,4 +1,5 @@
 import { assert } from 'chai';
+import moxios from 'moxios';
 import sinon from 'sinon';
 
 import {
@@ -10,18 +11,40 @@ import {
 
 describe('AutocompleteActions', () => {
   describe('typeaheadSearch', () => {
-    it('returns a function that returns undefined if the endpoint doesn‘t match a repository', () => {
-      const result = typeaheadSearch('unmatchingendpoint', 'aa')();
+    let dispatch;
+    let result;
 
-      assert.isNotOk(result);
+    let mockSuggestions = {
+      total: '2',
+      data: [
+        {
+          'name': 'Aargau'
+        },
+        {
+          'name': 'Basel'
+        }
+      ]
+    };
+
+    beforeEach(() => {
+      dispatch = sinon.spy();
+
+      moxios.install();
+      moxios.stubRequest(/.*/, {
+        status: 200,
+        response: mockSuggestions
+      });
+
+      result = typeaheadSearch('cities', 'Bas');
+    });
+
+    afterEach(() => {
+      moxios.uninstall();
     });
 
     it('returns a function that returns a promise that dispatches updateSuggestions()', done => {
-      const dispatch = sinon.spy();
-      const result = typeaheadSearch('cities', '❌❌❌');
-
       result(dispatch).then(() => {
-        assert(dispatch.calledWith(updateSuggestions([])));
+        assert(dispatch.calledWith(updateSuggestions(mockSuggestions.data)));
       }).then(done, done);
     });
   });

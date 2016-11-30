@@ -1,6 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import { fetchPetition } from 'actions/PetitionActions';
 import { resendVerification } from 'actions/SupportActions';
 import settings from 'settings';
 import TrustConfirmation from 'components/TrustConfirmation';
@@ -11,6 +12,10 @@ const TrustSupportConfirmationContainer = (props) => (
     <TrustConfirmation {...props} action={'support'} />
   </div>
 );
+
+TrustSupportConfirmationContainer.fetchData = ({ store, params }) => {
+  return store.dispatch(fetchPetition(params.id));
+};
 
 export const mapStateToProps = ({ petition, me }) => ({
   petition,

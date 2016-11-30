@@ -1,4 +1,4 @@
-import petitionOwned from './petitionOwned';
+import petitionOwned from 'selectors/petitionOwned';
 
 export default (petition, me) => ({
   initialValues: {

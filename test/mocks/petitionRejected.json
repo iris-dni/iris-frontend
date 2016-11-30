@@ -1,6 +1,10 @@
 {
   "data": {
     "city": null,
+    "city_answer": {
+      "name": "Jane Doe, Mayor",
+      "text": "Nam magnam labore nihil accusantium. Magnam deleniti dolorem illum rerum."
+    },
     "description": "Consectetur numquam dicta numquam assumenda reiciendis. Alias nostrum velit harum. Delectus doloremque debitis eveniet dolores. Aliquid rem assumenda repudiandae aut neque.\nLabore at amet tempora inventore assumenda culpa. Numquam exercitationem quos quisquam. Placeat eum quam repudiandae magni. Quo veniam corrupti dolore incidunt quisquam quo.\nAnimi sequi expedita quaerat ipsa neque aliquid sint. Non dolore cum nam laboriosam. Tenetur tempore inventore alias cupiditate beatae unde. Similique at veniam natus assumenda aspernatur reiciendis.\nCorporis nostrum veniam sequi porro provident officia alias. Voluptatibus aliquam sit ab in nostrum eaque. Molestiae error ipsa vel veritatis dicta in. Voluptas eligendi numquam fugiat asperiores delectus tenetur.\nEx laudantium et sunt vero blanditiis error. Veniam sunt laboriosam corporis quam sed dignissimos. Nostrum quo et incidunt optio iste.",
     "links": [],
     "title": "Nemo nulla magni eaque iste.",
@@ -13,8 +17,7 @@
     },
     "owner": null,
     "state": {
-      "name": "active",
-      "parent": "supportable"
+      "name": "rejected"
     },
     "videos": [],
     "images": [],
@@ -26,7 +29,7 @@
     ],
     "supporters": {
       "amount": 19,
-      "required": 10
+      "required": 30
     }
   }
 }

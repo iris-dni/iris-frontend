@@ -1,37 +1,39 @@
 import React from 'react';
 import settings from 'settings';
-import styles from 'components/RespondToPetitionHints/respond-to-petition-hints.scss';
+import styles from './respond-to-petition-hints.scss';
 import Paragraph from 'components/Paragraph';
 import Icon from 'components/Icon';
 
-const RespondToPetitionHints = ({ petition }) => (
+const RespondToPetitionHints = () => (
   <div>
     <div className={styles.hints}>
-      <Paragraph>{settings.respondToPetitionPage.hints.title}</Paragraph>
-      <Paragraph>
-        <span className={styles.icon}>
-          <Icon id='Advance' modifier='primary' size='small' />
-        </span>
-        {settings.respondToPetitionPage.hints.first}
-      </Paragraph>
-      <Paragraph>
-        <span className={styles.icon}>
-          <Icon id='Advance' modifier='primary' size='small' />
-        </span>
-        {settings.respondToPetitionPage.hints.second}
-      </Paragraph>
-      <Paragraph>
-        <span className={styles.icon}>
-          <Icon id='Advance' modifier='primary' size='small' />
-        </span>
-        {settings.respondToPetitionPage.hints.third}
-      </Paragraph>
-      <Paragraph>
-        <span className={styles.icon}>
-          <Icon id='Advance' modifier='primary' size='small' />
-        </span>
-        {settings.respondToPetitionPage.hints.fourth}
-      </Paragraph>
+      <Paragraph size={'small'}>{settings.respondToPetitionPage.hints.title}</Paragraph>
+      <ul className={styles.list}>
+        <li className={styles.item}>
+          <span className={styles.icon}>
+            <Icon id='Advance' modifier='primary' size='small' />
+          </span>
+          {settings.respondToPetitionPage.hints.first}
+        </li>
+        <li className={styles.item}>
+          <span className={styles.icon}>
+            <Icon id='Advance' modifier='primary' size='small' />
+          </span>
+          {settings.respondToPetitionPage.hints.second}
+        </li>
+        <li className={styles.item}>
+          <span className={styles.icon}>
+            <Icon id='Advance' modifier='primary' size='small' />
+          </span>
+          {settings.respondToPetitionPage.hints.third}
+        </li>
+        <li className={styles.item}>
+          <span className={styles.icon}>
+            <Icon id='Advance' modifier='primary' size='small' />
+          </span>
+          {settings.respondToPetitionPage.hints.fourth}
+        </li>
+      </ul>
     </div>
   </div>
 );
