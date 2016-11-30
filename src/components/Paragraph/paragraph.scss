@@ -55,9 +55,16 @@
 
 .root {
   @include markdown-content;
-  font-size: 20px;
   line-height: typography('line-height');
   margin-bottom: 25px;
+
+  @include media('<=sidebar') {
+    font-size: 18px;
+  }
+
+  @include media('>sidebar') {
+    font-size: 20px;
+  }
 }
 
 .small {

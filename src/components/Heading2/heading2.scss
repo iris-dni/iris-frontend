@@ -1,9 +1,17 @@
 @import 'globals';
 
 .root {
-  font-size: 20px;
   line-height: typography('line-height');
-  margin-bottom: 12px;
+
+  @include media('<=sidebar') {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  @include media('>sidebar') {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
 }
 
 .large {
