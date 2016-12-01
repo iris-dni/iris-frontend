@@ -32,7 +32,7 @@ const Overlay = React.createClass({
   render () {
     return (
       <div
-        aria-role='presentational'
+        role={'presentation'}
         tabIndex='-1'
         className={this.props.active ? styles.active : styles.overlay}
         onClick={this.props.onClickHandler}
