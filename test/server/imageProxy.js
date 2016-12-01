@@ -28,7 +28,31 @@ describe('image proxy', () => {
     });
   });
 
-  context('with aadditional params', () => {
+  context('with encoded query params', () => {
+    it('responds with 301 status', done => {
+      server.injectThen('/images?domain=https://test.com&amp;url=/4891e30ddceb44008b252cb5ff9ac6bc')
+        .then(response => {
+          const actual = response.statusCode;
+          const expected = 301;
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+
+    it('returns params in URL', done => {
+      server.injectThen('/images?domain=https://test.com&amp;url=/4891e30ddceb44008b252cb5ff9ac6bc&amp;w=1000&amp;h=300')
+        .then(response => {
+          const actual = response.headers.location;
+          const expected = 'https://test.com?url=/4891e30ddceb44008b252cb5ff9ac6bc&w=1000&h=300&deg=auto&op=rotate,resize&sig=33b2901eeed834c0d36a64a88b4007858d30cc36';
+
+          assert.equal(actual, expected);
+          done();
+        });
+    });
+  });
+
+  context('with additional params', () => {
     it('responds with 301 status', done => {
       server.injectThen('/images?domain=https://test.com&url=/4891e30ddceb44008b252cb5ff9ac6bc&w=1000&h=300')
         .then(response => {
