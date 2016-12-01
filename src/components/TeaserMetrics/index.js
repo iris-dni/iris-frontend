@@ -9,7 +9,10 @@ export default ({ timeMetric, supportersMetric }) => (
       <PetitionMetric
         {...timeMetric}
         icon={'Clock'}
-        caption={settings.teaserDaysRemaining}
+        caption={timeMetric.figure === 1
+          ? settings.teaserDaysRemainingSingular
+          : settings.teaserDaysRemaining
+        }
       />
     </div>
     {supportersMetric && supportersMetric.votingActive &&
@@ -17,7 +20,10 @@ export default ({ timeMetric, supportersMetric }) => (
         <PetitionMetric
           {...supportersMetric}
           icon={'Signature'}
-          caption={settings.teaserSupportersText}
+          caption={supportersMetric.figure === 1
+            ? settings.teaserSupportersTextSingular
+            : settings.teaserSupportersText
+          }
         />
       </div>
     }
