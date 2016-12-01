@@ -62,8 +62,6 @@ const ImageField = React.createClass({
   },
 
   rejectFiles (rejected) {
-    console.log(rejected);
-
     const { config } = this.props;
     // Clearer naming
     const fieldId = config.name;

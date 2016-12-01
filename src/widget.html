@@ -17,14 +17,8 @@
   </head>
   <body>
     <div id="app" class="app-wrapper">{{ reactMarkup | safe }}</div>
-    {% if not isProduction %}
-      <!--
-        client-side JS only used for development and as an entry point
-        for generating the CSS bundle. all content is static on production.
-      -->
-      <script>window.__INITIAL_STATE__={{ initialState | safe }}</script>
-      <script src="{{ baseAssetPath }}/widget.js"></script>
-    {% endif %}
+    <script>window.__INITIAL_STATE__={{ initialState | safe }}</script>
+    <script src="{{ baseAssetPath }}/widget.js"></script>
     {% include 'theme/includes/widget/scripts.html' %}
   </body>
 </html>
