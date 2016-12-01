@@ -26,8 +26,6 @@ describe('GET /', () => {
 
     server.injectThen('/')
       .then(response => {
-        console.log(response);
-
         const actual = response.statusCode;
         const expected = 200;
 
