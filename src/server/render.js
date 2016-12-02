@@ -60,7 +60,8 @@ export default (request, reply, viewName = 'index') => {
     if (redirectLocation) {
       reply.redirect(redirectLocation.pathname + redirectLocation.search).code(301);
     } else if (error) {
-      reply(error.message).code(500);
+      console.log(error.message);
+      reply('Something went wrong').code(500);
     } else if (renderProps == null) {
       return new Error('Missing render props');
     } else {
@@ -118,9 +119,8 @@ export default (request, reply, viewName = 'index') => {
           })).code(statusCode);
         })
         .catch((err) => {
-          return err.response && err.response.status
-            ? reply('Not found').code(404)
-            : reply(err.message).code(500);
+          console.log(err.message);
+          return reply('Something went wrong').code(500);
         });
     }
   });
