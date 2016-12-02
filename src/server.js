@@ -107,7 +107,7 @@ server.route({
   path: '/{params*}',
   config: {
     auth: HTTP_AUTH_ENABLED ? 'simple' : null,
-    handler: (req, res, next) => render(req, res, 'index')
+    handler: (req, res, next) => render(req, res)
   }
 });
 

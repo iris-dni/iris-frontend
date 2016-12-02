@@ -62,8 +62,11 @@ export default (request, reply, viewName = 'index') => {
     } else if (error) {
       reply(error.message).code(500);
     } else if (renderProps == null) {
-      reply('Not found').code(404);
+      return new Error('Missing render props');
     } else {
+      // Set default status code
+      let statusCode = 200;
+
       // Set initial state
       const initialState = {};
 
@@ -77,11 +80,16 @@ export default (request, reply, viewName = 'index') => {
       // Get the component tree
       const components = renderProps.components || [];
       // Extract our page component for this route
-      const Component = components[components.length - 1];
+      const Component = components[components.length - 1] || {};
       // Extract `fetchData` from component if exists, otherwise return empty promise
       const fetchData = (Component && Component.fetchData) || (() => Promise.resolve());
       // Get from renderProps
       const { location, params, history } = renderProps;
+
+      // If we are showing the 404, change status code to 404
+      if (Component.displayName === 'Error404Container') {
+        statusCode = 404;
+      }
 
       // Run fetchData to get async data, then render
       fetchData({ store, location, params, history })
@@ -107,7 +115,7 @@ export default (request, reply, viewName = 'index') => {
             isProduction: process.env.NODE_ENV === 'production',
             pageViewEvent: PAGEVIEW_EVENT_NAME,
             googleAnalyticsID: settings.googleAnalyticsID
-          }));
+          })).code(statusCode);
         })
         .catch((err) => {
           return err.response && err.response.status

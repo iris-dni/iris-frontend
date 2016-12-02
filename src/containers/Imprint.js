@@ -1,7 +1,6 @@
 import React from 'react';
 import settings from 'settings';
 import Helmet from 'react-helmet';
-import { connect } from 'react-redux';
 import PageBuilder from 'components/PageBuilder';
 
 const MODULES = [
@@ -43,7 +42,4 @@ const ImprintContainer = React.createClass({
   }
 });
 
-export default connect(
-  null,
-  null
-)(ImprintContainer);
+export default ImprintContainer;

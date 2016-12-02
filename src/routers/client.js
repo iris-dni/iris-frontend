@@ -19,6 +19,7 @@ import TrustPublish from 'containers/TrustPublish';
 import TrustPublishConfirmation from 'containers/TrustPublishConfirmation';
 import RespondToPetition from 'containers/RespondToPetition';
 import EmailConfirmationContainer from 'containers/EmailConfirmationContainer';
+import Error404 from 'containers/Error404';
 // Redirect handlers for restricting routes
 import ProtectRejectedPetition from 'server/redirects/ProtectRejectedPetition';
 import ProtectUnsupportablePetition from 'server/redirects/ProtectUnsupportablePetition';
@@ -87,5 +88,6 @@ export default (
       path='confirm/email/:action'
       component={EmailConfirmationContainer}
     />
+    <Route path='*' component={Error404} status={404} />
   </Route>
 );

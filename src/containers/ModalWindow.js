@@ -11,6 +11,11 @@ import generateSsoProviders from 'helpers/generateSsoProviders';
 const ModalWindowContainer = React.createClass({
   render () {
     const { type, active, returnUrl, hideModalWindow } = this.props;
+
+    if (!active) {
+      return null;
+    }
+
     return (
       <ModalWindow active={active} hideModalWindow={hideModalWindow}>
         {type === 'auth' &&
@@ -31,9 +36,9 @@ const ModalWindowContainer = React.createClass({
 
 export const mapStateToProps = ({ modalWindow }) => ({ modalWindow });
 
-export const mapDispatchToProps = (dispatch) => {
-  return { hideModalWindow: () => dispatch(hideModalWindow()) };
-};
+export const mapDispatchToProps = (dispatch) => ({
+  hideModalWindow: () => dispatch(hideModalWindow())
+});
 
 export default connect(
   mapStateToProps,

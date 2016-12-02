@@ -4,7 +4,9 @@ import FlashMessage from 'components/FlashMessage';
 import { hideFlashMessage } from 'actions/FlashActions';
 
 const FlashMessageContainer = (props) => (
-  <FlashMessage {...props} />
+  props.text
+    ? <FlashMessage {...props} />
+    : null
 );
 
 FlashMessageContainer.propTypes = {
@@ -16,9 +18,9 @@ export const mapStateToProps = ({ flashMessage }) => ({
   flashMessage
 });
 
-export const mapDispatchToProps = (dispatch) => {
-  return { hideFlashMessage: () => dispatch(hideFlashMessage()) };
-};
+export const mapDispatchToProps = (dispatch) => ({
+  hideFlashMessage: () => dispatch(hideFlashMessage())
+});
 
 export default connect(
   mapStateToProps,
