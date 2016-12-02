@@ -131,7 +131,7 @@ export default {
     "trending": {
       "title": "Trending petitions",
       "text": "Gathering momentum!",
-      "linkText": "View all trending petitions"
+      "linkText": "View all petitions"
     },
     "latest": {
       "title": "Latest petitions",
