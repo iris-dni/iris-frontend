@@ -13,6 +13,10 @@ const NewPetitionContainer = React.createClass({
     this.props.clearSuggestionInputValue();
   },
 
+  componentWillUnmount () {
+    this.props.clearSuggestionInputValue();
+  },
+
   render () {
     return (
       <div>

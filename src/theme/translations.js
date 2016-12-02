@@ -8,11 +8,15 @@ export default {
   "dateFormat": "DD-MM-YYYY",
   "authorLabel": "by %a",
   "supportersText": "Supporters",
+  "supportersTextSingular": "Supporter",
   "milestoneText": "Target",
   "daysRemaining": "Days left",
+  "daysRemainingSingular": "Day left",
   "teaserSupportersText": "Supporters",
+  "teaserSupportersTextSingular": "Supporter",
   "tesaserMilestoneText": "Target",
   "teaserDaysRemaining": "days left",
+  "teaserDaysRemainingSingular": "day left",
   "optionalLabel": "(optional)",
   "requiredText": "You must complete this field",
   "validatedText": "This %f has been previously verified",
@@ -127,7 +131,7 @@ export default {
     "trending": {
       "title": "Trending petitions",
       "text": "Gathering momentum!",
-      "linkText": "View all trending petitions"
+      "linkText": "View all petitions"
     },
     "latest": {
       "title": "Latest petitions",

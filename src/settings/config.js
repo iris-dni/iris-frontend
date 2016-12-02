@@ -39,7 +39,7 @@ export default {
   },
   petitionGroups: {
     trending: {
-      linkHref: '/petitions?sort=trending'
+      linkHref: '/petitions'
     },
     latest: {
       linkHref: '/petitions?sort=date'
