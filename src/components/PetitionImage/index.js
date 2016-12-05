@@ -1,14 +1,15 @@
 import React from 'react';
 import styles from './petition-image.scss';
-import Image from 'components/Image';
+import ImageContainer from 'components/ImageContainer';
+import mapImageSizeToNewAttrs from 'helpers/mapImageSizeToNewAttrs';
 
-const PetitionImage = ({ src, alt }) => (
+const PetitionImage = ({ src, alt, attrs, ratio }) => (
   src
   ? <div className={styles.root}>
-    <Image
+    <ImageContainer
       src={src}
       alt={alt}
-      attrs={{ w: 560 }}
+      attrs={mapImageSizeToNewAttrs(560, ratio)}
       srcSet={[480, 560, 960, 1120]}
       sizes={'(min-width: 600px) 560px, 100vw'}
     />

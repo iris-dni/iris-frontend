@@ -5,8 +5,11 @@ export default (petition) => {
     return {};
   }
 
+  const primaryImage = petition.images[0];
+
   return {
     alt: petition.title,
-    src: getImageUrl(petition.images[0])
+    src: getImageUrl(primaryImage),
+    ratio: primaryImage.data.info
   };
 };
