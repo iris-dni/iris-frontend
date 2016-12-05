@@ -119,7 +119,7 @@ export default {
   },
   "petitionResponseTokenErrorPage": {
     "title": "Sorry but this link doesn’t exist or is no longer working.",
-    "hint": "Please re-enter the link or contact our admins if you believe there is a mistake or are unsure of how to proceed.",
+    "hint": "Please re-enter the link or contact us if you believe there is a mistake or are unsure of how to proceed.",
     "link": "Go back home"
   },
   "emailConfirmationPage": {
@@ -496,6 +496,11 @@ export default {
     "verificationResent": "Verification code has been re-sent",
     "invalidUserDataError": "Complete your details to support this petition",
     "noLongerSupportable": "This petition is no longer supportable"
+  },
+  "error404page": {
+    "title": "Page not found",
+    "text": "Please check the URL is correct or contact us if you believe there is a mistake.",
+    "link": "View all petitions"
   },
   "logo": "IRIS",
   "footer": {

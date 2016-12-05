@@ -6,17 +6,17 @@ import SiteHeader from 'components/SiteHeader';
 import SiteFooter from 'components/SiteFooter';
 import FlashMessage from 'containers/FlashMessage';
 import ModalWindow from 'containers/ModalWindow';
+import { get } from 'lodash/object';
 
 const TITLE_TEMPLATE = `%s | ${settings.title}`;
+
+const getDisplayName = component => get(component, 'type.WrappedComponent.displayName', '');
 
 export default ({ children, flashMessage, modalWindow }) => (
   <div className={'wrapper'}>
     <Helmet titleTemplate={TITLE_TEMPLATE} />
-    {flashMessage && flashMessage.text &&
-      <FlashMessage {...flashMessage} />
-    }
+    <FlashMessage {...flashMessage} />
     <SiteHeader />
-
     <main
       className={'main-content'}
       role='main'
@@ -24,11 +24,7 @@ export default ({ children, flashMessage, modalWindow }) => (
       aria-hidden={(modalWindow && modalWindow.active) || false}>
       {children}
     </main>
-
-    <SiteFooter section={children.type.WrappedComponent.displayName} />
-
-    {modalWindow && modalWindow.active &&
-      <ModalWindow {...modalWindow} />
-    }
+    <SiteFooter section={getDisplayName(children)} />
+    <ModalWindow {...modalWindow} />
   </div>
 );

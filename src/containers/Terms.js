@@ -1,7 +1,6 @@
 import React from 'react';
 import settings from 'settings';
 import Helmet from 'react-helmet';
-import { connect } from 'react-redux';
 import PageBuilder from 'components/PageBuilder';
 
 const MODULES = [
@@ -32,7 +31,4 @@ const TermsContainer = React.createClass({
   }
 });
 
-export default connect(
-  null,
-  null
-)(TermsContainer);
+export default TermsContainer;
