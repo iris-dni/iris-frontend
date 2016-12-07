@@ -31,19 +31,13 @@ const PetitionSupportButton = ({
       </FakeButton>
     }
 
-    {/* TEMPORARY FOR SANITY */(!preview && !isSupportable && !winning && !closed) &&
-      <FakeButton disabled block>
-        {settings.petitionPage.supportButton.unsupportableText}
-      </FakeButton>
-    }
-
-    {(winning || processing) && !closed &&
+    {(!isSupportable && !closed) &&
       <FakeButton disabled block>
         {settings.petitionPage.supportButton.endedText}
       </FakeButton>
     }
 
-    {closed &&
+    {(!isSupportable && closed) &&
       <FakeButton disabled block>
         {settings.petitionPage.supportButton.closedText}
       </FakeButton>
