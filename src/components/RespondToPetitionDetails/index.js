@@ -9,7 +9,7 @@ const RespondToPetitionDetails = ({ title, link, author, city, supporters }) => 
       {settings.respondToPetitionPage.details.for}
     </dt>
     <dd className={styles.text}>
-      <Link href={link}>{title}</Link>
+      <Link external newTab href={link}>{title}</Link>
     </dd>
     {author &&
       <dt className={styles.title}>
