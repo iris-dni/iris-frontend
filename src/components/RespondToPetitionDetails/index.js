@@ -1,6 +1,7 @@
 import React from 'react';
 import settings from 'settings';
 import styles from './respond-to-petition-details.scss';
+import Link from 'components/Link';
 
 const RespondToPetitionDetails = ({ title, link, author, city, supporters }) => (
   <dl className={styles.list}>
@@ -8,7 +9,7 @@ const RespondToPetitionDetails = ({ title, link, author, city, supporters }) => 
       {settings.respondToPetitionPage.details.for}
     </dt>
     <dd className={styles.text}>
-      <a target={'_blank'} href={link}>{title}</a>
+      <Link external newTab href={link}>{title}</Link>
     </dd>
     {author &&
       <dt className={styles.title}>
