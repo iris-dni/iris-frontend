@@ -37,7 +37,7 @@ export default [
       placeholder: settings.petitionFields.description.placeholder,
       required: true,
       minLength: 50,
-      maxLength: 1600
+      maxLength: 1400
     }
   },
   {
@@ -48,7 +48,7 @@ export default [
     html: {
       placeholder: settings.petitionFields.suggested_solution.placeholder,
       minLength: 50,
-      maxLength: 1600
+      maxLength: 1400
     }
   },
   {
@@ -77,7 +77,7 @@ export default [
     maxItems: 3,
     nestedValidation: true,
     html: {
-      autoComplete: false,
+      autoComplete: 'off',
       type: 'text',
       placeholder: settings.petitionFields.links.placeholder
     }

@@ -13,7 +13,7 @@ const ExternalTeaser = ({ url = '', og }) => (
     >
       <div className={styles['image-wrap']}>
         {og && og.image &&
-          <img className={styles.image} src={og.image.url} />
+          <img className={styles.image} src={og.image.url} alt={og.image.title || ''} />
         }
       </div>
 
