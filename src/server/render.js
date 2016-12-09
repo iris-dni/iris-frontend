@@ -112,6 +112,7 @@ export default (request, reply, viewName = 'index') => {
             reactMarkup: reactString,
             initialState: JSON.stringify(initialState),
             head: stringifyHeadData(headData),
+            lang: settings.locale || 'en',
             baseAssetPath: baseAssetPath,
             isProduction: process.env.NODE_ENV === 'production',
             pageViewEvent: PAGEVIEW_EVENT_NAME,

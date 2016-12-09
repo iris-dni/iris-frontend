@@ -77,7 +77,7 @@ export default [
     maxItems: 3,
     nestedValidation: true,
     html: {
-      autoComplete: false,
+      autoComplete: 'off',
       type: 'text',
       placeholder: settings.petitionFields.links.placeholder
     }

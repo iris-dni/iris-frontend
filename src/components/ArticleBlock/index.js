@@ -7,7 +7,7 @@ import Image from 'components/Image';
 
 const ArticleBlock = ({ title, icon, children, image }) => {
   return (
-    <article className={styles.root} id='response'>
+    <article className={styles.root}>
       {image &&
         <div className={getClassNames(styles, ['image', image.centered ? 'centered' : '', image.slim ? 'slim' : ''])}>
           <Image {...image} />
