@@ -54,7 +54,7 @@ const Navigation = React.createClass({
           />
         </div>
 
-        <nav role='navigation' id='navigation' className={styles.navigation}>
+        <nav id='navigation' className={styles.navigation}>
           <div className={styles.wrapper}>
             <IndexLink
               to='/'

@@ -19,7 +19,6 @@ export default ({ children, flashMessage, modalWindow }) => (
     <SiteHeader />
     <main
       className={'main-content'}
-      role='main'
       aria-label='Content'
       aria-hidden={(modalWindow && modalWindow.active) || false}>
       {children}
