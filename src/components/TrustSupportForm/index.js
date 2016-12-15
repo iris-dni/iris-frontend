@@ -38,7 +38,7 @@ const TrustSupportForm = ({
           text={settings.trustPage.support.backButton}
         />
         <Button
-          text={settings.trustPage.support[mobileConfirmed ? 'trustedNextButton' : 'nextButton']}
+          text={settings.trustPage.support[mobileConfirmed ? 'nextButtonTrusted' : 'nextButton']}
           modifier={'accent'}
           disabled={submitting || petition.isLoading || !fields._meta.allValid}
         />
