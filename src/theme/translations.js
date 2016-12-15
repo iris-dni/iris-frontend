@@ -330,7 +330,7 @@ export default {
       "formTitle": "Or, enter your details to proceed without sign in:",
       "backButton": "Back to petition",
       "nextButton": "Send verification",
-      "trustedNextButtonTrusted": "Support petition"
+      "nextButtonTrusted": "Support petition"
     },
     "publish": {
       "title": "Create petition",
