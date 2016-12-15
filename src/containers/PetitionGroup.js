@@ -11,7 +11,10 @@ PetitionGroupContainer.propTypes = {
   petitions: React.PropTypes.array.isRequired,
   isLoading: React.PropTypes.bool,
   title: React.PropTypes.string,
-  text: React.PropTypes.string,
+  text: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.bool
+  ]),
   linkText: React.PropTypes.string,
   linkHref: React.PropTypes.string
 };
