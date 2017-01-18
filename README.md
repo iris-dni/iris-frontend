@@ -114,6 +114,22 @@ folder.
 For all settings and translations, a deep-merge is performed so only additions
 are required. Defaults will be used otherwise.
 
+## Tests
+
+You can run the tests along with code linting with
+
+```sh
+npm run test
+```
+
+For TDD you can watch the code for changes and run tests automatically with
+
+```sh
+npm run test:watch
+```
+
+For deeper insights on what and how to test, see our
+[wiki](https://github.com/iris-dni/iris-frontend/wiki/Testing).
 ## Deployment (Heroku)
 
 The project can be easily deployed to Heroku, using the official [buildpack for
