@@ -11,6 +11,7 @@ const PetitionImage = ({ src, alt, attrs, ratio }) => (
       alt={alt}
       attrs={mapImageSizeToNewAttrs(560, ratio)}
       srcSet={[480, 560, 960, 1120]}
+      maxHeight={500}
       sizes={'(min-width: 600px) 560px, 100vw'}
     />
   </div>
