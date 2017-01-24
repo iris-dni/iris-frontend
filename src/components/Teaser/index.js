@@ -16,6 +16,8 @@ const Teaser = (props) => (
           <ImageContainer
             {...props.image}
             attrs={{ w: 400, h: 200 }}
+            srcSet={[400, 800]}
+            sizes={'(min-width: 900px) 320px, (min-width: 600px) 50vw, 100vw'}
           />
         </div>
       }

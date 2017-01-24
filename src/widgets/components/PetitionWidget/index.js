@@ -48,6 +48,8 @@ const PetitionWidget = React.createClass({
             <ImageContainer
               {...this.props.image}
               attrs={{ w: 800, h: 400 }}
+              srcSet={[300, 600, 800, 1200, 1600]}
+              sizes={'(min-width: 800px) 800px, 100vw'}
             />
           </div>
         }
