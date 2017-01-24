@@ -26,7 +26,7 @@ export default [
       placeholder: settings.respondToPetitionFields.response.placeholder,
       required: true,
       minLength: 50,
-      maxLength: 500
+      maxLength: 10000
     }
   },
   {
