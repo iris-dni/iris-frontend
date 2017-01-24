@@ -54,7 +54,7 @@ describe('API client', () => {
     });
 
     it('transforms data object to query string on GET requests', (done) => {
-      let expectedUrl = /\/test\?a=1&b=2&c\[\]=c1&c\[\]=c2$/;
+      let expectedUrl = /\/test\?a=1&b=2&c\[]=c1&c\[]=c2$/;
       let expectedData = '{}';
 
       ApiClient.request('/test', exampleData, 'GET').then((response) => {
