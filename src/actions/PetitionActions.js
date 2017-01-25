@@ -6,6 +6,7 @@ import isUntrustedUser from 'helpers/isUntrustedUser';
 import isInvalidVerification from 'helpers/isInvalidVerification';
 import hasValidPublishUserData from 'helpers/hasValidPublishUserData';
 import getPetitionPath from 'helpers/getPetitionPath';
+import generateShareButtons from 'helpers/sharing/generateShareButtons';
 
 import {
   CLEAR_PETITION,
@@ -129,7 +130,7 @@ export function publishPetition (trustData) {
         switch (response.status) {
           case 'ok':
             // Successful support
-            publishPetitionSuccess(petition.id, response.data, dispatch);
+            publishPetitionSuccess(petition, response.data, dispatch);
             break;
           case 'error':
             // Error given
@@ -143,14 +144,16 @@ export function publishPetition (trustData) {
   };
 }
 
-const publishPetitionSuccess = (id, data, dispatch) => {
+const publishPetitionSuccess = (petition, data, dispatch) => {
   // Change route to petition
-  dispatch(push(getPetitionPath(id)));
+  dispatch(push(getPetitionPath(petition.id)));
   // Dispatch modal confirmation
   dispatch(
     showModalWindow({
       type: 'share',
-      link: getPetitionURL(id),
+      petitionURL: getPetitionURL(petition.id),
+      buttons: generateShareButtons(petition, 'published')
+        .filter(button => button.brand !== 'whatsapp'),
       ...settings.publishedPetition.modal
     })
   );

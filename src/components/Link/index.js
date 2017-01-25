@@ -4,7 +4,7 @@ import styles from './link.scss';
 
 const createAttrs = (props) => ({
   [props.external ? 'href' : 'to']: props.href || '#',
-  className: (props.className || styles.root),
+  className: props.className || styles[props.modifier || 'root'],
   onClick: props.onClick
       ? (e) => { e.preventDefault(); props.onClick(e); }
       : () => {},

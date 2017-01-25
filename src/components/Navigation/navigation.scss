@@ -4,7 +4,7 @@
   menuBreakpoint: map-get($breakpoints, 'navigation-menu');
 }
 
-.overlay-wrapper {
+.overlay {
   position: absolute;
   top: map-get($heights, 'site-header');
   bottom: 0;
@@ -13,7 +13,7 @@
   pointer-events: none;
 }
 
-.overlay-wrapper.opened {
+.overlay.opened {
   pointer-events: all;
 }
 
@@ -33,30 +33,36 @@
 /**
  * 1. Positioning context for burger-menu.
  */
-.visible-elements-wrapper {
+.wrapper {
   composes: element;
   position: relative; /* 1 */
-
   padding: 0;
   padding-right: 1em;
+  height: map-get($heights, 'site-header');
+  display: flex;
+  align-items: center;
 }
 
-$link-border-height: 6px;
-$link-padding: 16px;
+.navigation {
+  @include media('>navigation-menu') {
+    display: flex;
+    align-items: center;
+  }
+}
 
-/**
- * 1. We set a transparent border at the bottom, that will become green when
- *    the link is active. We do that so that we reserve space for the border
- *    and it doesn‘t move the whole content.
- * 2. We remove that border height from the padding so that the link isn‘t
- *    taller than it should be.
- */
-.link {
-  display: inline-block;
-  border-bottom: $link-border-height solid transparent; /* 1 */
-  padding-top: $link-padding;
-  padding-bottom: $link-padding - $link-border-height; /* 2 */
-  color: inherit;
-  font-size: 20px;
+.menu {
+  @include media('>navigation-menu') {
+    flex: 1;
+  }
+}
+
+.logo-text {
+  font-size: 26px;
   text-decoration: none;
+}
+
+.logo-image {
+  display: inline-block;
+  text-decoration: none;
+  height: 35px;
 }

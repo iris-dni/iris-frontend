@@ -1,9 +1,11 @@
 @import 'globals';
 
+.wrapper {
+  position: relative;
+}
+
 .input {
-  @include map-declarations($form-fields-defaults, $form-fields-custom);
-  display: block;
-  width: 100%;
+  @include map-declarations($form-fields-defaults);
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
@@ -23,6 +25,10 @@
 .items {
   max-width: map-get($widths, 'teaser-max');
   list-style: none;
+
+  @include media('<=form-switch') {
+    margin-right: 40px;
+  }
 }
 
 .item + .item {

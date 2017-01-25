@@ -8,7 +8,10 @@ const PetitionWidgetStats = ({ total, required, daysLeft }) => (
     <li className={styles.item}>
       <Statistic
         figure={total}
-        label={settings.supportersText}
+        label={total === 1
+          ? settings.supportersTextSingular
+          : settings.supportersText
+        }
       />
     </li>
     {required > 0 &&
@@ -22,7 +25,10 @@ const PetitionWidgetStats = ({ total, required, daysLeft }) => (
     <li className={styles.item}>
       <Statistic
         figure={daysLeft}
-        label={settings.daysRemaining}
+        label={daysLeft === 1
+          ? settings.daysRemainingSingular
+          : settings.daysRemaining
+        }
       />
     </li>
   </ul>

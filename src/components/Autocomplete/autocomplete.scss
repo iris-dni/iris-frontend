@@ -1,7 +1,7 @@
 @import 'globals';
 
 $default-border-radius: map-get($form-fields-defaults, 'border-radius');
-$suggestion-border: 1px solid color('grey-lite');
+$suggestion-border: 1px solid color('grey-light');
 $thin-field-padding: 8px;
 
 /**
@@ -13,9 +13,7 @@ $thin-field-padding: 8px;
 }
 
 .input {
-  @include map-declarations($form-fields-defaults, $form-fields-custom);
-  display: block;
-  width: 100%;
+  @include map-declarations($form-fields-defaults);
 }
 
 .thin {
@@ -41,14 +39,15 @@ $thin-field-padding: 8px;
 }
 
 .list {
-  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  @include map-declarations($form-fields-defaults, (
+    'padding': 0
+  ));
   position: absolute;
   left: 0;
   right: 0;
   top: 100%;
   z-index: 3;
   list-style: none;
-  padding: 0;
   border-color: color('dimmed');
   background-color: color('white');
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);

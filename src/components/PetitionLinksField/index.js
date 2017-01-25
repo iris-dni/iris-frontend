@@ -1,19 +1,13 @@
 import React from 'react';
+import styles from './petition-links-field.scss';
 import domOnlyProps from 'form/domOnlyProps';
 import fieldIsInvalid from 'form/fieldIsInvalid';
 import getLinkInputErrors from 'form/getLinkInputErrors';
-import stripProtocolFromURL from 'helpers/stripProtocolFromURL';
+import getFieldClassname from 'form/getFieldClassname';
 import wrapPetitionLinks from 'helpers/wrapPetitionLinks';
 import RemovableItem from 'components/RemovableItem';
 import ExternalTeaser from 'components/ExternalTeaser';
-import styles from './petition-links-field.scss';
-
-const getClassname = (element, error) => {
-  return [
-    styles[element || 'input'],
-    styles[error ? 'invalid' : 'valid']
-  ].join(' ');
-};
+import FormValidation from 'components/FormValidation';
 
 const PetitionLinksField = React.createClass({
 
@@ -25,48 +19,74 @@ const PetitionLinksField = React.createClass({
     helper.onChange(links);
   },
 
-  handleChange (e) { this.setState({ value: e.target.value }); },
+  handleChange (e) {
+    const { config, formId, revalidateForm } = this.props;
+
+    this.setState({ value: e.target.value });
+
+    // Remove error if field is empty
+    if (!e.target.value) {
+      revalidateForm(formId, { [config.name]: false });
+    }
+  },
 
   handleLinkAdded (e) {
-    const { helper, config } = this.props;
-    helper.touched = true;
-    helper.onBlur();
+    const {
+      helper, config, formId,
+      touchField, revalidateForm
+    } = this.props;
 
+    // Clearer naming
+    const fieldId = config.name;
+
+    // Get field value and sanitise
+    const value = this.state.value.trim();
+
+    // Get links array
+    const links = helper.value;
+
+    // Set field as 'touched'
+    touchField(formId, fieldId);
+
+    // Key-presses we are interested in for validation
     if (e.key === 'Enter' || e.type === 'blur') {
       // Disable form submitting when pressing ENTER
       e.preventDefault();
 
-      const value = this.state.value.trim();
-      let links = helper.value;
-
       if (value) {
-        // Remove any protocol from the URL. In the teaser, the URL will be
-        // displayed without the protocol, and the link to it will be a relative
-        // protocol URL.
-        const protocolFreeURL = stripProtocolFromURL(value);
-
         // Specific validation for the link field.
-        const error = getLinkInputErrors(protocolFreeURL, links, config);
+        const error = getLinkInputErrors(value, links, config);
 
         if (error) {
-          helper.error = error;
-          return;
+          // Blur the field
+          helper.onBlur();
+          // Set error if given
+          revalidateForm(formId, {
+            [fieldId]: error
+          });
+        } else {
+          // Clear input value
+          this.setState({ value: '' });
+          // Push the link to the array
+          links.push({ url: value });
+          // Fetch open graph data for the last link
+          this.props.fetchOpenGraph(value).then(({ openGraph }) => {
+            // Add OG data to array item
+            links[links.length - 1] = {
+              url: value,
+              og: openGraph
+            };
+            // Change form field
+            helper.onChange(links);
+            // Focus next field if maxLength reached
+            if (links.length === config.maxItems) {
+              const nextField = document.querySelector('input#title');
+              nextField.focus();
+            }
+          });
         }
-
-        helper.error = false;
-
-        links.push({ url: protocolFreeURL });
-        helper.onChange(links); // Update redux-form value
-        this.setState({ value: '' }); // Clear input value
-
-        // Fetch open graph data for the last link
-        this.props.fetchOpenGraph(protocolFreeURL).then(({ openGraph }) => {
-          const newValue = { url: protocolFreeURL, og: openGraph };
-          const lastLinkIndex = links.length - 1;
-
-          links[lastLinkIndex] = newValue;
-          helper.onChange(links);
-        });
+      } else {
+        revalidateForm(formId, { [fieldId]: false });
       }
     }
   },
@@ -79,7 +99,7 @@ const PetitionLinksField = React.createClass({
   },
 
   render () {
-    const { value } = this.state;
+    const { value, loading } = this.state;
     const { config, helper } = this.props;
     const links = helper.value || [];
 
@@ -96,16 +116,24 @@ const PetitionLinksField = React.createClass({
         </ul>
 
         {links.length < config.maxItems &&
-          <input
-            className={getClassname('input', fieldIsInvalid(helper))}
-            id={config.name}
-            {...config.html}
-            {...domOnlyProps(helper)}
-            value={value}
-            onChange={this.handleChange}
-            onKeyPress={this.handleLinkAdded}
-            onBlur={this.handleLinkAdded}
-          />
+          <div className={styles.wrapper}>
+            <input
+              ref={'input'}
+              className={getFieldClassname(
+                styles, 'input', loading ? false : fieldIsInvalid(helper)
+              )}
+              id={config.name}
+              {...config.html}
+              {...domOnlyProps(helper)}
+              value={value}
+              onChange={this.handleChange}
+              onKeyPress={this.handleLinkAdded}
+              onBlur={this.handleLinkAdded}
+            />
+            {fieldIsInvalid(helper) &&
+              <FormValidation config={config} helper={helper} />
+            }
+          </div>
         }
       </div>
     );

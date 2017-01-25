@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { isEqual } from 'lodash/lang';
+import paramsHaveChanged from 'helpers/paramsHaveChanged';
 import getPetitionsPageTitle from 'helpers/getPetitionsPageTitle';
 import isClientSideRouting from 'helpers/isClientSideRouting';
 import {
@@ -19,24 +19,20 @@ const PetitionsContainer = React.createClass({
   componentWillMount () {
     // If there are no petitions, or if the user arrived on the page by clicking
     // a client-side router link, then we fetch petitions client-side.
-    if (!this.props.petitions.length || isClientSideRouting(this.props.location)) {
-      this.props.clearPetitions();
+    if (isClientSideRouting(this.props.location)) {
       this.props.fetchPetitionsAndCity(this.props);
     }
   },
 
   componentWillReceiveProps (nextProps) {
-    // Deep compare filter params, if they have changes
-    // then we fetch petitions again client-side. We don’t need to fetch the
-    // info on the new/current city, as it has already been updated when we
-    // selected the suggestion.
-    if (!isEqual(this.props.params, nextProps.params) ||
-        !isEqual(this.props.location.query, nextProps.location.query)) {
-      if (isClientSideRouting(this.props.location)) {
+    // Deep compare filter params, if they have changes then we fetch petitions again client-side.
+    if (paramsHaveChanged(this.props, nextProps) && isClientSideRouting(nextProps.location)) {
+      // Remove city if not given in params
+      if (!nextProps.params.city) {
         this.props.clearSuggestionInputValue();
         this.props.updateCurrentCity({});
-        this.props.fetchPetitions(nextProps);
       }
+      this.props.fetchPetitions(nextProps);
     }
   },
 

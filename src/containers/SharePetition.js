@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import settings from 'settings';
 import Rezponsive from 'rezponsive';
 import ShareButtons from 'components/ShareButtons';
 import openShareWindow from 'helpers/sharing/openShareWindow';
-import filterShareButtonsForTouch from 'helpers/sharing/filterButtonsForTouch';
+import filterShareButtonsForTouch from 'helpers/sharing/filterShareButtonsForTouch';
 import generateShareButtons from 'helpers/sharing/generateShareButtons';
 import getPetitionURL from 'helpers/getPetitionURL';
-
-const POPUP_WINDOW_TITLE = 'Share this petition';
 
 const SharePetitionContainer = ({ openPopup, buttons, isTouch, petitionURL }) => (
   <ShareButtons
@@ -17,10 +16,8 @@ const SharePetitionContainer = ({ openPopup, buttons, isTouch, petitionURL }) =>
   />
 );
 
-const openPopup = (url, event) => openShareWindow(url, event, POPUP_WINDOW_TITLE);
-
 const mapStateToProps = ({ petition }) => ({
-  openPopup: openPopup,
+  openPopup: (url, event) => openShareWindow(url, event, settings.shareButtons.popupTitle),
   buttons: generateShareButtons(petition),
   petitionURL: getPetitionURL(petition.id)
 });

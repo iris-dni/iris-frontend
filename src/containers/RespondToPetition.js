@@ -1,8 +1,8 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { fetchPetitionByResponseToken, respondToPetition } from 'actions/RespondActions';
+import { withRouter } from 'react-router';
+import { fetchPetitionByResponseToken } from 'actions/RespondActions';
 import settings from 'settings';
 import Loading from 'components/Loading';
 import RespondToPetition from 'components/RespondToPetition';
@@ -11,43 +11,35 @@ import RespondedToPetition from 'components/RespondedToPetition';
 import getPetitionForm from 'selectors/petitionForm';
 import getPetitionResponseForm from 'selectors/petitionResponseForm';
 
-const RespondToPetitionContainer = withRouter(React.createClass({
+const RespondToPetitionContainer = React.createClass({
   componentWillMount () {
-    const {
-      petitionResponse,
-      fetchPetitionByResponseToken,
-      params: { token }
-    } = this.props;
+    const { petition, fetchPetitionByResponseToken, params } = this.props;
 
-    if (!petitionResponse.saved) {
-      fetchPetitionByResponseToken(token);
+    if (!!petition.found && !petition.id) {
+      fetchPetitionByResponseToken(params.token);
     }
   },
 
   render () {
     const { petition, petitionResponse } = this.props;
-    const isLoading = petition.isLoading && petitionResponse.isLoading;
 
     return (
       <div>
         <Helmet title={settings.respondToPetitionPage.title} />
-        <Loading isLoading={isLoading} onServer={__SERVER__}>
+        <Loading isLoading={petition.isLoading || petitionResponse.isLoading}>
           <div>
-            {petitionResponse.saved &&
-              <RespondedToPetition
-                petition={petition}
-                petitionResponse={petitionResponse}
-              />
-            }
-
-            {!petition.saved && petition.found &&
+            {!!petition.found && !petitionResponse.saved &&
               <RespondToPetition
                 petition={petition}
                 petitionResponse={petitionResponse}
               />
             }
 
-            {!petition.saved && !petition.found &&
+            {!!petition.found && !!petitionResponse.saved &&
+              <RespondedToPetition />
+            }
+
+            {!petition.found &&
               <PetitionResponseTokenError
                 petition={petition}
                 petitionResponse={petitionResponse}
@@ -58,7 +50,7 @@ const RespondToPetitionContainer = withRouter(React.createClass({
       </div>
     );
   }
-}));
+});
 
 RespondToPetitionContainer.fetchData = ({ store, params }) => {
   return store.dispatch(fetchPetitionByResponseToken(params.token));
@@ -70,11 +62,10 @@ export const mapStateToProps = ({ petition, petitionResponse }) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchPetitionByResponseToken: (token) => dispatch(fetchPetitionByResponseToken(token)),
-  respondToPetition: (petition) => dispatch(respondToPetition(petition))
+  fetchPetitionByResponseToken: (token) => dispatch(fetchPetitionByResponseToken(token))
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(RespondToPetitionContainer);
+)(RespondToPetitionContainer));

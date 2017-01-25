@@ -1,7 +1,7 @@
 import baseUrl from 'helpers/baseUrl';
 import encodeParams from 'helpers/encodeParams';
 
-export default (basePath, params = { op: 'noop' }) => {
+export default (basePath, params = { op: 'rotate' }) => {
   if (!basePath) {
     return '';
   }
@@ -11,6 +11,7 @@ export default (basePath, params = { op: 'noop' }) => {
   const query = splitPath.pop();
   const encodedParams = encodeParams(params);
   const queryString = query + `${encodedParams ? '&' + encodedParams : ''}`;
+
   return baseUrl([
     'images',
     `?domain=${domain}`,

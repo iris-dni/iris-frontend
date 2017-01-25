@@ -7,8 +7,8 @@
   max-width: map-get($widths, 'container-max');
 
   @include media('<=text-max') {
-    padding-left: map-get($spacing, 'gutter');
-    padding-right: map-get($spacing, 'gutter');
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   @include media('>text-max', '<=1300px') {

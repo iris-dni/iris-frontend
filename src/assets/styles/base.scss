@@ -1,5 +1,6 @@
 @import 'reset';
 @import 'globals';
+@import 'theme';
 
 /*
  * 1. Always show scrollbar so modal content does not jump
@@ -12,12 +13,14 @@ html {
 }
 
 body {
-  font-family: $fonts-primary;
+  font-family: typography('font-family');
   color: color('black');
-  line-height: $line-height;
-  letter-spacing: $letter-spacing;
-  min-height: 100%;
-  height: 100%;
+  line-height: typography('line-height');
+  letter-spacing: typography('letter-spacing');
+}
+
+main {
+  flex: 1;
 }
 
 svg {
@@ -38,24 +41,49 @@ textarea {
   resize: vertical;
 }
 
+/*
+ * 1. Fix SVG scaling in IE:
+ * https://gist.github.com/larrybotha/7881691#target-ie-with-css
+ */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  img[src$=".svg"] {
+    width: 100%;
+  }
+}
 
 /*
  * 1. Positioning context for overlay and mobile menu
  * 2. Minimum 100vh height to mimic html element
- * 3. Hides overflow and stop scrolling when modal active
- * 4. Strange bug when placeholder won't disappear after
+ * 3. Sticky footer
+ * 4. Hides overflow and stop scrolling when modal active
+ * 5. Strange bug when placeholder won't disappear after
  *    programatically setting input field value
  */
 :global {
   .wrapper {
-    position: relative; /* 1 */
+    height: 100%; /* 2 */
     min-height: 100vh; /* 2 */
-    overflow: hidden;
+    display: flex; /* 3 */
+    flex-direction: column; /* 3 */
+
+    @include media('<=navigation-menu') {
+      position: relative;
+      overflow: hidden;
+    }
+  }
+
+  .main-content {
+    flex: 1 0 auto;
   }
 
   .disabled-scroll,
-  .disabled-scroll body {
-    overflow: hidden; /* 3 */
+  .disabled-scroll body,
+  .disabled-scroll .wrapper {
+    overflow: hidden; /* 4 */
+  }
+
+  .disabled-scroll .wrapper {
+    position: relative; /* 1 */
   }
 
   .disabled-scroll .app-wrapper {
@@ -63,6 +91,6 @@ textarea {
   }
 
   [value]:not([value=''])::-webkit-input-placeholder {
-    color: transparent; /* 4 */
+    color: transparent; /* 5 */
   }
 }

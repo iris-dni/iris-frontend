@@ -1,9 +1,7 @@
 @import 'globals';
 
 .field {
-  @include map-declarations($form-fields-defaults, $form-fields-custom);
-  display: block;
-  width: 100%;
+  @include map-declarations($form-fields-defaults);
 }
 
 .input {
@@ -13,7 +11,7 @@
 .textarea {
   composes: field;
   resize: vertical;
-  min-height: 200px;
+  min-height: 250px;
 }
 
 .valid {

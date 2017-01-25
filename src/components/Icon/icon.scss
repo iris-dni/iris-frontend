@@ -6,8 +6,16 @@
 
 .default {
   composes: root;
-  width: 20px;
-  height: 20px;
+
+  @include media('<=text-boost') {
+    width: 18px;
+    height: 18px;
+  }
+
+  @include media('>text-boost') {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .tiny {

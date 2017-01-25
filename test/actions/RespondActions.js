@@ -6,14 +6,14 @@ import mockPetition from '../mocks/petition';
 import {
   requestPetition,
   receivePetition,
-  submittingPetition,
   petitionNotFound
 } from 'actions/PetitionActions';
 
 import {
   fetchPetitionByResponseToken,
   respondToPetition,
-  respondedToPetition
+  respondedToPetition,
+  submittingPetitionResponse
 } from 'actions/RespondActions';
 
 describe('RespondActions', () => {
@@ -83,7 +83,20 @@ describe('RespondActions', () => {
     });
   });
 
+  describe('submittingPetitionResponse', () => {
+    it('returns SUBMITTING_PETITION_RESPONSE action', () => {
+      const result = submittingPetitionResponse();
+      const actual = result.type;
+      const expected = 'SUBMITTING_PETITION_RESPONSE';
+
+      assert.equal(actual, expected);
+    });
+  });
+
   describe('respondToPetition', () => {
+    let dispatch;
+    let result;
+
     let exampleResponse = {
       answer: {
         text: 'Example answer',
@@ -92,26 +105,31 @@ describe('RespondActions', () => {
       petitionId: examplePetition.id,
       token: exampleResponseToken
     };
+
     let examplePetitionWithResponse = {
       ...examplePetition,
       city_answer: exampleResponse.answer
     };
 
     beforeEach(() => {
+      dispatch = sinon.spy();
+
       moxios.stubRequest(/.*/, {
         status: 200,
         response: { data: examplePetitionWithResponse }
       });
+
+      result = respondToPetition(exampleResponse, dispatch);
     });
 
-    it('dispatches submittingPetition()', done => {
-      respondToPetition(exampleResponse, dispatch).then(() => {
-        assert(dispatch.calledWith(submittingPetition()));
+    it('dispatches submittingPetitionResponse()', done => {
+      result.then(() => {
+        assert(dispatch.calledWith(submittingPetitionResponse()));
       }).then(done, done);
     });
 
     it('returns a promise that dispatches respondedToPetition() when done', done => {
-      respondToPetition(exampleResponse, dispatch).then(() => {
+      result.then(() => {
         assert(dispatch.calledWithMatch(respondedToPetition(examplePetitionWithResponse)));
       }).then(done, done);
     });

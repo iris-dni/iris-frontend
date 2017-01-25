@@ -23,11 +23,11 @@ const MenuTrigger = ({ opened, wasOpened, onClickHandler }) => (
   >
     Menu
 
-    <div aria-role='presentational' className={styles['burger-icon']}>
+    <span role={'presentation'} className={styles['burger-icon']}>
       <span />
       <span />
       <span />
-    </div>
+    </span>
   </button>
 );
 

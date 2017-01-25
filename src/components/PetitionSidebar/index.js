@@ -15,7 +15,7 @@ const PetitionSidebar = ({
   timeMetric,
   isSupportable
 }) => (
-  <aside role='complementary' className={styles.root}>
+  <aside className={styles.root}>
     {(processing || closed) &&
       <PetitionResponseStatus />
     }

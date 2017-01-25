@@ -2,12 +2,13 @@
 
 .root {
   display: flex;
+  width: 100%;
 
   @include media('<=sidebar') {
     flex-direction: column-reverse;
   }
 
   @include media('>sidebar') {
-    flex-direction: row;
+    flex-flow: row nowrap;
   }
 }

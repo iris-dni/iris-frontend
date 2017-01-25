@@ -1,27 +1,43 @@
 import React from 'react';
 import settings from 'settings';
-import getPetitionOwner from 'selectors/petitionOwner';
-import getPetitionCity from 'selectors/petitionCity';
-import getPetitionPath from 'helpers/getPetitionPath';
-import Paragraph from 'components/Paragraph';
+import styles from './respond-to-petition-details.scss';
 import Link from 'components/Link';
 
-const RespondToPetitionDetails = ({ petition }) => (
-  <div>
-    <Paragraph margin='no-margin'>
-      <strong>{`${settings.respondToPetitionPage.details.for} `}</strong>
-      <Link href={getPetitionPath(petition.id)}>{petition.title}</Link>
-    </Paragraph>
-    <Paragraph margin='no-margin'>
-      <strong>{`${settings.respondToPetitionPage.details.by}`}</strong> {`${getPetitionOwner(petition)}`}
-    </Paragraph>
-    <Paragraph margin='no-margin'>
-      <strong>{`${settings.respondToPetitionPage.details.in}`}</strong> {`${getPetitionCity(petition).name}`}
-    </Paragraph>
-    <Paragraph>
-      <strong>{`${settings.respondToPetitionPage.details.collected}`}</strong> {`${petition.supporters.amount} ${settings.respondToPetitionPage.details.supporters}`}
-    </Paragraph>
-  </div>
+const RespondToPetitionDetails = ({ title, link, author, city, supporters }) => (
+  <dl className={styles.list}>
+    <dt className={styles.title}>
+      {settings.respondToPetitionPage.details.for}
+    </dt>
+    <dd className={styles.text}>
+      <Link external newTab href={link}>{title}</Link>
+    </dd>
+    {author &&
+      <dt className={styles.title}>
+        {settings.respondToPetitionPage.details.by}
+      </dt>
+    }
+    {author &&
+      <dd className={styles.text}>
+        {author}
+      </dd>
+    }
+    {city &&
+      <dt className={styles.title}>
+        {settings.respondToPetitionPage.details.in}
+      </dt>
+    }
+    {city &&
+      <dd className={styles.text}>
+        {city}
+      </dd>
+    }
+    <dt className={styles.title}>
+      {settings.respondToPetitionPage.details.collected}
+    </dt>
+    <dd className={styles.text}>
+      {supporters} {settings.respondToPetitionPage.details.supporters}
+    </dd>
+  </dl>
 );
 
 export default RespondToPetitionDetails;

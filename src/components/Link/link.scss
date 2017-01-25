@@ -1,9 +1,16 @@
 @import 'globals';
 
-.root:link,
-.root:visited {
+.shared {
   padding-bottom: 1px;
   text-decoration: none;
+}
+
+.root {
+  composes: shared;
+}
+
+.root:link,
+.root:visited {
   color: color('secondary');
   border-bottom: 1px solid color('secondary');
 }
@@ -13,4 +20,20 @@
 .root:focus {
   color: color('primary');
   border-bottom-color: color('primary');
+}
+
+.invert {
+  composes: shared;
+}
+
+.invert:link,
+.invert:visited {
+  color: color('white');
+  border-bottom: 1px solid color('white');
+}
+
+.invert:hover,
+.invert:active,
+.invert:focus {
+  border-bottom-color: transparent;
 }

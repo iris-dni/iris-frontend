@@ -1,14 +1,15 @@
 import React from 'react';
+import styles from './petition-group.scss';
 import TeaserGrid from 'components/TeaserGrid';
 import Container from 'components/Container';
 import BlockContainer from 'components/BlockContainer';
 import Section from 'components/Section';
 import Heading2 from 'components/Heading2';
-import styles from './petition-group.scss';
 import Link from 'components/Link';
+import Loading from 'components/Loading';
 
 const PetitionGroup = ({ petitions, isLoading, title, text, linkText, linkHref }) => (
-  <Section>
+  <Section margin>
     <Container>
       <BlockContainer>
         <header className={styles.head}>
@@ -19,10 +20,9 @@ const PetitionGroup = ({ petitions, isLoading, title, text, linkText, linkHref }
           <Link href={linkHref}>{linkText}</Link>
         </header>
       </BlockContainer>
-      <TeaserGrid
-        petitions={petitions}
-        isLoading={isLoading}
-      />
+      <Loading isLoading={isLoading}>
+        <TeaserGrid petitions={petitions} />
+      </Loading>
     </Container>
   </Section>
 );

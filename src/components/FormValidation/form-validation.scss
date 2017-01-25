@@ -1,0 +1,27 @@
+@import 'globals';
+
+.icon {
+  position: absolute;
+
+  @include media('<=form-switch') {
+    bottom: 100%;
+    margin-bottom: 10px;
+    right: 0;
+  }
+
+  @include media('>form-switch') {
+    left: 100%;
+    margin-left: 10px;
+    top: 0;
+  }
+}
+
+.message {
+  line-height: 20px;
+  margin-top: 8px;
+}
+
+.verified {
+  font-style: normal;
+  color: color('success');
+}

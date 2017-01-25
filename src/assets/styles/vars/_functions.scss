@@ -1,0 +1,29 @@
+/// Select a colour from the palette by identifier.
+/// Merges user's `$colors-custom` map with
+/// `$colors-defaults` and returns color
+///
+/// @access public
+///
+/// @param {String} $key - identifier of target color
+///
+/// @return {Color}
+///
+@function color($key) {
+  $colors: map-merge($colors-defaults, $colors-custom);
+  @return map-get($colors, $key);
+}
+
+/// Select a typography property by identifier.
+/// Merges user's `$typography-custom` map with
+/// `$typography-defaults` and returns property
+///
+/// @access public
+///
+/// @param {String} $key - identifier of target color
+///
+/// @return {Color}
+///
+@function typography($key) {
+  $typography: map-merge($typography-defaults, $typography-custom);
+  @return map-get($typography, $key);
+}

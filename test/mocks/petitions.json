@@ -281,5 +281,8 @@
       "videos": []
     }
   ],
-  "total": 50
+  "total": 50,
+  "isLoading": false,
+  "params": {},
+  "currentCity": {}
 }

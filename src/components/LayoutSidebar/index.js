@@ -3,7 +3,9 @@ import styles from './layout-sidebar.scss';
 
 const LayoutSidebar = ({ children }) => (
   <div className={styles.root} role={'complementary'}>
-    {children}
+    <div className={styles.inner}>
+      {children}
+    </div>
   </div>
 );
 

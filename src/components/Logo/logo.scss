@@ -1,9 +1,14 @@
 @import 'globals';
 
-.logo {
-  line-height: 100%;
-  vertical-align: top;
-  font-size: 26px;
+.image {
+  display: block;
+  max-width: 150px;
+  max-height: 100%;
+}
+
+.text {
+  font-size: inherit;
   font-weight: bold;
   color: color('tertiary');
+  text-decoration: none;
 }

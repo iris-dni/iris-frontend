@@ -3,7 +3,7 @@ import getRequestParams from 'helpers/getPetitionsRequestParams';
 import path from 'path';
 
 export default {
-  find: (id) => {
+  find: (id = '') => {
     const requestPath = path.join('/petitions', id.toString());
     const requestParams = { resolve: 'city,owner,images,links,mentions', extend: 'supporting' };
     return ApiClient.request(requestPath, requestParams);

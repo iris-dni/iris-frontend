@@ -1,7 +1,8 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { resendVerification } from 'actions/PetitionActions';
+import { fetchPetition } from 'actions/PetitionActions';
+import { resendVerification } from 'actions/SupportActions';
 import settings from 'settings';
 import TrustConfirmation from 'components/TrustConfirmation';
 
@@ -12,13 +13,17 @@ const TrustSupportConfirmationContainer = (props) => (
   </div>
 );
 
+TrustSupportConfirmationContainer.fetchData = ({ store, params }) => {
+  return store.dispatch(fetchPetition(params.id));
+};
+
 export const mapStateToProps = ({ petition, me }) => ({
   petition,
   me
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  resendVerification: (petition) => dispatch(resendVerification({ petition }))
+  resendVerification: (petition, user) => dispatch(resendVerification({ petition, user }))
 });
 
 TrustSupportConfirmationContainer.propTypes = {

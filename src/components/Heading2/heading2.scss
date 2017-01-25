@@ -1,10 +1,22 @@
 @import 'globals';
 
 .root {
-  @include map-declarations($heading-2-defaults, $heading-2-custom);
+  line-height: typography('line-height');
+
+  @include media('<=sidebar') {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  @include media('>sidebar') {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
 }
 
 .large {
   font-size: 2em;
+  line-height: typography('line-height');
   font-weight: 400;
+  margin-bottom: 18px;
 }

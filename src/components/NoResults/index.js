@@ -1,13 +1,12 @@
 import React from 'react';
+import settings from 'settings';
 import styles from './no-results.scss';
-import Link from 'components/Link';
+import MarkdownParagraph from 'components/MarkdownParagraph';
 
-const NoResults = ({ modifier, children, text }) => (
+const NoResults = () => (
   <div className={styles.root} role='alert'>
-    <h2 className={styles.header}>
-      No petitions found
-    </h2>
-    <p>Try a new search filter, <Link href={'/petitions'}>Browse all Petitions</Link> or why not <Link href={'/petitions/new'}>Create a Petition</Link> yourself!</p>
+    <h2 className={styles.header}>{settings.noResults.title}</h2>
+    <MarkdownParagraph size={'small'} text={settings.noResults.text} />
   </div>
 );
 

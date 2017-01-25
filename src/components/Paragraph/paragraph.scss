@@ -1,13 +1,81 @@
 @import 'globals';
 
+@mixin markdown-content($base: 1em) {
+  h1 {
+    margin-bottom: $base;
+    color: color('dimmed');
+  }
+
+  h2, h3, h4 {
+    margin-bottom: ($base / 2);
+  }
+
+  p, ul, ol {
+    margin-bottom: $base;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  ul, ol {
+    margin: $base ($base * 1.25);
+  }
+
+  a {
+    padding-bottom: 1px;
+    text-decoration: none;
+  }
+
+  hr {
+    border-top: 1px solid color('grey-lighter');
+    margin-top: $base * 1.5;
+    margin-bottom: $base * 1.5;
+    display: block;
+    width: 100%;
+  }
+
+  a:link,
+  a:visited {
+    color: color('secondary');
+    border-bottom: 1px solid color('secondary');
+  }
+
+  a:hover,
+  a:active,
+  a:focus {
+    color: color('primary');
+    border-bottom-color: color('primary');
+  }
+
+  *:last-child {
+    margin-bottom: 0;
+  }
+}
+
 .root {
-  @include map-declarations($paragraph-defaults, $paragraph-custom);
+  @include markdown-content;
+  line-height: typography('line-height');
+  margin-bottom: 25px;
+
+  @include media('<=sidebar') {
+    font-size: 18px;
+  }
+
+  @include media('>sidebar') {
+    font-size: 20px;
+  }
+}
+
+.small {
+  margin-bottom: 20px;
+  font-size: 1em;
+}
+
+.list-margin {
+  margin-bottom: 5px;
 }
 
 .no-margin {
   margin-bottom: 0;
-}
-
-.small {
-  font-size: 1em;
 }

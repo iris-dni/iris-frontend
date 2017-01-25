@@ -10,7 +10,7 @@ const API_KEY = process.env.API_KEY;
 export default {
   track: (id, url) => {
     const requestPath = path.join('/petitions', id.toString(), 'mentions');
-    const requestParams = {url: url};
+    const requestParams = { url: url };
     const requestHeader = {
       'X-IRIS-APIKEY': API_KEY
     };

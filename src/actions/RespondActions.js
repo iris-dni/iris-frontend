@@ -4,7 +4,6 @@ import settings from 'settings';
 import {
   requestPetition,
   receivePetition,
-  submittingPetition,
   petitionNotFound
 } from 'actions/PetitionActions';
 
@@ -13,7 +12,8 @@ import {
 } from './FlashActions';
 
 import {
-  RESPONDED_TO_PETITION
+  RESPONDED_TO_PETITION,
+  SUBMITTING_PETITION_RESPONSE
 } from './actionTypes';
 
 export function fetchPetitionByResponseToken (responseToken) {
@@ -23,8 +23,8 @@ export function fetchPetitionByResponseToken (responseToken) {
       .then(response => dispatch(
         receivePetition({ ...response.data, token: responseToken })
       ))
-      .catch(err => {
-        if (err.response && err.response.status === 404) {
+      .catch((error) => {
+        if (error.response && error.response.status === 404) {
           dispatch(petitionNotFound({ token: responseToken }));
         }
       });
@@ -32,13 +32,19 @@ export function fetchPetitionByResponseToken (responseToken) {
 }
 
 export function respondToPetition (petitionResponse, dispatch) {
-  dispatch(submittingPetition());
+  dispatch(submittingPetitionResponse());
   return petitionRepository.respond(petitionResponse)
     .then((response) => {
       dispatch(respondedToPetition(response.data));
     }).catch(() => dispatch(
       showFlashMessage(settings.flashMessages.genericError, 'error')
     ));
+}
+
+export function submittingPetitionResponse () {
+  return {
+    type: SUBMITTING_PETITION_RESPONSE
+  };
 }
 
 export function respondedToPetition (petition) {

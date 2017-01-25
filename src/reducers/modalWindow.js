@@ -1,3 +1,4 @@
+import { assign } from 'lodash/object';
 import getReturnUrlFromLocation from 'helpers/getReturnUrlFromLocation';
 import {
   SHOW_MODAL_WINDOW,
@@ -9,7 +10,7 @@ const initialState = {};
 export default function modalWindow (state = initialState, action) {
   switch (action.type) {
     case SHOW_MODAL_WINDOW:
-      return Object.assign({}, state, {
+      return assign({}, state, {
         ...action.modal,
         active: true,
         hidden: false,

@@ -3,8 +3,8 @@
 .root {
   list-style: none;
   font-size: 1em;
-  letter-spacing: $letter-spacing;
-  margin-bottom: map-get($spacing, 'm-bottom');
+  letter-spacing: typography('letter-spacing');
+  margin-bottom: 20px;
 }
 
 .shared {

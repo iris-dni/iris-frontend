@@ -26,22 +26,23 @@ const Pagination = ({
         <div className={styles['contain-left']}>
           <div className={styles.previous}>
             <span className={styles.hidden}>Previous</span>
-            <span className={`${styles.left} ${styles.dimmed}`} />
+            <span className={`${styles.left} ${styles.disabled}`} role={'presentation'} />
           </div>
         </div>
       }
 
       {!isFirstPage &&
         <div className={styles['contain-left']}>
-          <div className={styles.previous} itemProp='url'>
+          <span itemProp='url'>
             <Link
               rel='prev'
               itemProp='name'
+              className={styles.previous}
               to={petitionsPath({ ...params, city: currentCity, page: prevPage })}>
               <span className={styles.hidden}>Previous</span>
-              <span className={styles.left} />
+              <span className={styles.left} role={'presentation'} />
             </Link>
-          </div>
+          </span>
         </div>
       }
 
@@ -53,22 +54,23 @@ const Pagination = ({
         <div className={styles['contain-right']}>
           <div className={styles.next}>
             <span className={styles.hidden}>Next</span>
-            <span className={`${styles.right} ${styles.dimmed}`} />
+            <span className={`${styles.right} ${styles.disabled}`} role={'presentation'} />
           </div>
         </div>
       }
 
       {!isLastPage &&
         <div className={styles['contain-right']}>
-          <div className={styles.next} itemProp='url'>
+          <span itemProp='url'>
             <Link
               rel='next'
               itemProp='name'
+              className={styles.next}
               to={petitionsPath({ ...params, city: currentCity, page: nextPage })}>
               <span className={styles.hidden}>Next</span>
-              <span className={styles.right} />
+              <span className={styles.right} role={'presentation'} />
             </Link>
-          </div>
+          </span>
         </div>
       }
     </nav>

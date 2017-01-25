@@ -113,7 +113,7 @@ describe('PetitionForm', () => {
     });
 
     it('`description` field has a minLength', () => {
-      const result = getFieldByNameKey('title');
+      const result = getFieldByNameKey('description');
       const actual = result.html.minLength > 0;
       const expected = true;
 
@@ -121,7 +121,7 @@ describe('PetitionForm', () => {
     });
 
     it('`description` field has a maxLength', () => {
-      const result = getFieldByNameKey('title');
+      const result = getFieldByNameKey('description');
       const actual = result.html.maxLength > 0;
       const expected = true;
 

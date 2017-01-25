@@ -1,0 +1,11 @@
+@import 'globals';
+
+.root {
+  @include media('<=#{sidebar}') {
+    margin-bottom: 50px;
+  }
+
+  @include media('>#{sidebar}') {
+    margin-bottom: 80px;
+  }
+}

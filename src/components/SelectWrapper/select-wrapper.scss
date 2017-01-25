@@ -1,0 +1,20 @@
+@import 'globals';
+
+.root {
+  position: relative;
+  width: 100%;
+}
+
+@supports (-webkit-appearance: none) or (appearance: none)
+          or ((-moz-appearance: none) and (mask-type: alpha)) {
+  .root::after {
+    content: '▼';
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0.5em;
+    pointer-events: none;
+    color: color('black');
+  }
+}

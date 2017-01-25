@@ -1,0 +1,25 @@
+@import 'globals';
+
+.shared {
+  position: relative;
+}
+
+.default {
+  composes: shared;
+  background-color: color('grey-lightest');
+}
+
+.primary,
+.secondary,
+.tertiary {
+  composes: shared;
+  color: color('white');
+}
+
+.inner {
+  @include media('>768px') {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 66.6%;
+  }
+}

@@ -1,28 +1,50 @@
 @import 'globals';
 
+$field-height: 24px;
+
+.wrapper {
+  position: relative;
+}
+
 .field {
-  @include map-declarations($form-fields-defaults, $form-fields-custom);
+  @include map-declarations($form-fields-defaults);
   border-color: color('grey');
-  display: block;
-  width: 100%;
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
 
 .field:hover {
   cursor: pointer;
+}
+
+.valid {
+  border-color: color('grey');
+}
+
+.valid:hover,
+.valid:focus {
   border-color: color('dimmed');
+  color: color('black');
+}
+
+.invalid {
+  border-color: color('error');
 }
 
 .label {
   display: block;
   padding-top: 5px;
   padding-bottom: 5px;
-  line-height: 24px;
+  line-height: $field-height;
   text-align: center;
   color: color('dimmed');
 
   svg {
     margin-right: 5px;
   }
+}
+
+.error {
+  color: color('error');
+  font-size: 14px;
 }

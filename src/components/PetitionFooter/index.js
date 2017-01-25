@@ -1,23 +1,29 @@
 import React from 'react';
 import settings from 'settings';
+import Container from 'components/Container';
+import Section from 'components/Section';
 import ExternalTeaserBlock from 'components/ExternalTeaserBlock';
-import styles from './petition-footer.scss';
 
 const PetitionFooter = ({ links, mentions }) => (
-  <section className={styles.root}>
-    {!!links.length &&
-      <ExternalTeaserBlock
-        title={settings.petitionPage.attachedLinks}
-        links={links}
-      />
-    }
-    {!!mentions.length &&
-      <ExternalTeaserBlock
-        title={settings.petitionPage.attachedMentions}
-        links={mentions}
-      />
-    }
-  </section>
+  (!!links.length || !!mentions.length)
+  ? (
+    <Section theme={'light'} padding>
+      <Container>
+        {!!links.length &&
+          <ExternalTeaserBlock
+            title={settings.petitionPage.attachedLinks}
+            links={links}
+          />
+        }
+        {!!mentions.length &&
+          <ExternalTeaserBlock
+            title={settings.petitionPage.attachedMentions}
+            links={mentions}
+          />
+        }
+      </Container>
+    </Section>
+  ) : null
 );
 
 export default PetitionFooter;

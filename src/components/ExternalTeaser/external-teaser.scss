@@ -50,7 +50,7 @@
   opacity: 0.45;
 }
 
-$title-line-height: 1.2;
+$title-line-height: typography('line-height-slim');
 
 /**
  * 1. Limits the title to 3 lines.

@@ -1,6 +1,4 @@
 import FIELDS from 'components/TrustPublishForm/fields';
 import fieldValidator from 'form/fieldValidator';
 
-export default (values) => {
-  return fieldValidator(FIELDS, values);
-};
+export default (values) => fieldValidator(FIELDS, values);

@@ -3,7 +3,7 @@ import settings from 'settings';
 import { petitionsPath } from 'helpers/petitionUrls';
 import citySuggestionFormatter from 'helpers/citySuggestionFormatter';
 import PetitionsFiltersField from 'components/PetitionsFiltersField';
-import Select from 'components/Select';
+import Filter from 'components/Filter';
 import Autocomplete from 'containers/Autocomplete';
 import styles from './petitions-filters.scss';
 
@@ -34,10 +34,6 @@ const SORT_INPUT_OPTIONS = [
   {
     value: 'date',
     label: settings.petitionsPage.filters.date
-  },
-  {
-    value: 'trending',
-    label: settings.petitionsPage.filters.trending
   },
   {
     value: 'supporters',
@@ -113,7 +109,7 @@ const PetitionsFilters = React.createClass({
               name={FILTER_INPUT_NAME}
               label={settings.petitionsPage.filterBy}
             >
-              <Select
+              <Filter
                 name={FILTER_INPUT_NAME}
                 value={this.getSelectValue('state', 'current')}
                 handleChange={this.handleFilterChange}
@@ -126,7 +122,7 @@ const PetitionsFilters = React.createClass({
               name={SORT_INPUT_NAME}
               label={settings.petitionsPage.orderBy}
             >
-              <Select
+              <Filter
                 name={SORT_INPUT_NAME}
                 value={this.getSelectValue('sort', 'date')}
                 handleChange={this.handleSortChange}

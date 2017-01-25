@@ -1,8 +1,7 @@
 require('dotenv').config();
 var webpack = require('webpack');
-var path = require('path');
+var setupWebpack = require('./webpack.config.setup');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var autoprefixer = require('autoprefixer');
 
 var envVars = [
   'PORT',
@@ -14,34 +13,11 @@ var envVars = [
   'SSO_PROVIDER_URL'
 ];
 
-var modulesDirs = [
-  'src',
-  'node_modules',
-  'web_modules'
-];
-
 var cssloader = [
   'css?modules',
   'sourceMap',
   'localIdentName=[hash:base64:5]'
 ].join('&');
-
-var sassLoader = {
-  includePaths: [
-    path.resolve(__dirname, './src/theme/styles'),
-    path.resolve(__dirname, './src/assets/styles')
-  ]
-};
-
-if (process.env.THEME_PATH) {
-  sassLoader.includePaths.unshift(
-    path.resolve(__dirname, process.env.THEME_PATH, 'styles')
-  );
-}
-
-var postcss = [
-  autoprefixer({ browsers: ['last 2 versions'] })
-];
 
 var loaders = [
   {
@@ -78,32 +54,7 @@ var plugins = [
   new ExtractTextPlugin('[name].css')
 ];
 
-module.exports = {
-  entry: {
-    client: ['./src/client'],
-    widget: ['./src/widget'],
-    embed: ['./src/embed']
-  },
-  cache: false,
-  context: __dirname,
-  devtool: false,
-  output: {
-    path: path.join(__dirname, 'static/dist'),
-    filename: '[name].js',
-    chunkFilename: '[name]-[id].js',
-    publicPath: 'dist/'
-  },
-  module: { loaders: loaders },
+module.exports = setupWebpack({
   plugins: plugins,
-  resolve: {
-    modulesDirectories: modulesDirs,
-    extensions: ['', '.json', '.js', '.jsx']
-  },
-  node: {
-    __dirname: true,
-    fs: 'empty'
-  },
-  postcss: postcss,
-  envVars: envVars,
-  sassLoader: sassLoader
-};
+  loaders: loaders
+});

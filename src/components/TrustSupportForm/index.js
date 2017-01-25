@@ -18,6 +18,7 @@ const TrustSupportForm = ({
   handleSubmit,
   petition,
   mobileConfirmed,
+  trustedFields,
   submitting
 }) => (
   <form onSubmit={handleSubmit((values, dispatch) => supportPetition(
@@ -25,6 +26,7 @@ const TrustSupportForm = ({
   )}>
     <Fieldset>
       <FormFieldsIterator
+        trustedFields={trustedFields}
         reduxFormFields={fields}
         fieldsArray={FIELDS}
       />
@@ -36,7 +38,7 @@ const TrustSupportForm = ({
           text={settings.trustPage.support.backButton}
         />
         <Button
-          text={settings.trustPage.support[mobileConfirmed ? 'trustedNextButton' : 'nextButton']}
+          text={settings.trustPage.support[mobileConfirmed ? 'nextButtonTrusted' : 'nextButton']}
           modifier={'accent'}
           disabled={submitting || petition.isLoading || !fields._meta.allValid}
         />
@@ -51,6 +53,7 @@ TrustSupportForm.propTypes = {
   petition: React.PropTypes.object.isRequired,
   me: React.PropTypes.object.isRequired,
   mobileConfirmed: React.PropTypes.bool.isRequired,
+  trustedFields: React.PropTypes.object.isRequired,
   submitting: React.PropTypes.bool.isRequired
 };
 

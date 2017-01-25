@@ -1,3 +1,5 @@
+import { assign } from 'lodash/object';
+
 import {
   REQUEST_WHOAMI,
   RECEIVE_WHOAMI,
@@ -10,15 +12,15 @@ const initialState = false;
 export default function me (state = initialState, action) {
   switch (action.type) {
     case REQUEST_WHOAMI:
-      return Object.assign({}, state, {
+      return assign({}, state, {
         isLoading: true
       });
     case RECEIVE_WHOAMI:
-      return action.me && Object.assign({}, state, action.me, {
+      return action.me && assign({}, state, action.me, {
         isLoading: false
       });
     case REQUEST_LOGOUT:
-      return Object.assign({}, state, {
+      return assign({}, state, {
         isLoading: true
       });
     case RECEIVE_LOGOUT:

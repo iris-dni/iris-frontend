@@ -1,3 +1,4 @@
+import { assign } from 'lodash/object';
 import getPetitionStartDate from 'selectors/petitionStartDate';
 import getPetitionOwner from 'selectors/petitionOwner';
 import getPetitionImage from 'selectors/petitionImage';
@@ -9,7 +10,7 @@ export default (petition = {}) => {
   const petitionImageObject = petition.images && petition.images[0];
   const petitionImageSrc = petitionImage && petitionImage.src;
 
-  return Object.assign({}, {
+  return assign({}, {
     '@context': 'http://schema.org',
     '@type': 'Question',
     'name': petition.title,

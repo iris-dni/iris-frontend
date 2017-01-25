@@ -1,0 +1,52 @@
+@import 'globals';
+
+.root {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  background-color: color('black');
+  color: color('white');
+  font-size: 14px;
+}
+
+.copyright-inner {
+  @include media('<=700px') {
+    text-align: center;
+  }
+
+  @include media('>700px') {
+    display: flex;
+    justify-content: flex-start;
+  }
+}
+
+.links {
+  list-style: none;
+
+  @include media('<=700px') {
+    margin-top: 15px;
+  }
+
+  @include media('>700px') {
+    text-align: right;
+    margin-left: auto;
+  }
+}
+
+.link {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.link::before {
+  content: '|';
+  position: relative;
+  left: -8px;
+}
+
+.link:first-child::before {
+  display: none;
+}
+
+.small {
+  font-size: inherit;
+}

@@ -1,0 +1,23 @@
+///
+/// Default colours map
+///
+/// @type Map
+///
+/// @prop {String} key - Colour reference
+/// @prop {Map} value - Colour value
+///
+$colors-defaults: (
+  'black': #222,
+  'blue': #213872,
+  'white': #fff,
+  'primary': #2fcd0c,
+  'secondary': #387fd1,
+  'tertiary': #1100c4,
+  'dimmed': #999,
+  'grey': #ccc,
+  'grey-light': #e5e5e5,
+  'grey-lighter': #f1f1f1,
+  'grey-lightest': #f8f8f8,
+  'error': #f14b4f,
+  'success': #2fcd0c
+) !default;

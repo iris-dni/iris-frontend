@@ -1,21 +1,12 @@
 /* global CustomEvent */
-import ReactGA from 'react-ga';
-import settings from 'settings';
-
 export const PAGEVIEW_EVENT_NAME = `${process.env.SITE_NAME || 'iris'}_pageview`;
 
 export default () => {
   if (__CLIENT__) {
-    const { pathname } = window.location;
-    const { googleAnalytics } = settings;
+    // Register custom event
     const pageviewEvent = typeof CustomEvent !== 'undefined' && // Required as it’s not defined during tests.
       new CustomEvent(PAGEVIEW_EVENT_NAME);
-
-    if (googleAnalytics.APIKey) {
-      ReactGA.set({ page: pathname });
-      ReactGA.pageview(pathname);
-    }
-
+    // Dispatch custom event on the window for tracking
     window.dispatchEvent(pageviewEvent);
   }
 };

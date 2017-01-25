@@ -1,11 +1,19 @@
 import moment from 'moment';
+import settings from 'settings';
 import getPetitionEndDate from 'selectors/petitionEndDate';
 
-// @TODO: Calculate number of days pending based on `letterSentDate` once it's
-// available; Add test!
-export default ({ created, expires }, timeNow) => {
-  const endDate = getPetitionEndDate({ created, expires });
-  const nowDate = timeNow || moment().valueOf();
-  const daysPending = moment.duration(moment(nowDate).diff(endDate)).asDays();
+export default ({ state, dc }) => {
+  const expiryDate = state.letter_wait_expire;
+  let compareDate;
+
+  if (expiryDate) {
+    const letterExpires = moment(state.letter_wait_expire);
+    compareDate = letterExpires.subtract(settings.daysForResponse, 'days');
+  } else {
+    compareDate = getPetitionEndDate(dc);
+  }
+
+  const nowDate = moment().valueOf();
+  const daysPending = moment.duration(moment(nowDate).diff(compareDate)).asDays();
   return Math.max(Math.round(daysPending), 0);
 };

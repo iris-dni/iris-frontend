@@ -1,0 +1,15 @@
+///
+/// Default typography style map: use with @map-declarations
+/// function to loop properties and values
+///
+/// @type Map
+///
+/// @prop {String} key - Typography property
+/// @prop {Map} value - Declaration value
+///
+$typography-defaults: (
+  'font-family': ('Open Sans', 'Arial', 'sans-serif'),
+  'line-height': 1.4,
+  'line-height-slim': 1.25,
+  'letter-spacing': 0.3px
+);

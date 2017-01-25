@@ -5,6 +5,7 @@ import getPetitionURL from 'helpers/getPetitionURL';
 import isUntrustedUser from 'helpers/isUntrustedUser';
 import isInvalidVerification from 'helpers/isInvalidVerification';
 import getPetitionPath from 'helpers/getPetitionPath';
+import generateShareButtons from 'helpers/sharing/generateShareButtons';
 
 import {
   SUBMITTING_SUPPORT,
@@ -27,7 +28,7 @@ export function supportPetition (trustData, dispatch) {
       switch (response.status) {
         case 'ok':
           // Successful support
-          supportPetitionSuccess(petition.id, response.data, dispatch);
+          supportPetitionSuccess(petition, response.data, dispatch);
           break;
         case 'error':
           // Error given
@@ -40,14 +41,16 @@ export function supportPetition (trustData, dispatch) {
     ));
 }
 
-const supportPetitionSuccess = (id, data, dispatch) => {
+const supportPetitionSuccess = (petition, data, dispatch) => {
   // Change route to petition
-  dispatch(push(getPetitionPath(id)));
+  dispatch(push(getPetitionPath(petition.id)));
   // Dispatch modal confirmation
   dispatch(
     showModalWindow({
       type: 'share',
-      link: getPetitionURL(id),
+      petitionURL: getPetitionURL(petition.id),
+      buttons: generateShareButtons(petition, 'supported')
+        .filter(button => button.brand !== 'whatsapp'),
       ...settings.supportPetition.newlySupported.modal
     })
   );

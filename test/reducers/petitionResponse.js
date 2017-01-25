@@ -22,6 +22,17 @@ describe('petitionResponse reducer', () => {
     assert.deepEqual(actual, expected);
   });
 
+  it('handles the SUBMITTING_PETITION_RESPONSE action', () => {
+    const actual = petitionResponse({}, {
+      type: 'SUBMITTING_PETITION_RESPONSE'
+    });
+    const expected = {
+      isLoading: true
+    };
+
+    assert.deepEqual(actual, expected);
+  });
+
   it('handles the RECEIVE_PETITION action', () => {
     const actual = petitionResponse({}, {
       type: 'RECEIVE_PETITION',

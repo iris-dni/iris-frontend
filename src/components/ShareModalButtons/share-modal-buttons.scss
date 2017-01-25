@@ -1,0 +1,14 @@
+@import 'globals';
+
+.list {
+  list-style: none;
+  text-align: center;
+}
+
+.item {
+  margin-bottom: 10px;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}

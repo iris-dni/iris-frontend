@@ -1,3 +1,5 @@
+import { assign } from 'lodash/object';
+
 import {
   SHOW_FLASH_MESSAGE,
   HIDE_FLASH_MESSAGE
@@ -8,7 +10,7 @@ const initialState = {};
 export default function flashMessage (state = initialState, action) {
   switch (action.type) {
     case SHOW_FLASH_MESSAGE:
-      return Object.assign({}, state, {
+      return assign({}, state, {
         text: action.text,
         modifier: action.modifier
       });

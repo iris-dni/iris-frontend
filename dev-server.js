@@ -1,5 +1,8 @@
+var assetsUrl = process.env.DEV_ASSETS || 'http://localhost:8080';
+
 module.exports = {
-  publicPath: 'http://localhost:8080/dist/',
+  assetsUrl: assetsUrl,
+  publicPath: assetsUrl + '/dist/',
   contentBase: './static',
   hot: true,
   inline: true,

@@ -1,5 +1,4 @@
 import chai from 'chai';
-import settings from 'settings';
 import getPetitionEmailSubject from 'helpers/sharing/getPetitionEmailSubject';
 import mockPetition from '../../mocks/petition';
 import mockPetitionWithoutCity from '../../mocks/petitionWithoutCity';
@@ -9,7 +8,7 @@ const { assert } = chai;
 describe('getPetitionEmailSubject', () => {
   context('without a city', () => {
     const actual = getPetitionEmailSubject(mockPetitionWithoutCity.data);
-    const expected = settings.shareButtons.email.subject;
+    const expected = 'This petition needs your support';
 
     it('subject returned from settings', () => assert.equal(actual, expected));
   });
@@ -28,5 +27,12 @@ describe('getPetitionEmailSubject', () => {
 
       assert.isTrue(actual);
     });
+  });
+
+  context('with a modal type', () => {
+    const actual = getPetitionEmailSubject(mockPetitionWithoutCity.data, 'published');
+    const expected = 'I just created a new petition!';
+
+    it('contextual subject returned from settings', () => assert.equal(actual, expected));
   });
 });
