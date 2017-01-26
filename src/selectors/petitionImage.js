@@ -1,7 +1,7 @@
 import getImageUrl from 'helpers/getImageUrl';
 
 export default (petition) => {
-  if (!petition.images || !petition.images[0]) {
+  if (!petition.images || !petition.images[0] || !petition.images[0].data) {
     return {};
   }
 
