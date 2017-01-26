@@ -2,12 +2,20 @@ import chai from 'chai';
 import getPetitionImage from 'selectors/petitionImage';
 import mockPetition from '../mocks/petition';
 import mockPetitionWithImage from '../mocks/petitionWithImage';
+import mockPetitionWithUnresolvedImage from '../mocks/petitionWithUnresolvedImage';
 
 const { assert } = chai;
 
 describe('imageUrl selector', () => {
   it('returns an empty object for petition with no image', () => {
     const actual = getPetitionImage(mockPetition.data);
+    const expected = {};
+
+    assert.deepEqual(actual, expected);
+  });
+
+  it('returns an empty object for petition with an unresolved image', () => {
+    const actual = getPetitionImage(mockPetitionWithUnresolvedImage.data);
     const expected = {};
 
     assert.deepEqual(actual, expected);
