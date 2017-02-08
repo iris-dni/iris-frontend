@@ -4,6 +4,7 @@ import petitionRepository from 'services/api/repositories/petition';
 import getPetitionURL from 'helpers/getPetitionURL';
 import isUntrustedUser from 'helpers/isUntrustedUser';
 import isInvalidVerification from 'helpers/isInvalidVerification';
+import hasSupportedPetitionAlready from 'helpers/hasSupportedPetitionAlready';
 import getPetitionPath from 'helpers/getPetitionPath';
 import generateShareButtons from 'helpers/sharing/generateShareButtons';
 
@@ -63,6 +64,8 @@ const supportPetitionErrors = (id, response, dispatch) => {
   } else if (isInvalidVerification(response)) {
     // When the verification code is invalid
     dispatch(showFlashMessage(settings.flashMessages.invalidVerificationError, 'error'));
+  } else if (hasSupportedPetitionAlready(response)) {
+    dispatch(showFlashMessage(settings.flashMessages.petitionAlreadySupportedError, 'error'));
   } else {
     // All other errors
     dispatch(showFlashMessage(settings.flashMessages.genericError, 'error'));

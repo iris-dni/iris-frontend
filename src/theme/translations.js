@@ -492,6 +492,7 @@ export default {
     "petitionPublished": "Great, your petition was published!",
     "petitionUpdated": "Your petition was updated",
     "petitionSupported": "Thank you for signing this petition!",
+    "petitionAlreadySupportedError": "Your mobile number was already used for this petition. A mobile number is allowed to support a petition only once.",
     "invalidVerificationError": "Invalid verification code",
     "verificationResent": "Verification code has been re-sent",
     "invalidUserDataError": "Complete your details to support this petition",
