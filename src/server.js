@@ -3,6 +3,7 @@ import NunjucksHapi from 'nunjucks-hapi';
 import render from 'server/render';
 import renderWidget from 'server/renderWidget';
 import imageProxy from 'server/imageProxy';
+import probeStatus from 'server/probeStatus';
 import emailConfirmation from 'server/emailConfirmation';
 import api from 'server/api';
 import httpAuthValidate from 'server/httpAuth';
@@ -160,6 +161,15 @@ server.route({
       parse: false
     }
   }
+});
+
+/**
+ * Monitoring endpoint
+ */
+server.route({
+  method: ['GET', 'POST'],
+  path: '/probe_status',
+  handler: probeStatus
 });
 
 export default server;
