@@ -7,6 +7,7 @@ import mockUser from '../mocks/user';
 import mockTrustResponse from '../mocks/trustResponse';
 import mockTrustResponseUntrusted from '../mocks/trustResponseUntrusted';
 import mockTrustResponseInvalid from '../mocks/trustResponseInvalid';
+import mockTrustResponseUserAlreadySupported from '../mocks/trustResponseUserAlreadySupported';
 
 import {
   submittingSupport,
@@ -145,6 +146,38 @@ describe('SupportActions', () => {
       it('dispatches showFlashMessage() error', done => {
         result.then(() => {
           assert(dispatch.calledWith(showFlashMessage('Invalid verification code', 'error')));
+        }).then(done, done);
+      });
+    });
+
+    context('with "user already supported this petition" response', () => {
+      let dispatch;
+      let result;
+
+      const mockTrustData = {
+        petition: mockPetition.data,
+        user: mockUser
+      };
+
+      beforeEach(() => {
+        dispatch = sinon.spy();
+
+        moxios.install();
+        moxios.stubRequest(/.*/, {
+          status: 200,
+          response: mockTrustResponseUserAlreadySupported
+        });
+
+        result = supportPetition(mockTrustData, dispatch);
+      });
+
+      afterEach(() => {
+        moxios.uninstall();
+      });
+
+      it('dispatches showFlashMessage() error', done => {
+        result.then(() => {
+          assert(dispatch.calledWith(showFlashMessage('Your mobile number was already used for this petition. A mobile number is allowed to support a petition only once.', 'error')));
         }).then(done, done);
       });
     });
