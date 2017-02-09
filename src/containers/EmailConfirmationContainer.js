@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import settings from 'settings';
 import Helmet from 'react-helmet';
 import EmailConfirmation from 'components/EmailConfirmation';
@@ -14,4 +15,8 @@ const EmailConfirmationContainer = React.createClass({
   }
 });
 
-export default EmailConfirmationContainer;
+export const mapStateToProps = ({ confirmation }) => ({ confirmation });
+
+export default connect(
+  mapStateToProps
+)(EmailConfirmationContainer);
