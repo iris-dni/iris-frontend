@@ -22,8 +22,14 @@ export default (request, reply) => {
               addServerRequestProps(request, { confirmation: { invalidKey: true } }),
             reply, 'index');
           case 400:
+            const description = get(error, 'response.data.error.description', '');
+            if (description.indexOf('Already used') > -1) {
+              return render(
+                addServerRequestProps(request, { confirmation: { emailAlreadyConfirmed: true } }),
+              reply, 'index');
+            }
             return render(
-              addServerRequestProps(request, { confirmation: { emailConfirmed: true } }),
+              addServerRequestProps(request, { confirmation: { displayError: true } }),
             reply, 'index');
           default:
             reply('Something went wrong').code(500);
