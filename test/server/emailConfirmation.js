@@ -40,6 +40,35 @@ describe('email confirmation', () => {
             const expected = 200;
 
             assert.equal(actual, expected);
+            assert.isTrue(response.payload.indexOf('Email address confirmed') > -1);
+            done();
+          });
+      });
+    });
+
+    context('with a valid key but API responded an error', () => {
+      beforeEach(() => {
+        moxios.install();
+      });
+
+      afterEach(() => {
+        moxios.uninstall();
+      });
+
+      it('responds with 200 status', done => {
+        moxios.stubRequest(/.*/, {
+          status: 400,
+          headers: {'"x-iris-api-key': 'some-key'},
+          response: {error: {code: 400, description: 'Bad Request: Already used'}}
+        });
+
+        server.injectThen('/confirm/email/supporter?key=1234')
+          .then(response => {
+            const actual = response.statusCode;
+            const expected = 200;
+
+            assert.equal(actual, expected);
+            assert.isTrue(response.payload.indexOf('Email address already confirmed') > -1);
             done();
           });
       });

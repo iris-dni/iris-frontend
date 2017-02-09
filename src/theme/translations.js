@@ -123,9 +123,16 @@ export default {
     "link": "Go back home"
   },
   "emailConfirmationPage": {
-    "title": "Email address confirmed",
-    "hint": "Thank you for confirming your email address. You will now receive important petition updates via email.",
-    "link": "Browse petitions"
+    "default": {
+      "title": "Email address confirmed",
+      "hint": "Thank you for confirming your email address. You will now receive important petition updates via email.",
+      "link": "Browse petitions"
+    },
+    "emailAlreadyConfirmed": {
+      "title": "Email address already confirmed",
+      "hint": "Your email address has already been confirmed.",
+      "link": "Browse petitions"
+    }
   },
   "petitionGroups": {
     "trending": {

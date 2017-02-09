@@ -1,5 +1,4 @@
 import React from 'react';
-import settings from 'settings';
 import ButtonLink from 'components/ButtonLink';
 import Container from 'components/Container';
 import Header from 'components/Header';
@@ -8,11 +7,11 @@ import Notice from 'components/Notice';
 import Paragraph from 'components/Paragraph';
 import IconBullet from 'components/IconBullet';
 
-const RespondedToPetition = ({ petition }) => (
+const RespondedToPetition = ({ title, hint, link }) => (
   <Container>
     <Header padding>
       <PageTitle
-        title={settings.emailConfirmationPage.title}
+        title={title}
         centered
       />
     </Header>
@@ -20,10 +19,10 @@ const RespondedToPetition = ({ petition }) => (
       <Paragraph>
         <IconBullet size={'huge'} id={'Checkmark'} modifier={'success'} />
       </Paragraph>
-      <Paragraph>{settings.emailConfirmationPage.hint}</Paragraph>
+      <Paragraph>{hint}</Paragraph>
       <ButtonLink
         href={'/petitions'}
-        text={settings.emailConfirmationPage.link}
+        text={link}
       />
     </Notice>
   </Container>
