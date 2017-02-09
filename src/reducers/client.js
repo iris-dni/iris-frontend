@@ -10,6 +10,7 @@ import modalWindowReducer from './modalWindow';
 import navigationReducer from './navigation';
 import openGraphReducer from './openGraph';
 import petitionResponseReducer from './petitionResponse';
+import confirmationReducer from './confirmation';
 import imagesReducer from './images';
 
 export default combineReducers({
@@ -31,5 +32,6 @@ export default combineReducers({
   routing: routerReducer,
   openGraph: openGraphReducer,
   petitionResponse: petitionResponseReducer,
-  images: imagesReducer
+  images: imagesReducer,
+  confirmation: confirmationReducer
 });
