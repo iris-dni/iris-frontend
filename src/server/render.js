@@ -68,10 +68,10 @@ export default (request, reply, viewName = 'index') => {
       // Set default status code
       let statusCode = 200;
 
-      const serverProps = request.serverProps || {};
+      const requestInitialState = request.initialState || {};
 
       // Set initial state
-      const initialState = { ...serverProps };
+      const initialState = { ...requestInitialState };
 
       // Create our store
       const store = createStore(

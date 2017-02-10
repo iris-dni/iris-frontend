@@ -25,11 +25,10 @@ describe('emailConfirmationResponse selector', () => {
       emailAlreadyConfirmed: false
     });
     const expected = {
-      translation: {
-        title: 'Email address confirmed',
-        hint: 'Thank you for confirming your email address. You will now receive important petition updates via email.',
-        link: 'Browse petitions'
-      }
+      displayError: false,
+      title: 'Email address confirmed',
+      hint: 'Thank you for confirming your email address. You will now receive important petition updates via email.',
+      link: 'Browse petitions'
     };
 
     it('returns with correct translation', () => assert.deepEqual(actual, expected));
@@ -40,11 +39,10 @@ describe('emailConfirmationResponse selector', () => {
       emailAlreadyConfirmed: true
     });
     const expected = {
-      translation: {
-        title: 'Email address already confirmed',
-        hint: 'Your email address has already been confirmed.',
-        link: 'Browse petitions'
-      }
+      displayError: false,
+      title: 'Email address already confirmed',
+      hint: 'Your email address has already been confirmed.',
+      link: 'Browse petitions'
     };
 
     it('returns with correct translation', () => assert.deepEqual(actual, expected));

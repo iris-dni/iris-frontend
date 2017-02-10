@@ -123,6 +123,21 @@ describe('petition reducer', () => {
     assert.deepEqual(actual, expected);
   });
 
+  it('handles the PETITION_CITY_ANSWER_ALREADY_SUBMITTED action', () => {
+    const actual = petition({}, {
+      type: 'PETITION_CITY_ANSWER_ALREADY_SUBMITTED',
+      petition: {}
+    });
+
+    const expected = Object.assign({}, {}, {
+      isLoading: false,
+      found: true,
+      hasCityAnswerAlreadySubmitted: true
+    });
+
+    assert.deepEqual(actual, expected);
+  });
+
   it('handles the CLEAR_PETITION action', () => {
     const actual = petition({}, {
       type: 'CLEAR_PETITION',

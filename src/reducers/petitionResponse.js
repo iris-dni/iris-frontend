@@ -3,6 +3,7 @@ import { assign } from 'lodash/object';
 import {
   REQUEST_PETITION,
   RECEIVE_PETITION,
+  PETITION_CITY_ANSWER_ALREADY_SUBMITTED,
   PETITION_NOT_FOUND,
   RESPONDED_TO_PETITION,
   SUBMITTING_PETITION_RESPONSE
@@ -26,6 +27,15 @@ export default function petitionResponse (state = initialState, action) {
           token: action.petition.token,
           isLoading: false,
           saved: false
+        }
+      );
+    case PETITION_CITY_ANSWER_ALREADY_SUBMITTED:
+      return assign({},
+        state, initialState, {
+          petitionTitle: action.petition.title,
+          isLoading: false,
+          saved: true,
+          hasCityAnswerAlreadySubmitted: true
         }
       );
     case PETITION_NOT_FOUND:

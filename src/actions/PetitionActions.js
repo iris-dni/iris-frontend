@@ -16,7 +16,8 @@ import {
   CREATED_PETITION,
   UPDATED_PETITION,
   PUBLISHED_PETITION,
-  PETITION_NOT_FOUND
+  PETITION_NOT_FOUND,
+  PETITION_CITY_ANSWER_ALREADY_SUBMITTED
 } from './actionTypes';
 
 import { showFlashMessage } from './FlashActions';
@@ -204,6 +205,13 @@ export function publishedPetition (petition) {
 export function petitionNotFound (petition = {}) {
   return {
     type: PETITION_NOT_FOUND,
+    petition
+  };
+}
+
+export function petitionCityAnswerAlreadySubmitted (petition = {}) {
+  return {
+    type: PETITION_CITY_ANSWER_ALREADY_SUBMITTED,
     petition
   };
 }
