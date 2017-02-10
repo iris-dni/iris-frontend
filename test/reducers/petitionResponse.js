@@ -81,6 +81,23 @@ describe('petitionResponse reducer', () => {
     assert.deepEqual(actual, expected);
   });
 
+  it('handles the PETITION_CITY_ANSWER_ALREADY_SUBMITTED action', () => {
+    const stubPetition = { title: 'Petition Title' };
+    const actual = petitionResponse({}, {
+      type: 'PETITION_CITY_ANSWER_ALREADY_SUBMITTED',
+      petition: stubPetition
+    });
+
+    const expected = Object.assign({}, {}, {
+      isLoading: false,
+      saved: true,
+      hasCityAnswerAlreadySubmitted: true,
+      petitionTitle: 'Petition Title'
+    });
+
+    assert.deepEqual(actual, expected);
+  });
+
   it('provides fallback state', () => {
     const actual = petitionResponse(undefined, {});
     const expected = {};

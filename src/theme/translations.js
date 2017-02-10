@@ -118,14 +118,28 @@ export default {
     "link": "View further petitions"
   },
   "petitionResponseTokenErrorPage": {
-    "title": "Sorry but this link doesn’t exist or is no longer working.",
-    "hint": "Please re-enter the link or contact us if you believe there is a mistake or are unsure of how to proceed.",
-    "link": "Go back home"
+    "default": {
+      "title": "Sorry but this link doesn’t exist or is no longer working.",
+      "hint": "Please re-enter the link or contact us if you believe there is a mistake or are unsure of how to proceed.",
+      "link": "Go back home"
+    },
+    "cityAnswerAlreadySubmitted": {
+      "title": "Answer already submitted",
+      "hint": "An answer has already been submitted for the petition \"%s\" via this URL",
+      "link": "Go back home"
+    }
   },
   "emailConfirmationPage": {
-    "title": "Email address confirmed",
-    "hint": "Thank you for confirming your email address. You will now receive important petition updates via email.",
-    "link": "Browse petitions"
+    "default": {
+      "title": "Email address confirmed",
+      "hint": "Thank you for confirming your email address. You will now receive important petition updates via email.",
+      "link": "Browse petitions"
+    },
+    "emailAlreadyConfirmed": {
+      "title": "Email address already confirmed",
+      "hint": "Your email address has already been confirmed.",
+      "link": "Browse petitions"
+    }
   },
   "petitionGroups": {
     "trending": {

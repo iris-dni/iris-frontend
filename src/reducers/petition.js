@@ -11,6 +11,7 @@ import {
   PUBLISHED_PETITION,
   SUBMITTING_SUPPORT,
   SUPPORTED_PETITION,
+  PETITION_CITY_ANSWER_ALREADY_SUBMITTED,
   PETITION_NOT_FOUND
 } from 'actions/actionTypes';
 
@@ -41,6 +42,14 @@ export default function petition (state = initialState, action) {
         state, action.petition, {
           isLoading: false,
           found: true
+        }
+      );
+    case PETITION_CITY_ANSWER_ALREADY_SUBMITTED:
+      return assign({},
+        state, initialState, {
+          isLoading: false,
+          found: true,
+          hasCityAnswerAlreadySubmitted: true
         }
       );
     case PETITION_NOT_FOUND:
