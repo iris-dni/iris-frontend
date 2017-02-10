@@ -28,18 +28,18 @@ const RespondToPetitionContainer = React.createClass({
         <Helmet title={settings.respondToPetitionPage.title} />
         <Loading isLoading={petition.isLoading || petitionResponse.isLoading}>
           <div>
-            {!!petition.found && !petitionResponse.saved &&
+            {!!petition.found && !petitionResponse.saved && !petition.hasCityAnswerAlreadySubmitted &&
               <RespondToPetition
                 petition={petition}
                 petitionResponse={petitionResponse}
               />
             }
 
-            {!!petition.found && !!petitionResponse.saved &&
+            {!!petition.found && !!petitionResponse.saved && !petition.hasCityAnswerAlreadySubmitted &&
               <RespondedToPetition />
             }
 
-            {!petition.found &&
+            {(!petition.found || !!petition.found && !!petition.hasCityAnswerAlreadySubmitted) &&
               <PetitionResponseTokenError
                 petition={petition}
                 petitionResponse={petitionResponse}

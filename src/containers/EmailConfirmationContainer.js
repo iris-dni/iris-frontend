@@ -7,14 +7,18 @@ import PetitionResponseTokenError from 'components/PetitionResponseTokenError';
 
 const EmailConfirmationContainer = React.createClass({
   render () {
-    const { displayError, translation } = this.props;
+    const { displayError, title, hint, link } = this.props;
     if (displayError) {
       return <PetitionResponseTokenError />;
     }
     return (
       <div>
-        <Helmet title={translation.title} />
-        <EmailConfirmation {...translation} />
+        <Helmet title={title} />
+        <EmailConfirmation
+          title={title}
+          hint={hint}
+          link={link}
+        />
       </div>
     );
   }

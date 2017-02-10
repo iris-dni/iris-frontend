@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import getPetitionResponse from 'selectors/petitionResponse';
+import getPetitionResponse, { translationForResponse } from 'selectors/petitionResponse';
 
 describe('petionResponse selector', () => {
   context('with petition in state other than `closed`', () => {
@@ -20,5 +20,36 @@ describe('petionResponse selector', () => {
     const expected = answer;
 
     it('returns the `city_answer`', () => assert.equal(actual, expected));
+  });
+});
+
+describe('petionResponse selector', () => {
+  context('with city answer not already submitted', () => {
+    const actual = translationForResponse({
+      hasCityAnswerAlreadySubmitted: false
+    });
+
+    const expected = {
+      title: 'Sorry but this link doesn’t exist or is no longer working.',
+      hint: 'Please re-enter the link or contact us if you believe there is a mistake or are unsure of how to proceed.',
+      link: 'Go back home'
+    };
+
+    it('returns with correct translation', () => assert.deepEqual(actual, expected));
+  });
+
+  context('with city answer already submitted', () => {
+    const actual = translationForResponse({
+      hasCityAnswerAlreadySubmitted: true,
+      petitionTitle: 'Petition Title'
+    });
+
+    const expected = {
+      title: 'Answer already submitted',
+      hint: 'An answer has already been submitted for the petition "Petition Title" via this URL',
+      link: 'Go back home'
+    };
+
+    it('returns with correct translation', () => assert.deepEqual(actual, expected));
   });
 });

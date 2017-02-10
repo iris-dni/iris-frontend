@@ -3,7 +3,7 @@ import { get } from 'lodash/object';
 import confirmRepository from 'services/api/repositories/confirm';
 
 const addServerRequestProps = (request, props) => Object.assign(
-  {}, request, { serverProps: props }
+  {}, request, { initialState: props }
 );
 
 export default (request, reply) => {
@@ -23,13 +23,12 @@ export default (request, reply) => {
             reply, 'index');
           case 400:
             const description = get(error, 'response.data.error.description', '');
-            if (description.indexOf('Already used') > -1) {
-              return render(
-                addServerRequestProps(request, { confirmation: { emailAlreadyConfirmed: true } }),
-              reply, 'index');
-            }
+            const confirmationProps = description.indexOf('Already used') > -1
+              ? { emailAlreadyConfirmed: true }
+              : { displayError: true };
+
             return render(
-              addServerRequestProps(request, { confirmation: { displayError: true } }),
+              addServerRequestProps(request, { confirmation: confirmationProps }),
             reply, 'index');
           default:
             reply('Something went wrong').code(500);
