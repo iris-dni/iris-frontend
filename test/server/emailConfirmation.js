@@ -58,7 +58,7 @@ describe('email confirmation', () => {
       it('responds with 200 status', done => {
         moxios.stubRequest(/.*/, {
           status: 400,
-          headers: {'"x-iris-api-key': 'some-key'},
+          headers: {'"X-Iris-Api-Key': 'some-key'},
           response: {error: {code: 400, description: 'Bad Request: Already used'}}
         });
 
