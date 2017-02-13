@@ -4,6 +4,8 @@ import FormData from 'form-data';
 import createApiUrl from 'helpers/createApiUrl';
 import encodeParams from 'helpers/encodeParams';
 
+export const API_KEY_HEADER_NAME = 'X-Iris-Api-Key';
+
 const apiUrl = (requestPath) => {
   const prefix = process.env.API_URL;
 

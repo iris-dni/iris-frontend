@@ -40,12 +40,12 @@ describe('API client', () => {
     });
 
     it('respects the headers argument', (done) => {
-      let headers = { 'X-IRIS-APIKEY': 'abcd1234' };
+      let headers = { 'X-Iris-Api-Key': 'abcd1234' };
 
       ApiClient.request('/test', exampleData, 'POST', headers).then((response) => {
         let request = moxios.requests.mostRecent();
         let actualHeaders = request.config.headers;
-        let expectedProperty = 'X-IRIS-APIKEY';
+        let expectedProperty = 'X-Iris-Api-Key';
         let expectedValue = 'abcd1234';
 
         assert.propertyVal(actualHeaders, expectedProperty, expectedValue);

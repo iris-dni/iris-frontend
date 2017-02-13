@@ -19,7 +19,7 @@ describe('mention repository', () => {
     const expectedPathArgument = `/petitions/${exampleId}/mentions`;
     const expectedDataArgument = { url: exampleUrl };
     const expectedMethodArgument = 'GET';
-    const expectedHeadersArgument = { 'X-IRIS-APIKEY': process.env.API_KEY };
+    const expectedHeadersArgument = { 'X-Iris-Api-Key': process.env.API_KEY };
 
     it('calls the API client with the proper arguments', () => {
       mentionRepository.track(exampleId, exampleUrl);
