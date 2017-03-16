@@ -14,7 +14,7 @@ describe('calculateImageHeight', () => {
   it('returns an integer', () => {
     const actual = calculateImageHeight(1000, { w: '800', h: '600' });
 
-    assert.typeOf(actual, 'number');
+    assert.equal(actual % 1, 0);
   });
 
   it('fails silently', () => {
