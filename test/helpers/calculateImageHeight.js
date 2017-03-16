@@ -8,18 +8,17 @@ describe('calculateImageHeight', () => {
     const actual = calculateImageHeight(1000, { w: 800, h: 600 });
     const expected = 750;
 
-    assert.deepEqual(actual, expected);
+    assert.equal(actual, expected);
   });
 
   it('returns an integer', () => {
     const actual = calculateImageHeight(1000, { w: '800', h: '600' });
-    const expected = 750;
 
-    assert.deepEqual(actual, expected);
+    assert.typeOf(actual, 'number');
   });
 
   it('fails silently', () => {
-    const actual = calculateImageHeight();
+    const actual = calculateImageHeight(1000, { h: 1000 });
     const expected = '';
 
     assert.deepEqual(actual, expected);
