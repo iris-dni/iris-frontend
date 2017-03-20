@@ -1,10 +1,8 @@
-import { get } from 'lodash/object';
+import calculateImageHeight from 'helpers/calculateImageHeight';
 
 export default (size = 0, attrs = {}) => (
   size ? {
     w: parseInt(size, 10),
-    h: get(attrs, 'h', attrs.height)
-      ? (parseInt(size, 10) / parseInt(get(attrs, 'w', attrs.width), 10)) * parseInt(get(attrs, 'h', attrs.height), 10)
-      : ''
+    h: calculateImageHeight(size, attrs)
   } : {}
 );
