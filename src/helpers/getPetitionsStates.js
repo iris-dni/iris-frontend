@@ -23,6 +23,9 @@ const PETITIONS_STATES = {
     'closed',
     'closedWithoutResponse'
   ],
+  closed: [
+    'closed'
+  ],
   default: [
     'supportable.active',
     'supportable.winner',

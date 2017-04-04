@@ -20,6 +20,10 @@ const FILTER_INPUT_OPTIONS = [
     label: settings.petitionsPage.filters.winning
   },
   {
+    value: 'closed',
+    label: settings.petitionsPage.filters.answered
+  },
+  {
     value: 'past',
     label: settings.petitionsPage.filters.past
   },

@@ -37,6 +37,7 @@ export default {
         "label": "Select a city",
         "placeholder": "Enter name or ZIP"
       },
+      "answered": "Answered petitions",
       "winning": "Winning petitions",
       "current": "Current petitions",
       "past": "Past petitions",
