@@ -24,6 +24,10 @@ const FILTER_INPUT_OPTIONS = [
     label: settings.petitionsPage.filters.answered
   },
   {
+    value: 'waiting',
+    label: settings.petitionsPage.filters.waiting
+  },
+  {
     value: 'past',
     label: settings.petitionsPage.filters.past
   },
