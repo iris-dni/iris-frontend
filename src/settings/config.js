@@ -45,7 +45,7 @@ export default {
       linkHref: '/petitions?sort=date'
     },
     closed: {
-      linkHref: 'petitions?state=closed'
+      linkHref: '/petitions?state=closed'
     }
   },
   /**
