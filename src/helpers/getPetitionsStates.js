@@ -23,6 +23,12 @@ const PETITIONS_STATES = {
     'closed',
     'closedWithoutResponse'
   ],
+  closed: [
+    'closed'
+  ],
+  waiting: [
+    'processing.noLetterResponse'
+  ],
   default: [
     'supportable.active',
     'supportable.winner',

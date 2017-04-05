@@ -37,6 +37,9 @@ export default {
         "label": "Select a city",
         "placeholder": "Enter name or ZIP"
       },
+      // TODO: Add proper copywriting
+      "waiting": "Waiting petitions",
+      "answered": "Answered petitions",
       "winning": "Winning petitions",
       "current": "Current petitions",
       "past": "Past petitions",
