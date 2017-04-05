@@ -51,7 +51,7 @@ const PETITION_GROUPS = [
     query: {
       state: 'closed',
       limit: 3,
-      sort: 'created'
+      sort: 'modified'
     }
   },
   {
