@@ -15,6 +15,12 @@ const MODULES = [
   {
     component: 'PetitionGroup',
     props: {
+      group: 'closed'
+    }
+  },
+  {
+    component: 'PetitionGroup',
+    props: {
       group: 'trending'
     }
   },
@@ -41,10 +47,18 @@ const MODULES = [
 
 const PETITION_GROUPS = [
   {
+    group: 'closed',
+    query: {
+      state: 'closed',
+      limit: 3,
+      sort: 'created'
+    }
+  },
+  {
     group: 'trending',
     query: {
       state: 'current',
-      limit: 6,
+      limit: 3,
       sort: 'trending'
     }
   },
