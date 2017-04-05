@@ -154,6 +154,12 @@ export default {
       "title": "Latest petitions",
       "text": "Show your support!",
       "linkText": "View all recent petitions"
+    },
+    "closed": {
+      "title": "Answered petitions",
+      // TODO: Add proper copywriting
+      "text": "Answered petitions text",
+      "linkText": "View all answered petitions"
     }
   },
   "petitionForm": {
