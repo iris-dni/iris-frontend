@@ -37,8 +37,7 @@ export default {
         "label": "Select a city",
         "placeholder": "Enter name or ZIP"
       },
-      // TODO: Add proper copywriting
-      "waiting": "Waiting petitions",
+      "pending": "Pending petitions",
       "answered": "Answered petitions",
       "winning": "Winning petitions",
       "current": "Current petitions",
@@ -154,6 +153,11 @@ export default {
       "title": "Latest petitions",
       "text": "Show your support!",
       "linkText": "View all recent petitions"
+    },
+    "closed": {
+      "title": "Answered petitions",
+      "text": "See the responses!",
+      "linkText": "View all answered petitions"
     }
   },
   "petitionForm": {

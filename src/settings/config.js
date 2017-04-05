@@ -43,6 +43,9 @@ export default {
     },
     latest: {
       linkHref: '/petitions?sort=date'
+    },
+    closed: {
+      linkHref: '/petitions?state=closed'
     }
   },
   /**
