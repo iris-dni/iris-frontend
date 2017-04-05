@@ -38,7 +38,7 @@ export default {
         "placeholder": "Enter name or ZIP"
       },
       // TODO: Add proper copywriting
-      "waiting": "Waiting petitions",
+      "pending": "Pending petitions",
       "answered": "Answered petitions",
       "winning": "Winning petitions",
       "current": "Current petitions",
@@ -157,8 +157,7 @@ export default {
     },
     "closed": {
       "title": "Answered petitions",
-      // TODO: Add proper copywriting
-      "text": "Answered petitions text",
+      "text": "See the responses!",
       "linkText": "View all answered petitions"
     }
   },
