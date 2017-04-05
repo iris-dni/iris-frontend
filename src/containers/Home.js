@@ -50,8 +50,7 @@ const PETITION_GROUPS = [
     group: 'closed',
     query: {
       state: 'closed',
-      limit: 3,
-      sort: 'modified'
+      limit: 3
     }
   },
   {
