@@ -26,7 +26,7 @@ const PETITIONS_STATES = {
   closed: [
     'closed'
   ],
-  waiting: [
+  pending: [
     'processing.noLetterResponse'
   ],
   default: [
