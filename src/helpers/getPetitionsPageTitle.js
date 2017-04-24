@@ -2,10 +2,14 @@ import settings from 'settings';
 
 const getFilterState = (state) => {
   switch (state) {
-    case 'winning':
-      return settings.petitionsPage.winning;
+    case 'answered':
+      return settings.petitionsPage.answered;
+    case 'unanswered':
+      return settings.petitionsPage.unanswered;
     case 'past':
       return settings.petitionsPage.past;
+    case 'winning':
+      return settings.petitionsPage.winning;
     case 'all':
       return settings.petitionsPage.all;
     case 'running':
