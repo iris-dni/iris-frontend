@@ -7,7 +7,8 @@ const FlashMessage = React.createClass({
   hideEvent: () => {},
 
   beginTimeout () {
-    setTimeout(() => this.props.hideFlashMessage(), TIMEOUT);
+    const duration = this.props.duration || TIMEOUT;
+    setTimeout(() => this.props.hideFlashMessage(), duration);
   },
 
   componentDidMount () {

@@ -177,7 +177,7 @@ describe('SupportActions', () => {
 
       it('dispatches showFlashMessage() error', done => {
         result.then(() => {
-          assert(dispatch.calledWith(showFlashMessage('Your mobile number was already used for this petition. A mobile number is allowed to support a petition only once.', 'error')));
+          assert(dispatch.calledWith(showFlashMessage('Your mobile number was already used for this petition. A mobile number is allowed to support a petition only once.', 'error', 6000)));
         }).then(done, done);
       });
     });

@@ -31,6 +31,14 @@ describe('FlashActions', () => {
       assert.equal(actual, expected);
     });
 
+    it('passes duration to action', () => {
+      const result = showFlashMessage('There is an error', 'error', 5000);
+      const actual = result.duration;
+      const expected = 5000;
+
+      assert.equal(actual, expected);
+    });
+
     it('returns HIDE_FLASH_MESSAGE action', () => {
       const result = hideFlashMessage();
       const actual = result.type;
