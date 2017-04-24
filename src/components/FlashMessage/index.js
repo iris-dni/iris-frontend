@@ -4,22 +4,21 @@ import styles from './flash-message.scss';
 const TIMEOUT = 2000;
 
 const FlashMessage = React.createClass({
-  hideEvent: () => {},
 
   beginTimeout () {
     const duration = this.props.duration || TIMEOUT;
-    setTimeout(() => this.props.hideFlashMessage(), duration);
+    return setTimeout(() => this.props.hideFlashMessage(), duration);
   },
 
   componentDidMount () {
-    this.hideEvent = this.beginTimeout();
-    this.hideEvent;
+    this.timeoutId = this.beginTimeout();
   },
 
-  componentDidUpdate () {
-    clearTimeout(this.hideEvent);
-    this.hideEvent = this.beginTimeout();
-    this.hideEvent;
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.text && this.props.text !== nextProps.text) {
+      clearTimeout(this.timeoutId);
+      this.timeoutId = this.beginTimeout();
+    }
   },
 
   render () {
