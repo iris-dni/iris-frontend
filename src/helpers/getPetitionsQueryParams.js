@@ -3,6 +3,6 @@ export default (params = {}, query = {}) => ({
   city: params.city || '',
   cityName: params.cityName || '',
   limit: parseInt(query.limit || 12),
-  state: query.state || 'current',
+  state: query.state || 'running',
   sort: query['sort'] || ''
 });
