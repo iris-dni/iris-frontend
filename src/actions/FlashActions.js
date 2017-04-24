@@ -3,11 +3,12 @@ import {
   HIDE_FLASH_MESSAGE
 } from './actionTypes';
 
-export function showFlashMessage (text, modifier) {
+export function showFlashMessage (text, modifier, duration) {
   return {
     type: SHOW_FLASH_MESSAGE,
     text,
-    modifier
+    modifier,
+    duration
   };
 }
 
