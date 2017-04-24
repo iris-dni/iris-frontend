@@ -11,7 +11,8 @@ const FlashMessageContainer = (props) => (
 
 FlashMessageContainer.propTypes = {
   text: React.PropTypes.string,
-  modifier: React.PropTypes.string
+  modifier: React.PropTypes.string,
+  duration: React.PropTypes.number
 };
 
 export const mapStateToProps = ({ flashMessage }) => ({

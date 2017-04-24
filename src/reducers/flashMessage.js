@@ -12,7 +12,8 @@ export default function flashMessage (state = initialState, action) {
     case SHOW_FLASH_MESSAGE:
       return assign({}, state, {
         text: action.text,
-        modifier: action.modifier
+        modifier: action.modifier,
+        duration: action.duration
       });
     case HIDE_FLASH_MESSAGE:
       return {};

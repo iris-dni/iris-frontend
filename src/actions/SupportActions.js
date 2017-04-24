@@ -65,7 +65,7 @@ const supportPetitionErrors = (id, response, dispatch) => {
     // When the verification code is invalid
     dispatch(showFlashMessage(settings.flashMessages.invalidVerificationError, 'error'));
   } else if (hasSupportedPetitionAlready(response)) {
-    dispatch(showFlashMessage(settings.flashMessages.petitionAlreadySupportedError, 'error'));
+    dispatch(showFlashMessage(settings.flashMessages.petitionAlreadySupportedError, 'error', 6000 /* ms */));
   } else {
     // All other errors
     dispatch(showFlashMessage(settings.flashMessages.genericError, 'error'));

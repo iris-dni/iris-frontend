@@ -8,11 +8,13 @@ describe('modalWindow reducer', () => {
     const actual = flashMessage({}, {
       type: 'SHOW_FLASH_MESSAGE',
       text: 'There was an error',
-      modifier: 'error'
+      modifier: 'error',
+      duration: 5000
     });
     const expected = {
       text: 'There was an error',
-      modifier: 'error'
+      modifier: 'error',
+      duration: 5000
     };
 
     assert.deepEqual(actual, expected);
