@@ -27,7 +27,7 @@ export default {
   "petitionsPage": {
     "title": "Browse %x petitions %y",
     "winning": "winning",
-    "current": "current",
+    "running": "running",
     "past": "past",
     "all": "all",
     "filterBy": "Filter petitions",
@@ -154,7 +154,7 @@ export default {
       "text": "Show your support!",
       "linkText": "View all recent petitions"
     },
-    "closed": {
+    "answered": {
       "title": "Answered petitions",
       "text": "See the responses!",
       "linkText": "View all answered petitions"

@@ -8,7 +8,7 @@ const getFilterState = (state) => {
       return settings.petitionsPage.past;
     case 'all':
       return settings.petitionsPage.all;
-    case 'current':
+    case 'running':
     default:
       return '';
   }
