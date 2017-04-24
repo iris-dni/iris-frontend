@@ -30,6 +30,8 @@ export default {
     "running": "running",
     "past": "past",
     "all": "all",
+    "answered": "successful and answered",
+    "unanswered": "successful, yet unanswered",
     "filterBy": "Filter petitions",
     "orderBy": "Order petitions",
     "filters": {
