@@ -44,8 +44,8 @@ export default {
     latest: {
       linkHref: '/petitions?sort=date'
     },
-    closed: {
-      linkHref: '/petitions?state=closed'
+    answered: {
+      linkHref: '/petitions?state=answered'
     }
   },
   /**
