@@ -27,22 +27,22 @@ export default {
   "petitionsPage": {
     "title": "Browse %x petitions %y",
     "winning": "winning",
-    "current": "current",
+    "running": "running",
     "past": "past",
     "all": "all",
-    "filterBy": "Show me",
-    "orderBy": "Order by",
+    "filterBy": "Filter petitions",
+    "orderBy": "Order petitions",
     "filters": {
       "city": {
         "label": "Select a city",
         "placeholder": "Enter name or ZIP"
       },
-      "pending": "Pending petitions",
-      "answered": "Answered petitions",
-      "winning": "Winning petitions",
-      "current": "Current petitions",
-      "past": "Past petitions",
-      "all": "All petitions",
+      "winning": "Successful",
+      "past": "Past",
+      "unanswered": "Successful, yet unanswered",
+      "answered": "Successful and answered",
+      "running": "Running",
+      "all": "All",
       "date": "Most recent",
       "supportersAmount": "Most supported",
       "trending": "Trending"
@@ -154,7 +154,7 @@ export default {
       "text": "Show your support!",
       "linkText": "View all recent petitions"
     },
-    "closed": {
+    "answered": {
       "title": "Answered petitions",
       "text": "See the responses!",
       "linkText": "View all answered petitions"

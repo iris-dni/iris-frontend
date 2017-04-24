@@ -28,9 +28,9 @@ describe('getPetitionsPageTitle', () => {
     assert.equal(actual, expected);
   });
 
-  it('ignores state when === \'current\'', () => {
+  it('ignores state when === \'running\'', () => {
     const actual = getPetitionsPageTitle({
-      params: { state: 'current' }
+      params: { state: 'running' }
     });
     const expected = 'Browse petitions';
 
