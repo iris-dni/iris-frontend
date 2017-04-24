@@ -37,6 +37,8 @@ export default {
         "label": "Select a city",
         "placeholder": "Enter name or ZIP"
       },
+      "winning": "Successful",
+      "past": "Past",
       "unanswered": "Successful, yet unanswered",
       "answered": "Successful and answered",
       "running": "Running",
