@@ -1,19 +1,7 @@
 const PETITIONS_STATES = {
-  current: [
+  running: [
     'supportable.active',
     'supportable.winner'
-  ],
-  winning: [
-    'supportable.winner',
-    'processing.*',
-    'closed',
-    'closedWithoutResponse'
-  ],
-  past: [
-    'processing.*',
-    'loser',
-    'closed',
-    'closedWithoutResponse'
   ],
   all: [
     'supportable.winner',
@@ -23,10 +11,11 @@ const PETITIONS_STATES = {
     'closed',
     'closedWithoutResponse'
   ],
-  closed: [
+  answered: [
     'closed'
   ],
-  pending: [
+  unanswered: [
+    'supportable.winner',
     'processing.noLetterResponse'
   ],
   default: [

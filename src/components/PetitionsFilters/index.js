@@ -12,24 +12,16 @@ const CITY_FILTER_NAME = 'city-filter';
 const FILTER_INPUT_NAME = 'filter-by';
 const FILTER_INPUT_OPTIONS = [
   {
-    value: 'current',
-    label: settings.petitionsPage.filters.current
+    value: 'running',
+    label: settings.petitionsPage.filters.running
   },
   {
-    value: 'winning',
-    label: settings.petitionsPage.filters.winning
-  },
-  {
-    value: 'closed',
+    value: 'answered',
     label: settings.petitionsPage.filters.answered
   },
   {
-    value: 'pending',
-    label: settings.petitionsPage.filters.pending
-  },
-  {
-    value: 'past',
-    label: settings.petitionsPage.filters.past
+    value: 'unanswered',
+    label: settings.petitionsPage.filters.unanswered
   },
   {
     value: 'all',
@@ -119,7 +111,7 @@ const PetitionsFilters = React.createClass({
             >
               <Filter
                 name={FILTER_INPUT_NAME}
-                value={this.getSelectValue('state', 'current')}
+                value={this.getSelectValue('state', 'running')}
                 handleChange={this.handleFilterChange}
                 options={FILTER_INPUT_OPTIONS} />
             </PetitionsFiltersField>
