@@ -25,6 +25,18 @@ const PETITIONS_STATES = {
     'loser',
     'closed',
     'closedWithoutResponse'
+  ],
+  past: [
+    'processing.*',
+    'loser',
+    'closed',
+    'closedWithoutResponse'
+  ],
+  winning: [
+    'supportable.winner',
+    'processing.*',
+    'closed',
+    'closedWithoutResponse'
   ]
 };
 
