@@ -19,12 +19,6 @@ const MODULES = [
     }
   },
   {
-    component: 'PetitionGroup',
-    props: {
-      group: 'trending'
-    }
-  },
-  {
     component: 'CallToAction',
     props: {
       ...settings.aboutCTA
@@ -33,7 +27,7 @@ const MODULES = [
   {
     component: 'PetitionGroup',
     props: {
-      group: 'latest'
+      group: 'trending'
     }
   },
   {
