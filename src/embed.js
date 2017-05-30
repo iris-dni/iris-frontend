@@ -19,7 +19,10 @@ const fetchHeight = (child) => {
 
 const createWidget = (container) => {
   const id = container.dataset.petitionId;
-  const url = getPetitionEmbedUrl(id);
+  // get the canonical URL
+  const canonicalLink = document.querySelector('link[rel="canonical"]');
+  const referrer = canonicalLink && canonicalLink.href || null;
+  const url = getPetitionEmbedUrl(id, referrer);
   // Kick off the handshake with the iFrame
   const handshake = new Postmate({
     container, // Element to inject frame into
