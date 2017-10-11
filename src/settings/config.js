@@ -3,6 +3,7 @@ export default {
   charset: 'utf-8',
   title: 'iris-frontend',
   logoPath: '',
+  ogFallbackImage: '',
   twitterAccount: 'azmedien',
   googleAnalyticsID: 'UA-XXXXX-Y',
   daysToVote: 30,

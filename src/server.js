@@ -70,7 +70,7 @@ server.register([vision, good, inert, injectThen, h2o2, hapiRequireHttps], err =
  * Setup basic HTTP auth if enabled
  */
 
-const HTTP_AUTH_ENABLED = process.env.HTTP_AUTH_ENABLED;
+const HTTP_AUTH_ENABLED = (process.env.HTTP_AUTH_ENABLED === 'true');
 if (HTTP_AUTH_ENABLED) {
   server.register(require('hapi-auth-basic'), (err) => {
     server.auth.strategy('simple', 'basic', {

@@ -135,6 +135,8 @@
       "it",
       "beforeEach",
       "afterEach",
+      "before",
+      "after",
       "__CLIENT__",
       "__SERVER__"
     ]
