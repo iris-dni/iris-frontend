@@ -4,11 +4,13 @@ import getPetitionImage from 'selectors/petitionImage';
 import createSignedImageUrl from 'helpers/createSignedImageUrl';
 import getPetitionURL from 'helpers/getPetitionURL';
 import getPetitionStartDate from 'selectors/petitionStartDate';
+import baseUrl from 'helpers/baseUrl';
 import settings from 'settings';
 
 export default (petition = {}) => {
   const petitionImage = getPetitionImage(petition);
-  const ogFallbackImage = settings.ogFallbackImage || '';
+  const ogFallbackImage = settings.ogFallbackImage || undefined;
+  const ogFallbackImagePath = ogFallbackImage ? baseUrl(ogFallbackImage) : '';
   const petitionImageSrc = petitionImage && petitionImage.src || undefined;
   const imageWidth = 1200;
   const imageHeight = 630;
@@ -25,7 +27,7 @@ export default (petition = {}) => {
     },
     {
       property: 'og:image',
-      content: createSignedImageUrl(petitionImageSrc, { w: imageWidth, h: imageHeight }) || ogFallbackImage
+      content: createSignedImageUrl(petitionImageSrc, { w: imageWidth, h: imageHeight }) || ogFallbackImagePath
     },
     {
       property: 'og:image:width',

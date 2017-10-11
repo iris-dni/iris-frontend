@@ -11,7 +11,7 @@ const { assert } = chai;
 describe('petitionOpenGraph selector', () => {
   context('without an image', () => {
     before(() => {
-      settings.ogFallbackImage = 'http://example.com/fallbackimage.png';
+      settings.ogFallbackImage = '/dist/assets/image/fallbackimage.png';
     });
 
     after(() => {

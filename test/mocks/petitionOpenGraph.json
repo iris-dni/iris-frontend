@@ -9,7 +9,7 @@
   },
   {
     "property": "og:image",
-    "content": "http://example.com/fallbackimage.png"
+    "content": "http://localhost:8000/dist/assets/image/fallbackimage.png"
   },
   {
     "property": "og:image:width",
