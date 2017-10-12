@@ -6,7 +6,7 @@ import { match, RouterContext } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
-import { assign } from 'lodash/object';
+import { assign, get } from 'lodash/object';
 
 import stringifyHeadData from 'server/stringifyHeadData';
 import baseAssetPath from 'server/baseAssetPath';
@@ -60,7 +60,8 @@ export default (request, reply, viewName = 'index') => {
     if (redirectLocation) {
       reply.redirect(redirectLocation.pathname + redirectLocation.search).code(301);
     } else if (error) {
-      console.log(error.message);
+      const errorMessage = get(error, 'message', error);
+      console.log('Error:', errorMessage);
       reply('Something went wrong').code(500);
     } else if (renderProps == null) {
       return new Error('Missing render props');

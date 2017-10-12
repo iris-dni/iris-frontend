@@ -3,13 +3,15 @@ import petitionRejected from 'selectors/petitionRejected';
 
 export default (nextState, replace, callback) => {
   const { params } = nextState || {};
-  petitionRepository.find(params.id)
+  const paramsId = params.id | '';
+  petitionRepository.find(paramsId)
     .then(response => {
       if (petitionRejected(response.data)) {
         replace('/petitions');
       }
       callback();
     }).catch(() => {
-      callback('Not found');
+      replace('/404');
+      callback();
     });
 };
