@@ -3,8 +3,7 @@ import petitionRejected from 'selectors/petitionRejected';
 
 export default (nextState, replace, callback) => {
   const { params } = nextState || {};
-  const paramsId = params.id | '';
-  petitionRepository.find(paramsId)
+  petitionRepository.find(params.id)
     .then(response => {
       if (petitionRejected(response.data)) {
         replace('/petitions');
