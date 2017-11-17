@@ -21,7 +21,7 @@ describe('getPetitionsRequestParams', () => {
   it('always returns correct state machine query', () => {
     const result = getPetitionsRequestParams({});
     const actual = result.state;
-    const expected = 'supportable.active,supportable.winner,processing.*,loser,closed,closedWithoutResponse';
+    const expected = 'supportable.active,supportable.winner,processing.*,loser,closed,closedWithoutLetterResponse';
 
     assert.equal(actual, expected);
   });

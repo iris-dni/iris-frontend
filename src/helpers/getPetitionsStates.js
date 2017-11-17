@@ -9,7 +9,7 @@ const PETITIONS_STATES = {
     'processing.*',
     'loser',
     'closed',
-    'closedWithoutResponse'
+    'closedWithoutLetterResponse'
   ],
   answered: [
     'closed'
@@ -24,19 +24,19 @@ const PETITIONS_STATES = {
     'processing.*',
     'loser',
     'closed',
-    'closedWithoutResponse'
+    'closedWithoutLetterResponse'
   ],
   past: [
     'processing.*',
     'loser',
     'closed',
-    'closedWithoutResponse'
+    'closedWithoutLetterResponse'
   ],
   winning: [
     'supportable.winner',
     'processing.*',
     'closed',
-    'closedWithoutResponse'
+    'closedWithoutLetterResponse'
   ]
 };
 
