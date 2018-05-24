@@ -4,6 +4,7 @@
     var pageViewEventFunction = function () {
       {% if googleAnalyticsID %}
         ga('set', 'page', window.location.pathname + window.location.search);
+        ga('set', 'anonymizeIp', true);
         ga('send', 'pageview');
       {% endif %}
     };
