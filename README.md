@@ -28,10 +28,11 @@ npm install
 npm run dev
 ```
 
-If you stuck to the default `BASE_URL` and `DEV_ASSETS`, the Iris Frontend UI
-will be available on [http://localhost:8000](http://localhost:8000), while
-static assets will be served from
-[http://localhost:8080](http://localhost:8080)
+If you stuck to the default `API_URL`, `BASE_URL` and `DEV_ASSETS`, the Iris
+Frontend UI will be available on [http://localhost:8000](http://localhost:8000),
+while static assets will be served from
+[http://localhost:8080](http://localhost:8080). As API the localhost instance
+of the IRIS service will be used [http://localhost:8081](http://localhost:8081).
 
 ### Available `npm` Commands
 
